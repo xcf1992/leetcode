@@ -8,15 +8,7 @@
 #include <queue>
 #include <stack>
 #include <stdio.h>
-#include <map>
 using namespace std;
-
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
-
 class MyCalendar {
 private:
     vector<pair<int, int>> events;
@@ -60,16 +52,8 @@ public:
         return false;
     }
 };
-
-int main() {
-    MyCalendar calendar = MyCalendar();
-    calendar.book(47, 50);
-    calendar.book(33, 41);
-    calendar.book(39, 45);
-    calendar.book(33, 42);
-    calendar.book(25, 32);
-    calendar.book(26, 35);
-    calendar.book(19, 25);
-    calendar.book(3, 8);
-    calendar.book(8, 13);
-}
+/**
+ * Your MyCalendar object will be instantiated and called as such:
+ * MyCalendar obj = new MyCalendar();
+ * bool param_1 = obj.book(start,end);
+ */
