@@ -8,14 +8,7 @@
 #include <queue>
 #include <stack>
 #include <stdio.h>
-#include <map>
 using namespace std;
-
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
 
 class Solution {
 public:
@@ -41,9 +34,3 @@ public:
         return result;
     }
 };
-
-int main() {
-    Solution s;
-    vector<int> v = {3,10,5,25,2,8};
-    s.findMaximumXOR(v);
-}
