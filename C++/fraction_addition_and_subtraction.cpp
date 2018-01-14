@@ -8,20 +8,13 @@
 #include <queue>
 #include <stack>
 #include <stdio.h>
-#include <map>
 using namespace std;
-
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
 
 class Solution {
 private:
     int getGCD(int a, int b) {
         if (a == 0) {
-            return b == 0 ? 0 : a;
+            return b == 0 ? 0 : b;
         }
         else if (b == 0) {
             return a;
@@ -59,7 +52,7 @@ public:
             
             i++;
             
-            while (i < expression.size() && expression[i] >= '0' && expression[i] <= '9') {
+            while (expression[i] >= '0' && expression[i] <= '9' && i < expression.size()) {
                 d1 = d1 * 10 + (expression[i] - '0');
                 i++;
             }
@@ -82,9 +75,3 @@ public:
         return result + to_string(n / gcd) + "/" + to_string(d / gcd);
     }
 };
-
-
-int main() {
-    Solution s;
-    s.fractionAddition("-1/2+1/2");
-}
