@@ -1,3 +1,11 @@
+//
+//  pyramid_transition_matrix.cpp
+//  C++
+//
+//  Created by Chenfu Xie on 1/18/18.
+//  Copyright © 2018 Chenfu Xie. All rights reserved.
+//
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -8,14 +16,7 @@
 #include <queue>
 #include <stack>
 #include <stdio.h>
-#include <map>
 using namespace std;
-
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
 
 class Solution {
 private:
@@ -34,7 +35,9 @@ private:
         auto blocks = validBlock.equal_range(prefix);
         for (auto it = blocks.first; it != blocks.second; it++) {
             curRow[index] = it -> second;
-            dfs(bottom, curRow, index + 1, validBlock);
+            if (dfs(bottom, curRow, index + 1, validBlock)) {
+                return true;
+            }
         }
         return false;
     }
@@ -49,8 +52,4 @@ public:
     }
 };
 
-int main() {
-    Solution s;
-    vector<string> v({"ABD","BCE","DEF","FFF"});
-    cout << s.pyramidTransition("ABC", v) << endl;
-}
+
