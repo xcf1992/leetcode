@@ -8,14 +8,7 @@
 #include <queue>
 #include <stack>
 #include <stdio.h>
-#include <map>
 using namespace std;
-
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
 
 class Solution {
 public:
@@ -50,8 +43,3 @@ public:
         return result;
     }
 };
-
-int main() {
-    Solution s;
-    cout << s.monotoneIncreasingDigits(10) << endl;
-}
