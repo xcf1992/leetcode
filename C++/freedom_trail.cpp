@@ -1,3 +1,11 @@
+//
+//  freedom_trail.cpp
+//  C++
+//
+//  Created by Chenfu Xie on 1/20/18.
+//  Copyright © 2018 Chenfu Xie. All rights reserved.
+//
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -10,12 +18,6 @@
 #include <stdio.h>
 #include <map>
 using namespace std;
-
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
 
 class Solution {
 public:
@@ -37,7 +39,7 @@ public:
                 for (int curIndex : curPos) {
                     int distance = min(abs(nextIndex - curIndex), length - abs(nextIndex - curIndex));
                     steps[i + 1][nextIndex] = min(steps[i + 1][nextIndex], steps[i][curIndex] + distance);
-                    newDis = min(steps[i][nextIndex], newDis);
+                    newDis = min(steps[i + 1][nextIndex], newDis);
                 }
             }
             curPos = pos[key[i]];
@@ -46,8 +48,3 @@ public:
         return result + ksize;
     }
 };
-int main() {
-    Solution s;
-    vector<string> v({"ABD","BCE","DEF","FFF"});
-    cout << s.findRotateSteps("godding", "gd") << endl;
-}
