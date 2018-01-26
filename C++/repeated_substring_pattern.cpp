@@ -1,3 +1,11 @@
+//
+//  repeated_substring_pattern.cpp
+//  C++
+//
+//  Created by Chenfu Xie on 1/25/18.
+//  Copyright © 2018 Chenfu Xie. All rights reserved.
+//
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -11,17 +19,11 @@
 #include <map>
 using namespace std;
 
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
-
 class Solution {
 public:
     bool repeatedSubstringPattern(string s) {
         int length = s.size();
-        for (int i = 1; i <= length / 2; i++) {
+        for (int i = 1; i <= s.size() / 2; i++) {
             if (s[i] == s[0] && length % i == 0) {
                 string pattern = s.substr(0, i);
                 bool match = true;
@@ -31,19 +33,12 @@ public:
                         match = false;
                         break;
                     }
-                    if (match) {
-                        return true;
-                    }
+                }
+                if (match) {
+                    return true;
                 }
             }
         }
         return false;
     }
 };
-
-int main() {
-    Solution s;
-    vector<string> v({"ABD","BCE","DEF","FFF"});
-    vector<int> v2({7,2,5,10,8});
-    cout << s.repeatedSubstringPattern("aabaaba") << endl;
-}
