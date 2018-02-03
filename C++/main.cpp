@@ -17,33 +17,64 @@ struct ListNode {
     ListNode(int x) : val(x), next(NULL) {}
 };
 
-class Solution {
-public:
-    bool repeatedSubstringPattern(string s) {
-        int length = s.size();
-        for (int i = 1; i <= length / 2; i++) {
-            if (s[i] == s[0] && length % i == 0) {
-                string pattern = s.substr(0, i);
-                bool match = true;
-                for (int j = 1; j < length / i; j++) {
-                    string sub = s.substr(j * i, i);
-                    if (sub != pattern) {
-                        match = false;
-                        break;
-                    }
-                    if (match) {
-                        return true;
-                    }
-                }
-            }
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
+
+class Codec {
+private:
+    TreeNode* parse(string data, int& pos) {
+        if (data[pos] == '$') {
+            pos++;
+            return nullptr;
         }
-        return false;
+        
+        int cur = pos;
+        while (data[cur] <= '9' && data[cur] >= '0') {
+            cur++;
+        }
+        
+        int value = stoi(data.substr(pos, cur - pos));
+        TreeNode* root = new TreeNode(value);
+        pos = cur + 1;
+        root -> left = parse(data, pos);
+        pos++;
+        root -> right = parse(data, pos);
+        pos++;
+        return root;
+    }
+public:
+    // Encodes a tree to a single string.
+    string serialize(TreeNode* root) {
+        if (root == nullptr) {
+            return "$";
+        }
+        
+        return to_string(root -> val) + "," +
+        serialize(root -> left) + "," +
+        serialize(root -> right);
+    }
+    
+    // Decodes your encoded data to tree.
+    TreeNode* deserialize(string data) {
+        int pos = 0;
+        return parse(data, pos);
     }
 };
 
 int main() {
-    Solution s;
+    /*Solution s;
     vector<string> v({"ABD","BCE","DEF","FFF"});
     vector<int> v2({7,2,5,10,8});
     cout << s.repeatedSubstringPattern("aabaaba") << endl;
+    */
+    TreeNode* root = new TreeNode(2);
+    root -> left = new TreeNode(1);
+    root -> right = new TreeNode(3);
+    Codec codec;
+    string data= codec.serialize(root);
+    codec.deserialize(data);
 }
