@@ -1,3 +1,11 @@
+//
+//  string_compression.cpp
+//  C++
+//
+//  Created by Chenfu Xie on 2/4/18.
+//  Copyright © 2018 Chenfu Xie. All rights reserved.
+//
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -11,22 +19,9 @@
 #include <map>
 using namespace std;
 
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
-
 class Solution {
 public:
-    int compress(string chars) {
+    int compress(vector<char>& chars) {
         if (chars.empty()) {
             return 0;
         }
@@ -63,12 +58,3 @@ public:
         return start;
     }
 };
-
-int main() {
-    Solution s;
-    vector<string> v({"ABD","BCE","DEF","FFF"});
-    vector<int> v2({7,2,5,10,8});
-    vector<char> chars({'a','a','a','a','a','b','b','c'});
-    cout << s.compress("abcccc") << endl;
-    
-}
