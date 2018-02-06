@@ -26,41 +26,48 @@ struct TreeNode {
 
 class Solution {
 public:
-    int compress(string chars) {
-        if (chars.empty()) {
-            return 0;
+    int longestSubstring(string s, int k) {
+        unordered_map<char, int> letters;
+        for (char c : s) {
+            letters[c] += 1;
         }
-        int start = 0;
+        
+        int result = 0;
+        int start = -1;
         int end = 0;
-        int count = 0;
-        while (end < chars.size()) {
-            if (chars[end] == chars[start]) {
-                count++;
-                end++;
+        unordered_map<char, int> count;
+        while (end < s.size()) {
+            if (letters[s[end]] >= k) {
+                count[s[end]] += 1;
             }
             else {
-                start += 1;
-                if (count > 1) {
-                    string num = to_string(count);
-                    for (char c : num) {
-                        chars[start] = c;
-                        start += 1;
+                bool isValid = true;
+                for (auto letterNum : count) {
+                    if (letterNum.second < k) {
+                        isValid = false;
                     }
+                    letters[letterNum.first] -= letterNum.second;
                 }
-                count = 1;
-                chars[start] = chars[end];
-                end++;
+                if (isValid) {
+                    result = max(result, end - start - 1);
+                }
+                count.clear();
+                start = end;
             }
+            end += 1;
         }
-        start += 1;
-        if (count > 1) {
-            string num = to_string(count);
-            for (char c : num) {
-                chars[start] = c;
-                start += 1;
+        bool isValid = true;
+        for (auto letterNum : count) {
+            if (letterNum.second < k) {
+                isValid = false;
             }
+            letters[letterNum.first] -= letterNum.second;
         }
-        return start;
+        if (isValid) {
+            result = max(result, end - start - 1);
+        }
+        count.clear();
+        return result;
     }
 };
 
@@ -69,6 +76,6 @@ int main() {
     vector<string> v({"ABD","BCE","DEF","FFF"});
     vector<int> v2({7,2,5,10,8});
     vector<char> chars({'a','a','a','a','a','b','b','c'});
-    cout << s.compress("abcccc") << endl;
+    cout << s.longestSubstring("bbaaacdb", 3) << endl;
     
 }
