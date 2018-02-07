@@ -32,7 +32,7 @@ public:
         right.back() = height.back();
         for (int i = 1; i < n; i++) {
             left[i] = max(left[i - 1], height[i]);
-            right[n - i - 1] = max(right[n - i], height[n - i]);
+            right[n - i - 1] = max(right[n - i], height[n - i - 1]);
         }
         
         int result = 0;
