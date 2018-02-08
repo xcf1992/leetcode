@@ -1,3 +1,11 @@
+//
+//  find_k_closet_elements.cpp
+//  C++
+//
+//  Created by Chenfu Xie on 2/7/18.
+//  Copyright © 2018 Chenfu Xie. All rights reserved.
+//
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -10,19 +18,6 @@
 #include <stdio.h>
 #include <map>
 using namespace std;
-
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
 
 class Solution {
 public:
@@ -43,31 +38,22 @@ public:
             }
         }
         
-        int start = left;
+        int start = left - 1;
         int end = left;
-        while (end - start + 1 < k) {
-            if (start >= 0 && (abs(x - arr[start]) < abs(x - arr[end]) || end >= arr.size())) {
-                start -= 1;
+        int temp = k;
+        while(k-- > 0){
+            if (start < 0 || (end < arr.size() && abs(arr[start] - x) > abs(arr[end] - x))) {
+                end++;
             }
             else {
-                end += 1;
+                start--;
             }
         }
         
         vector<int> result;
-        for (int i = start; result.size() < k; i++) {
+        for (int i = start + 1; result.size() < temp; i++) {
             result.push_back(arr[i]);
         }
         return result;
     }
 };
-
-int main() {
-    Solution s;
-    vector<string> v({"ABD","BCE","DEF","FFF"});
-    vector<int> v2({0,0,1,2,3,3,4,7,7,8});
-    vector<char> chars({'a','a','a','a','a','b','b','c'});
-    vector<vector<int>> matrix({{78,16,94,36},{87,93,50,22},{63,28,91,60},{64,27,41,27},{73,37,12,69},{68,30,83,31},{63,24,68,36}});
-    s.findClosestElements(v2, 3, 5);
-    
-}
