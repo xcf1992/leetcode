@@ -10,18 +10,18 @@
 #include <stdio.h>
 using namespace std;
 
+/*
+Given a string, determine if a permutation of the string could form a palindrome.
 
+For example,
+"code" -> False, "aab" -> True, "carerac" -> True.
+*/
 class Solution {
 public:
     bool canPermutePalindrome(string s) {
         unordered_map<char, int> letter;
-        for (int i = 0; i < s.size(); i++) {
-            if (letter.find(s[i]) == letter.end()) {
-                letter[s[i]] = 1;
-            }
-            else {
-                letter[s[i]] += 1;
-            }
+        for (char c : s) {
+            letter[c] += 1;
         }
 
         int odd = 0;
@@ -31,11 +31,6 @@ public:
             }
         }
 
-        return odd <= 0;
+        return odd <= 1;
     }
 };
-
-int main() {
-    Solution s;
-    return 0;
-}
