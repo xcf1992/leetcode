@@ -26,16 +26,25 @@ struct TreeNode {
 
 class Solution {
 public:
-    int numRabbits(vector<int>& answers) {
-        unordered_map<int, double> counts;
-        for (int ans : answers) {
-            counts[ans + 1] += 1;
+    vector<int> findPermutation(string s) {
+        vector<int> result;
+        for (int i = 0; i <= s.size(); i++) {
+            result.push_back(i + 1);
         }
         
-        int result = 0;
-        for (pair<int, int> count : counts) {
-            cout << ceil(count.second / count.first);
-            result += ceil(count.second / count.first) * count.first;
+        for (int i = 0; i < s.size(); i++) {
+            if (s[i] == 'D') {
+                int right = i;
+                while (right < s.size() && s[right] == 'D') {
+                    right++;
+                }
+                
+                int left = i;
+                i = right;
+                while (left < right) {
+                    swap(result[left++], result[right--]);
+                }
+            }
         }
         return result;
     }
@@ -47,6 +56,6 @@ int main() {
     vector<int> v2({2,2,2,2,2});
     vector<char> chars({'a','a','a','a','a','b','b','c'});
     vector<vector<int>> matrix({{78,16,94,36},{87,93,50,22},{63,28,91,60},{64,27,41,27},{73,37,12,69},{68,30,83,31},{63,24,68,36}});
-    s.numRabbits(v2);
+    s.findPermutation("DDIIDI");
     
 }

@@ -10,7 +10,20 @@
 #include <stdio.h>
 using namespace std;
 
+/*
+Given a non-negative integer represented as non-empty a singly linked list of digits, plus one to the integer.
 
+You may assume the integer do not contain any leading zero, except the number 0 itself.
+
+The digits are stored such that the most significant digit is at the head of the list.
+
+Example:
+Input:
+1->2->3
+
+Output:
+1->2->4
+*/
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -73,7 +86,48 @@ public:
     }
 };
 
-int main() {
-    Solution s;
-    return 0;
-}
+class Solution1 {
+private:
+    ListNode* reverse(ListNode* head) {
+        ListNode* cur = head -> next;
+        head -> next = nullptr;
+        while (cur != nullptr) {
+            ListNode* next = cur -> next;
+
+            cur -> next = head;
+            head = cur;
+            cur = next;
+        }
+        return head;
+    }
+
+    ListNode* plus(ListNode* head) {
+        ListNode* cur = head;
+        ListNode* last = nullptr;
+        while (cur != nullptr) {
+            if (cur -> val == 9) {
+                cur -> val = 0;
+                last = cur;
+            }
+            else {
+                cur -> val += 1;
+                break;
+            }
+            cur = cur -> next;
+        }
+        if (cur == nullptr) {
+            last -> next = new ListNode(1);
+        }
+        return head;
+    }
+public:
+    ListNode* plusOne(ListNode* head) {
+        if (head == nullptr) {
+            return head;
+        }
+        head = reverse(head);
+        head = plus(head);
+        head = reverse(head);
+        return head;
+    }
+};
