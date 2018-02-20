@@ -71,8 +71,3 @@ public:
         return calculate(nestedList, depth);
     }
 };
-
-int main() {
-    Solution s;
-    return 0;
-}

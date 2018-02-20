@@ -20,8 +20,12 @@ public:
 
         for (int i = 0; i < m; i++) {
             for (int k = 0; k < n; k++) {
-                for (int j = 0; j < n; j++) {
-                    result[i][j] += A[i][k] * B[k][j];
+                if (A[i][k] != 0) {
+                    for (int j = 0; j < n; j++) {
+                        if (B[k][j] != 0) {
+                            result[i][j] += A[i][k] * B[k][j];   
+                        }
+                    } 
                 }
             }
         }
