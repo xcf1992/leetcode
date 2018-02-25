@@ -25,28 +25,29 @@ struct TreeNode {
 };
 
 class Solution {
+private:
+    vector<string> below20 = vector<string>({"One", "Two", "Three", "Four","Five","Six","Seven","Eight","Nine","Ten", "Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen"});
+    vector<string> below100 = vector<string>({"Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"});
 public:
-    vector<int> findPermutation(string s) {
-        vector<int> result;
-        for (int i = 0; i <= s.size(); i++) {
-            result.push_back(i + 1);
+    string numberToWords(int num) {
+        if (num >= 1000000000) {
+            return numberToWords(num / 1000000000) + " Billion " + numberToWords(num % 1000000000);
         }
-        
-        for (int i = 0; i < s.size(); i++) {
-            if (s[i] == 'D') {
-                int right = i;
-                while (right < s.size() && s[right] == 'D') {
-                    right++;
-                }
-                
-                int left = i;
-                i = right;
-                while (left < right) {
-                    swap(result[left++], result[right--]);
-                }
-            }
+        else if (num > 1000000) {
+            return numberToWords(num / 1000000) + " Million " + numberToWords(num % 1000000);
         }
-        return result;
+        else if (num >= 1000) {
+            return numberToWords(num / 1000) + " Thousand " + numberToWords(num % 1000);
+        }
+        else if (num >= 100) {
+            return numberToWords(num / 100) + " Thousand " + numberToWords(num % 100);
+        }
+        else if (num >= 20) {
+            return below100[num / 10 - 2] + " " + below20[num % 10];
+        }
+        else {
+            return below20[num % 20];
+        }
     }
 };
 
@@ -56,6 +57,6 @@ int main() {
     vector<int> v2({2,2,2,2,2});
     vector<char> chars({'a','a','a','a','a','b','b','c'});
     vector<vector<int>> matrix({{78,16,94,36},{87,93,50,22},{63,28,91,60},{64,27,41,27},{73,37,12,69},{68,30,83,31},{63,24,68,36}});
-    s.findPermutation("DDIIDI");
     
+    s.numberToWords(323452345);
 }

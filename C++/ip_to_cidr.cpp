@@ -63,9 +63,3 @@ using namespace std;
  n will be an integer in the range [1, 1000].
  */
 
-class Solution {
-public:
-    vector<string> ipToCIDR(string ip, int n) {
-        
-    }
-};
