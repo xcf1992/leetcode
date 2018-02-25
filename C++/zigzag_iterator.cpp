@@ -32,23 +32,28 @@ It should return [1,4,8,2,5,9,3,6,7].
 
 class ZigzagIterator {
 private:
-    queue<vector<int>::iterator> q;
+    queue<pair<vector<int>::iterator, vector<int>::iterator>> zigZag;
 public:
     ZigzagIterator(vector<int>& v1, vector<int>& v2) {
-        q.push(v1.begin());
-        q.push(v2.begin());
-    }
-    int next() {
-        auto it = q.front();
-        int result = *it;
-        q.pop();
-        it += 1;
-        if (it != v1.end() && it != v2.end()) {
-            q.push(it);
+        if (!v1.empty()) {
+            zigZag.push(make_pair(v1.begin(), v1.end()));
         }
-        return result;
+        if (!v2.empty()) {
+            zigZag.push(make_pair(v2.begin(), v2.end()));
+        }
     }
+
+    int next() {
+        auto it = zigZag.front().first;
+        auto endIt = zigZag.front().second;
+        zigZag.pop();
+        if (it + 1 != endIt) {
+            zigZag.push(make_pair(it + 1, endIt));
+        }
+        return *it;
+    }
+
     bool hasNext() {
-        return !q.empty();
+        return !zigZag.empty();
     }
 };

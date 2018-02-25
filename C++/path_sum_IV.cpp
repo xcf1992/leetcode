@@ -62,7 +62,7 @@ public:
         int sum = 0;
         for (int i = 1; i < 5; i++) {
             for (int j = 0; j < 8; j++) {
-                if (i == 4 || m[i][j] && !m[i + 1][j * 2] && !m[i + 1][j * 2 + 1]){
+                if (i == 4 || (m[i][j] && !m[i + 1][j * 2] && !m[i + 1][j * 2 + 1])) {
                     sum += m[i][j];
                 }
             }
