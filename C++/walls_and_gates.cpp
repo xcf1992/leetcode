@@ -28,20 +28,53 @@ using namespace std;
  Fill each empty room with the distance to its nearest gate. If it is impossible to reach a gate, it should be filled with INF.
  
  For example, given the 2D grid:
+ 
  INF  -1  0  INF
  INF INF INF  -1
  INF  -1 INF  -1
- 0  -1 INF INF
+   0  -1 INF INF
+ 
  After running your function, the 2D grid should be:
+ 
  3  -1   0   1
  2   2   1  -1
  1  -1   2  -1
  0  -1   3   4
+ 
  */
 
 class Solution {
 public:
     void wallsAndGates(vector<vector<int>>& rooms) {
+        if (rooms.empty()) {
+            return;
+        }
+        queue<int> bfs;
+        int m = rooms.size();
+        int n = rooms[0].size();
         
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (rooms[i][j] == 0) {
+                    bfs.push(i * n + j);
+                }
+            }
+        }
+        
+        vector<int> move({0, 1, 0, -1, 0});
+        while (!bfs.empty()) {
+            int pos = bfs.front();
+            bfs.pop();
+            int i = pos / n;
+            int j = pos % n;
+            for (int k = 0; k < 4; k++) {
+                int p = i + move[k];
+                int q = j + move[k + 1];
+                if (p >= 0 && q >= 0 && p < m && q < n && rooms[p][q] > rooms[i][j] + 1) {
+                    rooms[p][q] = rooms[i][j] + 1;
+                    bfs.push(p * n + q);
+                }
+            }
+        }
     }
 };
