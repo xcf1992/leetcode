@@ -24,62 +24,62 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-class TicTacToe {
+class Solution {
 private:
-    vector<vector<int>> rowCount;
-    vector<vector<int>> colCount;
-    vector<int> diagnal;
-    vector<int> antiDiagnal;
-    int size;
-public:
-    /** Initialize your data structure here. */
-    TicTacToe(int n) {
-        rowCount.resize(2, vector<int>(n, 0));
-        colCount.resize(2, vector<int>(n, 0));
-        diagnal.resize(2, 0);
-        antiDiagnal.resize(2, 0);
-        size = n;
+    int update(vector<vector<int>>& matrix, vector<vector<int>>& dp) {
+        int m = matrix.size();
+        int n = matrix[0].size();
+        int result = 0;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (j - 1 >= 0 && dp[i][j] > dp[i][j - 1]) {
+                    dp[i][j] = max(dp[i][j], dp[i][j - 1] + 1);
+                }
+                
+                if (i - 1 >= 0 && dp[i][j] > dp[i - 1][j]) {
+                    dp[i][j] = max(dp[i][j], dp[i - 1][j] + 1);
+                }
+                
+                if (j + 1 < n && dp[i][j] > dp[i][j + 1]) {
+                    dp[i][j] = max(dp[i][j], dp[i][j + 1] + 1);
+                }
+                
+                if (i + 1 < m && dp[i][j] > dp[i + 1][j]) {
+                    dp[i][j] = max(dp[i][j], dp[i + 1][j] + 1);
+                }
+                result = max(result, dp[i][j]);
+            }
+        }
+        return result;
     }
-    
-    /** Player {player} makes a move at ({row}, {col}).
-     @param row The row of the board.
-     @param col The column of the board.
-     @param player The player, can be either 1 or 2.
-     @return The current winning condition, can be either:
-     0: No one wins.
-     1: Player 1 wins.
-     2: Player 2 wins. */
-    int move(int row, int col, int player) {
-        rowCount[player - 1][row] += 1;
-        colCount[player - 1][col] += 1;
-        if (row == col) {
-            diagnal[player - 1] += 1;
+public:
+    int longestIncreasingPath(vector<vector<int>>& matrix) {
+        int m = matrix.size();
+        if (m == 0) {
+            return 0;
         }
-        if (row + col == size) {
-            antiDiagnal[player - 1] += 1;
-        }
+        int n = matrix[0].size();
         
-        if (rowCount[player - 1][row] == size ||
-            colCount[player - 1][col] == size ||
-            diagnal[player - 1] == size ||
-            antiDiagnal[player - 1] == size) {
-            return player;
+        vector<vector<int>> dp(m, vector<int>(n, 1));
+        int result = 0;
+        while (true) {
+            int temp = update(matrix, dp);
+            if (temp > result) {
+                result = temp;
+            }
+            else {
+                break;
+            }
         }
-        return 0;
+        return result;
     }
 };
-
 int main() {
-    //Solution s;
+    Solution s;
     vector<string> v({"ABD","BCE","DEF","FFF"});
     vector<int> v2({2,2,2,2,2});
     vector<char> chars({'a','a','a','a','a','b','b','c'});
-    vector<vector<int>> matrix({{78,16,94,36},{87,93,50,22},{63,28,91,60},{64,27,41,27},{73,37,12,69},{68,30,83,31},{63,24,68,36}});
+    vector<vector<int>> matrix({{9,9,4},{6,7,8},{2,1,1}});
     
-    //s.numberToWords(323452345);
-    
-    TicTacToe t(2);
-    t.move(0,1,1);
-    t.move(1,1,2);
-    t.move(1,0,1);
+    s.longestIncreasingPath(matrix);
 }
