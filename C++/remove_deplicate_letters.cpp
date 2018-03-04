@@ -1,3 +1,14 @@
+/*
+ Given a string which contains only lowercase letters, remove duplicate letters so that every letter appear once and only once. You must make sure your result is the smallest in lexicographical order among all possible results.
+ 
+ Example:
+ Given "bcabc"
+ Return "abc"
+ 
+ Given "cbacdcbc"
+ Return "acdb"
+ */
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -10,19 +21,6 @@
 #include <stdio.h>
 #include <map>
 using namespace std;
-
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
 
 class Solution {
 public:
@@ -40,7 +38,7 @@ public:
                 continue;
             }
             
-            if (!result.empty() && c < result.back() && count[result.back() - 'a'] > 0) {
+            while (!result.empty() && c < result.back() && count[result.back() - 'a'] > 0) {
                 visited[result.back() - 'a'] = false;
                 result.pop_back();
             }
@@ -50,13 +48,3 @@ public:
         return result;
     }
 };
-
-int main() {
-    Solution s;
-    vector<string> v({"ABD","BCE","DEF","FFF"});
-    vector<int> v2({2,2,2,2,2});
-    vector<char> chars({'a','a','a','a','a','b','b','c'});
-    vector<vector<int>> matrix({{9,9,4},{6,7,8},{2,1,1}});
-    
-    s.removeDuplicateLetters("bcabc");
-}
