@@ -1,3 +1,22 @@
+/*
+ Additive number is a string whose digits can form additive sequence.
+ 
+ A valid additive sequence should contain at least three numbers. Except for the first two numbers, each subsequent number in the sequence must be the sum of the preceding two.
+ 
+ For example:
+ "112358" is an additive number because the digits can form an additive sequence: 1, 1, 2, 3, 5, 8.
+ 
+ 1 + 1 = 2, 1 + 2 = 3, 2 + 3 = 5, 3 + 5 = 8
+ "199100199" is also an additive number, the additive sequence is: 1, 99, 100, 199.
+ 1 + 99 = 100, 99 + 100 = 199
+ Note: Numbers in the additive sequence cannot have leading zeros, so sequence 1, 2, 03 or 1, 02, 3 is invalid.
+ 
+ Given a string containing only digits '0'-'9', write a function to determine if it's an additive number.
+ 
+ Follow up:
+ How would you handle overflow for very large input integers?
+ */
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -11,26 +30,13 @@
 #include <map>
 using namespace std;
 
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
-
 class Solution {
 private:
     bool isValid(string num1, string num2, string num3) {
-        if (num1.size() > 0 && num1[0] == '0') {
+        if (num1.size() > 1 && num1[0] == '0') {
             return false;
         }
-        if (num2.size() > 0 && num2[0] == '0') {
+        if (num2.size() > 1 && num2[0] == '0') {
             return false;
         }
         
@@ -61,13 +67,3 @@ public:
         return false;
     }
 };
-
-int main() {
-    Solution s;
-    vector<string> v({"ABD","BCE","DEF","FFF"});
-    vector<int> v2({2,2,2,2,2});
-    vector<char> chars({'a','a','a','a','a','b','b','c'});
-    vector<vector<int>> matrix({{9,9,4},{6,7,8},{2,1,1}});
-    
-    s.isAdditiveNumber("101");
-}
