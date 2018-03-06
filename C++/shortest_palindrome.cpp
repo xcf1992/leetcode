@@ -31,5 +31,6 @@ public:
             if (s.substr(0, l) == s2.substr(n - l))
                 return s2.substr(0, n - l) + s;
         }
+        return s;
     }
 };

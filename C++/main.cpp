@@ -24,50 +24,58 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-class Solution {
-private:
-    bool isValid(string num1, string num2, string num3) {
-        if (num1.size() > 0 && num1[0] == '0') {
-            return false;
-        }
-        if (num2.size() > 0 && num2[0] == '0') {
-            return false;
-        }
+class MaxStack1 {
+    stack<int> elements;
+    stack<int> maxElements;
+public:
+    /** initialize your data structure here. */
+    MaxStack1() {
         
-        string sum = add(num1, num2);
-        if (sum == num3) {
-            return true;
-        }
-        
-        if (num3.size() <= sum.size() || sum != num3.substr(0, sum.size())) {
-            return false;
-        }
-        return isValid(num2, sum, num3.substr(sum.size()));
     }
     
-    string add(string num1, string num2) {
-        return to_string(stol(num1) + stol(num2));
-    }
-public:
-    bool isAdditiveNumber(string num) {
-        int n = num.size();
-        for (int i = 1; i <= n / 2; i++) {
-            for (int j = 1; j <= (n - i) / 2; j++) {
-                if (isValid(num.substr(0, i), num.substr(i, j), num.substr(i + j))) {
-                    return true;
-                }
-            }
+    void push(int x) {
+        elements.push(x);
+        if (maxElements.empty() || x >= maxElements.top()) {
+            maxElements.push(x);
         }
-        return false;
+        else {
+            maxElements.push(maxElements.top());
+        }
+    }
+    
+    int pop() {
+        int result = elements.top();
+        elements.pop();
+        maxElements.pop();
+        return result;
+    }
+    
+    int top() {
+        return elements.top();
+    }
+    
+    int peekMax() {
+        return maxElements.top();
+    }
+    
+    int popMax() {
+        int result = maxElements.top();
+        elements.pop();
+        maxElements.pop();
+        return result;
     }
 };
 
 int main() {
-    Solution s;
+    //Solution s;
     vector<string> v({"ABD","BCE","DEF","FFF"});
     vector<int> v2({2,2,2,2,2});
     vector<char> chars({'a','a','a','a','a','b','b','c'});
     vector<vector<int>> matrix({{9,9,4},{6,7,8},{2,1,1}});
     
-    s.isAdditiveNumber("101");
+    MaxStack1 stack;
+    stack.push(5);
+    stack.push(1);
+    stack.popMax();
+    stack.peekMax();
 }
