@@ -28,17 +28,13 @@ private:
 
         int leftLength = find(root -> left, diameter);
         int rightLength = find(root -> right, diameter);
-        diameter = max(diameter, leftLength + rightLength + 1);
+        diameter = max(diameter, leftLength + rightLength);
         return max(leftLength, rightLength) + 1;
     }
 public:
     int diameterOfBinaryTree(TreeNode* root) {
-        if (root == nullptr) {
-            return 0;
-        }
         int diameter = 0;
-        int leftLength = find(root -> left, diameter);
-        int rightLength = find(root -> right, diameter);
-        return max(diameter, leftLength + rightLength + 1) - 1;
+        find(root, diameter);
+        return diameter;
     }
 };

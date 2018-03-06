@@ -42,6 +42,48 @@ struct TreeNode {
 
 class Solution {
 private:
+    vector<int> traverse(TreeNode* root, int& result) {
+        vector<int> l(2, 0);
+        if (root == nullptr) {
+           return l;
+        }
+
+        vector<int> l1 = traverse(root -> left, result);
+        vector<int> l2 = traverse(root -> right, result);
+
+        if (root -> left != nullptr) {
+            if (root -> left -> val != root -> val - 1) {
+                l1[0] = 0;
+            }
+            if (root -> left -> val != root -> val + 1) {
+                l1[1] = 0;
+            }
+        }
+        if (root -> right != nullptr) {
+            if (root -> right -> val != root -> val - 1) {
+                l2[0] = 0;
+            }
+            if (root -> right -> val != root -> val + 1) {
+                l2[1] = 0;
+            }
+        }
+
+        l[0] = 1 + max(l1[0], l2[0]);
+        l[1] = 1 + max(l1[1], l2[1]);
+
+        result = max(result, max(l1[0] + l2[1], l1[1] + l2[0]) + 1);
+        return l;
+    }
+public:
+    int longestConsecutive(TreeNode* root) {
+        int result = 0;
+        traverse(root, result);
+        return result;
+    }
+};
+
+class Solution1 {
+private:
     int findPath(TreeNode* root, int preVal, int diff) {
         if (root == nullptr) {
             return 0;
