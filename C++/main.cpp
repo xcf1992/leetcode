@@ -24,58 +24,47 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-class MaxStack1 {
-    stack<int> elements;
-    stack<int> maxElements;
+class Solution {
 public:
-    /** initialize your data structure here. */
-    MaxStack1() {
+    int countComponents(int n, vector<pair<int, int>>& edges) {
+        unordered_map<int, vector<int>> adj;
+        for (auto edge : edges) {
+            adj[edge.first].push_back(edge.second);
+            adj[edge.second].push_back(edge.first);
+        }
         
-    }
-    
-    void push(int x) {
-        elements.push(x);
-        if (maxElements.empty() || x >= maxElements.top()) {
-            maxElements.push(x);
+        vector<bool> visited(n, false);
+        int result = 0;
+        for (int i = 0; i < n && !visited[i]; i++) {
+            visited[i] = true;
+            result += 1;
+            queue<int> connected;
+            connected.push(i);
+            while (!connected.empty()) {
+                int cur = connected.front();
+                connected.pop();
+                
+                for (int node : adj[cur]) {
+                    if (!visited[node]) {
+                        visited[node] = true;
+                        connected.push(node);
+                    }
+                }
+            }
         }
-        else {
-            maxElements.push(maxElements.top());
-        }
-    }
-    
-    int pop() {
-        int result = elements.top();
-        elements.pop();
-        maxElements.pop();
-        return result;
-    }
-    
-    int top() {
-        return elements.top();
-    }
-    
-    int peekMax() {
-        return maxElements.top();
-    }
-    
-    int popMax() {
-        int result = maxElements.top();
-        elements.pop();
-        maxElements.pop();
         return result;
     }
 };
 
 int main() {
-    //Solution s;
+    Solution s;
     vector<string> v({"ABD","BCE","DEF","FFF"});
     vector<int> v2({2,2,2,2,2});
     vector<char> chars({'a','a','a','a','a','b','b','c'});
-    vector<vector<int>> matrix({{9,9,4},{6,7,8},{2,1,1}});
-    
-    MaxStack1 stack;
-    stack.push(5);
-    stack.push(1);
-    stack.popMax();
-    stack.peekMax();
+    vector<vector<int>> matrix({{0,1},{1,2},{3,4}});
+    vector<pair<int, int>> fuxk;
+    fuxk.push_back(make_pair(0, 1));
+    fuxk.push_back(make_pair(1, 2));
+    fuxk.push_back(make_pair(3, 4));
+    s.countComponents(5, fuxk);
 }
