@@ -41,11 +41,15 @@ private:
         bool result = false;
         for (int k = j; k < n; k++) {
             string word = str.substr(j, k - j + 1);
-            if (pat2Str.find(pattern[i]) != pat2Str.end() && pat2Str[pattern[i]] != word) {
-                continue;
+            if (pat2Str.find(pattern[i]) != pat2Str.end()) {
+                if (pat2Str[pattern[i]] != word) {
+                    continue;
+                }
             }
-            else if (str2Pat.find(word) != str2Pat.end() && str2Pat[word] != pattern[i]) {
-                continue;
+            else if (str2Pat.find(word) != str2Pat.end()) {
+                if (str2Pat[word] != pattern[i]) {
+                    continue;
+                }
             }
             else {
                 pat2Str[pattern[i]] = word;
@@ -58,6 +62,7 @@ private:
             if (result) {
                 pat2Str.erase(pattern[i]);
                 str2Pat.erase(word);
+                result = false;
             }
         }
         return false;
