@@ -23,32 +23,29 @@ struct TreeNode {
     TreeNode *right;
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
-
 class Solution {
 public:
-    int countComponents(int n, vector<pair<int, int>>& edges) {
-        unordered_map<int, vector<int>> adj;
-        for (auto edge : edges) {
-            adj[edge.first].push_back(edge.second);
-            adj[edge.second].push_back(edge.first);
-        }
-        
-        vector<bool> visited(n, false);
+    int threeSumSmaller(vector<int>& nums, int target) {
+        sort(nums.begin(), nums.end());
+        int left = 0;
+        int right = nums.size() - 1;
         int result = 0;
-        for (int i = 0; i < n && !visited[i]; i++) {
-            visited[i] = true;
-            result += 1;
-            queue<int> connected;
-            connected.push(i);
-            while (!connected.empty()) {
-                int cur = connected.front();
-                connected.pop();
-                
-                for (int node : adj[cur]) {
-                    if (!visited[node]) {
-                        visited[node] = true;
-                        connected.push(node);
-                    }
+        while (left < right - 1) {
+            for (int mid = left + 1; mid < right; mid++) {
+                if (nums[left] + nums[mid] + nums[right] < target) {
+                    result += 1;
+                }
+                else {
+                    break;
+                }
+            }
+            if (nums[left] + nums[left + 1] + nums[right] >= target) {
+                right -= 1;
+            }
+            else {
+                left += 1;
+                while (left < right - 1 && nums[left] == nums[left - 1]) {
+                    left += 1;
                 }
             }
         }
@@ -59,12 +56,13 @@ public:
 int main() {
     Solution s;
     vector<string> v({"ABD","BCE","DEF","FFF"});
-    vector<int> v2({2,2,2,2,2});
+    vector<int> v2({3,1,0,-2});
     vector<char> chars({'a','a','a','a','a','b','b','c'});
     vector<vector<int>> matrix({{0,1},{1,2},{3,4}});
     vector<pair<int, int>> fuxk;
     fuxk.push_back(make_pair(0, 1));
     fuxk.push_back(make_pair(1, 2));
     fuxk.push_back(make_pair(3, 4));
-    s.countComponents(5, fuxk);
+    
+    s.threeSumSmaller(v2, 4);
 }
