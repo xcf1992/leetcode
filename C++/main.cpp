@@ -25,44 +25,26 @@ struct TreeNode {
 };
 
 class Solution {
+private:
+    int N;
+    void dfs(int cur, vector<int> path, vector<vector<int>>& result, vector<vector<int>>& graph) {
+        if (cur == N - 1) {
+            result.push_back(path);
+            return;
+        }
+        
+        for (int next : graph[cur]) {
+            path.push_back(next);
+            dfs(next, path, result, graph);
+            path.pop_back();
+        }
+    }
 public:
-    vector<int> sortTransformedArray(vector<int>& nums, int a, int b, int c) {
-        int n = nums.size();
-        vector<int> result;
-        double mid = 0 - b / (2 * a);
-        int left = 0;
-        int right = n - 1;
-        while (left < n - 1 && ((double)nums[left + 1]) < mid) {
-            left += 1;
-        }
-        while (right > 0 && ((double)nums[right - 1]) >= mid) {
-            right -= 1;
-        }
-        
-        while (left >= 0 && right < n) {
-            double rightVal = nums[right];
-            double leftVal = nums[left];
-            if (abs(rightVal - mid) > abs(leftVal - mid)) {
-                result.push_back(a * nums[left] * nums[left] + b * nums[left] + c);
-                left -= 1;
-            }
-            else {
-                result.push_back(a * nums[right] * nums[right] + b * nums[right] + c);
-                right += 1;
-            }
-        }
-        
-        while (left >= 0) {
-            result.push_back(a * nums[left] * nums[left] + b * nums[left] + c);
-            left -= 1;
-        }
-        while (right < n) {
-            result.push_back(a * nums[right] * nums[right] + b * nums[right] + c);
-            right += 1;
-        }
-        if (a < 0) {
-            reverse(result.begin(), result.end());
-        }
+    vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
+        N = graph.size() ;
+        vector<vector<int>> result;
+        vector<int> path(1, 0);
+        dfs(0, path, result, graph);
         return result;
     }
 };
@@ -72,11 +54,11 @@ int main() {
     vector<string> v({"ABD","BCE","DEF","FFF"});
     vector<int> v2({-4,-2,2,4});
     vector<char> chars({'a','a','a','a','a','b','b','c'});
-    vector<vector<int>> matrix({{0,1},{1,2},{3,4}});
+    vector<vector<int>> matrix({{1,2},{3},{3},{}});
     vector<pair<int, int>> fuxk;
     fuxk.push_back(make_pair(0, 1));
     fuxk.push_back(make_pair(1, 2));
     fuxk.push_back(make_pair(3, 4));
     
-    s.sortTransformedArray(v2, 1, 3, 5);
+    s.allPathsSourceTarget(matrix);
 }
