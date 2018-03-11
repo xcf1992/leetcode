@@ -1,3 +1,20 @@
+/*
+ Given a sorted array of integers nums and integer values a, b and c. Apply a quadratic function of the form f(x) = ax2 + bx + c to each element x in the array.
+ 
+ The returned array must be in sorted order.
+ 
+ Expected time complexity: O(n)
+ 
+ Example:
+ nums = [-4, -2, 2, 4], a = 1, b = 3, c = 5,
+ 
+ Result: [3, 9, 15, 33]
+ 
+ nums = [-4, -2, 2, 4], a = -1, b = 3, c = 5
+ 
+ Result: [-23, -5, 1, 7]
+ */
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -8,28 +25,26 @@
 #include <queue>
 #include <stack>
 #include <stdio.h>
-#include <map>
 using namespace std;
-
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
 
 class Solution {
 public:
     vector<int> sortTransformedArray(vector<int>& nums, int a, int b, int c) {
-        int n = nums.size();
         vector<int> result;
-        double mid = 0 - b / (2 * a);
+        if (a == 0) {
+            for (int i : nums) {
+                result.push_back(b * i + c);
+            }
+            if (b >= 0) {
+                return result;
+            }
+            else {
+                reverse(result.begin(), result.end());
+                return result;
+            }
+        }
+        int n = nums.size();
+        double mid = 0 - (double)b / (2 * a);
         int left = 0;
         int right = n - 1;
         while (left < n - 1 && ((double)nums[left + 1]) < mid) {
@@ -66,17 +81,3 @@ public:
         return result;
     }
 };
-
-int main() {
-    Solution s;
-    vector<string> v({"ABD","BCE","DEF","FFF"});
-    vector<int> v2({-4,-2,2,4});
-    vector<char> chars({'a','a','a','a','a','b','b','c'});
-    vector<vector<int>> matrix({{0,1},{1,2},{3,4}});
-    vector<pair<int, int>> fuxk;
-    fuxk.push_back(make_pair(0, 1));
-    fuxk.push_back(make_pair(1, 2));
-    fuxk.push_back(make_pair(3, 4));
-    
-    s.sortTransformedArray(v2, 1, 3, 5);
-}
