@@ -1,24 +1,3 @@
-//
-//  longest_increasing_path.cpp
-//  C++
-//
-//  Created by Chenfu Xie on 3/2/18.
-//  Copyright © 2018 Chenfu Xie. All rights reserved.
-//
-
-#include <iostream>
-#include <string>
-#include <vector>
-#include <unordered_map>
-#include <unordered_set>
-#include <algorithm>
-#include <cmath>
-#include <queue>
-#include <stack>
-#include <stdio.h>
-#include <map>
-using namespace std;
-
 /*
  Given an integer matrix, find the length of the longest increasing path.
  
@@ -44,6 +23,19 @@ using namespace std;
  Return 4
  The longest increasing path is [3, 4, 5, 6]. Moving diagonally is not allowed.
  */
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+#include <algorithm>
+#include <cmath>
+#include <queue>
+#include <stack>
+#include <stdio.h>
+#include <map>
+using namespace std;
 
 class Solution {
 private:
