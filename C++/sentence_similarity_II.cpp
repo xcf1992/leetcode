@@ -32,8 +32,42 @@
 using namespace std;
 
 class Solution {
+private:
+    unordered_map<string, string> match;
+    
+    string find(string word) {
+        if (match.find(word) == match.end()) {
+            match[word] = word;
+        }
+        
+        if (word == match[word]) {
+            return word;
+        }
+        return find(match[word]);
+    }
 public:
     bool areSentencesSimilarTwo(vector<string>& words1, vector<string>& words2, vector<pair<string, string>> pairs) {
-        return false;
+        if (words1.size() != words2.size()) {
+            return false;
+        }
+        match.clear();
+        
+        for (pair<string, string> pair : pairs) {
+            string parent1 = find(pair.first);
+            string parent2 = find(pair.second);
+            
+            if (parent1 != parent2) {
+                match[parent1] = parent2;
+            }
+        }
+        
+        for (int i = 0; i < words1.size(); i++) {
+            if (words1[i] != words2[i]) {
+                if (find(words1[i]) != find(words2[i])) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 };
