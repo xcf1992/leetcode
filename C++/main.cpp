@@ -27,49 +27,87 @@ struct TreeNode {
 
 class Solution {
 private:
-    vector<int> root;
+    int X;
+    int Y;
+    int Z;
+    bool find;
     
-    int findRoot(int island) {
-        if (island != root[island]) {
-            island = root[island];
-        }
-        return island;
-    }
-    
-    void check(int x, int y, int m, int n, int island, int &count) {
-        if (x < 0 || y < 0 || x >= m || y >= n) {
+    void dfs(int curX, int curY, vector<vector<bool>>& visited) {
+        if (visited[curX][curY] || find) {
             return;
         }
-        
-        int newIsland = x * m + y;
-        if (root[newIsland] != -1) {
-            int newRoot = findRoot(newIsland);
-            int curRoot = findRoot(island);
-            if (curRoot != newRoot) {
-                root[curRoot] = newRoot;
-                count -= 1;
+        if (curX == Z || curY == Z) {
+            find = true;
+            return;
+        }
+        visited[curX][curY] = true;
+        if (curX != 0) {
+            dfs(0, curY, visited);
+            if (find) {
+                return;
+            }
+        }
+        if (curY != 0) {
+            dfs(curX, 0, visited);
+            if (find) {
+                return;
+            }
+        }
+        if (curX != X) {
+            dfs(X, curY, visited);
+            if (find) {
+                return;
+            }
+        }
+        if (curY != Y) {
+            dfs(curX, Y, visited);
+            if (find) {
+                return;
+            }
+        }
+        if (curX != X) {
+            int gap = X - curX;
+            if (gap > curY) {
+                dfs(curX + curY, 0, visited);
+                if (find) {
+                    return;
+                }
+            }
+            else {
+                dfs(X, curY - gap, visited);
+                if (find) {
+                    return;
+                }
+            }
+        }
+        if (curY != Y) {
+            int gap = Y - curY;
+            if (gap > curX) {
+                dfs(0, curX + curY, visited);
+                if (find) {
+                    return;
+                }
+            }
+            else {
+                dfs(curX - gap, Y, visited);
+                if (find) {
+                    return;
+                }
             }
         }
     }
 public:
-    vector<int> numIslands2(int m, int n, vector<pair<int, int>>& positions) {
-        vector<int> result;
-        root = vector<int>(m * n, -1);
-        int count = 0;
-        for (pair<int, int>& pos : positions) {
-            int row = pos.first;
-            int col = pos.second;
-            int island = row * m + col;
-            root[island] = island;
-            count += 1;
-            
-            check(row - 1, col, m, n, island, count);
-            check(row + 1, col, m, n, island, count);
-            check(row, col - 1, m, n, island, count);
-            check(row, col + 1, m, n, island, count);
-            result.push_back(count);
+    bool canMeasureWater(int x, int y, int z) {
+        if (z < 0 || z > x + y) {
+            return false;
         }
-        return result;
+        X = x;
+        Y = y;
+        Z = z;
+        find = false;
+        vector<vector<bool>> visited(x + 1, vector<bool>(y + 1, false));
+        dfs(0, 0, visited);
+        return find;
     }
 };
 
@@ -85,5 +123,5 @@ int main() {
     fuxk.push_back(make_pair(2,1));
     fuxk.push_back(make_pair(5,0));
     
-    s.numIslands2(6, 5, fuxk);
+    s.canMeasureWater(22003, 31237, 1);
 }
