@@ -114,3 +114,46 @@ public:
         return parse(data, pos);
     }
 };
+
+class Codec2 {
+public:
+    
+    // Encodes a tree to a single string.
+    string serialize(TreeNode* root) {
+        return root == nullptr ? "" : to_string(root -> val) +
+                                        "(" + serialize(root -> left) + ")" +
+                                        "(" + serialize(root -> right) + ")";
+    }
+    
+    // Decodes your encoded data to tree.
+    TreeNode* deserialize(string data) {
+        int pos = 0;
+        return myDeserialize(data, pos);
+    }
+    
+    TreeNode* myDeserialize(string& data, int& pos) {
+        int n = data.size();
+        int i = pos;
+        bool found = false;
+        
+        while (data[i] != '(' && data[i] != ')' && i < n) {
+            i++;
+        }
+        
+        if (i == pos) {
+            return nullptr;
+        }
+        
+        int val = stoi(data.substr(pos, i - pos));
+        TreeNode* node = new TreeNode(val);
+        
+        pos = i;
+        pos++;
+        node -> left = myDeserialize(data, pos);
+        pos++;
+        pos++;
+        node -> right = myDeserialize(data, pos);
+        pos++;
+        return node;
+    }
+};
