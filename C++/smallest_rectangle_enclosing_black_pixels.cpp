@@ -1,3 +1,17 @@
+/*
+ An image is represented by a binary matrix with 0 as a white pixel and 1 as a black pixel. The black pixels are connected, i.e., there is only one black region. Pixels are connected horizontally and vertically. Given the location (x, y) of one of the black pixels, return the area of the smallest (axis-aligned) rectangle that encloses all black pixels.
+ 
+ For example, given the following image:
+ 
+ [
+ "0010",
+ "0110",
+ "0100"
+ ]
+ and x = 0, y = 2,
+ Return 6.
+ */
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -8,22 +22,8 @@
 #include <queue>
 #include <stack>
 #include <stdio.h>
-#include <map>
 #include <set>
 using namespace std;
-
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
 
 class Solution {
 private:
@@ -35,7 +35,7 @@ private:
     void dfs(vector<vector<bool>>& visited, vector<vector<char>>& image, int x, int y) {
         int m = image.size();
         int n = image[0].size();
-        if (x < 0 || y < 0 || x >= m || y >= n || visited[x][y] || image[x][y] == 0) {
+        if (x < 0 || y < 0 || x >= m || y >= n || visited[x][y] || image[x][y] == '0') {
             return;
         }
         
@@ -63,18 +63,3 @@ public:
         return (maxX - minX) * (maxY - minY);
     }
 };
-
-int main() {
-    Solution s;
-    vector<string> v({"ABD","BCE","DEF","FFF"});
-    vector<int> v2({4,2});
-    vector<char> chars({'a','a','a','a','a','b','b','c'});
-    vector<vector<int>> matrix({{4,3}, {2,3}, {2,1}, {5,0}, {0,1}});
-    vector<pair<int, int>> fuxk;
-    fuxk.push_back(make_pair(4,3));
-    fuxk.push_back(make_pair(2,3));
-    fuxk.push_back(make_pair(2,1));
-    fuxk.push_back(make_pair(5,0));
-    
-    s.canMeasureWater(22003, 31237, 1);
-}
