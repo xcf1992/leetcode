@@ -27,77 +27,19 @@ struct TreeNode {
 
 class Solution {
 public:
-    int shortestDistance(vector<vector<int>>& maze, vector<int>& start, vector<int>& destination) {
-        int m = maze.size();
-        int n = maze[0].size();
+    string helper(string str) {
+        string dec_to_hex = "0123456789abcdef", res = "";
         
-        queue<pair<int, int>> position;
-        vector<vector<int>> distance(m, vector<int>(n, INT_MAX));
-        position.push(make_pair(start[0], start[1]));
-        distance[start[0]][start[1]] = 0;
-        
-        int result = INT_MAX;
-        while (!position.empty()) {
-            pair<int, int> curPos = position.front();
-            position.pop();
-            
-            int curX = curPos.first;
-            int curY = curPos.second;
-            int curDis = distance[curX][curY];
-            if (curX == destination[0] && curY == destination[1]) {
-                result = min(result, curDis);
-                continue;
-            }
-            
-            // move down
-            int move = 0;
-            while (curX + 1 < m && maze[curX + 1][curY] != 1) {
-                curX += 1;
-                move += 1;
-            }
-            if (distance[curX][curY] > curDis + move) {
-                distance[curX][curY] = curDis + move;
-                position.push(make_pair(curX, curY));
-            }
-            
-            //move up
-            curX = curPos.first;
-            move = 0;
-            while (curX - 1 >= 0 && maze[curX - 1][curY] != 1) {
-                curX -= 1;
-                move += 1;
-            }
-            if (distance[curX][curY] > curDis + move) {
-                distance[curX][curY] = curDis + move;
-                position.push(make_pair(curX, curY));
-            }
-            
-            // move left
-            curX = curPos.first;
-            move = 0;
-            while (curY + 1 < n && maze[curX][curY + 1] != 1) {
-                curY += 1;
-                move += 1;
-            }
-            if (distance[curX][curY] > curDis + move) {
-                distance[curX][curY] = curDis + move;
-                position.push(make_pair(curX, curY));
-            }
-            
-            //move right
-            curY = curPos.second;
-            move = 0;
-            while (curY - 1 >= 0 && maze[curX][curY - 1] != 1) {
-                curY -= 1;
-                move += 1;
-            }
-            if (distance[curX][curY] > curDis + move) {
-                distance[curX][curY] = curDis + move;
-                position.push(make_pair(curX, curY));
-            }
-        }
-        
-        return result == INT_MAX ? -1 : result;
+        int dec_num = stoi(str, nullptr, 16);
+        int q = dec_num / 17;
+        int x = dec_num % 17;
+        if ((dec_num % 17) > 8) q = q + 1;
+        res = res + dec_to_hex[q] + dec_to_hex[q];
+        return res;
+    }
+    
+    string similarRGB(string color) {
+        return "#" + helper(color.substr(1, 2)) + helper(color.substr(3, 2)) + helper(color.substr(5, 2));
     }
 };
 
@@ -114,5 +56,5 @@ int main() {
     fuxk.push_back(make_pair(2,1));
     fuxk.push_back(make_pair(5,0));
     
-    s.shortestDistance(matrix, v2, v1);
+    s.similarRGB("#191919");
 }
