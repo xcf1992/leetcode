@@ -27,19 +27,37 @@ struct TreeNode {
 
 class Solution {
 public:
-    string helper(string str) {
-        string dec_to_hex = "0123456789abcdef", res = "";
-        
-        int dec_num = stoi(str, nullptr, 16);
-        int q = dec_num / 17;
-        int x = dec_num % 17;
-        if ((dec_num % 17) > 8) q = q + 1;
-        res = res + dec_to_hex[q] + dec_to_hex[q];
-        return res;
-    }
-    
-    string similarRGB(string color) {
-        return "#" + helper(color.substr(1, 2)) + helper(color.substr(3, 2)) + helper(color.substr(5, 2));
+    int calculate(string s) {
+        int result = 0;
+        int pos = 0;
+        int n = s.size();
+        while (pos < s.size()) {
+            bool negative = false;
+            while (pos < n && (s[pos] == '(' || s[pos] == ')')) {
+                pos += 1;
+            }
+            
+            if (pos < n && s[pos] == '-') {
+                negative = true;
+                pos += 1;
+            }
+            
+            if (pos < n && s[pos] == '+') {
+                pos += 1;
+            }
+            
+            int temp = 0;
+            while (pos < n && s[pos] >= '0' && s[pos] <= '9') {
+                temp = temp * 10 + (s[pos] - '0');
+                pos += 1;
+            }
+            
+            if (negative) {
+                temp = 0 - temp;
+            }
+            result += temp;
+        }
+        return result;
     }
 };
 
@@ -56,5 +74,5 @@ int main() {
     fuxk.push_back(make_pair(2,1));
     fuxk.push_back(make_pair(5,0));
     
-    s.similarRGB("#191919");
+    s.calculate("1+1");
 }
