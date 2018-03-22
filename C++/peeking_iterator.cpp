@@ -10,8 +10,6 @@
  You call next() the final time and it returns 3, the last element. Calling hasNext() after that should return false.
  
  Follow up: How would you extend your design to be generic and work with all types, not just integer?
- 
-
  */
 
 #include <iostream>
