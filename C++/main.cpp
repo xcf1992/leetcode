@@ -27,44 +27,32 @@ struct TreeNode {
 
 class Solution {
 public:
-    int calculate(string s) {
-        int result = 0;
-        int pos = 0;
-        int n = s.size();
-        while (pos < s.size()) {
-            bool negative = false;
-            while (pos < n && (s[pos] == '(' || s[pos] == ')')) {
-                pos += 1;
+    int thirdMax(vector<int>& nums) {
+        long biggest = (long)INT_MIN - 1;
+        long bigger = INT_MIN - 1;
+        long big = INT_MIN - 1;
+        for (long num : nums) {
+            if (num > biggest) {
+                big = bigger;
+                bigger = biggest;
+                biggest = num;
             }
-            
-            if (pos < n && s[pos] == '-') {
-                negative = true;
-                pos += 1;
+            else if (num != biggest && num > bigger) {
+                big = bigger;
+                bigger = num;
             }
-            
-            if (pos < n && s[pos] == '+') {
-                pos += 1;
+            else if (num != biggest && num != bigger && num > big) {
+                big = num;
             }
-            
-            int temp = 0;
-            while (pos < n && s[pos] >= '0' && s[pos] <= '9') {
-                temp = temp * 10 + (s[pos] - '0');
-                pos += 1;
-            }
-            
-            if (negative) {
-                temp = 0 - temp;
-            }
-            result += temp;
         }
-        return result;
+        return big == INT_MIN - 1 ? biggest : big;
     }
 };
 
 int main() {
     Solution s;
     vector<string> v({"ABD","BCE","DEF","FFF"});
-    vector<int> v1({4,4});
+    vector<int> v1({1,2,-2147483648});
     vector<int> v2({0,4});
     vector<char> chars({'a','a','a','a','a','b','b','c'});
     vector<vector<int>> matrix({{0,0,1,0,0}, {0,0,0,0,0}, {0,0,0,1,0}, {1,1,0,1,1}, {0,0,0,0,0}});
@@ -74,5 +62,5 @@ int main() {
     fuxk.push_back(make_pair(2,1));
     fuxk.push_back(make_pair(5,0));
     
-    s.calculate("1+1");
+    s.thirdMax(v1);
 }

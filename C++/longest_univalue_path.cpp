@@ -68,7 +68,7 @@ public:
             return 0;
         }
         int result = 0;
-        getPathLenth(root, result, INT_MIN - 1);
+        getPathLenth(root, result, (long)INT_MIN - 1);
         return result - 1;
     }
 };
