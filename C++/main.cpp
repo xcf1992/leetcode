@@ -26,33 +26,47 @@ struct TreeNode {
 };
 
 class Solution {
-public:
-    int thirdMax(vector<int>& nums) {
-        long biggest = (long)INT_MIN - 1;
-        long bigger = INT_MIN - 1;
-        long big = INT_MIN - 1;
-        for (long num : nums) {
-            if (num > biggest) {
-                big = bigger;
-                bigger = biggest;
-                biggest = num;
-            }
-            else if (num != biggest && num > bigger) {
-                big = bigger;
-                bigger = num;
-            }
-            else if (num != biggest && num != bigger && num > big) {
-                big = num;
+private:
+    bool placeFlower(vector<int> bed, int flower, int start) {
+        if (flower <= 0) {
+            return true;
+        }
+        
+        if (start >= bed.size()) {
+            return false;
+        }
+        
+        for (int i = start; i < bed.size(); i++) {
+            if (bed[i] == 0) {
+                if ((i - 1 < start || bed[i - 1] == 0) && (i + 1 >= bed.size() || bed[i + 1] == 0)) {
+                    bed[i] = 1;
+                    if (placeFlower(bed, flower - 1, i + 1)) {
+                        return true;
+                    }
+                    bed[i] = 0;
+                }
             }
         }
-        return big == INT_MIN - 1 ? biggest : big;
+        
+        return false;
+    }
+public:
+    bool canPlaceFlowers(vector<int>& flowerbed, int n) {
+        if (n == 0) {
+            return true;
+        }
+        
+        if (n > (flowerbed.size() + 1) / 2) {
+            return false;
+        }
+        return placeFlower(flowerbed, n, 0);
     }
 };
 
 int main() {
     Solution s;
     vector<string> v({"ABD","BCE","DEF","FFF"});
-    vector<int> v1({1,2,-2147483648});
+    vector<int> v1({1,0,0,0,0,1});
     vector<int> v2({0,4});
     vector<char> chars({'a','a','a','a','a','b','b','c'});
     vector<vector<int>> matrix({{0,0,1,0,0}, {0,0,0,0,0}, {0,0,0,1,0}, {1,1,0,1,1}, {0,0,0,0,0}});
@@ -62,5 +76,5 @@ int main() {
     fuxk.push_back(make_pair(2,1));
     fuxk.push_back(make_pair(5,0));
     
-    s.thirdMax(v1);
+    s.canPlaceFlowers(v1, 2);
 }
