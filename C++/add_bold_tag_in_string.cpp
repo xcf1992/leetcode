@@ -1,3 +1,22 @@
+/*
+ Given a string s and a list of strings dict, you need to add a closed pair of bold tag <b> and </b> to wrap the substrings in s that exist in dict. If two such substrings overlap, you need to wrap them together by only one pair of closed bold tag. Also, if two substrings wrapped by bold tags are consecutive, you need to combine them.
+ Example 1:
+ Input:
+ s = "abcxyz123"
+ dict = ["abc","123"]
+ Output:
+ "<b>abc</b>xyz<b>123</b>"
+ Example 2:
+ Input:
+ s = "aaabbcc"
+ dict = ["aaa","aab","bc"]
+ Output:
+ "<b>aaabbc</b>c"
+ Note:
+ The given dict won't contain duplicates, and its length won't exceed 100.
+ All the strings in input have length in range [1, 1000].
+ */
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -8,22 +27,8 @@
 #include <queue>
 #include <stack>
 #include <stdio.h>
-#include <map>
 #include <set>
 using namespace std;
-
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
 
 class Solution {
 public:
@@ -54,26 +59,10 @@ public:
             }
         }
         
-        for (int i = merge.size(); i >= 0; i--) {
+        for (int i = merge.size() - 1; i >= 0; i--) {
             s.insert(merge[i].second, "</b>");
             s.insert(merge[i].first, "<b>");
         }
         return s;
     }
 };
-
-int main() {
-    Solution s;
-    vector<string> v({"abc","123"});
-    vector<int> v1({1,0,0,0,0,1});
-    vector<int> v2({0,4});
-    vector<char> chars({'a','a','a','a','a','b','b','c'});
-    vector<vector<int>> matrix({{1,2,3}, {4,5}, {1,2,3}});
-    vector<pair<int, int>> fuxk;
-    fuxk.push_back(make_pair(4,3));
-    fuxk.push_back(make_pair(2,3));
-    fuxk.push_back(make_pair(2,1));
-    fuxk.push_back(make_pair(5,0));
-    
-    s.addBoldTag("abcxyz123", v);
-}
