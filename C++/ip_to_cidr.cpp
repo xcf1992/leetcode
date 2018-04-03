@@ -1,24 +1,3 @@
-//
-//  ip_to_cidr.cpp
-//  C++
-//
-//  Created by Chenfu Xie on 2/19/18.
-//  Copyright © 2018 Chenfu Xie. All rights reserved.
-//
-
-#include <iostream>
-#include <string>
-#include <vector>
-#include <unordered_map>
-#include <unordered_set>
-#include <algorithm>
-#include <cmath>
-#include <queue>
-#include <stack>
-#include <stdio.h>
-using namespace std;
-
-
 /*
  Given a start IP address ip and a number of ips we need to cover n, return a representation of the range as a list (of smallest possible length) of CIDR blocks.
  
@@ -63,3 +42,70 @@ using namespace std;
  n will be an integer in the range [1, 1000].
  */
 
+#include <iostream>
+#include <string>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+#include <algorithm>
+#include <cmath>
+#include <queue>
+#include <stack>
+#include <stdio.h>
+using namespace std;
+
+class Solution {
+private:
+    string convert(unsigned int a, int diff) {
+        string res = "";
+        for (int i = 0; i < 4; i++) {
+            int temp = a & 0xff;
+            res = to_string(temp) + "." + res;
+            a >>= 8;
+        }
+        
+        res.back() = '/';
+        
+        int len = 0;
+        while (diff != 1) {
+            diff >>= 1;
+            len++;
+        }
+        return res + to_string(32 - len);
+    }
+public:
+    vector<string> ipToCIDR(string ip, int n) {
+        unsigned int IP = 0;
+        string temp = "";
+        for (int i = 0; i <= ip.size(); i++) {
+            if (ip[i] == '.' || i == ip.size()) {
+                IP |= stoi(temp);
+                if (i != ip.size()) {
+                    IP <<= 8;
+                }
+                temp.clear();
+            }
+            else {
+                temp.append(1, ip[i]);
+            }
+        }
+
+        IP += n;
+
+        vector<string> result;
+        while (n > 0) {
+            unsigned int temp = IP & (IP - 1);
+            int diff = IP - temp;
+            while (diff > n) {
+                diff >>= 1;
+            }
+
+            IP -= diff;
+            n -= diff;
+            result.push_back(convert(IP, diff));
+        }
+
+        reverse(result.begin(), result.end());
+        return result;
+    }
+};
