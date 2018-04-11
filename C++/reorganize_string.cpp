@@ -1,3 +1,21 @@
+/*
+ Given a string S, check if the letters can be rearranged so that two characters that are adjacent to each other are not the same.
+ 
+ If possible, output any possible result.  If not possible, return the empty string.
+ 
+ Example 1:
+ 
+ Input: S = "aab"
+ Output: "aba"
+ Example 2:
+ 
+ Input: S = "aaab"
+ Output: ""
+ Note:
+ 
+ S will consist of lowercase letters and have length in range [1, 500].
+ */
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -8,22 +26,7 @@
 #include <queue>
 #include <stack>
 #include <stdio.h>
-#include <map>
-#include <set>
 using namespace std;
-
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
 
 class Solution {
 private:
@@ -69,22 +72,6 @@ public:
             strSorted += string(charCounts[i].second, charCounts[i].first);
         }
         return reorganize(strSorted);
+        return reorganize(strSorted);
     }
 };
-
-
-int main() {
-    Solution s;
-    vector<string> v({"abc","123"});
-    vector<int> v1({1,0,0,0,0,1});
-    vector<int> v2({0,4});
-    vector<char> chars({'a','a','a','a','a','b','b','c'});
-    vector<vector<int>> matrix({{1,2,3}, {4,5}, {1,2,3}});
-    vector<pair<int, int>> fuxk;
-    fuxk.push_back(make_pair(4,3));
-    fuxk.push_back(make_pair(2,3));
-    fuxk.push_back(make_pair(2,1));
-    fuxk.push_back(make_pair(5,0));
-    
-    s.reorganizeString("aab");
-}
