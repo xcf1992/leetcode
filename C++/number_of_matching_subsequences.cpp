@@ -1,3 +1,20 @@
+/*
+ Given string S and a dictionary of words words, find the number of words[i] that is a subsequence of S.
+ 
+ Example :
+ Input:
+ S = "abcde"
+ words = ["a", "bb", "acd", "ace"]
+ Output: 3
+ Explanation: There are three words in words that are a subsequence of S: "a", "acd", "ace".
+ Note:
+ 
+ All words in words and S will only consists of lowercase letters.
+ The length of S will be in the range of [1, 50000].
+ The length of words will be in the range of [1, 5000].
+ The length of words[i] will be in the range of [1, 50].
+ */
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -8,22 +25,7 @@
 #include <queue>
 #include <stack>
 #include <stdio.h>
-#include <map>
-#include <set>
 using namespace std;
-
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
 
 class Solution {
 public:
@@ -55,6 +57,7 @@ public:
                         if (newPos > curPos) {
                             find = true;
                             curPos = newPos;
+                            break;
                         }
                     }
                     if (find) {
@@ -71,20 +74,3 @@ public:
         return result;
     }
 };
-
-
-int main() {
-    Solution s;
-    vector<string> v({"ahjpjau","ja","ahbwzgqnuk","tnmlanowax"});
-    vector<int> v1({1,0,0,0,0,1});
-    vector<int> v2({0,4});
-    vector<char> chars({'a','a','a','a','a','b','b','c'});
-    vector<vector<int>> matrix({{1,2,3}, {4,5}, {1,2,3}});
-    vector<pair<int, int>> fuxk;
-    fuxk.push_back(make_pair(4,3));
-    fuxk.push_back(make_pair(2,3));
-    fuxk.push_back(make_pair(2,1));
-    fuxk.push_back(make_pair(5,0));
-    
-    s.numMatchingSubseq("dsahjpjauf", v);
-}

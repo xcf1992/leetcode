@@ -16,7 +16,6 @@
  Note:
  The length sum of the given matchsticks is in the range of 0 to 10^9.
  The length of the given matchstick array will not exceed 15.
-
  */
 
 #include <iostream>
