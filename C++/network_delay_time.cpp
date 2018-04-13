@@ -1,3 +1,17 @@
+/*
+ There are N network nodes, labelled 1 to N.
+ 
+ Given times, a list of travel times as directed edges times[i] = (u, v, w), where u is the source node, v is the target node, and w is the time it takes for a signal to travel from source to target.
+ 
+ Now, we send a signal from a certain node K. How long will it take for all nodes to receive the signal? If it is impossible, return -1.
+ 
+ Note:
+ N will be in the range [1, 100].
+ K will be in the range [1, N].
+ The length of times will be in the range [1, 6000].
+ All edges times[i] = (u, v, w) will have 1 <= u, v <= N and 1 <= w <= 100.
+ */
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -8,27 +22,12 @@
 #include <queue>
 #include <stack>
 #include <stdio.h>
-#include <map>
-#include <set>
 using namespace std;
-
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
 
 class Solution {
 public:
     int networkDelayTime(vector<vector<int>>& times, int N, int K) {
-        vector<vector<pair<int, int>>> distance;
+        vector<vector<pair<int, int>>> distance(N + 1, vector<pair<int, int>>());
         for (vector<int>& time : times) {
             distance[time[0]].push_back(make_pair(time[1], time[2]));
         }
@@ -60,19 +59,3 @@ public:
         return result;
     }
 };
-
-int main() {
-    Solution s;
-    vector<string> v({"ahjpjau","ja","ahbwzgqnuk","tnmlanowax"});
-    vector<int> v1({1,0,0,0,0,1});
-    vector<int> v2({0,4});
-    vector<char> chars({'a','a','a','a','a','b','b','c'});
-    vector<vector<int>> matrix({{2,1,1}, {2,3,1}, {3,4,1}});
-    vector<pair<int, int>> fuxk;
-    fuxk.push_back(make_pair(4,3));
-    fuxk.push_back(make_pair(2,3));
-    fuxk.push_back(make_pair(2,1));
-    fuxk.push_back(make_pair(5,0));
-    
-    s.networkDelayTime(matrix, 4, 2);
-}
