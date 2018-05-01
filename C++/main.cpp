@@ -26,89 +26,32 @@ struct TreeNode {
 };
 
 class Solution {
-private:
-    bool canFlow(vector<vector<int>>& matrix, vector<vector<int>>& flowTo, int i, int j, int x, int y) {
-        int m = matrix.size();
-        int n = matrix[0].size();
-        if (x >= m || y >= n || x < 0 || y < 0) {
-            return false;
-        }
-        
-        if (matrix[x][y] > matrix[i][j]) {
-            return false;
-        }
-        
-        if (flowTo[x][y] == 1) {
-            return true;
-        }
-        
-        if (flowTo[x][y] == 0) {
-            return false;
-        }
-        
-        if (canFlow(matrix, flowTo, x, y, x - 1, y) ||
-            canFlow(matrix, flowTo, x, y, x + 1, y) ||
-            canFlow(matrix, flowTo, x, y, x, y - 1) ||
-            canFlow(matrix, flowTo, x, y, x, y + 1)) {
-            flowTo[x][y] = 1;
-            return true;
-        }
-        flowTo[x][y] = 0;
-        return false;
-    }
 public:
-    vector<pair<int, int>> pacificAtlantic(vector<vector<int>>& matrix) {
-        int m = matrix.size();
-        if (m == 0) {
-            return {};
-        }
-        int n = matrix[0].size();
-        
-        vector<vector<int>> flow2P(m, vector<int>(n, -1));
-        vector<vector<int>> flow2A(m, vector<int>(n, -1));
-        for (int i = 0; i < m; i++) {
-            flow2P[i][0] = 1;
-            flow2A[i][n - 1] = 1;
-        }
-        for (int j = 0; j < n; j++) {
-            flow2P[0][j] = 1;
-            flow2A[m - 1][j] = 1;
-        }
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (flow2P[i][j] == -1) {
-                    if (canFlow(matrix, flow2P, i, j, i - 1, j) ||
-                        canFlow(matrix, flow2P, i, j, i + 1, j) ||
-                        canFlow(matrix, flow2P, i, j, i, j - 1) ||
-                        canFlow(matrix, flow2P, i, j, i, j + 1)) {
-                        flow2P[i][j] = 1;
-                    }
-                    else {
-                        flow2P[i][j] = 0;
-                    }
-                }
-                
-                if (flow2A[i][j] == -1) {
-                    if (canFlow(matrix, flow2A, i, j, i - 1, j) ||
-                        canFlow(matrix, flow2A, i, j, i + 1, j) ||
-                        canFlow(matrix, flow2A, i, j, i, j - 1) ||
-                        canFlow(matrix, flow2A, i, j, i, j + 1)) {
-                        flow2A[i][j] = 1;
-                    }
-                    else {
-                        flow2A[i][j] = 0;
-                    }
-                }
-            }
+    int findSubstringInWraproundString(string p) {
+        int n = p.size();
+        if (n < 2) {
+            return n;
         }
         
-        vector<pair<int, int>> result;
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (flow2P[i][j] == 1 && flow2A[i][j] == 1) {
-                    result.push_back(make_pair(i, j));
-                }
+        vector<int> counts(26, 0);
+        int start = 0;
+        int end = 1;
+        while (end <= n) {
+            int a = p[end] - 'a' + 1;
+            int b = p[end - 1] - 'a';
+            while (end < n && (p[end] - 'a' + 1) % 26 == (p[end - 1] - 'a')) {
+                end += 1;
             }
+            while (start < end) {
+                counts[p[start] - 'a'] = max(end - start, counts[p[start] - 'a']);
+                start += 1;
+            }
+            end += 1;
+        }
+        
+        int result = 0;
+        for (int count : counts) {
+            result += count;
         }
         return result;
     }
@@ -127,5 +70,5 @@ int main() {
     fuxk.push_back(make_pair(2,1));
     fuxk.push_back(make_pair(5,0));
     
-    s.pacificAtlantic(matrix);
+    s.findSubstringInWraproundString("abcdzab");
 }
