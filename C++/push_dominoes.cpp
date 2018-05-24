@@ -1,4 +1,39 @@
+/*
+ There are N dominoes in a line, and we place each domino vertically upright.
+ 
+ In the beginning, we simultaneously push some of the dominoes either to the left or to the right.
+ 
+ 
+ 
+ After each second, each domino that is falling to the left pushes the adjacent domino on the left.
+ 
+ Similarly, the dominoes falling to the right push their adjacent dominoes standing on the right.
+ 
+ When a vertical domino has dominoes falling on it from both sides, it stays still due to the balance of the forces.
+ 
+ For the purposes of this question, we will consider that a falling domino expends no additional force to a falling or already fallen domino.
+ 
+ Given a string "S" representing the initial state. S[i] = 'L', if the i-th domino has been pushed to the left; S[i] = 'R', if the i-th domino has been pushed to the right; S[i] = '.', if the i-th domino has not been pushed.
+ 
+ Return a string representing the final state.
+ 
+ Example 1:
+ 
+ Input: ".L.R...LR..L.."
+ Output: "LL.RR.LLRRLL.."
+ Example 2:
+ 
+ Input: "RR.L"
+ Output: "RR.L"
+ Explanation: The first domino expends no additional force on the second domino.
+ Note:
+ 
+ 0 <= N <= 10^5
+ String dominoes contains only 'L', 'R' and '.'
+ */
+
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 #include <unordered_map>
@@ -8,22 +43,7 @@
 #include <queue>
 #include <stack>
 #include <stdio.h>
-#include <map>
-#include <set>
 using namespace std;
-
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
 
 class Solution {
 public:
@@ -67,19 +87,3 @@ public:
         return dominoes;
     }
 };
-
-int main() {
-    Solution s;
-    vector<string> v({"ahjpjau","ja","ahbwzgqnuk","tnmlanowax"});
-    vector<int> v1({10,5,2,6});
-    vector<int> v2({0,4});
-    vector<char> chars({'a','a','a','a','a','b','b','c'});
-    vector<vector<int>> matrix({{1,2,2,3,5}, {3,2,3,4,4}, {2,4,5,3,1}, {6,7,1,4,5}, {5,1,1,2,4}});
-    vector<pair<int, int>> fuxk;
-    fuxk.push_back(make_pair(4,3));
-    fuxk.push_back(make_pair(2,3));
-    fuxk.push_back(make_pair(2,1));
-    fuxk.push_back(make_pair(5,0));
-    
-    s.pushDominoes("RL");
-}
