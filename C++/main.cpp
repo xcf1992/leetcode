@@ -27,52 +27,34 @@ struct TreeNode {
 
 class Solution {
 public:
-    string pushDominoes(string dominoes) {
-        int count = dominoes.size();
-        if (count <= 1) {
-            return dominoes;
+    string findReplaceString(string S, vector<int>& indexes, vector<string>& sources, vector<string>& targets) {
+        vector<pair<int, int>> sortedIndex;
+        for (int i = 0; i < indexes.size(); i++) {
+            sortedIndex.push_back(make_pair(i, indexes[i]));
         }
+        sort(sortedIndex.begin(), sortedIndex.end(), [](pair<int, int>& a, pair<int, int>& b) -> bool {
+            return a.second > b.second;
+        });
         
-        vector<int> distance(count, INT_MAX);
-        for (int i = 0; i < dominoes.size(); i++) {
-            if (dominoes[i] == 'R') {
-                distance[i] = 0;
-            }
-            else if (dominoes[i - 1] == 'R' && dominoes[i] == '.') {
-                dominoes[i] = 'R';
-                distance[i] = distance[i - 1] + 1;
-            }
-        }
-        
-        int dis = INT_MAX;
-        for (int i = count - 1; i >= 0; i--) {
-            if (dominoes[i] == 'L') {
-                dis = 0;
-            }
-            else if (dominoes[i + 1] == 'L') {
-                dis += 1;
-                if (dominoes[i] == '.') {
-                    dominoes[i] = 'L';
-                }
-                else if (dominoes[i] == 'R') {
-                    if (dis == distance[i]) {
-                        dominoes[i] = '.';
-                    }
-                    if (dis < distance[i]) {
-                        dominoes[i] = 'L';
-                    }
-                }
+        for (pair<int, int>& index : sortedIndex) {
+            int pos = index.second;
+            int i = index.first;
+            string s = sources[i];
+            string t = sources[i];
+            
+            if (S.substr(pos, s.size()) == s) {
+                S = S.substr(0, pos) + t + S.substr(pos + s.size());
             }
         }
-        return dominoes;
+        return S;
     }
 };
 
 int main() {
     Solution s;
     vector<string> v({"ahjpjau","ja","ahbwzgqnuk","tnmlanowax"});
-    vector<int> v1({10,5,2,6});
-    vector<int> v2({0,4});
+    vector<int> v1({0,2});
+    vector<string> v2({"a","cd"});
     vector<char> chars({'a','a','a','a','a','b','b','c'});
     vector<vector<int>> matrix({{1,2,2,3,5}, {3,2,3,4,4}, {2,4,5,3,1}, {6,7,1,4,5}, {5,1,1,2,4}});
     vector<pair<int, int>> fuxk;
@@ -81,5 +63,5 @@ int main() {
     fuxk.push_back(make_pair(2,1));
     fuxk.push_back(make_pair(5,0));
     
-    s.pushDominoes("RL");
+    s.findReplaceString("abcd", v1, v2, v);
 }
