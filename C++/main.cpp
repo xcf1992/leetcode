@@ -26,44 +26,56 @@ struct TreeNode {
 };
 
 class Solution {
-private:
-    int countSum(vector<vector<int>>& A, int m, int n) {
-        int result = 0;
-        for (int i = 0; i < m; i++) {
-            int row = 0;
-            for (int j = 0; j < n; j++) {
-                row += (1 << (n - j - 1));
-            }
-            result += row;
-        }
-        return result;
-    }
 public:
-    int matrixScore(vector<vector<int>>& A) {
-        int m = A.size();
-        int n = A[0].size();
+    double soupServings(int N) {
+        vector<vector<double>> dp(N + 1, vector<double>(N + 1, 0.0));
+        dp[N][N] = 1.0;
         
-        for (int i = 0; i < m; i++) {
-            if (A[i][0] == 0) {
-                for (int j = 0; j < n; j++) {
-                    A[i][j] = 1 - A[i][j];
+        queue<pair<int, int>> q;
+        q.push(make_pair(N, N));
+        vector<vector<bool>> visited(N + 1, vector<bool>(N + 1, false));
+        while(!q.empty()) {
+            int num = q.size();
+            for (int i = 0; i < num; i++) {
+                pair<int, int> cur = q.front();
+                q.pop();
+                
+                int leftA = cur.first - 100 >= 0 ? cur.first - 100 : 0;
+                int leftB = cur.second;
+                dp[leftA][leftB] += dp[cur.first][cur.second] * 0.25;
+                if (!visited[leftA][leftB] && leftA > 0) {
+                    q.push(make_pair(leftA, leftB));
+                }
+                
+                leftA = cur.first - 75 >= 0 ? cur.first - 75 : 0;
+                leftB = cur.second - 25 >= 0 ? cur.second - 25 : 0;
+                dp[leftA][leftB] += dp[cur.first][cur.second] * 0.25;
+                if (!visited[leftA][leftB] && leftA > 0 && leftB > 0) {
+                    q.push(make_pair(leftA, leftB));
+                }
+                
+                leftA = cur.first - 50 >= 0 ? cur.first - 50 : 0;
+                leftB = cur.second - 50 >= 0 ? cur.second - 50 : 0;
+                dp[leftA][leftB] += dp[cur.first][cur.second] * 0.25;
+                if (!visited[leftA][leftB] && leftA > 0 && leftB > 0) {
+                    q.push(make_pair(leftA, leftB));
+                }
+                
+                leftA = cur.first - 25 >= 0 ? cur.first - 25 : 0;
+                leftB = cur.second - 75 >= 0 ? cur.second - 75 : 0;
+                dp[leftA][leftB] += dp[cur.first][cur.second] * 0.25;
+                if (!visited[leftA][leftB] && leftA > 0 && leftB > 0) {
+                    q.push(make_pair(leftA, leftB));
                 }
             }
+            visited.clear();
         }
         
-        for (int j = 1; j < n; j++) {
-            int countOne = 0;
-            for (int i = 0; i < m; i++) {
-                countOne += A[i][j];
-            }
-            
-            if (countOne < m - countOne) {
-                for (int i = 0; i < m; i++) {
-                    A[i][j] = 1 - A[i][j];
-                }
-            }
+        double result = 0.0;
+        for (int j = 1; j <= N; j++) {
+            result += dp[0][j];
         }
-        return countSum(A, m, n);
+        return result + 0.5 * dp[0][0];
     }
 };
 
@@ -80,5 +92,5 @@ int main() {
     fuxk.push_back(make_pair(2,1));
     fuxk.push_back(make_pair(5,0));
     
-    s.matrixScore(matrix);
+    s.soupServings(50);
 }
