@@ -26,32 +26,38 @@ struct TreeNode {
 };
 
 class Solution {
+private:
+    int square(int x, int y, int length, vector<vector<char>>& matrix) {
+        int result = 1;
+        int bot = x + 1;
+        while (bot < matrix.size() && matrix[bot][y] == '1' && bot - x < length) {
+            int right = y + 1;
+            while (right < matrix[0].size() && right - y < length && matrix[bot][right] == '1') {
+                right += 1;
+            }
+            int curLen = min(bot - x, right - y);
+            result = max(result, curLen * curLen);
+            if (right - y < length) {
+                return result;
+            }
+            bot += 1;
+        }
+        return result;
+    }
 public:
-    vector<pair<int, int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k) {
-        vector<pair<int, int>> result;
-        int curA = 0;
-        int curB = 0;
-        int nextA = 1;
-        int nextB = 0;
-        while (curA < nums1.size() && result.size() < k) {
-            if (curA == nextA) {
-                curB = nextB;
-                nextA = curA + 1;
-                nextB = 0;
-            }
-            if (nextA >= nums1.size() || nums1[curA] + nums2[curB] <= nums1[nextA] + nums2[nextB]) {
-                result.push_back(make_pair(nums1[curA], nums2[curB]));
-                if (curB == nums2.size() - 1) {
-                    curA += 1;
-                    curB = 0;
+    int maximalSquare(vector<vector<char>>& matrix) {
+        int m = matrix.size();
+        int n = matrix[0].size();
+        int result = 0;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (matrix[i][j] == '1') {
+                    int right = j;
+                    while (right < n && matrix[i][right] == '1') {
+                        right += 1;
+                    }
+                    result = max(result, square(i, j, right - j, matrix));
                 }
-                else {
-                    curB += 1;
-                }
-            }
-            else {
-                swap(curA, nextA);
-                swap(curB, nextB);
             }
         }
         return result;
@@ -65,12 +71,21 @@ int main() {
     vector<int> vb({2,4,7});
     vector<string> v2({"a","cd"});
     vector<char> chars({'a','a','a','a','a','b','b','c'});
-    vector<vector<int>> matrix({{0,0,1,1}, {1,0,1,0}, {1,1,0,0}});
+    
+    vector<vector<int>> matrix1({{0,0,1,1}, {1,0,1,0}, {1,1,0,0}});
+    vector<vector<char>> matrix2({
+        {'1','1','1','1','1','1','1','1'},
+        {'1','1','1','1','1','1','1','0'},
+        {'1','1','1','1','1','1','1','0'},
+        {'1','1','1','1','1','0','0','0'},
+        {'0','1','1','1','1','0','0','0'}
+    });
+    
     vector<pair<int, int>> fuxk;
     fuxk.push_back(make_pair(4,3));
     fuxk.push_back(make_pair(2,3));
     fuxk.push_back(make_pair(2,1));
     fuxk.push_back(make_pair(5,0));
     
-    s.kSmallestPairs(va, vb, 100);
+    s.maximalSquare(matrix2);
 }
