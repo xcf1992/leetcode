@@ -27,62 +27,42 @@ struct TreeNode {
 
 class Solution {
 public:
-    double soupServings(int N) {
-        vector<vector<double>> dp(N + 1, vector<double>(N + 1, 0.0));
-        dp[N][N] = 1.0;
-        
-        queue<pair<int, int>> q;
-        q.push(make_pair(N, N));
-        vector<vector<bool>> visited(N + 1, vector<bool>(N + 1, false));
-        while(!q.empty()) {
-            int num = q.size();
-            for (int i = 0; i < num; i++) {
-                pair<int, int> cur = q.front();
-                q.pop();
-                
-                int leftA = cur.first - 100 >= 0 ? cur.first - 100 : 0;
-                int leftB = cur.second;
-                dp[leftA][leftB] += dp[cur.first][cur.second] * 0.25;
-                if (!visited[leftA][leftB] && leftA > 0) {
-                    q.push(make_pair(leftA, leftB));
+    vector<pair<int, int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k) {
+        vector<pair<int, int>> result;
+        int curA = 0;
+        int curB = 0;
+        int nextA = 1;
+        int nextB = 0;
+        while (curA < nums1.size() && result.size() < k) {
+            if (curA == nextA) {
+                curB = nextB;
+                nextA = curA + 1;
+                nextB = 0;
+            }
+            if (nextA >= nums1.size() || nums1[curA] + nums2[curB] <= nums1[nextA] + nums2[nextB]) {
+                result.push_back(make_pair(nums1[curA], nums2[curB]));
+                if (curB == nums2.size() - 1) {
+                    curA += 1;
+                    curB = 0;
                 }
-                
-                leftA = cur.first - 75 >= 0 ? cur.first - 75 : 0;
-                leftB = cur.second - 25 >= 0 ? cur.second - 25 : 0;
-                dp[leftA][leftB] += dp[cur.first][cur.second] * 0.25;
-                if (!visited[leftA][leftB] && leftA > 0 && leftB > 0) {
-                    q.push(make_pair(leftA, leftB));
-                }
-                
-                leftA = cur.first - 50 >= 0 ? cur.first - 50 : 0;
-                leftB = cur.second - 50 >= 0 ? cur.second - 50 : 0;
-                dp[leftA][leftB] += dp[cur.first][cur.second] * 0.25;
-                if (!visited[leftA][leftB] && leftA > 0 && leftB > 0) {
-                    q.push(make_pair(leftA, leftB));
-                }
-                
-                leftA = cur.first - 25 >= 0 ? cur.first - 25 : 0;
-                leftB = cur.second - 75 >= 0 ? cur.second - 75 : 0;
-                dp[leftA][leftB] += dp[cur.first][cur.second] * 0.25;
-                if (!visited[leftA][leftB] && leftA > 0 && leftB > 0) {
-                    q.push(make_pair(leftA, leftB));
+                else {
+                    curB += 1;
                 }
             }
-            visited.clear();
+            else {
+                swap(curA, nextA);
+                swap(curB, nextB);
+            }
         }
-        
-        double result = 0.0;
-        for (int j = 1; j <= N; j++) {
-            result += dp[0][j];
-        }
-        return result + 0.5 * dp[0][0];
+        return result;
     }
 };
 
 int main() {
     Solution s;
     vector<string> v({"ahjpjau","ja","ahbwzgqnuk","tnmlanowax"});
-    vector<int> v1({0,2});
+    vector<int> va({1,7,11});
+    vector<int> vb({2,4,7});
     vector<string> v2({"a","cd"});
     vector<char> chars({'a','a','a','a','a','b','b','c'});
     vector<vector<int>> matrix({{0,0,1,1}, {1,0,1,0}, {1,1,0,0}});
@@ -92,5 +72,5 @@ int main() {
     fuxk.push_back(make_pair(2,1));
     fuxk.push_back(make_pair(5,0));
     
-    s.soupServings(50);
+    s.kSmallestPairs(va, vb, 100);
 }
