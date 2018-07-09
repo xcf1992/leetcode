@@ -26,54 +26,39 @@ struct TreeNode {
 };
 
 class Solution {
-private:
-    int mod = 1e9 + 7;
 public:
-    int findPaths(int m, int n, int N, int i, int j) {
-        if (N == 0) {
+    int carFleet(int target, vector<int>& position, vector<int>& speed) {
+        int num = position.size();
+        if (num == 0) {
             return 0;
         }
-        vector<vector<vector<int>>> dp(N, vector<vector<int>>(m, vector<int>(n, 0)));
-        for (int y = 0; y < n; y++) {
-            dp[0][0][y] += 1;
-            dp[0][m - 1][y] += 1;
+        
+        vector<pair<int, int>> car;
+        for (int i = 0; i < num; i++) {
+            car.push_back(make_pair(position[i], speed[i]));
         }
-        for (int x = 0; x < m; x++) {
-            dp[0][x][0] += 1;
-            dp[0][x][n - 1] += 1;
-        }
-        for (int k = 1; k < N; k++) {
-            for (int x = 0; x < m; x++) {
-                for (int y = 0; y < n; y++) {
-                    dp[k][x][y] = dp[k - 1][x][y];
-                    if (i - 1 >= 0) {
-                        dp[k][x][y] += dp[k - 1][x - 1][y];
-                        dp[k][x][y] %= mod;
-                    }
-                    if (i + 1 < m) {
-                        dp[k][x][y] += dp[k - 1][x + 1][y];
-                        dp[k][x][y] %= mod;
-                    }
-                    if (j - 1 >= 0) {
-                        dp[k][x][y] += dp[k - 1][x][y - 1];
-                        dp[k][x][y] %= mod;
-                    }
-                    if (j + 1 < n) {
-                        dp[k][x][y] += dp[k - 1][x][y + 1];
-                        dp[k][x][y] %= mod;
-                    }
-                }
+        sort(car.begin(), car.end(), [](pair<int, int>& a, pair<int, int>& b) {
+            return a.first < b.first;
+        });
+        
+        int result = 1;
+        double arrive = (target - car[num - 1].first) / car[num - 1].second;
+        for (int i = num - 2; i >= 0; i--) {
+            double newArrive = (target - car[i].first) / car[i].second;
+            if (newArrive > arrive) {
+                arrive = newArrive;
+                result += 1;
             }
         }
-        return dp[N - 1][i][j];
+        return result;
     }
 };
 
 int main() {
     Solution s;
     vector<string> v({"ahjpjau","ja","ahbwzgqnuk","tnmlanowax"});
-    vector<int> va({1,7,11});
-    vector<int> vb({2,4,7});
+    vector<int> va({6,8});
+    vector<int> vb({3,2});
     vector<string> v2({"a","cd"});
     vector<char> chars({'a','a','a','a','a','b','b','c'});
     
@@ -92,5 +77,5 @@ int main() {
     fuxk.push_back(make_pair(2,1));
     fuxk.push_back(make_pair(5,0));
     
-    s.findPaths(1, 3, 3, 0, 1);
+    s.carFleet(10, va, vb);
 }
