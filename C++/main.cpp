@@ -27,40 +27,45 @@ struct TreeNode {
 
 class Solution {
 private:
-    int square(int x, int y, int length, vector<vector<char>>& matrix) {
-        int result = 1;
-        int bot = x + 1;
-        while (bot < matrix.size() && matrix[bot][y] == '1' && bot - x < length) {
-            int right = y + 1;
-            while (right < matrix[0].size() && right - y < length && matrix[bot][right] == '1') {
-                right += 1;
-            }
-            int curLen = min(bot - x, right - y);
-            result = max(result, curLen * curLen);
-            if (right - y < length) {
-                return result;
-            }
-            bot += 1;
-        }
-        return result;
-    }
+    int mod = 1e9 + 7;
 public:
-    int maximalSquare(vector<vector<char>>& matrix) {
-        int m = matrix.size();
-        int n = matrix[0].size();
-        int result = 0;
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (matrix[i][j] == '1') {
-                    int right = j;
-                    while (right < n && matrix[i][right] == '1') {
-                        right += 1;
+    int findPaths(int m, int n, int N, int i, int j) {
+        if (N == 0) {
+            return 0;
+        }
+        vector<vector<vector<int>>> dp(N, vector<vector<int>>(m, vector<int>(n, 0)));
+        for (int y = 0; y < n; y++) {
+            dp[0][0][y] += 1;
+            dp[0][m - 1][y] += 1;
+        }
+        for (int x = 0; x < m; x++) {
+            dp[0][x][0] += 1;
+            dp[0][x][n - 1] += 1;
+        }
+        for (int k = 1; k < N; k++) {
+            for (int x = 0; x < m; x++) {
+                for (int y = 0; y < n; y++) {
+                    dp[k][x][y] = dp[k - 1][x][y];
+                    if (i - 1 >= 0) {
+                        dp[k][x][y] += dp[k - 1][x - 1][y];
+                        dp[k][x][y] %= mod;
                     }
-                    result = max(result, square(i, j, right - j, matrix));
+                    if (i + 1 < m) {
+                        dp[k][x][y] += dp[k - 1][x + 1][y];
+                        dp[k][x][y] %= mod;
+                    }
+                    if (j - 1 >= 0) {
+                        dp[k][x][y] += dp[k - 1][x][y - 1];
+                        dp[k][x][y] %= mod;
+                    }
+                    if (j + 1 < n) {
+                        dp[k][x][y] += dp[k - 1][x][y + 1];
+                        dp[k][x][y] %= mod;
+                    }
                 }
             }
         }
-        return result;
+        return dp[N - 1][i][j];
     }
 };
 
@@ -87,5 +92,5 @@ int main() {
     fuxk.push_back(make_pair(2,1));
     fuxk.push_back(make_pair(5,0));
     
-    s.maximalSquare(matrix2);
+    s.findPaths(1, 3, 3, 0, 1);
 }
