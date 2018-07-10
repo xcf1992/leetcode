@@ -26,78 +26,29 @@ struct TreeNode {
 };
 
 class Solution {
-public:
-    int carFleet(int target, vector<int>& position, vector<int>& speed) {
-        int num = position.size();
-        if (num == 0) {
-            return 0;
-        }
-        
-        vector<pair<int, int>> car;
-        for (int i = 0; i < num; i++) {
-            car.push_back(make_pair(position[i], speed[i]));
-        }
-        sort(car.begin(), car.end(), [](pair<int, int>& a, pair<int, int>& b) {
-            return a.first < b.first;
-        });
-        
-        int result = 1;
-        double arrive = (target - car[num - 1].first) / car[num - 1].second;
-        for (int i = num - 2; i >= 0; i--) {
-            double newArrive = (target - car[i].first) / car[i].second;
-            if (newArrive > arrive) {
-                arrive = newArrive;
-                result += 1;
-            }
-        }
-        return result;
-    }
-};
-
-class ExamRoom {
 private:
-    int num;
-    vector<int> seats;
+    bool check(string s, int pos, int left, int right) {
+        if (pos == s.size()) {
+            return right == left;
+        }
+        
+        if (s[pos] == '(') {
+            return check(s, pos + 1, left + 1, right);
+        }
+        if (s[pos] == ')') {
+            if (right == left) {
+                return false;
+            }
+            return check(s, pos + 1, left, right + 1);
+        }
+        if (right == left) {
+            return check(s, pos + 1, left + 1, right) || check(s, pos + 1, left, right);
+        }
+        return check(s, pos + 1, left + 1, right) || check(s, pos + 1, left, right + 1) || check(s, pos + 1, left, right);
+    }
 public:
-    ExamRoom(int N) {
-        num = N;
-    }
-    
-    int seat() {
-        if (seats.size() == 0) {
-            seats.push_back(0);
-            return 0;
-        }
-        
-        int pos = 0;
-        int index = 0;
-        int distance = seats[0];
-        if (num - 1 - seats.back() > distance) {
-            pos = num - 1;
-            index = seats.size();
-            distance = num - 1 - seats.back();
-        }
-        
-        for (int i = 0; i < seats.size() - 1; i++) {
-            if ((seats[i + 1] - seats[i]) / 2 > distance ||
-                ((seats[i + 1] - seats[i]) / 2 == distance && (seats[i + 1] + seats[i]) / 2 < pos)) {
-                distance = (seats[i + 1] - seats[i]) / 2;
-                pos = seats[i] + distance;
-                index = i + 1;
-            }
-        }
-        
-        seats.insert(seats.begin() + index, pos);
-        return pos;
-    }
-    
-    void leave(int p) {
-        for (auto it = seats.begin(); it != seats.end(); it++) {
-            if (*it == p) {
-                seats.erase(it);
-                return;
-            }
-        }
+    bool checkValidString(string s) {
+        return check(s, 0, 0, 0);
     }
 };
 
@@ -124,14 +75,5 @@ int main() {
     fuxk.push_back(make_pair(2,1));
     fuxk.push_back(make_pair(5,0));
     
-    //s.carFleet(10, va, vb);
-    
-    ExamRoom ex(4);
-    ex.seat();
-    ex.seat();
-    ex.seat();
-    ex.seat();
-    ex.leave(1);
-    ex.leave(3);
-    ex.seat();
+    cout << s.checkValidString("(((((*(()((((*((**(((()()*)()()()*((((**)())*)*)))))))(())(()))())((*()()(((()((()*(())*(()**)()(())") << endl;
 }
