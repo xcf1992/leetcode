@@ -75,5 +75,8 @@ int main() {
     fuxk.push_back(make_pair(2,1));
     fuxk.push_back(make_pair(5,0));
     
-    cout << s.checkValidString("(((((*(()((((*((**(((()()*)()()()*((((**)())*)*)))))))(())(()))())((*()()(((()((()*(())*(()**)()(())") << endl;
+    int a = 1;
+    int b = 2;
+    b += a = 3;
+    return 0;
 }
