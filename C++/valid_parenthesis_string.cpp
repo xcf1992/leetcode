@@ -38,15 +38,15 @@ using namespace std;
 class Solution {
 public:
     bool checkValidString(string s) {
-        int minLeft = 0;
-        int maxLeft = 0;
+        int minLeft = 0; // tacking minimum possible number of (
+        int maxLeft = 0; // tacking maximum possible number of (
         for (char c : s) {
             minLeft += c == '(' ? 1 : -1;
             maxLeft += c == ')' ? -1 : 1;
-            minLeft = max(0, minLeft);
-            if (maxLeft < 0) {
+            if (maxLeft < 0) { // if the max possible ( is less than0 return false
                 return false;
             }
+            minLeft = max(0, minLeft); // is the min possible ( is less than 0, make it to be 0
         }
         return minLeft == 0;
     }
