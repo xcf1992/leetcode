@@ -26,29 +26,38 @@ struct TreeNode {
 };
 
 class Solution {
-private:
-    bool check(string s, int pos, int left, int right) {
-        if (pos == s.size()) {
-            return right == left;
+public:
+    vector<int> findMinHeightTrees(int n, vector<pair<int, int>>& edges) {
+        if (n == 1) {
+            return {0};
         }
         
-        if (s[pos] == '(') {
-            return check(s, pos + 1, left + 1, right);
+        unordered_map<int, unordered_set<int>> graph;
+        for (pair<int, int> edge : edges) {
+            graph[edge.first].insert(edge.second);
+            graph[edge.second].insert(edge.first);
         }
-        if (s[pos] == ')') {
-            if (right == left) {
-                return false;
+        
+        vector<int> leaves;
+        while (true) {
+            for (int cur = 0; cur < n; cur++) {
+                if (graph.find(cur) != graph.end() && graph[cur].size() <= 1) {
+                    leaves.push_back(cur);
+                }
             }
-            return check(s, pos + 1, left, right + 1);
+            
+            if (leaves.size() <= 2) {
+                break;
+            }
+            
+            for (int leaf : leaves) {
+                for (auto it = graph[leaf].begin(); it != graph[leaf].end(); it++) {
+                    graph[*it].erase(graph[*it].find(leaf));
+                }
+                graph.erase(graph.find(leaf));
+            }
         }
-        if (right == left) {
-            return check(s, pos + 1, left + 1, right) || check(s, pos + 1, left, right);
-        }
-        return check(s, pos + 1, left + 1, right) || check(s, pos + 1, left, right + 1) || check(s, pos + 1, left, right);
-    }
-public:
-    bool checkValidString(string s) {
-        return check(s, 0, 0, 0);
+        return leaves;
     }
 };
 
@@ -70,13 +79,13 @@ int main() {
     });
     
     vector<pair<int, int>> fuxk;
-    fuxk.push_back(make_pair(4,3));
-    fuxk.push_back(make_pair(2,3));
-    fuxk.push_back(make_pair(2,1));
-    fuxk.push_back(make_pair(5,0));
-    
-    int a = 1;
-    int b = 2;
-    b += a = 3;
+    fuxk.push_back(make_pair(0,1));
+    fuxk.push_back(make_pair(0,2));
+    //fuxk.push_back(make_pair(1,3));
+    //fuxk.push_back(make_pair(0,4));
+    //fuxk.push_back(make_pair(5,4));
+    //fuxk.push_back(make_pair(6,4));
+    //fuxk.push_back(make_pair(6,7));
+    s.findMinHeightTrees(3, fuxk);
     return 0;
 }
