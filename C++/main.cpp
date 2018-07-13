@@ -61,23 +61,50 @@ public:
     }
 };
 
-class KthLargest {
-    priority_queue<int, vector<int>, greater<int>> minHeap;
-    int K;
+class MyLinkedList {
+private:
+    vector<int> array;
 public:
-    KthLargest(int k, vector<int> nums) {
-        for (int num : nums) {
-            minHeap.push(num);
-        }
-        K = k;
+    /** Initialize your data structure here. */
+    MyLinkedList() {
+        
     }
     
-    int add(int val) {
-        minHeap.push(val);
-        if (minHeap.size() > K) {
-            minHeap.pop();
+    /** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
+    int get(int index) {
+        if (index >= array.size()) {
+            return -1;
         }
-        return minHeap.top();
+        return array[index];
+    }
+    
+    /** Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
+    void addAtHead(int val) {
+        array.insert(array.begin(), val);
+    }
+    
+    /** Append a node of value val to the last element of the linked list. */
+    void addAtTail(int val) {
+        array.push_back(val);
+    }
+    
+    /** Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
+    void addAtIndex(int index, int val) {
+        if (index > array.size()) {
+            return;
+        }
+        if (index == array.size()) {
+            array.push_back(val);
+        }
+        array.insert(array.begin() + index, val);
+    }
+    
+    /** Delete the index-th node in the linked list, if the index is valid. */
+    void deleteAtIndex(int index) {
+        if (index >= array.size()) {
+            return;
+        }
+        array.erase(array.begin() + index);
     }
 };
 
@@ -108,6 +135,9 @@ int main() {
     //fuxk.push_back(make_pair(6,7));
     //s.findMinHeightTrees(3, fuxk);
     
-    KthLargest kk(3, va);
+    MyLinkedList my;
+    my.addAtHead(1);
+    my.addAtIndex(1, 2);
+    my.get(2);
     return 0;
 }
