@@ -61,10 +61,30 @@ public:
     }
 };
 
+class KthLargest {
+    priority_queue<int, vector<int>, greater<int>> minHeap;
+    int K;
+public:
+    KthLargest(int k, vector<int> nums) {
+        for (int num : nums) {
+            minHeap.push(num);
+        }
+        K = k;
+    }
+    
+    int add(int val) {
+        minHeap.push(val);
+        if (minHeap.size() > K) {
+            minHeap.pop();
+        }
+        return minHeap.top();
+    }
+};
+
 int main() {
     Solution s;
     vector<string> v({"ahjpjau","ja","ahbwzgqnuk","tnmlanowax"});
-    vector<int> va({6,8});
+    vector<int> va({4,5,8,2});
     vector<int> vb({3,2});
     vector<string> v2({"a","cd"});
     vector<char> chars({'a','a','a','a','a','b','b','c'});
@@ -86,6 +106,8 @@ int main() {
     //fuxk.push_back(make_pair(5,4));
     //fuxk.push_back(make_pair(6,4));
     //fuxk.push_back(make_pair(6,7));
-    s.findMinHeightTrees(3, fuxk);
+    //s.findMinHeightTrees(3, fuxk);
+    
+    KthLargest kk(3, va);
     return 0;
 }
