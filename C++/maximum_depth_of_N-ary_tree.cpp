@@ -17,7 +17,6 @@
  
  The depth of the tree is at most 1000.
  The total number of nodes is at most 5000.
-
  */
 
 #include <iostream>
@@ -34,7 +33,6 @@
 #include <stdio.h>
 #include <set>
 using namespace std;
-
 
  // Definition for a Node.
 class Node {
