@@ -56,7 +56,7 @@ public:
             Node* cur = stk.top();
             stk.pop();
             result.push_back(cur -> val);
-            for (int i = cur -> children.size(); i >= 0; i++) {
+            for (int i = cur -> children.size() - 1; i >= 0; i--) {
                 if (cur -> children[i] != nullptr) {
                     stk.push(cur -> children[i]);
                 }
