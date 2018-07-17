@@ -74,7 +74,6 @@
 #include <set>
 using namespace std;
 
-
  class Node {
  public:
  bool val;
