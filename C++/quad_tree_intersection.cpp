@@ -120,54 +120,28 @@ public:
         if (quadTree1 == nullptr && quadTree2 == nullptr) {
             return nullptr;
         }
-        if (quadTree2 == nullptr) {
-            return quadTree1;
-        }
-        if (quadTree1 == nullptr) {
-            return quadTree2;
+        if (quadTree2 == nullptr || quadTree1 == nullptr) {
+            return quadTree1 == nullptr ? quadTree2 : quadTree1;
         }
         
         if (quadTree1 -> isLeaf) {
-            if (quadTree1 -> val) { // 1 is leaf and value is true return 1
-                return quadTree1;
-            }
-            else {
-                if (quadTree2 -> isLeaf) {
-                    if (quadTree2 -> val) { // 1 is leaf, value is false and 2 is leaf, value is true return 2
-                        return quadTree2;
-                    }
-                    else { // 1 is leaf, value is false and 2 is leaf, value is false return 2 or 1
-                        return quadTree1;
-                    }
-                }
-                else { // 1 is leaf, value is false and 2 is not leaf return 2
-                    return quadTree2;
-                }
-            }
+            return quadTree1 -> val ? quadTree1 : quadTree2;
         }
-        else {
-            if (quadTree2 -> isLeaf) {
-                if (quadTree2 -> val) { // 1 is not leaf, 2 is leaf and value is true; return 2
-                    return quadTree2;
-                }
-                else { // 1 is not leaf, 2 is leaf and value is false; return 1
-                    return quadTree1;
-                }
-            }
-            else { // neither 1 and 2 is leaf
-                quadTree1 -> topLeft = intersect(quadTree1 -> topLeft, quadTree2 -> topLeft);
-                quadTree1 -> topRight = intersect(quadTree1 -> topRight, quadTree2 -> topRight);
-                quadTree1 -> bottomLeft = intersect(quadTree1 -> bottomLeft, quadTree2 -> bottomLeft);
-                quadTree1 -> bottomRight = intersect(quadTree1 -> bottomRight, quadTree2 -> bottomRight);
-                
-                if (isLeaf(quadTree1)) {
-                    quadTree1 -> isLeaf = true;
-                    if (quadTree1 -> topLeft) {
-                        quadTree1 -> val = quadTree1 -> topRight -> val;
-                    }
-                }
-            }
+
+        if (quadTree2 -> isLeaf) {
+            return quadTree2 -> val ? quadTree2 : quadTree1;
         }
+
+        quadTree1 -> topLeft = intersect(quadTree1 -> topLeft, quadTree2 -> topLeft);
+        quadTree1 -> topRight = intersect(quadTree1 -> topRight, quadTree2 -> topRight);
+        quadTree1 -> bottomLeft = intersect(quadTree1 -> bottomLeft, quadTree2 -> bottomLeft);
+        quadTree1 -> bottomRight = intersect(quadTree1 -> bottomRight, quadTree2 -> bottomRight);
+        
+        if (isLeaf(quadTree1)) {
+            quadTree1 -> isLeaf = true;
+            quadTree1 -> val = quadTree1 -> topLeft -> val;
+        }
+        
         return quadTree1;
     }
 };

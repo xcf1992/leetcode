@@ -135,9 +135,9 @@ int main() {
     //fuxk.push_back(make_pair(6,7));
     //s.findMinHeightTrees(3, fuxk);
     
-    MyLinkedList my;
-    my.addAtHead(1);
-    my.addAtIndex(1, 2);
-    my.get(2);
+
+    for (int i = 0; i < va.size() && va[i] != 5; i++) {
+        cout << i << " : " << va[i] <<endl;
+    }
     return 0;
 }
