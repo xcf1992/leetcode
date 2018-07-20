@@ -1,29 +1,52 @@
+/*
+ Write a function to check whether an input string is a valid IPv4 address or IPv6 address or neither.
+ 
+ IPv4 addresses are canonically represented in dot-decimal notation, which consists of four decimal numbers, each ranging from 0 to 255, separated by dots ("."), e.g.,172.16.254.1;
+ 
+ Besides, leading zeros in the IPv4 is invalid. For example, the address 172.16.254.01 is invalid.
+ 
+ IPv6 addresses are represented as eight groups of four hexadecimal digits, each group representing 16 bits. The groups are separated by colons (":"). For example, the address 2001:0db8:85a3:0000:0000:8a2e:0370:7334 is a valid one. Also, we could omit some leading zeros among four hexadecimal digits and some low-case characters in the address to upper-case ones, so 2001:db8:85a3:0:0:8A2E:0370:7334 is also a valid IPv6 address(Omit leading zeros and using upper cases).
+ 
+ However, we don't replace a consecutive group of zero value with a single empty group using two consecutive colons (::) to pursue simplicity. For example, 2001:0db8:85a3::8A2E:0370:7334 is an invalid IPv6 address.
+ 
+ Besides, extra leading zeros in the IPv6 is also invalid. For example, the address 02001:0db8:85a3:0000:0000:8a2e:0370:7334 is invalid.
+ 
+ Note: You may assume there is no extra space or special characters in the input string.
+ 
+ Example 1:
+ Input: "172.16.254.1"
+ 
+ Output: "IPv4"
+ 
+ Explanation: This is a valid IPv4 address, return "IPv4".
+ Example 2:
+ Input: "2001:0db8:85a3:0:0:8A2E:0370:7334"
+ 
+ Output: "IPv6"
+ 
+ Explanation: This is a valid IPv6 address, return "IPv6".
+ Example 3:
+ Input: "256.256.256.256"
+ 
+ Output: "Neither"
+ 
+ Explanation: This is neither a IPv4 address nor a IPv6 address.
+ */
+
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <map>
 #include <unordered_set>
 #include <algorithm>
 #include <cmath>
 #include <queue>
 #include <stack>
 #include <stdio.h>
-#include <map>
 #include <set>
 using namespace std;
-
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
 
 class Solution {
 private:
@@ -35,6 +58,7 @@ private:
             tokens.push_back(temp.substr(0, pos));
             temp = temp.substr(pos + 1);
         } while (temp.find(delimiter) != string::npos);
+        tokens.push_back(temp);
         return tokens;
     }
     
@@ -63,6 +87,9 @@ private:
                 return false;
             }
             value = value * 10 + (segment[i] - '0');
+            if (value > 255) {
+                return false;
+            }
         }
         return value <= 255;
     }
@@ -113,34 +140,3 @@ public:
         return "Neither";
     }
 };
-
-
-int main() {
-    Solution s;
-    vector<string> v({"ahjpjau","ja","ahbwzgqnuk","tnmlanowax"});
-    vector<int> va({4,5,8,2});
-    vector<int> vb({3,2});
-    vector<string> v2({"a","cd"});
-    vector<char> chars({'a','a','a','a','a','b','b','c'});
-    
-    vector<vector<int>> matrix1({{0,0,1,1}, {1,0,1,0}, {1,1,0,0}});
-    vector<vector<char>> matrix2({
-        {'1','1','1','1','1','1','1','1'},
-        {'1','1','1','1','1','1','1','0'},
-        {'1','1','1','1','1','1','1','0'},
-        {'1','1','1','1','1','0','0','0'},
-        {'0','1','1','1','1','0','0','0'}
-    });
-    
-    vector<pair<int, int>> fuxk;
-    fuxk.push_back(make_pair(0,1));
-    fuxk.push_back(make_pair(0,2));
-    //fuxk.push_back(make_pair(1,3));
-    //fuxk.push_back(make_pair(0,4));
-    //fuxk.push_back(make_pair(5,4));
-    //fuxk.push_back(make_pair(6,4));
-    //fuxk.push_back(make_pair(6,7));
-    
-    cout << s.validIPAddress(":2001:008:85a3::0:8A2E:0370:7334:") << endl;
-    return 0;
-}
