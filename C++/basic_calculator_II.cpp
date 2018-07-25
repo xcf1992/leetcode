@@ -37,8 +37,66 @@
 using namespace std;
 
 class Solution {
+private:
+    bool IsOpt(char ch) {
+        return  ch == '+' ||ch == '-' ||ch == '*' ||ch == '/';
+    }
+    
+    int Calc(int num1, int num2, char opt) {
+        if (opt == '+') {
+            return num1 + num2;
+        }
+        if (opt == '-') {
+            return num1 - num2;
+        }
+        if (opt == '*') {
+            return num1 * num2;
+        }
+        return num1 / num2;
+    }
+    
+    void CalcTop(stack<int> &nums, stack<char> &opts) {
+        int num2 = nums.top();
+        nums.pop();
+        
+        int num1 = nums.top();
+        nums.pop();
+        
+        char opt = opts.top();
+        opts.pop();
+        
+        nums.push(Calc(num1, num2, opt));
+    }
 public:
     int calculate(string s) {
-        return 1;
+        stack<int> nums;
+        stack<char> opts;
+        int num = 0;
+        for (int i = 0; i < s.size(); i++) {
+            if (isdigit(s[i])) {
+                num = num * 10 + s[i] - '0';
+            }
+            else if (IsOpt(s[i])) {
+                nums.push(num);
+                num = 0;
+                if (s[i] == '+' || s[i] == '-') {
+                    while (!opts.empty()) {
+                        CalcTop(nums, opts);
+                    }
+                }
+                else { // s[i] == '*' || s[i] == '/'
+                    while (!opts.empty() && (opts.top() == '*'|| opts.top() == '/')) {
+                        CalcTop(nums, opts);
+                    }
+                }
+                opts.push(s[i]);
+            }
+            
+        }
+        nums.push(num);
+        while (!opts.empty()) {
+            CalcTop(nums, opts);
+        }
+        return nums.top();
     }
 };

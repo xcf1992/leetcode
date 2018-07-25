@@ -34,7 +34,7 @@ public:
     
     int evaluate(string& s, int& i) {
         int res = 0;
-        bool negFlag=false;
+        bool negFlag = false;
         while (i < s.size() && s[i] != ')') {
             if (s[i] == '+' || s[i] == ' ')
                 i++;
@@ -45,7 +45,7 @@ public:
             else if (s[i] == '(') {
                 i++;
                 res += negFlag ? 0 - evaluate(s,i) : evaluate(s,i);
-                negFlag=false;
+                negFlag = false;
             }
             else {
                 int num = 0;

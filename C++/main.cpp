@@ -27,93 +27,68 @@ struct TreeNode {
 
 class Solution {
 private:
-    vector<string> splitString(string& s, char delimiter) {
-        string temp = s;
-        vector<string> tokens;
-        do {
-            int pos = temp.find(delimiter);
-            tokens.push_back(temp.substr(0, pos));
-            temp = temp.substr(pos + 1);
-        } while (temp.find(delimiter) != string::npos);
-        return tokens;
+    bool IsOpt(char ch) {
+        return  ch == '+' ||ch == '-' ||ch == '*' ||ch == '/';
     }
     
-    string validateIPv4(string ip) {
-        vector<string> segments = splitString(ip, '.');
-        if (segments.size() != 4) {
-            return "Neither";
+    int Calc(int num1, int num2, char opt) {
+        if (opt == '+') {
+            return num1 + num2;
         }
-        
-        for (string segment : segments) {
-            if (!validIPv4Segment(segment)) {
-                return "Neither";
-            }
+        if (opt == '-') {
+            return num1 - num2;
         }
-        return "IPv4";
+        if (opt == '*') {
+            return num1 * num2;
+        }
+        return num1 / num2;
     }
     
-    bool validIPv4Segment(string segment) {
-        if (segment == "" || (segment.size() > 1 && segment[0] == '0')) {
-            return false;
-        }
+    void CalcTop(stack<int> &nums, stack<char> &opts) {
+        int num2 = nums.top();
+        nums.pop();
         
-        int value = 0;
-        for (int i = 0; i < segment.size(); i++) {
-            if (!isdigit(segment[i])) {
-                return false;
-            }
-            value = value * 10 + (segment[i] - '0');
-        }
-        return value <= 255;
-    }
-    
-    string validateIPv6(string ip) {
-        vector<string> segments = splitString(ip, ':');
-        if (segments.size() != 8) {
-            return "Neither";
-        }
+        int num1 = nums.top();
+        nums.pop();
         
-        for (string segment : segments) {
-            if (!validIPv6Segment(segment)) {
-                return "Neither";
-            }
-        }
-        return "IPv6";
-    }
-    
-    bool validIPv6Segment(string segment) {
-        int length = segment.size();
-        if (length == 0 || length > 4) {
-            return false;
-        }
+        char opt = opts.top();
+        opts.pop();
         
-        for (char c : segment) {
-            if (isdigit(c)) {
-                continue;
-            }
-            if (c >= 'a' && c <= 'f') {
-                continue;
-            }
-            if (c >= 'A' && c <= 'F') {
-                continue;
-            }
-            return false;
-        }
-        return true;
+        nums.push(Calc(num1, num2, opt));
     }
 public:
-    string validIPAddress(string IP) {
-        if (IP.find('.') != string::npos) {
-            return validateIPv4(IP);
+    int calculate(string s) {
+        stack<int> nums;
+        stack<char> opts;
+        int num = 0;
+        for (int i = 0; i < s.size(); i++) {
+            if (isdigit(s[i])) {
+                num = num * 10 + s[i] - '0';
+            }
+            else if (IsOpt(s[i])) {
+                nums.push(num);
+                num = 0;
+                if (s[i] == '+' || s[i] == '-') {
+                    while (!opts.empty()) {
+                        CalcTop(nums, opts);
+                    }
+                }
+                else { // s[i] == '*' || s[i] == '/'
+                    while (!opts.empty() && (opts.top() == '*'|| opts.top() == '/')) {
+                        CalcTop(nums, opts);
+                    }
+                }
+                opts.push(s[i]);
+            }
+            
         }
-        
-        if (IP.find(':') != string::npos) {
-            return validateIPv6(IP);
+        nums.push(num);
+        while (!opts.empty()) {
+            CalcTop(nums, opts);
         }
-        return "Neither";
+        return nums.top();
     }
 };
-
 
 int main() {
     Solution s;
@@ -141,6 +116,6 @@ int main() {
     //fuxk.push_back(make_pair(6,4));
     //fuxk.push_back(make_pair(6,7));
     
-    cout << s.validIPAddress(":2001:008:85a3::0:8A2E:0370:7334:") << endl;
+    cout << s.calculate("3 - 2 * 5") << endl;
     return 0;
 }
