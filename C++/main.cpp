@@ -25,68 +25,60 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
+struct Tuple {
+    int node;
+    int bitMask;
+    int cost;
+    
+    Tuple(int n, int b, int c) {
+        node = n;
+        bitMask = b;
+        cost = c;
+    }
+};
+
+struct TupleHash {
+    size_t operator()(const Tuple& tuple) {
+        return 97 * tuple.bitMask + 71 * tuple.node;
+    }
+};
+
+struct TupleComp {
+    bool operator()(const Tuple& a, const Tuple& b) {
+        return a.node == b.node && a.bitMask == b.bitMask;
+    }
+};
+
 class Solution {
-private:
-    bool IsOpt(char ch) {
-        return  ch == '+' ||ch == '-' ||ch == '*' ||ch == '/';
-    }
-    
-    int Calc(int num1, int num2, char opt) {
-        if (opt == '+') {
-            return num1 + num2;
-        }
-        if (opt == '-') {
-            return num1 - num2;
-        }
-        if (opt == '*') {
-            return num1 * num2;
-        }
-        return num1 / num2;
-    }
-    
-    void CalcTop(stack<int> &nums, stack<char> &opts) {
-        int num2 = nums.top();
-        nums.pop();
-        
-        int num1 = nums.top();
-        nums.pop();
-        
-        char opt = opts.top();
-        opts.pop();
-        
-        nums.push(Calc(num1, num2, opt));
-    }
 public:
-    int calculate(string s) {
-        stack<int> nums;
-        stack<char> opts;
-        int num = 0;
-        for (int i = 0; i < s.size(); i++) {
-            if (isdigit(s[i])) {
-                num = num * 10 + s[i] - '0';
-            }
-            else if (IsOpt(s[i])) {
-                nums.push(num);
-                num = 0;
-                if (s[i] == '+' || s[i] == '-') {
-                    while (!opts.empty()) {
-                        CalcTop(nums, opts);
-                    }
-                }
-                else { // s[i] == '*' || s[i] == '/'
-                    while (!opts.empty() && (opts.top() == '*'|| opts.top() == '/')) {
-                        CalcTop(nums, opts);
-                    }
-                }
-                opts.push(s[i]);
+    int shortestPathLength(vector<vector<int>>& graph) {
+        int n = graph.size();
+        
+        unordered_set<Tuple, TupleHash, TupleComp> visited;
+        queue<Tuple> bfs;
+        for (int i = 0; i < n; i++) {
+            int mask = (1 << i);
+            visited.insert(Tuple(i, mask, 0));
+            bfs.push(Tuple(i, mask, 0));
+        }
+        
+        while (!bfs.empty()) {
+            Tuple cur = bfs.front();
+            bfs.pop();
+            if (cur.bitMask == (1 << n) - 1) {
+                return cur.cost;
             }
             
+            for (int next : graph[cur.node]) {
+                int mask = (cur.bitMask | 1 << next);
+                Tuple tuple = Tuple(next, mask, cur.cost + 1);
+                if (visited.find(tuple) == visited.end()) {
+                    visited.insert(tuple);
+                    bfs.push(tuple);
+                }
+            }
         }
-        nums.push(num);
-        while (!opts.empty()) {
-            CalcTop(nums, opts);
-        }
-        return nums.top();
+        return -1;
     }
 };
 
@@ -98,7 +90,7 @@ int main() {
     vector<string> v2({"a","cd"});
     vector<char> chars({'a','a','a','a','a','b','b','c'});
     
-    vector<vector<int>> matrix1({{0,0,1,1}, {1,0,1,0}, {1,1,0,0}});
+    vector<vector<int>> matrix1({{1,2}, {0}, {0}});
     vector<vector<char>> matrix2({
         {'1','1','1','1','1','1','1','1'},
         {'1','1','1','1','1','1','1','0'},
@@ -116,6 +108,6 @@ int main() {
     //fuxk.push_back(make_pair(6,4));
     //fuxk.push_back(make_pair(6,7));
     
-    cout << s.calculate("3 - 2 * 5") << endl;
+    cout << s.shortestPathLength(matrix1) << endl;
     return 0;
 }
