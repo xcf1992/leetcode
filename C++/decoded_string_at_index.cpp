@@ -56,8 +56,8 @@ using namespace std;
 class Solution {
 public:
     string decodeAtIndex(string S, int K) {
-        int length = 0;
-        int pos = 0;
+        long length = 0;
+        long pos = 0;
         while (length < K) {
             if (isdigit(S[pos])) {
                 length *= (S[pos] - '0');
@@ -67,19 +67,16 @@ public:
             }
             pos += 1;
         }
-        while (pos-- > 0) {
+        while (pos--) {
             if (isdigit(S[pos])) {
                 length /= (S[pos] - '0');
                 K %= length;
             }
-            else {
-                if (K == 0 || K % length == 0) {
-                    break;
-                }
-                length -= 1;
+            else if (K % length-- == 0) {
+                return string(1, S[pos]);
             }
         }
-        return string(1, S[pos]);
+        return "";
     }
 };
 
