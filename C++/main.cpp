@@ -51,34 +51,31 @@ struct TupleComp {
 
 class Solution {
 public:
-    int shortestPathLength(vector<vector<int>>& graph) {
-        int n = graph.size();
-        
-        unordered_set<Tuple, TupleHash, TupleComp> visited;
-        queue<Tuple> bfs;
-        for (int i = 0; i < n; i++) {
-            int mask = (1 << i);
-            visited.insert(Tuple(i, mask, 0));
-            bfs.push(Tuple(i, mask, 0));
-        }
-        
-        while (!bfs.empty()) {
-            Tuple cur = bfs.front();
-            bfs.pop();
-            if (cur.bitMask == (1 << n) - 1) {
-                return cur.cost;
+    string decodeAtIndex(string S, int K) {
+        int length = 0;
+        int pos = 0;
+        while (length < K) {
+            if (isdigit(S[pos])) {
+                length *= (S[pos] - '0');
             }
-            
-            for (int next : graph[cur.node]) {
-                int mask = (cur.bitMask | 1 << next);
-                Tuple tuple = Tuple(next, mask, cur.cost + 1);
-                if (visited.find(tuple) == visited.end()) {
-                    visited.insert(tuple);
-                    bfs.push(tuple);
+            else {
+                length += 1;
+            }
+            pos += 1;
+        }
+        while (pos-- > 0) {
+            if (isdigit(S[pos])) {
+                length /= (S[pos] - '0');
+                K %= length;
+            }
+            else {
+                if (K == 0 || K / length == 0) {
+                    break;
                 }
+                length -= 1;
             }
         }
-        return -1;
+        return string(1, S[pos]);
     }
 };
 
@@ -108,6 +105,6 @@ int main() {
     //fuxk.push_back(make_pair(6,4));
     //fuxk.push_back(make_pair(6,7));
     
-    cout << s.shortestPathLength(matrix1) << endl;
+    cout << s.decodeAtIndex("leet2code3", 10) << endl;
     return 0;
 }
