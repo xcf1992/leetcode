@@ -49,33 +49,49 @@ struct TupleComp {
     }
 };
 
+class Node {
+public:
+    int val;
+    Node* next;
+    
+    Node() {}
+    
+    Node(int _val, Node* _next) {
+        val = _val;
+        next = _next;
+    }
+};
+
 class Solution {
 public:
-    string decodeAtIndex(string S, int K) {
-        int length = 0;
-        int pos = 0;
-        while (length < K) {
-            if (isdigit(S[pos])) {
-                length *= (S[pos] - '0');
-            }
-            else {
-                length += 1;
-            }
-            pos += 1;
+    Node* insert(Node* head, int insertVal) {
+        Node* newNode = new Node(insertVal, nullptr);
+        if (head == nullptr) {
+            newNode -> next = newNode;
+            return newNode;
         }
-        while (pos-- > 0) {
-            if (isdigit(S[pos])) {
-                length /= (S[pos] - '0');
-                K %= length;
+        
+        Node* cur = head;
+        Node* nextNode = cur -> next;
+        Node* biggestNode = cur;
+        while (true) {
+            if (cur -> val <= insertVal && nextNode -> val >= insertVal) {
+                cur -> next = newNode;
+                newNode -> next = nextNode;
+                return head;
             }
-            else {
-                if (K == 0 || K / length == 0) {
-                    break;
-                }
-                length -= 1;
+            if (nextNode -> val > biggestNode -> val) {
+                biggestNode = nextNode;
+            }
+            cur = nextNode;
+            nextNode = cur -> next;
+            if (cur == head) {
+                break;
             }
         }
-        return string(1, S[pos]);
+        newNode -> next = biggestNode -> next;
+        biggestNode -> next = newNode;
+        return head;
     }
 };
 
@@ -105,6 +121,12 @@ int main() {
     //fuxk.push_back(make_pair(6,4));
     //fuxk.push_back(make_pair(6,7));
     
-    cout << s.decodeAtIndex("leet2code3", 10) << endl;
+    Node* n1 = new Node(3, nullptr);
+    Node* n2 = new Node(5, nullptr);
+    Node* n3 = new Node(1, nullptr);
+    n1 -> next = n2;
+    n2 -> next = n3;
+    n3 -> next = n1;
+    cout << s.insert(n1, 0) << endl;
     return 0;
 }
