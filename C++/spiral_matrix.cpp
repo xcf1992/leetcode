@@ -79,21 +79,3 @@ vector<int> spiralOrder(vector<vector<int> > &matrix) {
             
         return result;
     }
-
-int main() {
-	vector<int> row1;
-	row1.push_back(1);
-	vector<int> row2;
-	row2.push_back(4);
-	row2.push_back(5);
-	row2.push_back(6);
-	vector<int> row3;
-	row3.push_back(7);
-	row3.push_back(8);
-	row3.push_back(9);
-
-	vector<vector<int>> matrix;
-	matrix.push_back(row1);
-	spiralOrder(matrix);
-	return 0;
-}
