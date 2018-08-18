@@ -62,42 +62,29 @@ public:
     }
 };
 
-class Solution {
+class ValidWordAbbr {
+private:
+    unordered_set<string> abbreviation;
 public:
-    bool sequenceReconstruction(vector<int> org, vector<vector<int>> seqs) {
-        if (seqs.empty()) {
-            return false;
-        }
-        vector<int> pos(org.size() + 1, -1);
-        for (int i = 0; i < org.size(); i++) {
-            pos[org[i]] = i;
-        }
-        
-        int matched = org.size() - 1;
-        bool allEmpty = true;
-        vector<int> order(org.size() + 1, -1);
-        for (vector<int> seq : seqs) {
-            for (int i = 0; i < seq.size() - 1; i++) {
-                allEmpty = false;
-                if (seq[i] <= 0 || seq[i] > org.size() || pos[seq[i]] == -1) {
-                    return false;
-                }
-                if (pos[seq[i]] >= pos[seq[i + 1]]) {
-                    return false;
-                }
-                if (pos[seq[i]] == pos[seq[i + 1]] - 1 && order[seq[i]] == -1) {
-                    matched -= 1;
-                    order[seq[i]] = 1;
-                }
+    ValidWordAbbr(vector<string> dictionary) {
+        for (string word : dictionary) {
+            if (word.size() <= 2) {
+                abbreviation.insert(word);
+            }
+            else {
+                abbreviation.insert(string(1, word.front()) + to_string(word.size() - 2) + string(1, word.back()));
             }
         }
-        return matched == 0 && !allEmpty;
+    }
+    
+    bool isUnique(string word) {
+        return abbreviation.find(word) != abbreviation.end();
     }
 };
 
 
 int main() {
-    Solution s;
+    //Solution s;
     vector<string> v({"ahjpjau","ja","ahbwzgqnuk","tnmlanowax"});
     vector<int> va({4,5,8,2});
     vector<int> vb({3,2});
@@ -129,6 +116,8 @@ int main() {
     n2 -> next = n3;
     n3 -> next = n1;*/
     
-    cout << s.sequenceReconstruction({5,3,2,4,1}, {{5,3,2,4}, {4,1}, {1}, {3}, {2, 4}, {1,1000000000}}) << endl;
+    //cout << s.sequenceReconstruction({5,3,2,4,1}, {{5,3,2,4}, {4,1}, {1}, {3}, {2, 4}, {1,1000000000}}) << endl;
+    ValidWordAbbr vadddd({"ValidWordAbbr","isUnique","isUnique","isUnique","isUnique"});
+    cout << vadddd.isUnique("make");
     return 0;
 }
