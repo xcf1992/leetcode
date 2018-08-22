@@ -75,6 +75,6 @@ public:
     bool canCross(vector<int>& stones) {
         unordered_set<int> s(stones.begin(), stones.end());
         unordered_set<string> visited;
-        return check(stones.front();, stones.back(), 0, visited, s);
+        return check(stones.front(), stones.back(), 0, visited, s);
     }
 };
