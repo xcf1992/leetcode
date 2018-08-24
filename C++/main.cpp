@@ -103,8 +103,94 @@ public:
     }
 };
 
+class AutocompleteSystem {
+private:
+    struct TrieNode {
+        int time;
+        unordered_map<char, TrieNode*> next;
+        TrieNode() {
+            time = 0;
+        }
+    };
+    
+    TrieNode* root;
+    TrieNode* cur;
+    string sentence;
+    
+    struct Compare {
+        bool operator() (pair<string, int>& p1, pair<string, int>& p2){
+            return p1.second == p2.second ? p1.first < p2.first : p1.second > p2.second;
+        }
+    };
+    priority_queue<pair<string, int>, vector<pair<string, int>>, Compare> pq;
+    
+    void buildTrie(string s, int time) {
+        TrieNode* node = root;
+        for (char c : s) {
+            if (!node -> next[c]) {
+                node -> next[c] = new TrieNode();
+            }
+            node = node -> next[c];
+        }
+        node -> time += time;
+    }
+    
+    void dfs(string& s, TrieNode* node) {
+        if (node -> time) {
+            pq.push({s, node -> time});
+            while (pq.size() > 3) {
+                pq.pop();
+            }
+        }
+        
+        for (auto& nex : node -> next) {
+            s.push_back(nex.first);
+            dfs(s, nex.second);
+            s.pop_back();
+        }
+    }
+    
+    void reset() {
+        cur = root;
+        sentence = "";
+    }
+public:
+    AutocompleteSystem(vector<string> sentences, vector<int> times) {
+        root = new TrieNode();
+        reset();
+        for (int i = 0; i < sentence.size(); i++) {
+            buildTrie(sentences[i], times[i]);
+        }
+    }
+    
+    vector<string> input(char c) {
+        if (c == '#') {
+            buildTrie(sentence, 1);
+            reset();
+            return {};
+        }
+        
+        sentence.push_back(c);
+        cur = cur -> next[c];
+        if (!cur) {
+            cur = new TrieNode();
+        }
+        
+        dfs(sentence, cur);
+        vector<string> result;
+        while (!pq.empty()) {
+            result.push_back(pq.top().first);
+            pq.pop();
+        }
+        reverse(result.begin(), result.end());
+        return result;
+    }
+};
 
 int main() {
+    AutocompleteSystem autoC({"i love you","island","iroman","i love leetcode"}, {5,3,2,2});
+    autoC.input('i');
+    
     Solution s;
     vector<string> v({"ahjpjau","ja","ahbwzgqnuk","tnmlanowax"});
     vector<int> va({4,5,8,2});
