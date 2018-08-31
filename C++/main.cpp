@@ -9,7 +9,7 @@
 #include <stack>
 #include <stdio.h>
 #include <map>
-#include <set>
+#include <numeric>
 using namespace std;
 
 struct myComp {
@@ -19,39 +19,44 @@ struct myComp {
 };
 
 class Solution {
-public:
-    vector<pair<int, int>> getSkyline(vector<vector<int>> buildings) {
-        set<int> points;
-        for (vector<int>& building : buildings) {
-            points.insert(building[0]);
-            points.insert(building[1]);
+private:
+    void mergeCount(vector<int>& indices, int first, int last, vector<int>& result, vector<int>& nums) {
+        int count = last - first;
+        if (count <= 1) {
+            return;
         }
         
-        vector<pair<int, int>> skyline;
-        int lastHeight = 0;
-        priority_queue<pair<int, int>, vector<pair<int, int>>, myComp> pq;
-        int cur = 0;
-        for (int point : points) {
-            while (cur != buildings.size() and buildings[cur][0] <= point) {
-                pq.push(make_pair(buildings[cur][1], buildings[cur][2]));
-                cur += 1;
+        int mid = first + count / 2;
+        mergeCount(indices, first, mid, result, nums);
+        mergeCount(indices, mid, last, result, nums);
+        
+        vector<int> temp;
+        int idx1 = first;
+        int idx2 = mid;
+        int semicount = 0;
+        while (idx1 < mid or idx2 < last) {
+            if (idx2 == last or (idx1 < mid and nums[indices[idx1]] <= nums[indices[idx2]])) {
+                temp.push_back(indices[idx1]);
+                result[indices[idx1]] += semicount;
+                idx1 += 1;
             }
-            
-            while (!pq.empty() && pq.top().first <= point) {
-                pq.pop();
-            }
-            
-            int height = 0;
-            if (!pq.empty()) {
-                height = pq.top().second;
-            }
-            
-            if (height != lastHeight) {
-                lastHeight = height;
-                skyline.push_back(make_pair(point, height));
+            else {
+                temp.push_back(indices[idx2]);
+                semicount += 1;
+                idx2 += 1;
             }
         }
-        return skyline;
+        move(temp.begin(), temp.end(), indices.begin() + first);
+    }
+public:
+    vector<int> countSmaller(vector<int> nums) {
+        int n = nums.size();
+        vector<int> indices(n, 0);
+        vector<int> result(n, 0);
+        
+        iota(indices.begin(), indices.end(), 0);
+        mergeCount(indices, 0, n, result, nums);
+        return result;
     }
 };
 
@@ -72,6 +77,6 @@ int main() {
         {'0','1','1','1','1','0','0','0'}
     });
     
-    s.getSkyline({{2,9,10},{3,7,15},{5,12,12},{15,20,10},{19,24,8}});
+    s.countSmaller({2,9,10});
     return 0;
 }
