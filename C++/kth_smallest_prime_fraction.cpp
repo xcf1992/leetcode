@@ -34,9 +34,32 @@
 #include <numeric>
 using namespace std;
 
+/*
+ when we put element into the pq, we just need to make sure
+ 1. we first put all the smallest elments, with A[0] / A[i]
+ 2. then for each poped item x, we put x.first + 1/ x.second, and we sure x.first / x.second or x.first / x.second + 1 already in or will be in the pq
+ */
 class Solution {
 public:
     vector<int> kthSmallestPrimeFraction(vector<int>& A, int K) {
+        auto cmp = [&A](auto& a, auto& b) {
+            return A[a.first] * A[b.second] > A[a.second] * A[b.first];
+        };
+        priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(cmp)> pq(cmp);
         
+        for (int i = 1; i < A.size(); i++) {
+            pq.push({0, i});
+        }
+        int count = 1;
+        while (count < K) {
+            count += 1;
+            pair<int, int> cur = pq.top();
+            pq.pop();
+            
+            if (cur.first + 1 < cur.second) {
+                pq.push({cur.first + 1, cur.second});
+            }
+        }
+        return {A[pq.top().first], A[pq.top().second]};
     }
 };
