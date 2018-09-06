@@ -1,3 +1,28 @@
+/*
+ Design and implement a data structure for Least Frequently Used (LFU) cache. It should support the following operations: get and put.
+ 
+ get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
+ put(key, value) - Set or insert the value if the key is not already present. When the cache reaches its capacity, it should invalidate the least frequently used item before inserting a new item. For the purpose of this problem, when there is a tie (i.e., two or more keys that have the same frequency), the least recently used key would be evicted.
+ 
+ Follow up:
+ Could you do both operations in O(1) time complexity?
+ 
+ Example:
+ 
+ LFUCache cache = new LFUCache( 2 // capacity  );
+
+cache.put(1, 1);
+cache.put(2, 2);
+cache.get(1);       // returns 1
+cache.put(3, 3);    // evicts key 2
+cache.get(2);       // returns -1 (not found)
+cache.get(3);       // returns 3.
+cache.put(4, 4);    // evicts key 1.
+cache.get(1);       // returns -1 (not found)
+cache.get(3);       // returns 3
+cache.get(4);       // returns 4
+ */
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -11,54 +36,6 @@
 #include <map>
 #include <numeric>
 using namespace std;
-
-struct myComp {
-    bool operator() (pair<int, int>& p1, pair<int, int>& p2) {
-        return p1.first < p2.first || (p1.first == p2.first && p1.second > p2.second);
-    }
-};
-
-class Solution {
-private:
-    void mergeCount(vector<int>& indices, int first, int last, vector<int>& result, vector<int>& nums) {
-        int count = last - first;
-        if (count <= 1) {
-            return;
-        }
-        
-        int mid = first + count / 2;
-        mergeCount(indices, first, mid, result, nums);
-        mergeCount(indices, mid, last, result, nums);
-        
-        vector<int> temp;
-        int idx1 = first;
-        int idx2 = mid;
-        int semicount = 0;
-        while (idx1 < mid or idx2 < last) {
-            if (idx2 == last or (idx1 < mid and nums[indices[idx1]] <= nums[indices[idx2]])) {
-                temp.push_back(indices[idx1]);
-                result[indices[idx1]] += semicount;
-                idx1 += 1;
-            }
-            else {
-                temp.push_back(indices[idx2]);
-                semicount += 1;
-                idx2 += 1;
-            }
-        }
-        move(temp.begin(), temp.end(), indices.begin() + first);
-    }
-public:
-    vector<int> countSmaller(vector<int> nums) {
-        int n = nums.size();
-        vector<int> indices(n, 0);
-        vector<int> result(n, 0);
-        
-        iota(indices.begin(), indices.end(), 0);
-        mergeCount(indices, 0, n, result, nums);
-        return result;
-    }
-};
 
 struct LFUNode {
     int freq;
@@ -132,6 +109,9 @@ public:
         
         if (key2node.size() == capacity) {
             LFUNode* listHead = freq2node[minFreq];
+            if (listHead == nullptr) {
+                return;
+            }
             LFUNode* last = listHead -> prev;
             listHead -> prev = last -> prev;
             last -> prev -> next = listHead;
@@ -157,30 +137,9 @@ public:
     }
 };
 
-int main() {
-    LFUCache lfu(2);
-    lfu.put(1, 1);
-    lfu.put(2, 2);
-    lfu.get(1);
-    lfu.put(3, 3);
-    lfu.get(2);
-    
-    Solution s;
-    vector<string> v({"ahjpjau","ja","ahbwzgqnuk","tnmlanowax"});
-    vector<int> va({4,5,8,2});
-    vector<int> vb({3,2});
-    vector<string> v2({"a","cd"});
-    vector<char> chars({'a','a','a','a','a','b','b','c'});
-    
-    vector<vector<int>> matrix1({{1,2}, {0}, {0}});
-    vector<vector<char>> matrix2({
-        {'1','1','1','1','1','1','1','1'},
-        {'1','1','1','1','1','1','1','0'},
-        {'1','1','1','1','1','1','1','0'},
-        {'1','1','1','1','1','0','0','0'},
-        {'0','1','1','1','1','0','0','0'}
-    });
-    
-    s.countSmaller({2,9,10});
-    return 0;
-}
+/**
+ * Your LFUCache object will be instantiated and called as such:
+ * LFUCache obj = new LFUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
