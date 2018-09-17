@@ -13,62 +13,46 @@
 using namespace std;
 
 class Solution {
-private:
-    void collapse(string& board) {
-        bool removed = true;
-        while (removed) {
-            removed = false;
-            int pos = 0;
-            while (pos < board.size()) {
-                if (pos + 2 < board.size() && board[pos] == board[pos + 1] && board[pos] == board[pos + 2]) {
-                    removed = true;
-                    board.erase(pos, 3);
-                    break;
-                }
-                pos += 1;
-            }
-        }
-        return;
-    }
-    
 public:
-    int findMinStep(string board, string hand) {
-        unordered_map<char, int> c2i({
-            {'R', 0}, {'Y', 1}, {'B', 2}, {'G', 3}, {'W', 4}
-        });
-        vector<int> inHand(5, 0);
-        for (char c : hand) {
-            inHand[c2i[c]] += 1;
-        }
-        
-        queue<pair<string, vector<int>>> bfs;
-        int used = 0;
-        bfs.push({board, inHand});
-        while (!bfs.empty() && used < hand.size()) {
-            int curSize = bfs.size();
-            for (int i = 0; i < curSize; i++) {
-                string curBoard = bfs.front().first;
-                vector<int> ballLeft = bfs.front().second;
-                bfs.pop();
-                
-                for (int pos = 0; pos < curBoard.size() - 1; pos++) {
-                    if (curBoard[pos] == curBoard[pos + 1] || ballLeft[c2i[curBoard[pos]]] == 0) {
-                        continue;
-                    }
-                    string newBoard = curBoard;
-                    vector<int> newHand = ballLeft;
-                    newBoard.insert(pos, 1, curBoard[pos]);
-                    collapse(newBoard);
-                    if (newBoard.empty()) {
-                        return used + 1;
-                    }
-                    newHand[c2i[curBoard[pos]]] -= 1;
-                    bfs.push({newBoard, newHand});
-                }
+    int totalFruit(vector<int> tree) {
+        int result = 0;
+        int typ1 = -1;
+        int typ2 = -1;
+        int count = 0;
+        int idx1 = -1;
+        int idx2 = -1;
+        for (int pos = 0; pos < tree.size(); pos++) {
+            if (typ1 == -1) {
+                typ1 = tree[pos];
+                count += 1;
+                idx1 = pos;
             }
-            used += 1;
+            else if (typ2 == -1) {
+                typ2 = tree[pos];
+                count += 1;
+                idx2 = pos;
+            }
+            else if (typ1 == tree[pos]) {
+                count += 1;
+                idx1 = pos;
+            }
+            else if (typ2 == tree[pos]) {
+                count += 1;
+                idx2 = pos;
+            }
+            else {
+                if (idx2 < idx1) {
+                    swap(idx1, idx2);
+                    swap(typ1, typ2);
+                }
+                
+                result = max(result, count);
+                count = pos - idx1;
+                typ1 = tree[pos];
+                idx1 = pos;
+            }
         }
-        return -1;
+        return max(count, result);
     }
 };
 
@@ -89,6 +73,6 @@ int main() {
         {'0','1','1','1','1','0','0','0'}
     });
     
-    s.findMinStep("GG", "G");
+    s.totalFruit({0,0,1,1});
     return 0;
 }
