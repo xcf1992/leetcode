@@ -1,3 +1,36 @@
+/*
+ Given an array A of integers, for each integer A[i] we may choose any x with -K <= x <= K, and add x to A[i].
+ 
+ After this process, we have some array B.
+ 
+ Return the smallest possible difference between the maximum value of B and the minimum value of B.
+ 
+ 
+ 
+ Example 1:
+ 
+ Input: A = [1], K = 0
+ Output: 0
+ Explanation: B = [1]
+ Example 2:
+ 
+ Input: A = [0,10], K = 2
+ Output: 6
+ Explanation: B = [2,8]
+ Example 3:
+ 
+ Input: A = [1,3,6], K = 3
+ Output: 0
+ Explanation: B = [3,3,3] or B = [4,4,4]
+ 
+ 
+ Note:
+ 
+ 1 <= A.length <= 10000
+ 0 <= A[i] <= 10000
+ 0 <= K <= 10000
+ */
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -14,7 +47,21 @@ using namespace std;
 
 class Solution {
 public:
-    int smallestRangeI(vector<int> A, int K) {
+    int smallestRangeI(vector<int>& A, int K) {
+        int curMin = INT_MAX;
+        int curMax = INT_MIN;
+        for (int num : A) {
+            curMin = min(num, curMin);
+            curMax = max(num, curMax);
+        }
+        int result = (curMax - K) - (curMin + K);
+        return result < 0 ? 0 : result;
+    }
+};
+
+class Solution1 {
+public:
+    int smallestRangeI(vector<int>& A, int K) {
         int result = 0;
         int curMin = A[0] - K;
         int curMax = A[0] + K;
@@ -34,8 +81,8 @@ public:
                     result = curMax - curMin;
                 }
                 else {
-                    newMin = max(newMin, curMin);
-                    newMax = min(newMax, curMax);
+                    curMin = max(newMin, curMin);
+                    curMax = min(newMax, curMax);
                 }
             }
             else {
@@ -51,24 +98,3 @@ public:
         return result;
     }
 };
-
-int main() {
-    Solution s;
-    vector<string> v({"ahjpjau","ja","ahbwzgqnuk","tnmlanowax"});
-    vector<int> va({4,5,8,2});
-    vector<int> vb({3,2});
-    vector<string> v2({"a","cd"});
-    vector<char> chars({'a','a','a','a','a','b','b','c'});
-    
-    vector<vector<int>> matrix1({{1,0,2,0,1}, {0,0,0,0,0}, {0,0,1,0,0}});
-    vector<vector<char>> matrix2({
-        {'1','1','1','1','1','1','1','1'},
-        {'1','1','1','1','1','1','1','0'},
-        {'1','1','1','1','1','1','1','0'},
-        {'1','1','1','1','1','0','0','0'},
-        {'0','1','1','1','1','0','0','0'}
-    });
-    
-    s.smallestRangeI({3,1,10}, 4);
-    return 0;
-}
