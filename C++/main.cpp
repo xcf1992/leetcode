@@ -12,41 +12,50 @@
 #include <numeric>
 using namespace std;
 
-class Solution {
+class Solution1 {
 public:
-    int smallestRangeI(vector<int> A, int K) {
-        int result = 0;
-        int curMin = A[0] - K;
-        int curMax = A[0] + K;
-        for (int i = 1; i < A.size(); i++) {
-            int newMin = A[i] - K;
-            int newMax = A[i] + K;
-            if (result == 0) {
-                if (newMin > curMax || newMax < curMin) {
-                    if (curMin > newMax) {
-                        curMax = curMin;
-                        curMin = newMax;
-                    }
-                    else {
-                        curMin = curMax;
-                        curMax = newMin;
-                    }
-                    result = curMax - curMin;
+    int smallestRangeII(vector<int> A, int K) {
+        int tempMin = INT_MAX;
+        int tempMax = INT_MIN;
+        for (int num : A) {
+            tempMin = min(num, tempMin);
+            tempMax = max(num, tempMax);
+        }
+        int curMin = INT_MAX;
+        int curMax = INT_MIN;
+        if (tempMax - tempMin > K) {
+            curMin = min(tempMin + K, tempMax - K);
+            curMax = max(tempMin + K, tempMax - K);
+        }
+        else {
+            curMin = tempMin + K;
+            curMax = tempMax + K;
+        }
+        int result = curMax - curMin;
+        for (int num : A) {
+            if (num + K <= curMax && num + K >= curMin) {
+                continue;
+            }
+            if (num - K <= curMax && num - K >= curMin) {
+                continue;
+            }
+            int newMin = num - K;
+            int newMax = num + K;
+            if (newMax < curMin) {
+                curMin = newMax;
+            }
+            else if (newMin > curMax) {
+                curMax = newMin;
+            }
+            else if (newMin < curMin && newMax > curMax) {
+                if (newMax - curMin > curMax - newMin) {
+                    curMin = newMin;
                 }
                 else {
-                    newMin = max(newMin, curMin);
-                    newMax = min(newMax, curMax);
+                    curMax = newMax;
                 }
             }
-            else {
-                if (newMin > curMax) {
-                    curMax = newMin;
-                }
-                else if (newMax < curMin) {
-                    curMin = newMax;
-                }
-                result = curMax - curMin;
-            }
+            result = curMax - curMin;
         }
         return result;
     }
@@ -69,6 +78,6 @@ int main() {
         {'0','1','1','1','1','0','0','0'}
     });
     
-    s.smallestRangeI({3,1,10}, 4);
+    s.smallestRangeII({1}, 0);
     return 0;
 }
