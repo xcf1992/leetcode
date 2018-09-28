@@ -13,53 +13,69 @@
 using namespace std;
 
 class Solution {
-private:
-    int getDestination(int pos, vector<vector<int>>& board) {
-        int m = board.size();
-        int n = board[0].size();
-        int row = m - 1 - (pos - 1) / n;
-        int col = (pos - 1) % n;
-        if ((m - 1 - row) % 2 != 0) {
-            col = n - 1 - col;
-        }
-        
-        if (board[row][col] == -1) {
-            return pos;
-        }
-        return board[row][col];
-    }
 public:
-    int snakesAndLadders(vector<vector<int>>& board) {
-        int end = board.size() * board[0].size();
-        vector<bool> visited(end + 1, false);
-        queue<int> bfs;
-        bfs.push(1);
-        visited[1] = true;
-        int step = 0;
-        while (!bfs.empty()) {
-            int curSize = bfs.size();
-            for (int i = 0; i < curSize; i++) {
-                int pos = bfs.front();
-                bfs.pop();
-                
-                if (pos == end) {
-                    return step;
-                }
-                
-                for (int move = 1; move <= 6; move++) {
-                    if (pos + move > end) {
-                        break;
-                    }
-                    int next = getDestination(pos + move, board);
-                    if (!visited[next]) {
-                        bfs.push(next);
-                        visited[next] = true;
+    vector<int> dr = {-1, 0, 1, 0};
+    vector<int> dc = {0, 1, 0, -1};
+    int vst[201][201], id;
+    int n, m;
+    
+    vector<int> hitBricks(vector<vector<int>>& g, vector<vector<int>>& hits) {
+        n = g.size(),
+        m = g[0].size();
+        vector<int> result;
+        for (auto hit : hits){
+            int r = hit[0];
+            int c = hit[1];
+            int removal = 0;
+            if (g[r][c] == 1){
+                g[r][c] = 0;
+                for (int d = 0;d<4;d++){
+                    int x = r + dr[d];
+                    int y = c + dc[d];
+                    ++id; //mark each connecting parts with a unique id in this run
+                    if (falling(x, y, g)) {
+                        removal += cnt(x, y, g);
                     }
                 }
             }
-            step += 1;
+            result.push_back(removal);
         }
-        return -1;
+        return result;
+    }
+    
+    bool falling(int r, int c, vector<vector<int>>& g){
+        if (!valid(r,c) || !g[r][c] || vst[r][c] == id) {
+            return true;
+        }
+        
+        if (r == 0) {
+            return false;
+        } //connecting 1st row
+        
+        vst[r][c] = id;
+        for (int d = 0; d < 4; ++d){
+            if (!falling(r + dr[d], c + dc[d], g)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    int cnt(int r,int c, vector<vector<int>>& g){
+        if (!valid(r,c)||!g[r][c]) {
+            return 0;
+        }
+        
+        int ret = 1;
+        g[r][c] = 0;
+        for(int d = 0; d < 4; ++d) {
+            ret += cnt(r + dr[d], c + dc[d], g);
+        }
+        return ret;
+    }
+    
+    bool valid(int r,int c){
+        return 0 <= r && r < n && 0 <= c && c < m;
     }
 };
 
@@ -67,17 +83,17 @@ int main() {
     Solution s;
     vector<string> v({"ahjpjau","ja","ahbwzgqnuk","tnmlanowax"});
     vector<int> va({4,5,8,2});
-    vector<int> vb({3,2});
+    vector<vector<int>> vb({{3,0}});
     vector<string> v2({"a","cd"});
     vector<char> chars({'a','a','a','a','a','b','b','c'});
     
     vector<vector<int>> matrix1({
-        {-1,-1,-1,-1,-1,-1},
-        {-1,-1,-1,-1,-1,-1},
-        {-1,-1,-1,-1,-1,-1},
-        {-1,35,-1,-1,13,-1},
-        {-1,-1,-1,-1,-1,-1},
-        {-1,15,-1,-1,-1,-1}
+        {1,1,1,0,1,1,1,1},
+        {1,0,0,0,0,1,1,1},
+        {1,1,1,0,0,0,1,1},
+        {1,1,0,0,0,0,0,0},
+        {1,0,0,0,0,0,0,0},
+        {1,0,0,0,0,0,0,0}
     });
     vector<vector<char>> matrix2({
         {'1','1','1','1','1','1','1','1'},
@@ -87,6 +103,6 @@ int main() {
         {'0','1','1','1','1','0','0','0'}
     });
     
-    s.snakesAndLadders(matrix1);
+    s.hitBricks(matrix1, vb);
     return 0;
 }

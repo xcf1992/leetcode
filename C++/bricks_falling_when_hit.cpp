@@ -44,18 +44,63 @@
 using namespace std;
 
 class Solution {
-private:
-    int m;
-    int n;
-    
-    bool valid(int r, int c) {
-        return r < m && r >= 0 && c < n && c >= 0;
-    }
 public:
-    vector<int> hitBricks(vector<vector<int>>& grid, vector<vector<int>>& hits) {
-        int m = grid.size();
-        int n = grid[0].size();
+    vector<int> dr = {-1, 0, 1, 0};
+    vector<int> dc = {0, 1, 0, -1};
+    int vst[201][201], id;
+    int n, m;
+    
+    vector<int> hitBricks(vector<vector<int>>& g, vector<vector<int>>& hits) {
+        n = g.size();
+        m = g[0].size();
         vector<int> result;
+        for (auto hit : hits){
+            if (g[hit[0]][hit[1]] == 0) {
+                result.push_back(0);
+                continue;
+            }
+            
+            g[hit[0]][hit[1]] = 0;
+            int drop = 0;
+            for (int d = 0; d < 4;d++){
+                int x = hit[0] + dr[d];
+                int y = hit[1] + dc[d];
+                ++id; //mark each connecting parts with a unique id in this run
+                unordered_set<int> connected;
+                if (falling(x, y, g, connected)) {
+                    // if we find one brick will drop, then it mean all bricks connected to this brick will drop
+                    // otherwise this brick will not drop itself.
+                    drop += connected.size();
+                    for (auto& pos : connected) {
+                        g[pos / m][pos % m] = 0;
+                    }
+                }
+            }
+            result.push_back(drop);
+        }
         return result;
+    }
+    
+    bool falling(int r, int c, vector<vector<int>>& g, unordered_set<int>& connected){
+        if (!valid(r,c) || !g[r][c] || vst[r][c] == id) {
+            return true;
+        }
+        
+        if (r == 0) {
+            return false;
+        }
+        
+        vst[r][c] = id;
+        connected.insert(r * m + c);
+        for (int d = 0; d < 4; ++d){
+            if (!falling(r + dr[d], c + dc[d], g, connected)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    bool valid(int r, int c){
+        return 0 <= r && r < n && 0 <= c && c < m;
     }
 };
