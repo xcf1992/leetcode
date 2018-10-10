@@ -30,14 +30,17 @@ public:
         vector<vector<bool>> dp(n, vector<bool>(n, false));
         int result = 1;
         int start = 0;
-        for (int i = 0; i < n; i++) {
-            for (int j = i; j < n; j++) {
-                if (s[i] == s[j] && (j - i < 3 || dp[i + 1][j - 1])) {
-                    dp[i][j] = true;
-                }
-                if (dp[i][j] && j - i + 1 > result) {
-                    result = j - i + 1;
-                    start = i;
+        for (int length = 0; length < n; length++) {
+            for (int i = 0; i < n; i++) {
+                int j = i + length;
+                if (j < n) {
+                    if (s[i] == s[j] && (j - i < 3 || dp[i + 1][j - 1])) {
+                        dp[i][j] = true;
+                    }
+                    if (dp[i][j] && j - i + 1 > result) {
+                        result = j - i + 1;
+                        start = i;
+                    }
                 }
             }
         }
