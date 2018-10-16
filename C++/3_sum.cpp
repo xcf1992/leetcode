@@ -1,3 +1,20 @@
+/*
+Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
+
+Note:
+
+The solution set must not contain duplicate triplets.
+
+Example:
+
+Given array nums = [-1, 0, 1, 2, -1, -4],
+
+A solution set is:
+[
+  [-1, 0, 1],
+  [-1, -1, 2]
+]
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -6,64 +23,48 @@
 using namespace std;
 
 
-vector<vector<int> > threeSum(vector<int> &num) {
-        vector<vector<int>> results;
-        results.clear();
-        vector<int> result;
-        
-        if (num.size() <= 2 ||
-            (num.size() == 3 && num[0] + num[1] + num[2] != 0)) {
-            return results;
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int> &num) {
+        if (num.size() <= 2 || (num.size() == 3 && num[0] + num[1] + num[2] != 0)) {
+            return {};
         }
         
         sort(num.begin(), num.end());
-        int oldVal = num.at(0);
-        for (int i = 0; i != num.size(); i++) {
-            result.clear();
-            result.push_back(num.at(i));
-            if (i > 0 && num.at(i) == oldVal) {
+        int oldVal = num[0];
+        vector<vector<int>> results;
+        for (int i = 0; i < num.size(); i++) {
+            if (i > 0 && num[i] == oldVal) {
                 continue;
             }
-            else {
-                oldVal = num.at(i);
-            }
-            int needed = 0 - num.at(i);
-            
+            oldVal = num[i];
+            int needed = 0 - num[i];
             int forward = i + 1;
             int backward = num.size() - 1;
             
             while (forward < backward) {
-                if (forward > i + 1 && 
-                    num.at(forward) == num.at(forward - 1)) {
-                    continue;
-                }
-                if (backward < num.size() - 1 && 
-                    num.at(backward) == num.at(backward - 1)) {
-                    continue;
-                }
-                
-                if (num.at(forward) + num.at(backward) == needed) {
-                    result.push_back(num.at(forward));
-                    result.push_back(num.at(backward));
-                    results.push_back(result);
-                    result.pop_back();
-                    result.pop_back();
+                while (forward > i + 1 and num[forward] == num[forward - 1]) {
                     forward++;
                 }
-                else if (num.at(forward) + num.at(backward) < needed) {
+                while (backward < num.size() - 1 and num[backward] == num[backward + 1]) {
+                    backward--;
+                }
+                if (forward >= backward) {
+                    break;
+                }
+
+                if (num[forward] + num[backward] == needed) {
+                    results.push_back({num[i], num[forward], num[backward]});
                     forward++;
                 }
-                else if (num.at(forward) + num.at(backward) > needed) {
+                else if (num[forward] + num[backward] < needed) {
+                    forward++;
+                }
+                else if (num[forward] + num[backward] > needed) {
                     backward--;
                 }
             }
-        }
-        
+        } 
         return results;
     }
-
-int main() {
-	vector<int> num(4, 0);
-	threeSum(num);
-	return 0;
-}
+};
