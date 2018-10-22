@@ -1,3 +1,34 @@
+/*
+ Given an array A of 0s and 1s, divide the array into 3 non-empty parts such that all of these parts represent the same binary value.
+ 
+ If it is possible, return any [i, j] with i+1 < j, such that:
+ 
+ A[0], A[1], ..., A[i] is the first part;
+ A[i+1], A[i+2], ..., A[j-1] is the second part, and
+ A[j], A[j+1], ..., A[A.length - 1] is the third part.
+ All three parts have equal binary value.
+ If it is not possible, return [-1, -1].
+ 
+ Note that the entire part is used when considering what binary value it represents.  For example, [1,1,0] represents 6 in decimal, not 3.  Also, leading zeros are allowed, so [0,1,1] and [1,1] represent the same value.
+ 
+ 
+ 
+ Example 1:
+ 
+ Input: [1,0,1,0,1]
+ Output: [0,3]
+ Example 2:
+ 
+ Input: [1,1,0,1,1]
+ Output: [-1,-1]
+ 
+ 
+ Note:
+ 
+ 3 <= A.length <= 30000
+ A[i] == 0 or A[i] == 1
+ */
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -12,6 +43,12 @@
 #include <numeric>
 using namespace std;
 
+/*
+ The basic idea if the result exists then every part should have the same number of 1
+ we find the start and end pos of 1 in each part and check if the number created is equal
+ Besides, we need to confirm that number of 0 after last 1 in each part should be bigger than or eauql to
+ the tail 0 of the third part
+ */
 class Solution {
 private:
     bool isEqual(vector<int>& A, int s1, int e1, int s2, int e2, int s3, int e3) {
@@ -53,6 +90,7 @@ public:
                 if (count == 1) {
                     s1 = i;
                 }
+                // we use if but not else if here because it may happen that start and end at the same pos
                 if (count == ones) {
                     e1 = i;
                 }
@@ -81,38 +119,8 @@ public:
         if (gap1 < gap3 or gap2 < gap3) {
             return {-1, -1};
         }
-        return {e1 + gap3, e2 + gap3 - 1};
+        // the returned resuult is e1 + gap3 and e2 + gap3 + 1
+        // becuase the second part is A[i+1], A[i+2], ..., A[j-1]
+        return {e1 + gap3, e2 + gap3 + 1};
     }
 };
-
-int main() {
-    Solution s;
-    vector<string> v({"ahjpjau","ja","ahbwzgqnuk","tnmlanowax"});
-    vector<int> va({4,5,8,2});
-    vector<vector<int>> vb({{3,0}});
-    vector<string> v2({"a","cd"});
-    vector<char> chars({'a','a','a','a','a','b','b','c'});
-    
-    vector<vector<int>> matrix1({
-        {1,1,1,0,1,1,1,1},
-        {1,0,0,0,0,1,1,1},
-        {1,1,1,0,0,0,1,1},
-        {1,1,0,0,0,0,0,0},
-        {1,0,0,0,0,0,0,0},
-        {1,0,0,0,0,0,0,0}
-    });
-    vector<vector<char>> matrix2({
-        {'1','1','1','1','1','1','1','1'},
-        {'1','1','1','1','1','1','1','0'},
-        {'1','1','1','1','1','1','1','0'},
-        {'1','1','1','1','1','0','0','0'},
-        {'0','1','1','1','1','0','0','0'}
-    });
-    vector<vector<int>> matrix3({
-        {1,0},
-        {0,1}
-    });
-    
-    s.threeEqualParts({1,0,1,0,1});
-    return 0;
-}
