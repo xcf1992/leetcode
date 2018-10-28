@@ -37,21 +37,41 @@
 #include <numeric>
 using namespace std;
 
+// the key point is to count the number of one between each 1
 class Solution {
 public:
     int numSubarraysWithSum(vector<int>& A, int S) {
         int n = A.size();
-        vector<int> rightSum(n + 1, 0);
-        for (int i = n - 1; i >= 0; i--) {
-            rightSum[i] = A[i] + rightSum[i + 1];
+        if (S == 0) {
+            int result = 0;
+            int lastOne = -1;
+            for (int i = 0; i < n; i++) {
+                if (A[i] == 1) {
+                    int count = i - lastOne - 1;
+                    result += (count + 1) * count / 2;
+                    lastOne = i;
+                }
+            }
+            int count = n - 1 - lastOne;
+            return result + (count + 1) * count / 2;
         }
+        vector<int> onePos;
+        onePos.push_back(-1);
+        for (int i = 0; i < A.size(); i++) {
+            if (A[i] == 1) {
+                onePos.push_back(i);
+            }
+        }
+        onePos.push_back(A.size());
         
         int result = 0;
-        for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n + 1; j++) {
-                if (rightSum[i] - rightSum[j] == S) {
-                    result += 1;
-                }
+        for (int i = 1; i < onePos.size() - 1; i++) {
+            int j = i + S - 1;
+            if (j < onePos.size() - 1) {
+                result += (onePos[i] - onePos[i - 1]) * (onePos[j + 1] - onePos[j]);
+            }
+            else {
+                break;
             }
         }
         return result;
