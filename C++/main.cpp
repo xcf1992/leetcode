@@ -13,50 +13,45 @@
 using namespace std;
 
 class Solution {
+private:
+    long reverseNum(long num) {
+        long result = 0;
+        while (num > 0) {
+            result = result * 10 + num % 10;
+            num /= 10;
+        }
+        return result;
+    }
+    
+    bool isPalindrome(long num) {
+        return num == reverseNum(num);
+    }
+    
+    int MAGIC = 1e5;
+    
 public:
-    int minMalwareSpread(vector<vector<int>> graph, vector<int> initial) {
-        int nodes = graph.size();
-        unordered_set<int> initialInfections(initial.begin(), initial.end());
-        unordered_map<int, unordered_set<int>> infectedBy;
-        queue<pair<int, int>> bfs;
-        for (int i : initial) {
-            infectedBy[i].insert(i);
-            bfs.push({i, i});
-        }
+    int superpalindromesInRange(string L, string R) {
+        long left = stol(L);
+        long right = stol(R);
+        int result = 0;
         
-        while (!bfs.empty()) {
-            int curNode = bfs.front().first;
-            int source = bfs.front().second;
-            bfs.pop();
+        for (int i = 1; i < MAGIC; i++) {
+            string numStr = to_string(i);
+            string reverseNum = numStr;
+            reverse(reverseNum.begin(), reverseNum.end());
+            string numStr2 = numStr + reverseNum;
+            numStr += reverseNum.substr(1);
             
-            for (int nextNode = 0; nextNode < graph[curNode].size(); nextNode++) {
-                if (nextNode != curNode && graph[curNode][nextNode] == 1 && infectedBy[nextNode].find(source) == infectedBy[nextNode].end() && initialInfections.find(nextNode) == initialInfections.end()) {
-                    infectedBy[nextNode].insert(source);
-                    bfs.push({nextNode, source});
-                }
+            long num1 = stol(numStr);
+            long num2 = stol(numStr2);
+            if (num1 >= left and num1 <= right and isPalindrome(num1)) {
+                result += 1;
             }
-        }
-        
-        unordered_map<int, int> onlySource;
-        for (auto& infection : infectedBy) {
-            int node = infection.first;
-            unordered_set<int> sources = infection.second;
-            if (sources.size() == 1) {
-                for (int source : sources) {
-                    onlySource[source] += 1;
-                }
+            if (num2 >= left and num2 <= right and isPalindrome(num2)) {
+                result += 1;
             }
-        }
-        
-        int count = INT_MIN;
-        int result = -1;
-        for (auto& os : onlySource) {
-            if (count < os.second) {
-                count = os.second;
-                result = os.first;
-            }
-            else if (count == os.second) {
-                result = min(result, os.first);
+            if (num1 > right and num2 > right) {
+                break;
             }
         }
         return result;
@@ -91,6 +86,6 @@ int main() {
         {0,1}
     });
     
-    s.minMalwareSpread({{1,1,0}, {1,1,1}, {0,1,1}}, {0,1});
+    s.superpalindromesInRange("4", "1000");
     return 0;
 }
