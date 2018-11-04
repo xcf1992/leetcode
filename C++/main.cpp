@@ -14,47 +14,46 @@ using namespace std;
 
 class Solution {
 private:
-    long reverseNum(long num) {
-        long result = 0;
-        while (num > 0) {
-            result = result * 10 + num % 10;
-            num /= 10;
+    int limit = 0;
+    bool canDo(string stamp, string target, string current, int move, vector<int>& result, unordered_set<string>& mem) {
+        if (move > limit) {
+            return false;
         }
-        return result;
-    }
-    
-    bool isPalindrome(long num) {
-        return num == reverseNum(num);
-    }
-    
-    int MAGIC = 1e5;
-    
-public:
-    int superpalindromesInRange(string L, string R) {
-        long left = stol(L);
-        long right = stol(R);
-        int result = 0;
         
-        for (int i = 1; i < MAGIC; i++) {
-            string numStr = to_string(i);
-            string reverseNum = numStr;
-            reverse(reverseNum.begin(), reverseNum.end());
-            string numStr2 = numStr + reverseNum;
-            numStr += reverseNum.substr(1);
-            
-            long num1 = stol(numStr);
-            long num2 = stol(numStr2);
-            if (num1 >= left and num1 <= right and isPalindrome(num1)) {
-                result += 1;
-            }
-            if (num2 >= left and num2 <= right and isPalindrome(num2)) {
-                result += 1;
-            }
-            if (num1 > right and num2 > right) {
-                break;
+        if (mem.find(current) != mem.end()) {
+            return false;
+        }
+        
+        if (current == target) {
+            return true;
+        }
+        
+        for (int i = 0; i < target.size() - stamp.size(); i++) {
+            if (result.empty() || i != result.back()) {
+                string next = current;
+                for (int j = 0; j < stamp.size(); j++) {
+                    next[i + j] = stamp[j];
+                }
+                result.push_back(i);
+                if (canDo(stamp, target, next, move + 1, result, mem)) {
+                    return true;
+                }
+                mem.insert(next);
+                result.pop_back();
             }
         }
-        return result;
+        return false;
+    }
+public:
+    vector<int> movesToStamp(string stamp, string target) {
+        limit = 10 * target.size();
+        string current = string(target.size(), '?');
+        vector<int> result;
+        unordered_set<string> mem;
+        if (canDo(stamp, target, current, 0, result, mem)) {
+            return result;
+        }
+        return {};
     }
 };
 
@@ -86,6 +85,6 @@ int main() {
         {0,1}
     });
     
-    s.superpalindromesInRange("4", "1000");
+    s.movesToStamp("abca", "aabcaca");
     return 0;
 }
