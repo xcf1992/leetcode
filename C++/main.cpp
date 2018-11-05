@@ -14,46 +14,49 @@ using namespace std;
 
 class Solution {
 private:
-    int limit = 0;
-    bool canDo(string stamp, string target, string current, int move, vector<int>& result, unordered_set<string>& mem) {
-        if (move > limit) {
-            return false;
+    int count(vector<int>& digit, string num, int pos) {
+        if (pos >= num.size()) {
+            return 0;
         }
         
-        if (mem.find(current) != mem.end()) {
-            return false;
-        }
-        
-        if (current == target) {
-            return true;
-        }
-        
-        for (int i = 0; i < target.size() - stamp.size(); i++) {
-            if (result.empty() || i != result.back()) {
-                string next = current;
-                for (int j = 0; j < stamp.size(); j++) {
-                    next[i + j] = stamp[j];
-                }
-                result.push_back(i);
-                if (canDo(stamp, target, next, move + 1, result, mem)) {
-                    return true;
-                }
-                mem.insert(next);
-                result.pop_back();
+        int result = 0;
+        int less = 0;
+        for (int i = 0; i < digit.size(); i++) {
+            if (digit[i] < (num[pos] - '0')) {
+                less += 1;
+            }
+            else if (digit[i] == (num[pos] - '0')) {
+                result += count(digit, num, pos + 1);
+            }
+            else {
+                break;
             }
         }
-        return false;
+        result += less * pow(digit.size(), num.size() - pos - 1);
+        return result;
     }
 public:
-    vector<int> movesToStamp(string stamp, string target) {
-        limit = 10 * target.size();
-        string current = string(target.size(), '?');
-        vector<int> result;
-        unordered_set<string> mem;
-        if (canDo(stamp, target, current, 0, result, mem)) {
-            return result;
+    int atMostNGivenDigitSet(vector<string> D, int N) {
+        int length = 0;
+        int temp = N;
+        while (temp != 0) {
+            length += 1;
+            temp /= 10;
         }
-        return {};
+        
+        int result = 0;
+        int n = D.size();
+        for (int i = 1; i < length; i++) {
+            result += n;
+            n *= D.size();
+        }
+        
+        string num = to_string(N);
+        vector<int> digit;
+        for (string d : D) {
+            digit.push_back(stoi(d));
+        }
+        return result + count(digit, num, 0);
     }
 };
 
@@ -85,6 +88,6 @@ int main() {
         {0,1}
     });
     
-    s.movesToStamp("abca", "aabcaca");
+    s.atMostNGivenDigitSet({"3", "4", "9"}, 4);
     return 0;
 }
