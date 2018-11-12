@@ -14,58 +14,58 @@ using namespace std;
 
 class Solution {
 public:
-    int reachableNodes(vector<vector<int>> edges, int M, int N) {
-        unordered_map<int, vector<int>> next;
-        unordered_map<int, unordered_map<int, int>> distance;
-        unordered_map<int, unordered_map<int, int>> used;
-        for (vector<int>& edge : edges) {
-            int start = edge[0];
-            int end = edge[1];
-            next[start].push_back(end);
-            next[end].push_back(start);
-            distance[start][end] = edge[2];
-            distance[end][start] = edge[2];
-            used[start][end] = 0;
-            used[end][start] = 0;
+    int minAreaRect(vector<vector<int>> points) {
+        unordered_map<int, vector<pair<int, int>>> x2Point;
+        unordered_map<int, vector<pair<int, int>>> y2Point;
+        for (vector<int>& point : points) {
+            x2Point[point[0]].push_back({point[0], point[1]});
+            y2Point[point[1]].push_back({point[0], point[1]});
+        }
+        for (auto it = x2Point.begin(); it != x2Point.end(); it++) {
+            sort((it -> second).begin(), (it -> second).end(), [](pair<int, int>& a, pair<int, int>& b) -> bool {
+                return a.second < b.second;
+            });
+        }
+        for (auto it = y2Point.begin(); it != y2Point.end(); it++) {
+            sort((it -> second).begin(), (it -> second).end(), [](pair<int, int>& a, pair<int, int>& b) -> bool {
+                return a.first < b.first;
+            });
         }
         
-        unordered_map<int, int> visited;
-        queue<pair<int, int>> bfs;
-        bfs.push({0, M});
-        visited[0] = M;
-        while (!bfs.empty()) {
-            int cur = bfs.front().first;
-            int leftMove = bfs.front().second;
-            bfs.pop();
-            
-            for (int node : next[cur]) {
-                if (leftMove >= distance[cur][node] + 1) {
-                    used[cur][node] = distance[cur][node];
-                    if (leftMove - distance[cur][node] - 1 > visited[node]) {
-                        bfs.push({node, leftMove - distance[cur][node] - 1});
-                        visited[node] = leftMove - distance[cur][node] - 1;
-                    }
+        int result = INT_MAX;
+        for (vector<int>& point : points) {
+            int x = point[0];
+            int y = point[1];
+            if (x2Point[x].size() >= 2 and y2Point[y].size() >= 2) {
+                vector<pair<int, int>> xPoints = x2Point[x];
+                vector<pair<int, int>> yPoints = y2Point[y];
+                
+                auto it = lower_bound(yPoints.begin(), yPoints.end(), x, [](pair<int, int>& a, int val) -> bool {
+                    return a.first < val;
+                });
+                int xLength = INT_MAX;
+                if (it != yPoints.begin()) {
+                    xLength = min(xLength, abs(x - (it - 1) -> first));
                 }
-                else {
-                    if (leftMove > used[cur][node]) {
-                        used[cur][node] = leftMove;
-                    }
+                if (it != (yPoints.end() - 1)) {
+                    xLength = min(xLength, abs(x - (it + 1) -> first));
                 }
+                
+                it = lower_bound(xPoints.begin(), xPoints.end(), y, [](pair<int, int>& a, int val) -> bool {
+                    return a.second < val;
+                });
+                int yLength = INT_MAX;
+                if (it != xPoints.begin()) {
+                    yLength = min(yLength, abs(y - (it - 1) -> second));
+                }
+                if (it != (xPoints.end() - 1)) {
+                    yLength = min(yLength, abs(y - (it + 1) -> second));
+                }
+                
+                result = min(result, xLength * yLength);
             }
         }
-        
-        int usedNodes = 0;
-        for (auto it = used.begin(); it != used.end(); it++) {
-            int start = it -> first;
-            unordered_map<int, int> usage = it -> second;
-            for (auto it2 = usage.begin(); it2 != usage.end(); it2++) {
-                int end = it2 -> first;
-                usedNodes += min(distance[start][end], it2 -> second + used[end][start]);
-                used[start][end] = 0;
-                used[end][start] = 0;
-            }
-        }
-        return usedNodes + visited.size();
+        return result == INT_MAX ? 0 : result / 2;
     }
 };
 
@@ -97,6 +97,6 @@ int main() {
         {0,1}
     });
     
-    int x = s.reachableNodes({{3,4,8},{0,1,3},{1,4,0},{1,2,3},{0,3,2},{0,4,10},{1,3,3},{2,4,3},{2,3,3},{0,2,10}}, 7, 5);
+    s.minAreaRect({{1,1},{1,3},{3,1},{3,3},{2,2}});
     return 0;
 }
