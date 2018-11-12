@@ -15,57 +15,28 @@ using namespace std;
 class Solution {
 public:
     int minAreaRect(vector<vector<int>> points) {
-        unordered_map<int, vector<pair<int, int>>> x2Point;
-        unordered_map<int, vector<pair<int, int>>> y2Point;
+        map<int, vector<int>> x2Points;
         for (vector<int>& point : points) {
-            x2Point[point[0]].push_back({point[0], point[1]});
-            y2Point[point[1]].push_back({point[0], point[1]});
-        }
-        for (auto it = x2Point.begin(); it != x2Point.end(); it++) {
-            sort((it -> second).begin(), (it -> second).end(), [](pair<int, int>& a, pair<int, int>& b) -> bool {
-                return a.second < b.second;
-            });
-        }
-        for (auto it = y2Point.begin(); it != y2Point.end(); it++) {
-            sort((it -> second).begin(), (it -> second).end(), [](pair<int, int>& a, pair<int, int>& b) -> bool {
-                return a.first < b.first;
-            });
+            x2Points[point[0]].push_back(point[1]);
         }
         
         int result = INT_MAX;
-        for (vector<int>& point : points) {
-            int x = point[0];
-            int y = point[1];
-            if (x2Point[x].size() >= 2 and y2Point[y].size() >= 2) {
-                vector<pair<int, int>> xPoints = x2Point[x];
-                vector<pair<int, int>> yPoints = y2Point[y];
-                
-                auto it = lower_bound(yPoints.begin(), yPoints.end(), x, [](pair<int, int>& a, int val) -> bool {
-                    return a.first < val;
-                });
-                int xLength = INT_MAX;
-                if (it != yPoints.begin()) {
-                    xLength = min(xLength, abs(x - (it - 1) -> first));
+        unordered_map<int, int> memo;
+        for (auto it = x2Points.begin(); it != x2Points.end(); it++) {
+            int x = it -> first;
+            vector<int> yPoints = it -> second;
+            sort(yPoints.begin(), yPoints.end());
+            for (int i = 0; i < yPoints.size() - 1; i++) {
+                int y1 = yPoints[i];
+                int y2 = yPoints[i + 1];
+                int code = 40001 * y1 + y2;
+                if (memo.find(code) != memo.end()) {
+                    result = min(result, abs((memo[code] - x) * (y1 - y2)));
                 }
-                if (it != (yPoints.end() - 1)) {
-                    xLength = min(xLength, abs(x - (it + 1) -> first));
-                }
-                
-                it = lower_bound(xPoints.begin(), xPoints.end(), y, [](pair<int, int>& a, int val) -> bool {
-                    return a.second < val;
-                });
-                int yLength = INT_MAX;
-                if (it != xPoints.begin()) {
-                    yLength = min(yLength, abs(y - (it - 1) -> second));
-                }
-                if (it != (xPoints.end() - 1)) {
-                    yLength = min(yLength, abs(y - (it + 1) -> second));
-                }
-                
-                result = min(result, xLength * yLength);
+                memo[code] = x;
             }
         }
-        return result == INT_MAX ? 0 : result / 2;
+        return result == INT_MAX ? 0 : result;
     }
 };
 
@@ -97,6 +68,6 @@ int main() {
         {0,1}
     });
     
-    s.minAreaRect({{1,1},{1,3},{3,1},{3,3},{2,2}});
+    s.minAreaRect({{1,3},{2,1},{2,0},{4,3},{0,4},{4,2},{1,0},{3,4},{2,4},{4,0}});
     return 0;
 }

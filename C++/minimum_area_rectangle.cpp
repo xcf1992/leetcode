@@ -37,9 +37,34 @@
 #include <numeric>
 using namespace std;
 
+// Time complexity is n^2
 class Solution {
 public:
     int minAreaRect(vector<vector<int>>& points) {
-        return 0;
+        map<int, vector<int>> x2Points;
+        for (vector<int>& point : points) {
+            x2Points[point[0]].push_back(point[1]);
+        }
+        
+        int result = INT_MAX;
+        unordered_map<int, int> memo;
+        for (auto it = x2Points.begin(); it != x2Points.end(); it++) {
+            int x = it -> first;
+            vector<int> yPoints = it -> second;
+            sort(yPoints.begin(), yPoints.end());
+            // we need to check every possible combination here
+            for (int i = 0; i < yPoints.size() - 1; i++) {
+                for (int j = i + 1; j < yPoints.size(); j++) {
+                    int y1 = yPoints[i];
+                    int y2 = yPoints[j];
+                    int code = 40001 * y1 + y2;
+                    if (memo.find(code) != memo.end()) {
+                        result = min(result, abs((memo[code] - x) * (y1 - y2)));
+                    }
+                    memo[code] = x;
+                }
+            }
+        }
+        return result == INT_MAX ? 0 : result;
     }
 };
