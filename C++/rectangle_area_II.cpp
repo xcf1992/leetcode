@@ -24,22 +24,20 @@
  */
 
 #include <iostream>
-#include <sstream>
 #include <string>
 #include <vector>
 #include <unordered_map>
-#include <map>
 #include <unordered_set>
 #include <algorithm>
 #include <cmath>
 #include <queue>
 #include <stack>
 #include <stdio.h>
-#include <set>
+#include <map>
+#include <numeric>
 using namespace std;
 
 /*
- Explanation:
  Scan from y = 0, count the coverage of rectangles on x.
  For example, at y = 0, the intervale [0, 3] is covered by rectangles.
  The current sum of coverage is 3.
@@ -57,12 +55,68 @@ using namespace std;
  And we update the sum of coverage to 0.
  
  The final result is 6.
+ 
+ Intuition
+ 
+ Imagine we pass a horizontal line from bottom to top over the shape. We have some active intervals on this horizontal line, which gets updated twice for each rectangle. In total, there are 2 * N2∗N events, and we can update our (up to NN) active horizontal intervals for each update.
+ 
+ Algorithm
+ 
+ For a rectangle like rec = [1,0,3,1], the first update is to add [1, 3] to the active set at y = 0, and the second update is to remove [1, 3] at y = 1. Note that adding and removing respects multiplicity - if we also added [0, 2] at y = 0, then removing [1, 3] at y = 1 will still leave us with [0, 2] active.
+ 
+ This gives us a plan: create these two events for each rectangle, then process all the events in sorted order of y. The issue now is deciding how to process the events add(x1, x2) and remove(x1, x2) such that we are able to query() the total horizontal length of our active intervals.
+ 
+ We can use the fact that our remove(...) operation will always be on an interval that was previously added. Let's store all the (x1, x2) intervals in sorted order.
  */
 class Solution {
-private:
-    int mod = 1e9 + 7;
 public:
     int rectangleArea(vector<vector<int>>& rectangles) {
-        return 0;
+        int mod = 1e9 + 7;
+        unordered_set<int> xValues;
+        xValues.insert(0);
+        for (vector<int>& rec : rectangles) {
+            xValues.insert(rec[0]);
+            xValues.insert(rec[2]);
+        }
+        
+        vector<int> x(xValues.begin(), xValues.end());
+        // x is vector from relative order number on x-coordinate to the actual xValue
+        sort(x.begin(), x.end());
+        // x_i from xValue to relative order numbder of all points' xValue
+        unordered_map<int, int> x_i;
+        for (int i = 0; i < x.size(); i++) {
+            x_i[x[i]] = i;
+        }
+        
+        vector<vector<int>> line;
+        for (vector<int>& rec : rectangles) {
+            int x1 = rec[0], y1 = rec[1], x2 = rec[2], y2 = rec[3];
+            // first event to add active x points
+            line.push_back({y1, x1, x2, 1});
+            // second event to remove inactive x points
+            line.push_back({y2, x1, x2, -1});
+        }
+        sort(line.begin(), line.end());
+        
+        long long cur_y = 0, cur_x_sum = 0, result = 0;
+        // count calculate which x point is still valid right now
+        vector<int> count(x.size(), 0);
+        for (vector<int>& l : line) {
+            long long y = l[0], x1 = l[1], x2 = l[2], sig = l[3];
+            result = (result + (y - cur_y) * cur_x_sum) % mod;
+            cur_y = y;
+            
+            for (int i = x_i[x1]; i < x_i[x2]; i++) {
+                count[i] += sig;
+            }
+            cur_x_sum = 0;
+            for (int i = 0; i < x.size(); i++) {
+                if (count[i] > 0) {
+                    // count[i] > 0 means from x[i] to x[i + 1] there is still valid rectangle area
+                    cur_x_sum += x[i + 1] - x[i];
+                }
+            }
+        }
+        return result;
     }
 };

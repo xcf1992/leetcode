@@ -77,5 +77,6 @@ public:
         vector<vector<int>> path(1 << n, vector<int>(n, 0));
         int last = -1;
         int shortest = INT_MAX;
+        return "";
     }
 };

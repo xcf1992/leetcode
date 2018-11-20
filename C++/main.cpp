@@ -14,34 +14,50 @@ using namespace std;
 
 class Solution {
 public:
-    int shortestSubarray(vector<int> A, int K) {
-        int n = A.size();
-        if (n == 0) {
-            return -1;
+    int rectangleArea(vector<vector<int>> rectangles) {
+        int mod = 1e9 + 7;
+        unordered_set<int> xValues;
+        xValues.insert(0);
+        for (vector<int>& rec : rectangles) {
+            xValues.insert(rec[0]);
+            xValues.insert(rec[2]);
         }
-        int result = n + 1;
-        int left = 0;
-        int right = 0;
-        int sum = A[0];
-        while (right < n and left < n) {
-            if (sum < K) {
-                right += 1;
-                if (right < n) {
-                    sum += A[right];
+        
+        vector<int> x(xValues.begin(), xValues.end());
+        sort(x.begin(), x.end());
+        unordered_map<int, int> x_i;
+        for (int i = 0; i < x.size(); i++) {
+            x_i[x[i]] = i;
+        }
+        
+        vector<int> count(x.size(), 0);
+        vector<vector<int>> line;
+        for (vector<int>& rec : rectangles) {
+            int x1 = rec[0], y1 = rec[1], x2 = rec[2], y2 = rec[3];
+            // first event to add active x points
+            line.push_back({y1, x1, x2, 1});
+            // second event to remove inactive x points
+            line.push_back({y2, x1, x2, -1});
+        }
+        sort(line.begin(), line.end());
+        
+        long long cur_y = 0, cur_x_sum = 0, result = 0;
+        for (vector<int>& l : line) {
+            long long y = l[0], x1 = l[1], x2 = l[2], sig = l[3];
+            result = (result + (y - cur_y) * cur_x_sum) % mod;
+            cur_y = y;
+            
+            for (int i = x_i[x1]; i < x_i[x2]; i++) {
+                count[i] += sig;
+            }
+            cur_x_sum = 0;
+            for (int i = 0; i < x.size(); i++) {
+                if (count[i] > 0) {
+                    cur_x_sum += x[i + 1] - x[i];
                 }
             }
-            else if (left <= right){
-                result = min(result, right - left + 1);
-                sum -= A[left];
-                left += 1;
-            }
         }
-        while (sum >= K and left < right) {
-            result = min(result, right - left + 1);
-            sum -= A[left];
-            left += 1;
-        }
-        return result > n ? -1 : result;
+        return result;
     }
 };
 
@@ -73,6 +89,6 @@ int main() {
         {0,1}
     });
     
-    s.shortestSubarray({84,-37,32,40,95}, 167);
+    s.rectangleArea({{0,0,2,2}, {1,0,2,3}, {1,0,4,1}});
     return 0;
 }
