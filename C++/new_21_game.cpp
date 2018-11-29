@@ -44,16 +44,62 @@
 using namespace std;
 
 /*
- the transition equation dp[i] = (dp[i - W] + dp[i - W + 1] + ... + dp[i - 1]) / W could be simplified to dp[i] = (sum[i - 1] - sum[i - W - 1]) / W.
+Sliding window + DP
+Running Time: O(N)
+
+Define dp[i] = probability of getting i points
+Optimal Substructure:
+
+dp[x] = 1/W * dp[x-1] + 1/W * dp[x-2] + 1/W * dp[x-3] + ... + 1/W * dp[x-W]
+Or: dp[x] = 1/W * (dp[x-1] + dp[x-2] + dp[x-3] + ... + dp[x-W])
+So with dp[0]=1, our base case, we can keep the running_sum = dp[x-1] + dp[x-2] + dp[x-3] + ... + dp[x-W] to calculate dp[x].
+
+Note: When x >= K, Alice stops drawing numbers. So no y > x can be formed from x.
+So we don't include dp[x] into the running_sum when x >= K.
+*/
+class Solution {
+public:
+    double new21Game(int N, int K, int W) {
+        if (N >= K + W - 1 || K == 0) {
+            return 1.0;
+        }
+
+        vector<double> dp(K + W, 0.0);
+        dp[0] = 1.0;
+        double wSum = 1.0;
+        int left = 0;
+        for (int i = 1; i < K + W; i++) {
+            if (i - left > W) {
+                wSum -= dp[left];
+                left += 1;
+            }
+            dp[i] = wSum / W;
+            if (i < K) {
+                wSum += dp[i];
+            }
+        }
+        
+        double result = 0.0;
+        for (int i = K; i < N + 1; i++) {
+            result += dp[i];
+        }
+        return result;
+    }
+};
+
+/*
+ the transition equation dp[i] = (dp[i - W] + dp[i - W + 1] + ... + dp[i - 1]) / W
+ could be simplified to dp[i] = (sum[i - 1] - sum[i - W - 1]) / W.
  
  dp[i] = (sum[i - 1] - sum[i - W - 1]) / W
  sum[i] = sum[i - 1] + dp[i]
  => sum[i] = sum[i - 1] + (sum[i - 1] - sum[i - W - 1]) / W
  
  Furthermore, if we use dp[i] to directly represent the sum[i],
- we can get dp[i] = dp[i - 1] + (dp[i - 1] - dp[i - W - 1]) / W. This equation takes us to the final O(K + W) solution. Just take care with the beginning and the end of the array.
+ we can get dp[i] = dp[i - 1] + (dp[i - 1] - dp[i - W - 1]) / W.
+ This equation takes us to the final O(K + W) solution. Just take care with the beginning and the end of the array.
  */
-class Solution {
+class Solution2 {
 public:
     double new21Game(int N, int K, int W) {
         if (N >= K + W - 1) {
