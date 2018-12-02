@@ -1,3 +1,28 @@
+/*
+ Given an array of 4 digits, return the largest 24 hour time that can be made.
+ 
+ The smallest 24 hour time is 00:00, and the largest is 23:59.  Starting from 00:00, a time is larger if more time has elapsed since midnight.
+ 
+ Return the answer as a string of length 5.  If no valid time can be made, return an empty string.
+ 
+ 
+ 
+ Example 1:
+ 
+ Input: [1,2,3,4]
+ Output: "23:41"
+ Example 2:
+ 
+ Input: [5,5,5,5]
+ Output: ""
+ 
+ 
+ Note:
+ 
+ A.length == 4
+ 0 <= A[i] <= 9
+ */
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -50,7 +75,7 @@ private:
         return false;
     }
 public:
-    string largestTimeFromDigits(vector<int> A) {
+    string largestTimeFromDigits(vector<int>& A) {
         sort(A.rbegin(), A.rend());
         vector<bool> used(4, false);
         string result = "";
@@ -61,40 +86,3 @@ public:
         return result;
     }
 };
-
-int main() {
-    vector<bool> visited(10, false);
-    visited[2] = true;
-    visited[7] = true;
-    visited[4] = true;
-    visited.resize(10, false);
-    visited.clear();
-    Solution s;
-    vector<string> v({"ahjpjau","ja","ahbwzgqnuk","tnmlanowax"});
-    vector<int> va({4,5,8,2});
-    vector<vector<int>> vb({{3,0}});
-    vector<string> v2({"a","cd"});
-    vector<char> chars({'a','a','a','a','a','b','b','c'});
-    
-    vector<vector<int>> matrix1({
-        {1,1,1,0,1,1,1,1},
-        {1,0,0,0,0,1,1,1},
-        {1,1,1,0,0,0,1,1},
-        {1,1,0,0,0,0,0,0},
-        {1,0,0,0,0,0,0,0},
-        {1,0,0,0,0,0,0,0}
-    });
-    vector<vector<char>> matrix2({
-        {'1','1','1','1','1','1','1','1'},
-        {'1','1','1','1','1','1','1','0'},
-        {'1','1','1','1','1','1','1','0'},
-        {'1','1','1','1','1','0','0','0'},
-        {'0','1','1','1','1','0','0','0'}
-    });
-    vector<vector<int>> matrix3({
-        {1,0},
-        {0,1}
-    });
-    s.largestTimeFromDigits({1,2,3,4});
-    return 0;
-}
