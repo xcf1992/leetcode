@@ -14,50 +14,58 @@ using namespace std;
 
 class Solution {
 private:
-    bool valid(string A) {
-        if (A[0] > '2') {
-            return false;
-        }
-        
-        if (A[0] == '2') {
-            if (A[1] > '3') {
-                return false;
+    void getFactors(int index, int number, unordered_map<int, vector<int>>& factorToIndex) {
+        for (int i = 2; i * i <= number; i++) {
+            if (number % i == 0) {
+                factorToIndex[i].push_back(index);
+                while (number % i == 0) {
+                    number /= i;
+                }
             }
+            
         }
-        
-        if (A[2] > '5') {
-            return false;
-        }
-        return true;
     }
     
-    bool firstValid(vector<int>& A, vector<bool>& used, string& result) {
-        if (result.size() == 4) {
-            return valid(result);
+    int find(int index, vector<int>& parent, vector<int>& count) {
+        if (parent[index] == -1) {
+            return index;
         }
-        
-        for (int i = 0; i < 4; i++) {
-            if (!used[i]) {
-                result += ('0' + A[i]);
-                used[i] = true;
-                if (firstValid(A, used, result)) {
-                    return true;
-                }
-                result.pop_back();
-                used[i] = false;
-            }
+        count[parent[index]] += count[index];
+        count[index] = 0;
+        return find(parent[index], parent, count);
+    }
+    
+    void unin(int index1, int index2, vector<int>& parent, vector<int>& count) {
+        int p1 = find(index1, parent, count);
+        int p2 = find(index2, parent, count);
+        if (p1 != p2) {
+            parent[p2] = p1;
+            count[p1] += count[p2];
+            count[p2] = 0;
         }
-        return false;
     }
 public:
-    string largestTimeFromDigits(vector<int> A) {
-        sort(A.rbegin(), A.rend());
-        vector<bool> used(4, false);
-        string result = "";
-        if (!firstValid(A, used, result)) {
-            return "";
+    int largestComponentSize(vector<int> A) {
+        int n = A.size();
+        unordered_map<int, vector<int>> factorToIndex;
+        for (int i = 0; i < n; i++) {
+            getFactors(i, A[i], factorToIndex);
         }
-        result.insert(2, ":");
+        
+        vector<int> parent(n, -1);
+        vector<int> count(n, 1);
+        for (auto it = factorToIndex.begin(); it != factorToIndex.end(); it++) {
+            vector<int> connectedIndex = it -> second;
+            int p = connectedIndex[0];
+            for (int i = 1; i < connectedIndex.size(); i++) {
+                unin(p, connectedIndex[i], parent, count);
+            }
+        }
+        
+        int result = 1;
+        for (int i = 0; i < n; i++) {
+            result = max(result, count[find(i, parent, count)]);
+        }
         return result;
     }
 };
@@ -95,6 +103,6 @@ int main() {
         {1,0},
         {0,1}
     });
-    s.largestTimeFromDigits({1,2,3,4});
+    s.largestComponentSize({4,6,15,35});
     return 0;
 }
