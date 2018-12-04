@@ -40,6 +40,8 @@
 #include <numeric>
 using namespace std;
 
+// so we first calculate the size of each single island
+// then for each point with value == 0, we we check the sum of island area around it
 class Solution {
 private:
     vector<int> dr{-1, 0, 1, 0};
