@@ -13,38 +13,22 @@
 using namespace std;
 
 class Solution {
-private:
-    int find(int n, int k, int number, int& rank) {
-        if (rank == k) {
-            return number;
-        }
-        
-        for (int digit = 0; digit <= 9; digit++) {
-            int temp = number * 10 + digit;
-            if (temp > n) {
-                break;
-            }
-            rank += 1;
-            int result = find(n, k, temp, rank);
-            if (result != -1) {
-                return result;
-            }
-        }
-        return -1;
-    }
 public:
-    int findKthNumber(int n, int k) {
-        int rank = 0;
-        int result = -1;
-        for (int i = 1; i <= 9; i++) {
-            if (i > n) {
-                break;
+    int minDeletionSize(vector<string> A) {
+        int result = 0;
+        int n = A[0].size();
+        for (int col = 0; col < n; col++) {
+            bool pass = true;
+            for (int row = 1; row < A.size(); row++) {
+                if (A[row][col] < A[row - 1][col]) {
+                    pass = false;
+                    break;
+                }
             }
-            rank += 1;
-            result = find(n, k, i, rank);
-            if (result != -1) {
-                break;
+            if (pass) {
+                return true;
             }
+            result += 1;
         }
         return result;
     }
@@ -83,6 +67,6 @@ int main() {
         {1,0},
         {0,1}
     });
-    s.findKthNumber(13, 6);
+    s.minDeletionSize({"xc","yb","za"});
     return 0;
 }
