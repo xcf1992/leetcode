@@ -1,3 +1,21 @@
+/*
+ Given integers n and k, find the lexicographically k-th smallest integer in the range from 1 to n.
+ 
+ Note: 1 ≤ k ≤ n ≤ 109.
+ 
+ Example:
+ 
+ Input:
+ n: 13   k: 2
+ 
+ Output:
+ 10
+ 
+ Explanation:
+ The lexicographical order is [1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9], so the second smallest number is 10.
+ Seen this question in a real interview before?
+ */
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -49,40 +67,3 @@ public:
         return result;
     }
 };
-
-int main() {
-    vector<bool> visited(10, false);
-    visited[2] = true;
-    visited[7] = true;
-    visited[4] = true;
-    visited.resize(10, false);
-    visited.clear();
-    Solution s;
-    vector<string> v({"ahjpjau","ja","ahbwzgqnuk","tnmlanowax"});
-    vector<int> va({4,5,8,2});
-    vector<vector<int>> vb({{3,0}});
-    vector<string> v2({"a","cd"});
-    vector<char> chars({'a','a','a','a','a','b','b','c'});
-    
-    vector<vector<int>> matrix1({
-        {1,1,1,0,1,1,1,1},
-        {1,0,0,0,0,1,1,1},
-        {1,1,1,0,0,0,1,1},
-        {1,1,0,0,0,0,0,0},
-        {1,0,0,0,0,0,0,0},
-        {1,0,0,0,0,0,0,0}
-    });
-    vector<vector<char>> matrix2({
-        {'1','1','1','1','1','1','1','1'},
-        {'1','1','1','1','1','1','1','0'},
-        {'1','1','1','1','1','1','1','0'},
-        {'1','1','1','1','1','0','0','0'},
-        {'0','1','1','1','1','0','0','0'}
-    });
-    vector<vector<int>> matrix3({
-        {1,0},
-        {0,1}
-    });
-    s.findKthNumber(13, 6);
-    return 0;
-}
