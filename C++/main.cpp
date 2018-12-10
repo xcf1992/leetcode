@@ -14,59 +14,32 @@ using namespace std;
 
 class Solution {
 public:
-    int minDeletionSize(vector<string> A) {
-        int result = 0;
-        int n = A[0].size();
-        for (int col = 0; col < n; col++) {
-            bool pass = true;
-            for (int row = 1; row < A.size(); row++) {
-                if (A[row][col] < A[row - 1][col]) {
-                    pass = false;
-                    break;
+    int tallestBillboard(vector<int> rods) {
+        int n = rods.size();
+        int maxLength = 5000; // as the sum could be at most 5000
+        vector<vector<int>> dp(n + 1, vector<int>(maxLength + 1));
+        for (int diff = 0; diff < maxLength; diff++) {
+            dp[0][diff] = INT_MIN;
+        }
+        dp[0][0] = 0;
+
+        for (int i = 1; i <= n; i++) {
+            for (int diff = 0; diff <= maxLength; diff++) {
+                dp[i][diff] = dp[i - 1][diff]; // we could choose not to use rods[i - 1]
+                if (diff >= rods[i - 1]) { // the order of bag0 and bag1 does not change
+                    dp[i][diff] = max(dp[i - 1][diff + rods[i - 1]], dp[i - 1][diff - rods[i - 1]] + rods[i - 1]);
+                }
+                else {
+                    dp[i][diff] = max(dp[i][diff], dp[i - 1][rods[i - 1] - diff] + diff);
                 }
             }
-            if (pass) {
-                return true;
-            }
-            result += 1;
         }
-        return result;
+        return dp[n][0];
     }
 };
 
 int main() {
-    vector<bool> visited(10, false);
-    visited[2] = true;
-    visited[7] = true;
-    visited[4] = true;
-    visited.resize(10, false);
-    visited.clear();
     Solution s;
-    vector<string> v({"ahjpjau","ja","ahbwzgqnuk","tnmlanowax"});
-    vector<int> va({4,5,8,2});
-    vector<vector<int>> vb({{3,0}});
-    vector<string> v2({"a","cd"});
-    vector<char> chars({'a','a','a','a','a','b','b','c'});
-    
-    vector<vector<int>> matrix1({
-        {1,1,1,0,1,1,1,1},
-        {1,0,0,0,0,1,1,1},
-        {1,1,1,0,0,0,1,1},
-        {1,1,0,0,0,0,0,0},
-        {1,0,0,0,0,0,0,0},
-        {1,0,0,0,0,0,0,0}
-    });
-    vector<vector<char>> matrix2({
-        {'1','1','1','1','1','1','1','1'},
-        {'1','1','1','1','1','1','1','0'},
-        {'1','1','1','1','1','1','1','0'},
-        {'1','1','1','1','1','0','0','0'},
-        {'0','1','1','1','1','0','0','0'}
-    });
-    vector<vector<int>> matrix3({
-        {1,0},
-        {0,1}
-    });
-    s.minDeletionSize({"xc","yb","za"});
+    s.tallestBillboard({1,2,3,4,5,6});
     return 0;
 }

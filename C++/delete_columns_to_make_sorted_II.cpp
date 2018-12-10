@@ -55,7 +55,61 @@
 #include <numeric>
 using namespace std;
 
+/*
+ Intuition
+ Solve it with a greed algorithme.
+
+ Initial N empty string.
+ For each column,
+ add the character to each row,
+ and check if all rows are still sorted.
+
+ If not, we have to delete this column.
+
+
+ Explanation
+ Initial a boolean array sorted,
+ sorted[i] = true if and only if A[i] < A[i + 1],
+ that is to say A[i] and A[i + 1] are sorted.
+
+ For each col, we check all unsorted rows.
+ If A[i][j] > A[i + 1][j], we need to deleted this col, res++.
+
+ Otherwise, we can keep this col, and update all sorted rows.
+ xga,
+ xfb,
+ yfa
+ */
 class Solution {
+public:
+    int minDeletionSize(vector<string>& A) {
+        int result = 0;
+        int m = A.size();
+        int n = A[0].size();
+        vector<int> sorted(m - 1, false);
+        for (int col = 0; col < n; col++) {
+            int row = 0;
+            for (; row < m - 1; row++) {
+                if (!sorted[row] and A[row][col] > A[row + 1][col]) {
+                    result += 1;
+                    break;
+                }
+            }
+
+            if (row == n - 1) {
+                for (int i = 0; i < m - 1; i++) {
+                    if (A[i][col] < A[i + 1][col]) {
+                        sorted[i] = true;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+};
+
+// xga, xfb, yfa
+class Solution1 {
 public:
     int minDeletionSize(vector<string>& A) {
         int result = 0;
