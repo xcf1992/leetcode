@@ -13,33 +13,35 @@
 using namespace std;
 
 class Solution {
-public:
-    int tallestBillboard(vector<int> rods) {
-        int n = rods.size();
-        int maxLength = 5000; // as the sum could be at most 5000
-        vector<vector<int>> dp(n + 1, vector<int>(maxLength + 1));
-        for (int diff = 0; diff < maxLength; diff++) {
-            dp[0][diff] = INT_MIN;
-        }
-        dp[0][0] = 0;
-
-        for (int i = 1; i <= n; i++) {
-            for (int diff = 0; diff <= maxLength; diff++) {
-                dp[i][diff] = dp[i - 1][diff]; // we could choose not to use rods[i - 1]
-                if (diff >= rods[i - 1]) { // the order of bag0 and bag1 does not change
-                    dp[i][diff] = max(dp[i - 1][diff + rods[i - 1]], dp[i - 1][diff - rods[i - 1]] + rods[i - 1]);
-                }
-                else {
-                    dp[i][diff] = max(dp[i][diff], dp[i - 1][rods[i - 1] - diff] + diff);
+private:
+    bool isValid(vector<vector<int>> board, int N) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (board[0][0] ^ board[0][j] ^ board[i][0] ^ board[i][j] == 1) {
+                    return false;
                 }
             }
         }
-        return dp[n][0];
+        return true;
+    }
+public:
+    int movesToChessboard(vector<vector<int>> board) {
+        int N = board.size();
+        if (!isValid(board, N)) {
+            return -1;
+        }
+        
+        
+        return 0;
     }
 };
 
 int main() {
     Solution s;
-    s.tallestBillboard({1,2,3,4,5,6});
+    s.movesToChessboard({
+        {0,1,0,1},
+        {1,0,1,0},
+        {0,1,1,0}
+    });
     return 0;
 }
