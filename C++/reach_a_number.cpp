@@ -53,6 +53,21 @@ public:
         if (target == cur) {
             return n - 1;
         }
+        /*
+         If S > target, we need to change some number signs.
+         If delta = S - target is even, then we can always find a subset of {1, 2, ..., k} equal to delta / 2
+         and switch the signs, so the answer is k.
+         (This depends on T = delta / 2 being at most S.)
+         [The proof is simple: either T <= k and we choose it,
+         or we choose k in our subset and try to solve the same instance of the problem for T -= k
+         and the set {1, 2, ..., k-1}.]
+
+         Otherwise, if delta is odd, we can't do it,
+         as every sign change from positive to negative changes the sum by an even number.
+         So let's consider a candidate answer of k+1, which changes delta by k+1.
+         If this is odd, then delta will be even and we can have an answer of k+1.
+         Otherwise, delta will be odd, and we will have an answer of k+2.
+        */
         while ((cur - target) % 2 != 0) {
             cur += n;
             n += 1;
