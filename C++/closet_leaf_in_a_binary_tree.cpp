@@ -10,8 +10,8 @@
  Input:
  root = [1, 3, 2], k = 1
  Diagram of binary tree:
- 1
- / \
+   1
+  / \
  3   2
  
  Output: 2 (or 3)
@@ -29,14 +29,14 @@
  Input:
  root = [1,2,3,4,null,null,null,5,null,6], k = 2
  Diagram of binary tree:
- 1
- / \
- 2   3
- /
- 4
- /
- 5
- /
+         1
+        / \
+       2   3
+      /
+     4
+    /
+   5
+  /
  6
  
  Output: 3
@@ -62,7 +62,6 @@
 #include <set>
 #include <numeric>
 using namespace std;
-
 
 
   struct TreeNode {
