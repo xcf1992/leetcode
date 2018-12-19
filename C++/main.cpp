@@ -38,10 +38,16 @@ public:
 
 int main() {
     Solution s;
-    s.movesToChessboard({
-        {0,1,0,1},
-        {1,0,1,0},
-        {0,1,1,0}
-    });
+    auto comp = [](int a, int b) {
+        return a > b;
+    };
+    priority_queue<int, vector<int>, decltype(comp)> minHeap(comp);
+    for (int i = 0; i < 10; i++) {
+        minHeap.push(i);
+    }
+    while (!minHeap.empty()) {
+        cout << minHeap.top() << endl;;
+        minHeap.pop();
+    }
     return 0;
 }
