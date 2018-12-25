@@ -39,6 +39,14 @@ Note:
 #include <numeric>
 using namespace std;
 
+/*
+ Approach 1: Sort
+Intuition and Algorithm
+
+For all elements like A[i] = v, let's write the indices i in sorted order of their values v. For example with A[0] = 7, A[1] = 2, A[2] = 5, A[3] = 4, we can write the order of indices i=1, i=3, i=2, i=0.
+
+Then, whenever we write an index i, we know there was a ramp of width i - min(indexes_previously_written) (if this quantity is positive). We can keep track of the minimum of all indexes previously written as m.
+ */
 class Solution {
 public:
     int maxWidthRamp(vector<int>& A) {
