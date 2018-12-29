@@ -14,45 +14,43 @@ using namespace std;
 
 class Solution {
 private:
-    double getDistance(int p1, int p2, vector<vector<int>>& points) {
-        double distance = pow(points[p1][0] - points[p2][0], 2) + pow(points[p1][1] - points[p2][1], 2);
-        return sqrt(distance);
+    bool firstOneWin(int num, unordered_map<int, bool>& dp) {
+        if (dp.find(num) != dp.end()) {
+            return dp[num];
+        }
+        
+        int num1 = 1;
+        int num2 = 2;
+        int temp = num - num1;
+        while (temp > 0) {
+            if (!firstOneWin(temp, dp)) {
+                dp[num] = true;
+                return true;
+            }
+            
+            int next = num1 + num2;
+            num1 = num2;
+            num2 = next;
+            temp = num - num1;
+        }
+        dp[num] = false;
+        return false;
     }
 public:
-    double minAreaFreeRect(vector<vector<int>> points) {
-        int n = points.size();
-        unordered_map<string, vector<pair<int, int>>> memo;
-        for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) {
-                double centerX = points[i][0] + points[j][0];
-                double centerY = points[i][1] + points[j][1];
-                double radius = getDistance(i, j, points);
-                string key = to_string(centerX) + "_" + to_string(centerY) + "_" + to_string(radius);
-                memo[key].push_back({i, j});
-            }
+    string countNumberGame(int num1, int num2) {
+        unordered_map<int, bool> dp;
+        dp[1] = true;
+        dp[2] = true;
+        if (firstOneWin(num1, dp) == firstOneWin(num2, dp)) {
+            return "Xiaobin Win";
         }
-
-        double result = 0.0;
-        for (auto it = memo.begin(); it != memo.end(); it++) {
-            vector<pair<int, int>> pList = it -> second;
-            int len = pList.size();
-            for (int i = 0; i < len; i++) {
-                for (int j = i + 1; j < len; j++) {
-                    int p1 = pList[i].first;
-                    int p2 = pList[i].second;
-                    int p3 = pList[j].first;
-                    double area = getDistance(p1, p3, points) * getDistance(p2, p3, points);
-                    result = max(result, area);
-                }
-            }
-        }
-        return result;
+        return "Xiaoai Win";
     }
 };
 
 
 int main() {
     Solution s;
-    s.minAreaFreeRect({{3,1},{1,1},{0,1},{2,1},{3,3},{3,2},{0,2},{2,3}});
+    cout << s.countNumberGame(1, 5);
     return 0;
 }
