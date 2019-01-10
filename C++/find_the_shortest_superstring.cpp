@@ -42,41 +42,58 @@ using namespace std;
  Time complexity: O(n^2 * 2^n)
  https://en.wikipedia.org/wiki/Held%E2%80%93Karp_algorithm
  https://leetcode.com/problems/find-the-shortest-superstring/discuss/194932/Travelling-Salesman-Problem
+ https://leetcode.com/problems/find-the-shortest-superstring/discuss/195290/C++-solution-in-less-than-30-lines
  */
 class Solution {
 private:
-    bool startWith(string s, string prefix) {
-        for (int i = 0; i < prefix.size(); i++) {
-            if (i >= s.size() || s[i] != prefix[i]) {
-                return false;
+    int count(string a, string b) {
+        int len = min(a.size(), b.size());
+        for (int i = len; i > 0; i--) {
+            if (a.substr(a.size() - i) == b.substr(0, i)) {
+                return i;
             }
         }
-        return true;
-    }
-    
-    int getDistance(string a, string b) {
-        for (int i = 0; i < a.size(); i++) {
-            string temp = a.substr(i);
-            if (startWith(b, temp)) {
-                return b.size() - temp.size();
-            }
-        }
-        return b.length();
+        return 0;
     }
 public:
     string shortestSuperstring(vector<string>& A) {
         int n = A.size();
-        vector<vector<int>> graph(n, vector<int>(n, 0));
+
+        // overlap[i][j], means the number of letters overlapped when put A[j] after A[i]
+        vector<vector<int>> overlap(n, vector<int>(n, 0));
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < 0; j++) {
-                graph[i][j] = getDistance(A[i], A[j]);
+            for (int j = 0; j < n; j++) {
+                if (i != j) {
+                    overlap[i][j] = count(A[i], A[j]);
+                }
             }
         }
         
-        vector<vector<int>> dp(1 << n, vector<int>(n, INT_MAX));
-        vector<vector<int>> path(1 << n, vector<int>(n, 0));
-        int last = -1;
-        int shortest = INT_MAX;
-        return "";
+        // dp[mask][i] : min superstring made by strings in mask,
+        // and the last one is A[i]
+        vector<vector<string>> dp(1 << n, vector<string>(n));
+        for (int i = 0; i < n; i++) {
+            dp[1 << i][i] += A[i];
+        }
+
+        for (int mask = 1; mask < (1 << n); mask++) {
+            for (int j = 0; j < n; j++) if ((mask & (1 << j)) > 0) {
+                for (int i = 0; i < n; i++) if (i != j and (mask & (1 << i)) > 0) {
+                    string temp = dp[mask ^ (1 << j)][i] + A[j].substr(overlap[i][j]);
+                    if (dp[mask][j].empty() or temp.size() < dp[mask][j].size()) {
+                        dp[mask][j] = temp;
+                    }
+                }
+            }
+        }
+
+        int last = (1 << n) - 1;
+        string result = dp[last][0];
+        for (int i = 1; i < n; i++) {
+            if (dp[last][i].size() < result.size()) {
+                result = dp[last][i];
+            }
+        }
+        return result;
     }
 };
