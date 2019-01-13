@@ -43,6 +43,14 @@
 #include <numeric>
 using namespace std;
 
+/*
+ First we can sort the array in non-increasing order. So, the first element will be maximum and the last will be minimum. Now if the first 3 elements of this sorted array forms a triangle then it will be the maximum perimeter triangle, as for all other combination the sum of elements(i.e. the perimeter of that triangle) will be = b >= c). a, b,c can not form a triangle, so a >= b + c. As, b and c = c+d (if we drop b and take d) or a >= b+d (if we drop c and take d). So, we have to drop a and pick up d.
+ Again same set of analysis for b, c and d. We can continue this till last and whenever we find a triangle forming triple then we can stop checking, as this triple gives maximum perimeter.
+ Hence, if arr[i] < arr[i+1] + arr[i+2] (0 <= i <= n-3)in the sorted array then arr[i], arr[i+1] and arr[i+2] forms a triangle.
+ Below is the simple implementation of this concept:
+
+
+ */
 class Solution {
 public:
     int largestPerimeter(vector<int>& A) {
