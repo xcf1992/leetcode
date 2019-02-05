@@ -91,7 +91,7 @@ private:
     unordered_map<string, vector<pair<int, string>>> timeBasedMap;
 public:
     /** Initialize your data structure here. */
-    TimeMap() {
+    TimeMap1() {
         timeBasedMap.clear();
     }
     
