@@ -13,54 +13,28 @@
 using namespace std;
 
 class Solution {
-private:
-    void dfs(vector<string>& result, string& num, int& target, string cur, int pos, long cv, long pv, char op) {
-        if (pos == num.size() and cv == target) {
-            result.push_back(cur);
-            return;
-        }
-
-        for (int i = pos + 1; i <= num.size(); i++) {
-            string newStr = num.substr(pos, i - pos);
-            long newVal = stol(newStr);
-            if (to_string(newVal).size() != newStr.size()) {
-                continue;
-            }
-            dfs(result, num, target, cur + "+" + newStr, i, cv + newVal, newVal, '+');
-            dfs(result, num, target, cur + "-" + newStr, i, cv - newVal, newVal, '-');
-            if (op == '+') {
-                dfs(result, num, target, cur + "*" + newStr, i, cv - pv + pv * newVal, pv * newVal, op);
-            }
-            else if (op == '-') {
-                dfs(result, num, target, cur + "*" + newStr, i, cv + pv - pv * newVal, pv * newVal, op);
-            }
-            else {
-                dfs(result, num, target, cur + "*" + newStr, i, pv * newVal, pv * newVal, op);
-            }
-        }
-    }
 public:
-    vector<string> addOperators(string num, int target) {
-        int n = num.size();
-        vector<string> result;
-        if (n == 0) {
-            return result;
-        }
-
-        for (int i = 1; i <= n; i++) {
-            string s = num.substr(0, i);
-            long cur = stol(s);
-            if (to_string(cur).size() != s.size()) {
-                continue;
+    bool isRectangleCover(vector<vector<int>> rectangles) {
+        int leftX = rectangles[0][0], leftY = rectangles[0][1];
+        int rightX = rectangles[0][2], rightY = rectangles[0][3];
+        int sum = 0;
+        for (int i = 1; i < rectangles.size(); i++) {
+            if (rectangles[i][0] <= leftX and rectangles[i][1] <= leftY) {
+                leftX = rectangles[i][0];
+                leftY = rectangles[i][1];
             }
-            dfs(result, num, target, s, i, cur, cur, '#');
+            if (rectangles[i][2] >= rightX and rectangles[i][3] >= rightY) {
+                rightX = rectangles[i][2];
+                rightY = rectangles[i][3];
+            }
+            sum += ((rectangles[i][2] - rectangles[i][0]) * (rectangles[i][3] - rectangles[i][1]));
         }
-        return result;
+        return sum == ((rightX - leftX) * (rightY - leftY));
     }
 };
 
 int main() {
     Solution s;
-    s.addOperators("1234", -23);
+    s.isRectangleCover({{1,1,3,3}, {3,1,4,2}, {3,2,4,4}, {1,3,2,4}, {2,3,3,4}});
     return 0;
 }
