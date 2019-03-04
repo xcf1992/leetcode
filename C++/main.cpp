@@ -14,36 +14,39 @@ using namespace std;
 
 class Solution {
 private:
-    int find(vector<int>& parent, int c) {
-        int result = parent[c] == -1 ? c : find(parent, parent[c]);
-        return result;
-    }
-public:
-    bool equationsPossible(vector<string> equations) {
-        vector<int> parent(26, -1);
-        for (string& equation : equations) {
-            if (equation[1] == '=') {
-                int x = find(parent, equation[0] - 'a');
-                int y = find(parent, equation[3] - 'a');
-                parent[x] = y;
-            }
+    void merge(int length, int K, int& result, vector<int>& stones) {
+        int sum = 0;
+        int start = stones.size() - length;
+        for (int i = 0; i < K; i++) {
+            sum += stones[start + i];
         }
 
-        for (string& equation : equations) {
-            if (equation[1] == '!') {
-                int x = find(parent, equation[0] - 'a');
-                int y = find(parent, equation[3] - 'a');
-                if (x == y) {
-                    return false;
-                }
-            }
+        result += sum;
+        if (length == K) {
+            return;
         }
-        return true;
+
+        length -= K - 1;
+        auto it = lower_bound(stones.begin(), stones.end(), sum);
+        stones.insert(it, sum);
+        merge(length, K, result, stones);
+        return;
+    }
+public:
+    int mergeStones(vector<int> stones, int K) {
+        int n = stones.size();
+        if (n < K or n % (K - 1) != 1) {
+            return -1;
+        }
+        int result = 0;
+        sort(stones.begin(), stones.end());
+        merge(stones.size(), K, result, stones);
+        return result;
     }
 };
 
 int main() {
     Solution s;
-    s.equationsPossible({"b==b","b==e","e==c","d!=e"});
+    s.mergeStones({1,2,3,4,5,6,7,8,9}, 3);
     return 0;
 }
