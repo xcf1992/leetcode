@@ -14,39 +14,51 @@ using namespace std;
 
 class Solution {
 private:
-    void merge(int length, int K, int& result, vector<int>& stones) {
-        int sum = 0;
-        int start = stones.size() - length;
-        for (int i = 0; i < K; i++) {
-            sum += stones[start + i];
-        }
-
-        result += sum;
-        if (length == K) {
-            return;
-        }
-
-        length -= K - 1;
-        auto it = lower_bound(stones.begin(), stones.end(), sum);
-        stones.insert(it, sum);
-        merge(length, K, result, stones);
-        return;
+    int find(vector<int>& parent, int node) {
+        return parent[node] == 0 ? node : find(parent, parent[node]);
     }
 public:
-    int mergeStones(vector<int> stones, int K) {
-        int n = stones.size();
-        if (n < K or n % (K - 1) != 1) {
-            return -1;
+    vector<int> findRedundantDirectedConnection(vector<vector<int>> edges) {
+        int n = edges.size();
+        vector<int> parent(n + 1, 0);
+        vector<vector<int>> result;
+        for (vector<int>& edge : edges) {
+            if (parent[edge[1]] == 0) {
+                parent[edge[1]] = parent[edge[0]];
+            }
+            else {
+                result.push_back({parent[edge[1]], edge[1]});
+                result.push_back(edge);
+                edge[1] = 0;
+            }
         }
-        int result = 0;
-        sort(stones.begin(), stones.end());
-        merge(stones.size(), K, result, stones);
-        return result;
+        
+        for (int i = 0; i <= n; i++) {
+            parent[i] = 0;
+        }
+        for (vector<int>& edge : edges) {
+            if (edge[1] == 0) {
+                continue;
+            }
+            
+            int p = edge[0];
+            int c = edge[1];
+            int cur = find(parent, p);
+            if (cur == c) {
+                if (result.empty()) {
+                    return edge;
+                }
+                // cause currently we have removed result[1] already but still has circle
+                return result[0];
+            }
+            parent[c] = cur;
+        }
+        return result[1];
     }
 };
 
 int main() {
     Solution s;
-    s.mergeStones({1,2,3,4,5,6,7,8,9}, 3);
+    s.findRedundantDirectedConnection({{3,1},{2,1},{4,2},{1,4}});
     return 0;
 }
