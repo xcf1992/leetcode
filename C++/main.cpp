@@ -14,78 +14,50 @@ using namespace std;
 
 class Solution {
 private:
-    vector<int> mergeArray(vector<int>& nums1, vector<int>& nums2, int k) {
-        vector<int> result(k);
-        int idx1 = 0, idx2 = 0;
-        int idx = 0;
-        while(idx < k){
-            if(compareArray(nums1, nums2, idx2, idx1)){
-                result[idx] = nums1[idx1++];
-            }else{
-                result[idx] = nums2[idx2++];
-            }
-            idx++;
+    int M = 0;
+    int N = 0;
+    
+    void change(int row, int col, vector<vector<int>>& A) {
+        if (row < 0 or col < 0 or row >= M or col >= N) {
+            return;
         }
-        return result;
-    }
-
-    bool compareArray(vector<int>& nums1, vector<int>& nums2, int index1, int index2) {
-        int len1 = nums1.size() - index1;
-        if (len1 <= 0) {
-            return false;
+        
+        if (A[row][col] != 1) {
+            return;
         }
-        int len2 = nums2.size() - index2;
-        if (len2 <= 0) {
-            return true;
-        }
-
-        int len = max(len1, len2);
-        for (int i = 0; i < len; ++i) {
-            int d1 = index1 + i < nums1.size() ? nums1[index1 + i] : 0;
-            int d2 = index2 + i < nums2.size() ? nums2[index2 + i] : 0;
-            if (d1 != d2) {
-                return d1 > d2;
-            }
-        }
-        return true;
-    }
-
-    //get the largest k numbers when keeping the relative order
-    vector<int> maxSubArray(vector<int>& nums, int k) {
-        vector<int> result(k, 0);
-        if (k == 0) {
-            return result;
-        }
-        int n = nums.size();
-        int index = 0;
-        for (int i = 0; i < n; i++) {
-            while (n - i + index > k and index > 0 and nums[i] > result[index - 1]) {
-                index -= 1;
-            }
-            if (index < k) {
-                result[index] = nums[i];
-                index += 1;
-            }
-        }
-        return result;
+        
+        A[row][col] = 2;
+        change(row + 1, col, A);
+        change(row - 1, col, A);
+        change(row, col + 1, A);
+        change(row, col - 1, A);
     }
 public:
-    vector<int> maxNumber(vector<int> nums1, vector<int> nums2, int k) {
-        int n1 = nums1.size();
-        int n2 = nums2.size();
-        if (k == n1 + n2) {
-            return mergeArray(nums1, nums2, k);
+    int numEnclaves(vector<vector<int>> A) {
+        M = A.size();
+        N = A[0].size();
+        
+        for (int row = 0; row < M ; ++row) {
+            if (A[row][0] == 1) {
+                change(row, 0, A);
+            }
+            if (A[row][0] == 1) {
+                change(row, N - 1, A);
+            }
         }
-
-        vector<int> result(k, 0);
-        for (int i = 0; i <= k; i++) {
-            if (i <= n1 and k - i <= n2) {
-                vector<int> maxNums1 = maxSubArray(nums1, i);
-                vector<int> maxNums2 = maxSubArray(nums2, k - i);
-                vector<int> temp = mergeArray(nums1, nums2, k);
-                if (compareArray(temp, result, 0, 0)) {
-                    result = temp;
-                }
+        for (int col = 0; col < N; ++col) {
+            if (A[0][col] == 1) {
+                change(0, col, A);
+            }
+            if (A[M - 1][col] == 1) {
+                change(M - 1, col, A);
+            }
+        }
+        
+        int result = 0;
+        for (int i = 0; i < M; ++i) {
+            for (int j = 0; j < N; ++j) {
+                result += A[i][j] == 1 ? 1 : 0;
             }
         }
         return result;
@@ -94,6 +66,6 @@ public:
 
 int main() {
     Solution s;
-    s.maxNumber({3,4,6,5}, {9,1,2,5,8,3}, 5);
+    s.numEnclaves({{0,0,1,1,1,0,1,1,1,0,1},{1,1,1,1,0,1,0,1,1,0,0},{0,1,0,1,1,0,0,0,0,1,0},{1,0,1,1,1,1,1,0,0,0,1},{0,0,1,0,1,1,0,0,1,0,0},{1,0,0,1,1,1,0,0,0,1,1},{0,1,0,1,1,0,0,0,1,0,0},{0,1,1,0,1,0,1,1,1,0,0},{1,1,0,1,1,1,0,0,0,0,0},{1,0,1,1,0,0,0,1,0,0,1}});
     return 0;
 }
