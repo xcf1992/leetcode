@@ -56,21 +56,25 @@ public:
         int i = 0;
         int j = 0;
         while (i < m) {
-            if (S[i] == S[j]) {
-                if (++j == n) {
-                    int end = i + 1; // end - 1 is the last character in S matches last character in T
-                    while (--j >= 0) {
+            if (S[i] == T[j]) {
+                if (j == n - 1) {
+                    int end = i;
+                    i -= 1;
+                    j -= 1;
+                    for (; j >= 0; --j) {
                         while (S[i] != T[j]) {
                             i -= 1;
                         }
                     }
-                    i += 1; // i - 1 should be the first character in S matches the first characeter in T, i is current possible maximum pos
-                    j += 1;
-
-                    if (end - i < minLen) {
-                        minLen = end - i;
+                    j = 0;
+                    
+                    if (end - i + 1 < minLen) {
+                        minLen = end - i + 1;
                         start = i;
                     }
+                }
+                else {
+                    j += 1;
                 }
             }
             i += 1;
@@ -133,7 +137,7 @@ public:
 
         for (int i = 1; i <= m; ++i) {
             for (int j = 1; j <= min(i, n); ++j) {
-                if (S[i - 1] == T[j - i]) {
+                if (S[i - 1] == T[j - 1]) {
                     dp[i][j] = dp[i - 1][j - 1];
                 }
                 else {

@@ -104,7 +104,7 @@ public:
             }
         }
         else {
-            result = node -> right;
+            result = node -> parent;
             while (result and result -> val < node -> val) {
                 result = result -> parent;
             }

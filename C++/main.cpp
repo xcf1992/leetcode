@@ -13,59 +13,43 @@
 using namespace std;
 
 class Solution {
-private:
-    int M = 0;
-    int N = 0;
-    
-    void change(int row, int col, vector<vector<int>>& A) {
-        if (row < 0 or col < 0 or row >= M or col >= N) {
-            return;
-        }
-        
-        if (A[row][col] != 1) {
-            return;
-        }
-        
-        A[row][col] = 2;
-        change(row + 1, col, A);
-        change(row - 1, col, A);
-        change(row, col + 1, A);
-        change(row, col - 1, A);
-    }
 public:
-    int numEnclaves(vector<vector<int>> A) {
-        M = A.size();
-        N = A[0].size();
+    string minWindow(string S, string T) {
+        int m = S.size();
+        int n = T.size();
+        int start = -1;
+        int minLen = S.size();
         
-        for (int row = 0; row < M ; ++row) {
-            if (A[row][0] == 1) {
-                change(row, 0, A);
-            }
-            if (A[row][0] == 1) {
-                change(row, N - 1, A);
-            }
-        }
-        for (int col = 0; col < N; ++col) {
-            if (A[0][col] == 1) {
-                change(0, col, A);
-            }
-            if (A[M - 1][col] == 1) {
-                change(M - 1, col, A);
-            }
+        vector<vector<int>> dp(m + 1, vector<int>(n + 1, -1));
+        for (int i = 0; i <= m; ++i) {
+            dp[i][0] = i;
         }
         
-        int result = 0;
-        for (int i = 0; i < M; ++i) {
-            for (int j = 0; j < N; ++j) {
-                result += A[i][j] == 1 ? 1 : 0;
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 1; j <= min(i, n); ++j) {
+                if (S[i - 1] == T[j - i]) {
+                    dp[i][j] = dp[i - 1][j - 1];
+                }
+                else {
+                    dp[i][j] = dp[i - 1][j];
+                }
+                if (dp[i][n] != -1) {
+                    int len = i - dp[i][n];
+                    if (minLen > len) {
+                        minLen = len;
+                        start = dp[i][n];
+                    }
+                }
             }
         }
-        return result;
+        
+        return start != -1 ? S.substr(start, minLen) : "";
     }
 };
 
 int main() {
     Solution s;
-    s.numEnclaves({{0,0,1,1,1,0,1,1,1,0,1},{1,1,1,1,0,1,0,1,1,0,0},{0,1,0,1,1,0,0,0,0,1,0},{1,0,1,1,1,1,1,0,0,0,1},{0,0,1,0,1,1,0,0,1,0,0},{1,0,0,1,1,1,0,0,0,1,1},{0,1,0,1,1,0,0,0,1,0,0},{0,1,1,0,1,0,1,1,1,0,0},{1,1,0,1,1,1,0,0,0,0,0},{1,0,1,1,0,0,0,1,0,0,1}});
+    s.minWindow("cnhczmccqouqadqtmjjzl",
+                "mm");
     return 0;
 }
