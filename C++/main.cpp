@@ -14,81 +14,53 @@ using namespace std;
 
 class Solution {
 private:
-    vector<char> digit{'0', '1', '6', '8', '9'};
-    unordered_map<char, char> strobogrammatic{{'9', '6'}, {'1', '1'}, {'8', '8'}, {'6', '9'}, {'0', '0'}};
-    
-    void dfs(int n, int pos, int &result, string &temp, string &low, string &high) {
-        if ((n % 2 == 1 and pos > n / 2) or (n % 2 == 0 and pos > n / 2 - 1)) {
-            if (temp >= low and temp <= high) {
-                result += 1;
-            }
-            return;
+    vector<int> getMax(vector<int>& A, int start, int end, int length) {
+        if (end - start < length) {
+            return {};
         }
         
-        for (char c : digit) {
-            if (pos == 0 && c == '0') {
-                continue;
-            }
-            if (n % 2 == 1 && pos == n / 2 && (c == '6' || c == '9')) {
-                continue;
-            }
-            temp[pos] = c;
-            temp[n - pos - 1] = strobogrammatic[c];
-            dfs(n, pos + 1, result, temp, low, high);
+        vector<int> result(3, 0);
+        for (int i = start; i < start + length; ++i) {
+            result[2] += A[i];
         }
-    }
-public:
-    int strobogrammaticInRange(string low, string high) {
-        int minLen = low.size();
-        int maxLen = high.size();
-        int result = 0;
-        if (minLen == maxLen) {
-            if (minLen == 1) {
-                int count = 0;
-                for (char d : digit) {
-                    if (d != '6' and d != '9' and d >= low[0] and d <= high[0]) {
-                        count += 1;
-                    }
-                }
-                return count;
+        result[0] = start;
+        result[1] = start + length - 1;
+        
+        int cur = result[2];
+        for (int i = start + length; i < end; ++i) {
+            int temp = cur + A[i] - A[i - length];
+            if (temp > result[2]) {
+                result[2] = temp;
+                result[0] = i - length + 1;
+                result[1] = i;
             }
-            string temp(minLen, ' ');
-            dfs(minLen, 0, result, temp, low, high);
-            return result;
-        }
-        for (int i = minLen; i <= maxLen; ++i) {
-            if (i == minLen) {
-                int count = 0;
-                string temp(minLen, ' ');
-                string maxNum = string(minLen, '9');
-                dfs(minLen, 0, count, temp, low, maxNum);
-                result += count;
-                if (minLen == 1) {
-                    result += 1;
-                }
-            }
-            else if (i == maxLen) {
-                int count = 0;
-                string temp(maxLen, ' ');
-                string minNum = "1" + string(maxLen - 1, '0');
-                dfs(maxLen, 0, count, temp, minNum, high);
-                result += count;
-            }
-            else {
-                if (i % 2 == 0) {
-                    result += 4 * pow(5, i / 2 - 1);
-                }
-                else {
-                    result += 4 * 3 * pow(5, i / 2 - 1);
-                }
-            }
+            cur = temp;
         }
         return result;
+    }
+    
+    int getMaxSum(vector<int>& A, int L, int M) {
+        int n = A.size();
+        vector<int> maxL = getMax(A, 0, n, L);
+        vector<int> maxM1 = getMax(A, 0, maxL[0], M);
+        vector<int> maxM2 = getMax(A, maxL[1] + 1, n, M);
+        int result = INT_MIN;
+        if (!maxM1.empty()) {
+            result = max(result, maxL[2] + maxM1[2]);
+        }
+        if (!maxM2.empty()) {
+            result = max(result, maxL[2] + maxM2[2]);
+        }
+        return result;
+    }
+public:
+    int maxSumTwoNoOverlap(vector<int> A, int L, int M) {
+        return max(getMaxSum(A, L, M), getMaxSum(A, M, L));
     }
 };
 
 int main() {
     Solution s;
-    s.strobogrammaticInRange("50", "200");
+    s.maxSumTwoNoOverlap({8,20,6,2,20,17,6,3,20,8,12}, 5, 4);
     return 0;
 }
