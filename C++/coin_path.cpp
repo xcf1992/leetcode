@@ -42,6 +42,31 @@
 #include <map>
 using namespace std;
 
+/*
+The following solution is based on that:
+
+If there are two path to reach n, and they have the same optimal cost, then the longer path is lexicographically smaller.
+
+Proof by contradiction:
+Assume path P and Q have the same cost, and P is strictly shorter and P is lexicographically smaller.
+Since P is lexicographically smaller, P and Q must start to differ at some point.
+In other words, there must be i in P and j in Q such that i < j and len([1...i]) == len([1...j])
+P = [1...i...n]
+Q = [1...j...n]
+Since i is further away from n there need to be no less steps taken to jump from i to n unless j to n is not optimal
+So len([i...n]) >= len([j...n])
+So len(P) >= len(Q) which contradicts the assumption that P is strictly shorter.
+
+For example:
+Input: [1, 4, 2, 2, 0], 2
+Path P = [1, 2, 5]
+Path Q = [1, 3, 4, 5]
+They both have the same cost 4 to reach n
+They differ at i = 2 in P and j = 3 in Q
+Here Q is longer but not lexicographically smaller.
+Why? Because j = 3 to n = 5 is not optimal.
+The optimal path should be [1, 3, 5] where the cost is only 2
+*/
 class Solution {
 public:
     vector<int> cheapestJump(vector<int>& A, int B) {
