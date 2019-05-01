@@ -70,6 +70,24 @@ https://leetcode.com/problems/escape-a-large-maze/discuss/282849/Python-Maximum-
         .    X
  200    | X
  */
+
+/*
+ The maximum area is not 10000. Even it's accepted with bound 10000, it's wrong.
+ All cells are discrete, so there is nothing to do with pi.
+ It maximum blocked is achieved when the blocked squares surround one of the corners as a 45-degree straight line.
+
+ And it's easily proved.
+
+ If two cells are connected horizontally,
+ we can slide one part vertically to get bigger area.
+
+ If two cells are connected vertically,
+ we can slide one part horizontally to get bigger area.
+
+ Two connected cells,
+ no matter horizontally or vertically connected,
+ will surround smaller area than the way of 45-degree connected.
+ */
 class Solution {
 private:
     int length = 1e6;

@@ -14,57 +14,52 @@ using namespace std;
 
 class Solution {
 private:
-    bool isBorder(int r, int c, int m, int n, vector<vector<int>>& grid) {
-        if (r == 0 or r == m - 1 or c == 0 or c == n - 1) {
-            return true;
+    long parseNum(string& s, int& i) {
+        long num = 0;
+        while (i < s.size() and isdigit(s[i])) {
+            num = num * 10 + (s[i] - '0');
+            i += 1;
         }
+        return num;
+    }
 
-        int color = grid[r][c];
-        if (color == grid[r - 1][c] and color == grid[r + 1][c] and color == grid[r][c - 1] and color == grid[r][c + 1]) {
-            return false;
+    int parseExp(string& s, int& i) {
+        vector<int> nums;
+        char op = '+';
+        for (; i < s.size() and op != ')'; ++i) {
+            if (s[i] == ' ') {
+                continue;
+            }
+
+            long n = s[i] == '(' ? parseExp(s, ++i) : parseNum(s, i);
+            if (op == '+') {
+                nums.push_back(n);
+            }
+            else if (op == '-') {
+                nums.push_back(-n);
+            }
+            else if (op == '*') {
+                nums.back() *= n;
+            }
+            else if (op == '/') {
+                nums.back() /= n;
+            }
+
+            if (i < s.size()) {
+                op = s[i];
+            }
         }
-        return true;
+        return accumulate(nums.begin(), nums.end(), 0);
     }
 public:
-    vector<vector<int>> colorBorder(vector<vector<int>> grid, int r0, int c0, int color) {
-        int m = grid.size();
-        int n = grid[0].size();
-        vector<vector<bool>> visited(m, vector<bool>(n, false));
-        vector<pair<int, int>> border;
-        queue<pair<int, int>> bfs;
-        bfs.push({r0, c0});
-        visited[r0][c0] = true;
-
-        vector<int> rDiff = {0, 0, 1, -1};
-        vector<int> cDiff = {1, -1, 0, 0};
-        while (!bfs.empty()) {
-            int row = bfs.front().first;
-            int col = bfs.front().second;
-            bfs.pop();
-
-            if (isBorder(row, col, m, n, grid)) {
-                border.push_back({row, col});
-            }
-
-            for (int i = 0; i < 4; ++i) {
-                int nRow = row + rDiff[i];
-                int nCol = col + cDiff[i];
-                if (nRow >= 0 and nRow < m and nCol >= 0 and nCol < n and !visited[nRow][nCol] and grid[nRow][nCol] == grid[r0][c0]) {
-                    visited[nRow][nCol] = true;
-                    bfs.push({nRow, nCol});
-                }
-            }
-        }
-
-        for (pair<int, int>& b : border) {
-            grid[b.first][b.second] = color;
-        }
-        return grid;
+    int calculate(string s) {
+        int i = 0;
+        return parseExp(s, i);
     }
 };
 
 int main() {
     Solution s;
-    s.colorBorder({{1,1,1}, {1,1,1}, {1,1,1}}, 1, 1, 2);
+    s.calculate("- 3 + 2 - ( - 3 )");
     return 0;
 }
