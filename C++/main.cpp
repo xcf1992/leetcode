@@ -14,52 +14,43 @@ using namespace std;
 
 class Solution {
 private:
-    long parseNum(string& s, int& i) {
-        long num = 0;
-        while (i < s.size() and isdigit(s[i])) {
-            num = num * 10 + (s[i] - '0');
-            i += 1;
+    int count(vector<int>& balance, int start) {
+        if (start == balance.size()) {
+            return 0;
         }
-        return num;
-    }
 
-    int parseExp(string& s, int& i) {
-        vector<int> nums;
-        char op = '+';
-        for (; i < s.size() and op != ')'; ++i) {
-            if (s[i] == ' ') {
-                continue;
-            }
-
-            long n = s[i] == '(' ? parseExp(s, ++i) : parseNum(s, i);
-            if (op == '+') {
-                nums.push_back(n);
-            }
-            else if (op == '-') {
-                nums.push_back(-n);
-            }
-            else if (op == '*') {
-                nums.back() *= n;
-            }
-            else if (op == '/') {
-                nums.back() /= n;
-            }
-
-            if (i < s.size()) {
-                op = s[i];
+        int result = INT_MAX;
+        for (int i = start + 1; i < balance.size(); ++i) {
+            if (balance[start] * balance[i] < 0) {
+                balance[i] = balance[i] + balance[start];
+                result = min(result, 1 + count(balance, start + 1));
+                balance[i] = balance[i] - balance[start];
             }
         }
-        return accumulate(nums.begin(), nums.end(), 0);
+        return result;
     }
 public:
-    int calculate(string s) {
-        int i = 0;
-        return parseExp(s, i);
+    int minTransfers(vector<vector<int>> transactions) {
+        map<int, int> balance;
+        for (vector<int>& transaction : transactions) {
+            balance[transaction[0]] -= transaction[2];
+            balance[transaction[1]] += transaction[2];
+        }
+
+        vector<int> nonZeroBalance;
+        for (auto it = balance.begin(); it != balance.end(); ++it) {
+            if (it -> second != 0) {
+                nonZeroBalance.push_back(it -> second);
+            }
+        }
+
+        return count(nonZeroBalance, 0);
     }
 };
 
+
 int main() {
     Solution s;
-    s.calculate("- 3 + 2 - ( - 3 )");
+    int i = s.minTransfers({{1,5,8},{8,9,8},{2,3,9},{4,3,1}});
     return 0;
 }
