@@ -10,11 +10,11 @@
 #include <stdio.h>
 #include <map>
 #include <numeric>
-#include "design_in-memory_file_system.cpp"
+#include "maximum_vacation_days.cpp"
 using namespace std;
 
 int main() {
-    FileSystem fi;
-    fi.ls("/");
+    Solution s;
+    s.maxVacationDays({{0,0,0},{0,0,0},{0,0,0}}, {{1,1,1}, {7,7,7}, {7,7,7}});
     return 0;
 }
