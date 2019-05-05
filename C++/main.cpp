@@ -10,11 +10,14 @@
 #include <stdio.h>
 #include <map>
 #include <numeric>
-#include "maximum_vacation_days.cpp"
+#include "design_excel_sum_formula.cpp"
 using namespace std;
 
 int main() {
-    Solution s;
-    s.maxVacationDays({{0,0,0},{0,0,0},{0,0,0}}, {{1,1,1}, {7,7,7}, {7,7,7}});
+    Excel exc(3, 'C');
+    exc.set(1, 'A', 2);
+    exc.sum(3, 'C', {"A1", "A1:B2"});
+    exc.set(2, 'B', 2);
+    exc.get(3, 'C');
     return 0;
 }
