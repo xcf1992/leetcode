@@ -10,14 +10,12 @@
 #include <stdio.h>
 #include <map>
 #include <numeric>
-#include "design_excel_sum_formula.cpp"
+#include "moving_stones_until_consecutive_II.cpp"
 using namespace std;
 
 int main() {
-    Excel exc(3, 'C');
-    exc.set(1, 'A', 2);
-    exc.sum(3, 'C', {"A1", "A1:B2"});
-    exc.set(2, 'B', 2);
-    exc.get(3, 'C');
+    Solution s;
+    vector<int> temp({1,10,100,1000});
+    s.numMovesStonesII(temp);
     return 0;
 }
