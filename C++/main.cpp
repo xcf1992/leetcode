@@ -10,12 +10,12 @@
 #include <stdio.h>
 #include <map>
 #include <numeric>
-#include "moving_stones_until_consecutive_II.cpp"
+#include "rearrange_string_k_distance_apart.cpp"
 using namespace std;
 
 int main() {
     Solution s;
     vector<int> temp({1,10,100,1000});
-    s.numMovesStonesII(temp);
+    s.rearrangeString("aaabbbccc", 2);
     return 0;
 }
