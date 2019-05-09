@@ -52,7 +52,32 @@
 #include <numeric>
 using namespace std;
 
+/*
+一开始对原始的deck进行排序，以例题为例子，deck=[17,13,11,2,3,5,7],deck.sort之后为deck=[2, 3, 5, 7, 11, 13, 17]，然后我们开始进行逆向操作还原。每一次操作的规律也比较简单，在数据排序完毕的情况下，我们首先将最后一位数字移回原数组的第一位，然后在第一位数字的前面加入剩下的数里面最大的数，具体的还是举例子说明方便些：deck=[2, 3, 5, 7, 11, 13, 17]1、 17 移到第一位，然后在17前面插入13，此时数组为【13，17】2、17 移到第一位，然后在17前面插入11，此时数组为【11，17，13】3、13 移到第一位，然后在13前面插入7，此时数组为【7，13，11，17】4、17 移到第一位，然后在17前面插入13，此时数组为【5，17，7，13，11】5、11 移到第一位，然后在11前面插入3，此时数组为【3，11，5，17，7，13】6、13 移到第一位，然后在13前面插入2，此时数组为【2，13，3，11，5，17，7】最终得到正确答案【2，13，3，11，5，17，7】
+
+作者：马东什么
+链接：https://zhuanlan.zhihu.com/p/65063848
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+*/
 class Solution {
+public:
+    vector<int> deckRevealedIncreasing(vector<int>& deck) {
+        vector<int> res;
+        sort(deck.begin(), deck.end());
+        
+        res.push_back(deck.back());
+        for (int i = deck.size() - 2; i >= 0; i--) {
+            res.insert(res.begin(), res.back());
+            res.pop_back();
+            res.insert(res.begin(), deck[i]);
+        }
+        
+        return res;
+    }
+};
+
+class Solution1 {
 private:
     vector<int> orderDeck(vector<int>& deck, int start, int n) {
         int curSize = n - start;
