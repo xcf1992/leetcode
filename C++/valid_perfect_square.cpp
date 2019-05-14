@@ -10,8 +10,29 @@
 #include <stdio.h>
 using namespace std;
 
-
 class Solution {
+public:
+    bool isPerfectSquare(int num) {
+        int left = 0;
+        int right = num;
+        while (left <= right) {
+            long mid = left + (right - left) / 2;
+            if (mid * mid == (long) num) {
+                return true;
+            }
+            
+            if (mid * mid > num) {
+                right = mid - 1;
+            }
+            else {
+                left = mid + 1;
+            }
+        }
+        return false;
+    }
+};
+
+class Solution1 {
 public:
     bool isPerfectSquare(int num) {
         int diff = 1;
