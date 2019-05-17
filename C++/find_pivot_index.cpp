@@ -32,7 +32,8 @@ public:
         
         int left = 0;
         for (int i = 0; i < nums.size(); i++) {
-            if (left << 1 == sum - nums[i]) {
+            sum -= nums[i];
+            if (left == sum) {
                 return i;
             }
             left += nums[i];

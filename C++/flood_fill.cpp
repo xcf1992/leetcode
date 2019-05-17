@@ -11,6 +11,44 @@
 using namespace std;
 
 class Solution {
+public:
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+        int m = image.size();
+        if (m == 0) {
+            return {};
+        }
+        int n = image[0].size();
+        
+        int color = image[sr][sc];
+        if (color == newColor) {
+            return image;
+        }
+        image[sr][sc] = newColor;
+        
+        queue<pair<int, int>> bfs;
+        bfs.push({sr, sc});
+        
+        vector<int> rDiff({1, -1, 0, 0});
+        vector<int> cDiff({0, 0, 1, -1});
+        while (!bfs.empty()) {
+            int row = bfs.front().first;
+            int col = bfs.front().second;
+            bfs.pop();
+            
+            for (int i = 0; i < 4; i++) {
+                int nRow = row + rDiff[i];
+                int nCol = col + cDiff[i];
+                if (nRow >= 0 and nCol >= 0 and nRow < m and nCol < n and image[nRow][nCol] == color) {
+                    image[nRow][nCol] = newColor;
+                    bfs.push({nRow, nCol});
+                }
+            }
+        }
+        return image;
+    }
+};
+
+class Solution1 {
 private:
     void fill(vector<vector<int>>& image, int sr, int sc, int oldColor) {
         int m = image.size();
