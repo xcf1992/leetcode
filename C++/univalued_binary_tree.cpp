@@ -46,18 +46,6 @@ using namespace std;
   };
 
 class Solution {
-private:
-    bool univalued(TreeNode* root, int value) {
-        if (root == nullptr) {
-            return true;
-        }
-        
-        if (root -> val != value) {
-            return false;
-        }
-        
-        return univalued(root -> left, value) and univalued(root -> right, value);
-    }
 public:
     bool isUnivalTree(TreeNode* root) {
         if (root == nullptr) {
@@ -68,7 +56,14 @@ public:
             return true;
         }
         
-        int value = root -> val;
-        return univalued(root, value);
+        if (root -> left != nullptr and root -> val != root -> left -> val) {
+            return false;
+        }
+        
+        if (root -> right != nullptr and root -> val != root -> right -> val) {
+            return false;
+        }
+        
+        return isUnivalTree(root -> left) and isUnivalTree(root -> right);
     }
 };
