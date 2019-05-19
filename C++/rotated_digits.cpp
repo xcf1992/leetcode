@@ -18,6 +18,56 @@
 #include <stdio.h>
 using namespace std;
 
+// http://www.frankmadrid.com/ALudicFallacy/2018/02/28/rotated-digits-leet-code-788/
+  // The following four arrays were defined to avoid long compound boolean expressions: 
+  // 'if(digit == 2 || digit == 5 || digit == 6 || digit == 9) { ... }' 
+  // which instead keeps track of such information cumulatively. For example, 
+  // differentRotation[7] = 3 means 3 numbers in the range of [0,7] are new numbers, namely, 
+  // the new numbers post-rotation 2,5, and 6.
+class Solution {
+public:
+    int type[10]               = {0,0,1,2,2,1,1,2,0,1};  // 'Same' 'New' or 'Invalid' numbers
+    int differentRotations[10] = {0,0,1,1,1,2,3,3,3,4};  // Cumulative: New number
+    int validRotations[10]     = {1,2,3,3,3,4,5,5,6,7};  // Cumulative: Valid number
+    int sameRotations[10]      = {1,2,2,2,2,2,2,2,3,3};  // Cumulative: Same number
+
+    // Counts the good numbers in the range of [000..0, X00..0] where str[0] = X. Implements
+    // dynamic programming to indicate if a new number has been seen.
+    int countRotations(string str, bool isNewNumber) {
+        int digit = str[0] - '0';  // Converts char to int (see ASCII Table mathematics)
+        if (str.length() == 1) {
+            return isNewNumber ? validRotations[digit] : differentRotations[digit];
+        }
+          
+        int ret = 0;
+        if (digit != 0) {
+            // Get all valid numbers (Idea #1)
+            ret += validRotations[digit - 1] * pow(7, str.length() - 1);
+
+            // If a new number has not been seen, subtract all non-good number paths (Idea #2)
+            if(!isNewNumber) {
+                ret -= sameRotations[digit-1] * pow(3, str.length() - 1);
+            }
+        }
+
+        if (type[digit] == 1) {
+            isNewNumber = true;
+        }
+
+          // If the digit is valid, then recursively call function on remaining n-1 numbers
+        if (type[digit] != 2) {
+            ret += countRotations(str.substr(1), isNewNumber);
+        }
+        return ret;
+    }
+
+    // Converts N into a string where the most significant bit is at index 0
+    int rotatedDigits(int N) {
+        return countRotations(to_string(N), false);
+    }
+};
+
+
 /*
  X is a good number if after rotating each digit individually by 180 degrees, we get a valid number that is different from X. A number is valid if each digit remains a digit after rotation. 0, 1, and 8 rotate to themselves; 2 and 5 rotate to each other; 6 and 9 rotate to each other, and the rest of the numbers do not rotate to any other number.
  
@@ -31,7 +81,7 @@ using namespace std;
  Note that 1 and 10 are not good numbers, since they remain unchanged after rotating.
  */
 
-class Solution {
+class Solution1 {
 public:
     int rotatedDigits(int N) {
         vector<int> goodSame({1,2,2,2,2,2,2,2,3,3});
