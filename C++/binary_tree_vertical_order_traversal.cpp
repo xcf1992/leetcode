@@ -77,7 +77,50 @@ struct TreeNode {
       TreeNode(int x) : val(x), left(NULL), right(NULL) {}
   };
 
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
 class Solution {
+public:
+    vector<vector<int>> verticalOrder(TreeNode* root) {
+        if (root == nullptr) {
+            return {};
+        }
+        map<int, vector<int>> nodePos;
+        queue<pair<int, TreeNode*>> bfs;
+        bfs.push({0, root});
+        while (!bfs.empty()) {
+            int curSize = bfs.size();
+            for (int i = 0; i < curSize; ++i) {
+                int pos = bfs.front().first;
+                TreeNode* node = bfs.front().second;
+                bfs.pop();
+                
+                nodePos[pos].push_back(node -> val);
+                if (node -> left != nullptr) {
+                    bfs.push({pos - 1, node -> left});
+                }
+                if (node -> right != nullptr) {
+                    bfs.push({pos + 1, node -> right});
+                }
+            }
+        }
+        
+        vector<vector<int>> result;
+        for (auto& it : nodePos) {
+            result.push_back(it.second);
+        }
+        return result;
+    }
+};
+
+class Solution1 {
 private:
     int getHeight(TreeNode* root) {
         if (root == nullptr) {
