@@ -10,8 +10,61 @@
 #include <stdio.h>
 using namespace std;
 
-
 class Solution {
+private:
+    double calculate(string first, string second, unordered_map<string, unordered_map<string, double>>& connect, unordered_set<string>& visited) {
+        if (connect.find(first) == connect.end()) {
+            return -1.0;
+        }
+        
+        unordered_map<string, double> next = connect[first];
+        if (next.find(second) != next.end()) {
+            return next[second];
+        }
+        
+        visited.insert(first);
+        for (auto it = next.begin(); it != next.end(); ++it) {
+            if (visited.find(it -> first) != visited.end()) {
+                continue;
+            }
+            double result = calculate(it -> first, second, connect, visited);
+            if (result != -1.0) {
+                return (it -> second) * result;
+            }
+        }
+        return -1.0;
+    }
+public:
+    vector<double> calcEquation(vector<vector<string>>& equations, vector<double>& values, vector<vector<string>>& queries) {
+        unordered_map<string, unordered_map<string, double>> connect;
+        for (int i = 0; i < equations.size(); ++i) {
+            vector<string> equation = equations[i];
+            connect[equation[0]][equation[1]] = values[i];
+            connect[equation[1]][equation[0]] = 1 / values[i];
+        }
+        
+        vector<double> result;
+        for (vector<string>& query : queries) {
+            string first = query[0];
+            string second = query[1];
+            if (connect.find(first) == connect.end() or connect.find(second) == connect.end()) {
+                result.push_back(-1.0);
+                continue;
+            }
+            
+            if (first == second) {
+                result.push_back(1.0);
+                continue;
+            }
+            
+            unordered_set<string> visited;
+            result.push_back(calculate(first, second, connect, visited));
+        }
+        return result;
+    }
+};
+
+class Solution1 {
 public:
     vector<double> calcEquation(vector<pair<string, string>> equations, vector<double>& values, vector<pair<string, string>> queries) {
         unordered_map<string, int> points;
