@@ -1,3 +1,14 @@
+/*
+ 93. Restore IP Addresses
+
+ Given a string containing only digits, restore it by returning all possible valid IP address combinations.
+
+ Example:
+
+ Input: "25525511135"
+ Output: ["255.255.11.135", "255.255.111.35"]
+ */
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -37,7 +48,7 @@ public:
             return;
         }
 
-        for (int len = 1; len <= 3; ++len) {
+        for (int len = 1; len <= 3 and start + len <= s.size(); ++len) {
             string tip = s.substr(start, len);
             if (len == 1 or (tip[0] != '0' and stoi(tip) <= 255)) {
                 dfs(s, result, start + len, step + 1, ip + "." + tip);
@@ -46,10 +57,3 @@ public:
         return;
     }
 };
-
-int main() {
-    Solution s;
-    vector<int> temp({1,10,100,1000});
-    s.restoreIpAddresses("1111");
-    return 0;
-}
