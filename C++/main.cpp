@@ -14,54 +14,72 @@ using namespace std;
 
 class Solution {
 private:
-    vector<pair<int, int>> merge(vector<pair<int, int>>& intervals) {
-        if (intervals.empty()) {
-            return {};
+    int compare(string ver1, string ver2) {
+        if (ver1 == ver2) {
+            return 0;
         }
 
-        vector<pair<int, int>> result;
-        for (int i = 1; i < intervals.size(); i++) {
-            if (!result.empty() and result.back().second > intervals[i].first) {
-                result.back().second = max(result.back().second, intervals[i].second);
-            }
-            else {
-                result.push_back(intervals[i]);
-            }
+        int len1 = ver1.size();
+        int idx1 = 0;
+        while (idx1 < len1 and ver1[idx1] == '0') {
+            idx1 += 1;
         }
-        return result;
+
+        int len2 = ver2.size();
+        int idx2 = 0;
+        while (idx2 < len2 and ver2[idx2] == '0') {
+            idx2 += 1;
+        }
+
+        while (idx1 < len1 and idx2 < len2) {
+            if (ver1[idx1] < ver2[idx2]) {
+                return -1;
+            }
+            if (ver1[idx1] > ver2[idx2]) {
+                return 1;
+            }
+            idx1 += 1;
+            idx2 += 1;
+        }
+
+        if (idx1 == len1) {
+            return -1;
+        }
+        return 1;
     }
 public:
-    vector<int> partitionLabels(string S) {
-        vector<vector<int>> letter(26);
-        int index = 0;
-        for (char c : S) {
-            letter[c - 'a'].push_back(index);
-            index += 1;
+    int compareVersion(string version1, string version2) {
+        if (version1 == version2) {
+            return 0;
         }
 
-        vector<pair<int, int>> intervals;
-        for (vector<int>& l : letter) {
-            if (!l.empty()) {
-                intervals.push_back({l.front(), l.back()});
-            }
+        if (version1.empty()) {
+            return -1;
         }
 
-        sort(intervals.begin(), intervals.end(), [](pair<int, int>& a, pair<int, int>& b) {
-            return a.first < b.first or (a.first == b.first and a.second < b.second);
-        });
-        vector<pair<int, int>> partitions = merge(intervals);
-
-        vector<int> result;
-        for (pair<int, int>& p : partitions) {
-            result.push_back(p.second - p.first + 1);
+        if (version2.empty()) {
+            return 1;
         }
-        return result;
+
+        size_t pos1 = version1.find('.');
+        string subVer1 = pos1 == string::npos ? version1 : version1.substr(0, pos1);
+
+        size_t pos2 = version2.find('.');
+        string subVer2 = pos2 == string::npos ? version2 : version2.substr(0, pos2);
+
+        int result = compare(subVer1, subVer2);
+        if (result != 0) {
+            return result;
+        }
+
+        version1 = pos1 == string::npos ? "" : version1.substr(pos1 + 1);
+        version2 = pos2 == string::npos ? "" : version2.substr(pos2 + 1);
+        return compareVersion(version1, version2);
     }
 };
-
 int main() {
-    int x = stoi("-100");
+    int x = stoi("001");
     Solution s;
     vector<int> temp({1,10,100,1000});
-    s.partitionLabels("ababcbacadefegdehijhklij");
+    s.compareVersion("01", "1");
 }
