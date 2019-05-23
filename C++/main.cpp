@@ -13,43 +13,55 @@
 using namespace std;
 
 class Solution {
-public:
-    vector<string> restoreIpAddresses(string s) {
-        if (s.empty() || s.size() > 3 * 4 || s.size() < 4) {
+private:
+    vector<pair<int, int>> merge(vector<pair<int, int>>& intervals) {
+        if (intervals.empty()) {
             return {};
         }
 
-        vector<string> result;
-        dfs(s, result, 0, 0, "");
+        vector<pair<int, int>> result;
+        for (int i = 1; i < intervals.size(); i++) {
+            if (!result.empty() and result.back().second > intervals[i].first) {
+                result.back().second = max(result.back().second, intervals[i].second);
+            }
+            else {
+                result.push_back(intervals[i]);
+            }
+        }
         return result;
     }
-
-    void dfs(string s, vector<string> &result, int start, int step, string ip) {
-        if (s.size() < start || step > 4) {
-            return;
+public:
+    vector<int> partitionLabels(string S) {
+        vector<vector<int>> letter(26);
+        int index = 0;
+        for (char c : S) {
+            letter[c - 'a'].push_back(index);
+            index += 1;
         }
 
-        if (step == 4) {
-            if (s.size() == start) {
-                ip = ip.substr(1);
-                result.push_back(ip);
-            }
-            return;
-        }
-
-        for (int len = 1; len <= 3; ++len) {
-            string tip = s.substr(start, len);
-            if (len == 1 or (tip[0] != '0' and stoi(tip) <= 255)) {
-                dfs(s, result, start + len, step + 1, ip + "." + tip);
+        vector<pair<int, int>> intervals;
+        for (vector<int>& l : letter) {
+            if (!l.empty()) {
+                intervals.push_back({l.front(), l.back()});
             }
         }
-        return;
+
+        sort(intervals.begin(), intervals.end(), [](pair<int, int>& a, pair<int, int>& b) {
+            return a.first < b.first or (a.first == b.first and a.second < b.second);
+        });
+        vector<pair<int, int>> partitions = merge(intervals);
+
+        vector<int> result;
+        for (pair<int, int>& p : partitions) {
+            result.push_back(p.second - p.first + 1);
+        }
+        return result;
     }
 };
 
 int main() {
+    int x = stoi("-100");
     Solution s;
     vector<int> temp({1,10,100,1000});
-    s.restoreIpAddresses("1111");
-    return 0;
+    s.partitionLabels("ababcbacadefegdehijhklij");
 }
