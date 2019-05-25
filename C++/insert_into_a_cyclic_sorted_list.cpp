@@ -7,19 +7,17 @@
  
  The following example may help you understand the problem better:
  
- 
- 
- 
- 
+  1-------------
+  ^             |
+  |             |
+  |             V
+  2 <-----------3 <----head
  In the figure above, there is a cyclic sorted list of three elements. You are given a reference to the node with value 3, and we need to insert 2 into the list.
- 
- 
- 
- 
- 
- 
- 
- 
+  1-------------2
+  ^             |
+  |             |
+  |             V
+  2 <-----------3 <----head
  
  The new node should insert between node 1 and node 3. After the insertion, the list should look like this, and we should still return node 3.
  */
