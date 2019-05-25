@@ -31,7 +31,7 @@ private:
     int n;
     int getNext(vector<int>& nums, int i) {
         int next = i + nums[i];
-        return next > 0 ? next % n : n + (next % n);
+        return next >= 0 ? next % n : n + (next % n);
     }
 public:
     bool circularArrayLoop(vector<int>& nums) {
@@ -54,10 +54,16 @@ public:
             bool moveForward = nums[slow] > 0;
             bool wrong = false;
             do {
-                slow = getNext(nums, slow);
-                fast = getNext(nums, getNext(nums, fast));
-                if ((moveForward && nums[slow] < 0) || (!moveForward && nums[slow] > 0)) {
+                fast = getNext(nums, fast);
+                if ((moveForward && nums[fast] < 0) || (!moveForward && nums[fast] > 0)) {
                     wrong = true;
+                    break;
+                }
+                fast = getNext(nums, fast);
+                slow = getNext(nums, slow);
+                if ((moveForward && nums[fast] < 0) || (!moveForward && nums[fast] > 0)) {
+                    wrong = true;
+                    break;
                 }
             } while (nums[slow] != 0 && slow != fast && !wrong);
             
