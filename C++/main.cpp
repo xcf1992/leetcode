@@ -14,72 +14,66 @@ using namespace std;
 
 class Solution {
 private:
-    int compare(string ver1, string ver2) {
-        if (ver1 == ver2) {
-            return 0;
+    int M = 0;
+    int N = 0;
+    
+    bool search(int sRow, int sCol, int eRow, int eCol, vector<vector<int>>& matrix, int target) {
+        if (sRow < 0 or sRow >= M or sCol < 0 or sCol >= N) {
+            return false;
         }
-
-        int len1 = ver1.size();
-        int idx1 = 0;
-        while (idx1 < len1 and ver1[idx1] == '0') {
-            idx1 += 1;
+        if (eRow < 0 or eRow >= M or eCol < 0 or eCol >= N) {
+            return false;
         }
-
-        int len2 = ver2.size();
-        int idx2 = 0;
-        while (idx2 < len2 and ver2[idx2] == '0') {
-            idx2 += 1;
+        if (sRow > eRow or sCol > eCol) {
+            return false;
         }
-
-        while (idx1 < len1 and idx2 < len2) {
-            if (ver1[idx1] < ver2[idx2]) {
-                return -1;
-            }
-            if (ver1[idx1] > ver2[idx2]) {
-                return 1;
-            }
-            idx1 += 1;
-            idx2 += 1;
+        
+        if (sRow == eRow and sCol == eCol) {
+            return matrix[sRow][sCol] == target;
         }
-
-        if (idx1 == len1) {
-            return -1;
+        if (matrix[sRow][sCol] > target) {
+            return false;
         }
-        return 1;
+        if (matrix[eRow][eCol] < target) {
+            return false;
+        }
+        
+        int mRow = sRow + (eRow - sRow) / 2;
+        int mCol = sCol + (eCol - sCol) / 2;
+        if (target == matrix[mRow][mCol]) {
+            return true;
+        }
+        
+        if (target < matrix[mRow][mCol]) {
+            return search(sRow, sCol, mRow, mCol, matrix, target);
+        }
+        
+        return search(mRow + 1, mCol + 1, eRow, eCol, matrix, target) or
+        search(mRow + 1, sCol, eRow, mCol, matrix, target) or
+        search(sRow, mCol + 1, mRow, eCol, matrix, target);
     }
 public:
-    int compareVersion(string version1, string version2) {
-        if (version1 == version2) {
-            return 0;
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        M = matrix.size();
+        if (M == 0) {
+            return false;
         }
-
-        if (version1.empty()) {
-            return -1;
-        }
-
-        if (version2.empty()) {
-            return 1;
-        }
-
-        size_t pos1 = version1.find('.');
-        string subVer1 = pos1 == string::npos ? version1 : version1.substr(0, pos1);
-
-        size_t pos2 = version2.find('.');
-        string subVer2 = pos2 == string::npos ? version2 : version2.substr(0, pos2);
-
-        int result = compare(subVer1, subVer2);
-        if (result != 0) {
-            return result;
-        }
-
-        version1 = pos1 == string::npos ? "" : version1.substr(pos1 + 1);
-        version2 = pos2 == string::npos ? "" : version2.substr(pos2 + 1);
-        return compareVersion(version1, version2);
+        N = matrix[0].size();
+        
+        return search(0, 0, M - 1, N - 1, matrix, target);
     }
 };
+
 int main() {
     int x = stoi("001");
     Solution s;
     vector<int> temp({1,10,100,1000});
-    s.compareVersion("01", "1");
+    vector<vector<int>> matrix({
+        {1,2,3,4,5},
+        {6,7,8,9,10},
+        {11,12,13,14,15},
+        {16,17,18,19,20},
+        {21,22,23,24,25}
+    });
+    s.searchMatrix(matrix, 5);
 }
