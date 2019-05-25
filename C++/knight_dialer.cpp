@@ -135,7 +135,7 @@ public:
 };
 
 // Time limit exceed
-class Solution1 {
+class Solution2 {
 private:
     long MOD = 1e9 + 7;
     
