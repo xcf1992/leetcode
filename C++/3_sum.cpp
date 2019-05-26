@@ -22,8 +22,51 @@ A solution set is:
 #include <algorithm>
 using namespace std;
 
-
 class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int> &num) {
+        if (num.size() <= 2 || (num.size() == 3 && num[0] + num[1] + num[2] != 0)) {
+            return {};
+        }
+        
+        sort(num.begin(), num.end());
+        vector<vector<int>> results;
+        for (int i = 0; i < num.size(); i++) {
+            if (i != 0 && num[i] == num[i - 1]) {
+                continue;
+            }
+
+            int needed = 0 - num[i];
+            int forward = i + 1;
+            int backward = num.size() - 1;
+            while (forward < backward) {
+                while (forward > i + 1 and forward < num.size() and num[forward] == num[forward - 1]) {
+                    forward++;
+                }
+                while (backward < num.size() - 1 and backward >= 0 and num[backward] == num[backward + 1]) {
+                    backward--;
+                }
+                if (forward >= backward) {
+                    break;
+                }
+
+                if (num[forward] + num[backward] == needed) {
+                    results.push_back({num[i], num[forward], num[backward]});
+                    forward++;
+                }
+                else if (num[forward] + num[backward] < needed) {
+                    forward++;
+                }
+                else if (num[forward] + num[backward] > needed) {
+                    backward--;
+                }
+            }
+        } 
+        return results;
+    }
+};
+
+class Solution1 {
 public:
     vector<vector<int>> threeSum(vector<int> &num) {
         if (num.size() <= 2 || (num.size() == 3 && num[0] + num[1] + num[2] != 0)) {
