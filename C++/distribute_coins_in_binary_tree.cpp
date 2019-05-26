@@ -1,4 +1,6 @@
 /*
+979. Distribute Coins in Binary Tree
+
  Given the root of a binary tree with N nodes, each node in the tree has node.val coins, and there are N coins total.
  
  In one move, we may choose two adjacent nodes and move one coin from one node to another.  (The move may be from parent to child, or from child to parent.)
@@ -55,13 +57,42 @@
 #include <numeric>
 using namespace std;
 
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+private:
+    int traverse(TreeNode* root, int& result) {
+        if (root == nullptr) {
+            return 0;
+        }
+        
+        int leftCarry = traverse(root -> left, result);
+        int rightCarry = traverse(root -> right, result);
+        result += abs(leftCarry) + abs(rightCarry);
+        return leftCarry + rightCarry + root -> val - 1;
+    }
+public:
+    int distributeCoins(TreeNode* root) {
+        int result = 0;
+        traverse(root, result);
+        return result;
+    }
+};
+
 struct TreeNode {
       int val;
       TreeNode *left;
       TreeNode *right;
      TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  };
-class Solution {
+class Solution1 {
 private:
     void check(TreeNode* root, int& result) {
         if (root == nullptr) {
