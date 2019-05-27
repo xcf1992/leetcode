@@ -43,10 +43,68 @@
 #include <set>
 #include <numeric>
 using namespace std;
+class Codec {
+public:
+
+    // Encodes a list of strings to a single string.
+    string encode(vector<string>& strs) {
+        if (strs.empty()) {
+            return "";
+        }
+        
+        string result = "";
+        for (string s : strs) {
+            for (char c : s) {
+                if (c == '#') {
+                    result += "$#";
+                }
+                else if (c == '$') {
+                    result += "$$";
+                }
+                else {
+                    result.push_back(c);
+                }
+            }
+            result += "#";
+        }
+        return result;
+    }
+
+    // Decodes a single string to a list of strings.
+    vector<string> decode(string s) {
+        if (s == "") {
+            return {};
+        }
+        
+        vector<string> result;
+        string cur = "";
+        int index = 0;
+        while (index < s.size()) {
+            if (s[index] == '#') {
+                result.push_back(cur);
+                cur = "";
+                index += 1;
+                continue;
+            }
+            
+            if (s[index] == '$') {
+                index += 1;
+            }
+            cur += s[index];
+            index += 1;
+        }
+        return result;
+    }
+};
+
+// Your Codec object will be instantiated and called as such:
+// Codec codec;
+// codec.decode(codec.encode(strs));
+
 // reason we need both start letter and end letter
 // if the input list is ["", ""] and we onlly have start or end letter
 // then we cannot test if there are two string or one start letter
-class Codec {
+class Codec1 {
 public:
     
     // Encodes a list of strings to a single string.
