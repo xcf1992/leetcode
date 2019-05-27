@@ -74,35 +74,29 @@ public:
                 return true;
             }
 
-            bool completed = false;
+            bool completed = true;
             for (int i = 0; i < curSize; i++) {
                 TreeNode* node = bfs.front();
                 bfs.pop();
-                if (!completed) {
-                    if (node -> left == nullptr) {
-                        completed = true;
+                
+                if (node -> left) {
+                    if (!completed) {
+                        return false;
+                    }
+                    bfs.push(node -> left);
+                    if (node -> right) {
+                        bfs.push(node -> right);
                     }
                     else {
-                        bfs.push(node -> left);
-                    }
-
-                    if (node -> right != nullptr) {
-                        if (completed) {
-                            return false;
-                        }
-                        else {
-                            bfs.push(node -> right);
-                        }
-                    }
-                    else {
-                        if (!completed) {
-                            completed = true;
-                        }
+                        completed = false;
                     }
                 }
                 else {
-                    if (node -> left != nullptr or node -> right != nullptr) {
+                    if (node -> right) {
                         return false;
+                    }
+                    else {
+                        completed = false;
                     }
                 }
             }
