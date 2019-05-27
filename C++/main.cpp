@@ -14,33 +14,39 @@ using namespace std;
 
 class Solution {
 public:
-    int search(vector<int>& nums, int target) {
-        int left = 0;
-        int right = nums.size() - 1;
-        while (left < right) {
-            int mid = left + (right - left) / 2;
-            if (nums[mid] == target) {
-                return mid;
-            }
+    vector<int> findDiagonalOrder(vector<vector<int>>& matrix) {
+        int m = matrix.size();
+        int n = matrix[0].size();
+        vector<pair<int, int>> stk;
+        stk.push_back({0, 0});
+        vector<int> result;
+        int step = 1;
+        while (!stk.empty()) {
+            vector<pair<int, int>> next;
+            vector<int> cur;
             
-            if (nums[mid] > nums[left]) {
-                if (target >= nums[left] and target < nums[mid]) {
-                    right = mid - 1;
+            for (int k = 0; k < stk.size(); ++k) {
+                int i = stk[k].first;
+                int j = stk[k].second;
+                cur.push_back(matrix[i][j]);
+                
+                if (j == 0 and i + 1 < m) {
+                    next.push_back({i + 1, j});
                 }
-                else {
-                    left = mid + 1;
-                }
-            }
-            else {
-                if (target > nums[mid] and target <= nums[right]) {
-                    left = mid + 1;
-                }
-                else {
-                    right = mid - 1;
+                if (j + 1 < n) {
+                    next.push_back({i, j + 1});
                 }
             }
+            stk = next;
+            
+            int start = step == 1 ? 0 : cur.size() - 1;
+            int end = step == 1 ? cur.size() - 1 : 0;
+            for (int i = start; i <= end; i += step == 1 ? 1 : -1) {
+                result.push_back(cur[i]);
+            }
+            step = 1 - step;
         }
-        return -1;
+        return result;
     }
 };
 
@@ -49,11 +55,9 @@ int main() {
     Solution s;
     vector<int> temp({4,5,6,7,0,1,2});
     vector<vector<int>> matrix({
-        {1,2,3,4,5},
-        {6,7,8,9,10},
-        {11,12,13,14,15},
-        {16,17,18,19,20},
-        {21,22,23,24,25}
+        {1,2,3},
+        {4,5,6},
+        {7,8,9}
     });
-    s.search(temp, 0);
+    s.findDiagonalOrder(matrix);
 }
