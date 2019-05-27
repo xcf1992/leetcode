@@ -14,50 +14,36 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> findDiagonalOrder(vector<vector<int>>& matrix) {
-        int m = matrix.size();
-        int n = matrix[0].size();
-        vector<pair<int, int>> stk;
-        stk.push_back({0, 0});
-        vector<int> result;
-        int step = 1;
-        while (!stk.empty()) {
-            vector<pair<int, int>> next;
-            vector<int> cur;
-            
-            for (int k = 0; k < stk.size(); ++k) {
-                int i = stk[k].first;
-                int j = stk[k].second;
-                cur.push_back(matrix[i][j]);
-                
-                if (j == 0 and i + 1 < m) {
-                    next.push_back({i + 1, j});
-                }
-                if (j + 1 < n) {
-                    next.push_back({i, j + 1});
-                }
+    vector<string> findMissingRanges(vector<int>& nums, int lower, int upper) {
+        if (nums.empty()) {
+            return {to_string(lower) + "->" + to_string(upper)};
+        }
+        
+        if (nums.back() < upper) {
+            nums.push_back(upper);
+        }
+        vector<string> result;
+        for (int i = 0; i < nums[i]; ++i) {
+            int cur = nums[i];
+            if (cur - lower == 2) {
+                result.push_back(to_string(lower + 1));
             }
-            stk = next;
-            
-            int start = step == 1 ? 0 : cur.size() - 1;
-            int end = step == 1 ? cur.size() - 1 : 0;
-            for (int i = start; i <= end; i += step == 1 ? 1 : -1) {
-                result.push_back(cur[i]);
+            else if (cur - lower > 2) {
+                result.push_back(to_string(lower + 1) + "->" + to_string(cur - 1));
             }
-            step = 1 - step;
+            lower = cur;
         }
         return result;
     }
 };
 
 int main() {
-    int x = stoi("001");
     Solution s;
-    vector<int> temp({4,5,6,7,0,1,2});
+    vector<int> temp({0,1,3,50,75});
     vector<vector<int>> matrix({
         {1,2,3},
         {4,5,6},
         {7,8,9}
     });
-    s.findDiagonalOrder(matrix);
+    s.findMissingRanges(temp, 0, 99);
 }
