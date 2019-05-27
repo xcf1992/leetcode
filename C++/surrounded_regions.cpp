@@ -1,3 +1,26 @@
+/*
+130. Surrounded Regions
+
+Given a 2D board containing 'X' and 'O' (the letter O), capture all regions surrounded by 'X'.
+
+A region is captured by flipping all 'O's into 'X's in that surrounded region.
+
+Example:
+
+X X X X
+X O O X
+X X O X
+X O X X
+After running your function, the board should be:
+
+X X X X
+X X X X
+X X X X
+X O X X
+Explanation:
+
+Surrounded regions shouldn’t be on the border, which means that any 'O' on the border of the board are not flipped to 'X'. Any 'O' that is not on the border and it is not connected to an 'O' on the border will be flipped to 'X'. Two cells are connected if they are adjacent cells connected horizontally or vertically.
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -7,115 +30,46 @@
 #include <queue>
 using namespace std;
 
-struct Position {
-    int x;
-    int y;
-    Position(int x_, int y_) {
-        x = x_;
-        y = y_;
-    }
-};
-
-void dfs(vector<vector<char>> &board, int x, int y) {
-        int m = board.size();
-        int n = board.front().size();
-        
-		cout << "x: " << x << " y: " << y << endl;
-
-        if (y - 1 >= 0) {
-            if (board[x][y - 1] == 'O') {
-                board[x][y - 1] = 'N';
-                dfs(board, x, y - 1);
-            }
+class Solution {
+private:
+    int m = 0;
+    int n = 0;
+    
+    void dfs(vector<vector<char>>& board, int row, int col) {
+        if (row < 0 or col < 0 or row >= m or col >= n) {
+            return;
         }
-        if (y + 1 < n) {
-            if (board[x][y + 1] == 'O') {
-                board[x][y + 1] = 'N';
-                dfs(board, x, y + 1);
-            }
-        }
-        if (x - 1 >= 0) {
-            if (board[x - 1][y] == 'O') {
-                board[x - 1][y] = 'N';
-                dfs(board, x - 1, y);
-            }
-        }
-        if (x + 1 < m) {
-            if (board[x + 1][y] == 'O') {
-                board[x + 1][y] = 'N';
-                dfs(board, x + 1, y);
-            }
-        }
-        
-        return;
-    }
-
-void solve(vector<vector<char>> &board) {
-         if (board.empty()) {
+        if (board[row][col] != 'O') {
             return;
         }
         
-        int m = board.size();
-        int n = board.front().size();
-        
-        queue<struct Position> que;
-        
-        for (int j = 0; j != n; j++) {
-            if (board[0][j] == 'O') {
-                board[0][j] == 'N';
-                struct Position pos(0, j);
-                que.push(pos);
-            }
-            if (board[m - 1][j] == 'O') {
-                board[m - 1][j] == 'N';
-                struct Position pos(m - 1, j);
-                que.push(pos);
-            }
+        board[row][col] = 'C';
+        vector<int> rDiff = {1, -1, 0, 0};
+        vector<int> cDiff = {0, 0, 1, -1};
+        for (int i = 0; i < 4; ++i) {
+            dfs(board, row + rDiff[i], col + cDiff[i]);
         }
-        for (int i = 1; i <= m - 2; i++) {
-            if (board[i][0] == 'O') {
-                board[i][0] = 'N';
-                struct Position pos(i, 0);
-                que.push(pos);
-            }
-            if (board[i][n - 1] == 'O') {
-                board[i][n - 1] = 'N';
-                struct Position pos(i, n - 1);
-                que.push(pos);
-            }
+    }
+public:
+    void solve(vector<vector<char>>& board) {
+        m = board.size();
+        if (m == 0) {
+            return;
+        }
+        n = board[0].size();
+        
+        for (int i = 0; i < m; ++i) {
+            dfs(board, i, 0);
+            dfs(board, i, n - 1);
+        }
+        for (int j = 0; j < n; ++j) {
+            dfs(board, 0, j);
+            dfs(board, m - 1, j);
         }
         
-        while (!que.empty()) {
-            struct Position pos = que.front();
-            que.pop();
-            int i = pos.x;
-            int j = pos.y;
-            
-            if (i - 1 >= 0 && board[i - 1][j] == 'O') {
-                board[i - 1][j] = 'N';
-                struct Position pos(i - 1, j);
-                que.push(pos);
-            }
-            if (i + 1 < m && board[i + 1][j] == 'O') {
-                board[i + 1][j] = 'N';
-                struct Position pos(i + 1, j);
-                que.push(pos);
-            }
-            if (j - 1 >= 0 && board[i][j - 1] == 'O') {
-                board[i][j - 1] = 'N';
-                struct Position pos(i, j - 1);
-                que.push(pos);
-            }
-            if (j + 1 < n && board[i][j + 1] == 'O') {
-                board[i][j + 1] = 'N';
-                struct Position pos(i, j + 1);
-                que.push(pos);
-            }
-        }
-        
-        for (int i = 0; i != m; i++) {
-            for (int j = 0; j != n; j++) {
-                if (board[i][j] == 'N') {
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; ++j) {
+                if (board[i][j] == 'C') {
                     board[i][j] = 'O';
                 }
                 else if (board[i][j] == 'O') {
@@ -123,37 +77,5 @@ void solve(vector<vector<char>> &board) {
                 }
             }
         }
-        
-        return;
     }
-    
-int main() {
-	vector<vector<char>> board;
-	vector<char> fuck;
-	fuck.push_back('O');
-	/*vector<char> row;
-	row.push_back('X');
-	row.push_back('O');
-	row.push_back('X');
-	row.push_back('O');
-	row.push_back('X');
-	row.push_back('O');
-
-	vector<char> row1;
-	row1.push_back('O');
-	row1.push_back('X');
-	row1.push_back('O');
-	row1.push_back('X');
-	row1.push_back('O');
-	row1.push_back('X');
-
-	vector<char> row2 = row;
-	vector<char> row3 = row1;
-	board.push_back(row);
-	board.push_back(row1);
-	board.push_back(row2);
-	board.push_back(row3);*/
-	board.push_back(row);
-	solve(board);
-	return 0;
-}
+};
