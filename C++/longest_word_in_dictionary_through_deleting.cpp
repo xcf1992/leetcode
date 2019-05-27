@@ -27,7 +27,7 @@ public:
     string findLongestWord(string s, vector<string>& d) {
         string result = "";
         for (string word : d) {
-            if (isSubsequence(s, word)) {
+            if (isSubsequence(word, s)) {
                 if (word.size() > result.size()) {
                     result = word;
                 }
