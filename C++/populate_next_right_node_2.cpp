@@ -1,3 +1,35 @@
+/*
+117. Populating Next Right Pointers in Each Node II
+Given a binary tree
+
+struct Node {
+  int val;
+  Node *left;
+  Node *right;
+  Node *next;
+}
+Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.
+
+Initially, all next pointers are set to NULL.
+
+ 
+
+Example:
+
+
+
+Input: {"$id":"1","left":{"$id":"2","left":{"$id":"3","left":null,"next":null,"right":null,"val":4},"next":null,"right":{"$id":"4","left":null,"next":null,"right":null,"val":5},"val":2},"next":null,"right":{"$id":"5","left":null,"next":null,"right":{"$id":"6","left":null,"next":null,"right":null,"val":7},"val":3},"val":1}
+
+Output: {"$id":"1","left":{"$id":"2","left":{"$id":"3","left":null,"next":{"$id":"4","left":null,"next":{"$id":"5","left":null,"next":null,"right":null,"val":7},"right":null,"val":5},"right":null,"val":4},"next":{"$id":"6","left":null,"next":null,"right":{"$ref":"5"},"val":3},"right":{"$ref":"4"},"val":2},"next":null,"right":{"$ref":"6"},"val":1}
+
+Explanation: Given the above binary tree (Figure A), your function should populate each next pointer to point to its next right node, just like in Figure B.
+ 
+
+Note:
+
+You may only use constant extra space.
+Recursive approach is fine, implicit stack space does not count as extra space for this problem.
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -6,86 +38,55 @@
 using namespace std;
 
 
-struct TreeLinkNode {
-	int val;
-	TreeLinkNode *left, *right, *next;
-	TreeLinkNode(int x) : val(x), left(nullptr), right(nullptr), next(nullptr) {}
-};
-
-class Solution {
+/*
+// Definition for a Node.
+class Node {
 public:
-    void connect(TreeLinkNode *root) {
-        if ( root == nullptr) {
-            return ;
-        }
+    int val;
+    Node* left;
+    Node* right;
+    Node* next;
 
-        struct TreeLinkNode * leftmost = root;
-        struct TreeLinkNode * current = nullptr;
+    Node() {}
 
-        while (leftmost != nullptr) {
-            current = leftmost;
-            TreeLinkNode * newleft = nullptr;
-            TreeLinkNode * newright = nullptr;
-
-            while (current != nullptr) {
-
-                while (newleft == nullptr && current != nullptr) {
-                    if (current->left != nullptr) {
-                        newleft = current->left;
-                    }
-                    else if (current->right != nullptr) {
-                        newleft = current->right;
-                    }
-                    else {
-                        current = current->next;
-                    }
-                }
-
-                while (newright == nullptr && current != nullptr) {
-                    if (current->left != nullptr && newleft != current->left) {
-                        newright = current->left;
-                    }
-                    else if (current->right != nullptr && newleft != current->right) {
-                        newright = current->right;
-                    }
-                    else {
-                        current = current->next;
-                    }
-                }
-
-                if (newleft != nullptr) {
-                    if ((newright == nullptr && current == nullptr) || (newright != nullptr)) {
-                        newleft->next = newright;
-                        newleft = newright;
-                        newright = nullptr;
-                    }
-                }
-            }
-
-            TreeLinkNode * newleftmost = nullptr;
-            while (newleftmost == nullptr && leftmost != nullptr) {
-                if (leftmost->left != nullptr) {
-                    newleftmost = leftmost->left;
-                }
-                else if (leftmost->right != nullptr) {
-                    newleftmost = leftmost->right;
-                }
-                else {
-                    leftmost = leftmost->next;
-                }
-            }
-            leftmost = newleftmost;
-        }
-
-        return ;
+    Node(int _val, Node* _left, Node* _right, Node* _next) {
+        val = _val;
+        left = _left;
+        right = _right;
+        next = _next;
     }
 };
-
-int main() {
-	TreeLinkNode *root = new TreeLinkNode(1);
-	root->left = new TreeLinkNode(2);
-	root->right = new TreeLinkNode(3);
-	Solution s;
-	s.connect(root);
-	return 0;
-}
+*/
+class Solution {
+public:
+    Node* connect(Node* root) {
+        if (root == nullptr || (root -> left == nullptr and root -> right == nullptr)) {
+            return root;
+        }
+        
+        queue<Node*> bfs;
+        bfs.push(root);
+        while (!bfs.empty()) {
+            int curSize = bfs.size();
+            Node* pre = nullptr;
+            for (int i = 0; i < curSize; ++i) {
+                Node* cur = bfs.front();
+                bfs.pop();
+                
+                if (pre != nullptr) {
+                    pre -> next = cur;
+                    
+                }
+                pre = cur;
+                
+                if (cur -> left) {
+                    bfs.push(cur -> left);
+                }
+                if (cur -> right) {
+                    bfs.push(cur -> right);
+                }
+            }
+        }
+        return root;
+    }
+};
