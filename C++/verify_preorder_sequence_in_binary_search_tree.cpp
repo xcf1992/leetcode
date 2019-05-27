@@ -18,7 +18,39 @@
 #include <stdio.h>
 #include <map>
 using namespace std;
+/*
+To translate this into code: 
+looking for the trend of numbers, if it’s decreasing, it’s still traversing the left child node all the way down, 
+we push the value into stack. When we read a value greater than the last one, 
+we know the current value belongs to a right node (let it be rc: right child) of one of the previous nodes (let it be p) 
+we pushed to stack, in other words, p is a parent node of the current node rc. Due to the property of preorder traversal, 
+p’s value is pushed to stack before its left subtree nodes, so to find the parent node, we pop all the nodes in its left subtree, 
+and the last popped node whose value is smaller than rc is rc’s parent p, whose value becomes the lower bound. 
 
+Then we keep reading the serialized array, in any case we see any value not greater than the lower bound, 
+we return false. Lower bound is updated whenever we read a right child node’s value.
+*/
+class Solution {
+public:
+    bool verifyPreorder(vector<int>& preorder) {
+        stack<int> stk;
+        int lower_bound = INT_MIN;
+        for(int i = 0; i < preorder.size(); i++){
+            if(stk.empty() || preorder[i] < preorder[i - 1]){
+                if(preorder[i] <= lower_bound) return false;
+                stk.push(preorder[i]);
+            }else{
+                while(!stk.empty() && stk.top() < preorder[i]){
+                    lower_bound = stk.top();
+                    stk.pop();
+                }
+                stk.push(preorder[i]);
+            }
+        }
+        
+        return true;
+    }
+};
 /*
  Given an array of numbers, verify whether it is the correct preorder traversal sequence of a binary search tree.
  
@@ -28,7 +60,7 @@ using namespace std;
  Could you do it using only constant space complexity?
  */
 
-class Solution {
+class Solution1 {
 private:
     bool verify(vector<int>& preorder, int start, int end, int minVal, int maxVal) {
         if (start >= end) {
@@ -48,12 +80,9 @@ private:
     }
 public:
     bool verifyPreorder(vector<int>& preorder) {
-        int start = 1;
-        int end = start;
-        while (end < preorder.size() && preorder[end] <= preorder[0]) {
-            end++;
+        if (preorder.size() <= 1) {
+            return true;
         }
-        return verify(preorder, start, end, INT_MIN, preorder[0]) &&
-                verify(preorder, end, (int)preorder.size(), preorder[0], INT_MAX);
+        return verify(preorder, 0, preorder.size(), INT_MIN, INT_MAX);
     }
 };
