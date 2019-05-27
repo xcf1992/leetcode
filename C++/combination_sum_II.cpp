@@ -1,3 +1,33 @@
+/*
+40. Combination Sum II
+
+Given a collection of candidate numbers (candidates) and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target.
+
+Each number in candidates may only be used once in the combination.
+
+Note:
+
+All numbers (including target) will be positive integers.
+The solution set must not contain duplicate combinations.
+Example 1:
+
+Input: candidates = [10,1,2,7,6,1,5], target = 8,
+A solution set is:
+[
+  [1, 7],
+  [1, 2, 5],
+  [2, 6],
+  [1, 1, 6]
+]
+Example 2:
+
+Input: candidates = [2,5,2,1,2], target = 5,
+A solution set is:
+[
+  [1,2,2],
+  [5]
+]
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -5,78 +35,35 @@
 #include <algorithm>
 using namespace std;
 
- void getResults(vector<int> &candidates, int target, int sum,
-                    vector<vector<int>> &results, vector<int> &result,
-                    int level, vector<bool> &pickUp) {
-        if (sum > target ||
-            level >= candidates.size() ||
-            target < sum + candidates.at(level)) {
-            return;
+class Solution {
+private:
+    void generate(vector<int> &num, int target, int sum, int level, vector<int> &solution, vector<vector<int>> &result) {
+        if (sum == target) {
+            result.push_back(solution);
         }
         
-        if ((target - sum) == candidates.at(level)) {
-            result.push_back(candidates.at(level));
-            results.push_back(result);
-            result.pop_back();
+        for (int i = level; i < num.size(); i++) {
+            sum += num[i];
+            if (sum > target) {
+                return;
+            }
+            solution.push_back(num[i]);
+            generate(num, target, sum, i + 1, solution, result);
+            solution.pop_back();
+            sum -= num[i];
+            while (i + 1 < num.size() && num[i + 1] == num[i]) {
+                i++;
+            }
         }
-        getResults(candidates, target, sum, results, result, level + 1, pickUp);
-        
-        if (level > 0 && candidates.at(level) == candidates.at(level - 1) && 
-            pickUp.at(level - 1)) {
-            result.push_back(candidates.at(level));
-            pickUp.at(level) = true;
-            sum += candidates.at(level);
-        }
-        if (level == 0) {
-            result.push_back(candidates.at(level));
-            pickUp.at(level) = true;
-            sum += candidates.at(level);
-        }
-
-        if (level >= candidates.size() - 1 || 
-            target < sum + candidates.at(level + 1)) {
-			if (pickUp.at(level)) {
-				result.pop_back();
-				pickUp.at(level) = false;
-			}
-            return;
-        }
-		if (pickUp.at(level)) {
-			getResults(candidates, target, sum, results, result, level + 1, pickUp);
-			result.pop_back();
-			pickUp.at(level) = false;
-		}
-        
-        return;
     }
-
-vector<vector<int> > combinationSum2(vector<int> &num, int target) {
-        vector<vector<int>> results;
-        results.clear();
-        vector<int> result;
-        result.clear();
-        
-        if (target == 0 || num.empty()) {
-            return results;
-        }
-        
-        sort(num.begin(), num.end());
-        
+public:
+    vector<vector<int> > combinationSum2(vector<int> &num, int target) {
+        vector<vector<int>> result;
+        vector<int> solution;
         int sum = 0;
-        vector<bool> pickUp(num.size(), false);
-        getResults(num, target, sum, results, result, 0, pickUp);
-        
-        return results;
+        int level = 0;
+        sort(num.begin(), num.end());
+        generate(num, target, sum, level, solution, result);
+        return result;
     }
-    
-    
-int main() {
-	vector<int> num;
-	num.push_back(1);
-	num.push_back(2);
-	num.push_back(5);
-	num.push_back(2);
-	num.push_back(2);
-	vector<vector<int>> results = combinationSum2(num, 5);
-	return 0;
-}
+};
