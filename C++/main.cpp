@@ -13,56 +13,41 @@
 using namespace std;
 
 class Solution {
-private:
-    int n;
-    int getNext(vector<int>& nums, int i) {
-        int next = i + nums[i];
-        while (next < 0) {
-            next += n;
-        }
-        return next % n;
-    }
 public:
-    bool circularArrayLoop(vector<int>& nums) {
-        n = nums.size();
-        if (n < 2) {
-            return false;
-        }
-        for (int i = 0; i < n; i++) {
-            if (i == getNext(nums, i)) {
-                nums[i] = 0;
+    int search(vector<int>& nums, int target) {
+        int left = 0;
+        int right = nums.size() - 1;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (nums[mid] == target) {
+                return mid;
             }
-        }
-        
-        for (int i = 0; i < n; i++) {
-            if (nums[i] == 0) {
-                continue;
-            }
-            int slow = i;
-            int fast = i;
-            bool moveForward = nums[slow] > 0;
-            bool wrong = false;
-            do {
-                slow = getNext(nums, slow);
-                fast = getNext(nums, getNext(nums, fast));
-                if ((moveForward && nums[slow] < 0) || (!moveForward && nums[slow] > 0)) {
-                    wrong = true;
-                }
-            } while (nums[slow] != 0 && slow != fast && !wrong);
             
-            if (nums[slow] != 0 && slow == fast && !wrong) {
-                return true;
+            if (nums[mid] > nums[left]) {
+                if (target >= nums[left] and target < nums[mid]) {
+                    right = mid - 1;
+                }
+                else {
+                    left = mid + 1;
+                }
             }
-            nums[i] = 0;
+            else {
+                if (target > nums[mid] and target <= nums[right]) {
+                    left = mid + 1;
+                }
+                else {
+                    right = mid - 1;
+                }
+            }
         }
-        return false;
+        return -1;
     }
 };
 
 int main() {
     int x = stoi("001");
     Solution s;
-    vector<int> temp({1,1,1,1,1,1,1,1,1,-5});
+    vector<int> temp({4,5,6,7,0,1,2});
     vector<vector<int>> matrix({
         {1,2,3,4,5},
         {6,7,8,9,10},
@@ -70,5 +55,5 @@ int main() {
         {16,17,18,19,20},
         {21,22,23,24,25}
     });
-    s.circularArrayLoop(temp);
+    s.search(temp, 0);
 }

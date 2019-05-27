@@ -56,16 +56,13 @@
 #include <map>
 #include <numeric>
 using namespace std;
+struct TreeNode {
+      int val;
+      TreeNode *left;
+      TreeNode *right;
+      TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+  };
 
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
 class Solution {
 private:
     int traverse(TreeNode* root, int& result) {
@@ -86,12 +83,6 @@ public:
     }
 };
 
-struct TreeNode {
-      int val;
-      TreeNode *left;
-      TreeNode *right;
-     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- };
 class Solution1 {
 private:
     void check(TreeNode* root, int& result) {
