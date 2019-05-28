@@ -32,11 +32,11 @@ private:
         return index;
     }
 public:
-    bool validTree(int n, vector<pair<int, int>>& edges) {
+    bool validTree(int n, vector<vector<int>>& edges) {
         vector<int> roots(n, -1);
-        for (pair<int, int>& edge : edges) {
-            int rootX = findRoot(roots, edge.first);
-            int rootY = findRoot(roots, edge.second);
+        for (vector<int>& edge : edges) {
+            int rootX = findRoot(roots, edge[0]);
+            int rootY = findRoot(roots, edge[1]);
             
             if (rootX == rootY) {
                 return false;
