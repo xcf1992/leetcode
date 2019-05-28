@@ -10,26 +10,22 @@
 #include <stdio.h>
 using namespace std;
 
-
 class Solution {
 public:
-    vector<pair<int, int>> reconstructQueue(vector<pair<int, int>>& people) {
-        vector<pair<int, int>> result;
+    vector<vector<int>> reconstructQueue(vector<vector<int>>& people) {
+        sort(people.begin(), people.end(), [](vector<int>& p1, vector<int>& p2) {
+            return p1[0] > p2[0] || (p1[0] == p2[0] && p1[1] < p2[1]); 
+        });
 
-        auto comp = [](const pair<int, int>& p1, const pair<int, int>& p2) { 
-            return p1.first > p2.first || (p1.first == p2.first && p1.second < p2.second); 
-        };
-
-        sort(people.begin(), people.end(), comp);
-        for (auto& p : people) {
-            result.insert(result.begin() + p.second, p);
+        vector<vector<int>> result;
+        for (int i = 0; i < people.size(); ++i) {
+            if (people[i][1] == result.size()) {
+                result.push_back(people[i]);
+            }
+            else {
+                result.insert(result.begin() + people[i][1], people[i]);
+            }
         }
-
         return result;
     }
 };
-
-int main() {
-    Solution s;
-    return 0;
-}
