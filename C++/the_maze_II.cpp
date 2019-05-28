@@ -64,14 +64,23 @@
 using namespace std;
 
 class Solution {
+private:
+    int m = 0;
+    int n = 0;
+    bool isValid(int row, int col) {
+        return row >= 0 and col >= 0 and row < m and col < n;
+    }
+
 public:
     int shortestDistance(vector<vector<int>>& maze, vector<int>& start, vector<int>& destination) {
-        int m = maze.size();
-        int n = maze[0].size();
+        m = maze.size();
+        n = maze[0].size();
+        vector<int> rDiff({-1, 1, 0, 0});
+        vector<int> cDiff({0, 0, -1, 1});
         
         queue<pair<int, int>> position;
         vector<vector<int>> distance(m, vector<int>(n, INT_MAX));
-        position.push(make_pair(start[0], start[1]));
+        position.push({start[0], start[1]});
         distance[start[0]][start[1]] = 0;
         
         int result = INT_MAX;
@@ -79,59 +88,28 @@ public:
             pair<int, int> curPos = position.front();
             position.pop();
             
-            int curX = curPos.first;
-            int curY = curPos.second;
-            int curDis = distance[curX][curY];
-            if (curX == destination[0] && curY == destination[1]) {
+            int row = curPos.first;
+            int col = curPos.second;
+            int curDis = distance[row][col];
+            if (row == destination[0] && col == destination[1]) {
                 result = min(result, curDis);
                 continue;
             }
             
-            // move down
-            int move = 0;
-            while (curX + 1 < m && maze[curX + 1][curY] != 1) {
-                curX += 1;
-                move += 1;
-            }
-            if (distance[curX][curY] > curDis + move) {
-                distance[curX][curY] = curDis + move;
-                position.push(make_pair(curX, curY));
-            }
-            
-            //move up
-            curX = curPos.first;
-            move = 0;
-            while (curX - 1 >= 0 && maze[curX - 1][curY] != 1) {
-                curX -= 1;
-                move += 1;
-            }
-            if (distance[curX][curY] > curDis + move) {
-                distance[curX][curY] = curDis + move;
-                position.push(make_pair(curX, curY));
-            }
-            
-            // move left
-            curX = curPos.first;
-            move = 0;
-            while (curY + 1 < n && maze[curX][curY + 1] != 1) {
-                curY += 1;
-                move += 1;
-            }
-            if (distance[curX][curY] > curDis + move) {
-                distance[curX][curY] = curDis + move;
-                position.push(make_pair(curX, curY));
-            }
-            
-            //move right
-            curY = curPos.second;
-            move = 0;
-            while (curY - 1 >= 0 && maze[curX][curY - 1] != 1) {
-                curY -= 1;
-                move += 1;
-            }
-            if (distance[curX][curY] > curDis + move) {
-                distance[curX][curY] = curDis + move;
-                position.push(make_pair(curX, curY));
+            for (int i = 0; i < 4; i++) {
+                row = curPos.first;
+                col = curPos.second;
+                int move = 0;
+
+                while (isValid(row + rDiff[i], col + cDiff[i]) and maze[row + rDiff[i]][col + cDiff[i]] != 1) {
+                    row += rDiff[i];
+                    col += cDiff[i];
+                    move += 1;
+                }
+                if (distance[row][col] > curDis + move) {
+                    distance[row][col] = curDis + move;
+                    position.push({row, col});
+                }
             }
         }
         
