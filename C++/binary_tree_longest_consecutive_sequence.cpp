@@ -81,32 +81,21 @@ public:
 class Solution {
 private:
     void traverse(TreeNode* root, TreeNode* pre, int& result, int length) {
+        if (root == nullptr) {
+            return;
+        }
         if (pre != nullptr && root -> val != 1 + pre -> val) {
-            result = max(result, length);
             length = 0;
         }
         
         length += 1;
-        
-        if (root -> left == nullptr && root -> right == nullptr) {
-            result = max(result, length);
-            return;
-        }
-        
-        if (root -> left != nullptr) {
-            traverse(root -> left, root, result, length);
-        }
-        
-        if (root -> right != nullptr) {
-            traverse(root -> right, root, result, length);
-        }
+        result = max(result, length);
+        traverse(root -> left, root, result, length);
+        traverse(root -> right, root, result, length);
     }
 public:
     int longestConsecutive(TreeNode* root) {
         int result = 0;
-        if (root == nullptr) {
-            return result;
-        }
         traverse(root, nullptr, result, 0);
         return result;
     }
