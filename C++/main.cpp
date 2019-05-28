@@ -14,41 +14,39 @@ using namespace std;
 
 class Solution {
 public:
-    int nextGreaterElement(int n) {
-        string num = to_string(n);
-        int len = num.size();
-        if (len == 1) {
-            return -1;
-        }
-        if (len == 2) {
-            if (num.front() >= num.back()) {
-                return -1;
+    bool canTransform(string start, string end) {
+        int n = start.size();
+        int pos1 = 0;
+        int pos2 = 0;
+        while (pos1 < n and pos2 < n) {
+            while (pos1 < n and start[pos1] == 'X') {
+                pos1 += 1;
             }
-            swap(num[0], num[1]);
-            return stoi(num);
-        }
+            while (pos2 < n and start[pos2] == 'X') {
+                pos2 += 1;
+            }
 
-        int left = len - 1;
-        while (left - 1 >= 0 and num[left - 1] >= num[left]) {
-            left -= 1;
-        }
-        if (left == 0) {
-            return -1;
-        }
+            // if one of the pos index goes to the end while the other is not,
+            // we should return false
+            if ((pos1 < n) ^ (pos2 < n)) {
+                return false;
+            }
 
-        int right = len - 1;
-        while (num[right] <= num[left - 1]) {
-            right -= 1;
-        }
-        swap(num[left - 1], num[right]);
+            if (pos1 < n and pos2 < n) {
+                if (start[pos1] != end[pos2]) {
+                    return false;
+                }
 
-        right = len - 1;
-        while (left < right) {
-            swap(num[left++], num[right--]);
-        }
+                if (start[pos1] == 'L' and pos1 < pos2) {
+                    return false;
+                }
 
-        long long result = stol(num);
-        return result > (long)INT_MAX ? -1 : result;
+                if (start[pos1] == 'R' and pos1 > pos2) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 };
 
@@ -60,5 +58,5 @@ int main() {
         {4,5,6},
         {7,8,9}
     });
-    s.nextGreaterElement(12443322);
+    s.canTransform("X", "L");
 }

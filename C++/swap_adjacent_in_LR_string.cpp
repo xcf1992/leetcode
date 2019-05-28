@@ -32,6 +32,56 @@
 #include <stdio.h>
 #include <set>
 using namespace std;
+
+/*
+Following the explanation in Approach #1, the target string must be solid and accessible.
+
+We use two pointers to solve it. Each pointer i, j points to an index of start, end with start[i] != 'X', end[j] != 'X'.
+
+Then, if start[i] != end[j], the target string isn't solid. Also, if start[i] == 'L' and i < j, (or start[i] == 'R' and i > j), the string is not accessible.
+
+In our Python implementation, we use generators to handle moving i, j to the next index where start[i] != 'X', end[j] != 'X'.
+*/
+class Solution {
+public:
+    bool canTransform(string start, string end) {
+        int n = start.size();
+        int pos1 = 0;
+        int pos2 = 0;
+        while (pos1 < n and pos2 < n) {
+            while (pos1 < n and start[pos1] == 'X') {
+                pos1 += 1;
+            }
+            while (pos2 < n and end[pos2] == 'X') {
+                pos2 += 1;
+            }
+
+            // if one of the pos index goes to the end while the other is not,
+            // we should return false
+            if ((pos1 < n) ^ (pos2 < n)) {
+                return false;
+            }
+
+            if (pos1 < n and pos2 < n) {
+                if (start[pos1] != end[pos2]) {
+                    return false;
+                }
+
+                if (start[pos1] == 'L' and pos1 < pos2) {
+                    return false;
+                }
+
+                if (start[pos1] == 'R' and pos1 > pos2) {
+                    return false;
+                }
+            }
+            pos1 += 1;
+            pos2 += 1;
+        }
+        return true;
+    }
+};
+
 /*
  The solution is simple and similar to others, but more detailed explanation is needed.
  
@@ -46,7 +96,7 @@ using namespace std;
  
  so left and right means extra L or R in the string start than end.
  */
-class Solution {
+class Solution1 {
 public:
     bool canTransform(string start, string end) {
         int left = 0;
