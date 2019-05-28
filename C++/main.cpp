@@ -14,26 +14,41 @@ using namespace std;
 
 class Solution {
 public:
-    vector<string> findMissingRanges(vector<int>& nums, int lower, int upper) {
-        if (nums.empty()) {
-            return {to_string(lower) + "->" + to_string(upper)};
+    int nextGreaterElement(int n) {
+        string num = to_string(n);
+        int len = num.size();
+        if (len == 1) {
+            return -1;
         }
-        
-        if (nums.back() < upper) {
-            nums.push_back(upper);
-        }
-        vector<string> result;
-        for (int i = 0; i < nums[i]; ++i) {
-            int cur = nums[i];
-            if (cur - lower == 2) {
-                result.push_back(to_string(lower + 1));
+        if (len == 2) {
+            if (num.front() >= num.back()) {
+                return -1;
             }
-            else if (cur - lower > 2) {
-                result.push_back(to_string(lower + 1) + "->" + to_string(cur - 1));
-            }
-            lower = cur;
+            swap(num[0], num[1]);
+            return stoi(num);
         }
-        return result;
+
+        int left = len - 1;
+        while (left - 1 >= 0 and num[left - 1] >= num[left]) {
+            left -= 1;
+        }
+        if (left == 0) {
+            return -1;
+        }
+
+        int right = len - 1;
+        while (num[right] <= num[left - 1]) {
+            right -= 1;
+        }
+        swap(num[left - 1], num[right]);
+
+        right = len - 1;
+        while (left < right) {
+            swap(num[left++], num[right--]);
+        }
+
+        long long result = stol(num);
+        return result > (long)INT_MAX ? -1 : result;
     }
 };
 
@@ -45,5 +60,5 @@ int main() {
         {4,5,6},
         {7,8,9}
     });
-    s.findMissingRanges(temp, 0, 99);
+    s.nextGreaterElement(12443322);
 }
