@@ -36,6 +36,10 @@
 #include <set>
 using namespace std;
 
+// k keeps track of how many characters we can remove
+// if the previous character in stk is larger than the current one
+// then removing it will get a smaller number
+// but we can only do so when k is larger than 0
 class Solution {
 public:
     string removeKdigits(string num, int k) {
@@ -44,27 +48,21 @@ public:
             return "0";
         }
         
-        stack<int> stk;
-        for (int i = 0; i < num.size(); i++) {
-            int digit = num[i] - '0';
-            
-            while (!stk.empty() && digit < stk.top() && stk.size() + k > i) {
-                stk.pop();
+        string result = "";
+        for (int i = 0; i < n; ++i) {
+            while (!result.empty() and num[i] < result.back() and k > 0) {
+                result.pop_back();
+                k -= 1;
             }
-            if (stk.size() < n - k) {
-                stk.push(digit);
+            if (!result.empty() or num[i] != '0') {
+                result.push_back(num[i]);
             }
         }
         
-        string result = "";
-        while (!stk.empty()) {
-            result.push_back('0' + stk.top());
-            stk.pop();
-        }
-        while (!result.empty() && result.back() == '0') {
+        while (!result.empty() and k > 0) {
             result.pop_back();
+            k -= 1;
         }
-        reverse(result.begin(), result.end());
         return result == "" ? "0" : result;
     }
 };
