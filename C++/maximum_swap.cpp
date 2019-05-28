@@ -22,6 +22,35 @@ using namespace std;
 class Solution {
 public:
     int maximumSwap(int num) {
+        string number = to_string(num);
+        int n = number.size();
+        vector<pair<char, int>> bigger(n, {'0', -1});
+        
+        char curMax = number.back();
+        int pos = n - 1;
+        for (int i = number.size() - 2; i>= 0; --i) {
+            if (number[i] > curMax) {
+                curMax = number[i];
+                pos = i;
+            }
+            else if (number[i] < curMax) {
+                bigger[i] = {curMax, pos};
+            }
+        }
+        
+        for (int i = 0; i < n - 1; ++i) {
+            if (bigger[i].first != '0') {
+                swap(number[i], number[bigger[i].second]);
+                break;
+            }
+        }
+        return stoi(number);
+    }
+};
+
+class Solution1 {
+public:
+    int maximumSwap(int num) {
         if (num < 10) {
             return num;
         }
