@@ -63,7 +63,63 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
 class Solution {
+public:
+    vector<vector<int>> verticalTraversal(TreeNode* root) {
+        if (root == nullptr) {
+            return {};
+        }
+        
+        map<int, vector<pair<int, int>>> column;
+        queue<pair<int, TreeNode*>> bfs;
+        bfs.push({0, root});
+        int row = 0;
+        while (!bfs.empty()) {
+            int curSize = bfs.size();
+            for (int i = 0; i < curSize; ++i) {
+                int pos = bfs.front().first;
+                TreeNode* node = bfs.front().second;
+                bfs.pop();
+
+                column[pos].push_back({row, node -> val});
+                if (node -> left) {
+                    bfs.push({pos + 1, node -> left});
+                }
+                if (node -> right) {
+                    bfs.push({pos - 1, node -> right});
+                }
+            }
+            row += 1;
+        }
+        
+        vector<vector<int>> result;
+        for (auto it = column.begin(); it != column.end(); ++it) {
+            vector<pair<int, int>> nums = it -> second;
+            sort(nums.begin(), nums.end(), [](pair<int, int>& a, pair<int, int>& b) {
+                return a.first < b.first or (a.first == b.first and a.second < b.second);
+            });
+            
+            vector<int> temp;
+            for (pair<int, int>& num : nums) {
+                temp.push_back(num.second);
+            }
+            result.push_back(temp);
+        }
+        reverse(result.begin(), result.end());
+        return result;
+    }
+};
+
+class Solution1 {
 public:
     vector<vector<int>> verticalTraversal(TreeNode* root) {
         map<int, vector<pair<int, int>>> topDownList;

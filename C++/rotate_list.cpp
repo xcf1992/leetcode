@@ -21,7 +21,7 @@ public:
         dummy->next = head;
         int length = 0;
         ListNode *pre = dummy;
-        while (pre != nullptr) {
+        while (pre -> next != nullptr) {
             length++;
             pre = pre->next;
         }
