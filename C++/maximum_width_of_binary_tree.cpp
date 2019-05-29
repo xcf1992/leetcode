@@ -25,40 +25,63 @@ struct TreeNode {
       TreeNode *right;
       TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
- 
+class Solution1 {
+private:
+    void dfs(int& result, unordered_map<int, int>& index, int height, int pos, TreeNode* root) {
+        if (root == nullptr) {
+            return;
+        }
+        
+        if (index.find(height) == index.end()) {
+            index[height] = pos;
+        }
+        else {
+            result = max(result, pos - index[height] + 1);
+        }
+        
+        dfs(result, index, height + 1, pos * 2, root -> left);
+        dfs(result, index, height + 1, pos * 2 + 1, root -> right);
+    }
+public:
+    int widthOfBinaryTree(TreeNode* root) {
+        int result = 0;
+        unordered_map<int, int> index;
+        dfs(result, index, 0, 0, root);
+        return result;
+    }
+};
+
 class Solution {
 public:
     int widthOfBinaryTree(TreeNode* root) {
         if (root == nullptr) {
             return 0;
         }
+
         int result = 1;
         queue<pair<int, TreeNode*>> row;
-        row.push(pair<int, TreeNode*>(0, root));
-        row.push(pair<int, TreeNode*>(-1, nullptr));
-        
+        row.push({0, root});
         while (!row.empty()) {
             int left = INT_MAX;
             int right = INT_MIN;
-            while (row.front().first != -1) {
-                pair<int, TreeNode*> cur = row.front();
-                int pos = cur.first;
-                TreeNode* node = cur.second;
+            int curSize = row.size();
+            for (int i = 0; i < curSize; ++i) {
+                int pos = row.front().first;
+                TreeNode* node = row.front().second;
+                row.pop();
+
                 left = min(left, pos);
                 right = max(right, pos);
                 if (node -> left) {
-                    row.push(pair<int, TreeNode*>(pos * 2, node -> left));
+                    row.push({pos * 2, node -> left});
                 }
                 if (node -> right) {
-                    row.push(pair<int, TreeNode*>(pos * 2 + 1, node -> right));
+                    row.push({pos * 2 + 1, node -> right});
                 }
-                row.pop();
             }
             if (left <= right) {
                 result = max(result, right - left + 1);
-                row.push(pair<int, TreeNode*>(-1, nullptr));
             }
-            row.pop();
         }
         return result;
     }
