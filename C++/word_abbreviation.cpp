@@ -32,6 +32,32 @@ using namespace std;
 
 class Solution {
 private:
+    void generate(vector<string>& result, int start, int preNum, string abbreviation, string& word) {
+        if (start >= word.size()) {
+            if (preNum != 0) {
+                abbreviation += to_string(preNum);
+            }
+            result.push_back(abbreviation);
+            return;
+        }
+
+        generate(result, start + 1, preNum + 1, abbreviation, word);
+        if (preNum != 0) {
+            abbreviation += to_string(preNum);
+        }
+        abbreviation.push_back(word[start]);
+        generate(result, start + 1, 0, abbreviation, word);
+    }
+public:
+    vector<string> generateAbbreviations(string word) {
+        vector<string> result;
+        generate(result, 0, 0, "", word);
+        return result;
+    }
+};
+
+class Solution {
+private:
     string abbreviate(string s, int k) {
         int length = s.size();
         if (k >= length - 2) {

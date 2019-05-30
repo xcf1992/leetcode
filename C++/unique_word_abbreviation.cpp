@@ -81,9 +81,7 @@ public:
             if (abbreviation[abbrev].size() == 1) {
                 return abbreviation[abbrev].find(word) != abbreviation[abbrev].end();
             }
-            else {
-                return false;
-            }
+            return false;
         }
         return true;
     }

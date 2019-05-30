@@ -9,47 +9,27 @@
 #include <stack>
 #include <stdio.h>
 using namespace std;
+
 class MyCalendar {
 private:
-    vector<pair<int, int>> events;
+    set<pair<int, int>> events;
 public:
     MyCalendar() {
     }
     
     bool book(int start, int end) {
-        if (events.empty()) {
-            events.push_back(pair<int, int>(start, end));
-            return true;
-        }
-        if (end <= events.front().first) {
-            events.insert(events.begin(), pair<int, int>(start, end));
-            return true;
-        }
-        if (start >= events.back().second) {
-            events.insert(events.end(), pair<int, int>(start, end));
-            return true;
-        }
+        auto it = events.lower_bound({start, end});
         
-        int st = 0;
-        int en = events.size();
-        while (st < en) {
-            int mi = st + (en - st) / 2;
-            if (start == events[mi].first) {
-                return false;
-            }
-            if (start < events[mi].first) {
-                en = mi;
-            }
-            else {
-                st = mi + 1;
-            }
+        if (it != events.end() and it -> first < end) {
+            return false;
         }
-        
-        if (end <= events[en].first && start >= events[en - 1].second) {
-            events.insert(events.begin() + en, pair<int, int>(start, end));
-            return true;
+
+        if (it != events.begin() and (--it) -> second > start) {
+            return false;
         }
-        return false;
+
+        events.insert({start, end});
+        return true;
     }
 };
 /**

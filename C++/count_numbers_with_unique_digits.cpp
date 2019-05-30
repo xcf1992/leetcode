@@ -14,14 +14,14 @@ using namespace std;
 class Solution {
 public:
     int countNumbersWithUniqueDigits(int n) {
-        std::vector<int> result(n + 1, 0);
+        vector<int> result(n + 1, 0);
         result[0] = 1;
         int multiplier = 9;
 
         for (int i = 1; i <= n; i++) {
             result[i] = result[i - 1] + multiplier;
             if (i <= 9) {
-                multiplier *= 10 - i;
+                multiplier *= (10 - i);
             }
             else {
                 multiplier = 0;

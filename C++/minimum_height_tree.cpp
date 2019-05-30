@@ -55,15 +55,15 @@ using namespace std;
 // until there are only 2 or less nodes left
 class Solution {
 public:
-    vector<int> findMinHeightTrees(int n, vector<pair<int, int>>& edges) {
+    vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
         if (n == 1) {
             return {0};
         }
         
         unordered_map<int, unordered_set<int>> graph;
-        for (pair<int, int> edge : edges) {
-            graph[edge.first].insert(edge.second);
-            graph[edge.second].insert(edge.first);
+        for (vector<int> edge : edges) {
+            graph[edge[0]].insert(edge[1]);
+            graph[edge[1]].insert(edge[0]);
         }
         
         vector<int> leaves;
@@ -121,14 +121,14 @@ private:
         }
     }
 public:
-    vector<int> findMinHeightTrees(int n, vector<pair<int, int>>& edges) {
+    vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
         if (n == 1) {
             return {0};
         }
         unordered_map<int, vector<int>> graph;
-        for (pair<int, int> edge : edges) {
-            graph[edge.first].push_back(edge.second);
-            graph[edge.second].push_back(edge.first);
+        for (vector<int> edge : edges) {
+            graph[edge[0]].push_back(edge[1]);
+            graph[edge[1]].push_back(edge[0]);
         }
         
         vector<bool> visited(n, false);
