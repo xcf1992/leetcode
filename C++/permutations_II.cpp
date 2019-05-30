@@ -23,6 +23,39 @@ using namespace std;
 
 class Solution {
 private:
+    void generate(vector<vector<int>>& result, vector<int> permutation, map<int, int>& count, int length) {
+        if (permutation.size() == length) {
+            result.push_back(permutation);
+            return;
+        }
+
+        for (auto it = count.begin(); it != count.end(); it++) {
+            if (it -> second > 0) {
+                permutation.push_back(it -> first);
+                it -> second -= 1;
+                generate(result, permutation, count, length);
+
+                permutation.pop_back();
+                it -> second += 1;
+            }
+        }
+    }
+public:
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        map<int, int> count;
+        for (int num : nums) {
+            count[num] += 1;
+        }
+
+        vector<vector<int>> result;
+        vector<int> permutation;
+        generate(result, permutation, count, nums.size());
+        return result;
+    }
+};
+
+class Solution1 {
+private:
     void generate(vector<int> &num, vector<int> &visit, vector<int> &solution, vector<vector<int>> &result) {
         if (solution.size() == num.size()) {
             result.push_back(solution);
@@ -56,7 +89,7 @@ public:
 };
 
 
-class Solution {
+class Solution2 {
 private:
     void generate(vector<int> num, int start, vector<vector<int>> &result) {
         if (start == num.size()) {

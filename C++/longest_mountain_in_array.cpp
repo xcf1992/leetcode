@@ -47,12 +47,13 @@ using namespace std;
 class Solution {
 public:
     int longestMountain(vector<int>& A) {
-        int result = 0;
-        if (A.size() < 3) {
-            return result;
+        int n = A.size();
+        if (n < 3) {
+            return 0;
         }
         
-        for (int i = 1; i < A.size() - 1; i++) {
+        int result = 0;
+        for (int i = 1; i < n - 1; i++) {
             if (A[i] > A[i - 1] && A[i] > A[i + 1]) {
                 int left = i - 1;
                 while (left > 0 && A[left] > A[left - 1]) {
@@ -60,7 +61,7 @@ public:
                 }
                 
                 int right = i + 1;
-                while (right < A.size() - 1 && A[right] > A[right + 1]) {
+                while (right < n - 1 && A[right] > A[right + 1]) {
                     right += 1;
                 }
                 result = max(result, right - left + 1);
