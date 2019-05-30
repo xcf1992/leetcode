@@ -62,7 +62,67 @@ using namespace std;
       TreeNode(int x) : val(x), left(NULL), right(NULL) {}
   };
 
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
 class Solution {
+private:
+    void insert(TreeNode* root, TreeNode* node) {
+        if (root == nullptr) {
+            return;
+        }
+        if (node == nullptr) {
+            return;
+        }
+        
+        if (root -> val > node -> val) {
+            if (root -> left == nullptr) {
+                root -> left = node;
+            }
+            else {
+                insert(root -> left, node);
+            }
+            return;
+        }
+        
+        if (root -> right == nullptr) {
+            root -> right = node;
+        }
+        else {
+            insert(root -> right, node);
+        }
+    }
+public:
+    vector<TreeNode*> splitBST(TreeNode* root, int V) {
+        if (root == nullptr) {
+            return {nullptr, nullptr};
+        }
+        
+        if (root -> val <= V) {
+            TreeNode* rightChild = root -> right;
+            root -> right = nullptr;
+            vector<TreeNode*> rightSplit = splitBST(rightChild, V);
+            
+            insert(root, rightSplit[0]);
+            return {root, rightSplit[1]};
+        }
+        
+        TreeNode* leftChild = root -> left;
+        root -> left = nullptr;
+        vector<TreeNode*> leftSplit = splitBST(leftChild, V);
+        
+        insert(root, leftSplit[1]);
+        return {leftSplit[0], root};
+    }
+};
+
+class Solution1 {
 private:
     void insert(TreeNode* root, TreeNode* cur) {
         TreeNode* newPos = root;
