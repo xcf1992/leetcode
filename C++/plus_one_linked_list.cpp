@@ -1,16 +1,5 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <unordered_map>
-#include <unordered_set>
-#include <algorithm>
-#include <cmath>
-#include <queue>
-#include <stack>
-#include <stdio.h>
-using namespace std;
-
 /*
+369. Plus One Linked List
 Given a non-negative integer represented as non-empty a singly linked list of digits, plus one to the integer.
 
 You may assume the integer do not contain any leading zero, except the number 0 itself.
@@ -23,15 +12,59 @@ Input:
 
 Output:
 1->2->4
-*/
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(nullptr) {}
- * };
  */
+#include <iostream>
+#include <string>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+#include <algorithm>
+#include <cmath>
+#include <queue>
+#include <stack>
+#include <stdio.h>
+using namespace std;
+
+ struct ListNode {
+      int val;
+      ListNode *next;
+      ListNode(int x) : val(x), next(nullptr) {}
+  };
+
+class Solution {
+public:
+    ListNode* plusOne(ListNode* head) {
+        if (head == nullptr) {
+            return head;
+        }
+        
+        stack<ListNode*> stk;
+        ListNode* cur = head;
+        while (cur != nullptr) {
+            stk.push(cur);
+            cur = cur -> next;
+        }
+        
+        int add = 1;
+        while (!stk.empty()) {
+            cur = stk.top();
+            stk.pop();
+            
+            int sum = cur -> val + add;
+            cur -> val = sum % 10;
+            add = sum / 10;
+        }
+        
+        if (add == 0) {
+            return head;
+        }
+        
+        ListNode* newHead = new ListNode(1);
+        newHead -> next = head;
+        return newHead;
+    }
+};
+
 class Solution {
 public:
     ListNode* plusOne(ListNode* head) {

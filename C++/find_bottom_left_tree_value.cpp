@@ -20,7 +20,31 @@ using namespace std;
  *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
  * };
  */
-class Solution {
+class Solution { //dfs
+private:
+    void dfs(TreeNode* root, int height, int& longest, int& result) {
+        if (root == nullptr) {
+            return;
+        }
+        
+        height += 1;
+        if (height > longest) {
+            longest = height;
+            result = root -> val;
+        }
+        dfs(root -> left, height, longest, result);
+        dfs(root -> right, height, longest, result);
+    }
+public:
+    int findBottomLeftValue(TreeNode* root) {
+        int result = 0;
+        int longest = 0;
+        dfs(root, 0, longest, result);
+        return result;
+    }
+};
+
+class Solution { //bfs
 public:
     int findBottomLeftValue(TreeNode* root) {
         queue<TreeNode*> row1;

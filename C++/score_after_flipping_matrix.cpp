@@ -1,4 +1,5 @@
 /*
+861. Score After Flipping Matrix
  We have a two dimensional matrix A where each value is 0 or 1.
  
  A move consists of choosing any row or column, and toggling each value in that row or column: changing all 0s to 1s, and all 1s to 0s.
@@ -49,7 +50,7 @@ private:
             int row = 0;
             for (int j = 0; j < n; j++) {
                 if (A[i][j] == 1) {
-                    row += (1 << (n - j - 1));
+                    row |= (1 << (n - j - 1));
                 }
             }
             result += row;
@@ -61,6 +62,7 @@ public:
         int m = A.size();
         int n = A[0].size();
         
+        // make sure the first bit of every row is 1
         for (int i = 0; i < m; i++) {
             if (A[i][0] == 0) {
                 for (int j = 0; j < n; j++) {
@@ -69,6 +71,7 @@ public:
             }
         }
         
+        // for any column >= 1, if there are more 0 than 1, flip the column
         for (int j = 1; j < n; j++) {
             int countOne = 0;
             for (int i = 0; i < m; i++) {

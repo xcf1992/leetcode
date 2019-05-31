@@ -1,4 +1,6 @@
 /*
+890. Find and Replace Pattern
+
  You have a list of words and a pattern, and you want to know which words in words matches the pattern.
  
  A word matches the pattern if there exists a permutation of letters p so that after replacing every letter x in the pattern with p(x), we get the desired word.
@@ -49,16 +51,13 @@ private:
         unordered_map<char, char> p2w;
         for (int i = 0; i < word.size(); i++) {
             if (w2p.find(word[i]) == w2p.end()) {
-                if (p2w.find(pattern[i]) != p2w.end()) {
-                    return false;
-                }
                 w2p[word[i]] = pattern[i];
+            }
+            if (p2w.find(pattern[i]) == p2w.end()) {
                 p2w[pattern[i]] = word[i];
             }
-            else {
-                if (w2p[word[i]] != pattern[i] || p2w[pattern[i]] != word[i]) {
-                    return false;
-                }
+            if (w2p[word[i]] != pattern[i] || p2w[pattern[i]] != word[i]) {
+                return false;
             }
         }
         return true;
