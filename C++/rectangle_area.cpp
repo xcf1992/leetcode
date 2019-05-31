@@ -32,7 +32,7 @@ using namespace std;
 class Solution {
 public:
     int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
-        int a1 = (C - A) * (D - B) + (G - E) * (H - F);
+        long a1 = (long) (C - A) * (D - B) + (long) (G - E) * (H - F);
         if (G > A && E < C && H > B && F < D) {
             return a1 - (min(C,G) - max(A,E)) * (min(D,H) - max(B,F));
         }
