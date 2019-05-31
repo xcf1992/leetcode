@@ -56,7 +56,7 @@ public:
     }
 };
 
-class Solution {
+class Solution1 {
 private:
     string abbreviate(string s, int k) {
         int length = s.size();
