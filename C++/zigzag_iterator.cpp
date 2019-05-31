@@ -1,15 +1,3 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <unordered_map>
-#include <unordered_set>
-#include <algorithm>
-#include <cmath>
-#include <queue>
-#include <stack>
-#include <stdio.h>
-using namespace std;
-
 /*
 Given two 1d vectors, implement an iterator to return their elements alternately.
 
@@ -29,6 +17,17 @@ The "Zigzag" order is not clearly defined and is ambiguous for k > 2 cases. If "
 [8,9]
 It should return [1,4,8,2,5,9,3,6,7].
 */
+#include <iostream>
+#include <string>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+#include <algorithm>
+#include <cmath>
+#include <queue>
+#include <stack>
+#include <stdio.h>
+using namespace std;
 
 class ZigzagIterator {
 private:
@@ -36,10 +35,10 @@ private:
 public:
     ZigzagIterator(vector<int>& v1, vector<int>& v2) {
         if (!v1.empty()) {
-            zigZag.push(make_pair(v1.begin(), v1.end()));
+            zigZag.push({v1.begin(), v1.end()});
         }
         if (!v2.empty()) {
-            zigZag.push(make_pair(v2.begin(), v2.end()));
+            zigZag.push({v2.begin(), v2.end()});
         }
     }
 
@@ -47,8 +46,9 @@ public:
         auto it = zigZag.front().first;
         auto endIt = zigZag.front().second;
         zigZag.pop();
+
         if (it + 1 != endIt) {
-            zigZag.push(make_pair(it + 1, endIt));
+            zigZag.push({it + 1, endIt});
         }
         return *it;
     }
