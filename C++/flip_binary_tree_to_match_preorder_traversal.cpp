@@ -91,10 +91,6 @@ private:
             if (!traversal(root -> left, voyage, result, cur)) {
                 return false;
             }
-            
-            if (cur == voyage.size()) {
-                return true;
-            }
         }
         
         if (!traversal(root -> right, voyage, result, cur)) {
