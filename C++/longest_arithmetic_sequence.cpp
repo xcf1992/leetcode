@@ -58,12 +58,11 @@ public:
                 int gap = A[i] - A[j];
                 if (dp[j].find(gap) == dp[j].end()) {
                     dp[i][gap] = 2;
-                    result = max(2, result);
                 }
                 else {
-                    dp[i][gap] = 1 + dp[j][gap];
-                    result = max(result, dp[i][gap]);
+                    dp[i][gap] = max(dp[i][gap], 1 + dp[j][gap]);
                 }
+                result = max(result, dp[i][gap]);
             }
         }
         return result;
