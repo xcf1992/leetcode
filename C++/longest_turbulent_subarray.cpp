@@ -1,4 +1,5 @@
 /*
+978. Longest Turbulent Subarray
  A subarray A[i], A[i+1], ..., A[j] of A is said to be turbulent if and only if:
  
  For i <= k < j, A[k] > A[k+1] when k is odd, and A[k] < A[k+1] when k is even;
@@ -47,11 +48,43 @@ using namespace std;
 class Solution {
 public:
     int maxTurbulenceSize(vector<int>& A) {
-        if (A.size() == 1) {
-            return 1;
+        int n = A.size();
+        if (n <= 1) {
+            return n;
         }
+
+        int result = 1;
+        int increase = 1;
+        int decrease = 1;
+        for (int i = 1; i < n; ++i) {
+            if (A[i - 1] < A[i]) {
+                decrease = increase + 1;
+                increase = 1;
+            }
+            else if (A[i - 1] > A[i]) {
+                increase = decrease + 1;
+                decrease = 1;
+            }
+            else {
+                increase = 1;
+                decrease = 1;
+            }
+            result = max(result, max(increase, decrease));
+        }
+        return result;
+    }
+};
+
+class Solution {
+public:
+    int maxTurbulenceSize(vector<int>& A) {
+        int n = A.size();
+        if (n <= 1) {
+            return n;
+        }
+
         vector<int> change;
-        for (int i = 1; i < A.size(); i++) {
+        for (int i = 1; i < n; i++) {
             if (A[i] > A[i - 1]) {
                 change.push_back(1);
             }
