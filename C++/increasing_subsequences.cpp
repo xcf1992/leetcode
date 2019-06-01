@@ -1,11 +1,16 @@
-//
-//  duplicate_emails.cpp
-//  C++
-//
-//  Created by Chenfu Xie on 1/18/18.
-//  Copyright © 2018 Chenfu Xie. All rights reserved.
-//
+/*
+491. Increasing Subsequences
 
+Given an integer array, your task is to find all the different possible increasing subsequences of the given array, and the length of an increasing subsequence should be at least 2 .
+
+Example:
+Input: [4, 6, 7, 7]
+Output: [[4, 6], [4, 7], [4, 6, 7], [4, 6, 7, 7], [6, 7], [6, 7, 7], [7,7], [4,7,7]]
+Note:
+The length of the given array will not exceed 15.
+The range of integer in the given array is [-100,100].
+The given array may contain duplicates, and two equal integers should also be considered as a special case of increasing sequence.
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -28,7 +33,7 @@ private:
         
         unordered_set<int> unique;
         for (int i = index; i < nums.size(); i++) {
-            if ((cur.empty() || nums[i] >= cur.back()) && unique.find(nums[i]) == unique.end()) {
+            if ((cur.empty() or nums[i] >= cur.back()) and unique.find(nums[i]) == unique.end()) {
                 cur.push_back(nums[i]);
                 dfs(result, cur, nums, i + 1);
                 cur.pop_back();

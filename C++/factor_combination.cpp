@@ -50,18 +50,18 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> getFactors(int n) {
-        vector<vector<int>> factors;
-        if (n < 2) {
-            return factors;
+        if (n <= 2) {
+            return {};
         }
-        for (int i = 2; i < ceil(sqrt(n)); i++) {
+
+        vector<vector<int>> factors;
+        for (int i = 2; i * i <= n; i++) {
             if (n % i == 0) {
                 int j = n / i;
                 if (j >= i) {
-                    vector<int> factor({j, i});
-                    factors.push_back(factor);
+                    factors.push_back({j, i});
                     for (vector<int> factor : getFactors(j)) {
-                        if (i >= factor.back()) {
+                        if (i <= factor.back()) {
                             factor.push_back(i);
                             factors.push_back(factor);
                         }

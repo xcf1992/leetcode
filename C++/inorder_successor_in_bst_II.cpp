@@ -60,7 +60,7 @@
 
  If the given node has no in-order successor in the tree, return null.
  It's guaranteed that the values of the tree are unique.
- Remember that we are using the Node type instead of TreeNode type so their string representation are different.
+ Remember that we are using the Node type instead of Node type so their string representation are different.
 
 
  Follow up:
@@ -81,34 +81,34 @@
 #include <map>
 using namespace std;
 
-struct TreeNode {
+struct Node {
     int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode* parent;
-    TreeNode(int x) : val(x), left(NULL), right(NULL), parent(NULL) {}
+    Node *left;
+    Node *right;
+    Node* parent;
+    Node(int x) : val(x), left(NULL), right(NULL), parent(NULL) {}
     };
 
 class Solution {
 public:
-    TreeNode* inorderSuccessor(TreeNode* node) {
+    Node* inorderSuccessor(Node* node) {
         if (node == nullptr) {
             return nullptr;
         }
 
-        TreeNode* result = nullptr;
+        Node* cur = nullptr;
         if (node -> right != nullptr) {
-            result = node -> right;
-            while (result != nullptr and result -> left != nullptr) {
-                result = result -> left;
+            cur = node -> right;
+            while (cur != nullptr and cur -> left != nullptr) {
+                cur = cur -> left;
             }
+            return cur;
         }
-        else {
-            result = node -> parent;
-            while (result and result -> val < node -> val) {
-                result = result -> parent;
-            }
+        
+        cur = node -> parent;
+        while (cur and cur -> val < node -> val) {
+            cur = cur -> parent;
         }
-        return result;
+        return cur;
     }
 };

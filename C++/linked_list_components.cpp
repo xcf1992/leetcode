@@ -1,4 +1,5 @@
 /*
+817. Linked List Components
  We are given head, the head node of a linked list containing unique integer values.
  
  We are also given the list G, a subset of the values in the linked list.
@@ -51,6 +52,7 @@ class Solution {
 public:
     int numComponents(ListNode* head, vector<int>& G) {
         unordered_set<int> values(G.begin(), G.end());
+        
         int result = G.size();
         ListNode* prev = head;
         ListNode* cur = prev -> next;
