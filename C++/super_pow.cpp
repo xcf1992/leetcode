@@ -1,4 +1,6 @@
 /*
+372. Super Pow
+
  Your task is to calculate ab mod 1337 where a is a positive integer and b is an extremely large positive integer given in the form of an array.
  
  Example1:
@@ -30,22 +32,24 @@ using namespace std;
 
 class Solution {
 private:
-    const int base = 1337;
+    int MOD = 1337;
+
     int calculate(int a, int k) {
-        a %= base;
+        a %= MOD;
         int result = 1;
         for (int i = 0; i < k; i++) {
-            result = (result * a) % base;
+            result = (result * a) % MOD;
         }
-        return result % base;
+        return result % MOD;
     }
 public:
     int superPow(int a, vector<int>& b) {
         if (b.empty()) {
             return 1;
         }
+        
         int k = b.back();
         b.pop_back();
-        return calculate(superPow(a, b), 10) * calculate(a, k) % base;
+        return calculate(superPow(a, b), 10) * calculate(a, k) % MOD;
     }
 };

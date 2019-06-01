@@ -27,7 +27,7 @@ private:
 public:
     int findLUSlength(vector<string>& strs) {
         sort(strs.begin(), strs.end(), [](const string a, const string b) {
-            return a.size() > b.size() || (a.size() == b.size() && a < b);
+            return a.size() > b.size();
         });
 
         unordered_map<string, int> count;
@@ -36,20 +36,21 @@ public:
         }
 
         for (int i = 0; i < strs.size(); i++) {
-            if (count[strs[i]] == 1) {
-                int j = 0;
-                while (j < i) {
-                    if (isSub(strs[i], strs[j])) {
-                        break;
-                    }
-                    j++;
+            if (count[strs[i]] != 1) {
+                continue;
+            }
+
+            int j = 0;
+            while (j < i) {
+                if (isSub(strs[i], strs[j])) {
+                    break;
                 }
-                if (j == i) {
-                    return strs[i].size();
-                }
+                j++;
+            }
+            if (j == i) {
+                return strs[i].size();
             }
         }
-
         return -1;
     }
 };

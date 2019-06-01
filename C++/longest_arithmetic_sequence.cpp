@@ -31,9 +31,7 @@
 
  2 <= A.length <= 2000
  0 <= A[i] <= 10000
-
  */
-
 #include <iostream>
 #include <string>
 #include <vector>

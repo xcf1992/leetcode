@@ -1,4 +1,5 @@
 /*
+894. All Possible Full Binary Trees
  A full binary tree is a binary tree where each node has exactly 0 or 2 children.
  
  Return a list of all possible full binary trees with N nodes.  Each element of the answer is the root node of one possible tree.
@@ -48,7 +49,7 @@ using namespace std;
 
 class Solution {
 private:
-    unordered_map<int, vector<TreeNode*>> results;
+    unordered_map<int, vector<TreeNode*>> cache;
 public:
     vector<TreeNode*> allPossibleFBT(int N) {
         if (N % 2 == 0) {
@@ -59,8 +60,8 @@ public:
             return {new TreeNode(0)};
         }
         
-        if (results.find(N) != results.end()) {
-            return results[N];
+        if (cache.find(N) != cache.end()) {
+            return cache[N];
         }
         
         vector<TreeNode*> result;
@@ -76,7 +77,7 @@ public:
                 }
             }
         }
-        results[N] = result;
+        cache[N] = result;
         return result;
     }
 };

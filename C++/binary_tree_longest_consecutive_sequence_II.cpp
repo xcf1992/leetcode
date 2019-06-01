@@ -43,14 +43,12 @@ struct TreeNode {
 class Solution {
 private:
     vector<int> traverse(TreeNode* root, int& result) {
-        vector<int> l(2, 0);
         if (root == nullptr) {
-           return l;
+           return {0, 0};
         }
 
         vector<int> l1 = traverse(root -> left, result);
         vector<int> l2 = traverse(root -> right, result);
-
         if (root -> left != nullptr) {
             if (root -> left -> val != root -> val - 1) {
                 l1[0] = 0;
@@ -68,11 +66,8 @@ private:
             }
         }
 
-        l[0] = 1 + max(l1[0], l2[0]);
-        l[1] = 1 + max(l1[1], l2[1]);
-
         result = max(result, max(l1[0] + l2[1], l1[1] + l2[0]) + 1);
-        return l;
+        return {1 + max(l1[0], l2[0]), 1 + max(l1[1], l2[1])};
     }
 public:
     int longestConsecutive(TreeNode* root) {
