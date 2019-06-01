@@ -49,54 +49,19 @@
 using namespace std;
 
 class Solution {
-private:
-    int rotate(vector<int>& A, vector<int>& B) {
-        bool aRow = true;
-        int swap1 = 0;
-        for (int i = 1; i < A.size() and aRow; i++) {
-            if (A[i] == A[0]) {
-                aRow = true;
-            }
-            else if (B[i] == A[0]) {
-                swap1 += 1;
-            }
-            else {
-                aRow = false;
-            }
-        }
-        
-        bool bRow = true;
-        int swap2 = 0;
-        for (int i = 1; i < B.size() and bRow; i++) {
-            if (B[i] == B[0]) {
-                bRow = true;
-            }
-            else if (A[i] == B[0]) {
-                swap2 += 1;
-            }
-            else {
-                bRow = false;
-            }
-        }
-        if (aRow and bRow) {
-            return min(swap1, swap2);
-        }
-        return aRow ? swap1 : (bRow ? swap2 : -1);
-    }
 public:
     int minDominoRotations(vector<int>& A, vector<int>& B) {
-        int result1 = rotate(A, B);
-        swap(A[0], B[0]);
-        int result2 = rotate(A, B);
-        if (result1 == -1) {
-            if (result2 == -1) {
-                return -1;
-            }
-            return result2 + 1;
+        int n = A.size();
+        for (int i = 0, a = 0, b = 0; i < n && (A[i] == A[0] || B[i] == A[0]); ++i) {
+            if (A[i] != A[0]) a++;
+            if (B[i] != A[0]) b++;
+            if (i == n - 1) return min(a, b);
         }
-        if (result2 == -1) {
-            return result1;
+        for (int i = 0, a = 0, b = 0; i < n && (A[i] == B[0] || B[i] == B[0]); ++i) {
+            if (A[i] != B[0]) a++;
+            if (B[i] != B[0]) b++;
+            if (i == n - 1) return min(a, b);
         }
-        return min(result2 + 1, result1);
+        return -1;
     }
 };

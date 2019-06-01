@@ -31,6 +31,30 @@
 #include <set>
 using namespace std;
 
+class Solution {
+public:
+    int wiggleMaxLength(vector<int>& nums) {
+        int n = nums.size();
+        if (n <= 1) {
+            return n;
+        }
+
+        int result = 1;
+        int increase = 1;
+        int decrease = 1;
+        for (int i = 1; i < n; ++i) {
+            if (nums[i] > nums[i - 1]) {
+                increase = decrease + 1;
+            }
+            else if (nums[i] < nums[i - 1]) {
+                decrease = increase + 1;
+            }
+            result = max(increase, decrease);
+        }
+        return result;
+    }
+};
+
 /** up[i] is the length of a longest wiggle subsequence of {nums[0],...,nums[i]}, with a
  positive difference between its last two numbers. This subsequence may or may not
  include nums[i] and there may be several such subsequences (of the same length).
