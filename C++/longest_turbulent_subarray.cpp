@@ -75,7 +75,7 @@ public:
     }
 };
 
-class Solution {
+class Solution1 {
 public:
     int maxTurbulenceSize(vector<int>& A) {
         int n = A.size();
