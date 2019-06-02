@@ -14,27 +14,33 @@ using namespace std;
 
 class Solution {
 public:
-    int numSubmatrixSumTarget(vector<vector<int>>& matrix, int target) {
-        int m = 0;
-        int n = matrix[0].size();
-        for (vector<int>& row : matrix) {
-            for (int i = 1; i < n; ++i) {
-                row[i] += row[i - 1];
-            }
+    string getPermutation(int n, int k) {
+        vector<int> digit;
+        int count = 1;
+        for (int i = 1; i <= n; i++) {
+            digit.push_back(i);
+            count *= i;
         }
         
-        int result = 0;
-        for (int col1 = 0; col1 < n; col1++) {
-            for (int col2 = col1; col2 < n; ++col2) {
-                unordered_map<int, int> sumCount;
-                sumCount[0] = 1;
-                int sum = 0;
-                for (int row = 0; row < m; row++) {
-                    sum += matrix[row][col2] - (col1 == 0 ? 0 : matrix[row][col1 - 1]);
-                    result += sumCount[sum - target];
-                    sumCount[sum] += 1;
+        string result = "";
+        for (int i = 0; i != n; i++) {
+            count = count / (n - i);
+            int index = ((k - 1) / count) + 1;
+            
+            int available = 0;
+            for (int pos = 0; pos < n; pos++) {
+                if (digit[pos] == 0) {
+                    continue;
                 }
+                
+                available += 1;
+                if (available < index) {
+                    continue;
+                }
+                result.push_back('0' + digit[pos]);
+                digit[pos] = 0;
             }
+            k -= (index - 1) * count;
         }
         return result;
     }
@@ -48,5 +54,5 @@ int main() {
         {1,1,1},
         {0,1,0}
     });
-    s.numSubmatrixSumTarget(matrix, 0);
+    s.getPermutation(3, 3);
 }

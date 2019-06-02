@@ -1,7 +1,7 @@
 /*
 60. Permutation Sequence
 
-The set [1,2,3,...,n] contains a total of n! unique permutations.
+The set [1,2,3,...,n] contains a count of n! unique permutations.
 
 By listing and labeling all of the permutations in order, we get the following sequence for n = 3:
 
@@ -36,33 +36,33 @@ using namespace std;
 class Solution {
 public:
     string getPermutation(int n, int k) {
-        vector<int> pos;
-        int total = 1;
+        vector<int> digit;
+        int count = 1;
         for (int i = 1; i <= n; i++) {
-            pos.push_back(i);
-            total *= i;
+            digit.push_back(i);
+            count *= i;
         }
         
         string result = "";
         for (int i = 0; i != n; i++) {
-            total = total / (n - i);
-            int time = ((k - 1) / total) + 1;
-            int digit;
-            int j = 0;
-            int x = 0;
-            while (x < n) {
-                if (pos.at(x) != 0) {
-                    j++;
-                    if (j == time) {
-                        digit = pos.at(x);
-                        pos.at(x) = 0;
-                        x = n;
-                    }
+            count = count / (n - i);
+            int index = ((k - 1) / count) + 1;
+
+            int available = 0;
+            for (int pos = 0; pos < n; pos++) {
+                if (digit[pos] == 0) {
+                    continue;
                 }
-                x++;
+
+                available += 1;
+                if (available < index) {
+                    continue;
+                }
+                result.push_back('0' + digit[pos]);
+                digit[pos] = 0;
+                break;
             }
-            result += '0' + digit;
-            k -= (time - 1) * total;
+            k -= (index - 1) * count;
         }
         return result;
     }
