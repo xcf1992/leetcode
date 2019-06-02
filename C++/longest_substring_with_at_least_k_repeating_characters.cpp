@@ -1,11 +1,27 @@
-//
-//  longest_substring_with_at_least_k_repeating_characters.cpp
-//  C++
-//
-//  Created by Chenfu Xie on 2/5/18.
-//  Copyright © 2018 Chenfu Xie. All rights reserved.
-//
+/*
+395. Longest Substring with At Least K Repeating Characters
 
+Find the length of the longest substring T of a given string (consists of lowercase letters only) such that every character in T appears no less than k times.
+
+Example 1:
+
+Input:
+s = "aaabb", k = 3
+
+Output:
+3
+
+The longest substring is "aaa", as 'a' is repeated 3 times.
+Example 2:
+
+Input:
+s = "ababbc", k = 2
+
+Output:
+5
+
+The longest substring is "ababb", as 'a' is repeated 2 times and 'b' is repeated 3 times.
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -19,6 +35,11 @@
 #include <map>
 using namespace std;
 
+/*
+in the first pass I record counts of every character in a hashmap
+in the second pass I locate the first character that appear less than k times in the string. this character is definitely not included in the result, and that separates the string into two parts.
+keep doing this recursively and the maximum of the left/right part is the answer.
+*/
 class Solution {
 private:
     int find(string s, int k, int start, int end) {
@@ -35,7 +56,6 @@ private:
             }
             
             int right = left;
-            
             while (right < end && count[s[right]] >= k) {
                 right += 1;
             }
