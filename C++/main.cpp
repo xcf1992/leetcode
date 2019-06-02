@@ -13,34 +13,50 @@
 using namespace std;
 
 class Solution {
-public:
-    string getPermutation(int n, int k) {
-        vector<int> digit;
-        int count = 1;
-        for (int i = 1; i <= n; i++) {
-            digit.push_back(i);
-            count *= i;
+private:
+    pair<string, vector<int>> parse(string str) {
+        vector<int> count;
+        string key = "";
+        int prev = -1;
+        int n = str.size();
+        for (int i = 0; i < n; ++i) {
+            if (i == n - 1 or str[i] != str[i + 1]) {
+                key.push_back(str[i]);
+                count.push_back(i - prev);
+                prev = i;
+            }
+        }
+        return {key, count};
+    }
+    
+    bool check(pair<int, vector<int>>& s, pair<int, vector<int>>& word) {
+        if (s.first != word.first) {
+            return false;
         }
         
-        string result = "";
-        for (int i = 0; i != n; i++) {
-            count = count / (n - i);
-            int index = ((k - 1) / count) + 1;
-            
-            int available = 0;
-            for (int pos = 0; pos < n; pos++) {
-                if (digit[pos] == 0) {
-                    continue;
-                }
-                
-                available += 1;
-                if (available < index) {
-                    continue;
-                }
-                result.push_back('0' + digit[pos]);
-                digit[pos] = 0;
+        vector<int> sCount = s.second;
+        vector<int> wCount = word.second;
+        for (int i = 0; i < sCount.size(); ++i) {
+            if (sCount[i] < wCount[i] or (sCount[i] < 3 and sCount[i] != wCount[i])) {
+                return false;
             }
-            k -= (index - 1) * count;
+        }
+        return true;
+    }
+public:
+    int expressiveWords(string S, vector<string>& words) {
+        int n = words.size();
+        if (n <= 0) {
+            return 0;
+        }
+        
+        pair<string, vector<int>> s = parse(S);
+        int result = 0;
+        for (int i = 0; i < n; ++i) {
+            pair<string, vector<int>> w = parse(words[i]);
+            if (check(s, w)) {
+                result += 1;
+            }
         }
         return result;
     }
@@ -54,5 +70,5 @@ int main() {
         {1,1,1},
         {0,1,0}
     });
-    s.getPermutation(3, 3);
+    
 }
