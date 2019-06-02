@@ -47,7 +47,7 @@ public:
     }
 };
 
-class Solution {
+class Solution1 {
 public:
     int hIndex(vector<int>& citations) {
         int paper = citations.size();

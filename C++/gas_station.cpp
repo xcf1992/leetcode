@@ -64,8 +64,8 @@ public:
         vector<int> diff(gas.size());
         int total = 0;
         for (int i = 0; i != gas.size(); i++) {
-            diff.at(i) = gas.at(i) - cost.at(i);
-            total += diff.at(i);
+            diff[i] = gas[i] - cost[i];
+            total += diff[i];
         }
         if (total < 0) {
             return -1;
@@ -74,29 +74,12 @@ public:
         int start = 0;
         int sum = 0;
         for (int i = 0; i != diff.size(); i++) {
-            sum += diff.at(i);
+            sum += diff[i];
             if (sum < 0) {
                 sum = 0;
                 start = i + 1;
             }
         }
-        
         return start;
     }
 };
-
-int main() {
-	vector<int> gas;
-	gas.push_back(1);
-	gas.push_back(2);
-	gas.push_back(3);
-	gas.push_back(3);
-	vector<int> cost;
-	cost.push_back(2);
-	cost.push_back(1);
-	cost.push_back(5);
-	cost.push_back(1);
-
-	int result = canCompleteCircuit(gas, cost);
-	return 0;
-}
