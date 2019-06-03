@@ -35,11 +35,11 @@ public:
         int count = nums.size();
         for (int i = 0; i < 32; i++) {
             int zeroCount = 0;
-            for (int num : nums) {
-                if (num & 1 == 0) {
+            for (int& num : nums) {
+                if (num % 2 == 0) {
                     zeroCount += 1;
-                    num >>= 1;
                 }
+                num >>= 1;
             }
             result += zeroCount * (count - zeroCount);
         }

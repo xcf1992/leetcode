@@ -1,11 +1,17 @@
-//
-//  generalized_abbreviation.cpp
-//  C++
-//
-//  Created by Chenfu Xie on 2/27/18.
-//  Copyright © 2018 Chenfu Xie. All rights reserved.
-//
+/*
+320. Generalized Abbreviation
 
+Write a function to generate the generalized abbreviations of a word. 
+
+Note: The order of the output does not matter.
+
+Example:
+
+Input: "word"
+Output:
+["word", "1ord", "w1rd", "wo1d", "wor1", "2rd", "w2d", "wo2", "1o1d", "1or1", "w1r1", "1o2", "2r1", "3d", "w3", "4"]
+
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -19,6 +25,32 @@
 #include <map>
 using namespace std;
 
+class Solution {
+private:
+    void generate(vector<string>& result, int start, int preNum, string abbreviation, string& word) {
+        if (start >= word.size()) {
+            if (preNum != 0) {
+                abbreviation += to_string(preNum);
+            }
+            result.push_back(abbreviation);
+            return;
+        }
+
+        generate(result, start + 1, preNum + 1, abbreviation, word);
+        if (preNum != 0) {
+            abbreviation += to_string(preNum);
+        }
+        abbreviation.push_back(word[start]);
+        generate(result, start + 1, 0, abbreviation, word);
+    }
+public:
+    vector<string> generateAbbreviations(string word) {
+        vector<string> result;
+        generate(result, 0, 0, "", word);
+        return result;
+    }
+};
+
 /*
  Write a function to generate the generalized abbreviations of a word.
  
@@ -29,7 +61,7 @@ using namespace std;
  这道题让我们对一个单词进行部分简写，简写的规则是若干个字母可以用数字来表示，但是不能有两个相邻的数字
  */
 
-class Solution {
+class Solution1 {
 public:
     vector<string> generateAbbreviations(string word) {
         vector<string> result;
@@ -60,8 +92,7 @@ public:
     }
 };
 
-
-class Solution1 {
+class Solution2 {
 private:
     void dfs(vector<string>& result, string word, int pos, string cur, int count) {
         if (pos == word.size()) {

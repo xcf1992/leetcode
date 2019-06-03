@@ -1,4 +1,5 @@
 /*
+ 845. Longest Mountain in Array
  Let's call any (contiguous) subarray B (of A) a mountain if the following properties hold:
  
  B.length >= 3
@@ -66,8 +67,7 @@ public:
                 }
                 result = max(result, right - left + 1);
             }
-        }
-        
+        } 
         return result;
     }
 };

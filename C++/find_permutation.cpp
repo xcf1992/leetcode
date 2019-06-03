@@ -31,27 +31,73 @@ but since we want to find the one with the smallest lexicographical permutation,
 using namespace std;
 
 /*
-Let's revisit the important points of the given problem statement. For a given nn, we need to use all the integers in the range (1,n)(1,n) to generate a lexicographically smallest permutation of these nn numbers which satsfies the pattern given in the string ss.
+Let's revisit the important points of the given problem statement. 
+For a given nn, we need to use all the integers in the range (1,n)(1,n) 
+to generate a lexicographically smallest permutation of these nn numbers which satsfies the pattern given in the string ss.
 
-Firstly, we note that the lexicographically smallest permutation that can be generated(irrelevant of the given pattern ss) using the nn integers from (1,n)(1,n) is [1, 2, 3,.., n][1,2,3,..,n](say minmin). Thus, while generating the required permutation, we can surely say that the permutation generated should be as close as possible to minmin.
+Firstly, we note that the lexicographically smallest permutation that can be generated(irrelevant of the given pattern ss) 
+using the nn integers from (1,n)(1,n) is [1, 2, 3,.., n][1,2,3,..,n](say minmin). 
+Thus, while generating the required permutation, 
+we can surely say that the permutation generated should be as close as possible to minmin.
 
-Now, we can also note that the number generated will be the smallest possible only if the digits lying towards the most significant positions are as small as possible while satisfying the given pattern. Now, to understand how these observations help in providing the solution of the given problem, we'll look at a simple example.
+Now, we can also note that the number generated will be the smallest possible 
+only if the digits lying towards the most significant positions are as small as possible 
+while satisfying the given pattern. 
+Now, to understand how these observations help in providing the solution of the given problem, 
+we'll look at a simple example.
 
-Say, the given pattern ss is "DDIIIID". This corresponds to n=8n=8. Thus, the minmin permutation possible will be [1, 2, 3, 4, 5, 6, 7, 8]. Now, to satisfy the first two "DD" pattern, we can observe that the best course of action to generate the smallest arrangement will be to rearrange only 1, 2, 3, because these are the smallest numbers that can be placed at the three most significant positions to generate the smallest arrangement satisfying the given pattern till now, leading to the formation of [3, 2, 1, 4, 5, 6, 7, 8] till now. We can note that placing any number larger than 3 at any of these positions will lead to the generation of a lexicographically larger arrangement as discussed above.
+Say, the given pattern ss is "DDIIIID". 
+This corresponds to n=8. 
+Thus, the minmin permutation possible will be [1, 2, 3, 4, 5, 6, 7, 8]. 
+Now, to satisfy the first two "DD" pattern, 
+we can observe that the best course of action to generate the smallest arrangement will be to rearrange only 1, 2, 3, 
+because these are the smallest numbers that can be placed at the three most significant positions 
+to generate the smallest arrangement satisfying the given pattern till now, 
+leading to the formation of [3, 2, 1, 4, 5, 6, 7, 8] till now. 
+We can note that placing any number larger than 3 at any of these positions 
+will lead to the generation of a lexicographically larger arrangement as discussed above.
 
-We can also note that irrespective of how we rearrange the first three 1, 2, 3, the relationship of the last number among them with the next number always satisfies the criteria required for satisfying the first I in ss. Further, note that, the pattern generated till now already satisfies the subpattern "IIII" in ss. This will always be satisfied since the minmin number considered originally always satisfies the increasing criteria.
+We can also note that irrespective of how we rearrange the first three 1, 2, 3, 
+the relationship of the last number among them with the next number always satisfies the criteria 
+required for satisfying the first I in ss. 
+Further, note that, the pattern generated till now already satisfies the subpattern "IIII" in ss. 
+This will always be satisfied since the minmin number considered originally always satisfies the increasing criteria.
 
-Now, when we find the last "D" in the pattern ss, we again need to make rearrangements in the last two positions only and we need to use only the numbers 7, 8 in such rearrangements at those positions. This is because, again, we would like to keep the larger number towards the least significant possible as much as possible to generate the lexicographically smallest arrangement. Thus, to satisfy the last "D" the best arrangement of the last two numbers is 8, 7 leading to the generation of [3, 2, 1, 4, 5, 6, 8, 7] as the required output.
+Now, when we find the last "D" in the pattern ss, 
+we again need to make rearrangements in the last two positions only and 
+we need to use only the numbers 7, 8 in such rearrangements at those positions. 
+This is because, again, we would like to keep the larger number towards the least significant possible 
+as much as possible to generate the lexicographically smallest arrangement. 
+Thus, to satisfy the last "D" the best arrangement of the last two numbers is 8, 7 
+leading to the generation of [3, 2, 1, 4, 5, 6, 8, 7] as the required output.
 
-Based on the above example, we can summarize that, to generate the required arrangement, we can start off with the minmin number that can be formed for the given nn. Then, to satisfy the given pattern ss, we need to reverse only those subsections of the minmin array which have a D in the pattern at their corresponding positions.
+Based on the above example, we can summarize that, to generate the required arrangement, 
+we can start off with the minmin number that can be formed for the given nn. 
+Then, to satisfy the given pattern ss, 
+we need to reverse only those subsections of the minmin array which have a D in the pattern at their corresponding positions.
 
-To perform these operations, we need not necessarily create the minmin array first, because it simply consists of numbers from 11 to nn in ascending order.
+To perform these operations, we need not necessarily create the minmin array first, 
+because it simply consists of numbers from 11 to nn in ascending order.
 
-To perform the operations discussed above, we can make use of a stackstack. We can start considering the numbers ii from 11 to nn. For every current number, whenver we find a D in the pattern ss, we just push that number onto the stackstack. This is done so that, later on, when we find the next I, we can pop off these numbers from the stack leading to the formation of a reversed (descending) subpattern of those numbers corrresponding to the D's in ss(as discussed above).
+To perform the operations discussed above, we can make use of a stackstack. 
+We can start considering the numbers ii from 11 to nn. For every current number, 
+whenver we find a D in the pattern ss, we just push that number onto the stackstack. 
+This is done so that, later on, when we find the next I, 
+we can pop off these numbers from the stack leading to the formation of a reversed (descending) subpattern of 
+those numbers corrresponding to the D's in ss(as discussed above).
 
-When we encounter an I in the pattern, as discussed above, we push the current number as well onto the stackstack and then pop-off all the numbers on the stackstack and append these numbers to the resultant pattern formed till now.
+When we encounter an I in the pattern, as discussed above, 
+we push the current number as well onto the stackstack and then pop-off all the numbers on the stackstack 
+and append these numbers to the resultant pattern formed till now.
 
-Now, we could reach the end of the pattern ss with a trail of D's at the end. In this case, we won't find an ending I to pop-off the numbers on the stackstack. Thus, at the end, we push the value nn on the stack and then pop all the values on the stackstack and append them to the resultant pattern formed till now. Now, if the second last character in ss was an I, nn will be appended at the end of the resultant arrangement correctly. If the second last character was a D, the reversed pattern appended at the end of the resultant arrangement will be reversed including the last number nn. In both the cases, the resultant arrangement turns out to be correct.
+Now, we could reach the end of the pattern ss with a trail of D's at the end. 
+In this case, we won't find an ending I to pop-off the numbers on the stackstack. 
+Thus, at the end, we push the value nn on the stack and then pop all the values on the stackstack 
+and append them to the resultant pattern formed till now. 
+Now, if the second last character in ss was an I, nn will be appended at the end of the resultant arrangement correctly. 
+If the second last character was a D, 
+the reversed pattern appended at the end of the resultant arrangement will be reversed including the last number nn. 
+In both the cases, the resultant arrangement turns out to be correct.
 */
 class Solution {
 public:

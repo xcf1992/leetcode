@@ -1,4 +1,5 @@
 /*
+ 375. Guess Number Higher or Lower II
  We are playing the Guess Game. The game is as follows:
  
  I pick a number from 1 to n. You have to guess which number I picked.
@@ -20,7 +21,6 @@
  You end up paying $5 + $7 + $9 = $21.
  Given a particular n ≥ 1, find out how much money you need to have to guarantee a win.
  */
-
 #include <iostream>
 #include <string>
 #include <vector>

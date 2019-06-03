@@ -89,13 +89,13 @@ public:
                 dp[i][j] = min(dp[i][j], left);
 
                 right = grid[i][N - 1 - j] == 0 ? 0 : right + 1;
-                dp[i][j] = min(dp[i][N - 1 - j], right);
+                dp[i][N - 1 - j] = min(dp[i][N - 1 - j], right);
 
                 up = grid[j][i] == 0 ? 0 : up + 1;
                 dp[j][i] = min(dp[j][i], up);
 
-                down = grid[N - 1 - i][i] == 0 ? 0 : down + 1;
-                dp[N - 1 - i][i] = min(dp[N - 1 - i][i], down);
+                down = grid[N - 1 - j][i] == 0 ? 0 : down + 1;
+                dp[N - 1 - j][i] = min(dp[N - 1 - j][i], down);
             }
         }
 

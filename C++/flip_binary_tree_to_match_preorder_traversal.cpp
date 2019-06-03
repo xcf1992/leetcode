@@ -1,4 +1,5 @@
 /*
+ 971. Flip Binary Tree To Match Preorder Traversal
  Given a binary tree with N nodes, each node has a different value from {1, ..., N}.
  
  A node in this binary tree can be flipped by swapping the left child and the right child of that node.
@@ -13,30 +14,31 @@
  
  If we cannot do so, then return the list [-1].
  
- 
- 
  Example 1:
- 
- 
- 
+    1
+   /
+  2
  Input: root = [1,2], voyage = [2,1]
  Output: [-1]
+ 
+
  Example 2:
- 
- 
- 
+      1
+    /   \ 
+   2     3
  Input: root = [1,2,3], voyage = [1,3,2]
  Output: [1]
+ 
+
  Example 3:
- 
- 
- 
+      1
+    /   \ 
+   2     3
  Input: root = [1,2,3], voyage = [1,2,3]
  Output: []
  
  
  Note:
- 
  1 <= N <= 100
  */
 
@@ -79,13 +81,11 @@ private:
         
         if (root -> left != nullptr) {
             if (root -> left -> val != voyage[cur]) {
-                if (root -> right != nullptr and root -> right -> val == voyage[cur]) {
-                    swap(root -> left, root -> right);
-                    result.push_back(root -> val);
-                }
-                else {
+                if (root -> right == nullptr or root -> right -> val != voyage[cur]) {
                     return false;
                 }
+                swap(root -> left, root -> right);
+                result.push_back(root -> val);
             }
             
             if (!traversal(root -> left, voyage, result, cur)) {

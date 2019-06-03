@@ -22,7 +22,6 @@ Your algorithm should run in linear runtime complexity. Could you implement it u
 #include <stdio.h>
 using namespace std;
 
-
 class Solution {
 public:
     vector<int> singleNumber(vector<int>& nums) {
