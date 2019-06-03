@@ -55,6 +55,7 @@ public:
         if (N == 3) {
             return 3 * 2;
         }
+        
         int result = N * (N - 1) / (N - 2);
         int cur = N - 3;
         while (cur > 0) {

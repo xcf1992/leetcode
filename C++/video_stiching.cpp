@@ -57,7 +57,26 @@
 #include <map>
 using namespace std;
 
-class Solution {
+class Solution { // dp
+public:
+    int videoStitching(vector<vector<int>>& clips, int T) {
+        vector<int> dp(T + 1, T + 1);
+        dp[0] = 0;
+        for (int i = 1; i <= T; i++) {
+            for (vector<int>& clip : clips) {
+                if (clip[0] <= i and clip[1] >= i) {
+                    dp[i] = min(dp[i], dp[clip[0]] + 1);
+                }
+            }
+            if (dp[i] > T) {
+                return -1;
+            }
+        }
+        return dp[T];
+    }
+};
+
+class Solution { // greedy
 public:
     int videoStitching(vector<vector<int>>& clips, int T) {
         sort(clips.begin(), clips.end(), [](vector<int>& a, vector<int>& b) {

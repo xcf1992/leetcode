@@ -52,12 +52,28 @@ using namespace std;
  *     int val;
  *     TreeNode *left;
  *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
  * };
  */
 class Solution {
-public:
-    int sumNumbers(TreeNode* root) {
+private:
+    void calculate(TreeNode * root, int current, int& sum) {
+        if (root == nullptr) {
+            return;
+        }
         
+        current = current * 10 + root -> val;
+        if (root -> left == nullptr and root -> right == nullptr) {
+            sum += current;
+            return;
+        }
+        calculate(root -> left, current, sum);
+        calculate(root -> right, current, sum);
+    }
+public:
+    int sumNumbers(TreeNode *root) {
+        int sum = 0;
+        calculate(root, 0, sum);
+        return sum;
     }
 };
