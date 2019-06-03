@@ -1,4 +1,5 @@
 /*
+ 848. Shifting Letters
  We have a string S of lowercase letters, and an integer array shifts.
  
  Call the shift of a letter, the next letter in the alphabet, (wrapping around so that 'z' becomes 'a').
@@ -42,10 +43,10 @@ using namespace std;
 class Solution {
 public:
     string shiftingLetters(string S, vector<int>& shifts) {
-        long sum = 0;
+        int sum = 0;
         for (int i = S.size() - 1; i >= 0; i--) {
-            sum += shifts[i];
-            long move = (S[i] - 'a') + sum;
+            sum = (sum + shifts[i]) % 26;
+            int move = (S[i] - 'a') + sum;
             S[i] = (move % 26) + 'a';
         }
         return S;
