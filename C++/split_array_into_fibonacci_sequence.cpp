@@ -1,4 +1,5 @@
 /*
+842. Split Array into Fibonacci Sequence
  Given a string S of digits, such as S = "123456579", we can split it into a Fibonacci-like sequence [123, 456, 579].
  
  Formally, a Fibonacci-like sequence is a list F of non-negative integers such that:
@@ -72,7 +73,7 @@ private:
                 break;
             }
             
-            if (result.size() < 2 || num == result[result.size() - 1] + result[result.size() - 2]) {
+            if (result.size() < 2 || num == (long)result[result.size() - 1] + (long)result[result.size() - 2]) {
                 result.push_back(num);
                 if (split(i + 1, result, S)) {
                     return true;
