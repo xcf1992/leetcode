@@ -1,3 +1,31 @@
+/*
+385. Mini Parser
+Given a nested list of integers represented as a string, implement a parser to deserialize it.
+
+Each element is either an integer, or a list -- whose elements may also be integers or other lists.
+
+Note: You may assume that the string is well-formed:
+
+String is non-empty.
+String does not contain white spaces.
+String contains only digits 0-9, [, - ,, ].
+Example 1:
+
+Given s = "324",
+
+You should return a NestedInteger object which contains a single integer 324.
+Example 2:
+
+Given s = "[123,[456,[789]]]",
+
+Return a NestedInteger object containing a nested list with 2 elements:
+
+1. An integer containing value 123.
+2. A nested list containing two elements:
+    i.  An integer containing value 456.
+    ii. A nested list with one element:
+         a. An integer containing value 789.
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -8,8 +36,6 @@
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
-
 /**
  * // This is the interface that allows for creating nested lists.
  * // You should not implement it, or speculate about its implementation
@@ -57,20 +83,17 @@ public:
             else {
                 string num;
                 while (pos < s.size() && s[pos] != ']' && s[pos] != ',') {
-                    num += s[pos];
+                    num.push_back(s[pos]);
                     pos += 1;
                 }
 
                 result.add(NestedInteger(stoi(num)));
-
                 if (s[pos] == ']') {
                     return result;
                 }
-
                 pos += 1;
             }
         }
-
         return result;
     }
 
@@ -84,12 +107,3 @@ public:
         return NestedInteger(stoi(s));
     }
 };
-
-int main() {
-    string s = "a";
-    char c = 'a';
-    if (s[0] == 'a') {
-        cout << "True" << endl;
-    }
-    return 0;
-}

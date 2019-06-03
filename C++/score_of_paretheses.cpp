@@ -1,4 +1,5 @@
 /*
+ 856. Score of Parentheses
  Given a balanced parentheses string S, compute the score of the string based on the following rule:
  
  () has score 1
@@ -66,5 +67,39 @@ public:
             }
         }
         return sum;
+    }
+};
+
+/*
+cur record the score at the current layer level.
+
+If we meet '(',
+we push the current score to stack,
+enter the next inner layer level,
+and reset cur = 0.
+
+If we meet ')',
+the cur score will be doubled and will be at least 1.
+We exit the current layer level,
+and set cur = stack.pop() + cur
+
+Complexity: O(N) time and O(N) space
+*/
+class Solution {
+public:
+    int scoreOfParentheses(string S) {
+        stack<int> stk;
+        int cur = 0;
+        for (char c : S) {
+            if (c == '(') {
+                stk.push(cur);
+                cur = 0;
+            }
+            else {
+                cur += stk.top() + max(cur, 1);
+                stk.pop();
+            }
+        }
+        return cur;
     }
 };
