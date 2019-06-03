@@ -1,9 +1,8 @@
 /*
+ 945. Minimum Increment to Make Array Unique
  Given an array of integers A, a move consists of choosing any A[i], and incrementing it by 1.
  
  Return the least number of moves to make every value in A unique.
- 
- 
  
  Example 1:
  
@@ -23,7 +22,6 @@
  0 <= A.length <= 40000
  0 <= A[i] < 40000
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -44,16 +42,18 @@ public:
         if (A.empty()) {
             return 0;
         }
+
         sort(A.begin(), A.end());
         int result = 0;
-        int minNum = A[0];
+        int curMin = A[0];
         for (int i = 1; i < A.size(); i++) {
-            if (A[i] <= minNum) {
-                result += minNum + 1 - A[i];
-                A[i] = minNum + 1;
+            if (A[i] <= curMin) {
+                result += curMin + 1 - A[i];
+                A[i] = curMin + 1;
             }
-            minNum = A[i];
+            curMin = A[i];
         }
         return result;
     }
 };
+

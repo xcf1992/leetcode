@@ -1,4 +1,5 @@
 /*
+ 826. Most Profit Assigning Work
  We have jobs: difficulty[i] is the difficulty of the ith job, and profit[i] is the profit of the ith job.
  
  Now we have some workers. worker[i] is the ability of the ith worker, which means that this worker can only complete a job with difficulty at most worker[i].
@@ -20,7 +21,6 @@
  1 <= worker.length <= 10000
  difficulty[i], profit[i], worker[i]  are in range [1, 10^5]
  */
-
 #include <iostream>
 #include <sstream>
 #include <string>
