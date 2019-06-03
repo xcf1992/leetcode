@@ -1,4 +1,5 @@
 /*
+ 885. Spiral Matrix III
  On a 2 dimensional grid with R rows and C columns, we start at (r0, c0) facing east.
  
  Here, the north-west corner of the grid is at the first row and column, and the south-east corner of the grid is at the last row and column.
@@ -57,49 +58,25 @@ public:
     vector<vector<int>> spiralMatrixIII(int R, int C, int r0, int c0) {
         vector<vector<int>> result;
         result.push_back({r0, c0});
-        int count = R * C;
+
         int direction = 0;
         int step = 1;
+        vector<int> rDiff({0, 1, 0, -1});
+        vector<int> cDiff({1, 0, -1, 0});
+
         vector<int> cur({r0, c0});
-        while (result.size() < count) {
-            if (direction == 0) {
-                for (int i = 0; i < step; i++) {
-                    cur[1] += 1;
-                    if (cur[0] >= 0 && cur[0] < R && cur[1] >= 0 && cur[1] < C) {
-                        result.push_back(cur);
-                    }
+        while (result.size() < R * C) {
+            for (int i = 0; i < step; i++) {
+                cur[0] += rDiff[direction];
+                cur[1] += cDiff[direction];
+                if (cur[0] >= 0 && cur[0] < R && cur[1] >= 0 && cur[1] < C) {
+                    result.push_back(cur);
                 }
-                direction = 1;
             }
-            else if (direction == 1) {
-                for (int i = 0; i < step; i++) {
-                    cur[0] += 1;
-                    if (cur[0] >= 0 && cur[0] < R && cur[1] >= 0 && cur[1] < C) {
-                        result.push_back(cur);
-                    }
-                }
+            if (direction == 1 or direction == 3) {
                 step += 1;
-                direction = 2;
             }
-            else if (direction == 2) {
-                for (int i = 0; i < step; i++) {
-                    cur[1] -= 1;
-                    if (cur[0] >= 0 && cur[0] < R && cur[1] >= 0 && cur[1] < C) {
-                        result.push_back(cur);
-                    }
-                }
-                direction = 3;
-            }
-            else if (direction == 3) {
-                for (int i = 0; i < step; i++) {
-                    cur[0] -= 1;
-                    if (cur[0] >= 0 && cur[0] < R && cur[1] >= 0 && cur[1] < C) {
-                        result.push_back(cur);
-                    }
-                }
-                step += 1;
-                direction = 0;
-            }
+            direction = (direction + 1) % 4;
         }
         return result;
     }

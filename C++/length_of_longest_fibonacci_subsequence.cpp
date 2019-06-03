@@ -1,4 +1,5 @@
 /*
+ 873. Length of Longest Fibonacci Subsequence
  A sequence X_1, X_2, ..., X_n is fibonacci-like if:
  
  n >= 3
@@ -46,7 +47,45 @@
 #include <set>
 using namespace std;
 
+/*
+dp[a, b] represents the length of fibo sequence ends up with (a, b)
+Then we have dp[a, b] = (dp[b - a, a] + 1 ) or 2
+The complexity reduce to O(N^2).
+In C++/Java, I use 2D dp and index as key.
+In Python, I use value as key.
+*/
 class Solution {
+public:
+    int lenLongestFibSubseq(vector<int>& A) {
+        int n = A.size();
+        if (n < 3) {
+            return 0;
+        }
+
+        unordered_map<int, int> index;
+        for (int i = 0; i < n; ++i) {
+            index[A[i]] = i;
+        }
+
+        int result = 0;
+        vector<vector<int>> dp(n, vector<int>(n, 0));
+        for (int j = 0; j < n; ++j) {
+            for (int i = 0; i < j; ++i) {
+                int diff = A[j] - A[i];
+                if (diff < A[i] and index.find(diff) != index.end()) {
+                    dp[i][j] = dp[index[diff]][i] + 1;
+                }
+                else {
+                    dp[i][j] = 2;
+                }
+                result = max(result, dp[i][j]);
+            }
+        }
+        return result > 2 ? result : 0;
+    }
+};
+
+class Solution1 {
 public:
     int lenLongestFibSubseq(vector<int>& A) {
         int n = A.size();
