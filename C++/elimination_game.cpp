@@ -42,7 +42,7 @@ public:
         int step = 2;
         while (remain > 1) {
             if (left || remain % 2 == 1) {
-                head += step;
+                head += step / 2;
             }
             remain /= 2;
             step *= 2;
