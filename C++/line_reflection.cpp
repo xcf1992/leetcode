@@ -1,4 +1,5 @@
 /*
+356. Line Reflection
  Given n points on a 2D plane, find if there is such a line parallel to y-axis that reflect the given points.
  
  Example 1:
@@ -12,7 +13,6 @@
  Follow up:
  Could you do better than O(n2) ?
  */
-
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -28,6 +28,29 @@
 #include <set>
 #include <numeric>
 using namespace std;
+
+class Solution {
+public:
+    bool isReflected(vector<vector<int>>& points) {
+        int xMin = INT_MAX;
+        int xMax = INT_MIN;
+        unordered_map<int, unordered_set<int>> memo;
+        for (vector<int>& point : points) {
+            xMin = min(xMin, point[0]);
+            xMax = max(xMax, point[0]);
+            memo[point[0]].insert(point[1]);
+        }
+
+        int sum = xMax + xMin;
+        for (vector<int>& point : points) {
+            int target = sum - point[0];
+            if (memo.find(target) == memo.end() or memo[target].find(point[1]) == memo[target].end()) {
+                return false;
+            }
+        }
+        return true;
+    }
+};
 
 class Solution {
 public:
