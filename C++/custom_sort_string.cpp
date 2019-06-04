@@ -1,24 +1,5 @@
-//
-//  custom_sort_string.cpp
-//  C++
-//
-//  Created by Chenfu Xie on 2/26/18.
-//  Copyright © 2018 Chenfu Xie. All rights reserved.
-//
-
-#include <iostream>
-#include <string>
-#include <vector>
-#include <unordered_map>
-#include <unordered_set>
-#include <algorithm>
-#include <cmath>
-#include <queue>
-#include <stack>
-#include <stdio.h>
-using namespace std;
-
 /*
+ 791. Custom Sort String
  S and T are strings composed of lowercase letters. In S, no letter occurs more than once.
  
  S was sorted in some custom order previously. We want to permute the characters of T so that they match the order that S was sorted. More specifically, if x occurs before y in S, then x should occur before y in the returned string.
@@ -41,16 +22,29 @@ using namespace std;
  T has length at most 200.
  S and T consist of lowercase letters only.
  */
+#include <iostream>
+#include <string>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+#include <algorithm>
+#include <cmath>
+#include <queue>
+#include <stack>
+#include <stdio.h>
+using namespace std;
 
 class Solution {
 public:
     string customSortString(string S, string T) {
-        unordered_map<char, int> dict;
+        vector<int> dict(26, INT_MAX);
         for (int i = 0; i < S.size(); i++) {
-            dict[S[i]] = i;
+            dict[S[i] - 'a'] = i;
         }
         
-        sort(T.begin(), T.end(), [&](char a, char b) {return dict[a] < dict[b];});
+        sort(T.begin(), T.end(), [&](char c1, char c2) {
+            return dict[c1 - 'a'] < dict[c2 - 'a'];
+        });
         return T;
     }
 };
