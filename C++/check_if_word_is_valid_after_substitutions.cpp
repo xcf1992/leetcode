@@ -60,22 +60,22 @@ public:
     bool isValid(string S) {
         stack<char> stk;
         for (char ch : S) {
-            if (ch == 'c') {
-                if (!stk.empty() and stk.top() == 'b') {
+            if (ch == 'a' or ch == 'b') {
+                stk.push(ch);
+                continue;
+            }
+            
+            if (!stk.empty() and stk.top() == 'b') {
+                stk.pop();
+                if (!stk.empty() and stk.top() == 'a') {
                     stk.pop();
-                    if (!stk.empty() and stk.top() == 'a') {
-                        stk.pop();
-                    }
-                    else {
-                        return false;
-                    }
                 }
                 else {
                     return false;
                 }
             }
             else {
-                stk.push(ch);
+                return false;
             }
         }
         return stk.empty();

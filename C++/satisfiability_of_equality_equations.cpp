@@ -66,6 +66,7 @@ public:
         for (int i = 0; i < 26; i++) {
             parent[i] = i;
         }
+        
         for (string& equation : equations) {
             if (equation[1] == '=') {
                 parent[find(parent, equation[0] - 'a')] = find(parent, equation[3] - 'a');

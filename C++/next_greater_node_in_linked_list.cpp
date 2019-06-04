@@ -51,6 +51,31 @@ using namespace std;
   };
 
 class Solution {
+public:
+    vector<int> nextLargerNodes(ListNode* head) {
+        if (head == nullptr) {
+            return {};
+        }
+
+        vector<int> result;
+        stack<pair<int, int>> stk;
+        ListNode* cur = head;
+        int index = 0;
+        while (cur != nullptr) {
+            while (!stk.empty() and cur -> val > stk.top().second) {
+                result[stk.top().first] = cur -> val;
+                stk.pop();
+            }
+            stk.push({index, cur -> val});
+            result.push_back(0);
+            cur = cur -> next;
+            index += 1;
+        }
+        return result;
+    }
+};
+
+class Solution1 {
 private:
     ListNode* reverseList(ListNode* head) {
         if (head == nullptr or head -> next == nullptr) {

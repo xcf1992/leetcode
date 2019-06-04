@@ -1,4 +1,5 @@
 /*
+930. Binary Subarrays With Sum
  In an array A of 0s and 1s, how many non-empty subarrays have sum S?
  
  
@@ -47,13 +48,30 @@ using namespace std;
  
  Algorithm
  
- For each j, let's count the number of i with P[j] = P[i] + S. This is analogous to counting the number of subarrays ending in j with sum S.
+ For each j, let's count the number of i with P[j] = P[i] + S. 
+ This is analogous to counting the number of subarrays ending in j with sum S.
  
- It comes down to counting how many P[i] + S we've seen before. We can keep this count on the side to help us find the final answer.
+ It comes down to counting how many P[i] + S we've seen before. 
+ We can keep this count on the side to help us find the final answer.
  */
 
 // the key point is to count the number of one between each 1
 class Solution {
+public:
+    int numSubarraysWithSum(vector<int>& A, int S) {
+        int curSum = 0;
+        int result = 0;
+        unordered_map<int, int> count({{0, 1}});
+        for (int num : A) {
+            curSum += num;
+            result += count[curSum - S];
+            count[curSum] += 1;
+        }
+        return result;
+    }
+};
+
+class Solution1 {
 public:
     int numSubarraysWithSum(vector<int>& A, int S) {
         int n = A.size();

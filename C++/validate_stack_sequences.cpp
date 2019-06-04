@@ -1,7 +1,6 @@
 /*
+ 946. Validate Stack Sequences
  Given two sequences pushed and popped with distinct values, return true if and only if this could have been the result of a sequence of push and pop operations on an initially empty stack.
- 
- 
  
  Example 1:
  
@@ -51,12 +50,11 @@ public:
                 po += 1;
             }
             else {
-                if (pu < pushed.size()) {
-                    stk.push(pushed[pu]);
-                    pu += 1;
-                }
+                stk.push(pushed[pu]);
+                pu += 1;
             }
         }
+        
         while (po < popped.size() and !stk.empty() and stk.top() == popped[po]) {
             po += 1;
             stk.pop();
