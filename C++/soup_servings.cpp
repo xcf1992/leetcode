@@ -1,4 +1,5 @@
 /*
+808. Soup Servings
 There are two types of soup: type A and type B. Initially we have N ml of each type of soup. There are four kinds of operations:
  
  Serve 100 ml of soup A and 0 ml of soup B
@@ -42,33 +43,35 @@ using namespace std;
 
 class Solution {
 private:
-    double serve(int leftA, int leftB, unordered_map<int, unordered_map<int, double>>& dp) {
-        if (leftA == 0 && leftB > 0) {
-            return 1.0;
-        }
-        if (leftA == 0 && leftB == 0) {
-            return 0.5;
+    double serve(int leftA, int leftB, unordered_map<int, unordered_map<int, double>>& memo) {
+        if (leftA == 0) {
+            if (leftB > 0) {
+                return 1.0;
+            }
+            if (leftB == 0) {
+                return 0.5;
+            }   
         }
         if (leftB == 0) {
             return 0.0;
         }
         
-        if (dp[leftA][leftB] != 0.0) {
-            return dp[leftA][leftB];
+        if (memo.find(leftA) != memo.end() and memo[leftA].find(leftB) != memo[leftA].end()) {
+            return memo[leftA][leftB];
         }
         
-        dp[leftA][leftB] += 0.25 * (serve(leftA - min(leftA, 100), leftB, dp) +
-                                    serve(leftA - min(leftA, 75), leftB- min(leftB, 25), dp) +
-                                    serve(leftA - min(leftA, 50), leftB- min(leftB, 50), dp) +
-                                    serve(leftA - min(leftA, 25), leftB- min(leftB, 75), dp));
-        return dp[leftA][leftB];
+        memo[leftA][leftB] += 0.25 * (serve(leftA - min(leftA, 100), leftB, memo) +
+                                    serve(leftA - min(leftA, 75), leftB - min(leftB, 25), memo) +
+                                    serve(leftA - min(leftA, 50), leftB - min(leftB, 50), memo) +
+                                    serve(leftA - min(leftA, 25), leftB - min(leftB, 75), memo));
+        return memo[leftA][leftB];
     }
 public:
     double soupServings(int N) {
         if (N > 5000) {
             return 1.0;
         }
-        unordered_map<int, unordered_map<int, double>> dp;
-        return serve(N, N, dp);
+        unordered_map<int, unordered_map<int, double>> memo;
+        return serve(N, N, memo);
     }
 };

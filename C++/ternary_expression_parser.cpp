@@ -1,16 +1,5 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <unordered_map>
-#include <unordered_set>
-#include <algorithm>
-#include <cmath>
-#include <queue>
-#include <stack>
-#include <stdio.h>
-using namespace std;
-
 /*
+439. Ternary Expression Parser
 Given a string representing arbitrarily nested ternary expressions, calculate the result of the expression. You can always assume that the given expression is valid and only consists of digits 0-9, ?, :, T and F (T and F represent True and False respectively).
 
 Note:
@@ -50,10 +39,21 @@ Explanation: The conditional expressions group right-to-left. Using parenthesis,
           -> "(T ? F : 3)"                 or       -> "(T ? F : 5)"
           -> "F"                                    -> "F"
 */
+#include <iostream>
+#include <string>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+#include <algorithm>
+#include <cmath>
+#include <queue>
+#include <stack>
+#include <stdio.h>
+using namespace std;
+
 class Solution {
 public:
     string parseTernary(string expression) {
-        string result;
         stack<char> stk;
         for (int i = expression.size() - 1; i >= 0; i--) {
             char c = expression[i];
@@ -75,7 +75,6 @@ public:
                 stk.push(c);
             }
         }
-        result.push_back(stk.top());
-        return result;
+        return string(1, stk.top());
     }
 };

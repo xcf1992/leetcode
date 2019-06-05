@@ -1,4 +1,5 @@
 /*
+ 562. Longest Line of Consecutive One in Matrix
  Given a 01 matrix M, find the longest line of consecutive one in the matrix. The line could be horizontal, vertical, diagonal or anti-diagonal.
  Example:
  Input:
@@ -30,7 +31,6 @@ public:
             return 0;
         }
         int n = M[0].size();
-        
         vector<int> col(n, 0);
         vector<int> diag(m + n, 0);
         vector<int> antiDiag(m + n, 0);
