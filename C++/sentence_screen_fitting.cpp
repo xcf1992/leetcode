@@ -1,4 +1,5 @@
 /*
+ 418. Sentence Screen Fitting
  Given a rows x cols screen and a sentence represented by a list of non-empty words, find how many times the given sentence can be fitted on the screen.
  
  Note:
@@ -70,28 +71,31 @@
 using namespace std;
 
 /*
- I use num to represent how many words can be put in the screen. we use a map count to record for each line how many words cnt can be put when starting with word i. So when we scan each line of the screen, we first get the starting word should be put on this line. If this starting words is already in the map, then just read it; otherwise, create a new entry in this map.
+ I use num to represent how many words can be put in the screen. 
+ we use a map count to record for each line how many words cnt can be put when starting with word i. 
+ So when we scan each line of the screen, we first get the starting word should be put on this line. 
+ If this starting words is already in the map, then just read it; otherwise, create a new entry in this map.
  */
 class Solution {
 public:
     int wordsTyping(vector<string>& sentence, int rows, int cols) {
         unordered_map<int, int> count;
+        int n = sentence.size();
         int num = 0;
         for (int i = 0; i < rows; i++) {
-            int cur = num % sentence.size();
-            
+            int cur = num % n;
             if (count.find(cur) == count.end()) {
                 int length = 0;
                 int word = cur;
                 while (length + sentence[word].size() <= cols) {
                     length += sentence[word].size() + 1;
                     count[cur] += 1;
-                    word = (word + 1) % sentence.size();
+                    word = (word + 1) % n;
                 }
             }
             num += count[cur];
         }
-        return num / sentence.size();
+        return num / n;
     }
 };
 

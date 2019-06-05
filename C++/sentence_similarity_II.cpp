@@ -1,4 +1,5 @@
 /*
+ 737. Sentence Similarity II
  Given two sentences words1, words2 (each represented as an array of strings), and a list of similar word pairs pairs, determine if two sentences are similar.
  
  For example, words1 = ["great", "acting", "skills"] and words2 = ["fine", "drama", "talent"] are similar, if the similar word pairs are pairs = [["great", "good"], ["fine", "good"], ["acting","drama"], ["skills","talent"]].
@@ -18,7 +19,6 @@
  The length of each pairs[i] will be 2.
  The length of each words[i] and pairs[i][j] will be in the range [1, 20].
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -39,22 +39,17 @@ private:
         if (match.find(word) == match.end()) {
             match[word] = word;
         }
-        
-        if (word == match[word]) {
-            return word;
-        }
-        return find(match[word]);
+        return word == match[word] ? word : find(match[word]);
     }
 public:
-    bool areSentencesSimilarTwo(vector<string>& words1, vector<string>& words2, vector<pair<string, string>> pairs) {
+    bool areSentencesSimilarTwo(vector<string>& words1, vector<string>& words2, vector<vector<string>> pairs) {
         if (words1.size() != words2.size()) {
             return false;
         }
-        match.clear();
         
-        for (pair<string, string> pair : pairs) {
-            string parent1 = find(pair.first);
-            string parent2 = find(pair.second);
+        for (vector<string>& pair : pairs) {
+            string parent1 = find(pair[0]);
+            string parent2 = find(pair[1]);
             
             if (parent1 != parent2) {
                 match[parent1] = parent2;

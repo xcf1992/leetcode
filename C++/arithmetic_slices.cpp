@@ -1,4 +1,5 @@
 /*
+413. Arithmetic Slices
 A sequence of number is called arithmetic if it consists of at least three elements and if the difference between any two consecutive elements is the same.
 
 For example, these are arithmetic sequence:
@@ -36,35 +37,36 @@ return: 3, for 3 arithmetic slices in A: [1, 2, 3], [2, 3, 4] and [1, 2, 3, 4] i
 #include <stdio.h>
 using namespace std;
 
+class Solution {
+public:
+    int numberOfArithmeticSlices(vector<int>& A) {
+        int n = A.size();
+        vector<int> dp(n, 0);
+        int result = 0;
+        for (int i = 2; i < n; ++i) {
+            if (A[i] - A[i - 1] == A[i - 1] - A[i - 2]) {
+                dp[i] = dp[i - 1] + 1;
+            }
+            result += dp[i];
+        }
+        return result;
+    }
+};
 
 class Solution {
 public:
     int numberOfArithmeticSlices(vector<int>& A) {
-        if (A.size() < 3) {
-            return 0;
-        }
-
         int result = 0;
-        int gap = A[1] - A[0];
-        int size = 2;
-        int i = 2;
-        while (i < A.size()) {
-            if (A[i] - A[i - 1] == gap) {
-                size += 1;
+        int count = 0;
+        for (int i = 2; i < A.size(); ++i) {
+            if (A[i] - A[i - 1] == A[i - 1] - A[i - 2]) {
+                count += 1;
             }
             else {
-                if (size >= 3) {
-                    result += (size - 1) * (size - 2) / 2;
-                }
-                size = 2;
-                gap = A[i] - A[i - 1];
+                result += (count + 1) * count / 2;
+                count = 0;
             }
-            i++;
         }
-        if (size >= 3) {
-            result += (size - 1) * (size - 2) / 2;
-        }
-
-        return result;
+        return result + (count + 1) * count / 2;
     }
 };

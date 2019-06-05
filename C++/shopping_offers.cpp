@@ -48,7 +48,6 @@ class Solution {
 private:
     void pickSpecial(vector<int>& price, vector<vector<int>>& special, int start, vector<int>& needs,
                      vector<int>& bought, int currentFee, int& result) {
-
         for (int index = start; index < special.size(); index++) {
             vector<int> offer = special[index];
             bool pick = true;
@@ -58,6 +57,7 @@ private:
                     break;
                 }
             }
+            
             if (pick) {
                 for (int i = 0; i < offer.size() - 1; i++) {
                     bought[i] += offer[i];
@@ -74,7 +74,6 @@ private:
         for (int i = 0; i < needs.size(); i++) {
             currentFee += (needs[i] - bought[i]) * price[i];
         }
-
         result = min(result, currentFee);
     }
 public:

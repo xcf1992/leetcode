@@ -1,16 +1,5 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <unordered_map>
-#include <unordered_set>
-#include <algorithm>
-#include <cmath>
-#include <queue>
-#include <stack>
-#include <stdio.h>
-using namespace std;
-
 /*
+666. Path Sum IV
 If the depth of a tree is smaller than 5, then this tree can be represented by a list of three-digits integers.
 
 For each integer in this list:
@@ -47,23 +36,39 @@ The tree that the list represents is:
 
 The path sum is (3 + 1) = 4.
  */
+#include <iostream>
+#include <string>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+#include <algorithm>
+#include <cmath>
+#include <queue>
+#include <stack>
+#include <stdio.h>
+using namespace std;
 
 class Solution {
 public:
     int pathSum(vector<int>& nums) {
-        int m[5][8] = {};
+        vector<vector<int>> tree(5, vector<int>(8, -1));
+        tree[0][0] = 0;
         for (int n : nums) {
             int i = n / 100; // i is 1 based index;
             int j = (n % 100) / 10 - 1; // j used 0 based index;
             int v = n % 10;
-            m[i][j] = m[i - 1][j / 2] + v;
+            tree[i][j] = tree[i - 1][j / 2] + v;
         }
 
         int sum = 0;
         for (int i = 1; i < 5; i++) {
             for (int j = 0; j < 8; j++) {
-                if (i == 4 || (m[i][j] && !m[i + 1][j * 2] && !m[i + 1][j * 2 + 1])) {
-                    sum += m[i][j];
+                if (tree[i][j] == -1) {
+                    continue;
+                }
+
+                if (i == 4 or (tree[i + 1][j * 2] == -1 and tree[i + 1][j * 2 + 1] == -1)) {
+                    sum += tree[i][j];
                 }
             }
         }

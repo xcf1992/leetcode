@@ -1,4 +1,5 @@
 /*
+775. Global and Local Inversions
  We have some permutation A of [0, 1, ..., N - 1], where N is the length of A.
  
  The number of (global) inversions is the number of i < j with 0 <= i < j < N and A[i] > A[j].

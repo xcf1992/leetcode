@@ -1,4 +1,5 @@
 /*
+ 360. Sort Transformed Array
  Given a sorted array of integers nums and integer values a, b and c. Apply a quadratic function of the form f(x) = ax2 + bx + c to each element x in the array.
  
  The returned array must be in sorted order.
@@ -43,21 +44,30 @@ public:
                 return result;
             }
         }
+
         int n = nums.size();
         double mid = 0 - (double)b / (2 * a);
         int left = 0;
         int right = n - 1;
-        while (left < n - 1 && ((double)nums[left + 1]) < mid) {
+        while (left + 1 < n && ((double)nums[left + 1]) < mid) {
             left += 1;
         }
         while (right > 0 && ((double)nums[right - 1]) >= mid) {
             right -= 1;
         }
         
-        while (left >= 0 && right < n) {
-            double rightVal = nums[right];
-            double leftVal = nums[left];
-            if (abs(rightVal - mid) > abs(leftVal - mid)) {
+        while (left >= 0 or right < n) {
+            if (left < 0) {
+                result.push_back(a * nums[right] * nums[right] + b * nums[right] + c);
+                right += 1;
+                continue;
+            }
+            if (right == n) {
+                result.push_back(a * nums[left] * nums[left] + b * nums[left] + c);
+                left -= 1;
+                continue;
+            }
+            if (abs((double)nums[right] - mid) >= abs((double)nums[left] - mid)) {
                 result.push_back(a * nums[left] * nums[left] + b * nums[left] + c);
                 left -= 1;
             }
@@ -66,15 +76,7 @@ public:
                 right += 1;
             }
         }
-        
-        while (left >= 0) {
-            result.push_back(a * nums[left] * nums[left] + b * nums[left] + c);
-            left -= 1;
-        }
-        while (right < n) {
-            result.push_back(a * nums[right] * nums[right] + b * nums[right] + c);
-            right += 1;
-        }
+
         if (a < 0) {
             reverse(result.begin(), result.end());
         }

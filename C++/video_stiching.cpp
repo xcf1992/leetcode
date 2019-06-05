@@ -76,7 +76,7 @@ public:
     }
 };
 
-class Solution { // greedy
+class Solution1 { // greedy
 public:
     int videoStitching(vector<vector<int>>& clips, int T) {
         sort(clips.begin(), clips.end(), [](vector<int>& a, vector<int>& b) {

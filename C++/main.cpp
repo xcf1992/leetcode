@@ -12,63 +12,90 @@
 #include <numeric>
 using namespace std;
 
+struct TrieNode {
+    bool isRoot;
+    vector<TrieNode*> children = vector<TrieNode*>(26, nullptr);
+    TrieNode(bool r = false) : isRoot(r) {}
+};
+
+class Trie {
+private:
+    TrieNode* root = nullptr;
+public:
+    Trie() {
+        root = new TrieNode();
+    }
+
+    void insert(string word) {
+        TrieNode* cur = root;
+        for (char c : word) {
+            int index = c - 'a';
+            if (cur -> children[index] == nullptr) {
+                cur -> children[index] = new TrieNode();
+            }
+            cur = cur -> children[index];
+        }
+        cur -> isRoot = true;
+    }
+
+    string getRoot(string word) {
+        TrieNode* cur = root;
+        for (int i = 0; i < word.size(); ++i) {
+            int index = word[i] - 'a';
+            if (cur -> children[index] == nullptr) {
+                return word;
+            }
+
+            cur = cur -> children[index];
+            if (cur -> isRoot) {
+                return word.substr(0, i + 1);
+            }
+        }
+        return word;
+    }
+};
+
 class Solution {
 private:
-    pair<string, vector<int>> parse(string str) {
-        vector<int> count;
-        string key = "";
-        int prev = -1;
-        int n = str.size();
-        for (int i = 0; i < n; ++i) {
-            if (i == n - 1 or str[i] != str[i + 1]) {
-                key.push_back(str[i]);
-                count.push_back(i - prev);
-                prev = i;
-            }
+    vector<string> splitSentence(string sentence) {
+        vector<string> result;
+        int cur = 0;
+        int pos = sentence.find(' ', cur);
+        while (pos != string::npos) {
+            string word = sentence.substr(cur, pos - cur);
+            result.push_back(word);
+            cur = pos + 1;
+            pos = sentence.find(' ', cur);
         }
-        return {key, count};
-    }
-    
-    bool check(pair<int, vector<int>>& s, pair<int, vector<int>>& word) {
-        if (s.first != word.first) {
-            return false;
-        }
-        
-        vector<int> sCount = s.second;
-        vector<int> wCount = word.second;
-        for (int i = 0; i < sCount.size(); ++i) {
-            if (sCount[i] < wCount[i] or (sCount[i] < 3 and sCount[i] != wCount[i])) {
-                return false;
-            }
-        }
-        return true;
+        result.push_back(sentence.substr(cur));
+        return result;
     }
 public:
-    int expressiveWords(string S, vector<string>& words) {
-        int n = words.size();
-        if (n <= 0) {
-            return 0;
+    string replaceWords(vector<string> dict, string sentence) {
+        Trie trie;
+        for (string word : dict) {
+            trie.insert(word);
         }
-        
-        pair<string, vector<int>> s = parse(S);
-        int result = 0;
-        for (int i = 0; i < n; ++i) {
-            pair<string, vector<int>> w = parse(words[i]);
-            if (check(s, w)) {
-                result += 1;
+
+        vector<string> words = splitSentence(sentence);
+        string result = "";
+        for (int i = 0; i < words.size(); ++i) {
+            result += trie.getRoot(words[i]);
+            if (i != words.size() - 1) {
+                result += " ";
             }
         }
-        return result;
+        return result.substr();
     }
 };
 
 int main() {
     Solution s;
-    vector<int> temp({0,1,3,50,75});
+    vector<int> temp({-4,-2,2,4});
     vector<vector<int>> matrix({
         {0,1,0},
         {1,1,1},
         {0,1,0}
     });
-    
+    s.replaceWords({"cat", "bat", "rat"}, "the cattle was rattled by the battery");
 }

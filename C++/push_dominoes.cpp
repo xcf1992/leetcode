@@ -1,4 +1,5 @@
 /*
+ 838. Push Dominoes
  There are N dominoes in a line, and we place each domino vertically upright.
  
  In the beginning, we simultaneously push some of the dominoes either to the left or to the right.
@@ -48,28 +49,28 @@ using namespace std;
 class Solution {
 public:
     string pushDominoes(string dominoes) {
-        int count = dominoes.size();
-        if (count <= 1) {
+        int n = dominoes.size();
+        if (n <= 1) {
             return dominoes;
         }
         
-        vector<int> distance(count, INT_MAX);
+        vector<int> distance(n, INT_MAX);
         for (int i = 0; i < dominoes.size(); i++) {
             if (dominoes[i] == 'R') {
                 distance[i] = 0;
             }
-            else if (dominoes[i - 1] == 'R' && dominoes[i] == '.') {
+            else if (i != 0 and dominoes[i - 1] == 'R' and dominoes[i] == '.') {
                 dominoes[i] = 'R';
                 distance[i] = distance[i - 1] + 1;
             }
         }
         
         int dis = INT_MAX;
-        for (int i = count - 1; i >= 0; i--) {
+        for (int i = n - 1; i >= 0; i--) {
             if (dominoes[i] == 'L') {
                 dis = 0;
             }
-            else if (dominoes[i + 1] == 'L') {
+            else if (i != n - 1 and dominoes[i + 1] == 'L') {
                 dis += 1;
                 if (dominoes[i] == '.') {
                     dominoes[i] = 'L';
