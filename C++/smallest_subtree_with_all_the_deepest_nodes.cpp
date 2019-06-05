@@ -1,4 +1,5 @@
 /*
+ 865. Smallest Subtree with all the Deepest Nodes
  Given a binary tree rooted at root, the depth of each node is the shortest distance to the root.
  
  A node is deepest if it has the largest depth possible among any node in the entire tree.
@@ -62,13 +63,13 @@ class Solution {
 private:
     pair<TreeNode*, int> dfs(TreeNode* root, int depth) {
         if (root == nullptr) {
-            return make_pair(root, depth - 1);
+            return {root, depth - 1};
         }
         
         pair<TreeNode*, int> leftSub = dfs(root -> left, depth + 1);
         pair<TreeNode*, int> rightSub = dfs(root -> right, depth + 1);
         if (leftSub.second == rightSub.second) {
-            return make_pair(root, leftSub.second);
+            return {root, leftSub.second};
         }
         return leftSub.second > rightSub.second ? leftSub : rightSub;
     }

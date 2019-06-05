@@ -1,4 +1,5 @@
 /*
+ 910. Smallest Range II
  Given an array A of integers, for each integer A[i] we need to choose either x = -K or x = K, and add x to A[i] (only once).
  
  After this process, we have some array B.
@@ -73,7 +74,6 @@ using namespace std;
  
  all the elements to be added 2K must be the left continuous part of the array ([True, ..., True, False, ... False]). It can be proved that if in the best solution there are some elements added by 0 between the ones added by 2K, we can add 2K to them, and this operation will not make the solution worse. Then we can find where the split it is in one pass.
  */
-
 class Solution {
 public:
     int smallestRangeII(vector<int>& A, int K) {
@@ -81,7 +81,7 @@ public:
         int curMax = A.back();
         int curMin = A.front();
         int result = curMax - curMin;
-        for (int i = 0; i < A.size(); i++) {
+        for (int i = 0; i < A.size() - 1; i++) {
             curMax = max(curMax, A[i] + 2 * K);
             curMin = min(A[i + 1], A[0] + 2 * K);
             result = min(result, curMax - curMin);
