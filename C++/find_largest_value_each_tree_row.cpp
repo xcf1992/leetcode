@@ -1,3 +1,19 @@
+/*
+515. Find Largest Value in Each Tree Row
+
+You need to find the largest value in each row of a binary tree.
+
+Example:
+Input: 
+
+          1
+         / \
+        3   2
+       / \   \  
+      5   3   9 
+
+Output: [1, 3, 9]
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -22,15 +38,16 @@ using namespace std;
 class Solution {
 public:
     vector<int> largestValues(TreeNode* root) {
+        if (root == nullptr) {
+            return {};
+        }
         vector<int> result;
         queue<TreeNode*> row;
         row.push(root);
-        row.push(nullptr);
-
-        while (!row.empty() && row.front() != nullptr) {
+        while (!row.empty()) {
             int max_value = INT_MIN;
-
-            while (row.front() != nullptr) {
+            int curSize = row.size();
+            for (int i = 0; i < curSize; ++i) {
                 TreeNode* current = row.front();
                 row.pop();
                 max_value = max(max_value, current -> val);
@@ -42,17 +59,8 @@ public:
                     row.push(current -> right);
                 }
             }
-
-            row.push(nullptr);
             result.push_back(max_value);
-            row.pop();
         }
-
         return result;
     }
 };
-
-int main() {
-    Solution s;
-    return 0;
-}

@@ -1,5 +1,6 @@
 /*
- We partition a row of numbers A into at most K adjacent (non-empty) groups, then our score is the sum of the average of each group. What is the largest score we can achieve?
+ 813. Largest Sum of Averages
+ We partition a row of numbers A into at most K adjacent (non-empty) groups, then our score is the preSum of the average of each group. What is the largest score we can achieve?
  
  Note that our partition must use every number in A, and that scores are not necessarily integers.
  
@@ -49,7 +50,7 @@ We take the highest score of these, keeping in mind we don't necessarily need to
 
 In total, our recursion in the general case is dp(i, k) = max(average(i, N), max_{j > i}(average(i, j) + dp(j, k-1))).
 
-We can calculate average a little bit faster by remembering prefix sums.
+We can calculate average a little bit faster by remembering prefix preSums.
 If P[x+1] = A[0] + A[1] + ... + A[x], then average(i, j) = (P[j] - P[i]) / (j - i).
 
 Our implementation showcases a "bottom-up" style of dp. Here at loop number k in our outer-most loop,
@@ -65,31 +66,30 @@ public:
             return 0;
         }
 
-        vector<vector<double>> dp(K + 1, vector<double>(A.size(),0));
-        vector<int> sum;
-        sum.push_back(A[0]);
-        for(int i = 1; i < A.size(); i++) {
-            sum.push_back(A[i] + sum.back());
+        vector<vector<double>> dp(K + 1, vector<double>(n, 0.0));
+        vector<int> preSum;
+        preSum.push_back(A[0]);
+        for(int i = 1; i < n; i++) {
+            preSum.push_back(A[i] + preSum.back());
         }
         
+        // split the array into k groups, then there will have to be at least k numbers from A[0] ~ A[k-1]
         for (int k = 1; k <= K; k++) {
-            // split the array into k groups, then there will have to be at least k numbers from A[0] ~ A[k-1]
             for (int i = k - 1; i < n; i++) {
                 if (k == 1) {
-                    dp[k][i] = double (sum[i]) / (i + 1);
+                    dp[k][i] = double (preSum[i]) / (i + 1);
+                    continue;
                 }
-                else {
-                    // since we are going to split the first i number into k groups
-                    // we are going to search through based on dp[k - 1][j]
-                    // so split first j number into k - 1 groups, j < i
-                    // and number j + 1 to i as last group, total k groups
-                    // j should be at least k - number, so the index j start from k - 2
-                    for (int j = k - 2; j < i; j++) {
-                        dp[k][i] = max(dp[k][i], dp[k - 1][j] + double(sum[i] - sum[j]) / (i - j));
-                    }
+                // since we are going to split the first i number into k groups
+                // we are going to search through based on dp[k - 1][j]
+                // so split first j number into k - 1 groups, j < i
+                // and number j + 1 to i as last group, total k groups
+                // j should be at least k - number, so the index j start from k - 2
+                for (int j = k - 2; j < i; j++) {
+                    dp[k][i] = max(dp[k][i], dp[k - 1][j] + double(preSum[i] - preSum[j]) / (i - j));
                 }
             }
         }
-        return dp[K][A.size() - 1];
+        return dp[K][n - 1];
     }
 };

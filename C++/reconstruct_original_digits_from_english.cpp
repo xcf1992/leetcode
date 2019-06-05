@@ -1,3 +1,21 @@
+/*
+423. Reconstruct Original Digits from English
+
+Given a non-empty string containing an out-of-order English representation of digits 0-9, output the digits in ascending order.
+
+Note:
+Input contains only lowercase English letters.
+Input is guaranteed to be valid and can be transformed to its original digits. That means invalid inputs such as "abc" or "zerone" are not permitted.
+Input length is less than 50,000.
+Example 1:
+Input: "owoztneoer"
+
+Output: "012"
+Example 2:
+Input: "fviefuro"
+
+Output: "45"
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -29,11 +47,7 @@ public:
             for (char c : word) {
                 counts[c - 'a'] -= count;
             }
-
-            while (count > 0) {
-                result += to_string(nums[i]);
-                count--;
-            }
+            result += string(count, nums[i] + '0');
         }
         sort(result.begin(), result.end());
         return result;

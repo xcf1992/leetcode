@@ -17,7 +17,6 @@ Note: If there are several possible values for h, the maximum one is taken as th
 
 
  */
-
 #include <iostream>
 #include <string>
 #include <vector>

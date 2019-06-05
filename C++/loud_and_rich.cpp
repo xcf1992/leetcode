@@ -1,4 +1,5 @@
 /*
+ 851. Loud and Rich
  In a group of N people (labelled 0, 1, 2, ..., N-1), each person has different amounts of money, and different levels of quietness.
  
  For convenience, we'll call the person with label x, simply "person x".
@@ -62,7 +63,6 @@ private:
         result[index] = index;
         for (int person : graph[index]) {
             check(person, quiet, result, graph);
-            
             result[index] = quiet[result[index]] > quiet[result[person]] ? result[person] : result[index];
         }
     }

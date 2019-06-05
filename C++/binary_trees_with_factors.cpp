@@ -1,4 +1,5 @@
 /*
+ 823. Binary Trees With Factors
  Given an array of unique integers, each integer is strictly greater than 1.
  
  We make a binary tree using these integers and each number may be used for any number of times.
@@ -43,7 +44,7 @@ using namespace std;
 class Solution {
 private:
     int mod = 1e9 + 7;
-    void buildTrees(vector<int>& A, unordered_map<int, int>& count, int num) {
+    void buildTrees(vector<int>& A, unordered_map<int, long>& count, int num) {
         count[A[num]] += 1;
         for (int i = 0; i < num; i++) {
             if (A[num] % A[i] == 0 && count.find(A[num] / A[i]) != count.end()) {
@@ -55,7 +56,7 @@ private:
 public:
     int numFactoredBinaryTrees(vector<int>& A) {
         sort(A.begin(), A.end());
-        unordered_map<int, int> count;
+        unordered_map<int, long> count;
         for (int i = 0; i < A.size(); i++) {
             buildTrees(A, count, i);
         }
