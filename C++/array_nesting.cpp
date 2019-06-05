@@ -44,12 +44,13 @@ public:
         for (int i = 0; i < nums.size(); ++i) {
             int start = i;
             while (nums[start] != -1) {
-                int next = nums[i];
-                nums[i] = -1;
+                int next = nums[start];
+                nums[start] = -1;
                 count += 1;
                 start = next;
             }
             result = max(result, count);
+            count = 0;
         }
         return result;
     }
