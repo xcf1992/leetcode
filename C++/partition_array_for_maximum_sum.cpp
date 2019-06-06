@@ -35,6 +35,11 @@
 #include <numeric>
 using namespace std;
 
+/*
+dp[i] record the maximum sum we can get considering A[0] ~ A[i]
+To get dp[i], we will try to change k last numbers separately to the maximum of them,
+where k = 1 to k = K.
+*/
 class Solution {
 public:
     int maxSumAfterPartitioning(vector<int>& A, int K) {

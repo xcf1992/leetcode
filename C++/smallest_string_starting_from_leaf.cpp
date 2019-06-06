@@ -58,34 +58,30 @@ struct TreeNode {
 
 class Solution {
 private:
-    string reverse(string str) {
-        int left = 0;
-        int right = str.size() - 1;
-        while (left < right) {
-            swap(str[left], str[right]);
-            left += 1;
-            right -= 1;
-        }
-        return str;
-    }
-    void traverse(TreeNode* root, string cur, vector<string>& allStr) {
+    void traverse(TreeNode* root, string cur, string& result) {
         if (root == nullptr) {
             return;
         }
 
         cur.push_back('a' + root -> val);
         if (root -> left == nullptr and root -> right == nullptr) {
-            allStr.push_back(reverse(cur));
+            reverse(cur.begin(), cur.end());
+            if (result == "" or cur < result) {
+                result = cur;
+            }
             return;
         }
-        traverse(root -> left, cur, allStr);
-        traverse(root -> right, cur, allStr);
+        traverse(root -> left, cur, result);
+        traverse(root -> right, cur, result);
     }
 public:
     string smallestFromLeaf(TreeNode* root) {
-        vector<string> allStr;
-        traverse(root, "", allStr);
-        sort(allStr.begin(), allStr.end());
-        return allStr.front();
+        if (root == nullptr) {
+            return "";
+        }
+
+        string result = "";
+        traverse(root, "", result);
+        return result;
     }
 };

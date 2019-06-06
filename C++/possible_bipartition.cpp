@@ -1,4 +1,5 @@
 /*
+ 886. Possible Bipartition
  Given a set of N people (numbered 1, 2, ..., N), we would like to split everyone into two groups of any size.
  
  Each person may dislike some other people, and they should not go into the same group.

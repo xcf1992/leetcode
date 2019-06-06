@@ -1,4 +1,5 @@
 /*
+ 841. Keys and Rooms
  There are N rooms and you start in room 0.  Each room has a distinct number in 0, 1, 2, ..., N-1, and each room may have some keys to access the next room.
  
  Formally, each room i has a list of keys rooms[i], and each key rooms[i][j] is an integer in [0, 1, ..., N-1] where N = rooms.length.  A key rooms[i][j] = v opens the room with number v.
@@ -46,15 +47,18 @@ using namespace std;
 class Solution {
 public:
     bool canVisitAllRooms(vector<vector<int>>& rooms) {
-        vector<bool> visited(rooms.size(), false);
+        int n = rooms.size();
+        if (n <= 1) {
+            return true;
+        }
+
+        vector<bool> visited(n, false);
         queue<int> keys;
         keys.push(0);
         visited[0] = true;
-        
         while (!keys.empty()) {
             int key = keys.front();
             keys.pop();
-            
             for (int newKey : rooms[key]) {
                 if (!visited[newKey]) {
                     visited[newKey] = true;

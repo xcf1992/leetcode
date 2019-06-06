@@ -12,90 +12,43 @@
 #include <numeric>
 using namespace std;
 
-struct TrieNode {
-    bool isRoot;
-    vector<TrieNode*> children = vector<TrieNode*>(26, nullptr);
-    TrieNode(bool r = false) : isRoot(r) {}
-};
-
-class Trie {
-private:
-    TrieNode* root = nullptr;
-public:
-    Trie() {
-        root = new TrieNode();
-    }
-
-    void insert(string word) {
-        TrieNode* cur = root;
-        for (char c : word) {
-            int index = c - 'a';
-            if (cur -> children[index] == nullptr) {
-                cur -> children[index] = new TrieNode();
-            }
-            cur = cur -> children[index];
-        }
-        cur -> isRoot = true;
-    }
-
-    string getRoot(string word) {
-        TrieNode* cur = root;
-        for (int i = 0; i < word.size(); ++i) {
-            int index = word[i] - 'a';
-            if (cur -> children[index] == nullptr) {
-                return word;
-            }
-
-            cur = cur -> children[index];
-            if (cur -> isRoot) {
-                return word.substr(0, i + 1);
-            }
-        }
-        return word;
-    }
-};
-
 class Solution {
-private:
-    vector<string> splitSentence(string sentence) {
-        vector<string> result;
-        int cur = 0;
-        int pos = sentence.find(' ', cur);
-        while (pos != string::npos) {
-            string word = sentence.substr(cur, pos - cur);
-            result.push_back(word);
-            cur = pos + 1;
-            pos = sentence.find(' ', cur);
-        }
-        result.push_back(sentence.substr(cur));
-        return result;
-    }
 public:
-    string replaceWords(vector<string> dict, string sentence) {
-        Trie trie;
-        for (string word : dict) {
-            trie.insert(word);
+    int maxSumAfterPartitioning(vector<int>& A, int K) {
+        int n = A.size();
+        if (n == 0) {
+            return 0;
         }
 
-        vector<string> words = splitSentence(sentence);
-        string result = "";
-        for (int i = 0; i < words.size(); ++i) {
-            result += trie.getRoot(words[i]);
-            if (i != words.size() - 1) {
-                result += " ";
-            }
+        vector<vector<int>> dp(K + 1, vector<int>(n, 0));
+        int curMax = INT_MIN;
+        for (int i = 0; i < n; i++) {
+            curMax = max(curMax, A[i]);
+            dp[1][i] = curMax;
         }
-        return result.substr();
+
+        int result = dp[1][n - 1];
+        for (int k = 2; k <= K; ++k) {
+            for (int i = k - 1; i < n; ++i) {
+                curMax = A[i];
+                for (int j = i; j >= k - 1; j--) {
+                    curMax = max(curMax, A[j]);
+                    dp[k][i] = max(dp[k][i], dp[k - 1][j - 1] + (i - j + 1) * curMax);
+                }
+            }
+            result = max(result, dp[k][n - 1]);
+        }
+        return result;
     }
 };
 
 int main() {
     Solution s;
-    vector<int> temp({-4,-2,2,4});
+    vector<int> temp({1,15,7,9,2,5,10});
     vector<vector<int>> matrix({
         {0,1,0},
         {1,1,1},
         {0,1,0}
     });
-    s.replaceWords({"cat", "bat", "rat"}, "the cattle was rattled by the battery");
+    s.maxSumAfterPartitioning(temp, 3);
 }

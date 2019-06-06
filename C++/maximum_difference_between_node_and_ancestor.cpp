@@ -7,8 +7,13 @@
 
 
  Example 1:
-
-
+                             8
+                /                           \
+               3                            10
+        /            \                          \
+       1              6                          14        
+                     / \                        /
+                    4   7                      13 
 
  Input: [8,3,10,1,6,null,14,null,null,4,7,13]
  Output: 7
@@ -65,9 +70,7 @@ private:
 public:
     int maxAncestorDiff(TreeNode* root) {
         int result = INT_MIN;
-
-        getMaxDiff(root -> left, root -> val, root -> val, result);
-        getMaxDiff(root -> right, root -> val, root -> val, result);
+        getMaxDiff(root, root -> val, root -> val, result);
         return result;
     }
 };

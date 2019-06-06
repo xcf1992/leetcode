@@ -1,4 +1,5 @@
 /*
+ 926. Flip String to Monotone Increasing
  A string of '0's and '1's is monotone increasing if it consists of some number of '0's (possibly 0), followed by some number of '1's (also possibly 0.)
  
  We are given a string S of '0's and '1's, and we may flip any '0' to a '1' or a '1' to a '0'.
@@ -29,7 +30,6 @@
  1 <= S.length <= 20000
  S only consists of '0' and '1' characters.
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -65,5 +65,28 @@ public:
             result = min(result, leftOne[i - 1] + rightZero[i]);
         }
         return result;
+    }
+};
+
+class Solution { // dp
+public:
+    int minFlipsMonoIncr(string S) {
+        int n = S.size();
+        if (n == 0) {
+            return 0;
+        }
+        
+        int endOne = 0;
+        int endZero = 0;
+        for (char c : S) {
+            if (c == '0') {
+                endOne = 1 + min(endOne, endZero);
+            }
+            else {
+                endOne = min(endZero, endOne);
+                endZero = 1 + endZero;
+            }
+        }
+        return min(endZero, endOne);
     }
 };

@@ -52,8 +52,8 @@ public:
                 add += arr2[p2--];
             }
 
-            result.push_back(add % 2);
-            add = -(add / 2);
+            result.push_back(add & 1);
+            add = -(add >> 1);
         }
 
         while (result.size() > 1 and result.back() == 0) {
