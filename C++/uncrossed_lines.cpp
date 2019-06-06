@@ -47,6 +47,7 @@
 #include <set>
 using namespace std;
 
+// same as longest subsequence
 class Solution {
 public:
     int maxUncrossedLines(vector<int>& A, vector<int>& B) {
@@ -66,3 +67,4 @@ public:
         return dp[m][n];
     }
 };
+
