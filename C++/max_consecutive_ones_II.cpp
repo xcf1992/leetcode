@@ -1,4 +1,5 @@
 /*
+ 487. Max Consecutive Ones II
  Given a binary array, find the maximum number of consecutive 1s in this array if you can flip at most one 0.
  
  Example 1:
@@ -25,7 +26,10 @@
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
+/*
+use left to store length of previous group of consecutive ones
+use right to store length of current group of consecutive ones
+*/
 class Solution {
 public:
     int findMaxConsecutiveOnes(vector<int>& nums) {
