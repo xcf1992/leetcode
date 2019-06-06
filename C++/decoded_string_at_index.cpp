@@ -1,4 +1,5 @@
 /*
+ 880. Decoded String at Index
  An encoded string S is given.  To find and write the decoded string to a tape, the encoded string is read one character at a time and the following steps are taken:
  
  If the character read is a letter, that letter is written onto the tape.
@@ -53,30 +54,85 @@
 #include <numeric>
 using namespace std;
 
+/*
+We decode the string and N keeps the length of decoded string, until N >= K.
+Then we go back from the decoding position.
+If it's S[i] = d is a digit, then N = N / d before repeat and K = K % N is what we want.
+If it's S[i] = c is a character, we return c if K == 0 or K == N
+*/
+
+/*
+Intuition
+
+If we have a decoded string like appleappleappleappleappleapple and an index like K = 24, 
+the answer is the same if K = 4.
+
+In general, when a decoded string is equal to some word with size length repeated some number of times 
+(such as apple with size = 5 repeated 6 times), the answer is the same for the index K as it is for the index K % size.
+
+We can use this insight by working backwards, keeping track of the size of the decoded string. 
+Whenever the decoded string would equal some word repeated d times, we can reduce K to K % (word.length).
+
+Algorithm
+
+First, find the length of the decoded string. 
+After, we'll work backwards, keeping track of size: 
+the length of the decoded string after parsing symbols S[0], S[1], ..., S[i].
+
+If we see a digit S[i], 
+it means the size of the decoded string after parsing S[0], S[1], ..., S[i-1] will be size / Integer(S[i]). 
+Otherwise, it will be size - 1.
+*/
+// cause the length of expaned string will be 
+// a3 * (a2 * (a1 * b0 + b1) + b2) + b3.......
+// so we need to check 
+// if K is in the b3 part, with len -= 1, K % len will equal to 0 after several decrease
+// if K is in a2 part then after len / a3, we can get the pos
 class Solution {
 public:
     string decodeAtIndex(string S, int K) {
-        long length = 0;
-        long pos = 0;
-        while (length < K) {
-            if (isdigit(S[pos])) {
-                length *= (S[pos] - '0');
+        long len = 0;
+        int n = S.size();
+        for (int i = 0; i < n; ++i) {
+            if (isdigit(S[i])) {
+                len *= S[i] - '0';
             }
             else {
-                length += 1;
-            }
-            pos += 1;
-        }
-        while (pos--) {
-            if (isdigit(S[pos])) {
-                length /= (S[pos] - '0');
-                K %= length;
-            }
-            else if (K % length-- == 0) {
-                return string(1, S[pos]);
+                len += 1;
             }
         }
-        return "";
+
+        string result = "";
+        for (int i = n - 1; i >= 0; --i) {
+            K %= len;
+            if (K == 0 && isalpha(S[i])) {
+                result = string(1, S[i]);
+                break;
+            }
+
+            if (isdigit(S[i])) {
+                len /= S[i] - '0';
+            }
+            else {
+                len -= 1;;
+            }
+        }
+        return result;
+    }
+};
+
+class Solution {
+public:
+    string decodeAtIndex(string S, int K) {
+        long N = 0, i;
+        for (i = 0; N < K; ++i)
+            N = isdigit(S[i]) ? N * (S[i] - '0') : N + 1;
+        while (i--)
+            if (isdigit(S[i]))
+                N /= S[i] - '0', K %= N;
+            else if (K % N-- == 0)
+                return string(1, S[i]);
+        return "lee215";
     }
 };
 

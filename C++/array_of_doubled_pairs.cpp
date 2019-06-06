@@ -1,4 +1,5 @@
 /*
+ 954. Array of Doubled Pairs
  Given an array of integers A with even length, return true if and only if it is possible to reorder it such that A[2 * i + 1] = 2 * A[2 * i] for every 0 <= i < len(A) / 2.
 
 
@@ -47,35 +48,24 @@ class Solution {
 public:
     bool canReorderDoubled(vector<int>& A) {
         map<int, int> count;
-        for (int i = 0; i < A.size(); i++) {
-            if (count.find(abs(A[i])) == count.end()) {
-                count[abs(A[i])] = 1;
-            }
-            else {
-                count[abs(A[i])] += 1;
-            }
+        for (int a : A) {
+            count[a] += 1;
         }
 
-        if (count[0] % 2 != 0) {
-            return false;
+        vector<int> keys;
+        for (auto& it : count) {
+            keys.push_back(it.first);
         }
-        count.erase(0);
+        sort(keys.begin(), keys.end(), [](int a, int b) {
+            return abs(a) < abs(b);
+        });
 
-        for (auto it = count.begin(); it != count.end(); it++) {
-            int number = it -> first;
-            if (count[number * 2] < count[number]) {
+        for (int k : keys) {
+            if (count[k] > count[2 * k]) {
                 return false;
             }
-            count[2 * number] -= count[number];
-            count[number] = 0;
+            count[2 * k] -= count[k];
         }
-
-        for (auto it = count.begin(); it != count.end(); it++) {
-            if (it -> second != 0) {
-                return false;
-            }
-        }
-
         return true;
     }
 };
