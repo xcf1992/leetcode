@@ -1,4 +1,5 @@
 /*
+ 825. Friends Of Appropriate Ages
  Some people will make friend requests. The list of their ages is given and ages[i] is the age of the ith person.
  
  Person A will NOT friend request person B (B != A) if any of the following conditions are true:
@@ -60,7 +61,7 @@ public:
         
         int result = 0;
         for (int i = 0 ; i <= 120; i++) {
-            for (int j = 7 + 0.5 * i; j <= i; j++) {
+            for (int j = 1 + 7 + i / 2; j <= i; j++) {
                 result += people[j] * (people[i] - (i == j));
             }
         }

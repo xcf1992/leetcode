@@ -1,4 +1,5 @@
 /*
+ 576. Out of Boundary Paths
  There is an m by n grid with a ball. Given the start coordinate (i,j) of the ball, you can move the ball to adjacent cell or cross the grid boundary in four directions (up, down, left, right). However, you can at most move N times. Find out the number of paths to move the ball out of grid boundary. The answer may be very large, return it after mod 109 + 7.
  
  Example 1:
@@ -35,6 +36,10 @@ using namespace std;
 class Solution {
 private:
     int mod = 1e9 + 7;
+
+    bool isValid(int m, int n, int r, int c) {
+        return r >= 0 and c >= 0 and r < m and c < n;
+    }
 public:
     int findPaths(int m, int n, int N, int i, int j) {
         if (N == 0) {
@@ -49,28 +54,24 @@ public:
             dp[0][x][0] += 1;
             dp[0][x][n - 1] += 1;
         }
+
+        vector<int> rDiff({0, 0, -1, 1});
+        vector<int> cDiff({1, -1, 0, 0});
         for (int k = 1; k < N; k++) {
-            for (int x = 0; x < m; x++) {
-                for (int y = 0; y < n; y++) {
-                    if (x - 1 >= 0) {
-                        dp[k][x][y] += dp[k - 1][x - 1][y];
-                        dp[k][x][y] %= mod;
-                    }
-                    if (x + 1 < m) {
-                        dp[k][x][y] += dp[k - 1][x + 1][y];
-                        dp[k][x][y] %= mod;
-                    }
-                    if (y - 1 >= 0) {
-                        dp[k][x][y] += dp[k - 1][x][y - 1];
-                        dp[k][x][y] %= mod;
-                    }
-                    if (y + 1 < n) {
-                        dp[k][x][y] += dp[k - 1][x][y + 1];
-                        dp[k][x][y] %= mod;
+            for (int r = 0; r < m; r++) {
+                for (int c = 0; c < n; c++) {
+                    for (int i = 0; i < 4; ++i) {
+                        int nr = r + rDiff[i];
+                        int nc = c + cDiff[i];
+                        if (isValid(m, n, nr, nc)) {
+                            dp[k][r][c] += dp[k - 1][nr][nc];
+                            dp[k][r][c] %= mod;
+                        }
                     }
                 }
             }
         }
+
         int result = 0;
         for (int k = 0; k < N; k++) {
             result += dp[k][i][j];
