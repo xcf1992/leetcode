@@ -13,32 +13,46 @@
 using namespace std;
 
 class Solution {
+private:
+    bool findRepeat(string S, int len) {
+        unordered_set<long long> visited;
+        size_t p = 113;
+        size_t mod = 1e9 + 7;
+        
+        long long value = 0;
+        long long power = 1;
+        for (int i = 0; i < len; ++i) {
+            value = (value * p + S[i]) ;
+            power = (power * p) ;
+        }
+        
+        visited.insert(value);
+        for (int i = len; i < S.size(); ++i) {
+            value = (value * p + S[i]) % mod;
+            value = value - power * S[i - len];
+            while (value < 0) {
+                value += mod;
+            }
+            value %= mod;
+            if (visited.find(value) != visited.end()) {
+                return true;
+            }
+        }
+        return false;
+    }
 public:
-    int maxSumAfterPartitioning(vector<int>& A, int K) {
-        int n = A.size();
-        if (n == 0) {
+    int longestRepeatingSubstring(string S) {
+        int n = S.size();
+        if (n <= 1) {
             return 0;
         }
-
-        vector<vector<int>> dp(K + 1, vector<int>(n, 0));
-        int curMax = INT_MIN;
-        for (int i = 0; i < n; i++) {
-            curMax = max(curMax, A[i]);
-            dp[1][i] = curMax;
-        }
-
-        int result = dp[1][n - 1];
-        for (int k = 2; k <= K; ++k) {
-            for (int i = k - 1; i < n; ++i) {
-                curMax = A[i];
-                for (int j = i; j >= k - 1; j--) {
-                    curMax = max(curMax, A[j]);
-                    dp[k][i] = max(dp[k][i], dp[k - 1][j - 1] + (i - j + 1) * curMax);
-                }
+        
+        for (int len = n - 1; len >= 1; --len) {
+            if (findRepeat(S, len)) {
+                return len;
             }
-            result = max(result, dp[k][n - 1]);
         }
-        return result;
+        return 0;
     }
 };
 
@@ -50,5 +64,5 @@ int main() {
         {1,1,1},
         {0,1,0}
     });
-    s.maxSumAfterPartitioning(temp, 3);
+    s.longestRepeatingSubstring("aaaaa");
 }

@@ -45,6 +45,6 @@ using namespace std;
 class Solution {
 public:
     string minimizeError(vector<string>& prices, int target) {
-        
+        return "";
     }
 };
