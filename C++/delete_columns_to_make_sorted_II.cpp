@@ -1,4 +1,5 @@
 /*
+ 955. Delete Columns to Make Sorted II
  We are given an array A of N lowercase letter strings, all of the same length.
 
  Now, we may choose any set of deletion indices, and for each string, we delete all the characters in those indices.
@@ -96,7 +97,7 @@ public:
                 }
             }
 
-            if (row == n - 1) {
+            if (row == m - 1) {
                 for (int i = 0; i < m - 1; i++) {
                     if (A[i][col] < A[i + 1][col]) {
                         sorted[i] = true;
