@@ -1,4 +1,5 @@
 /*
+ 795. Number of Subarrays with Bounded Maximum
  We are given an array A of positive integers, and two positive integers L and R (L <= R).
  
  Return the number of (contiguous, non-empty) subarrays such that the value of the maximum array element in that subarray is at least L and at most R.

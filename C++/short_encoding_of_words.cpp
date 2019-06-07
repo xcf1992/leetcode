@@ -1,4 +1,5 @@
 /*
+ 820. Short Encoding of Words
  Given a list of words, we may encode it by writing a reference string S and a list of indexes A.
  
  For example, if the list of words is ["time", "me", "bell"], we can write it as S = "time#bell#" and indexes = [0, 2, 5].

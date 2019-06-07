@@ -1,4 +1,5 @@
 /*
+ 822. Card Flipping Game
  On a table are N cards, with a positive integer printed on the front and back of each card (possibly different).
  
  We flip any number of cards, and after we choose one card.
@@ -40,6 +41,30 @@
 using namespace std;
 
 class Solution {
+public:
+    int flipgame(vector<int>& fronts, vector<int>& backs) {
+        int n = fronts.size();
+        unordered_set<int> bad;
+        for (int i = 0; i < n; ++i) {
+            if (fronts[i] == backs[i]) {
+                bad.insert(fronts[i]);
+            }
+        }
+
+        int result = INT_MAX;
+        for (int i = 0; i < n; ++i) {
+            if (bad.find(fronts[i]) == bad.end()) {
+                result = min(result, fronts[i]);
+            }
+            if (bad.find(backs[i]) == bad.end()) {
+                result = min(result, backs[i]);
+            }
+        }
+        return result == INT_MAX ? 0 : result;
+    }
+};
+
+class Solution {
 private:
     bool canFlip(vector<int>& pos, vector<int>& fronts, vector<int>& backs) {
         for (int i : pos) {
@@ -51,15 +76,16 @@ private:
     }
 public:
     int flipgame(vector<int>& fronts, vector<int>& backs) {
+        int n = fronts.size();
         unordered_map<int, vector<int>> front;
         unordered_map<int, vector<int>> back;
-        for (int i = 0; i < fronts.size(); i++) {
+        for (int i = 0; i < n; i++) {
             front[fronts[i]].push_back(i);
             back[backs[i]].push_back(i);
         }
         
         int result = INT_MAX;
-        for (int i = 0; i < fronts.size(); i++) {
+        for (int i = 0; i < n; i++) {
             int num = fronts[i];
             if (back.find(num) == back.end() || canFlip(back[num], fronts, backs)) {
                 result = min(result, num);
