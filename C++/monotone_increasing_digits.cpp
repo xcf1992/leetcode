@@ -14,6 +14,26 @@ class Solution {
 public:
     int monotoneIncreasingDigits(int N) {
         string num = to_string(N);
+        int len = num.size();
+        int pos = 0;
+        while (pos < len and num[pos - 1] <= num[pos]) {
+            pos += 1;
+        }
+        while (pos > 0 and pos < len and num[pos - 1] > num[pos]) {
+            num[pos - 1] -= 1;
+            pos -= 1;
+        }
+        for (int i = pos + 1; i < len; ++i) {
+            num[i] = '9';
+        }
+        return stoi(num);
+    }
+};
+
+class Solution {
+public:
+    int monotoneIncreasingDigits(int N) {
+        string num = to_string(N);
         int i = 0;
         while (i < num.size() - 1) {
             if (num[i] > num[i + 1]) {
