@@ -12,57 +12,64 @@
 #include <numeric>
 using namespace std;
 
-class Solution {
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
+
+class CBTInserter {
 private:
-    bool findRepeat(string S, int len) {
-        unordered_set<long long> visited;
-        size_t p = 113;
-        size_t mod = 1e9 + 7;
-        
-        long long value = 0;
-        long long power = 1;
-        for (int i = 0; i < len; ++i) {
-            value = (value * p + S[i]) ;
-            power = (power * p) ;
-        }
-        
-        visited.insert(value);
-        for (int i = len; i < S.size(); ++i) {
-            value = (value * p + S[i]) % mod;
-            value = value - power * S[i - len];
-            while (value < 0) {
-                value += mod;
-            }
-            value %= mod;
-            if (visited.find(value) != visited.end()) {
-                return true;
-            }
-        }
-        return false;
-    }
+    TreeNode* r = nullptr;
+    queue<TreeNode*> row;
 public:
-    int longestRepeatingSubstring(string S) {
-        int n = S.size();
-        if (n <= 1) {
-            return 0;
+    CBTInserter(TreeNode* root) {
+        r = root;
+        row.push(root);
+        TreeNode* cur = row.front();
+        while (cur -> left != nullptr and cur -> right != nullptr) {
+            row.pop();
+            row.push(cur -> left);
+            row.push(cur -> right);
+            cur = row.front();
         }
-        
-        for (int len = n - 1; len >= 1; --len) {
-            if (findRepeat(S, len)) {
-                return len;
-            }
+    }
+
+    int insert(int v) {
+        TreeNode* cur = row.front();
+        if (cur -> left == nullptr) {
+            cur -> left = new TreeNode(v);
+            row.push(cur -> left);
         }
-        return 0;
+        else {
+            cur -> right = new TreeNode(v);
+            row.push(cur -> right);
+            row.pop();
+        }
+        return cur -> val;
+    }
+
+    TreeNode* get_root() {
+        return r;
     }
 };
 
+
+
 int main() {
-    Solution s;
+    //Solution s;
     vector<int> temp({1,15,7,9,2,5,10});
     vector<vector<int>> matrix({
         {0,1,0},
         {1,1,1},
         {0,1,0}
     });
-    s.longestRepeatingSubstring("aaaaa");
+
+    TreeNode* r = new TreeNode(1);
+    r -> left = new TreeNode(2);
+    CBTInserter it(r);
+    it.insert(3);
+
+    it.insert(4);
 }

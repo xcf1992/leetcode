@@ -1,4 +1,5 @@
 /*
+ 519. Random Flip Matrix
  You are given the number of rows n_rows and number of columns n_cols of a 2D binary matrix where all values are initially 0. Write a function flip which chooses a 0 value uniformly at random, changes it to 1, and then returns the position [row.id, col.id] of that value. Also, write a function reset which sets all values back to 0. Try to minimize the number of calls to system's Math.random() and optimize the time and space complexity.
  
  Note:
@@ -40,6 +41,14 @@
 #include <numeric>
 using namespace std;
 
+/*
+Reservoir sampling
+Imagine you have an array of length n with the i-th element being i. In reservoir sampling, you keep track of the number of elements left l. In each get_next() call, l is first decremented and a random integer r is chosen in the range of [0, l] (inclusive), then you want to exchange the r-th value with the l-th value and return the l-th value after the exchange. In this way all the elements will be popped once and will have equal probability of being chosen. Then you'll just have to map the 1d array to a 2d matrix and you are done.
+
+I structured code in the same way so readers can better understand the situation.
+
+Time complexity O(1) each call. 1 random call per flip.
+*/
 class Solution {
 private:
     unordered_map<int, int> pos;

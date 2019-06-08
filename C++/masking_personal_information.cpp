@@ -1,4 +1,5 @@
 /*
+ 831. Masking Personal Information
  We are given a personal information string S, which may represent either an email address or a phone number.
  
  We would like to mask this personal information according to the following rules:
@@ -112,7 +113,7 @@ private:
     }
 public:
     string maskPII(string S) {
-        if (S.find('@') != string::npos && S.find('.') != string::npos) {
+        if (S.find('@') != string::npos and S.find('.') != string::npos) {
             return maskEmail(S);
         }
         return maskPhoneNumber(S);

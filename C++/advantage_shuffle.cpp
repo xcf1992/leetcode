@@ -1,4 +1,5 @@
 /*
+ 870. Advantage Shuffle
  Given two arrays A and B of equal size, the advantage of A with respect to B is the number of indices i for which A[i] > B[i].
  
  Return any permutation of A that maximizes its advantage with respect to B.
@@ -40,21 +41,22 @@ using namespace std;
 class Solution {
 public:
     vector<int> advantageCount(vector<int>& A, vector<int>& B) {
-        map<int, int> numA;
+        map<int, int> count;
         for (int i : A) {
-            numA[i] += 1;
+            count[i] += 1;
         }
-        map<int, int>::iterator it;
+
         vector<int> result;
         for (int num : B) {
-            it = numA.upper_bound(num);
-            if (it == numA.end()) {
-                it = numA.begin();
+            auto it = count.upper_bound(num);
+            if (it == count.end()) {
+                it = count.begin();
             }
+
             result.push_back(it -> first);
             it -> second -= 1;
             if (it -> second == 0) {
-                numA.erase(it);
+                count.erase(it);
             }
         }
         return result;

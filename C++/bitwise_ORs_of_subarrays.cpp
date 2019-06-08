@@ -1,4 +1,5 @@
 /*
+ 898. Bitwise ORs of Subarrays
  We have an array A of non-negative integers.
  
  For every (contiguous) subarray B = [A[i], A[i+1], ..., A[j]] (with i <= j), we take the bitwise OR of all the elements in B, obtaining a result A[i] | A[i+1] | ... | A[j].
@@ -54,11 +55,11 @@ public:
     int subarrayBitwiseORs(vector<int>& A) {
         int n = A.size();
         unordered_set<int> cur;
-        unordered_set<int> cur2;
         unordered_set<int> result;
         cur.insert(A[0]);
         result.insert(A[0]);
         for (int i = 1; i < n; i++) {
+            unordered_set<int> cur2;
             cur2.insert(A[i]);
             result.insert(A[i]);
             for (int num : cur) {
@@ -66,7 +67,6 @@ public:
                 result.insert(num | A[i]);
             }
             cur = cur2;
-            cur2.clear();
         }
         return result.size();
     }
