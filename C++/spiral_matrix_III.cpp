@@ -56,15 +56,15 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> spiralMatrixIII(int R, int C, int r0, int c0) {
-        vector<vector<int>> result;
-        result.push_back({r0, c0});
-
-        int direction = 0;
-        int step = 1;
         vector<int> rDiff({0, 1, 0, -1});
         vector<int> cDiff({1, 0, -1, 0});
 
+        vector<vector<int>> result;
+        result.push_back({r0, c0});
         vector<int> cur({r0, c0});
+
+        int direction = 0;
+        int step = 1;
         while (result.size() < R * C) {
             for (int i = 0; i < step; i++) {
                 cur[0] += rDiff[direction];

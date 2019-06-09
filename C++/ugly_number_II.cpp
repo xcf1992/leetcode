@@ -61,4 +61,3 @@ public:
         return numbers.back();
     }
 };
-

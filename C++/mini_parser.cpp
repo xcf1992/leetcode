@@ -65,16 +65,15 @@ using namespace std;
  *     const vector<NestedInteger> &getList() const;
  * };
  */
-
 class Solution {
-public:
-    NestedInteger deserializeUtil(string s, int& pos) {
+private:
+    NestedInteger parse(string s, int& pos) {
         NestedInteger result;
 
         while (s[pos] != ']' && pos < s.size()) {
             if (s[pos] == '[') {
                 pos += 1;
-                result.add(deserializeUtil(s, pos));
+                result.add(parse(s, pos));
                 pos += 1;
                 if (pos < s.size() && s[pos] == ',') {
                     pos += 1;
@@ -96,14 +95,13 @@ public:
         }
         return result;
     }
-
+public:
     NestedInteger deserialize(string s) {
         int pos = 0;
         if (s[pos] == '[') {
             pos += 1;
-            return deserializeUtil(s, pos);
+            return parse(s, pos);
         }
-
         return NestedInteger(stoi(s));
     }
 };

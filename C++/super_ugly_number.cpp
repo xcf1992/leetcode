@@ -42,25 +42,17 @@ public:
 
         while (result.size() < n) {
             int nextNum = result[idxs[0]] * primes[0];
-            for( int i = 0; i < k; i++) {
+            for (int i = 1; i < k; i++) {
                 nextNum = min(nextNum, result[idxs[i]] * primes[i]);
             }
+
+            result.push_back(nextNum);
             for (int i = 0; i < k; i++) {
                 if (nextNum == result[idxs[i]] * primes[i]) {
                     idxs[i]++;
                 }
             }
-            result.push_back(nextNum);
         }
-        
         return result.back();
     }
 };
-
-int main() {
-    Solution s;
-    int x[] ={7,19,29,37,41,47,53,59,61,79,83,89,101,103,109,127,131,137,139,157,167,179,181,199,211,229,233,239,241,251};
-    vector<int> a(x, x + sizeof x / sizeof x[0]);
-    cout << s.nthSuperUglyNumber(100000, a);
-    return 0;
-}

@@ -48,9 +48,8 @@ public:
     int search(const ArrayReader& reader, int target) {
         int left = 0;
         int right = INT_MAX;
-        int mid;
         while (left < right) {
-            mid = left + (right - left) / 2;
+            int mid = left + (right - left) / 2;
             if (target == reader.get(mid)) {
                 return mid;
             }
