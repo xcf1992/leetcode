@@ -77,7 +77,7 @@ private:
         }
     }
 
-    void find(TrieNode* root, int num, int& result) {
+    int find(TrieNode* root, int num) {
         TrieNode* curNode = root;
         int curValue = 0;
         for (int i = 31; i >= 0; --i) {
@@ -95,7 +95,7 @@ private:
             }
             curValue |= bit ^ (curNode -> val << i);
         }
-        result = max(result, curValue);
+        return curValue;
     }
 public:
     int findMaximumXOR(vector<int>& nums) {
@@ -106,7 +106,7 @@ public:
 
         int result = 0;
         for (int num : nums) {
-            find(root, num, result);
+            result = max(result, find(root, num));;
         }
         return result;
     }
@@ -117,9 +117,8 @@ public:
     int findMaximumXOR(vector<int>& nums) {
         int result = 0;
         int mask = 0;
-        unordered_set<int> values;
         for (int i = 31; i >= 0; i--) {
-            values.clear();
+            unordered_set<int> values;
             mask |= (1 << i);
             for (int num : nums) {
                 values.insert(mask & num);
