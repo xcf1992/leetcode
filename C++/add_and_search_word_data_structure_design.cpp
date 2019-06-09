@@ -68,7 +68,7 @@ private:
     }
 public:
     Trie(): root(new TrieNode()) {}
-    
+
     void add(string s) {
         TrieNode* cur = root;
         for (int i = 0; i < s.size(); i++) {
