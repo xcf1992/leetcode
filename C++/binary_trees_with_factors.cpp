@@ -44,12 +44,12 @@ using namespace std;
 class Solution {
 private:
     int mod = 1e9 + 7;
-    void buildTrees(vector<int>& A, unordered_map<int, long>& count, int num) {
-        count[A[num]] += 1;
-        for (int i = 0; i < num; i++) {
-            if (A[num] % A[i] == 0 && count.find(A[num] / A[i]) != count.end()) {
-                count[A[num]] += count[A[i]] * count[A[num] / A[i]];
-                count[A[num]] %= mod;
+    void buildTrees(vector<int>& A, unordered_map<int, long>& count, int index) {
+        count[A[index]] += 1;
+        for (int i = 0; i < index; i++) {
+            if (A[index] % A[i] == 0 && count.find(A[index] / A[i]) != count.end()) {
+                count[A[index]] += count[A[i]] * count[A[index] / A[i]];
+                count[A[index]] %= mod;
             }
         }
     }

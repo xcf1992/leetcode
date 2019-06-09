@@ -1,6 +1,8 @@
 /*
  813. Largest Sum of Averages
- We partition a row of numbers A into at most K adjacent (non-empty) groups, then our score is the preSum of the average of each group. What is the largest score we can achieve?
+ We partition a row of numbers A into at most K adjacent (non-empty) groups, 
+ then our score is the preSum of the average of each group. 
+ What is the largest score we can achieve?
  
  Note that our partition must use every number in A, and that scores are not necessarily integers.
  
