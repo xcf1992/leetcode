@@ -1,17 +1,19 @@
 /*
  1040. Moving Stones Until Consecutive II
 
- On an infinite number line, the position of the i-th stone is given by stones[i].  Call a stone an endpoint stone if it has the smallest or largest position.
+ On an infinite number line, the position of the i-th stone is given by stones[i].  
+ Call a stone an endpoint stone if it has the smallest or largest position.
 
  Each turn, you pick up an endpoint stone and move it to an unoccupied position so that it is no longer an endpoint stone.
 
- In particular, if the stones are at say, stones = [1,2,5], you cannot move the endpoint stone at position 5, since moving it to any position (such as 0, or 3) will still keep that stone as an endpoint stone.
+ In particular, if the stones are at say, stones = [1,2,5], 
+ you cannot move the endpoint stone at position 5, 
+ since moving it to any position (such as 0, or 3) will still keep that stone as an endpoint stone.
 
  The game ends when you cannot make any more moves, ie. the stones are in consecutive positions.
 
- When the game ends, what is the minimum and maximum number of moves that you could have made?  Return the answer as an length 2 array: answer = [minimum_moves, maximum_moves]
-
-
+ When the game ends, what is the minimum and maximum number of moves that you could have made?  
+ Return the answer as an length 2 array: answer = [minimum_moves, maximum_moves]
 
  Example 1:
 
@@ -67,7 +69,8 @@ using namespace std;
 每次可以移动最左端或者最右端，因此最大值一定是要么第一次移动的是最左端，要么第一次移动的是最右端；
 
 如果第一次移动最右端，那么第一步一定是移到最右边开始第二个的前面，即stones[n-2]，n为stones的长度，并且最左的位置是stones[0]，
-因此移动距离就是stones[n-2]-stones[0]-1-(n-3)，也就是当前区间内部的位置，减去内部已经有石头的数量(有3个不在区间内部，分别是区间左右端2个和最后1个stones[n-1])，剩下的空位置就是能移动石头的位置。
+因此移动距离就是stones[n-2]-stones[0]-1-(n-3)，也就是当前区间内部的位置，减去内部已经有石头的数量
+(有3个不在区间内部，分别是区间左右端2个和最后1个stones[n-1])，剩下的空位置就是能移动石头的位置。
 
 例如：[1,3,5,7,12,65]，1到12之间还剩下7个空位置，也就是先移动右端，能最多移动7次。
 
@@ -80,7 +83,8 @@ using namespace std;
 
  求最小值：
 
- window slide，不断构造一个区间，这个区间[i,j]满足，区间的长度不会大于石头的数量，即这个区间是可以被区间外部的石头塞满的(可以塞不下，但不能有空隙)。
+ window slide，不断构造一个区间，这个区间[i,j]满足，区间的长度不会大于石头的数量，
+ 即这个区间是可以被区间外部的石头塞满的(可以塞不下，但不能有空隙)。
 
  接着检查如果这个区间是连续的并且外部非连续的只有1个，那么这是一种特殊情况，返回2。
 
@@ -139,8 +143,7 @@ public:
             }
 
             // j - i + 1 is the number of stones already in this interval
-
-            if (j - i + 1 == n - 1 and stones[j] - stones[i] == n - 2) {
+            if (j - i + 1 == n - 1 and stones[j] - stones[i] + 1 == n - 1) {
                 minMove = min(minMove, 2);
             }
             else {

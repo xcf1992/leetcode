@@ -1,10 +1,9 @@
 /*
  1022. Smallest Integer Divisible by K
- Given a positive integer K, you need find the smallest positive integer N such that N is divisible by K, and N only contains the digit 1.
+ Given a positive integer K, you need find the smallest positive integer N such that N is divisible by K, 
+ and N only contains the digit 1.
 
  Return the length of N.  If there is no such N, return -1.
-
-
 
  Example 1:
 

@@ -1,8 +1,7 @@
 /*
- 1023. Binary String With Substrings Representing 1 To N
- Given a binary string S (a string consisting only of '0' and '1's) and a positive integer N, return true if and only if for every integer X from 1 to N, the binary representation of X is a substring of S.
-
-
+ 1016. Binary String With Substrings Representing 1 To N
+ Given a binary string S (a string consisting only of '0' and '1's) and a positive integer N, 
+ return true if and only if for every integer X from 1 to N, the binary representation of X is a substring of S.
 
  Example 1:
 
@@ -88,8 +87,10 @@ public:
     bool queryString(string S, int N) {
         for (int i = N; i > N / 2;  --i) {
             string b = bitset<32>(i).to_string();
-            if (S.find(b.substr(b.find("1"))) == string::npos)
+            string bits = b.substr(b.find("1"));
+            if (S.find(bits) == string::npos) {
                 return false;
+            }
         }
         return true;
     }
