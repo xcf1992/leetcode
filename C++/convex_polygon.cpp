@@ -1,4 +1,5 @@
 /*
+ 469. Convex Polygon
  Given a list of points that form a polygon when joined sequentially, find if this polygon is convex (Convex polygon definition).
  
  Note:
@@ -38,9 +39,34 @@
 #include <numeric>
 using namespace std;
 
+/*
+Great solution inspired by @Ipeq1! Here is a C++ version with extracted determinant calculation.
+
+The key observation for convexity is that vector pi+1-pi always turns to the same direction to pi+2-pi formed by any 3 sequentially adjacent vertices, i.e., cross product (pi+1-pi) x (pi+2-pi) does not change sign when traversing sequentially along polygon vertices.
+
+Note that for any 2D vectors v1, v2,
+
+v1 x v2 = det([v1, v2])
+which is the determinant of 2x2 matrix [v1, v2]. And the sign of det([v1, v2]) represents the positive z-direction of right-hand system from v1 to v2. So det([v1, v2]) ≥ 0 if and only if v1 turns at most 180 degrees counterclockwise to v2.
+*/
 class Solution {
+private:
+    // determinant of 2x2 matrix [A1-A0, A2-A0]
+    long det2(const vector<vector<int>>& A) {
+    	return (A[1][0]-A[0][0])*(A[2][1]-A[0][1]) - (A[1][1]-A[0][1])*(A[2][0]-A[0][0]);
+    }
 public:
-#define PI  (3.1415926)
+    bool isConvex(vector<vector<int>>& p) {
+      for (int i=0, pos=0, neg=0, n=p.size(); i < n; ++i) {
+        long det = det2({p[i], p[(i+1)%n], p[(i+2)%n]});
+        if ((pos|=(det>0))*(neg|=(det<0))) return false;
+      }    
+      return true;
+    }
+};
+
+class Solution1 {
+private:
     // x2 y2 as base point and anti clock wise
     double getAngle(int x1, int y1, int x2, int y2) {
         if (x1 == x2) {
@@ -75,7 +101,8 @@ public:
         }
         return 0;
     }
-    
+public:
+    double PI = 3.1415926;
     bool isConvex(vector<vector<int>>& points) {
         int n = points.size();
         if (n <= 3) {

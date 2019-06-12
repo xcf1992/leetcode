@@ -1,4 +1,5 @@
 /*
+ 533. Lonely Pixel II
  Given a picture consisting of black and white pixels, and a positive integer N, find the number of black pixels located at some specific row R and column C that align with all the following rules:
  
  Row R and column C both contain exactly N black pixels.
@@ -29,7 +30,6 @@
  Note:
  The range of width and height of the input 2D array is [1,200].
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -52,8 +52,8 @@ public:
         vector<string> rowVal(m, "");
         unordered_map<int, vector<int>> colBlack;
         
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j <n; j++) {
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j <n; ++j) {
                 rowVal[i].push_back(picture[i][j]);
                 if (picture[i][j] == 'B') {
                     rowCnt[i] += 1;
@@ -64,8 +64,8 @@ public:
         }
         
         int result = 0;
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j <n; j++) {
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j <n; ++j) {
                 if (picture[i][j] == 'B' && rowCnt[i] == N && colCnt[j] == N) {
                     bool lonely = true;
                     for (int row : colBlack[j]) {

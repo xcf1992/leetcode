@@ -1,4 +1,5 @@
 /*
+ 444. Sequence Reconstruction
  Check whether the original sequence org can be uniquely reconstructed from the sequences in seqs. The org sequence is a permutation of the integers from 1 to n, with 1 ≤ n ≤ 104. Reconstruction means building a shortest common supersequence of the sequences in seqs (i.e., a shortest sequence so that all sequences in seqs are subsequences of it). Determine whether there is only one sequence that can be reconstructed from seqs and it is the org sequence.
  
  Example 1:
@@ -61,12 +62,23 @@ using namespace std;
  For org to be uniquely reconstructible from seqs we need to satisfy 2 conditions:
  
  Every sequence in seqs should be a subsequence in org. This part is obvious.
- Every 2 consecutive elements in org should be consecutive elements in some sequence from seqs. Why is that? Well, suppose condition 1 is satisfied. Then for 2 any consecutive elements x and y in org we have 2 options.
- We have both xand y in some sequence from seqs. Then (as condition 1 is satisfied) they must be consequtive elements in this sequence.
- There is no sequence in seqs that contains both x and y. In this case we cannot uniquely reconstruct org from seqs as sequence with x and y switched would also be a valid original sequence for seqs.
- So this are 2 necessary criterions. It is pretty easy to see that this are also sufficient criterions for org to be uniquely reconstructible (there is only 1 way to reconstruct sequence when we know that condition 2 is satisfied).
+
+ Every 2 consecutive elements in org should be consecutive elements in some sequence from seqs. 
+ Why is that? Well, suppose condition 1 is satisfied. 
+ Then for 2 any consecutive elements x and y in org we have 2 options.
+
+ We have both x and y in some sequence from seqs. 
+ Then (as condition 1 is satisfied) they must be consecutive elements in this sequence.
+
+ There is no sequence in seqs that contains both x and y. 
+ In this case we cannot uniquely reconstruct org from seqs as sequence with x and y switched would also be a valid original sequence for seqs.
+ So this are 2 necessary criterions. 
+ It is pretty easy to see that this are also sufficient criterions for org to be uniquely reconstructible 
+ (there is only 1 way to reconstruct sequence when we know that condition 2 is satisfied).
  
- To implement this idea I have idxs hash that maps item to its index in org sequence to check condition 1. And I have pairs set that holds all consequitive element pairs for sequences from seqs to check condition 2 (I also consider first elements to be paired with previous undefined elements, it is necessary to check this).
+ To implement this idea I have idxs hash that maps item to its index in org sequence to check condition 1. 
+ And I have pairs set that holds all consequitive element pairs for sequences from seqs to check condition 2 
+ (I also consider first elements to be paired with previous undefined elements, it is necessary to check this).
  */
 class Solution {
 public:
@@ -74,20 +86,23 @@ public:
         if (seqs.empty()) {
             return false;
         }
-        vector<int> pos(org.size() + 1, -1);
-        for (int i = 0; i < org.size(); i++) {
+
+        int n = org.size();
+        vector<int> pos(n + 1, -1);
+        for (int i = 0; i < n; i++) {
             pos[org[i]] = i;
         }
         
-        int matched = org.size() - 1;
+        int matched = n - 1;
         bool allEmpty = true;
-        vector<int> order(org.size() + 1, -1);
+        vector<int> order(n + 1, -1);
         for (vector<int>& seq : seqs) {
             for (int i = 0; i < seq.size(); i++) {
                 allEmpty = false;
-                if (seq[i] <= 0 || seq[i] > org.size() || pos[seq[i]] == -1) {
+                if (seq[i] <= 0 || seq[i] > n || pos[seq[i]] == -1) {
                     return false;
                 }
+                
                 if (i == 0) {
                     continue;
                 }

@@ -1,16 +1,5 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <unordered_map>
-#include <unordered_set>
-#include <algorithm>
-#include <cmath>
-#include <queue>
-#include <stack>
-#include <stdio.h>
-using namespace std;
-
 /*
+531. Lonely Pixel I
 Given a picture consisting of black and white pixels, find the number of black lonely pixels.
 
 The picture is represented by a 2D char array consisting of 'B' and 'W', which means black and white pixels respectively.
@@ -25,17 +14,29 @@ Input:
 
 Output: 3
 Explanation: All the three 'B's are black lonely pixels.
+Note:
+The range of width and height of the input 2D array is [1,500].
 */
+#include <iostream>
+#include <string>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+#include <algorithm>
+#include <cmath>
+#include <queue>
+#include <stack>
+#include <stdio.h>
+using namespace std;
+
 class Solution {
 public:
     int findLonelyPixel(vector<vector<char>>& picture) {
-        if (picture.empty() || picture[0].empty()) {
-            return 0;
-        }
         int m = picture.size();
         int n = picture[0].size();
 
-        vector<int> rowCnt(m, 0), colCnt(n, 0);
+        vector<int> rowCnt(m, 0);
+        vector<int> colCnt(n, 0);
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
                 if (picture[i][j] == 'B') {
@@ -49,7 +50,7 @@ public:
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
                 if (picture[i][j] == 'B') {
-                    if (rowCnt[i] == 1 && colCnt[j] == 1) {
+                    if (rowCnt[i] == 1 and colCnt[j] == 1) {
                         ++res;
                     }
                 }

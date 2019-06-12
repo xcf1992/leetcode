@@ -1,4 +1,5 @@
 /*
+ 634. Find the Derangement of An Array
  In combinatorial mathematics, a derangement is a permutation of the elements of a set, such that no element appears in its original position.
  
  There's originally an array consisting of n integers from 1 to n in ascending order, you need to find the number of derangement it can generate.
@@ -25,6 +26,21 @@
 #include <stdio.h>
 using namespace std;
 
+/*
+In order to find the number of derangements for nn numbers, 
+firstly we can consider the the original array to be [1,2,3,...,n]. 
+Now, in order to generate the derangements of this array, assume that firstly, 
+we move the number 1 from its original position and place at the place of the number ii. But, now, this i^{th}i 
+th position can be chosen in n-1n−1 ways. Now, for placing the number ii we have got two options:
+
+We place ii at the place of 11: By doing this, the problem of finding the derangements reduces to finding the derangements of the remaining n-2n−2 numbers, 
+since we've got n-2n−2 numbers and n-2n−2 places, such that every number can't be placed at exactly one position.
+
+We don't place ii at the place of 11: By doing this, 
+the problem of finding the derangements reduces to finding the derangements for the n-1n−1 elements(except 1). 
+This is because, now we've got n-1n−1 elements and these n-1n−1 elements can't be placed at exactly one location
+(with ii not being placed at the first position).
+*/
 class Solution {
 public:
     int findDerangement(int n) {
