@@ -27,7 +27,6 @@
  1 <= A[i] <= 1e7
  1 <= K <= 1e8
  */
-
 #include <iostream>
 #include <string>
 #include <vector>

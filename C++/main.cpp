@@ -12,64 +12,34 @@
 #include <numeric>
 using namespace std;
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
-
-class CBTInserter {
-private:
-    TreeNode* r = nullptr;
-    queue<TreeNode*> row;
+class Solution {
 public:
-    CBTInserter(TreeNode* root) {
-        r = root;
-        row.push(root);
-        TreeNode* cur = row.front();
-        while (cur -> left != nullptr and cur -> right != nullptr) {
-            row.pop();
-            row.push(cur -> left);
-            row.push(cur -> right);
-            cur = row.front();
+    int validSubarrays(vector<int>& nums) {
+        int n = nums.size();
+        if (n <= 1) {
+            return n;
         }
-    }
 
-    int insert(int v) {
-        TreeNode* cur = row.front();
-        if (cur -> left == nullptr) {
-            cur -> left = new TreeNode(v);
-            row.push(cur -> left);
+        int result = 0;
+        stack<pair<int, int>> stk;
+        for (int i = n - 1; i >= 0; --i) {
+            if (!stk.empty() and nums[i] < stk.top().second) {
+                stk.pop();
+            }
+            result += (stk.empty() ? n : stk.top().first) - i;
+            stk.push({i, nums[i]});
         }
-        else {
-            cur -> right = new TreeNode(v);
-            row.push(cur -> right);
-            row.pop();
-        }
-        return cur -> val;
-    }
-
-    TreeNode* get_root() {
-        return r;
+        return result;
     }
 };
-
-
 
 int main() {
-    //Solution s;
-    vector<int> temp({1,15,7,9,2,5,10});
+    Solution s;
+    vector<int> temp({1,4,2,5,3});
     vector<vector<int>> matrix({
         {0,1,0},
         {1,1,1},
         {0,1,0}
     });
-
-    TreeNode* r = new TreeNode(1);
-    r -> left = new TreeNode(2);
-    CBTInserter it(r);
-    it.insert(3);
-
-    it.insert(4);
+    s.validSubarrays(temp);
 }

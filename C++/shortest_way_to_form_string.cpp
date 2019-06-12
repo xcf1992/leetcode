@@ -30,7 +30,6 @@
  The lengths of source and target string are between 1 and 1000.
 
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
