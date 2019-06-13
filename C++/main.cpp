@@ -13,21 +13,53 @@
 using namespace std;
 
 class Solution {
-public:
-    int validSubarrays(vector<int>& nums) {
-        int n = nums.size();
-        if (n <= 1) {
-            return n;
-        }
-
-        int result = 0;
-        stack<pair<int, int>> stk;
-        for (int i = n - 1; i >= 0; --i) {
-            if (!stk.empty() and nums[i] < stk.top().second) {
-                stk.pop();
+private:
+    bool isValid(string s) {
+        int count = 0;
+        for (char c : s) {
+            if (c == '(') {
+                count += 1;
             }
-            result += (stk.empty() ? n : stk.top().first) - i;
-            stk.push({i, nums[i]});
+            if (c == ')') {
+                count -= 1;
+            }
+            if (count < 0) {
+                return false;
+            }
+        }
+        return count == 0;
+    }
+public:
+    vector<string> removeInvalidParentheses(string s) {
+        queue<string> bfs;
+        unordered_set<string> visit;
+        bfs.push(s);
+        visit.insert(s);
+
+        vector<string> result;
+        int length = INT_MIN;
+        while (!bfs.empty()) {
+            string curS = bfs.front();
+            bfs.pop();
+            if (isValid(curS)) {
+                if (curS.size() >= length) {
+                    length = curS.size();
+                    result.push_back(curS);
+                }
+                continue;
+            }
+
+            for (int i = 0; i < curS.size(); i++) {
+                if (curS[i] != '(' && curS[i] != ')') {
+                    continue;
+                }
+
+                string newS = curS.substr(0, i) + curS.substr(i + 1);
+                if (visit.find(newS) == visit.end()) {
+                    visit.insert(newS);
+                    bfs.push(newS);
+                }
+            }
         }
         return result;
     }
@@ -41,5 +73,5 @@ int main() {
         {1,1,1},
         {0,1,0}
     });
-    s.validSubarrays(temp);
+    s.removeInvalidParentheses("()())()");
 }

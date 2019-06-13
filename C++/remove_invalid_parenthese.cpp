@@ -1,11 +1,14 @@
-//
-//  remove_invalid_parenthese.cpp
-//  C++
-//
-//  Created by Chenfu Xie on 2/28/18.
-//  Copyright © 2018 Chenfu Xie. All rights reserved.
-//
-
+/*
+ 301. Remove Invalid Parentheses
+ Remove the minimum number of invalid parentheses in order to make the input string valid. Return all possible results.
+ 
+ Note: The input string may contain letters other than the parentheses ( and ).
+ 
+ Examples:
+ "()())()" -> ["()()()", "(())()"]
+ "(a)())()" -> ["(a)()()", "(a())()"]
+ ")(" -> [""]
+ */
 #include <iostream>
 #include <string>
 #include <vector>
@@ -20,17 +23,40 @@
 using namespace std;
 
 /*
- Remove the minimum number of invalid parentheses in order to make the input string valid. Return all possible results.
- 
- Note: The input string may contain letters other than the parentheses ( and ).
- 
- Examples:
- "()())()" -> ["()()()", "(())()"]
- "(a)())()" -> ["(a)()()", "(a())()"]
- ")(" -> [""]
- */
+Key Points:
 
+Generate unique answer once and only once, do not rely on Set.
+Do not need preprocess.
+Runtime 3 ms.
+Explanation:
+We all know how to check a string of parentheses is valid using a stack. Or even simpler use a counter.
+The counter will increase when it is ‘(‘ and decrease when it is ‘)’. Whenever the counter is negative, we have more ‘)’ than ‘(‘ in the prefix.
+
+To make the prefix valid, we need to remove a ‘)’. 
+The problem is: which one? The answer is any one in the prefix. 
+However, if we remove any one, we will generate duplicate results, 
+for example: s = ()), we can remove s[1] or s[2] but the result is the same (). 
+Thus, we restrict ourself to remove the first ) in a series of concecutive )s.
+
+After the removal, the prefix is then valid. 
+We then call the function recursively to solve the rest of the string. 
+However, we need to keep another information: the last removal position. 
+If we do not have this position, we will generate duplicate by removing two ‘)’ in two steps only with a different order.
+For this, we keep tracking the last removal position and only remove ‘)’ after that.
+
+Now one may ask. What about ‘(‘? What if s = ‘(()(()’ in which we need remove ‘(‘?
+The answer is: do the same from right to left.
+However a cleverer idea is: reverse the string and reuse the code!
+*/
 class Solution {
+private:
+public:
+    vector<string> removeInvalidParentheses(string s) {
+        return {};
+    }
+};
+
+class Solution1 { // very slow faster than 7.59%
 private:
     bool isValid(string s) {
         int count = 0;
@@ -51,22 +77,19 @@ public:
     vector<string> removeInvalidParentheses(string s) {
         queue<string> bfs;
         unordered_set<string> visit;
-        
         bfs.push(s);
         visit.insert(s);
         
         vector<string> result;
-        bool found = false;
+        int length = 0;
         while (!bfs.empty()) {
             string curS = bfs.front();
             bfs.pop();
-            
             if (isValid(curS)) {
-                result.push_back(curS);
-                found = true;
-            }
-            
-            if (found) {
+                if (curS.size() >= length) {
+                    length = curS.size();
+                    result.push_back(curS);
+                }
                 continue;
             }
             
