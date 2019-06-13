@@ -1,3 +1,17 @@
+/*
+76. Minimum Window Substring
+Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).
+
+Example:
+
+Input: S = "ADOBECODEBANC", T = "ABC"
+Output: "BANC"
+Note:
+
+If there is no such window in S that covers all characters in T, return the empty string "".
+If there is such window, you are guaranteed that there will always be only one unique minimum window in S.
+
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -5,75 +19,51 @@
 #include <algorithm>
 using namespace std;
 
-string minWindow(string S, string T) {
-        if (S.size() < T.size()) {
+class Solution {
+public:
+    string minWindow(string s, string t) {
+        int m = s.size();
+        int n = t.size();
+        if (m == 0 or n == 0 or n > m) {
             return "";
         }
-        
-        unordered_map<char, int> needed;
-        needed.clear();
-        for (int i = 0; i != T.size(); i++) {
-            if (needed.find(T.at(i)) == needed.end()) {
-				pair<char, int> fuck(T.at(i), 1);
-                needed.insert(fuck);
+
+        unordered_map<char, int> count;
+        for (char c : t) {
+            count[c] += 1;
+        }
+
+        int result = m + 1;
+        int left = 0;
+        int start = 0;
+        int i = 0;
+        int required = n;
+        while (i <= m and start <= m) {
+            if (required > 0) {
+                if (i == m) {
+                    break;
+                }
+                /*
+                should not use count.find(s[i]) != count.end() to check, cause for cases like bba
+                */
+               count[s[i]] -= 1;
+                if (count[s[i]] >= 0) {
+                    required -= 1;
+                }
+                i += 1;
             }
             else {
-                needed.at(T.at(i)) += 1;
+                if (i - start < result) {
+                    result = i - start;
+                    left = start;
+                }
+                count[s[start]] += 1;
+                if (count[s[start]] > 0) {
+                    required += 1;
+                }
+                start += 1;
             }
         }
-        
-        int window = S.size() + 1;
-        int wBegin = 0;
-        int wEnd = 0;
-        int count = 0;
-        char c;
-        unordered_map<char, int> found;
-        found.clear();
-        for (int begin = 0, end = 0; end != S.size(); end++) {
-            c = S.at(end);
-            if (needed.find(c) != needed.end()) {
-                if (found.find(c) == found.end()) {
-					pair<char, int> fuck1(c, 1);
-                    found.insert(fuck1);
-                }
-                else {
-                    found.at(c) += 1;
-                }
-                
-                if (found.at(c) <= needed.at(c)) {
-                    count++;
-                }
-                
-                if (count == T.size()) {
-                    while (needed.find(S.at(begin)) == needed.end() ||
-                           found.at(S.at(begin)) > needed.at(S.at(begin))) {
-                        if (found.at(S.at(begin)) > needed.at(S.at(begin))) {
-                            found.at(S.at(begin)) -= 1;
-                        }
-                        begin++;
-                    }
-                    
-                    int length = end - begin + 1;
-                    if (length < window) {
-                        window = length;
-                        wBegin = begin;
-                        wEnd = end;
-                    }
-                }
-            }
-        }
-        
-        if (window > S.size()) {
-            return "";
-        }
-        else {
-            return S.substr(wBegin, window);
-        }
+        return result == m + 1 ? "" : s.substr(left, result);
     }
-
-int main() {
-	string s = "ab";
-	string t = "b";
-	minWindow(s, t);
-	return 0;
-}
+};

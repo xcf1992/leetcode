@@ -13,55 +13,51 @@
 using namespace std;
 
 class Solution {
-private:
-    bool isValid(string s) {
-        int count = 0;
-        for (char c : s) {
-            if (c == '(') {
-                count += 1;
-            }
-            if (c == ')') {
-                count -= 1;
-            }
-            if (count < 0) {
-                return false;
-            }
-        }
-        return count == 0;
-    }
 public:
-    vector<string> removeInvalidParentheses(string s) {
-        queue<string> bfs;
-        unordered_set<string> visit;
-        bfs.push(s);
-        visit.insert(s);
+    string minWindow(string s, string t) {
+        int m = s.size();
+        int n = t.size();
+        if (m == 0 or n == 0 or n > m) {
+            return "";
+        }
 
-        vector<string> result;
-        int length = INT_MIN;
-        while (!bfs.empty()) {
-            string curS = bfs.front();
-            bfs.pop();
-            if (isValid(curS)) {
-                if (curS.size() >= length) {
-                    length = curS.size();
-                    result.push_back(curS);
+        unordered_map<char, int> count;
+        for (char c : t) {
+            count[c] += 1;
+        }
+
+        int result = m + 1;
+        int left = 0;
+        int start = 0;
+        int i = 0;
+        int required = n;
+        while (i <= m and start <= m) {
+            if (required > 0) {
+                if (i == m) {
+                    break;
                 }
-                continue;
+                /*
+                 should not use count.find(s[i]) != count.end() to check, cause for cases like bba
+                 */
+                count[s[i]] -= 1;
+                if (count[s[i]] >= 0) {
+                    required -= 1;
+                }
+                i += 1;
             }
-
-            for (int i = 0; i < curS.size(); i++) {
-                if (curS[i] != '(' && curS[i] != ')') {
-                    continue;
+            else {
+                if (i - start < result) {
+                    result = i - start;
+                    left = start;
                 }
-
-                string newS = curS.substr(0, i) + curS.substr(i + 1);
-                if (visit.find(newS) == visit.end()) {
-                    visit.insert(newS);
-                    bfs.push(newS);
+                count[s[start]] -= 1;
+                if (count[s[start]] > 0) {
+                    required += 1;
                 }
+                start += 1;
             }
         }
-        return result;
+        return result == m + 1 ? "" : s.substr(left, result);
     }
 };
 
@@ -73,5 +69,5 @@ int main() {
         {1,1,1},
         {0,1,0}
     });
-    s.removeInvalidParentheses("()())()");
+    s.minWindow("ADOBECODEBANC","ABC");
 }
