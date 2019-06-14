@@ -1,4 +1,5 @@
 /*
+ 269. Alien Dictionary
  There is a new alien language which uses the latin alphabet. However, the order among letters are unknown to you. You receive a list of non-empty words from the dictionary, where words are sorted lexicographically by the rules of this new language. Derive the order of letters in this language.
  
  Example 1:
@@ -66,13 +67,13 @@ public:
         }
         
         unordered_map<char, int> indegree;
-        unordered_map<char, unordered_set<char>> graph;
         for (string word : words) {
             for (char c : word) {
                 indegree[c] = 0;
             }
         }
         
+        unordered_map<char, unordered_set<char>> graph;
         for (int i = 0; i < words.size() - 1; i++) {
             string cur = words[i];
             string nex = words[i + 1];

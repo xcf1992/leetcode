@@ -1,4 +1,5 @@
 /*
+10. Regular Expression Matching
 Given an input string (s) and a pattern (p), implement regular expression matching with support for '.' and '*'.
 
 '.' Matches any single character.
@@ -74,10 +75,10 @@ public:
         for (int i = 0; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
                 if (p[j - 1] == '*') {
-                    dp[i][j] = dp[i][j - 2] || (i > 0 && (s[i - 1] == p[j - 2] || p[j - 2] == '.') && dp[i - 1][j]);
+                    dp[i][j] = dp[i][j - 2] or (i > 0 && (s[i - 1] == p[j - 2] || p[j - 2] == '.') && dp[i - 1][j]);
                 }
                 else {
-                    dp[i][j] = i > 0 && dp[i - 1][j - 1] && (s[i - 1] == p[j - 1] || p[j - 1] == '.');
+                    dp[i][j] = i > 0 and dp[i - 1][j - 1] and (s[i - 1] == p[j - 1] || p[j - 1] == '.');
                 }
             }
         }
