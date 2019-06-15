@@ -70,7 +70,6 @@ public:
         int weeks = days[0].size();
 
         vector<vector<int>> dp(weeks, vector<int>(N, -1));
-
         int result = 0;
         for (int i = 0; i < N; ++i) {
             if (i == 0 or flights[0][i] != 0) {

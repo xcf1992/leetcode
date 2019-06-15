@@ -96,7 +96,6 @@ public:
         
         visited[x][y] = 1;
         robot.clean();
-        
         for (int i = 0; i < 4; i++) {
             if (robot.move()) {
                 x += dx[direct];

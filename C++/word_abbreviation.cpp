@@ -15,7 +15,6 @@
  The words consist of lowercase English letters only.
  The return answers should be in the same order as the original array.
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -30,37 +29,21 @@
 #include <set>
 using namespace std;
 
+/*
+For example, let's say we have "aabaaa", "aacaaa", "aacdaa", then we start with "a4a", "a4a", "a4a". 
+Since these are duplicated, we lengthen them to "aa3a", "aa3a", "aa3a". They are still duplicated, 
+so we lengthen them to "aab2a", "aac2a", "aac2a". 
+The last two are still duplicated, so we lengthen them to "aacaaa", "aacdaa".
+
+Throughout this process, we were tracking an index prefix[i] 
+which told us up to what index to take the prefix to. 
+For example, prefix[i] = 2 means to take a prefix of word[0], word[1], word[2].
+*/
 class Solution {
 private:
-    void generate(vector<string>& result, int start, int preNum, string abbreviation, string& word) {
-        if (start >= word.size()) {
-            if (preNum != 0) {
-                abbreviation += to_string(preNum);
-            }
-            result.push_back(abbreviation);
-            return;
-        }
-
-        generate(result, start + 1, preNum + 1, abbreviation, word);
-        if (preNum != 0) {
-            abbreviation += to_string(preNum);
-        }
-        abbreviation.push_back(word[start]);
-        generate(result, start + 1, 0, abbreviation, word);
-    }
-public:
-    vector<string> generateAbbreviations(string word) {
-        vector<string> result;
-        generate(result, 0, 0, "", word);
-        return result;
-    }
-};
-
-class Solution1 {
-private:
-    string abbreviate(string s, int k) {
+    string abbreviate(string s, int k) { // k is the length of prefix of the abbreviation, before number
         int length = s.size();
-        if (k >= length - 2) {
+        if (k >= length - 2) { // k + 2 will be the length after abbreviation
             return s;
         }
 

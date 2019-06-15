@@ -166,8 +166,7 @@ public:
             else {
                 addPosToFormula(sheet[row][col] -> formula, str);
             }
-        }
-        
+        }      
         return get(r, c);
     }
 };

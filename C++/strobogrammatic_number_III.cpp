@@ -13,7 +13,6 @@
  Note:
  Because the range might be a large number, the low and high numbers are represented as string.
  */
-
 #include <iostream>
 #include <string>
 #include <vector>

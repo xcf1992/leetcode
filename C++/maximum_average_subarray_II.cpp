@@ -15,7 +15,6 @@
  Elements of the given array will be in range [-10,000, 10,000].
  The answer with the calculation error less than 10-5 will be accepted.
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -29,11 +28,11 @@
 #include <map>
 #include <numeric>
 using namespace std;
-
 /*
  To understand the idea behind this method, let's look at the following points.
 
- Firstly, we know that the value of the average could lie between the range (min, max)(min,max). Here, minmin and maxmax refer to the minimum and the maximum values out of the given numsnums array. This is because, the average can't be lesser than the minimum value and can't be larger than the maximum value.
+ Firstly, we know that the value of the average could lie between the range (min, max)(min,max). 
+ Here, minmin and maxmax refer to the minimum and the maximum values out of the given numsnums array. This is because, the average can't be lesser than the minimum value and can't be larger than the maximum value.
 
  But, in this case, we need to find the maximum average of a subarray with atleast kk elements. The idea in this method is to try to approximate(guess) the solution and to try to find if this solution really exists.
 
@@ -100,7 +99,6 @@ private:
     bool check(vector<int>& nums, double mid, int k) {
         double sum = 0.0;
         double prev = 0.0;
-        double minSum = 0.0; // min_sum represent the min prefix sum of the array. When there is no element, the prefix sum is 0.
         for (int i = 0; i < k; ++i) {
             sum += nums[i] - mid;
         }
@@ -108,12 +106,18 @@ private:
             return true;
         }
 
+        double minSum = 0.0; // min_sum represent the min prefix sum of the array. When there is no element, the prefix sum is 0.
         for (int i = k; i < nums.size(); ++i) {
             /*
-             We enter this for-loop only if the cumulative sum of ( sum[i] - mid) for the first k elements ( i from 0 to k-1 ) is less than 0. That is, we need to check for cumulative sum of subarrays that do not necessarily start from 0 and do not necessarily have length = k (the length can be >= k)
-             When we enter this for-loop, we are atleast at position k+1. To determine the answer we need to check cumulative sum of range 0 to k (k+1 elements) or 1 to k (k elements).
+             We enter this for-loop only if the cumulative sum of ( sum[i] - mid) for the first k elements ( i from 0 to k-1 ) 
+             is less than 0. 
+             That is, we need to check for cumulative sum of subarrays that do not necessarily start from 0 
+             and do not necessarily have length = k (the length can be >= k)
+             When we enter this for-loop, we are atleast at position k+1. 
+             To determine the answer we need to check cumulative sum of range 0 to k (k+1 elements) or 1 to k (k elements).
              i.e we need to check if sum(0..k) >= 0 or sum(0..k) - sum(0...0) >=0 ..
-             if we can determine the minimum cumulative sum upto a position which is atleast k away from our current position , then checking if sum(upto current position) - minimum >= 0 is a sufficient condition to determine whether it is possible to find a subarray whose average is mid.
+             if we can determine the minimum cumulative sum upto a position which is atleast k away from our current position , 
+             then checking if sum(upto current position) - minimum >= 0 is a sufficient condition to determine whether it is possible to find a subarray whose average is mid.
              */
             sum += nums[i] - mid;
             prev += nums[i - k] - mid;
