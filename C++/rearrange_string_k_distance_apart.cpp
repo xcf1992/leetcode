@@ -36,11 +36,6 @@
 #include <numeric>
 using namespace std;
 
-struct mycompare {
-    bool operator () (pair<int, char>& a, pair<int, char>& b) {
-        return a.first < b.first || (a.first == b.first and a.second < b.second);
-    }
-};
 /*
 we should not arrange the most frequent letter with k distance to solve this problem
  for example "aaabbbccc" with k = 2
@@ -49,6 +44,11 @@ we should not arrange the most frequent letter with k distance to solve this pro
  instead we should arrange a group of k letters time by time, in each group we always try to put the most frequent letter first
  and try to make we only use each letter once in each group
  */
+struct mycompare {
+    bool operator () (pair<int, char>& a, pair<int, char>& b) {
+        return a.first < b.first || (a.first == b.first and a.second < b.second);
+    }
+};
 class Solution {
 public:
     string rearrangeString(string s, int k) {
@@ -56,20 +56,17 @@ public:
             return s;
         }
 
-        int n = s.size();
         unordered_map<char, int> dict;
         for (char c : s) {
             dict[c] += 1;
         }
 
-        auto comp = [](pair<int, char>& a, pair<int, char>& b) {
-            return a.first < b.first || (a.first == b.first and a.second < b.second);
-        };
         priority_queue<pair<int, char>, vector<pair<int, char>>, mycompare> pq;
         for (auto it = dict.begin(); it != dict.end(); ++it) {
             pq.push({it -> second, it -> first});
         }
 
+        int n = s.size();
         string result = "";
         while (!pq.empty()) {
             vector<pair<int, int>> cache; // store used char during one while loop
