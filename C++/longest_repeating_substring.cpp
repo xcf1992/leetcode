@@ -22,7 +22,7 @@ Example 4:
 Input: "aaaaa"
 Output: 4
 Explanation: The longest repeating substring is "aaaa", which occurs twice.
- 
+
 
 Note:
 
@@ -44,22 +44,41 @@ The string S consists of only lowercase English letters from 'a' - 'z'.
 #include <numeric>
 using namespace std;
 
+//dp[i][j] means # of repeated chars for substrings ending at i and j
+class Solution {
+public:
+    int longestRepeatingSubstring(string S) {
+        int n = S.size();
+        int result = 0;
+        vector<vector<int>> dp(n + 1, vector<int>(n + 1, 0));
+        for (int i = 1; i <= n; ++i) {
+            for (int j = i + 1; j <= n; ++j) { // j should be different from i
+                if (S[i - 1] == S[j - 1]) {
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                    result = max(result, dp[i][j]);
+                }
+            }
+        }
+        return result;
+    }
+};
+
 // https://stackoverflow.com/questions/711770/fast-implementation-of-rolling-hash
 // wrong answer "aaabaabbbaaabaabbaabbbabbbaaaabbaaaaaabbbaabbbbbbbbbaaaabbabbaba"
-class Solution {
+class Solution2 {
 private:
     bool findRepeat(string S, int len) {
         unordered_set<long long> visited;
         size_t p = 113;
         size_t mod = 1e9 + 7;
-        
+
         long long value = 0;
         long long power = 1;
         for (int i = 0; i < len; ++i) {
             value = (value * p + S[i]) % mod;
             power = (power * p) % mod;
         }
-        
+
         visited.insert(value);
         for (int i = len; i < S.size(); ++i) {
             value = (value * p + S[i]) % mod;
@@ -80,7 +99,7 @@ public:
         if (n <= 1) {
             return 0;
         }
-        
+
         for (int len = n - 1; len >= 1; --len) {
             if (findRepeat(S, len)) {
                 return len;
@@ -91,7 +110,7 @@ public:
 };
 
 // TLE
-class Solution {
+class Solution1 {
 public:
     int longestRepeatingSubstring(string S) {
         int n = S.size();

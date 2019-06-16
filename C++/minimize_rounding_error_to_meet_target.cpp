@@ -57,7 +57,7 @@ public:
             double price = stod(p);
             floorS += floor(price);
             ceilS += ceil(price);
-            if (price == floor(p)) {
+            if (price == floor(price)) {
                 integer += 1;
             }
             else {
