@@ -1,9 +1,8 @@
 /*
  1064. Fixed Point
- Given an array A of distinct integers sorted in ascending order, return the smallest index i that satisfies A[i] == i.  Return -1 if no such i exists.
- 
- 
- 
+ Given an array A of distinct integers sorted in ascending order, 
+ return the smallest index i that satisfies A[i] == i.  Return -1 if no such i exists.
+
  Example 1:
  
  Input: [-10,-5,0,3,7]
@@ -45,24 +44,32 @@
 #include <numeric>
 using namespace std;
 
+/*
+Test Cases
+It said that "return the smallest index i that satisfies A[i] == i".
+Many solution just "return an whatever index that satisfies A[i] == i".
+Tough it can get accepted.
+
+Update
+I used to return any index that A[i] == i.
+It got a false accepted due to weak test cases.
+Thanks to @dibdidib for reminding me and now I fixed it.
+*/
+
 class Solution {
 public:
     int fixedPoint(vector<int>& A) {
         int left = 0;
         int right = A.size() - 1;
-        while (left <= right) {
+        while (left < right) {
             int mid = left + (right - left) / 2;
-            if (A[mid] == mid) {
-                return mid;
-            }
-            
             if (A[mid] < mid) {
                 left = mid + 1;
             }
             else {
-                right = mid - 1;
+                right = mid;
             }
         }
-        return -1;
+        return A[left] == left ? left : -1;
     }
 };

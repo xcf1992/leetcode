@@ -46,7 +46,8 @@ using namespace std;
  Let missingNum be amount of missing number in the array. Two cases that need to be handled:
  
  missingNum < k, then return nums[n - 1] + k - missingNum
- missingNum >= k, then use binary search(during the search k will be updated) to find the index in the array, where the kth missing number will be located in (nums[index], nums[index + 1]), return nums[index] + k
+ missingNum >= k, then use binary search(during the search k will be updated) to find the index in the array, 
+ where the kth missing number will be located in (nums[index], nums[index + 1]), return nums[index] + k
  */
 class Solution {
 public:
@@ -59,9 +60,9 @@ public:
             return nums[right] + k - count;
         }
         
-        while (left < right - 1) {
+        while (left < right - 1) { // this is important to find fit interval that, right - left == 1 and there at leatst k missing number
             int mid = left + (right - left) / 2;
-            count = nums[mid] - nums[left] - mid + left;
+            count = nums[mid] - nums[left] - (mid - left);
             
             if (count >= k) {
                 right = mid;

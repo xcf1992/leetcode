@@ -76,14 +76,15 @@ public:
             if (rotate[num[left] - '0'] == -1 or rotate[num[right] - '0'] == -1) {
                 return false;
             }
-            
-            num[right] = '0' + (rotate[num[left] - '0']);
+
+            swap(num[left], num[right]);
+            num[right] = '0' + (rotate[num[right] - '0']);
             if (left != right) {
-                num[left] = '0' + (rotate[num[right] - '0']);
+                num[left] = '0' + (rotate[num[left] - '0']);
             }
             left += 1;
             right -= 1;
         }
-        return num == to_string(N);
+        return num != to_string(N);
     }
 };
