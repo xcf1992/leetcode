@@ -14,51 +14,41 @@
 using namespace std;
 
 class Solution {
-private:
-    void dfs(vector<set<char>>& groups, int index, vector<string>& result, string cur) {
-        if (index == groups.size()) {
-            result.push_back(cur);
-        }
-        
-        for (char c : groups[index]) {
-            cur.push_back(c);
-            dfs(groups, index + 1, result, cur);
-            cur.pop_back();
-        }
-    }
 public:
-    vector<string> expand(string S) {
-        int n = S.size();
-        vector<set<char>> groups;
+    void duplicateZeros(vector<int>& arr) {
+        int n = arr.size();
+        int index = 0;
         for (int i = 0; i < n; ++i) {
-            set<char> cur;
-            if (S[i] == '{') {
-                while (i < n and S[i] != '}') {
-                    if (isalpha(S[i])) {
-                        cur.insert(S[i]);
-                    }
-                    i += 1;
-                }
+            if (arr[i] == 0) {
+                index += 1;
             }
-            else {
-                cur.insert(S[i]);
-            }
-            groups.push_back(cur);
+            index += 1;
         }
+        index -= 1;
         
-        vector<string> result;
-        dfs(groups, 0, result, "");
-        return result;
+        for (int i = n - 1; i >= 0; --i) {
+            if (index <= n - 1) {
+                arr[index] = arr[i];
+            }
+            index -= 1;
+            if (arr[i] == 0) {
+                if (index <= n - 1) {
+                    arr[index] = 0;
+                }
+                index -= 1;
+            }
+        }
+        return;
     }
 };
 
 int main() {
     Solution s;
-    vector<int> temp({1,4,2,5,3});
+    vector<int> temp({1,0,2,3,0,4,5,0});
     vector<vector<int>> matrix({
         {0,1,0},
         {1,1,1},
         {0,1,0}
     });
-    s.expand("{a,b}c{d,e}f");
+    s.duplicateZeros(temp);
 }
