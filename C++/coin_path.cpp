@@ -1,9 +1,14 @@
 /*
  656. Coin Path
 
- Given an array A (index starts at 1) consisting of N integers: A1, A2, ..., AN and an integer B. The integer B denotes that from any place (suppose the index is i) in the array A, you can jump to any one of the place in the array A indexed i+1, i+2, …, i+B if this place can be jumped to. Also, if you step on the index i, you have to pay Ai coins. If Ai is -1, it means you can’t jump to the place indexed i in the array.
+ Given an array A (index starts at 1) consisting of N integers: A1, A2, ..., AN and an integer B. 
+ The integer B denotes that from any place (suppose the index is i) in the array A, 
+ you can jump to any one of the place in the array A indexed i+1, i+2, …, i+B if this place can be jumped to. 
+ Also, if you step on the index i, you have to pay Ai coins. If Ai is -1, it means you can’t jump to the place indexed i in the array.
 
- Now, you start from the place indexed 1 in the array A, and your aim is to reach the place indexed N using the minimum coins. You need to return the path of indexes (starting from 1 to N) in the array you should take to get to the place indexed N using minimum coins.
+ Now, you start from the place indexed 1 in the array A, 
+ and your aim is to reach the place indexed N using the minimum coins. 
+ You need to return the path of indexes (starting from 1 to N) in the array you should take to get to the place indexed N using minimum coins.
 
  If there are multiple paths with the same cost, return the lexicographically smallest such path.
 
@@ -28,7 +33,6 @@
  Length of A is in the range of [1, 1000].
  B is in the range of [1, 100].
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -67,7 +71,7 @@ Here Q is longer but not lexicographically smaller.
 Why? Because j = 3 to n = 5 is not optimal.
 The optimal path should be [1, 3, 5] where the cost is only 2
 */
-class Solution {
+class Solution1 {
 public:
     vector<int> cheapestJump(vector<int>& A, int B) {
         int n = A.size();
@@ -102,6 +106,49 @@ public:
         if (result[0] != 1) {
             return {};
         }
+        return result;
+    }
+};
+
+class Solution { // dfs with memo
+private:
+    long jump(vector<int>& A, int B, int start, unordered_map<int, long>& memo, vector<int>& next) {
+        if (memo.find(start) != memo.end()) {
+            return memo[start];
+        }
+
+        if (start == A.size() - 1 and A[start] != -1) {
+            return A[start];
+        }
+
+        long minCost = INT_MAX;
+        for (int j = start + 1; j < A.size() and j <= start + B; ++j) {
+            if (A[j] != -1) {
+                long cost = A[start] + jump(A, B, j, memo, next);
+                if (cost < minCost) {
+                    minCost = cost;
+                    next[start] = j;
+                }
+            }
+        }
+        memo[start] = minCost;
+        return minCost;
+    }
+public:
+    vector<int> cheapestJump(vector<int>& A, int B) {
+        int n = A.size();
+        unordered_map<int, long> memo;
+        vector<int> next(n, -1);
+        jump(A, B, 0, memo, next);
+
+        vector<int> result;
+        for (int i = 0; i < n - 1; i = next[i]) {
+            result.push_back(i + 1);
+            if (next[i] == -1) {
+                return {};
+            }
+        }
+        result.push_back(n);
         return result;
     }
 };

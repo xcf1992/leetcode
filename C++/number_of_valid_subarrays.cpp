@@ -47,10 +47,6 @@ class Solution {
 public:
     int validSubarrays(vector<int>& nums) {
         int n = nums.size();
-        if (n <= 1) {
-            return n;
-        }
-
         int result = 0;
         stack<pair<int, int>> stk;
         for (int i = n - 1; i >= 0; --i) {
