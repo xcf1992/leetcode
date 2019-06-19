@@ -1,3 +1,39 @@
+/*
+126. Word Ladder II
+Given two words (beginWord and endWord), and a dictionary's word list, find all shortest transformation sequence(s) from beginWord to endWord, such that:
+
+Only one letter can be changed at a time
+Each transformed word must exist in the word list. Note that beginWord is not a transformed word.
+Note:
+
+Return an empty list if there is no such transformation sequence.
+All words have the same length.
+All words contain only lowercase alphabetic characters.
+You may assume no duplicates in the word list.
+You may assume beginWord and endWord are non-empty and are not the same.
+Example 1:
+
+Input:
+beginWord = "hit",
+endWord = "cog",
+wordList = ["hot","dot","dog","lot","log","cog"]
+
+Output:
+[
+  ["hit","hot","dot","dog","cog"],
+  ["hit","hot","lot","log","cog"]
+]
+Example 2:
+
+Input:
+beginWord = "hit"
+endWord = "cog"
+wordList = ["hot","dot","dog","lot","log"]
+
+Output: []
+
+Explanation: The endWord "cog" is not in wordList, therefore no possible transformation.
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -7,85 +43,19 @@
 #include <unordered_set>
 using namespace std;
 
-void generatePath(unordered_map<string, vector<string>> &prevMap, vector<string>& path,
-                      const string& word, vector<vector<string>> &results) {
-        if (prevMap[word].size() == 0) {
-            path.push_back(word);
-            vector<string> curPath = path;
-            reverse(curPath.begin(), curPath.end());
-            results.push_back(curPath);
-            path.pop_back();
-            return;
+class Solution {
+private:
+    void dfs(unordered_map<string, vector<string>>& dict, )
+public:
+    vector<vector<string>> findLadders(string beginWord, string endWord, vector<string>& wordList) {
+        unordered_map<string, vector<string>> dict;
+        for (string& word : wordList) {
+            for (int i = 0; i < word.size(); ++i) {
+                string temp = word.substr(0, i) + "*" + word.substr(i + 1);
+                dict[temp].push_back(word);
+            }
         }
-        
-        path.push_back(word);
-        for (int i = 0; i != prevMap[word].size(); i++) {
-            generatePath(prevMap, path, prevMap[word][i], results);
-        }
-        path.pop_back();
-        return;
-    }
 
-vector<vector<string>> findLadders(string start, string end, unordered_set<string> &dict) {
-        vector<vector<string>> results;
-        results.clear();
-        unordered_map<string, vector<string>> prevMap;
-        prevMap.clear();
-        
-        for (unordered_set<string>::iterator it = dict.begin(); it != dict.end(); it++) {
-            prevMap[*it] = vector<string>();
-        }
-        
-        vector<unordered_set<string>> candidates(2);
-        int current = 0;
-        int previous = 1;
-        candidates[current].insert(start);
-        
-        while (true) {
-            current = 1 - current;
-            previous = 1 - previous;
-            
-            for (unordered_set<string>::iterator it = candidates[previous].begin(); 
-                 it != candidates[previous].end(); it++) {
-                dict.erase(*it);
-            }
-            candidates[current].clear();
-            
-            for (unordered_set<string>::iterator it = candidates[previous].begin();
-                 it != candidates[previous].end(); it++) {
-                string word = *it;
-                for (int i = 0; i != word.size(); i++) {
-					word = *it;
-                    for (char c = 'a'; c <= 'z'; c++) {
-                        if (word[i] != c) {
-                            word[i] = c;
-                            if (dict.find(word) != dict.end()) {
-                                prevMap[word].push_back(*it);
-                                candidates[current].insert(word);
-                            }
-                        }
-                    }
-                }
-            }
-            if (candidates[current].empty()) {
-                return results;
-            }
-            if (candidates[current].find(end) != candidates[current].end()) {
-                break;
-            }
-        }
-        vector<string> path;
-        generatePath(prevMap, path, end, results);
-        return results;
+        vector<vector<string>>
     }
-
-int main() {
-	string start = "hot";
-	string end = "dog";
-	unordered_set<string> dict;
-	dict.insert("hot");
-	dict.insert("dot");
-	dict.insert("dog");
-	findLadders(start, end, dict);
-	return 0;
-}
+};
