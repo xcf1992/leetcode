@@ -1,3 +1,29 @@
+/*
+51. N-Queens
+The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other.
+
+
+
+Given an integer n, return all distinct solutions to the n-queens puzzle.
+
+Each solution contains a distinct board configuration of the n-queens' placement, where 'Q' and '.' both indicate a queen and an empty space respectively.
+
+Example:
+
+Input: 4
+Output: [
+ [".Q..",  // Solution 1
+  "...Q",
+  "Q...",
+  "..Q."],
+
+ ["..Q.",  // Solution 2
+  "Q...",
+  "...Q",
+  ".Q.."]
+]
+Explanation: There exist two distinct solutions to the 4-queens puzzle as shown above.
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -5,44 +31,52 @@
 #include <algorithm>
 using namespace std;
 
-void getAllResults(int &results, vector<int> &result, int level, int n) {
-        if (level == n) {
-            bool flag = true;
-            for (int i = 0; i != n && flag; i++) {
-                for (int j = i + 1; j != n; j++) {
-                    if (j - i == abs(result.at(j) - result.at(i))) {
-                        flag = false;
-                        break;
-                    }
+class Solution {
+private:
+    bool isValid(vector<int>& cur, int n) {
+        for (int i = 0; i < n; ++i) {
+            for (int j = i + 1; j < n; ++j) {
+                if (abs(i - j) == abs(cur[i] - cur[j])) {
+                    return false;
                 }
             }
-            
-            if (flag) {
-                results++;
-            }
         }
-        
-        for (int i = level; i != n; i++) {
-            swap(result.at(level), result.at(i));
-            getAllResults(results, result, level + 1, n);
-            swap(result.at(level), result.at(i));
-        }
-        
-        return;
+        return true;
     }
 
-int totalNQueens(int n) {
-        int results = 0;
-        vector<int> result;
-        result.clear();
-        
-        getAllResults(results, result, 0, n);
-        
-        return results;
+    vector<string> draw(vector<int>& cur, int n) {
+        vector<string> graph;
+        for (int c : cur) {
+            string row = string(n, '.');
+            row[c] = 'Q';
+            graph.push_back(row);
+        }
+        return graph;
     }
-    
-int main() {
-	int num = totalNQueens(8);
-	return 0;
-}
-    
+
+    void dfs(vector<vector<string>>& result, vector<int>& cur, int level, int n) {
+        if (level == n) {
+            if (!isValid(cur, n)) {
+                return;
+            }
+            result.push_back(draw(cur, n));
+            return;
+        }
+
+        for (int i = level; i < n; ++i) {
+            swap(cur[i], cur[level]);
+            dfs(result, cur, level + 1, n);
+            swap(cur[i], cur[level]);
+        }
+    }
+public:
+    vector<vector<string>> solveNQueens(int n) {
+        vector<vector<string>> result;
+        vector<int> cur;
+        for (int i = 0; i < n; ++i) {
+            cur.push_back(i);
+        }
+        dfs(result, cur, 0, n);
+        return result;
+    }
+};
