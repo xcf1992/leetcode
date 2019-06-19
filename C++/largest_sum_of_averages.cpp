@@ -1,11 +1,11 @@
 /*
  813. Largest Sum of Averages
- We partition a row of numbers A into at most K adjacent (non-empty) groups, 
- then our score is the preSum of the average of each group. 
+ We partition a row of numbers A into at most K adjacent (non-empty) groups,
+ then our score is the preSum of the average of each group.
  What is the largest score we can achieve?
- 
+
  Note that our partition must use every number in A, and that scores are not necessarily integers.
- 
+
  Example:
  Input:
  A = [9,1,2,3,9]
@@ -15,14 +15,13 @@
  The best choice is to partition A into [9], [1, 2, 3], [9]. The answer is 9 + (1 + 2 + 3) / 3 + 9 = 20.
  We could have also partitioned A into [9, 1], [2], [3, 9], for example.
  That partition would lead to a score of 5 + 2 + 6 = 13, which is worse.
- 
+
  Note:
  1 <= A.length <= 100.
  1 <= A[i] <= 10000.
  1 <= K <= A.length.
  Answers within 10^-6 of the correct answer will be accepted as correct.
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -34,7 +33,6 @@
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 Intuition
 
@@ -74,7 +72,7 @@ public:
         for(int i = 1; i < n; i++) {
             preSum.push_back(A[i] + preSum.back());
         }
-        
+
         // split the array into k groups, then there will have to be at least k numbers from A[0] ~ A[k-1]
         for (int k = 1; k <= K; k++) {
             for (int i = k - 1; i < n; i++) {
