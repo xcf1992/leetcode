@@ -1,3 +1,64 @@
+/*
+68. Text Justification
+Given an array of words and a width maxWidth,
+format the text such that each line has exactly maxWidth characters and is fully (left and right) justified.
+
+You should pack your words in a greedy approach;
+that is, pack as many words as you can in each line.
+Pad extra spaces ' ' when necessary so that each line has exactly maxWidth characters.
+
+Extra spaces between words should be distributed as evenly as possible.
+If the number of spaces on a line do not divide evenly between words,
+the empty slots on the left will be assigned more spaces than the slots on the right.
+
+For the last line of text, it should be left justified and no extra space is inserted between words.
+
+Note:
+
+A word is defined as a character sequence consisting of non-space characters only.
+Each word's length is guaranteed to be greater than 0 and not exceed maxWidth.
+The input array words contains at least one word.
+Example 1:
+
+Input:
+words = ["This", "is", "an", "example", "of", "text", "justification."]
+maxWidth = 16
+Output:
+[
+   "This    is    an",
+   "example  of text",
+   "justification.  "
+]
+Example 2:
+
+Input:
+words = ["What","must","be","acknowledgment","shall","be"]
+maxWidth = 16
+Output:
+[
+  "What   must   be",
+  "acknowledgment  ",
+  "shall be        "
+]
+Explanation: Note that the last line is "shall be    " instead of "shall     be",
+             because the last line must be left-justified instead of fully-justified.
+             Note that the second line is also left-justified becase it contains only one word.
+Example 3:
+
+Input:
+words = ["Science","is","what","we","understand","well","enough","to","explain",
+         "to","a","computer.","Art","is","everything","else","we","do"]
+maxWidth = 20
+Output:
+[
+  "Science  is  what we",
+  "understand      well",
+  "enough to explain to",
+  "a  computer.  Art is",
+  "everything  else  we",
+  "do                  "
+]
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -6,83 +67,37 @@
 #include <cmath>
 using namespace std;
 
-vector<string> fullJustify(vector<string> &words, int L) {
+class Solution {
+public:
+    vector<string> fullJustify(vector<string>& words, int maxWidth) {
+        int n = words.size();
         vector<string> result;
-        result.clear();
-        if (words.empty()) {
-            return result;
-        }
-        
-        
-        int length = 0;
-		int wordsLen = 0;
-        int start = 0;
-        int i = 0;
-        vector<string> oneLine;
-        while (start < words.size()) {
-			oneLine.clear();
-			length = 0;
-            for (i = start; i != words.size(); i++) {
-                if (length + words[i].size() > L) {
-                    break;
-                }
-                oneLine.push_back(words[i]);
-                length = length + words[i].size() + 1;
+        int count = 0;
+        for (int i = 0; i < n; i += count) {
+            int len = 0;
+            count = 0;
+            while (i + count < n and len + words[i + count].size() + count <= maxWidth) {
+                len += words[i + count].size();
+                count += 1;
             }
-            
-            string line;
-            line.clear();
-            if (i != words.size()) {
-                line += oneLine.front();
-                if (oneLine.size() == 1) {
-                    while (line.size() != L) {
-                        line += ' ';
-                    }
+
+            string cur = words[i];
+            for (int j = 1; j < count; ++j) {
+                if (i + count >= n) {
+                    cur.push_back(' '); // last line we only need to insert one space between each word
                 }
                 else {
-                    int spaces = L - length + oneLine.size();
-                    int temp = spaces / (oneLine.size() - 1);
-					int rest = spaces % (oneLine.size() - 1);
-                    for (int j = 1; j != oneLine.size(); j++) {
-                        for (int k = 0; k != temp; k++) {
-                            line += ' ';
-                        }
-						if (rest > 0) {
-							line += ' ';
-							rest--;
-						}
-                        spaces -= temp;
-                        line += oneLine[j];
+                    int spaceCount = (maxWidth - len) / (count - 1);
+                    if (j - 1 < (maxWidth - len) % (count - 1)) {
+                        spaceCount += 1;
                     }
+                    cur += string(spaceCount, ' ');
                 }
+                cur += words[i + j];
             }
-            else {
-                line += oneLine[0];
-                for (int j = 1; j != oneLine.size(); j++) {
-                    line += ' ';
-                    line += oneLine[j];
-                }
-                while (line.size() != L) {
-                    line += ' ';
-                }
-            }
-            
-			result.push_back(line);
-            start = i;
+            cur += string(maxWidth - cur.size(), ' ');
+            result.push_back(cur);
         }
-        
         return result;
     }
-
-int main() {
-	vector<string> words;
-	words.push_back("WAHT");
-	words.push_back("must");
-	words.push_back("be");
-	words.push_back("shall");
-	words.push_back("br.");
-	//words.push_back("Text");
-	//words.push_back("Justification");
-	fullJustify(words, 12);
-	return 0;
-}
+};
