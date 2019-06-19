@@ -3,8 +3,6 @@
 
  Given a file and assume that you can only read the file using a given method read4, implement a method to read n characters.
 
-
-
  Method read4:
 
  The API read4 reads 4 consecutive characters from the file, then writes those characters into the buffer array buf.
@@ -70,7 +68,6 @@
  The read function will only be called once for each test case.
  You may assume the destination buffer array, buf, is guaranteed to have enough space for storing n characters.
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
