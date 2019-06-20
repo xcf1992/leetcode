@@ -1,14 +1,21 @@
 /*
- Design and implement a data structure for Least Frequently Used (LFU) cache. It should support the following operations: get and put.
- 
+ 460. LFU Cache
+ Design and implement a data structure for Least Frequently Used (LFU) cache.
+ It should support the following operations: get and put.
+
  get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
- put(key, value) - Set or insert the value if the key is not already present. When the cache reaches its capacity, it should invalidate the least frequently used item before inserting a new item. For the purpose of this problem, when there is a tie (i.e., two or more keys that have the same frequency), the least recently used key would be evicted.
- 
+ put(key, value) - Set or insert the value if the key is not already present.
+                   When the cache reaches its capacity,
+                   it should invalidate the least frequently used item before inserting a new item.
+                   For the purpose of this problem,
+                   when there is a tie (i.e., two or more keys that have the same frequency),
+                   the least recently used key would be evicted.
+
  Follow up:
  Could you do both operations in O(1) time complexity?
- 
+
  Example:
- 
+
  LFUCache cache = new LFUCache( 2 // capacity  );
 
 cache.put(1, 1);
@@ -22,7 +29,6 @@ cache.get(1);       // returns -1 (not found)
 cache.get(3);       // returns 3
 cache.get(4);       // returns 4
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -43,7 +49,7 @@ struct LFUNode {
     int value;
     LFUNode* prev;
     LFUNode* next;
-    
+
     LFUNode(int f, int k, int v) {
         freq = f;
         key = k;
@@ -58,18 +64,18 @@ private:
     int minFreq;
     unordered_map<int, LFUNode*> key2node;
     unordered_map<int, LFUNode*> freq2node;
-    
+
 public:
     LFUCache(int c) {
         capacity = c;
         minFreq = 1;
     }
-    
+
     int get(int key) {
         if (key2node.find(key) == key2node.end()) {
             return -1;
         }
-        
+
         LFUNode* cur = key2node[key];
         LFUNode* prevNode = cur -> prev;
         LFUNode* nextNode = cur -> next;
@@ -83,7 +89,7 @@ public:
             freq2node.erase(minFreq);
             minFreq += 1;
         }
-        
+
         cur -> freq += 1;
         if (freq2node.find(cur -> freq) == freq2node.end()) {
             LFUNode* newHead = new LFUNode(cur -> freq, -1, -1);
@@ -91,22 +97,21 @@ public:
             newHead -> prev = newHead;
             freq2node[cur -> freq] = newHead;
         }
-        
+
         cur -> next = freq2node[cur -> freq] -> next;
         cur -> next -> prev = cur;
         freq2node[cur -> freq] -> next = cur;
         cur -> prev = freq2node[cur -> freq];
-        
         return key2node[key] -> value;
     }
-    
+
     void put(int key, int value) {
         if (key2node.find(key) != key2node.end()) {
             key2node[key] -> value = value;
             get(key);
             return;
         }
-        
+
         if (key2node.size() == capacity) {
             LFUNode* listHead = freq2node[minFreq];
             if (listHead == nullptr) {
@@ -120,7 +125,7 @@ public:
                 freq2node.erase(listHead -> freq);
             }
         }
-        
+
         LFUNode* newNode = new LFUNode(1, key, value);
         minFreq = 1;
         key2node[key] = newNode;
