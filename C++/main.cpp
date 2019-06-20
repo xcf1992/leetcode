@@ -13,39 +13,24 @@
 #include <numeric>
 using namespace std;
 
-class Solution {
+class Solution { // dp
 public:
-    int maxPoints(vector<vector<int>> points) {
-        int n = points.size();
-        if (n <= 2) {
-            return n;
-        }
+    bool canCross(vector<int>& stones) {
+        int n = stones.size();
+        map<int, unordered_set<int>> reach;
+        unordered_set<int> s(stones.begin(), stones.end());
+        reach[stones.front()].insert(0);
 
-        int result = 0;
-        for (int i = 0; i != n; i++) {
-            int same = 1;
-            int vertical = 0;
-            unordered_map<double, int> count;
-
-            for (int j = i + 1; j < n; j++) {
-                double slope = 0.0;
-                if (points[i][0] == points[j][0] && points[i][1] == points[j][1]) {
-                    same++;
-                    continue;
+        for (int i = 0; i < n; ++i) {
+            for (int k : reach[stones[i]]) {
+                for (int step = max(0, k - 1); step <= k + 1; ++step) {
+                    if (s.find(step + stones[i]) != s.end()) {
+                        reach[stones[i] + step].insert(step);
+                    }
                 }
-                if (points[i][0] == points[j][0]) {
-                    vertical++;
-                    continue;
-                }
-                slope = (double) (points[i][1] - points[j][1]) / (points[i][0] - points[j][0]);
-                count[slope] += 1;
-            }
-            result = max(result, vertical + same);
-            for (auto it = count.begin(); it != count.end(); it++) {
-                result = max(result, it -> second + same);
             }
         }
-        return result;
+        return reach[stones.back()].size() > 0;
     }
 };
 
@@ -59,5 +44,4 @@ int main() {
         {'1','1','1','1','1'},
         {'1','0','0','1','0'}
     });
-    s.maxPoints({{0,0}, {94911151,94911150}, {94911152,94911151}});
 }
