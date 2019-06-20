@@ -1,11 +1,18 @@
-//
-//  longest_substring_with_at_most_k_distinct_characters.cpp
-//  C++
-//
-//  Created by Chenfu Xie on 3/1/18.
-//  Copyright © 2018 Chenfu Xie. All rights reserved.
-//
+/*
+340. Longest Substring with At Most K Distinct Characters
+Given a string, find the length of the longest substring T that contains at most k distinct characters.
 
+Example 1:
+
+Input: s = "eceba", k = 2
+Output: 3
+Explanation: T is "ece" which its length is 3.
+Example 2:
+
+Input: s = "aa", k = 1
+Output: 2
+Explanation: T is "aa" which its length is 2.
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -18,14 +25,6 @@
 #include <stdio.h>
 #include <map>
 using namespace std;
-
-/*
- Given a string, find the length of the longest substring T that contains at most k distinct characters.
- 
- For example, Given s = “eceba” and k = 2,
- 
- T is "ece" which its length is 3.
- */
 
 class Solution {
 public:
@@ -40,15 +39,15 @@ public:
                 count += 1;
             }
             pos[s[end]] = end;
-            
+
             while (count > k) {
                 if (start == pos[s[start]]) {
                     count -= 1;
                 }
                 start += 1;
             }
-            
             result = max(result, end - start + 1);
+            end += 1;
         }
         return result;
     }
