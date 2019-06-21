@@ -13,31 +13,41 @@
 #include <numeric>
 using namespace std;
 
-class Solution { // dp
+class Solution {
 public:
-    vector<string> wordBreak(string s, vector<string>& wordDict) {
-        unordered_set<string> dict(wordDict.begin(), wordDict.end());
-        int n = s.size();
-        vector<vector<string>> dp(n + 1);
-
-        dp[0].push_back("");
-        for (int i = 1; i <= n; ++i) {
-            for (int j = 0; j < i; ++j) {
-                string word = s.substr(j, i);
-                if (dp[j].size() > 0 and dict.find(word) != dict.end()) {
-                    for (string& bw : dp[j]) {
-                        dp[i].push_back(bw + (bw == "" ? "" : " ") + word);
-                    }
+    vector<double> medianSlidingWindow(vector<int>& nums, int k) {
+        vector<double> result;
+        multiset<int> low, high;
+        for (int i = 0; i < nums.size(); ++i) {
+            if (i >= k) {
+                if (nums[i - k] <= *low.rbegin()) {
+                    low.erase(low.find(nums[i - k]));
+                }
+                else {
+                    high.erase(high.find(nums[i - k]));
                 }
             }
+
+            // the newly insert element could be very big and may should belong to high part
+            low.insert(nums[i]);
+            high.insert(*low.rbegin());
+            low.erase(prev(low.end()));
+            if (low.size() < high.size()) { // these steps may seem duplicate, but it is actually to make sure low.size() is at least equal to high
+                low.insert(*high.begin());
+                high.erase(high.begin());
+            }
+
+            if (i >= k - 1) {
+                result.push_back(k % 2 == 1 ? *low.rbegin() : ((double)(*low.rbegin()) + (double)(*high.begin()) / 2));
+            }
         }
-        return dp[n];
+        return result;
     }
 };
 
 int main() {
     Solution s;
-    vector<int> temp({5,4,3,2,1});
+    vector<int> temp({1,3,2,4});
     vector<int> temp1({1,3,3,3,2});
     vector<vector<char>> matrix({
         {'1','0','1','0','0'},
@@ -46,5 +56,5 @@ int main() {
         {'1','0','0','1','0'}
     });
     vector<string> words({"cat","cats","and","sand","dog"});
-    s.wordBreak("catsanddog", words);
+    s.medianSlidingWindow(temp, 4);
 }
