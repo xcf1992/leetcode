@@ -15,22 +15,23 @@ using namespace std;
 
 class Solution { // dp
 public:
-    bool canCross(vector<int>& stones) {
-        int n = stones.size();
-        map<int, unordered_set<int>> reach;
-        unordered_set<int> s(stones.begin(), stones.end());
-        reach[stones.front()].insert(0);
+    vector<string> wordBreak(string s, vector<string>& wordDict) {
+        unordered_set<string> dict(wordDict.begin(), wordDict.end());
+        int n = s.size();
+        vector<vector<string>> dp(n + 1);
 
-        for (int i = 0; i < n; ++i) {
-            for (int k : reach[stones[i]]) {
-                for (int step = max(0, k - 1); step <= k + 1; ++step) {
-                    if (s.find(step + stones[i]) != s.end()) {
-                        reach[stones[i] + step].insert(step);
+        dp[0].push_back("");
+        for (int i = 1; i <= n; ++i) {
+            for (int j = 0; j < i; ++j) {
+                string word = s.substr(j, i);
+                if (dp[j].size() > 0 and dict.find(word) != dict.end()) {
+                    for (string& bw : dp[j]) {
+                        dp[i].push_back(bw + (bw == "" ? "" : " ") + word);
                     }
                 }
             }
         }
-        return reach[stones.back()].size() > 0;
+        return dp[n];
     }
 };
 
@@ -44,4 +45,6 @@ int main() {
         {'1','1','1','1','1'},
         {'1','0','0','1','0'}
     });
+    vector<string> words({"cat","cats","and","sand","dog"});
+    s.wordBreak("catsanddog", words);
 }
