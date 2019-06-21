@@ -1,8 +1,9 @@
 /*
+ 564. Find the Closest Palindrome
  Given an integer n, find the closest integer (not including itself), which is a palindrome.
- 
+
  The 'closest' is defined as absolute difference minimized between two integers.
- 
+
  Example 1:
  Input: "123"
  Output: "121"
@@ -10,7 +11,6 @@
  The input n is a positive integer represented by string, whose length will not exceed 18.
  If there is a tie, return the smaller one as answer.
  */
-
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -27,42 +27,56 @@
 #include <numeric>
 using namespace std;
 
+/*
+Let's build a list of candidate answers for which the final answer must be one of those candidates.
+Afterwards, choosing from these candidates is straightforward.
+
+If the final answer has the same number of digits as the input string S,
+then the answer must be the middle digits + (-1, 0, or 1) flipped into a palindrome.
+For example, 23456 had middle part 234, and 233, 234, 235 flipped into a palindrome yields
+23332, 23432, 23532. Given that we know the number of digits,
+the prefix 235 (for example) uniquely determines the corresponding palindrome 23532,
+so all palindromes with larger prefix like 23732 are strictly farther away from S than 23532 >= S.
+
+If the final answer has a different number of digits,
+it must be of the form 999....999 or 1000...0001,
+as any palindrome smaller than 99....99 or bigger than 100....001 will be farther away from S.
+*/
 class Solution {
-public:
+private:
     string makePalindromic(string s) {
         for (int i = 0, j = (int)s.length() - 1; i < j; i++, j--)
             s[j] = s[i];
         return s;
     }
-    
+public:
     string nearestPalindromic(string n) {
         if (n == "0")
             return "1";
-        
+
         long long orgVal = stoll(n);
-        
+
         // candidate #1 (ex: 123xx -> 12321, 123xxx -> 123321)
         string res = makePalindromic(n);
         long long resVal = stoll(res);
         long long diff = abs(resVal - orgVal);
-        
+
         long long scale = (long long)pow(10, (int)n.length() / 2);
-        
         // candidate #2 (ex: 123xx -> 12221, 123xxx -> 122221, 100xx -> 9999)
         string smaller = makePalindromic(to_string((orgVal / scale) * scale - 1));
         // candidate #3 (ex: 123xx -> 12421, 123xxx -> 124421, 99xx -> 10001)
         string bigger = makePalindromic(to_string((orgVal / scale) * scale + scale));
-        
+
         long long smallerVal = stoll(smaller);
         if (diff == 0 || abs(orgVal - smallerVal) <= diff) {
             res = smaller;
             diff = abs(orgVal - smallerVal);
         }
-        
+
         long long biggerVal = stoll(bigger);
-        if (abs(orgVal - biggerVal) < diff)
+        if (abs(orgVal - biggerVal) < diff) {
             res = bigger;
-        
+        }
         return res;
     }
 };
@@ -77,7 +91,7 @@ private:
         }
         return result;
     }
-    
+
     char getClosetPalindrome(string num, string original, int len) { // make sure we get the smaller and closet number, test case 1938013391, 1938943391, "12389"
         long long num1;
         long long num2;
@@ -162,7 +176,7 @@ public:
         if (temp != n) {
             return n;
         }
-        
+
         n[left] -= n[left] == '0' ? -1 : 1;
         if (left == right) {
             return n;
