@@ -59,6 +59,10 @@ public:
             vector<string> ladder = bfs.front();
             bfs.pop();
 
+            //"visited" records all the visited nodes on this level
+            //these words will never be visited again after this level
+            //and should be removed from wordList. This is guaranteed
+            // by the shortest path.
             if (ladder.size() > len) {
                 for (string word : visited) {
                     dict.erase(word);
