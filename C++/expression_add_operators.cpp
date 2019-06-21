@@ -1,7 +1,8 @@
 /*
  282. Expression Add Operators
 
- Given a string that contains only digits 0-9 and a target value, return all possibilities to add binary operators (not unary) +, -, or * between the digits so they evaluate to the target value.
+ Given a string that contains only digits 0-9 and a target value,
+ return all possibilities to add binary operators (not unary) +, -, or * between the digits so they evaluate to the target value.
 
  Example 1:
 
@@ -24,7 +25,6 @@
  Input: num = "3456237490", target = 9191
  Output: []
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -76,19 +76,19 @@ private:
 public:
     vector<string> addOperators(string num, int target) {
         int n = num.size();
-        vector<string> result;
         if (n == 0) {
-            return result;
+            return {};
         }
 
+        vector<string> result;
         for (int i = 1; i <= n; i++) {
-            string s = num.substr(0, i);
-            long cur = stol(s);
-            if (to_string(cur).size() != s.size()) {
+            string cur = num.substr(0, i);
+            long curVal = stol(cur);
+            if (to_string(curVal).size() != cur.size()) {
                 continue;
             }
             // no operator defined.
-            dfs(result, num, target, s, i, cur, cur, '#');
+            dfs(result, num, target, cur, i, curVal, curVal, '#');
         }
         return result;
     }
