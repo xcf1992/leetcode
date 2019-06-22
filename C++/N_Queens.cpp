@@ -28,10 +28,53 @@ Explanation: There exist two distinct solutions to the 4-queens puzzle as shown 
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <unordered_set>
 #include <algorithm>
+#include <cmath>
+#include <queue>
+#include <stack>
+#include <stdio.h>
+#include <map>
+#include <numeric>
 using namespace std;
 
 class Solution {
+private:
+    bool isValid(vector<int>& cur, int n) {
+        for (int i = 0; i < n; ++i) {
+            for (int j = i + 1; j < n; ++j) {
+                if (abs(i - j) == abs(cur[i] - cur[j])) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    vector<string> draw(vector<int>& cur, int n) {
+        vector<string> graph;
+        for (int c : cur) {
+            string row = string(n, '.');
+            row[c] = 'Q';
+            graph.push_back(row);
+        }
+        return graph;
+    }
+public:
+    vector<vector<string>> solveNQueens(int n) {
+        vector<int> cur(n, 0);
+        iota(cur.begin(), cur.end(), 0);
+        vector<vector<string>> result;
+        do {
+            if (isValid(cur, n)) {
+                result.push_back(draw(cur, n));
+            }
+        } while (next_permutation(cur.begin(), cur.end()));
+        return result;
+    }
+};
+
+class Solution1 {
 private:
     bool isValid(vector<int>& cur, int n) {
         for (int i = 0; i < n; ++i) {
