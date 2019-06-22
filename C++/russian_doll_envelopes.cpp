@@ -38,6 +38,37 @@ public:
             return n;
         }
 
+        /*
+        * Since the width is increasing, we only need to consider height.
+        * [3, 4] cannot contains [3, 3], so we need to put [3, 4] before [3, 3]
+        * when sorting otherwise it will be counted as an increasing number if the order is [3, 3], [3, 4]
+        */
+        sort(envelopes.begin(), envelopes.end(), [](vector<int>& a, vector<int>& b) {
+            return a[0] < b[0] or (a[0] == b[0] and a[1] > b[1]);
+        });
+
+        vector<int> dp;
+        for (int i = 0; i < n; i++) {
+            auto it = lower_bound(dp.begin(), dp.end(), envelopes[i][1]);
+            if (it != dp.end()) {
+                *it = envelopes[i][1];
+            }
+            else {
+                dp.push_back(envelopes[i][1]);
+            }
+        }
+        return dp.size();
+    }
+};
+
+class Solution1 {
+public:
+    int maxEnvelopes(vector<vector<int>>& envelopes) {
+        int n = envelopes.size();
+        if (n <= 1) {
+            return n;
+        }
+
         sort(envelopes.begin(), envelopes.end(), [](vector<int>& a, vector<int>& b) {
             return a[0] < b[0] or (a[0] == b[0] and a[1] < b[1]);
         });
