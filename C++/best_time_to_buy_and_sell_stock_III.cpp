@@ -1,3 +1,30 @@
+/*
+123. Best Time to Buy and Sell Stock III
+Say you have an array for which the ith element is the price of a given stock on day i.
+
+Design an algorithm to find the maximum profit. You may complete at most two transactions.
+
+Note: You may not engage in multiple transactions at the same time (i.e., you must sell the stock before you buy again).
+
+Example 1:
+
+Input: [3,3,5,0,0,3,1,4]
+Output: 6
+Explanation: Buy on day 4 (price = 0) and sell on day 6 (price = 3), profit = 3-0 = 3.
+             Then buy on day 7 (price = 1) and sell on day 8 (price = 4), profit = 4-1 = 3.
+Example 2:
+
+Input: [1,2,3,4,5]
+Output: 4
+Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit = 5-1 = 4.
+             Note that you cannot buy on day 1, buy on day 2 and sell them later, as you are
+             engaging multiple transactions at the same time. You must sell before buying again.
+Example 3:
+
+Input: [7,6,4,3,1]
+Output: 0
+Explanation: In this case, no transaction is done, i.e. max profit = 0.
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -5,63 +32,83 @@
 #include <algorithm>
 using namespace std;
 
-int maxProfit(vector<int> &prices) {
-       if ( prices.size() == 0) {
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int n = prices.size();
+        if (n <= 1) {
             return 0;
         }
-        
-        int profit1 = 0;
-        int profit2 = 0;
-        int min = 0;
-        int max = 0;
-        min = prices.at(0);
-        max = prices.at(0);
-        
-        for ( int i = 0; i != prices.size() - 1; i++) {
-            if ( prices.at(i + 1) < max) {
-                int tmp = max - min;
-                if (tmp > profit2) {
-                    profit1 = profit2;
-                    profit2 = tmp;
-                }
-                else if (tmp > profit1) {
-                    profit1 = tmp;
-                }
-                
-                max = prices.at(i + 1);
-                min = prices.at(i + 1);
-            }
-            else if ( max < prices.at(i + 1)) {
-                max = prices.at(i + 1);
-            }
-        }
-        
-        if ( max != min) {
-            int tmp = max - min;
-            if (tmp > profit2) {
-                profit1 = profit2;
-                profit2 = tmp;
-            }
-            else if (tmp > profit1) {
-                profit1 = tmp;
-            }
-        }
-        
-        return profit1 + profit2;
-    }
 
-int main() {
-	vector<int> prices;
-	prices.push_back(1);
-	prices.push_back(2);
-	prices.push_back(4);
-	prices.push_back(2);
-	prices.push_back(5);
-	prices.push_back(7);
-	prices.push_back(2);
-	prices.push_back(4);
-	prices.push_back(9);
-	prices.push_back(0);
-	maxProfit(prices);
-	return 0;
-}
+        vector<int> left(n, 0);
+        int curMax = prices[0];
+        int curMin = prices[0];
+        for (int i = 0; i < n; ++i) {
+            curMax = max(prices[i], curMax);
+            curMin = min(prices[i], curMin);
+            left[i] = curMax - curMin;
+        }
+
+        vector<int> right(n, 0);
+        curMax = prices[n - 1];
+        curMin = prices[n - 1];
+        for (int j = n - 1; j >= 0; --j) {
+            curMax = max(prices[j], curMax);
+            curMin = min(prices[j], curMin);
+            right[j] = curMax - curMin;
+        }
+
+        int result = 0;
+        for (int i = 0; i < n - 1; ++i) {
+            result = max(result, left[i] + right[i + 1]);
+        }
+        return result;
+    }
+};
+
+/*
+Input
+[1,2,4,2,5,7,2,4,9,0]
+Output
+12
+Expected
+13
+*/
+class Solution1 {
+public:
+    int maxProfit(vector<int>& prices) {
+        int n = prices.size();
+        if (n <= 1) {
+            return 0;
+        }
+        int p1 = 0;
+        int p2 = 0;
+        int curMin = prices[0];
+        int curMax = prices[0];
+        for (int i = 1; i < n; i++) {
+            if (prices[i] < curMax) {
+                int profit = curMax - curMin;
+                if (profit > p2) {
+                    p1 = p2;
+                    p2 = profit;
+                }
+                else if (profit > p1) {
+                    p1 = profit;
+                }
+                curMin = prices[i];
+            }
+            curMax = prices[i];
+        }
+        if (curMax > curMin) {
+            int profit = curMax - curMin;
+            if (profit > p2) {
+                p1 = p2;
+                p2 = profit;
+            }
+            else if (profit > p1) {
+                p1 = profit;
+            }
+        }
+        return p1 + p2;
+    }
+};

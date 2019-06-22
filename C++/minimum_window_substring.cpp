@@ -10,7 +10,6 @@ Note:
 
 If there is no such window in S that covers all characters in T, return the empty string "".
 If there is such window, you are guaranteed that there will always be only one unique minimum window in S.
-
 */
 #include <iostream>
 #include <string>
