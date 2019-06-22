@@ -41,28 +41,29 @@ public:
         }
 
         vector<int> left(n, 0);
-        int curMax = prices[0];
+        int maxProfit = 0;
         int curMin = prices[0];
         for (int i = 0; i < n; ++i) {
-            curMax = max(prices[i], curMax);
             curMin = min(prices[i], curMin);
-            left[i] = curMax - curMin;
+            maxProfit = max(maxProfit, prices[i] - curMin);
+            left[i] = maxProfit;
         }
 
         vector<int> right(n, 0);
-        curMax = prices[n - 1];
-        curMin = prices[n - 1];
+        maxProfit = 0;
+        int curMax = prices[n - 1];
         for (int j = n - 1; j >= 0; --j) {
             curMax = max(prices[j], curMax);
-            curMin = min(prices[j], curMin);
-            right[j] = curMax - curMin;
+            maxProfit = max(maxProfit, curMax - prices[j]);
+            right[j] = maxProfit;
         }
 
         int result = 0;
         for (int i = 0; i < n - 1; ++i) {
             result = max(result, left[i] + right[i + 1]);
         }
-        return result;
+        // compare between if we only make 1 transaction
+        return max(result, max(right[0], left[n - 1]));
     }
 };
 
