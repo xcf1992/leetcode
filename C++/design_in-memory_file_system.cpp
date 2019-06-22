@@ -49,7 +49,7 @@ using namespace std;
 struct TrieNode {
     bool isFile = false;
     string content = "";
-    unordered_map<string, TrieNode*> children;
+    map<string, TrieNode*> children;
 };
 
 class FileSystem {
@@ -88,7 +88,6 @@ public:
         for (auto& p : cur -> children) {
             result.push_back(p.first);
         }
-        sort(result.begin(), result.end());
         return result;
     }
 
@@ -125,7 +124,6 @@ public:
         return cur -> content;
     }
 };
-
 /**
  * Your FileSystem object will be instantiated and called as such:
  * FileSystem* obj = new FileSystem();
