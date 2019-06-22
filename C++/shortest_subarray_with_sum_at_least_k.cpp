@@ -42,21 +42,37 @@
 using namespace std;
 
 /*
- We can rephrase this as a problem about the prefix sums of A. Let P[i] = A[0] + A[1] + ... + A[i-1]. We want the smallest y-x such that y > x and P[y] - P[x] >= K.
+ We can rephrase this as a problem about the prefix sums of A. Let P[i] = A[0] + A[1] + ... + A[i-1].
+ We want the smallest y-x such that y > x and P[y] - P[x] >= K.
 
  Motivated by that equation, let opt(y) be the largest x such that P[x] <= P[y] - K. We need two key observations:
 
- If x1 < x2 and P[x2] <= P[x1], then opt(y) can never be x1, as if P[x1] <= P[y] - K, then P[x2] <= P[x1] <= P[y] - K but y - x2 is smaller. This implies that our candidates x for opt(y) will have increasing values of P[x].
+ If x1 < x2 and P[x2] <= P[x1],
+ then opt(y) can never be x1,
+ as if P[x1] <= P[y] - K,
+ then P[x2] <= P[x1] <= P[y] - K but y - x2 is smaller.
+ This implies that our candidates x for opt(y) will have increasing values of P[x].
 
- If opt(y1) = x, then we do not need to consider this x again. For if we find some y2 > y1 with opt(y2) = x, then it represents an answer of y2 - x which is worse (larger) than y1 - x.
+ If opt(y1) = x,
+ then we do not need to consider this x again.
+ For if we find some y2 > y1
+ with opt(y2) = x,
+ then it represents an answer of y2 - x which is worse (larger) than y1 - x.
 
  Algorithm
 
- Maintain a "monoqueue" of indices of P: a deque of indices x_0, x_1, ... such that P[x_0], P[x_1], ... is increasing.
+ Maintain a "monoqueue" of indices of P:
+ a deque of indices x_0, x_1, ...
+ such that P[x_0], P[x_1], ... is increasing.
 
- When adding a new index y, we'll pop x_i from the end of the deque so that P[x_0], P[x_1], ..., P[y] will be increasing.
+ When adding a new index y,
+ we'll pop x_i from the end of the deque
+ so that P[x_0], P[x_1], ..., P[y] will be increasing.
 
- If P[y] >= P[x_0] + K, then (as previously described), we don't need to consider this x_0 again, and we can pop it from the front of the deque.
+ If P[y] >= P[x_0] + K,
+ then (as previously described),
+ we don't need to consider this x_0 again,
+ and we can pop it from the front of the deque.
  ====================================================-====================================================
  Calculate prefix sum B of list A.
  B[j] - B[i] represents the sum of subarray A[i] ~ A[j-1]
@@ -109,11 +125,15 @@ public:
                 result = min(result, i - monoQ.front());
                 monoQ.pop_front();
             }
+            /*
+             * if with i >= monoQ.back() and preSum[i] <= preSum[monoQ.back()]
+             * then it will always better to pick i to have a shorter subarray
+            */
             while (!monoQ.empty() and preSum[i] <= preSum[monoQ.back()]) {
                 monoQ.pop_back();
             }
             monoQ.push_back(i);
         }
-        return result > n ? -1 : result;
+        return result == n + 1 ? -1 : result;
     }
 };
