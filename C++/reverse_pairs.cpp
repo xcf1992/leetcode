@@ -131,7 +131,7 @@ public class Solution {
     }
 }
 */
-class Solution {
+class Solution1 {
 private:
     void calculate(vector<int>& nums, int s1, int e1, int s2, int e2, int& result) {
         int i = s1;
