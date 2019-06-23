@@ -55,13 +55,26 @@
 #include <numeric>
 using namespace std;
 /*
- During interview, this might be our first question, the follow-up may ask us what if we can merge x consecutive piles? Just like original problem.
+suppose F(n) is total number of n-n time merge
+we know :
+F(n-1) = F(n)-K+1
+F(n-2) = F(n-1)-K+1
+...
+finaly we have F(1) = F(n) - m(K-1)
+if we merge end . F(1) = 1
+so,We have 1 = n -m(K-1) ----> so we have
+(n-1)%(k-1) == remain
+
+
+ During interview, this might be our first question, the follow-up may ask us what if we can merge x consecutive piles?
+ Just like original problem.
  Now our sub problem becomes: we need to know the minimum cost of merging left part to x - 1 piles and right part to 1 pile.
  Our state has one more information to know, how many piles. So we add the field to our dp array.
 
  State: Minimum cost merging piles from i to j to k pile.
 
- Function: dp[i][j][k] = min(sum[i][j] + dp[i][t][k - 1] + dp[t + 1][j][1]) (i <= t < j && dp[i][t][k - 1] != max && dp[t+1][j][1] != max)
+ Function: dp[i][j][k] = min(sum[i][j] + dp[i][t][k - 1] + dp[t + 1][j][1])
+ (i <= t < j && dp[i][t][k - 1] != max && dp[t+1][j][1] != max)
 
  Init: dp[i][i][1] = 0 (Already a pile) others = max
 
@@ -70,6 +83,12 @@ using namespace std;
  Time Complexity: O(n^3 * K) (n is the number of stone)
 
  Similar problem include 312. Burst Balloons. They are all dynamic programming problem related to interval.
+
+ Q: Why mid jump at step K - 1
+ A: We can merge K piles into one pile,
+ we can't merge K + 1 piles into one pile.
+ We can merge K + K - 1 piles into one pile,
+ We can merge K + (K - 1) * steps piles into one pile.
  */
 class Solution {
 public:
@@ -84,7 +103,7 @@ public:
             prefix[i + 1] = prefix[i] + stones[i];
         }
 
-        vector<vector<int> > dp(n, vector<int>(n));
+        vector<vector<int>> dp(n, vector<int>(n));
         for (int m = K; m <= n; ++m) {
             for (int i = 0; i + m <= n; ++i) {
                 int j = i + m - 1;
@@ -98,6 +117,48 @@ public:
             }
         }
         return dp[0][n - 1];
+    }
+};
+
+class Solution1 {
+public:
+    int mergeStones(vector<int>& stones, int K) {
+        int n = stones.size();
+        vector<int> sum(n, 0);
+        for (int i = 0; i < n;i++) {
+            sum[i] = i > 0 ? sum[i - 1] + stones[i] : 0;
+        }
+
+        vector<vector<vector<int>>> dp(n, vector<vector<int>>(n, vector<int>(K + 1, INT_MAX)));
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = i; j < n; j++) {
+                for(int k = 1; k <= K; k++) {
+                    if (j - i + 1 == k) {
+                        dp[i][j][k] = 0;
+                    }
+                }
+            }
+        }
+
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = i; j < n; j++) {
+                for (int k = 1; k <= K; k++) {
+                    for (int m = i; m < j; m++) {
+                        if (k > 1) {
+                            if(dp[i][m][1] == INT_MAX || dp[m+1][j][k-1] == INT_MAX) continue;
+                            dp[i][j][k] = min(dp[i][j][k], dp[i][m][1] + dp[m+1][j][k-1]);
+                        } else {
+                            if(dp[i][m][1] == INT_MAX || dp[m+1][j][K-1] == INT_MAX) continue;
+                            dp[i][j][k] = min(dp[i][j][k], dp[i][m][1] + dp[m+1][j][K-1] + sum[j]-sum[i]+stones[i]);
+                        }
+                    }
+
+                }
+            }
+        }
+
+        if(dp[0][n-1][1] == INT_MAX) return -1;
+            return dp[0][n-1][1];
     }
 };
 
@@ -123,7 +184,8 @@ public:
  No matter how to split the two piles, the sum is always the sum of the two piles.
 
  Now the only thing that matters is how to get the minimum cost to split to two piles.
- So we need to know the minimum cost of merging left part to 1 pile, and minimum cost of merging right part to 1 pile, this is a typical sub problem.
+ So we need to know the minimum cost of merging left part to 1 pile,
+ and minimum cost of merging right part to 1 pile, this is a typical sub problem.
 
  State: Minimum cost merging piles from i to j to 1 pile.
 

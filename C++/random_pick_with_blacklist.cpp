@@ -38,7 +38,6 @@
 
  The input is two lists: the subroutines called and their arguments. Solution's constructor has two arguments, N and the blacklist B. pick has no arguments. Arguments are always wrapped with a list, even if there aren't any.
  */
-
 #include <iostream>
 #include <string>
 #include <vector>

@@ -1,7 +1,7 @@
 /*
  308. Range Sum Query 2D - Mutable
 
- Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) 
+ Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1)
  and lower right corner (row2, col2).
 
  Range Sum Query 2D
@@ -24,7 +24,6 @@
  You may assume the number of calls to update and sumRegion function is distributed evenly.
  You may assume that row1 ≤ row2 and col1 ≤ col2.
  */
-
 #include <iostream>
 #include <string>
 #include <vector>

@@ -1,7 +1,8 @@
 /*
  363. Max Sum of Rectangle No Larger Than K
 
- Given a non-empty 2D matrix matrix and an integer k, find the max sum of a rectangle in the matrix such that its sum is no larger than k.
+ Given a non-empty 2D matrix matrix and an integer k,
+ find the max sum of a rectangle in the matrix such that its sum is no larger than k.
 
  Example:
 
@@ -44,22 +45,21 @@ public:
             return 0;
         }
         int n = matrix[0].size();
-        int result = INT_MIN;
 
+        int result = INT_MIN;
         // the top left point of the rectangel will be looped from matrix[0][0] ... matrix[0][n - 1]
         for (int l = 0; l < n; l++) {
+            // row sum i stores the sum for row i from position l to col inclusive
             vector<int> rowSum(m, 0);
             for (int col = l; col < n; col++) {
                 for (int i = 0; i < m; i++) {
                     rowSum[i] += matrix[i][col];
                 }
-                // row sum i stores the sum for row i from position l to col inclusive
-
+                // curSum stores the sum of rowSum from row 0 to cur row inclusive
+                // thus sum of rectangle from topleft [0][l] to botright [curRow][col]
                 set<int> s;
                 s.insert(0);
                 int curSum = 0;
-                // curSum stores the sum of rowSum from row 0 to cur row inclusive
-                // thus sum of rectangle from topleft [0][l] to botright [curRow][col]
                 for (int row : rowSum) {
                     curSum += row;
                     auto it = s.lower_bound(curSum - k);

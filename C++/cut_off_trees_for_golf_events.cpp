@@ -65,11 +65,15 @@ using namespace std;
 class Solution {
 private:
     vector<vector<int>> dir = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-    int count(vector<vector<int>>& forest, int M, int N, int curR, int curC, int desR, int desC) {
+    int M = 0;
+    int N = 0;
+
+    int count(vector<vector<int>>& forest, int curR, int curC, int desR, int desC) {
         queue<pair<int, int>> bfs;
         vector<vector<bool>> visited(M, vector<bool>(N, false));
         bfs.push({curR, curC});
         visited[curR][curC] = true;
+
         int steps = 0;
         while (!bfs.empty()) {
             int curSize = bfs.size();
@@ -77,6 +81,7 @@ private:
                 int row = bfs.front().first;
                 int col = bfs.front().second;
                 bfs.pop();
+
                 if (row == desR and col == desC) {
                     return steps;
                 }
@@ -96,15 +101,15 @@ private:
     }
 public:
     int cutOffTree(vector<vector<int>>& forest) {
-        int m = forest.size();
-        if (m == 0) {
+        M = forest.size();
+        if (M == 0) {
             return -1;
         }
-        int n = forest[0].size();
+        N = forest[0].size();
 
         vector<vector<int>> heights;
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < N; j++) {
                 if (forest[i][j] > 1) {
                     heights.push_back({forest[i][j], i, j});
                 }
@@ -118,7 +123,7 @@ public:
         int row = 0;
         int col = 0;
         for (int i = 0; i < heights.size(); i++) {
-            int steps = count(forest, m, n, row, col, heights[i][1], heights[i][2]);
+            int steps = count(forest, row, col, heights[i][1], heights[i][2]);
             if (steps == -1) {
                 return -1;
             }
