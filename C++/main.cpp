@@ -13,32 +13,43 @@
 #include <numeric>
 using namespace std;
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-};
 class Solution {
-private:
-    void traverse(TreeNode* root, TreeNode*& prev, TreeNode*& first, TreeNode*& second) {
-        if (root == nullptr) {
-            return;
-        }
-
-        traverse(root -> left, prev, first, second);
-        if (prev != nullptr and first == nullptr && prev->val >= root->val) first = prev;
-        if (prev != nullptr and first != nullptr && prev->val >= root->val) second = root;
-        prev = root;
-        traverse(root -> right, prev, first, second);
-    }
 public:
-    void recoverTree(TreeNode* root) {
-        TreeNode* prev = nullptr;
-        TreeNode* first = nullptr;
-        TreeNode* second = nullptr;
-        traverse(root, prev, first, second);
-        swap(first -> val, second -> val);
+    vector<int> gridIllumination(int N, vector<vector<int>> lamps, vector<vector<int>> queries) {
+        unordered_map<int, int> row, col, diagonal, antiDiagonal;
+        unordered_map<int, unordered_set<int>> onLamps;
+        for (vector<int>& lamp : lamps) {
+            int r = lamp[0];
+            int c = lamp[1];
+            row[r] += 1;
+            row[c] += 1;
+            diagonal[r + c] += 1;
+            antiDiagonal[r - c] += 1;
+            onLamps[r].insert(c);
+        }
+        
+        vector<int> result;
+        for (vector<int>& query : queries) {
+            int r = query[0];
+            int c = query[1];
+            if (row[r] != 0 or col[c] != 0 or diagonal[r + c] != 0 or antiDiagonal[r - c] != 0) {
+                result.push_back(1);
+                for (int i = r - 1; i <= r + 1; ++i) {
+                    for (int j = c - 1; j <= c + 1; ++j) {
+                        if (onLamps[i].erase(j)) {
+                            row[i] -= 1;
+                            col[j] -= 1;
+                            diagonal[i + j] -= 1;
+                            antiDiagonal[i - j] -= 1;
+                        }
+                    }
+                }
+            }
+            else {
+                result.push_back(0);
+            }
+        }
+        return result;
     }
 };
 
@@ -53,13 +64,5 @@ int main() {
         {'1','0','0','1','0'}
     });
     vector<string> words({"cat","cats","and","sand","dog"});
-
-    TreeNode* r1 = new TreeNode(3);
-    TreeNode* r2 = new TreeNode(1);
-    TreeNode* r3 = new TreeNode(2);
-    TreeNode* r4 = new TreeNode(4);
-    r1 -> left = r2;
-    r1 -> right = r4;
-    r4 -> left = r3;
-    s.recoverTree(r1);
+    s.gridIllumination(5, {{0,0},{4,4}}, {{1,1},{1,0}});
 }
