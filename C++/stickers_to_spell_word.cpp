@@ -58,6 +58,36 @@ using namespace std;
 class Solution {
 public:
     int minStickers(vector<string>& stickers, string target) {
+        int n = target.size();
+        vector<int> dp(1 << n, -1);
+        dp[0] = 0;
+        for (int state = 0; state < (1 << n); ++state) {
+            if (dp[state] == -1) {
+                continue;
+            }
+
+            for (string& sticker : stickers) {
+                int next = state;
+                for (char c : sticker) {
+                    for (int i = 0; i < n; ++i) if (((next >> i) & 1) == 0) {
+                        if (target[i] == c) {
+                            next |= 1 << i;
+                            break; // if we fit current letter into one slot of target, we should break and check next letter from current sticker
+                        }
+                    }
+                }
+                if (dp[next] == -1 or dp[next] > dp[state] + 1) {
+                    dp[next] = dp[state] + 1;
+                }
+            }
+        }
+        return dp[(1 << n) - 1];
+    }
+};
+
+class Solution1 { // TLE
+public:
+    int minStickers(vector<string>& stickers, string target) {
         int n = stickers.size();
         vector<vector<int>> dic(n, vector<int>(26, 0));
         for (int i = 0; i < n; i++) {
