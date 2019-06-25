@@ -32,7 +32,6 @@
  0 <= source[i][j], target[i][j] < 10^6
  source != target
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -57,10 +56,12 @@ https://leetcode.com/problems/escape-a-large-maze/discuss/282849/Python-Maximum-
 
  The only possible case that source cannot reach target is that source or target is sorrounded by the blocks,
  and the largest area 200 blocks(according to the limits) can form is
- In case people are wondering where he get the 19900 area, the calculation is done by using one of the corner as wall and placing a perfectly diagonal line of block across.
+ In case people are wondering where he get the 19900 area, the calculation is done by
+ using one of the corner as wall and placing a perfectly diagonal line of block across.
  This maximizing the area covered while only using certain amount of block (200 in this case)
 
- 0th     _________________________       The sum of the area available equals 1+2+3+4+5+...+198+199=(1+199)*199/2=19900 (trapezoid sum)
+ The sum of the area available equals 1+2+3+4+5+...+198+199=(1+199)*199/2=19900 (trapezoid sum)
+ 0th     _________________________
         |-------------------- X
         |-------------------X
         |                .

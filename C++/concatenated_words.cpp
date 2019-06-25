@@ -18,7 +18,6 @@
  All the input string will only include lower case letters.
  The returned elements order does not matter.
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -44,10 +43,7 @@ private:
         dp[0] = true;
         for (int i = 1; i <= n; i++) {
             for (int j = 0; j < i; j++) {
-                if (!dp[j]) {
-                    continue;
-                }
-                if (preWords.find(word.substr(j, i - j)) != preWords.end()) {
+                if (dp[j] and preWords.find(word.substr(j, i - j)) != preWords.end()) {
                     dp[i] = true;
                     break;
                 }
@@ -57,12 +53,12 @@ private:
     }
 public:
     vector<string> findAllConcatenatedWordsInADict(vector<string>& words) {
-        unordered_set<string> preWords;
         sort(words.begin(), words.end(), [](string& a, string& b) {
             return a.size() < b.size();
         });
 
         vector<string> result;
+        unordered_set<string> preWords;
         for (string& word : words) {
             if (canForm(word, preWords)) {
                 result.push_back(word);

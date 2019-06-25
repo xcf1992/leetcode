@@ -1,7 +1,7 @@
 /*
  233. Number of Digit One
  Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n.
- 
+
  For example:
  Given n = 13,
  Return 6, because digit 1 occurred in the following numbers: 1, 10, 11, 12, 13.
@@ -82,28 +82,34 @@ The lown is the number composed with the digits after the current digit. In the 
 The lowc = 10 ^ (the number of lower digits). In the example, lowc = 100;
 
 As curn = 3 and curn > 1, (highn * 10 + 1) must be less than (highn * 10 + curn). Then the higher part can be 0 ~ highn, the lower part can be 0 ~ (lowc-1), and the current result = (highn + 1) * lowc.
-=====
-From the figure, we can see that from digit '1' at \text{ones}ones place repeat in group of 1 after interval of 1010. Similarly, '1' at \text{tens}tens place repeat in group of 10 after interval of 100100. This can be formulated as (n/(i*10))*i(n/(i∗10))∗i.
 
-Also, notice that if the digit at \text{tens}tens place is \text{'1'}’1’, then the number of terms with \text{'1's}’1’s is increased by x+1x+1, if the number is say \text{"ab1x"}"ab1x". As if digits at \text{tens}tens place is greater than 11, then all the 1010 occurances of numbers with '1' 
-′
- 1 
-′
-  at \text{tens}tens place have taken place, hence, we add 1010. This is formluated as {\min(\max((\text{n mod (i*10)} )-i+1,0),i)}min(max((n mod (i*10))−i+1,0),i).
+=====
+From the figure, we can see that from digit '1' at ones place repeat in group of 1 after interval of 10.
+Similarly, '1' at tens place repeat in group of 10 after interval of 100.
+This can be formulated as (n / (i*10)) * i
+
+Also, notice that if the digit at tens place is 1,
+then the number of terms with 1s is increased by x+1,
+if the number is say "ab1x".
+As if digits at tens place is greater than 1, then all the 10 occurances of numbers with '1'
+at tens place have taken place, hence, we add 10.
+This is formluated as min(max((n mod (i*10))−i+1,0), i).
 
 Lets take an example, say n= 1234
 
-No of \text{'1'}’1’ in \text{ones}ones place = 1234/101234/10(corresponding to 1,11,21,...1221) + \min(4,1)min(4,1)(corresponding to 1231) =124124
+No of ’1’ in ones place = 1234/10 (corresponding to 1,11,21,...1221) + min(4,1)(corresponding to 1231) = 124
 
-No of \text{'1'}’1’ in \text{tens}tens place = (1234/100)*10(1234/100)∗10(corresponding to 10,11,12,...,110,111,...1919) +\min(21,10)min(21,10)(corresponding to 1210,1211,...1219)=130130
+No of ’1’ in tens place = (1234/100)*10 (corresponding to 10,11,12,...,110,111,...1919) + min(25,10)(corresponding to 1210,1211,...1219)=130
 
-No of \text{'1'}’1’ in \text{hundreds}hundreds place = (1234/1000)*100(1234/1000)∗100(corresponding to 100,101,12,...,199) +\min(135,100)min(135,100)(corresponding to 1100,1101...1199)=200200
+No of ’1’ in hundreds place = (1234/1000)*100 (corresponding to 100,101,102,...,199) + min(135,100)(corresponding to 1100,1101...1199)=200
 
-No of \text{'1'}’1’ in \text{thousands}thousands place = (1234/10000)*10000(1234/10000)∗10000 +\min(235,1000)min(235,1000)(corresponding to 1000,1001,...1234)=235235
+No of ’1’ in thousands place = (1234/10000)*10000 + min(235,1000)(corresponding to 1000,1001,...1234)= 235
 
-Therefore, Total = 124+130+200+235 = 689124+130+200+235=689.
-
-Herein, one formula has been devised, but many other formulae can be devised for faster implementations, but the essence and complexity remains the same. The users are encouraged to try to divise their own version of solution using the mathematical concepts.
+Therefore, Total = 124+130+200+235 = 689
+Herein, one formula has been devised,
+but many other formulae can be devised for faster implementations,
+but the essence and complexity remains the same.
+The users are encouraged to try to divise their own version of solution using the mathematical concepts.
 */
 
 class Solution {
@@ -129,12 +135,12 @@ public:
         int lowerNum = 0;
         int curNum = 0;
         int higherNum = 0;
-        
+
         while (n / factor != 0) {
             lowerNum = n - (n / factor) * factor;
             curNum = (n / factor) % 10;
             higherNum = n / (factor * 10);
-            
+
             if (curNum == 0) {
                 result += higherNum * factor;
             }
