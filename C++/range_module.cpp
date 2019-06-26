@@ -1,10 +1,18 @@
 /*
  715. Range Module
- A Range Module is a module that tracks ranges of numbers. Your task is to design and implement the following interfaces in an efficient manner.
+ A Range Module is a module that tracks ranges of numbers.
+ Your task is to design and implement the following interfaces in an efficient manner.
 
- addRange(int left, int right) Adds the half-open interval [left, right), tracking every real number in that interval. Adding an interval that partially overlaps with currently tracked numbers should add any numbers in the interval [left, right) that are not already tracked.
- queryRange(int left, int right) Returns true if and only if every real number in the interval [left, right) is currently being tracked.
- removeRange(int left, int right) Stops tracking every real number currently being tracked in the interval [left, right).
+ addRange(int left, int right)
+ Adds the half-open interval [left, right),
+ tracking every real number in that interval. Adding an interval that partially overlaps with currently tracked numbers should add any numbers in the interval [left, right) that are not already tracked.
+
+ queryRange(int left, int right)
+ Returns true if and only if every real number in the interval [left, right) is currently being tracked.
+
+ removeRange(int left, int right)
+ Stops tracking every real number currently being tracked in the interval [left, right).
+
  Example 1:
  addRange(10, 20): null
  removeRange(14, 16): null
@@ -56,11 +64,14 @@ public:
     }
 
     bool queryRange(int left, int right) {
-        auto it = range.upper_bound(left);
-        if (range.empty() or it == range.begin()) {
+        if (range.empty()) {
             return false;
         }
 
+        auto it = range.upper_bound(left);
+        if (it == range.begin()) {
+            return false;
+        }
         it--;
         return it -> second >= right;
     }
@@ -74,7 +85,8 @@ public:
         if (it != range.begin()) {
             it--;
         }
-        vector<int> rm;
+
+        vector<int> removed;
         while (it != range.end() and it -> first < right) {
             if (it -> first < left and it -> second > left) {
                 int temp = it -> second;
@@ -84,7 +96,7 @@ public:
                 }
             }
             else if (it -> first >= left) {
-                rm.push_back(it -> first);
+                removed.push_back(it -> first);
                 if (it -> second > right) {
                     range[right] = it -> second;
                 }
@@ -92,7 +104,7 @@ public:
             it++;
         }
 
-        for (int i : rm) {
+        for (int i : removed) {
             range.erase(i);
         }
     }

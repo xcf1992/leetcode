@@ -3,9 +3,14 @@
 
  Define S = [s,n] as the string S which consists of n connected strings s. For example, ["abc", 3] ="abcabcabc".
 
- On the other hand, we define that string s1 can be obtained from string s2 if we can remove some characters from s2 such that it becomes s1. For example, “abc” can be obtained from “abdbec” based on our definition, but it can not be obtained from “acbbe”.
+ On the other hand, we define that string s1 can be obtained from string s2
+ if we can remove some characters from s2 such that it becomes s1.
+ For example, “abc” can be obtained from “abdbec” based on our definition,
+ but it can not be obtained from “acbbe”.
 
- You are given two non-empty strings s1 and s2 (each at most 100 characters long) and two integers 0 ≤ n1 ≤ 106 and 1 ≤ n2 ≤ 106. Now consider the strings S1 and S2, where S1=[s1,n1] and S2=[s2,n2]. Find the maximum integer M such that [S2,M] can be obtained from S1.
+ You are given two non-empty strings s1 and s2 (each at most 100 characters long)
+ and two integers 0 ≤ n1 ≤ 106 and 1 ≤ n2 ≤ 106. Now consider the strings S1 and S2,
+ where S1=[s1,n1] and S2=[s2,n2]. Find the maximum integer M such that [S2,M] can be obtained from S1.
 
  Example:
 
@@ -16,7 +21,6 @@
  Return:
  2
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -55,7 +59,7 @@ using namespace std;
 
  Return:
  3
- 0 1    2 3 0      1    2 3 0      1    2 3 0
+                     0 1    2 3 0      1    2 3 0      1    2 3 0
  S1 --------------> abacb | abacb | abacb | abacb | abacb | abacb
 
  repeatCount ----->    0  |   1   |   1   |   2   |   2   |   3
@@ -64,13 +68,17 @@ using namespace std;
  repeatCount     ->    0  |   1   |   0   |   1   |   0   |   1
 
  nextIndex ------->    2  |   1   |   2   |   1   |   2   |   1
- ^
- |
+                                      ^
+                                      |
  repetitive pattern found here (we've met 2 before)!
  The pattern repeated 3 times
- The nextIndex has s2.size() possible values, ranging from 0 to s2.size() - 1. Due to PigeonHole principle, you must find two same nextIndex after scanning s2.size() + 1 s1 segments.
+ The nextIndex has s2.size() possible values,
+ ranging from 0 to s2.size() - 1.
+ Due to PigeonHole principle,
+ you must find two same nextIndex after scanning s2.size() + 1 s1 segments.
 
- Once you meet a nextIndex you've met before, you'll know that the following nextIndexs and increments of repeatCount will repeat a pattern.
+ Once you meet a nextIndex you've met before,
+ you'll know that the following nextIndexs and increments of repeatCount will repeat a pattern.
 
  So let's separate the s1 segments into 3 parts:
 
@@ -82,25 +90,31 @@ using namespace std;
 class Solution {
 public:
     int getMaxRepetitions(string s1, int n1, string s2, int n2) {
-        if (n1 == 0)
+        if (n1 == 0) {
             return 0;
-        int l1 = s1.size();
-        vector<int> indexr(l1 + 1, 0); // index at start of each s1 block
-        vector<int> countr(l1 + 1, 0); // count of repititions till the present s1 block
-        int index = 0, count = 0;
+        }
+
+        int l2 = s2.size();
+        vector<int> nextIndexr(l2 + 1, 0); // nextIndex at start of each s1 block
+        vector<int> countr(l2 + 1, 0); // count of repititions till the present s1 block
+
+        int nextIndex = 0;
+        int count = 0;
         for (int i = 0; i < n1; i++) {
             for (int j = 0; j < s1.size(); j++) {
-                if (s1[j] == s2[index])
-                    ++index;
-                if (index == s2.size()) {
-                    index = 0;
+                if (s1[j] == s2[nextIndex]) {
+                    ++nextIndex;
+                }
+                if (nextIndex == s2.size()) {
+                    nextIndex = 0;
                     ++count;
                 }
             }
+
             countr[i] = count;
-            indexr[i] = index;
+            nextIndexr[i] = nextIndex;
             for (int k = 0; k < i; k++) {
-                if (indexr[k] == index) {
+                if (nextIndexr[k] == nextIndex) {
                     int prev_count = countr[k];
                     int pattern_count = (countr[i] - countr[k]) * ((n1 - 1 - k) / (i - k));
                     int remain_count = countr[k + (n1 - 1 - k) % (i - k)] - countr[k];
