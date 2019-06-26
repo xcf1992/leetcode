@@ -1,19 +1,19 @@
 /*
- In a given integer array A, we must move every element of A to either list B or list C. (B and C initially start empty.)
+805. Split Array With Same Average
+In a given integer array A, we must move every element of A to either list B or list C. (B and C initially start empty.)
 
- Return true if and only if after such a move, it is possible that the average value of B is equal to the average value of C, and B and C are both non-empty.
+Return true if and only if after such a move, it is possible that the average value of B is equal to the average value of C, and B and C are both non-empty.
 
- Example :
- Input:
- [1,2,3,4,5,6,7,8]
- Output: true
- Explanation: We can split the array into [1,4,5,8] and [2,3,6,7], and both of them have the average of 4.5.
- Note:
+Example :
+Input:
+[1,2,3,4,5,6,7,8]
+Output: true
+Explanation: We can split the array into [1,4,5,8] and [2,3,6,7], and both of them have the average of 4.5.
+Note:
 
- The length of A will be in the range [1, 30].
- A[i] will be in the range of [0, 10000].
+The length of A will be in the range [1, 30].
+A[i] will be in the range of [0, 10000].
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -39,7 +39,11 @@ using namespace std;
 
  The size of smaller list between B and C will be less than N/2+1, so 0 < i < N/2+1
 
- The part if ((sum * i) % len == 0 is a screening to avoid unnecessary calculations because A is an array of integers, for a subarray of length i to have equal average as A, the sum of this subarray is sum(A)/len(A) * i, and this needs to be an integer number, which equivalently means ((sum(A) * i) % len(A) == 0.
+ The part if ((sum * i) % len == 0 is a screening to avoid unnecessary calculations because A is an array of integers,
+ for a subarray of length i to have equal average as A,
+ the sum of this subarray is sum(A)/len(A) * i,
+ and this needs to be an integer number,
+ which equivalently means ((sum(A) * i) % len(A) == 0.
 
  The second part is to call the recursive function find(parameters) to see if a subarray of length i will have equal average as A.
  */
@@ -58,11 +62,7 @@ private:
 public:
     bool splitArraySameAverage(vector<int>& A) {
         int n = A.size();
-        int sum = 0;
-        for (int a : A) {
-            sum += a;
-        }
-
+        int sum = accumulate(A.begin(), A.end(), 0);
         double avrg = sum / (double)n;
         int count = 0;
         for (int a : A) {
