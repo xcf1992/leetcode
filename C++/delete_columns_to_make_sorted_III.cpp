@@ -1,4 +1,5 @@
 /*
+ 960. Delete Columns to Make Sorted III
  We are given an array A of N lowercase letter strings, all of the same length.
 
  Now, we may choose any set of deletion indices, and for each string, we delete all the characters in those indices.
@@ -10,7 +11,6 @@
  For clarity, A[0] is in lexicographic order (ie. A[0][0] <= A[0][1] <= ... <= A[0][A[0].length - 1]), A[1] is in lexicographic order (ie. A[1][0] <= A[1][1] <= ... <= A[1][A[1].length - 1]), and so on.
 
  Return the minimum possible value of D.length.
-
 
 
  Example 1:
@@ -51,7 +51,6 @@
 #include <map>
 #include <numeric>
 using namespace std;
-
 /*
  Take n cols as n elements, so we have an array of n elements.
  => The final array has every row in lexicographic order.
@@ -67,6 +66,10 @@ using namespace std;
 
  Time Complexity:
  O(MN^2)
+
+ we cannot do by getting shortest subsequence from each longest increasing subsequence
+ cause it may happen the deleted columns are interleaved with each other
+ so the acutal possible remain columns could be much shorter
  */
 class Solution {
 public:
