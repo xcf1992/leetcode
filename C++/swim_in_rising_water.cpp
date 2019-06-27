@@ -1,11 +1,39 @@
-//
-//  swim_in_rising_water.cpp
-//  C++
-//
-//  Created by Chenfu Xie on 2/4/18.
-//  Copyright © 2018 Chenfu Xie. All rights reserved.
-//
+/*
+778. Swim in Rising Water
+On an N x N grid, each square grid[i][j] represents the elevation at that point (i,j).
 
+Now rain starts to fall. At time t, the depth of the water everywhere is t. You can swim from a square to another 4-directionally adjacent square if and only if the elevation of both squares individually are at most t. You can swim infinite distance in zero time. Of course, you must stay within the boundaries of the grid during your swim.
+
+You start at the top left square (0, 0). What is the least time until you can reach the bottom right square (N-1, N-1)?
+
+Example 1:
+
+Input: [[0,2],[1,3]]
+Output: 3
+Explanation:
+At time 0, you are in grid location (0, 0).
+You cannot go anywhere else because 4-directionally adjacent neighbors have a higher elevation than t = 0.
+
+You cannot reach point (1, 1) until time 3.
+When the depth of water is 3, we can swim anywhere inside the grid.
+Example 2:
+
+Input: [[0,1,2,3,4],[24,23,22,21,5],[12,13,14,15,16],[11,17,18,19,20],[10,9,8,7,6]]
+Output: 16
+Explanation:
+ 0  1  2  3  4
+24 23 22 21  5
+12 13 14 15 16
+11 17 18 19 20
+10  9  8  7  6
+
+The final route is marked in bold.
+We need to wait until time 16 so that (0, 0) and (4, 4) are connected.
+Note:
+
+2 <= N <= 50.
+grid[i][j] is a permutation of [0, ..., N*N - 1].
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -19,31 +47,34 @@
 #include <map>
 using namespace std;
 
+/*
+Imagine the grid as 
+So what the problem ask is to find a
+*/
 class Solution {
-public:
-    int swimInWater(vector<vector<int>> &grid) {
-        int m = grid.size();
-        vector<vector<int>> dp(m, vector<int>(m, INT_MAX));
-        helper(grid, 0, 0, 0, dp);
-        return dp[m - 1][m - 1];
-    }
-    void helper(vector<vector<int>> &grid, int row, int col, int deep,
-                vector<vector<int>> &dp) {
-        deep = max(deep, grid[row][col]);
-        if (dp[row][col] <= deep) {
+private:
+    int n = 0;
+    vector<int> diff = {0, 1, 0, -1, 0};
+
+    void dfs(vector<vector<int>> &grid, int row, int col, int elevation, vector<vector<int>> &dp) {
+        if (row < 0 or col < 0 or row >= n or col >= n) {
             return;
         }
-        dp[row][col] = deep;
-        int m = grid.size();
-        for (int i = 0; i < direction.size(); i++) {
-            int x = row + direction[i][0];
-            int y = col + direction[i][1];
-            if (x >= 0 && x < m && y >= 0 && y < m) {
-                helper(grid, x, y, dp[row][col], dp);
-            }
+        if (elevation >= dp[row][col]) {
+            return;
+        }
+
+        elevation = max(elevation, grid[row][col]);
+        dp[row][col] = elevation;
+        for (int i = 1; i < diff.size(); ++i) {
+            dfs(grid, row + diff[i], col + diff[i - 1], elevation, dp);
         }
     }
-    
-private:
-    vector<vector<int>> direction = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
+public:
+    int swimInWater(vector<vector<int>> &grid) {
+        n = grid.size();
+        vector<vector<int>> dp(n, vector<int>(n, INT_MAX));
+        dfs(grid, 0, 0, 0, dp);
+        return dp[n - 1][n - 1];
+    }
 };
