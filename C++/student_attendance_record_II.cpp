@@ -18,7 +18,6 @@
  Only "AA" won't be regarded as rewardable owing to more than one absent times.
  Note: The value of n won't exceed 100,000.
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -38,13 +37,15 @@ using namespace std;
  noAP(n) = noAP(n - 1) + noAL(n - 1), n ≥ 2.
  noAL(n) = noAP(n - 1) + noAP(n - 2), n ≥ 3.
 
- We can get A(n)==noAP(n)
+ We can get A(n) == noAP(n)
  because they are equal, we change noAP(n-1) to A(n-1)
  So here A(n-1) is noAP(n-1)
 
  A(n) = A(n - 1) + A(n - 2) + A(n - 3), n ≥ 4.
  */
 class Solution {
+private:
+    int MOD = 1e9 + 7;
 public:
     int checkRecord(int n) {
         if (n == 1) {
@@ -54,7 +55,6 @@ public:
             return 8;
         }
 
-        int MOD = 1e9 + 7;
         vector<int> endWithA(n, 1);
         vector<int> endWithP(n, 1);
         vector<int> endWithL(n, 1);
