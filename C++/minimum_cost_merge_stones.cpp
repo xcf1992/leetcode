@@ -227,7 +227,7 @@ public:
 };
 
 // should not sort
-class Solution1 {
+class Solution3 {
 private:
     void merge(int length, int K, int& result, vector<int>& stones) {
         int sum = 0;

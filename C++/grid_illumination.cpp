@@ -124,7 +124,7 @@ public:
 };
 
 // Memory Limit Exceed
-class Solution1 {
+class Solution2 {
 private:
     vector<int> rDiff = vector<int>({1, -1, 0, 0, 1, 1, -1, -1});
     vector<int> cDiff = vector<int>({0, 0, 1, -1, 1, -1, 1, -1});
