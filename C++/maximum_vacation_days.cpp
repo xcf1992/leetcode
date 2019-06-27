@@ -78,7 +78,6 @@ public:
             result = max(result, dp[0][i]);
         }
 
-
         for (int i = 1; i < weeks; ++i) {
             for (int j = 0; j < N; ++j) {
                 for (int k = 0; k < N; ++k) {

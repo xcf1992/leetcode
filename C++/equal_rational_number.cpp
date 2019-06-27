@@ -1,4 +1,5 @@
 /*
+ 972. Equal Rational Numbers
  Given two strings S and T, each of which represents a non-negative rational number, return True if and only if they represent the same number. The strings may use parentheses to denote the repeating part of the rational number.
 
  In general a rational number can be represented using up to three parts: an integer part, a non-repeating part, and a repeating part. The number will be represented in one of the following three ways:
@@ -41,7 +42,6 @@
  0 <= <NonRepeatingPart>.length <= 4
  1 <= <RepeatingPart>.length <= 4
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
