@@ -97,7 +97,6 @@ public:
             else {
                 parent -> right = curNode;
             }
-
             stk.push({height, curNode});
         }
         return root;
