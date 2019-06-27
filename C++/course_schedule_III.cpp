@@ -22,7 +22,6 @@
  The integer 1 <= d, t, n <= 10,000.
  You can't take two courses simultaneously.
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -71,11 +70,16 @@ using namespace std;
  1. Why we just pop out the last longest course that is screwing total day time?
 
  Because all the courses that we have saw till now all complete before the d day. Hence we can just simply remove any of the course from it.
- Ideally we should remove the course which will give the maximum savings(d - t). But since the courses are sorted by d , Just the largest t course removal will suffice. Hence we can save some time for the next incoming courses
+ Ideally we should remove the course which will give the maximum savings(d - t).
+ But since the courses are sorted by d ,
+ Just the largest t course removal will suffice.
+ Hence we can save some time for the next incoming courses
 
  2. When we replace a longer course with a much shorter one, does that mean we'll have enough room to take some courses previously ignored for being too long?
 
- The answer is NO, because any courses we missed would be longer than what's in priority queue. So the increase in number of days cannot be larger than the largest element in queue, and certainly will be less than a previously ignored course which has to be even longer.
+ The answer is NO, because any courses we missed would be longer than what's in priority queue.
+ So the increase in number of days cannot be larger than the largest element in queue,
+ and certainly will be less than a previously ignored course which has to be even longer.
 
  Example : [[10,100],[95,100],[100,5000]]
  Here we could take the 10 day course, then the 100 day course & now since more days are available we can take 95 day course
