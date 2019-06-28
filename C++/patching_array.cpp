@@ -1,7 +1,10 @@
 /*
  330. Patching Array
 
- Given a sorted positive integer array nums and an integer n, add/patch elements to the array such that any number in range [1, n] inclusive can be formed by the sum of some elements in the array. Return the minimum number of patches required.
+ Given a sorted positive integer array nums and an integer n,
+ add/patch elements to the array such that any number in range [1, n]
+ inclusive can be formed by the sum of some elements in the array.
+ Return the minimum number of patches required.
 
  Example 1:
 
@@ -21,9 +24,7 @@
 
  Input: nums = [1,2,2], n = 5
  Output: 0
-
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -43,8 +44,12 @@ using namespace std;
  nums中必然包含1，如果不包含1，那么[1,n]这个范围中的1就没法实现
  其次数组中的元素不能重复使用，如果允许重复使用，那么把1重复多次，就可以组成任意整数。
  令miss为[0,n]中缺少的最小整数，意味着我们可以实现[0,miss)范围内的任意整数。
- 如果数组中有某个整数x<=miss, 那么我们可以把[0,miss)区间的所有整数加上x，区间变成了[x, miss+x)，由于区间[0,miss)和[x, miss+x)重叠，两个区间可以无缝连接起来，意味着我们可以把区间[0,miss)扩展到[0, miss+x)。
- 如果数组中不存在小于或等于miss的元素，则区间[0,miss)和[x, miss+x) 脱节了，连不起来。此时我们需要添加一个数，最大限度的扩展区间[0, miss)。那添加哪个数呢？当然是添加miss本身，这样区间[0,miss)和[miss, miss+miss)恰好可以无缝拼接。
+ 如果数组中有某个整数x<=miss, 那么我们可以把[0,miss)区间的所有整数加上x，区间变成了[x, miss+x)，
+ 由于区间[0,miss)和[x, miss+x)重叠，两个区间可以无缝连接起来，意味着我们可以把区间[0,miss)扩展到[0, miss+x)。
+
+ 如果数组中不存在小于或等于miss的元素，则区间[0,miss)和[x, miss+x) 脱节了，连不起来。此时我们需要添加一个数，最大限度的扩展区间[0, miss)。那添加哪个数呢？
+ 当然是添加miss本身，这样区间[0,miss)和[miss, miss+miss)恰好可以无缝拼接。
+
  举个例子，令nums=[1, 2, 4, 13, 43], n=100，我们需要让[1,100]内的数都能够组合出来。
  使用数字1,2,4，我们可以组合出[0, 8)内的所有数，但无法组合出8，由于下一个数是13，比8大，根据规则2，我们添加8，把区间从[0,8)扩展到[0,16)。
  下一个数是13，比16小，根据规则1，我们可以把区间从[0,16)扩展到[0,29)。
@@ -60,15 +65,15 @@ public:
     int minPatches(vector<int>& nums, int n) {
         int result = 0;
         int index = 0;
-        long long sum = 0;
-        while (sum  < n) {
-            if (index < nums.size() and sum >= nums[index] - 1) {
-                sum += nums[index];
+        long miss = 1;
+        while (miss <= n) {
+            if (index < nums.size() and miss >= nums[index]) {
+                miss += nums[index];
                 index += 1;
             }
             else {
                 result += 1;
-                sum += (sum + 1);
+                miss += miss;
             }
         }
         return result;
