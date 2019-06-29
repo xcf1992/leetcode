@@ -14,58 +14,28 @@
 using namespace std;
 
 class Solution {
-private:
-    // DONT FORGET TO INITIALIZE m AND n
-    int m = 0;
-    int n = 0;
-    vector<int> root;
-    vector<int> diff = {0, 1, 0, -1, 0};
-
-    int find(int island) {
-        if (island != root[island]) {
-            root[island] = find(root[island]);
-        }
-        return island;
-    }
-
-    void check(int row, int col, int newIsland, int &count) {
-        int island = row * n + col;
-        if (row < 0 or col < 0 or row >= m or col >= n or root[island] == -1) {
-            return;
-        }
-
-        int newRoot = find(newIsland);
-        int curRoot = find(island);
-        if (curRoot != newRoot) {
-            root[curRoot] = newRoot;
-            count -= 1;
-        }
-    }
 public:
-    vector<int> numIslands2(int m, int n, vector<vector<int>>& positions) {
-        this -> m = m;
-        this -> n = n;
-        root = vector<int>(m * n, -1);
-
-        int count = 0;
-        vector<int> result;
-        for (vector<int>& pos : positions) {
-            int row = pos[0];
-            int col = pos[1];
-            int island = row * n + col;
-            if (root[island] != -1) {
-                result.push_back(count);
-                continue; // this one has become island before already
-            }
-
-            count += 1;
-            root[island] = island;
-            for (int i = 1; i < diff.size(); ++i) {
-                check(row + diff[i], col + diff[i - 1], island, count);
-            }
-            result.push_back(count);
+    int numDistinct(string s, string t) {
+        int lenS = s.size();
+        int lenT = t.size();
+        if (lenS <= 0 or lenT <= 0 or lenS < lenT) {
+            return 0;
         }
-        return result;
+        
+        vector<vector<long>> dp(lenS + 1, vector<long>(lenT + 1, 0));
+        for (int i = 0; i <= lenS; ++i) {
+            dp[i][0] = 1;
+        }
+        
+        for (int i = 1; i <= lenS; ++i) {
+            for (int j = 1; j <= i; ++j) {
+                dp[i][j] = dp[i - 1][j];
+                if (s[i - 1] == t[j - 1]) {
+                    dp[i][j] += dp[i - 1][j - 1];
+                }
+            }
+        }
+        return dp[lenS][lenT];
     }
 };
 
@@ -87,5 +57,5 @@ int main() {
         {0,0}
     });
     vector<string> words({"cat","cats","and","sand","dog"});
-    s.numIslands2(3, 3, matrix);
+    s.numDistinct("rabbbit","rabbit");
 }

@@ -20,7 +20,6 @@
  N is in the range of [1, 1000]
  Do not use class member/global/static variables to store states. Your encode and decode algorithms should be stateless.
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -38,15 +37,15 @@ using namespace std;
 // Definition for a Node.
  class Node {
  public:
- int val = NULL;
- vector<Node*> children;
+    int val = NULL;
+    vector<Node*> children;
 
- Node() {}
+    Node() {}
 
- Node(int _val, vector<Node*> _children) {
- val = _val;
- children = _children;
- }
+    Node(int _val, vector<Node*> _children) {
+    val = _val;
+    children = _children;
+    }
  };
 
  struct TreeNode {
