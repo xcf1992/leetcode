@@ -15,27 +15,21 @@ using namespace std;
 
 class Solution {
 public:
-    int numDistinct(string s, string t) {
-        int lenS = s.size();
-        int lenT = t.size();
-        if (lenS <= 0 or lenT <= 0 or lenS < lenT) {
-            return 0;
+    vector<int> pathInZigZagTree(int label) {
+        int level = 1;
+        while ((1 << level) <= label) {
+            level += 1;
         }
         
-        vector<vector<long>> dp(lenS + 1, vector<long>(lenT + 1, 0));
-        for (int i = 0; i <= lenS; ++i) {
-            dp[i][0] = 1;
+        vector<int> result(level, 1);
+        for (; label > 1; label /= 2) {
+            result[level - 1] = label;
+            level -= 1;
+            int parentStart = 1 << (level - 1);
+            int parentEnd = (1 << level) - 1;
+            label = parentEnd - (label / 2 - parentStart);
         }
-        
-        for (int i = 1; i <= lenS; ++i) {
-            for (int j = 1; j <= i; ++j) {
-                dp[i][j] = dp[i - 1][j];
-                if (s[i - 1] == t[j - 1]) {
-                    dp[i][j] += dp[i - 1][j - 1];
-                }
-            }
-        }
-        return dp[lenS][lenT];
+        return result;
     }
 };
 
@@ -57,5 +51,5 @@ int main() {
         {0,0}
     });
     vector<string> words({"cat","cats","and","sand","dog"});
-    s.numDistinct("rabbbit","rabbit");
+    s.pathInZigZagTree(14);
 }
