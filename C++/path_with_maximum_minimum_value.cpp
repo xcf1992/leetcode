@@ -34,7 +34,6 @@ Note:
 
 1 <= R, C <= 100
 0 <= A[i][j] <= 10^9
-
  */
 #include <iostream>
 #include <string>
