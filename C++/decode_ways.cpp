@@ -1,4 +1,5 @@
 /*
+91. Decode Ways
 A message containing letters from A-Z is being encoded to numbers using the following mapping:
 
 'A' -> 1
@@ -28,8 +29,8 @@ using namespace std;
 
 /*
 DP Solution O(n)
-For every ith digit, starting from ith index, either single digit number is valid (>0) or two digit number is valid (<=26), so no of ways dp[i]=
-ways for dp[i+1] (if ith single digit is valid, 0 otherwise) + dp[i+2] (if starting from i index 2 &1 digit numbers are valid, 0 otherwise)
+For every ith digit, starting from ith index, either single digit number is valid (>0) or two digit number is valid (<=26),
+so number of ways dp[i] = ways for dp[i+1] (if ith single digit is valid, 0 otherwise) + dp[i+2] (if starting from i index 2 &1 digit numbers are valid, 0 otherwise)
 dp[i] = dp[i+1] + dp[i+2];
 Base condition :: dp[s.len-1] = 1, if last single digit is valid, 0 otherwise.
 */
@@ -40,7 +41,7 @@ public:
         vector<int> dp(n + 1, 0);
         dp[n] = 1;
         dp[n - 1] = s[n - 1] == '0' ? 0 : 1;
-        
+
         for (int i = n - 2; i >= 0; i--) {
             if (s[i] == '0') {
                 continue;
@@ -48,7 +49,6 @@ public:
             int num = stoi(s.substr(i, 2));
             dp[i] = num <= 26 ? dp[i + 1] + dp[i + 2] : dp[i + 1];
         }
-        
         return dp[0];
     }
 };
@@ -62,17 +62,17 @@ public:
         if (s.size() <= 1) {
             return s.size();
         }
-        
+
         vector<int> dp(s.size() + 1, 0);
         dp[0] = 1;
         dp[1] = 1;
-        
+
         for (int i = 2; i <= s.size(); i++) {
             int num = (s[i - 2] - '0') * 10 + (s[i - 1] - '0');
             if (num == 0) {
                 return 0;
             }
-            
+
             if (num < 10) {
                 dp[i] = dp[i - 1];
             }
@@ -89,7 +89,7 @@ public:
                 dp[i] = dp[i - 1];
             }
         }
-        
+
         return dp.back();
     }
 };

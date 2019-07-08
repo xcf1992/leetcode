@@ -1,4 +1,5 @@
 /*
+ 956. Tallest Billboard
  You are installing a billboard and want it to have the largest height.  The billboard will have two steel supports, one on each side.  Each steel support must be an equal height.
 
  You have a collection of rods which can be welded together.  For example, if you have rods of lengths 1, 2, and 3, you can weld them together to make a support of length 6.
@@ -30,7 +31,6 @@
  1 <= rods[i] <= 1000
  The sum of rods is at most 5000.
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -44,6 +44,69 @@
 #include <map>
 #include <numeric>
 using namespace std;
+
+/*
+Explanation:
+dp[d] mean the maximum pair of sum we can get with pair difference d
+For example, if have a pair of sum (a, b) with a > b, then dp[a - b] = b
+If we have dp[diff] = a, it means we have a pair of sum (a, a + diff).
+And this is the biggest pair with difference = a
+
+dp is initializes with dp[0] = 0;
+
+Assume we have an init state like this
+------- y ------|----- d -----|
+------- y ------|
+
+case 1
+If put x to tall side
+------- y ------|----- d -----|----- x -----|
+------- y ------|
+
+We update dp[d + x] = max(dp[d + x], y )
+
+case 2.1
+Put x to low side and d >= x:
+-------y------|----- d -----|
+-------y------|--- x ---|
+
+We update dp[d-x] = max( dp[d - x], y + x)
+
+case 2.2
+Put x to low side and d < x:
+------- y ------|----- d -----|
+------- y ------|------- x -------|
+We update dp[x - d] = max(dp[x - d], y + d)
+
+case 2.1 and case2.2 can merge into dp[abs(x - d)] = max(dp[abs(x - d)], y + min(d, x))
+
+
+Time Complexity:
+O(NM), where we have
+N = rod.length <= 20
+S = sum(rods) <= 5000
+M = all possible sum = min(3^N, S)
+
+There are 3 ways to arrange a number: in the first group, in the second, not used.
+The number of difference will be less than 3^N.
+The only case to reach 3^N is when rod = [1,3,9,27,81...]
+*/
+class Solution {
+public:
+    int tallestBillboard(vector<int>& rods) {
+        unordered_map<int, int> dp;
+        dp[0] = 0;
+        for (int height : rods) {
+            unordered_map<int, int> cur(dp);
+            for (auto& it : cur) {
+                int diff = it.first;
+                dp[diff + height] = max(dp[diff + height], cur[diff]);
+                dp[abs(diff - height)] = max(dp[abs(diff - height)], cur[diff] + min(diff, height));
+            }
+        }
+        return dp[0];
+    }
+};
 
 /*
  dp[i][j] represents the maximum total length in bag1 when puting some of the first i rods into two bags, bag0 and bag1,
@@ -69,10 +132,11 @@ using namespace std;
  After all, just output dp[n][0].
  */
 class Solution {
+private:
+    int maxLength = 5000; // as the sum could be at most 5000
 public:
     int tallestBillboard(vector<int>& rods) {
         int n = rods.size();
-        int maxLength = 5000; // as the sum could be at most 5000
         vector<vector<int>> dp(n + 1, vector<int>(maxLength + 1));
         for (int diff = 0; diff < maxLength; diff++) {
             dp[0][diff] = INT_MIN;
