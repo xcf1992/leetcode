@@ -33,7 +33,6 @@
  1 <= A.length <= 1000
  0 <= A[i] < 2^16
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -52,6 +51,7 @@ using namespace std;
  Using vector to store the occurrence of the first 2 value's AND result (A[i] & A[j]).
  For all A[k], check all values between 0 and (1 << 16).
  If the value AND A[k] is equal to 0, then add the occurrence of this value from step 1 to result.
+
  Trick:
  We don't have to go through (0 ~ 1 << 16) to find the answer.
  If (A[k] & X) != 0, we can skip next (A[i] & X) -1 values and still get correct result.
@@ -77,6 +77,29 @@ public:
                 }
                 else {
                     j += (A[i] & j) - 1;
+                }
+            }
+        }
+        return result;
+    }
+};
+
+class Solution1 {
+public:
+    int countTriplets(vector<int>& A) {
+        int n = A.size();
+        vector<int> dp(1 << 16);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                dp[A[i] & A[j]] += 1;
+            }
+        }
+
+        int result = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < (1 << 16); j++) {
+                if ((A[i] & j) == 0) {
+                    result += dp[j];
                 }
             }
         }
