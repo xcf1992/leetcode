@@ -64,7 +64,7 @@ public:
         int cur = 0;
         int lastHeight = 0;
         for (int point : points) {
-            while (cur != buildings.size() and buildings[cur][0] <= point) {
+            while (cur < buildings.size() and buildings[cur][0] <= point) {
                 pq.push({buildings[cur][1], buildings[cur][2]});
                 cur += 1;
             }
