@@ -4,7 +4,7 @@ Given an array A of integers, return the number of non-empty continuous subarray
 
 The leftmost element of the subarray is not larger than other elements in the subarray.
 
- 
+
 
 Example 1:
 
@@ -21,14 +21,13 @@ Example 3:
 Input: [2,2,2]
 Output: 6
 Explanation: There are 6 valid subarrays: [2],[2],[2],[2,2],[2,2],[2,2,2].
- 
+
 
 Note:
 
 1 <= A.length <= 50000
 0 <= A[i] <= 100000
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
