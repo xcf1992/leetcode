@@ -7,7 +7,7 @@ A submatrix x1, y1, x2, y2 is the set of all cells matrix[x][y] with x1 <= x <= 
 
 Two submatrices (x1, y1, x2, y2) and (x1', y1', x2', y2') are different if they have some coordinate that is different: for example, if x1 != x1'.
 
- 
+
 
 Example 1:
 
@@ -19,7 +19,7 @@ Example 2:
 Input: matrix = [[1,-1],[-1,1]], target = 0
 Output: 5
 Explanation: The two 1x2 submatrices, plus the two 2x1 submatrices, plus the 2x2 submatrix.
- 
+
 
 Note:
 
@@ -54,7 +54,7 @@ public:
         int result = 0;
         for (int col1 = 0; col1 < n; col1++) {
             for (int col2 = col1; col2 < n; ++col2) {
-                unordered_map<int, int> sumCount;
+                unordered_map<int, int> sumCount; // sumCount stores the occurences of sum, which is between col1 and col2, from row 0 to current row
                 sumCount[0] = 1;
                 int sum = 0;
                 for (int row = 0; row < m; row++) {

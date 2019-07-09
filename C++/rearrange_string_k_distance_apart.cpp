@@ -21,7 +21,6 @@
  Output: "abacabcd"
  Explanation: The same letters are at least distance 2 from each other.
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -49,6 +48,7 @@ struct mycompare {
         return a.first < b.first || (a.first == b.first and a.second < b.second);
     }
 };
+
 class Solution {
 public:
     string rearrangeString(string s, int k) {
