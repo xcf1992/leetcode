@@ -65,7 +65,6 @@ if we merge end . F(1) = 1
 so,We have 1 = n -m(K-1) ----> so we have
 (n-1)%(k-1) == remain
 
-
  During interview, this might be our first question, the follow-up may ask us what if we can merge x consecutive piles?
  Just like original problem.
  Now our sub problem becomes: we need to know the minimum cost of merging left part to x - 1 piles and right part to 1 pile.
@@ -82,7 +81,8 @@ so,We have 1 = n -m(K-1) ----> so we have
 
  Time Complexity: O(n^3 * K) (n is the number of stone)
 
- Similar problem include 312. Burst Balloons. They are all dynamic programming problem related to interval.
+ Similar problem include 312. Burst Balloons.
+ They are all dynamic programming problem related to interval.
 
  Q: Why mid jump at step K - 1
  A: We can merge K piles into one pile,
@@ -145,20 +145,23 @@ public:
                 for (int k = 1; k <= K; k++) {
                     for (int m = i; m < j; m++) {
                         if (k > 1) {
-                            if(dp[i][m][1] == INT_MAX || dp[m+1][j][k-1] == INT_MAX) continue;
+                            if (dp[i][m][1] == INT_MAX or dp[m + 1][j][k - 1] == INT_MAX) {
+                                continue;
+                            }
                             dp[i][j][k] = min(dp[i][j][k], dp[i][m][1] + dp[m+1][j][k-1]);
-                        } else {
-                            if(dp[i][m][1] == INT_MAX || dp[m+1][j][K-1] == INT_MAX) continue;
-                            dp[i][j][k] = min(dp[i][j][k], dp[i][m][1] + dp[m+1][j][K-1] + sum[j]-sum[i]+stones[i]);
+                        }
+                        else {
+                            if (dp[i][m][1] == INT_MAX or dp[m + 1][j][K - 1] == INT_MAX) {
+                                continue;
+                            }
+                            dp[i][j][k] = min(dp[i][j][k], dp[i][m][1] + dp[m + 1][j][K - 1] + sum[j] - sum[i] + stones[i]);
                         }
                     }
 
                 }
             }
         }
-
-        if(dp[0][n-1][1] == INT_MAX) return -1;
-            return dp[0][n-1][1];
+        return dp[0][n - 1][1] == INT_MAX ? -1 : dp[0][n - 1][1];
     }
 };
 
@@ -195,7 +198,7 @@ public:
 
  Answer: dp[1][len] (len is the stones number)
  */
-class Solution2 {
+class Solution2 { // solution when K == 2
 public:
     int mergeStones(vector<int>& stones, int K) {
         int n = stones.size();
