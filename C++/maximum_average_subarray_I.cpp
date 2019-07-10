@@ -8,7 +8,7 @@ Example 1:
 Input: [1,12,-5,-6,50,3], k = 4
 Output: 12.75
 Explanation: Maximum average is (12-5-6+50)/4 = 51/4 = 12.75
- 
+
 
 Note:
 
@@ -35,14 +35,10 @@ public:
             curSum += nums[i];
         }
 
-        int start = 0;
-        int end = k;
         double maxSum = curSum;
-        while (end < nums.size()) {
-            curSum = maxSum - nums[start] + nums[end];
-            maxSum = max(maxSum, curSum);
-            start += 1;
-            end += 1;
+        for (int i = k; i < nums.size(); ++i) {
+            curSum += nums[i] - nums[i - k];
+            maxSum = max(curSum, maxSum);
         }
         return maxSum / k;
     }
