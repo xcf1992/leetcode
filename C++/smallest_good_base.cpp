@@ -31,7 +31,6 @@
  The range of n is [3, 10^18].
  The string representing n is always valid and will not have leading zeros.
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -95,9 +94,19 @@ using namespace std;
  That brings me to the code:
  */
 /*
- The input can be stored in a long long int, here I use unsigned long long int for a larger range. We need to find k, for 1+k^1+k^2+k^3+...+k^d=n. The smallest possible base is k=2, with has the longest possible representation, i.e., largest d. So, to find the smallest base means to find the longest possible representation "11111....1" based on k. As n<=10^18, so n<(1<<62). We iterate the length of the representation from 62 to 2 (2 can always be valid, with base=n-1), and check whether a given length can be valid.
+ The input can be stored in a long long int,
+ here I use unsigned long long int for a larger range.
+ We need to find k, for 1+k^1+k^2+k^3+...+k^d=n.
+ The smallest possible base is k=2,
+ with has the longest possible representation, i.e., largest d.
+ So, to find the smallest base means to find the longest possible representation "11111....1" based on k.
+ As n <= 10^18, so n < (1<<62).
+ 
+ We iterate the length of the representation from 62 to 2 (2 can always be valid, with base=n-1),
+ and check whether a given length can be valid.
 
- For a given length d, we use binary search to check whether there is a base k which satisfies 1+k^1+k^2+...k^d=n. The left limit is 1, and the right limit is pow(n,1/d)+1, i.e., the d th square root of n. The code is shown below.
+ For a given length d, we use binary search to check whether there is a base k which satisfies 1+k^1+k^2+...k^d=n.
+ The left limit is 1, and the right limit is pow(n,1/d)+1, i.e., the d th square root of n. The code is shown below.
  */
 class Solution {
 private:

@@ -4,7 +4,7 @@
  A string such as "word" contains the following abbreviations:
 
  ["word", "1ord", "w1rd", "wo1d", "wor1", "2rd", "w2d", "wo2", "1o1d", "1or1", "w1r1", "1o2", "2r1", "3d", "w3", "4"]
- Given a target string and a set of strings in a dictionary, 
+ Given a target string and a set of strings in a dictionary,
  find an abbreviation of this target string with the smallest possible length such that it does not conflict with abbreviations of the strings in the dictionary.
 
  Each number or letter in the abbreviation is considered length = 1. For example, the abbreviation "a32bc" has length = 4.
@@ -17,7 +17,6 @@
 
  "apple", ["plain", "amber", "blade"] -> "1p3" (other valid answers include "ap3", "a3e", "2p2", "3le", "3l1").
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -34,17 +33,17 @@ using namespace std;
 
 /*
  The key idea of my solution is to preprocess the dictionary to transfer all the words to bit sequences (int):
- Pick the words with same length as target string from the dictionary and compare the characters with target. 
+ Pick the words with same length as target string from the dictionary and compare the characters with target.
  If the characters are different, set the corresponding bit to 1, otherwise, set to 0.
  Ex: "abcde", ["abxdx", "xbcdx"] => [00101, 10001]
 
- The problem is now converted to find a bit mask that can represent the shortest abbreviation, 
+ The problem is now converted to find a bit mask that can represent the shortest abbreviation,
  so that for all the bit sequences in dictionary, mask & bit sequence > 0.
- Ex: for [00101, 10001], the mask should be [00001]. 
+ Ex: for [00101, 10001], the mask should be [00001].
  if we mask the target string with it, we get "****e" ("4e"), which is the abbreviation we are looking for.
 
- To find the bit mask, we need to perform DFS with some optimizations. 
- But which bits should be checked? 
+ To find the bit mask, we need to perform DFS with some optimizations.
+ But which bits should be checked?
  We can perform "or" operation for all the bit sequences in the dictionary and do DFS for the "1" bits in the result.
  Ex: 00101 | 10001 = 10101, so we only need to take care of the 1st, 3rd, and 5th bit.
  */
