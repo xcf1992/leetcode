@@ -1,11 +1,11 @@
 /*
- 514. Freedom Trail
+514. Freedom Trail
 In the video game Fallout 4, the quest "Road to Freedom" requires players to reach a metal dial called the "Freedom Trail Ring",
 and use the dial to spell a specific keyword in order to open the door.
 
 Given a string ring, which represents the code engraved on the outer ring and another string key,
 which represents the keyword needs to be spelled.
-You need to find the minimum number of steps in order to spell all the characters in the keyword.
+You need to find the minimum number of dp in order to spell all the characters in the keyword.
 
 Initially, the first character of the ring is aligned at 12:00 direction.
 You need to spell all the characters in the string key one by one by rotating the ring clockwise
@@ -28,7 +28,7 @@ Input: ring = "godding", key = "gd"
 Output: 4
 Explanation:
  For the first key character 'g', since it is already in place, we just need 1 step to spell this character.
- For the second key character 'd', we need to rotate the ring "godding" anticlockwise by two steps to make it become "ddinggo".
+ For the second key character 'd', we need to rotate the ring "godding" anticlockwise by two dp to make it become "ddinggo".
  Also, we need 1 more step for spelling.
  So the final output is 4.
 Note:
@@ -52,29 +52,30 @@ using namespace std;
 class Solution {
 public:
     int findRotateSteps(string ring, string key) {
-        int result = 0;
-        int length = ring.size();
-
+        int rsize = ring.size();
         unordered_map<char, vector<int>> pos;
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < rsize; i++) {
             pos[ring[i]].push_back(i);
         }
 
         int ksize = key.size();
-        vector<vector<int>> steps(ksize + 1, vector<int>(length, INT_MAX));
-        steps[0][0] = 0;
+        vector<vector<int>> dp(ksize + 1, vector<int>(rsize, INT_MAX));
+        dp[0][0] = 0;
         vector<int> curPos(1, 0);
-        for (int i = 0; i < key.size(); i++) {
-            int newDis = INT_MAX;
+        for (int i = 0; i < ksize; i++) {
             for (int nextIndex : pos[key[i]]) {
                 for (int curIndex : curPos) {
-                    int distance = min(abs(nextIndex - curIndex), length - abs(nextIndex - curIndex));
-                    steps[i + 1][nextIndex] = min(steps[i + 1][nextIndex], steps[i][curIndex] + distance);
-                    newDis = min(steps[i + 1][nextIndex], newDis);
+                    int distance = abs(nextIndex - curIndex);
+                    distance = min(distance, rsize - distance);
+                    dp[i + 1][nextIndex] = min(dp[i + 1][nextIndex], dp[i][curIndex] + distance);
                 }
             }
             curPos = pos[key[i]];
-            result = newDis;
+        }
+
+        int result = INT_MAX;
+        for (int dis : dp[ksize]) {
+            result = min(result, dis);
         }
         return result + ksize;
     }
