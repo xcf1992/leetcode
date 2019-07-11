@@ -1,10 +1,11 @@
 /*
+ 475. Heaters
  Winter is coming! Your first job during the contest is to design a standard heater with fixed warm radius to warm all the houses.
- 
+
  Now, you are given positions of houses and heaters on a horizontal line, find out minimum radius of heaters so that all houses could be covered by those heaters.
- 
+
  So, your input will be the positions of houses and heaters seperately, and your expected output will be the minimum radius standard of heaters.
- 
+
  Note:
  Numbers of houses and heaters you are given are non-negative and will not exceed 25000.
  Positions of houses and heaters you are given are non-negative and will not exceed 10^9.
@@ -19,7 +20,6 @@
  Output: 1
  Explanation: The two heater was placed in the position 1 and 4. We need to use radius 1 standard, then all the houses can be warmed.
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -45,7 +45,7 @@ public:
                 radius = *larger - house;
             }
             if (larger != heaters.begin()) {
-                radius = min(radius, house - *(larger - 1));
+                radius = min(radius, house - *prev(larger));
             }
             result = max(result, radius);
         }

@@ -6,8 +6,8 @@ Given a circular array (the next element of the last element is the first elemen
 Example 1:
 Input: [1,2,1]
 Output: [2,-1,2]
-Explanation: The first 1's next greater number is 2; 
-The number 2 can't find next greater number; 
+Explanation: The first 1's next greater number is 2;
+The number 2 can't find next greater number;
 The second 1's next greater number needs to search circularly, which is also 2.
 Note: The length of given array won't exceed 10000.
 */
@@ -29,11 +29,9 @@ public:
         int n = nums.size();
         vector<int> result(n, -1);
         stack<int> bigger;
-
-        for (int i = 0; i < 2 * n; i++) {
+        for (int i = 0; i < 2 * n; ++i) {
             int num = nums[i % n];
-
-            while (bigger.size() != 0 && nums[bigger.top()] < num) {
+            while (!bigger.empty() and nums[bigger.top()] < num) {
                 result[bigger.top()] = num;
                 bigger.pop();
             }
@@ -42,7 +40,6 @@ public:
                 bigger.push(i);
             }
         }
-
         return result;
     }
 };
