@@ -92,19 +92,17 @@ public:
      * @param n   Number of characters to read
      * @return    The number of actual characters read
      */
-
     int read(char *buf, int n) {
-        // temporary storage of size 4
         char local[4];
-        // current position
         int curr = 0;
         while (int temp = read4(local)) {
-            // for cases when input stream size is larger than n, we stop at position n
-            if (curr + temp > n) temp = n - curr;
-            // copying result from temporary storage to buf
-            for (int i = 0; i < temp; ++i)
+            if (curr + temp > n) { // for cases when input stream size is larger than n, we stop at position n
+                temp = n - curr;
+            }
+
+            for (int i = 0; i < temp; ++i) {
                 buf[curr + i] = local[i];
-            // updating current position
+            }
             curr += temp;
         }
         return curr;
