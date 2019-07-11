@@ -58,6 +58,7 @@ public:
         while (label > 1) {
             result[level - 1] = label;
             level -= 1;
+            
             int parentStart = 1 << (level - 1);
             int parentEnd = (1 << level) - 1;
             label = parentEnd - (label / 2 - parentStart);

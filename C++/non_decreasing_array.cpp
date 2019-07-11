@@ -1,8 +1,9 @@
 /*
+ 665. Non-decreasing Array
  Given an array with n integers, your task is to check if it could become non-decreasing by modifying at most 1 element.
- 
+
  We define an array is non-decreasing if array[i] <= array[i + 1] holds for every i (1 <= i < n).
- 
+
  Example 1:
  Input: [4,2,3]
  Output: True
@@ -14,7 +15,6 @@
  Note: The n belongs to [1, 10,000].
 
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -43,23 +43,19 @@ public:
         for (int i = 1; i < nums.size(); i++) {
             if (nums[i] < nums[i - 1]) {
                 int temp = nums[i - 1];
-                
                 nums[i - 1] = i - 2 >= 0 ? nums[i - 2] : nums[i];
                 if (nondreasing(nums)) {
                     return true;
                 }
-                
+
                 nums[i - 1] = temp;
                 nums[i] = i + 1 < nums.size() ? nums[i + 1] : nums[i - 1];
                 if (nondreasing(nums)) {
                     return true;
                 }
-                else {
-                    return false;
-                }
+                return false;
             }
         }
-        
         return true;
     }
 };
