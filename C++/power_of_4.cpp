@@ -1,14 +1,5 @@
 /*
 342. Power of Four
-Easy
-
-322
-
-149
-
-Favorite
-
-Share
 Given an integer (signed 32 bits), write a function to check whether it is a power of 4.
 
 Example 1:
@@ -33,7 +24,6 @@ Follow up: Could you solve it without loops/recursion?
 #include <stdio.h>
 using namespace std;
 
-
 class Solution {
 public:
     bool isPowerOfFour(int num) {
@@ -54,8 +44,3 @@ public:
         return false;
     }
 };
-
-int main() {
-    Solution s;
-    return 0;
-}
