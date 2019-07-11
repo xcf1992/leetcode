@@ -1,12 +1,12 @@
 /*
  Design a data structure that supports the following two operations:
- 
+
  void addWord(word)
  bool search(word)
  search(word) can search a literal word or a regular expression string containing only letters a-z or .. A . means it can represent any one letter.
- 
+
  Example:
- 
+
  addWord("bad")
  addWord("dad")
  addWord("mad")
@@ -17,7 +17,6 @@
  Note:
  You may assume that all words are consist of lowercase letters a-z.
  */
-
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -36,14 +35,14 @@ using namespace std;
 struct TrieNode {
     vector<TrieNode*> children = vector<TrieNode*>(26, nullptr);
     bool isWord = false;
-    
+
     TrieNode(bool word = false): isWord(word) {}
 };
 
 class Trie {
 private:
     TrieNode* root;
-    
+
     bool searchWord(TrieNode* cur, string s) {
         for (int i = 0; i < s.size(); i++) {
             int ch = s[i] - 'a';
@@ -80,7 +79,7 @@ public:
         }
         cur -> isWord = true;
     }
-    
+
     bool search(string s) {
         return searchWord(root, s);
     }
@@ -92,14 +91,14 @@ private:
 public:
     /** Initialize your data structure here. */
     WordDictionary() {
-        
+
     }
-    
+
     /** Adds a word into the data structure. */
     void addWord(string word) {
         trie.add(word);
     }
-    
+
     /** Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. */
     bool search(string word) {
         return trie.search(word);

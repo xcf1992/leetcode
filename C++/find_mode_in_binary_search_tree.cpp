@@ -1,11 +1,30 @@
-//
-//  find_mode_in_binary_search_tree.cpp
-//  C++
-//
-//  Created by Chenfu Xie on 1/30/18.
-//  Copyright © 2018 Chenfu Xie. All rights reserved.
-//
+/*
+501. Find Mode in Binary Search Tree
+Given a binary search tree (BST) with duplicates, find all the mode(s) (the most frequently occurred element) in the given BST.
 
+Assume a BST is defined as follows:
+
+The left subtree of a node contains only nodes with keys less than or equal to the node's key.
+The right subtree of a node contains only nodes with keys greater than or equal to the node's key.
+Both the left and right subtrees must also be binary search trees.
+
+
+For example:
+Given BST [1,null,2,2],
+
+   1
+    \
+     2
+    /
+   2
+
+
+return [2].
+
+Note: If a tree has more than one mode, you can return them in any order.
+
+Follow up: Could you do that without using any extra space? (Assume that the implicit stack space incurred due to recursion does not count).
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -28,18 +47,14 @@ struct TreeNode {
 
 class Solution {
 private:
-    int maxCount;
-    int count;
-    vector<int> mode;
     TreeNode* pre;
-    
-    void find(TreeNode* root) {
+
+    void find(TreeNode* root, vector<int>& result, int& count, int& maxCount) {
         if (root == nullptr) {
             return;
         }
-        
-        find(root -> left);
-        
+        find(root -> left, result, count, maxCount);
+
         if (pre == nullptr) {
             count = 1;
         }
@@ -48,36 +63,37 @@ private:
         }
         else {
             if (count > maxCount) {
-                mode.clear();
-                mode.push_back(pre -> val);
+                result.clear();
+                result.push_back(pre -> val);
                 maxCount = count;
             }
             else if (count == maxCount) {
-                mode.push_back(pre -> val);
+                result.push_back(pre -> val);
             }
             count = 1;
         }
         pre = root;
-        
-        find(root -> right);
+
+        find(root -> right, result, count, maxCount);
     }
 public:
     vector<int> findMode(TreeNode* root) {
-        maxCount = 0;
-        count = 0;
+        int maxCount = 0;
+        int count = 0;
         pre = nullptr;
-        mode.clear();
-        find(root);
-        if (pre == nullptr) {
-            return mode;
+        vector<int> result;
+
+        find(root, result, count, maxCount);
+        if (pre == nullptr) { // we need to check for last several nodes if they have the same value, cause there may have no chance to update if they are all the same
+            return result;
         }
         if (count == maxCount) {
-            mode.push_back(pre -> val);
+            result.push_back(pre -> val);
         }
         if (count > maxCount) {
-            mode.clear();
-            mode.push_back(pre -> val);
+            result.clear();
+            result.push_back(pre -> val);
         }
-        return mode;
+        return result;
     }
 };
