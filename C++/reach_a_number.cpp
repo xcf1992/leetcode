@@ -1,10 +1,11 @@
 /*
+ 754. Reach a Number
  You are standing at position 0 on an infinite number line. There is a goal at position target.
- 
+
  On each move, you can either go left or right. During the n-th move (starting from 1), you take n steps.
- 
+
  Return the minimum number of steps required to reach the destination.
- 
+
  Example 1:
  Input: target = 3
  Output: 2
@@ -20,9 +21,7 @@
  On the third move we step from -1 to 2.
  Note:
  target will be a non-zero integer in the range [-10^9, 10^9].
-
  */
-
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -64,6 +63,7 @@ public:
 
          Otherwise, if delta is odd, we can't do it,
          as every sign change from positive to negative changes the sum by an even number.
+         
          So let's consider a candidate answer of k+1, which changes delta by k+1.
          If this is odd, then delta will be even and we can have an answer of k+1.
          Otherwise, delta will be odd, and we will have an answer of k+2.
