@@ -1,3 +1,18 @@
+/*
+67. Add Binary
+Given two binary strings, return their sum (also a binary string).
+
+The input strings are both non-empty and contains only characters 1 or 0.
+
+Example 1:
+
+Input: a = "11", b = "1"
+Output: "100"
+Example 2:
+
+Input: a = "1010", b = "1011"
+Output: "10101"
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -5,99 +20,32 @@
 #include <algorithm>
 using namespace std;
 
-/*string addBinary(string a, string b) {
-        if (a.size() == 0) {
-            return b;
-        }
-        if (b.size() == 0) {
-            return a;
-        }
-        
-        string result = "";
-        int min = a.size();
-        if (min > b.size()) {
-            min = b.size();
-        }
-        
-        int flag = 0;
-        int aPos = a.size() - 1;
-        int bPos = b.size() - 1;
-        for (int i = 0; i != min; i++) {
-            int aDigit = a.at(aPos - i) - '0';
-            int bDigit = b.at(bPos - i) - '0';
-            int digit = aDigit + bDigit + flag;
-            
-            flag = digit / 2;
-            char cur = digit % 2 + '0';
-            result = cur + result;
-        }
-        
-        if (min < a.size()) {
-            aPos = a.size() - 1;
-            for (int i = min; i != a.size(); i++) {
-                int aDigit = a.at(aPos - i) - '0';
-                int digit = aDigit + flag;
-                flag = digit / 2;
-                char cur = digit % 2 + '0';
-                result = cur + result;
-            }
-        }
-        else if (min < b.size()) {
-            bPos = b.size() - 1;
-            for (int i = min; i != b.size(); i++) {
-                int bDigit = b.at(bPos - i) - '0';
-                int digit = bDigit + flag;
-                flag = digit / 2;
-                char cur = digit % 2 + '0';
-                result = cur + result;
-            }
-        }
-        
-        if (flag == 1) {
-            result = "1" + result;
-        }
-        
-        return result;
-    }
-	*/
-string addBinary(string a, string b) {
-        if (a.empty()) {
-            return b;
-        }
-        
-        if (b.empty()) {
-            return a;
-        }
-        
-        if (a.size() < b.size()) {
-            string temp = a;
-            a = b;
-            b = temp;
-        }
-        
-        string result;
+class Solution {
+public:
+    string addBinary(string a, string b) {
         int m = a.size();
         int n = b.size();
-        int flag = 0;
-        for (int i = 0; i < n; i++) {
-            int digit = (flag + (a[m - 1 - i] - '0') + (b[n - 1 - i] - '0')) % 2;
-            flag = (flag + (a[m - 1 - i] - '0') + (b[n - 1 - i] - '0')) / 2;
-            result = (digit + "0") + result;
+        if (m < n) {
+            return addBinary(b, a);
         }
-        for (int i = n; i < m; i++) {
-            int digit = (flag + (a[m - 1 - i] - '0')) % 2;
-            flag = (flag + (a[m - 1 - i] - '0')) / 2;
-            result = (digit + "0") + result;
+        if (n == 0) {
+            return a;
         }
-        if (flag) {
-            result = "1" + result;
+
+        string result = "";
+        int carry = 0;
+        for (int i = 0; i < m; i++) {
+            int sum = carry + (a[m - 1 - i] - '0');
+            if (i < n) {
+                sum += (b[n - 1 - i] - '0');
+            }
+            carry = sum / 2;
+            result.push_back('0' + sum % 2);
         }
-        
+        if (carry) {
+            result.push_back('1');
+        }
+        reverse(result.begin(), result.end());
         return result;
     }
-
-int main() {
-	string a = "111";
-	string b = "1111";
-	cout << addBinary(a, b) << endl;
-}
+};
