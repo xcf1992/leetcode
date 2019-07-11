@@ -60,10 +60,7 @@ private:
         if (n1 < n2) {
             swap(n1, n2);
         }
-        if (n2 != 0) {
-            return gcd(n2, n1 % n2);
-        }
-        return n1;
+        return n2 == 0 ? n1 : gcd(n2, n1 % n2);
     }
 public:
     bool hasGroupsSizeX(vector<int>& deck) {
