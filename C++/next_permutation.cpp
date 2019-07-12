@@ -31,39 +31,28 @@ using namespace std;
 class Solution {
 public:
     void nextPermutation(vector<int> &num) {
-        if (num.size() == 0 || num.size() == 1) {
+        int n = num.size();
+        if (n <= 1) {
             return;
         }
-        
-        int i;
-        for (i = num.size() - 1; i > 0; i--) {
-            if (num.at(i) > num.at(i - 1)) {
-                break;
-            }
+
+        int pos = n - 1;
+        while (pos > 0 and num[pos] <= num[pos - 1]) {
+            pos -= 1;
         }
-        if (i == 0) {
-            reverse(num, 0);
+        if (pos == 0) {
+            reverse(num.begin(), num.end());
             return;
         }
-        
-        int j;
-        for (j = num.size() - 1; j >= 0; j--) {
-            if (num.at(j) > num.at(i - 1)) {
-                break;
-            }
+
+        int end = n - 1;
+        while (end >= pos and num[end] <= num[pos - 1]) {
+            end -= 1;
         }
-        swap(num.at(i - 1), num.at(j));
-        reverse(num, i);
-        return;
-    }
-    
-    void reverse(vector<int> &num, int start) {
-        int end = num.size() - 1;
-        while (start < end) {
-            swap(num.at(start), num.at(end));
-            start++;
-            end--;
+
+        swap(num[pos - 1], num[end]);
+        for (int left = pos, right = n - 1; left < right; ++left, --right) {
+            swap(num[left], num[right]);
         }
-        return;
     }
 };
