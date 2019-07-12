@@ -1,5 +1,7 @@
 /*
-Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
+15. 3Sum
+Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0?
+Find all unique triplets in the array which gives the sum of zero.
 
 Note:
 
@@ -25,43 +27,44 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int> &num) {
-        if (num.size() <= 2 || (num.size() == 3 && num[0] + num[1] + num[2] != 0)) {
+        int n = num.size();
+        if (n <= 2 or (n == 3 and num[0] + num[1] + num[2] != 0)) {
             return {};
         }
-        
         sort(num.begin(), num.end());
+
         vector<vector<int>> results;
-        for (int i = 0; i < num.size(); i++) {
-            if (i != 0 && num[i] == num[i - 1]) {
+        for (int i = 0; i < n; ++i) {
+            if (i != 0 and num[i] == num[i - 1]) {
                 continue;
             }
 
-            int needed = 0 - num[i];
-            int forward = i + 1;
-            int backward = num.size() - 1;
-            while (forward < backward) {
-                while (forward > i + 1 and forward < num.size() and num[forward] == num[forward - 1]) {
-                    forward++;
+            int target = 0 - num[i];
+            int left = i + 1;
+            int right = n - 1;
+            while (left < right) {
+                while (left > i + 1 and left < n and num[left] == num[left - 1]) {
+                    left += 1;
                 }
-                while (backward < num.size() - 1 and backward >= 0 and num[backward] == num[backward + 1]) {
-                    backward--;
+                while (right < n - 1 and right >= 0 and num[right] == num[right + 1]) {
+                    right--;
                 }
-                if (forward >= backward) {
+                if (left >= right) {
                     break;
                 }
 
-                if (num[forward] + num[backward] == needed) {
-                    results.push_back({num[i], num[forward], num[backward]});
-                    forward++;
+                if (num[left] + num[right] == target) {
+                    results.push_back({num[i], num[left], num[right]});
+                    left++;
                 }
-                else if (num[forward] + num[backward] < needed) {
-                    forward++;
+                else if (num[left] + num[right] < target) {
+                    left++;
                 }
-                else if (num[forward] + num[backward] > needed) {
-                    backward--;
+                else if (num[left] + num[right] > target) {
+                    right--;
                 }
             }
-        } 
+        }
         return results;
     }
 };
@@ -72,7 +75,7 @@ public:
         if (num.size() <= 2 || (num.size() == 3 && num[0] + num[1] + num[2] != 0)) {
             return {};
         }
-        
+
         sort(num.begin(), num.end());
         int oldVal = num[0];
         vector<vector<int>> results;
@@ -81,33 +84,33 @@ public:
                 continue;
             }
             oldVal = num[i];
-            int needed = 0 - num[i];
-            int forward = i + 1;
-            int backward = num.size() - 1;
-            
-            while (forward < backward) {
-                while (forward > i + 1 and num[forward] == num[forward - 1]) {
-                    forward++;
+            int target = 0 - num[i];
+            int left = i + 1;
+            int right = num.size() - 1;
+
+            while (left < right) {
+                while (left > i + 1 and num[left] == num[left - 1]) {
+                    left++;
                 }
-                while (backward < num.size() - 1 and num[backward] == num[backward + 1]) {
-                    backward--;
+                while (right < num.size() - 1 and num[right] == num[right + 1]) {
+                    right--;
                 }
-                if (forward >= backward) {
+                if (left >= right) {
                     break;
                 }
 
-                if (num[forward] + num[backward] == needed) {
-                    results.push_back({num[i], num[forward], num[backward]});
-                    forward++;
+                if (num[left] + num[right] == target) {
+                    results.push_back({num[i], num[left], num[right]});
+                    left++;
                 }
-                else if (num[forward] + num[backward] < needed) {
-                    forward++;
+                else if (num[left] + num[right] < target) {
+                    left++;
                 }
-                else if (num[forward] + num[backward] > needed) {
-                    backward--;
+                else if (num[left] + num[right] > target) {
+                    right--;
                 }
             }
-        } 
+        }
         return results;
     }
 };
