@@ -44,7 +44,7 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
 };
 
-class Solution {
+class Solution { // use stack
 public:
     bool isValidBST(TreeNode* root) {
         stack<TreeNode*> stk;
@@ -78,7 +78,7 @@ private:
             return true;
         }
 
-        if (root -> val >= maxVal || root -> val <= minVal) {
+        if (root -> val >= maxVal or root -> val <= minVal) {
             return false;
         }
         return validate(root -> right, root -> val, maxVal) and validate(root -> left, minVal, root -> val);
