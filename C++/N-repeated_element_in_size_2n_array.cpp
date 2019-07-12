@@ -1,9 +1,8 @@
 /*
+961. N-Repeated Element in Size 2N Array
 In a array A of size 2N, there are N+1 unique elements, and exactly one of these elements is repeated N times.
 
 Return the element repeated N times.
-
-
 
 Example 1:
 
@@ -40,28 +39,27 @@ A.length is even
 #include <numeric>
 using namespace std;
 
+/*
+If we ever find a repeated element, it must be the answer. Let's call this answer the major element.
+
+Consider all subarrays of length 4. There must be a major element in at least one such subarray.
+
+This is because either:
+
+There is a major element in a length 2 subarray, or;
+Every length 2 subarray has exactly 1 major element,
+which means that a length 4 subarray that begins at a major element will have 2 major elements.
+*/
 class Solution {
 public:
     int repeatedNTimes(vector<int>& A) {
-        int n1 = 0;
-        int n2 = 1;
-        int n3 = 2;
-        int n4 = 3;
-        while (n1 <= A.size() - 4) {
-            if (A[n1] == A[n2] || A[n1] == A[n3] || A[n1] == A[n4]) {
-                return A[n1];
+        int n = A.size();
+        for (int k = 1; k <= 3; ++k) {
+            for (int i = 0; i + k < n; ++i) {
+                if (A[i] == A[i + k]) {
+                    return A[i];
+                }
             }
-            if (A[n2] == A[n3] || A[n2] == A[n4]) {
-                return A[n2];
-            }
-            if (A[n3] == A[n4]) {
-                return A[n3];
-            }
-
-            n1 += 4;
-            n2 += 4;
-            n3 += 4;
-            n4 += 4;
         }
         return -1;
     }
