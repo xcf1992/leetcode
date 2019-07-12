@@ -29,8 +29,12 @@ using namespace std;
 
 /*
 DP Solution O(n)
-For every ith digit, starting from ith index, either single digit number is valid (>0) or two digit number is valid (<=26),
-so number of ways dp[i] = ways for dp[i+1] (if ith single digit is valid, 0 otherwise) + dp[i+2] (if starting from i index 2 &1 digit numbers are valid, 0 otherwise)
+For every ith digit, starting from ith index,
+either single digit number is valid (>0) or two digit number is valid (<=26),
+
+so number of ways dp[i] = ways for dp[i+1] (if ith single digit is valid, 0 otherwise) +
+dp[i+2] (if starting from i index 2 &1 digit numbers are valid, 0 otherwise)
+
 dp[i] = dp[i+1] + dp[i+2];
 Base condition :: dp[s.len-1] = 1, if last single digit is valid, 0 otherwise.
 */

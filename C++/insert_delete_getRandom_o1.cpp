@@ -56,7 +56,7 @@ public:
     /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
     bool insert(int val) {
         if (indices.find(val) == indices.end()) {
-            indices.insert({val, nums.size()});
+            indices[val] = indices.size();
             nums.push_back(val);
             return true;
         }
@@ -73,7 +73,6 @@ public:
         int index = it -> second;
         nums[index] = nums.back();
         indices.find(nums[index]) -> second = index;
-
         nums.pop_back();
         indices.erase(it);
         return true;

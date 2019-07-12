@@ -45,27 +45,6 @@ Output:
 #include <unordered_set>
 using namespace std;
 
-class Solution { // dp Memory limit exceed
-public:
-    vector<string> wordBreak(string s, vector<string>& wordDict) {
-        unordered_set<string> dict(wordDict.begin(), wordDict.end());
-        int n = s.size();
-        vector<vector<string>> dp(n + 1);
-
-        dp[0].push_back("");
-        for (int i = 1; i <= n; ++i) {
-            for (int j = i - 1; j >= 0; --j) {
-                string word = s.substr(j, i - j);
-                if (dp[j].size() > 0 and dict.find(word) != dict.end()) {
-                    for (string& bw : dp[j]) {
-                        dp[i].push_back(bw + (bw == "" ? "" : " ") + word);
-                    }
-                }
-            }
-        }
-        return dp[n];
-    }
-};
 
 class Solution { // dfs with memo
 private:
@@ -96,5 +75,30 @@ public:
     vector<string> wordBreak(string s, vector<string>& wordDict) {
         unordered_set<string> dict(wordDict.begin(), wordDict.end());
         return generate(dict, s);
+    }
+};
+
+class Solution1 { // dp Memory limit exceed
+public:
+    vector<string> wordBreak(string s, vector<string>& wordDict) {
+        int n = s.size();
+        unordered_set<string> dict(wordDict.begin(), wordDict.end());
+
+        vector<vector<string>> dp(n + 1);
+        dp[0].push_back("");
+        for (int i = 1; i <= n; ++i) {
+            for (int j = i - 1; j >= 0; --j) {
+                if (dp[j].size() == 0) {
+                    continue;
+                }
+                string word = s.substr(j, i - j);
+                if (dict.find(word) != dict.end()) {
+                    for (string& bw : dp[j]) {
+                        dp[i].push_back(bw + (bw == "" ? "" : " ") + word);
+                    }
+                }
+            }
+        }
+        return dp[n];
     }
 };

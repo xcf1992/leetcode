@@ -1,6 +1,7 @@
 /*
 139. Word Break
-Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
+Given a non-empty string s and a dictionary wordDict containing a list of non-empty words,
+determine if s can be segmented into a space-separated sequence of one or more dictionary words.
 
 Note:
 
@@ -27,6 +28,7 @@ Output: false
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
+#include <set>
 #include <unordered_set>
 using namespace std;
 
@@ -37,7 +39,7 @@ public:
         vector<bool> dp(n + 1, false);
         dp[0] = true;
         set<string> dict(wordDict.begin(), wordDict.end());
-
+        
         for (int i = 1; i <= n; i++) {
             for (int j = 0; j < i; j++) {
                 if (!dp[j]) {

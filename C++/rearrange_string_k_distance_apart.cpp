@@ -1,9 +1,11 @@
 /*
  358. Rearrange String k Distance Apart
 
- Given a non-empty string s and an integer k, rearrange the string such that the same characters are at least distance k from each other.
+ Given a non-empty string s and an integer k,
+ rearrange the string such that the same characters are at least distance k from each other.
 
- All input strings are given in lowercase letters. If it is not possible to rearrange the string, return an empty string "".
+ All input strings are given in lowercase letters.
+ If it is not possible to rearrange the string, return an empty string "".
 
  Example 1:
 
@@ -40,7 +42,8 @@ we should not arrange the most frequent letter with k distance to solve this pro
  for example "aaabbbccc" with k = 2
  it will become abababccc using above algorithm
 
- instead we should arrange a group of k letters time by time, in each group we always try to put the most frequent letter first
+ instead we should arrange a group of k letters time by time,
+ in each group we always try to put the most frequent letter first
  and try to make we only use each letter once in each group
  */
 struct mycompare {
@@ -75,14 +78,13 @@ public:
                 if (pq.empty()) {
                     return "";
                 }
-
-                pair<int, char> temp = pq.top();
+                pair<int, char> cur = pq.top();
                 pq.pop();
 
-                result.push_back(temp.second);
-                temp.first -= 1;
-                if (temp.first > 0) {
-                    cache.push_back(temp);
+                result.push_back(cur.second);
+                cur.first -= 1;
+                if (cur.first > 0) {
+                    cache.push_back(cur);
                 }
                 n -= 1;
             }
