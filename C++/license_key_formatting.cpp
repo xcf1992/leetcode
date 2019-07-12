@@ -24,7 +24,6 @@ The length of string S will not exceed 12,000, and K is a positive integer.
 String S consists only of alphanumerical characters (a-z and/or A-Z and/or 0-9) and dashes(-).
 String S is non-empty.
 */
-
 #include <iostream>
 #include <string>
 #include <vector>
