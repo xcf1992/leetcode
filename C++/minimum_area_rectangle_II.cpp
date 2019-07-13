@@ -1,15 +1,13 @@
 /*
 963. Minimum Area Rectangle II
 
-Given a set of points in the xy-plane, determine the minimum area of any rectangle formed from these points, with sides not necessarily parallel to the x and y axes.
+Given a set of points in the xy-plane,
+determine the minimum area of any rectangle formed from these points,
+with sides not necessarily parallel to the x and y axes.
 
 If there isn't any rectangle, return 0.
 
-
-
 Example 1:
-
-
 
 Input: [[1,2],[2,1],[1,0],[0,1]]
 Output: 2.00000
@@ -45,7 +43,6 @@ Note:
 All points are distinct.
 Answers within 10^-5 of the actual value will be accepted as correct.
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -63,16 +60,29 @@ using namespace std;
 /*
 Intuition
 
-Consider opposite points AC and BD of a rectangle ABCD. They both have the same center O, which is the midpoint of AC and the midpoint of AB; and they both have the same radius dist(O, A) == dist(O, B) == dist(O, C) == dist(O, D). Notice that a necessary and sufficient condition to form a rectangle with two opposite pairs of points is that the points must have the same center and radius.
+Consider opposite points AC and BD of a rectangle ABCD.
+They both have the same center O,
+which is the midpoint of AC and the midpoint of AB;
+and they both have the same radius dist(O, A) == dist(O, B) == dist(O, C) == dist(O, D).
+Notice that a necessary and sufficient condition to form a rectangle with two opposite pairs of points
+is that the points must have the same center and radius.
 
-Motivated by that result, let's classify each pair of points PQ by their center C = the midpoint of PQ, and the radius r = dist(P, C). Our strategy is to brute force on pairs of points with the same classification.
+Motivated by that result,
+let's classify each pair of points PQ by their center C = the midpoint of PQ,
+and the radius r = dist(P, C).
+Our strategy is to brute force on pairs of points with the same classification.
 
 Algorithm
 
-For each pair of points, classify them by center and radius. We only need to record one of the points P, since the other point is P' = 2 * center - P (using vector notation).
+For each pair of points,
+classify them by center and radius.
+We only need to record one of the points P,
+since the other point is P' = 2 * center - P (using vector notation).
 
-For each center and radius, look at every possible rectangle (two pairs of points P, P', Q, Q'). The area of this rectangle dist(P, Q) * dist(P, Q') is a candidate answer.
- * */
+For each center and radius,
+look at every possible rectangle (two pairs of points P, P', Q, Q').
+The area of this rectangle dist(P, Q) * dist(P, Q') is a candidate answer.
+*/
 class Solution {
 private:
     double getDistance(int p1, int p2, vector<vector<int>>& points) {
@@ -89,9 +99,6 @@ public:
                 double centerY = points[i][1] + points[j][1];
                 double radius = getDistance(i, j, points);
                 string key = to_string(centerX) + "_" + to_string(centerY) + "_" + to_string(radius);
-                if (memo.find(key) == memo.end()) {
-                    memo[key] = vector<pair<int, int>>();
-                }
                 memo[key].push_back({i, j});
             }
         }

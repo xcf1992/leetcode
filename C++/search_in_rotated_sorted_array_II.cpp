@@ -21,7 +21,6 @@ This is a follow up problem to Search in Rotated Sorted Array, where nums may co
 Would this affect the run-time complexity? How and why?
 
  */
-
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -47,7 +46,7 @@ public:
             if (target == nums[mid]) {
                 return true;
             }
-            
+
             if (nums[mid] > nums[end]) {
                 if (target >= nums[start] && target < nums[mid]) {
                     end = mid - 1;
