@@ -1,18 +1,18 @@
 /*
+ 221. Maximal Square
  Given a 2D binary matrix filled with 0's and 1's, find the largest square containing only 1's and return its area.
- 
+
  Example:
- 
+
  Input:
- 
+
  1 0 1 0 0
  1 0 1 1 1
  1 1 1 1 1
  1 0 0 1 0
- 
+
  Output: 4
  */
-
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -28,6 +28,7 @@
 #include <set>
 using namespace std;
 
+// dp(i,j) represents the side length of the maximum square whose bottom right corner is the cell with index (i,j)
 class Solution {
 public:
     int maximalSquare(vector<vector<char>>& matrix) {
@@ -36,9 +37,9 @@ public:
             return 0;
         }
         int n = matrix[0].size();
+
         vector<vector<int>> dp(m, vector<int>(n , 0));
         int length = 0;
-        
         for (int j = 0; j < n; j++) {
             dp[0][j] = matrix[0][j] - '0';
             length = max(length, dp[0][j]);
@@ -55,7 +56,6 @@ public:
                 }
             }
         }
-        
         return length * length;
     }
 };
