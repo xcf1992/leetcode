@@ -2,11 +2,15 @@
 210. Course Schedule II
 There are a total of n courses you have to take, labeled from 0 to n-1.
 
-Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]
+Some courses may have prerequisites,
+for example to take course 0 you have to first take course 1,
+which is expressed as a pair: [0,1]
 
-Given the total number of courses and a list of prerequisite pairs, return the ordering of courses you should take to finish all courses.
+Given the total number of courses and a list of prerequisite pairs,
+return the ordering of courses you should take to finish all courses.
 
-There may be multiple correct orders, you just need to return one of them. If it is impossible to finish all courses, return an empty array.
+There may be multiple correct orders, you just need to return one of them.
+If it is impossible to finish all courses, return an empty array.
 
 Example 1:
 
@@ -23,7 +27,8 @@ Explanation: There are a total of 4 courses to take. To take course 3 you should
              So one correct course order is [0,1,2,3]. Another correct ordering is [0,2,1,3] .
 Note:
 
-The input prerequisites is a graph represented by a list of edges, not adjacency matrices. Read more about how a graph is represented.
+The input prerequisites is a graph represented by a list of edges, not adjacency matrices.
+Read more about how a graph is represented.
 You may assume that there are no duplicate edges in the input prerequisites.
  */
 #include <iostream>
@@ -44,18 +49,17 @@ using namespace std;
 class Solution {
 public:
     vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
-        unordered_map<int, unordered_set<int>> depent;
-        unordered_map<int, unordered_set<int>> pre;
+        vector<int> preCount(numCourses, 0);
+        unordered_map<int, unordered_set<int>> after;
         for (vector<int>& prerequisite : prerequisites) {
-            depent[prerequisite[0]].insert(prerequisite[1]);
-            pre[prerequisite[1]].insert(prerequisite[0]);
+            preCount[prerequisite[0]] += 1;
+            after[prerequisite[1]].insert(prerequisite[0]);
         }
 
         queue<int> order;
         for (int i = 0; i < numCourses; i++) {
-            if (depent.find(i) == depent.end() || depent[i].empty()) {
+            if (preCount[i] == 0) {
                 order.push(i);
-
             }
         }
 
@@ -65,16 +69,13 @@ public:
             result.push_back(course);
             order.pop();
 
-            for (int nextCourse : pre[course]) {
-                depent[nextCourse].erase(course);
-                if (depent[nextCourse].empty()) {
+            for (int nextCourse : after[course]) {
+                preCount[nextCourse] -= 1;
+                if (preCount[nextCourse] == 0) {
                     order.push(nextCourse);
                 }
             }
         }
-        if (result.size() == numCourses) {
-            return result;
-        }
-        return {};
+        return result.size() == numCourses ? result : vector<int>{};
     }
 };

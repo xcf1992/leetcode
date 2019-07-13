@@ -21,7 +21,8 @@ Explanation: There are a total of 2 courses to take.
              also have finished course 1. So it is impossible.
 Note:
 
-The input prerequisites is a graph represented by a list of edges, not adjacency matrices. Read more about how a graph is represented.
+The input prerequisites is a graph represented by a list of edges, not adjacency matrices.
+Read more about how a graph is represented.
 You may assume that there are no duplicate edges in the input prerequisites.
  */
 #include <iostream>
@@ -42,18 +43,17 @@ using namespace std;
 class Solution {
 public:
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
-        unordered_map<int, unordered_set<int>> depent;
-        unordered_map<int, unordered_set<int>> pre;
-        for (vector<int>& prerequisite : prerequisites) {
-            depent[prerequisite[0]].insert(prerequisite[1]);
-            pre[prerequisite[1]].insert(prerequisite[0]);
+        unordered_map<int, unordered_set<int>> preOf;
+        unordered_map<int, unordered_set<int>> after;
+        for (vector<int>& afterrequisite : prerequisites) {
+            preOf[afterrequisite[0]].insert(afterrequisite[1]);
+            after[afterrequisite[1]].insert(afterrequisite[0]);
         }
 
         queue<int> order;
         for (int i = 0; i < numCourses; i++) {
-            if (depent.find(i) == depent.end() || depent[i].empty()) {
+            if (preOf.find(i) == preOf.end() or preOf[i].empty()) {
                 order.push(i);
-
             }
         }
 
@@ -63,9 +63,9 @@ public:
             result.push_back(course);
             order.pop();
 
-            for (int nextCourse : pre[course]) {
-                depent[nextCourse].erase(course);
-                if (depent[nextCourse].empty()) {
+            for (int nextCourse : after[course]) {
+                preOf[nextCourse].erase(course);
+                if (preOf[nextCourse].empty()) {
                     order.push(nextCourse);
                 }
             }
