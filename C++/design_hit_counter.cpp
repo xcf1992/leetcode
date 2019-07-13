@@ -1,16 +1,5 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <unordered_map>
-#include <unordered_set>
-#include <algorithm>
-#include <cmath>
-#include <queue>
-#include <stack>
-#include <stdio.h>
-using namespace std;
-
 /*
+362. Design Hit Counter
 Design a hit counter which counts the number of hits received in the past 5 minutes.
 
 Each function accepts a timestamp parameter (in seconds granularity) and you may assume that calls are being made to the system in chronological order (ie, the timestamp is monotonically increasing). You may assume that the earliest timestamp starts at 1.
@@ -39,31 +28,39 @@ counter.hit(300);
 counter.getHits(300);
 
 // get hits at timestamp 301, should return 3.
-counter.getHits(301); 
+counter.getHits(301);
 Follow up:
 What if the number of hits per second could be very large? Does your design scale?
 
 */
+#include <iostream>
+#include <string>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+#include <algorithm>
+#include <cmath>
+#include <queue>
+#include <stack>
+#include <stdio.h>
+using namespace std;
+
 class HitCounter {
 private:
     queue<int> hits;
 public:
     /** Initialize your data structure here. */
     HitCounter() {}
-    
+
     /** Record a hit.
         @param timestamp - The current timestamp (in seconds granularity). */
     void hit(int timestamp) {
         hits.push(timestamp);
     }
-    
+
     /** Return the number of hits in the past 5 minutes.
         @param timestamp - The current timestamp (in seconds granularity). */
     int getHits(int timestamp) {
-        if (timestamp - hits.front() < 300) {
-            return hits.size();
-        }
-
         while (!hits.empty() && timestamp - hits.front() >= 300) {
             hits.pop();
         }
@@ -71,16 +68,14 @@ public:
     }
 };
 
-class HitCounter {
+class HitCounter1 {
 private:
     vector<int> times = vector<int>(300, 0);
     vector<int> hits = vector<int>(300, 0);
 public:
     /** Initialize your data structure here. */
-    HitCounter() {
-        
-    }
-    
+    HitCounter1() {}
+
     /** Record a hit.
         @param timestamp - The current timestamp (in seconds granularity). */
     void hit(int timestamp) {
@@ -93,7 +88,7 @@ public:
             hits[index] += 1;
         }
     }
-    
+
     /** Return the number of hits in the past 5 minutes.
         @param timestamp - The current timestamp (in seconds granularity). */
     int getHits(int timestamp) {
