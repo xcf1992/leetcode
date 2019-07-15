@@ -1,4 +1,5 @@
 /*
+ 957. Prison Cells After N Days
  There are 8 prison cells in a row, and each cell is either occupied or vacant.
 
  Each day, whether the cell is occupied or vacant changes according to the following rules:
@@ -40,7 +41,6 @@
  cells[i] is in {0, 1}
  1 <= N <= 10^9
  */
-
 #include <iostream>
 #include <string>
 #include <vector>

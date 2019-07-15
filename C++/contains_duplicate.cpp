@@ -3,7 +3,8 @@
 
 Given an array of integers, find if the array contains any duplicates.
 
-Your function should return true if any value appears at least twice in the array, and it should return false if every element is distinct.
+Your function should return true if any value appears at least twice in the array,
+and it should return false if every element is distinct.
 
 Example 1:
 
@@ -31,23 +32,23 @@ Output: true
 #include <set>
 using namespace std;
 
-class Solution {
+class Solution1 {
 public:
     bool containsDuplicate(vector<int>& nums) {
-        if (nums.empty()) {
-            return false;
-        }
-
         unordered_set<int> duplicate;
-        duplicate.insert(nums[0]);
-        for (int i = 1; i < nums.size(); i++) {
+        for (int i = 0; i < nums.size(); i++) {
             if (duplicate.find(nums[i]) != duplicate.end()) {
                 return true;
             }
-            else {
-                duplicate.insert(nums[i]);
-            }
+            duplicate.insert(nums[i]);
         }
         return false;
+    }
+};
+
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        return nums.size() > unordered_set<int>(nums.begin(), nums.end()).size();
     }
 };
