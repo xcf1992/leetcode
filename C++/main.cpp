@@ -15,19 +15,26 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> pathInZigZagTree(int label) {
-        int level = 1;
-        while ((1 << level) <= label) {
-            level += 1;
+    int numSubarrayProductLessThanK(vector<int> nums, int k) {
+        int n = nums.size();
+        if (n == 0) {
+            return 0;
         }
-        
-        vector<int> result(level, 1);
-        for (; label > 1; label /= 2) {
-            result[level - 1] = label;
-            level -= 1;
-            int parentStart = 1 << (level - 1);
-            int parentEnd = (1 << level) - 1;
-            label = parentEnd - (label / 2 - parentStart);
+        vector<double> preSum(n + 1, 0.0);
+        for (int i = 0; i <= n; ++i) {
+            preSum[i + 1] = preSum[i] + log10(nums[i]);
+        }
+
+        int result = 0;
+        for (int i = 0; i <= n; ++i) {
+            double target = preSum[i] + log10(k);
+            auto it = lower_bound(preSum.begin(), preSum.end(), target, [&](double a, double b) {
+                return a < b;
+            });
+            int index = (it - preSum.begin()) - 1;
+            if (index >= i) {
+                result += index - i;
+            }
         }
         return result;
     }
@@ -51,5 +58,5 @@ int main() {
         {0,0}
     });
     vector<string> words({"cat","cats","and","sand","dog"});
-    s.pathInZigZagTree(14);
+    s.numSubarrayProductLessThanK({10,5,2,6}, 100);
 }

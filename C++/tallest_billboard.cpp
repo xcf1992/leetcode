@@ -91,7 +91,7 @@ There are 3 ways to arrange a number: in the first group, in the second, not use
 The number of difference will be less than 3^N.
 The only case to reach 3^N is when rod = [1,3,9,27,81...]
 */
-class Solution {
+class Solution1 {
 public:
     int tallestBillboard(vector<int>& rods) {
         unordered_map<int, int> dp;
