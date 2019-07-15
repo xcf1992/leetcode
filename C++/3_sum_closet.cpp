@@ -1,3 +1,16 @@
+/*
+16. 3Sum Closest
+Given an array nums of n integers and an integer target,
+find three integers in nums such that the sum is closest to target.
+Return the sum of the three integers. You may assume that each input would have exactly one solution.
+
+Example:
+
+Given array nums = [-1, 2, 1, -4], and target = 1.
+
+The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
+
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -5,55 +18,37 @@
 #include <algorithm>
 using namespace std;
 
-int threeSumClosest(vector<int> &num, int target) {
-        int closet;
-        if (num.size() == 3) {
-            return num.at(0) + num.at(1) + num.at(2);
+class Solution {
+public:
+    int threeSumClosest(vector<int> &num, int target) {
+        int n = num.size();
+        if (n == 3) {
+            return num[0] + num[1] + num[2];
         }
-        
+
         sort(num.begin(), num.end());
-        bool firstTime = true;
-        for (int i = 0; i != num.size(); i++) {
-            int forward = i + 1;
-            int backward = num.size() - 1;
-            
-            while (forward < backward) {
-                int newCloset;
-                if (firstTime) {
-                    closet = num.at(i) + num.at(forward) + num.at(backward);
-                    newCloset = closet;
-                    firstTime = false;
-                    forward++;
+        int result = num[0] + num[1] + num[2];
+        for (int i = 0; i < n - 2; i++) {
+            int left = i + 1;
+            int right = n - 1;
+            while (left < right) {
+                int sum = num[i] + num[left] + num[right];
+                if (abs(sum - target) < abs(result - target)) {
+                    result = sum;
                 }
-                else {
-                    newCloset = num.at(i) + num.at(forward) + num.at(backward);
-                    
-                    if (abs(newCloset - target) < abs(closet - target)) {
-                        closet = newCloset;
-                    }
+
+                if (sum == target) {
+                    return sum;
                 }
-                
-                if (newCloset == target) {
-                    return newCloset;
+
+                if (sum < target) {
+                    left++;
                 }
-                else if (newCloset < target) {
-                    forward++;
-                }
-                else if (newCloset > target) {
-                    backward--;
+                else if (sum > target) {
+                    right--;
                 }
             }
         }
-        
-        return closet;
+        return result;
     }
-
-int main() {
-	vector<int> num;
-	num.push_back(-3);
-	num.push_back(2);
-	num.push_back(0);
-	num.push_back(1);
-	threeSumClosest(num, 1);
-	return 0;
-}
+};
