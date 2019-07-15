@@ -1,3 +1,22 @@
+/*
+378. Kth Smallest Element in a Sorted Matrix
+Given a n x n matrix where each of the rows and columns are sorted in ascending order, find the kth smallest element in the matrix.
+
+Note that it is the kth smallest element in the sorted order, not the kth distinct element.
+
+Example:
+
+matrix = [
+   [ 1,  5,  9],
+   [10, 11, 13],
+   [12, 13, 15]
+],
+k = 8,
+
+return 13.
+Note:
+You may assume k is always valid, 1 ≤ k ≤ n2.
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -9,7 +28,6 @@
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 For those who don't understand why it's guaranteed to have lo as an element in the matrix, here is my two cents.
 
@@ -42,15 +60,14 @@ To sum up, "lo" is ensured to reach an authentic element in the matrix, because 
 class Solution {
 public:
     int kthSmallest(vector<vector<int>>& matrix, int k) {
-        int size = matrix.size();
+        int n = matrix.size();
         int left = matrix[0][0];
-        int right = matrix[size - 1][size - 1];
-
+        int right = matrix[n - 1][n - 1];
         while (left < right) {
+            int middle = left + (right - left) / 2;
+
             int smaller = 0;
-            int middle = left + ((right - left) >> 1);
-            
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i < n; i++) {
                 smaller += upper_bound(matrix[i].begin(), matrix[i].end(), middle) - matrix[i].begin();
             }
 
@@ -61,12 +78,6 @@ public:
                 right = middle;
             }
         }
-
-        return right;
+        return left;
     }
 };
-
-int main() {
-    Solution s;
-    return 0;
-}

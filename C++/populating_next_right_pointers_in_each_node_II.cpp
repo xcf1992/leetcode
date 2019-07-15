@@ -12,7 +12,7 @@ Populate each next pointer to point to its next right node. If there is no next 
 
 Initially, all next pointers are set to NULL.
 
- 
+
 
 Example:
 
@@ -23,7 +23,7 @@ Input: {"$id":"1","left":{"$id":"2","left":{"$id":"3","left":null,"next":null,"r
 Output: {"$id":"1","left":{"$id":"2","left":{"$id":"3","left":null,"next":{"$id":"4","left":null,"next":{"$id":"5","left":null,"next":null,"right":null,"val":7},"right":null,"val":5},"right":null,"val":4},"next":{"$id":"6","left":null,"next":null,"right":{"$ref":"5"},"val":3},"right":{"$ref":"4"},"val":2},"next":null,"right":{"$ref":"6"},"val":1}
 
 Explanation: Given the above binary tree (Figure A), your function should populate each next pointer to point to its next right node, just like in Figure B.
- 
+
 
 Note:
 
@@ -34,12 +34,10 @@ Recursive approach is fine, implicit stack space does not count as extra space f
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <queue>
 #include <algorithm>
 using namespace std;
 
-
-/*
-// Definition for a Node.
 class Node {
 public:
     int val;
@@ -56,14 +54,14 @@ public:
         next = _next;
     }
 };
-*/
+
 class Solution {
 public:
     Node* connect(Node* root) {
-        if (root == nullptr || (root -> left == nullptr and root -> right == nullptr)) {
+        if (root == nullptr or (root -> left == nullptr and root -> right == nullptr)) {
             return root;
         }
-        
+
         queue<Node*> bfs;
         bfs.push(root);
         while (!bfs.empty()) {
@@ -72,13 +70,12 @@ public:
             for (int i = 0; i < curSize; ++i) {
                 Node* cur = bfs.front();
                 bfs.pop();
-                
+
                 if (pre != nullptr) {
                     pre -> next = cur;
-                    
                 }
                 pre = cur;
-                
+
                 if (cur -> left) {
                     bfs.push(cur -> left);
                 }
