@@ -16,7 +16,6 @@
  [1,4],
  ]
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -32,23 +31,23 @@
 using namespace std;
 
 class Solution {
-public:
-    void GetResult(int n, int k, int level, vector <int> &solution, vector <vector <int>> &result) {
-        if (solution.size() == k) {
-            result.push_back(solution);
+private:
+    void GetResult(int n, int k, int level, vector<int>& combination, vector<vector<int>>& result) {
+        if (combination.size() == k) {
+            result.push_back(combination);
         }
 
         for (int i = level; i != n + 1; i++) {
-            solution.push_back(i);
-            GetResult(n, k, i + 1, solution, result);
-            solution.pop_back();
+            combination.push_back(i);
+            GetResult(n, k, i + 1, combination, result);
+            combination.pop_back();
         }
     }
-
-    vector<vector<int> > combine(int n, int k) {
-        vector <vector <int>> result;
-        vector <int> solution;
-        GetResult(n, k, 1, solution, result);
+public:
+    vector<vector<int>> combine(int n, int k) {
+        vector<vector<int>> result;
+        vector<int> combination;
+        GetResult(n, k, 1, combination, result);
         return result;
     }
 };

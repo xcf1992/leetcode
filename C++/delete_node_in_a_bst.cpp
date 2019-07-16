@@ -1,6 +1,6 @@
 /*
 450. Delete Node in a BST
-Given a root node reference of a BST and a key, delete the node with the given key in the BST. 
+Given a root node reference of a BST and a key, delete the node with the given key in the BST.
 Return the root node reference (possibly updated) of the BST.
 
 Basically, the deletion can be divided into two stages:
@@ -50,19 +50,17 @@ Another valid answer is [5,2,6,null,4,null,7].
 #include <stdio.h>
 using namespace std;
 
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- * };
- */
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+};
+
 class Solution {
 private:
     TreeNode* findTarget(TreeNode* root, TreeNode*& prev, int key) {
-        if (root == nullptr || root -> val == key) {
+        if (root == nullptr or root -> val == key) {
             return root;
         }
 
@@ -74,7 +72,7 @@ private:
     }
 
     void insertNode(TreeNode* root, TreeNode* node) {
-        if (root == nullptr || node == nullptr) {
+        if (root == nullptr or node == nullptr) {
             return;
         }
 
@@ -84,34 +82,36 @@ private:
                 return;
             }
             insertNode(root -> left, node);
+            return;
         }
-        else {
-            if (root -> right == nullptr) {
-                root -> right = node;
-                return;
-            }
-            insertNode(root -> right, node);
+
+        if (root -> right == nullptr) {
+            root -> right = node;
+            return;
         }
+        insertNode(root -> right, node);
     }
 public:
     TreeNode* deleteNode(TreeNode* root, int key) {
         TreeNode* fake = new TreeNode(INT_MAX);
         fake -> left = root;
+
         TreeNode* prev = fake;
         TreeNode* target = findTarget(root, prev, key);
         if (target == nullptr) {
             return root;
         }
+
         if (prev -> left == target) {
-            prev -> left = nullptr;
+            prev -> left = target -> left;
         }
-        else if (prev -> right == target) {
-            prev -> right = nullptr;
+        else {
+            prev -> right = target -> left;
         }
-        insertNode(prev, target -> left);
         insertNode(prev, target -> right);
-        target = nullptr;
+
         delete target;
+        target = nullptr;
         return fake -> left;
     }
 };

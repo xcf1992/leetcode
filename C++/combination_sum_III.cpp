@@ -1,14 +1,14 @@
 /*
 216. Combination Sum III
 
-Find all possible combinations of k numbers that add up to a number n, given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.
+Find all possible combinations of k numbers that add up to a number n,
+given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.
 
 Note:
-
 All numbers will be positive integers.
 The solution set must not contain duplicate combinations.
-Example 1:
 
+Example 1:
 Input: k = 3, n = 7
 Output: [[1,2,4]]
 Example 2:
@@ -31,12 +31,11 @@ using namespace std;
 class Solution {
 private:
     void getCombinations(vector<vector<int>>& result, vector<int> combination, int k, int target, int start) {
-        if (k == 0 && target == 0) {
+        if (k == 0 and target == 0) {
             result.push_back(combination);
             return;
         }
-
-        if (start > target || k < 0) {
+        if (start > target or k < 0) {
             return;
         }
 
@@ -49,7 +48,7 @@ private:
 public:
     vector<vector<int>> combinationSum3(int k, int n) {
         vector<vector<int>> result;
-        vector<int> combination; 
+        vector<int> combination;
         getCombinations(result, combination, k, n, 1);
         return result;
     }

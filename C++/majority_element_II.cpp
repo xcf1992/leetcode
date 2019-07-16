@@ -29,11 +29,8 @@ using namespace std;
 class Solution {
 public:
     vector<int> majorityElement(vector<int>& nums) {
-        vector<int> result;
-        int candidate1 = INT_MIN;
-        int count1 = 0;
-        int candidate2 = INT_MIN;
-        int count2 = 0;
+        int candidate1 = INT_MIN, candidate2 = INT_MIN;
+        int count1 = 0, count2 = 0;
         for (int num : nums) {
             if (candidate1 == num) {
                 count1 += 1;
@@ -54,7 +51,7 @@ public:
                 count2 -= 1;
             }
         }
-        
+
         count1 = count2 = 0;
         for (int num : nums) {
             if (num == candidate1) {
@@ -64,7 +61,8 @@ public:
                 count2 += 1;
             }
         }
-        
+
+        vector<int> result;
         if (count1 > nums.size() / 3) {
             result.push_back(candidate1);
         }

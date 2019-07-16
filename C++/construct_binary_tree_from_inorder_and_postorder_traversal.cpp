@@ -17,7 +17,6 @@ Return the following binary tree:
   9  20
     /  \
    15   7
-
  */
 #include <iostream>
 #include <sstream>
@@ -34,13 +33,20 @@ Return the following binary tree:
 #include <set>
 using namespace std;
 
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+};
+
 class Solution {
 private:
-    TreeNode *createBinaryTree(vector<int> &inorder, int is, int ie, vector<int> &postorder, int ps, int pe) {
+    TreeNode* build(vector<int> &inorder, int is, int ie, vector<int> &postorder, int ps, int pe) {
         if (ps > pe) {
             return nullptr;
         }
-        
+
         TreeNode *root = new TreeNode(postorder[pe]);
         int i = 0;
         for (i = is; i != ie; i++) {
@@ -48,21 +54,19 @@ private:
                 break;
             }
         }
-        
-        root->left = createBinaryTree(inorder, is, i - 1, postorder, ps, i - is + ps - 1);
-        root->right = createBinaryTree(inorder, i + 1, ie, postorder, i - is + ps, pe - 1);
-        
+
+        root -> left = build(inorder, is, i - 1, postorder, ps, i - is + ps - 1);
+        root -> right = build(inorder, i + 1, ie, postorder, i - is + ps, pe - 1);
         return root;
     }
 public:
-    TreeNode *buildTree(vector<int> &inorder, vector<int> &postorder) {
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
         if (inorder.size() == 0) {
             return nullptr;
         }
         if (inorder.size() == 1) {
             return new TreeNode(inorder[0]);
         }
-        
-        return createBinaryTree(inorder, 0, inorder.size() - 1, postorder, 0, postorder.size() - 1);
+        return build(inorder, 0, inorder.size() - 1, postorder, 0, postorder.size() - 1);
     }
 };
