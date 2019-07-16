@@ -1,3 +1,28 @@
+/*
+29. Divide Two Integers
+Given two integers dividend and divisor,
+divide two integers without using multiplication, division and mod operator.
+
+Return the quotient after dividing dividend by divisor.
+
+The integer division should truncate toward zero.
+
+Example 1:
+
+Input: dividend = 10, divisor = 3
+Output: 3
+Example 2:
+
+Input: dividend = 7, divisor = -3
+Output: -2
+Note:
+
+Both dividend and divisor will be 32-bit signed integers.
+The divisor will never be 0.
+Assume we are dealing with an environment
+which could only store integers within the 32-bit signed integer range: [−231,  231 − 1].
+For the purpose of this problem, assume that your function returns 231 − 1 when the division result overflows.
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -6,7 +31,9 @@
 #include <cmath>
 using namespace std;
 
-int divide(int dividend, int divisor) {
+class Solution {
+public:
+    int divide(int dividend, int divisor) {
         if (dividend == 0) {
             return 0;
         }
@@ -14,46 +41,27 @@ int divide(int dividend, int divisor) {
             return dividend;
         }
         if (divisor == -1) {
-            return 0 - dividend;
+            long result = 0 - (long)dividend;
+            return result > INT_MAX ? INT_MAX : result;
         }
-        
-		long long a = dividend;
-		long long b = divisor;
-        if (a < 0) {
-			a = 0 - a;
-		}
-		if (b < 0) {
-			b = 0 - b;
-		}
-        if (a < b) {
-            return 0;
-        }
-        
-        long long result = 0;
-        long long count = 1;
-        long long temp = b;
-        
+
+        long a = labs(dividend);
+        long b = labs(divisor);
+        long result = 0;
         while (a >= b) {
-            count = 1;
-            temp = b;
+            long count = 1;
+            long temp = b;
             while (temp <= a) {
                 a -= temp;
                 result += count;
-                
                 temp = temp << 1;
                 count = count << 1;
             }
         }
-        
-        if ((dividend ^ divisor) >> 31) {
+
+        if (dividend > 0 ^ divisor > 0) {
             return 0 - result;
         }
         return result;
     }
-
-int main() {
-	int a = -2147483648;
-	int b = 2;
-	divide(a, b);
-	return 0;
-}
+};
