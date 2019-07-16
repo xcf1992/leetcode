@@ -14,26 +14,46 @@
 using namespace std;
 
 class Solution {
-public:
-    int numSubarrayProductLessThanK(vector<int> nums, int k) {
-        int n = nums.size();
-        if (n == 0) {
-            return 0;
-        }
-        vector<double> preSum(n + 1, 0.0);
-        for (int i = 0; i <= n; ++i) {
-            preSum[i + 1] = preSum[i] + log10(nums[i]);
+private:
+    int m = 0;
+    int n = 0;
+    vector<int> diff = {0, 1, 0, -1, 0};
+
+    void canFlow(vector<vector<int>>& matrix, vector<vector<int>>& reached, int r, int c, int height, int mark) {
+        cout << r << " " << c << endl;
+        if (r >= m or c >= n or r < 0 or c < 0 or matrix[r][c] < height or (reached[r][c] & mark) != 0) {
+            return;
         }
 
-        int result = 0;
-        for (int i = 0; i <= n; ++i) {
-            double target = preSum[i] + log10(k);
-            auto it = lower_bound(preSum.begin(), preSum.end(), target, [&](double a, double b) {
-                return a < b;
-            });
-            int index = (it - preSum.begin()) - 1;
-            if (index >= i) {
-                result += index - i;
+        reached[r][c] |= mark;
+        for (int i = 1; i < diff.size(); ++i) {
+            canFlow(matrix, reached, r + diff[i], c + diff[i - 1], matrix[r][c], mark);
+        }
+    }
+public:
+    vector<vector<int>> pacificAtlantic(vector<vector<int>>& matrix) {
+        m = matrix.size();
+        if (m == 0) {
+            return {};
+        }
+        n = matrix[0].size();
+
+        vector<vector<int>> reached(m, vector<int>(n, 0));
+        for (int i = 0; i < m; ++i) {
+            canFlow(matrix, reached, i, 0, INT_MIN, 1);
+            canFlow(matrix, reached, i, n - 1, INT_MIN, 2);
+        }
+        for (int j = 0; j < n; ++j) {
+            canFlow(matrix, reached, 0, j, INT_MIN, 1);
+            canFlow(matrix, reached, m - 1, j, INT_MIN, 2);
+        }
+
+        vector<vector<int>> result;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (reached[i][j] == 3) {
+                    result.push_back({i, j});
+                }
             }
         }
         return result;
@@ -54,9 +74,12 @@ int main() {
         {1,1}
     });
     vector<vector<int>> matrix2({
-        {1,0},
-        {0,0}
+        {1,2,2,3,5},
+        {3,2,3,4,4},
+        {2,4,5,3,1},
+        {6,7,1,4,5},
+        {5,1,1,2,4}
     });
     vector<string> words({"cat","cats","and","sand","dog"});
-    s.numSubarrayProductLessThanK({10,5,2,6}, 100);
+    s.pacificAtlantic(matrix2);
 }

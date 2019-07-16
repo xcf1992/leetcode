@@ -1,17 +1,19 @@
 /*
- Given an m x n matrix of non-negative integers representing the height of each unit cell in a continent, the "Pacific ocean" touches the left and top edges of the matrix and the "Atlantic ocean" touches the right and bottom edges.
- 
+ 417. Pacific Atlantic Water Flow
+ Given an m x n matrix of non-negative integers representing the height of each unit cell in a continent,
+ the "Pacific ocean" touches the left and top edges of the matrix and the "Atlantic ocean" touches the right and bottom edges.
+
  Water can only flow in four directions (up, down, left, or right) from a cell to another one with height equal or lower.
- 
+
  Find the list of grid coordinates where water can flow to both the Pacific and Atlantic ocean.
- 
+
  Note:
  The order of returned grid coordinates does not matter.
  Both m and n are less than 150.
  Example:
- 
+
  Given the following 5x5 matrix:
- 
+
  Pacific ~   ~   ~   ~   ~
  ~  1   2   2   3  (5) *
  ~  3   2   3  (4) (4) *
@@ -19,12 +21,11 @@
  ~ (6) (7)  1   4   5  *
  ~ (5)  1   1   2   4  *
  *   *   *   *   * Atlantic
- 
+
  Return:
- 
+
  [[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]] (positions with parentheses in above matrix).
  */
-
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -40,45 +41,43 @@ using namespace std;
 
 class Solution {
 private:
-    void canFlow(vector<vector<int>>& matrix, vector<vector<bool>>& flowTo, int i, int j, int height) {
-        int m = matrix.size();
-        int n = matrix[0].size();
-        
-        if (i >= m || j >= n || i < 0 || j < 0 || flowTo[i][j] || matrix[i][j] > height) {
+    int m = 0;
+    int n = 0;
+    vector<int> diff = {0, 1, 0, -1, 0};
+
+    void canFlow(vector<vector<int>>& matrix, vector<vector<int>>& reached, int r, int c, int height, int mark) {
+        if (r >= m or c >= n or r < 0 or c < 0 or matrix[r][c] < height or (reached[r][c] & mark) != 0) {
             return;
         }
-        
-        flowTo[i][j] = true;
-        canFlow(matrix, flowTo, i - 1, j, matrix[i][j]);
-        canFlow(matrix, flowTo, i + 1, j, matrix[i][j]);
-        canFlow(matrix, flowTo, i, j - 1, matrix[i][j]);
-        canFlow(matrix, flowTo, i, j + 1, matrix[i][j]);
-        return;
+
+        reached[r][c] |= mark;
+        for (int i = 1; i < diff.size(); ++i) {
+            canFlow(matrix, reached, r + diff[i], c + diff[i - 1], matrix[r][c], mark);
+        }
     }
 public:
-    vector<pair<int, int>> pacificAtlantic(vector<vector<int>>& matrix) {
-        int m = matrix.size();
+    vector<vector<int>> pacificAtlantic(vector<vector<int>>& matrix) {
+        m = matrix.size();
         if (m == 0) {
             return {};
         }
-        int n = matrix[0].size();
-        
-        vector<vector<bool>> flow2P(m, vector<bool>(n, false));
-        vector<vector<bool>> flow2A(m, vector<bool>(n, false));
-        for (int i = 0; i < m; i++) {
-            canFlow(matrix, flow2A, i, 0, INT_MIN);
-            canFlow(matrix, flow2P, i, n - 1, INT_MIN);
+        n = matrix[0].size();
+
+        vector<vector<int>> reached(m, vector<int>(n, 0));
+        for (int i = 0; i < m; ++i) {
+            canFlow(matrix, reached, i, 0, INT_MIN, 1);
+            canFlow(matrix, reached, i, n - 1, INT_MIN, 2);
         }
-        for (int j = 0; j < n; j++) {
-            canFlow(matrix, flow2A, 0, j, INT_MIN);
-            canFlow(matrix, flow2P, m - 1, j, INT_MIN);
+        for (int j = 0; j < n; ++j) {
+            canFlow(matrix, reached, 0, j, INT_MIN, 1);
+            canFlow(matrix, reached, m - 1, j, INT_MIN, 2);
         }
-        
-        vector<pair<int, int>> result;
+
+        vector<vector<int>> result;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if (flow2P[i][j] && flow2A[i][j]) {
-                    result.push_back(make_pair(i, j));
+                if (reached[i][j] == 3) {
+                    result.push_back({i, j});
                 }
             }
         }
