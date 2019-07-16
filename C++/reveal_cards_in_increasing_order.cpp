@@ -1,22 +1,22 @@
 /*
-950. Reveal Cards In Increasing Order
- In a deck of cards, every card has a unique integer.  You can order the deck in any order you want.
- 
+ 950. Reveal Cards In Increasing Order
+ In a deck of cards, every card has a unique integer.
+ You can order the deck in any order you want.
+
  Initially, all the cards start face down (unrevealed) in one deck.
- 
+
  Now, you do the following steps repeatedly, until all cards are revealed:
- 
+
  Take the top card of the deck, reveal it, and take it out of the deck.
  If there are still cards in the deck, put the next top card of the deck at the bottom of the deck.
- If there are still unrevealed cards, go back to step 1.  Otherwise, stop.
+ If there are still unrevealed cards, go back to step 1.
+ Otherwise, stop.
  Return an ordering of the deck that would reveal the cards in increasing order.
- 
+
  The first entry in the answer is considered to be the top of the deck.
- 
- 
- 
+
  Example 1:
- 
+
  Input: [17,13,11,2,3,5,7]
  Output: [2,13,3,11,5,17,7]
  Explanation:
@@ -30,15 +30,14 @@
  We reveal 13, and move 17 to the bottom.  The deck is now [17].
  We reveal 17.
  Since all the cards revealed are in increasing order, the answer is correct.
- 
- 
+
+
  Note:
- 
+
  1 <= A.length <= 1000
  1 <= A[i] <= 10^6
  A[i] != A[j] for all i != j
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -69,16 +68,15 @@ using namespace std;
 class Solution {
 public:
     vector<int> deckRevealedIncreasing(vector<int>& deck) {
-        deque<int> res;
         sort(deck.begin(), deck.end());
-        
+
+        deque<int> res;
         res.push_front(deck.back());
         for (int i = deck.size() - 2; i >= 0; i--) {
             res.push_front(res.back());
             res.pop_back();
             res.push_front(deck[i]);
         }
-        
         return vector<int>(res.begin(), res.end());
     }
 };
@@ -94,7 +92,7 @@ private:
         if (curSize == 1) {
             return {deck[start]};
         }
-        
+
         int pos = 0;
         int i = 0;
         while (pos < result.size()) {
@@ -102,7 +100,7 @@ private:
             pos += 2;
             i += 1;
         }
-        
+
         vector<int> halfDeck = orderDeck(deck, start + i, n);
         pos = 1;
         if (curSize % 2 != 0) {
