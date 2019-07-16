@@ -1,7 +1,7 @@
 /*
 333. Largest BST Subtree
 
-Given a binary tree, find the largest subtree which is a Binary Search Tree (BST), 
+Given a binary tree, find the largest subtree which is a Binary Search Tree (BST),
 where largest means subtree with largest number of nodes in it.
 
 Note:
@@ -11,10 +11,10 @@ Example:
 
 Input: [10,5,15,1,8,null,7]
 
-   10 
-   / \ 
-  5  15 
- / \   \ 
+   10
+   / \
+  5  15
+ / \   \
 1   8   7
 
 Output: 3
@@ -23,7 +23,6 @@ Explanation: The Largest BST Subtree in this case is the highlighted one.
 Follow up:
 Can you figure out ways to solve it with O(n) time complexity?
  */
-
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -45,7 +44,7 @@ struct TreeNode {
     TreeNode *left;
     TreeNode *right;
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-    };
+};
 
 class Solution {
 private:
@@ -55,11 +54,10 @@ private:
             // so we need to assign max to be INT_MIN and min to INT_MAX to make a leaf node always a BST
             return {INT_MAX, INT_MIN, 0};
         }
-        
+
         vector<int> leftSub = count(root -> left);
         vector<int> rightSub = count(root -> right);
-        
-        if (root -> val > leftSub[1] && root -> val < rightSub[0]) {
+        if (root -> val > leftSub[1] and root -> val < rightSub[0]) {
             return {min(root -> val, leftSub[0]), max(root -> val, rightSub[1]), leftSub[2] + 1 + rightSub[2]};
         }
         // current and further tree should be invalid BST

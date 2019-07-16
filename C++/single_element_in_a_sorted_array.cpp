@@ -1,9 +1,8 @@
 /*
 540. Single Element in a Sorted Array
 
-Given a sorted array consisting of only integers where every element appears exactly twice except for one element which appears exactly once. Find this single element that appears only once.
-
- 
+Given a sorted array consisting of only integers where every element appears exactly twice
+except for one element which appears exactly once. Find this single element that appears only once.
 
 Example 1:
 
@@ -13,11 +12,9 @@ Example 2:
 
 Input: [3,3,7,7,10,11,11]
 Output: 10
- 
+
 
 Note: Your solution should run in O(log n) time and O(1) space.
-
-
 */
 #include <iostream>
 #include <string>
@@ -40,7 +37,7 @@ public:
             int mid = start + (end - start) / 2;
             int num = nums[mid];
 
-            if (mid < end && num == nums[mid + 1]) {
+            if (mid < end and num == nums[mid + 1]) {
                 if ((end - mid + 1) % 2 == 0) {
                     end = mid - 1;
                 }
@@ -55,7 +52,7 @@ public:
                 else {
                     start = mid + 1;
                 }
-            } 
+            }
             else {
                 return num;
             }

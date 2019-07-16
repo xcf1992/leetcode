@@ -61,6 +61,7 @@ public:
 
 /*
 Intuition
+Triple Binary Search, Triple Happiness.
 Binary find peak in the mountain.
 852. Peak Index in a Mountain Array
 Binary find the target in strict increasing array

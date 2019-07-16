@@ -5,7 +5,7 @@ Given an array of numbers, verify whether it is the correct preorder traversal s
 
 You may assume each number in the sequence is unique.
 
-Consider the following binary search tree: 
+Consider the following binary search tree:
 
      5
     / \
@@ -35,15 +35,15 @@ Could you do it using only constant space complexity?*/
 #include <map>
 using namespace std;
 /*
-To translate this into code: 
-looking for the trend of numbers, if it’s decreasing, it’s still traversing the left child node all the way down, 
-we push the value into stack. When we read a value greater than the last one, 
-we know the current value belongs to a right node (let it be rc: right child) of one of the previous nodes (let it be p) 
-we pushed to stack, in other words, p is a parent node of the current node rc. Due to the property of preorder traversal, 
-p’s value is pushed to stack before its left subtree nodes, so to find the parent node, we pop all the nodes in its left subtree, 
-and the last popped node whose value is smaller than rc is rc’s parent p, whose value becomes the lower bound. 
+To translate this into code:
+looking for the trend of numbers, if it’s decreasing, it’s still traversing the left child node all the way down,
+we push the value into stack. When we read a value greater than the last one,
+we know the current value belongs to a right node (let it be rc: right child) of one of the previous nodes (let it be p)
+we pushed to stack, in other words, p is a parent node of the current node rc. Due to the property of preorder traversal,
+p’s value is pushed to stack before its left subtree nodes, so to find the parent node, we pop all the nodes in its left subtree,
+and the last popped node whose value is smaller than rc is rc’s parent p, whose value becomes the lower bound.
 
-Then we keep reading the serialized array, in any case we see any value not greater than the lower bound, 
+Then we keep reading the serialized array, in any case we see any value not greater than the lower bound,
 we return false. Lower bound is updated whenever we read a right child node’s value.
 */
 class Solution {
@@ -68,14 +68,6 @@ public:
         return true;
     }
 };
-/*
- Given an array of numbers, verify whether it is the correct preorder traversal sequence of a binary search tree.
- 
- You may assume each number in the sequence is unique.
- 
- Follow up:
- Could you do it using only constant space complexity?
- */
 
 class Solution1 {
 private:
@@ -83,23 +75,24 @@ private:
         if (start >= end) {
             return true;
         }
-        
+
         if (preorder[start] <= minVal || preorder[start] >= maxVal) {
             return false;
         }
-        
+
         int newEnd = start + 1;
-        while (newEnd < preorder.size() && preorder[newEnd] <= preorder[start]) {
-            newEnd++;
+        while (newEnd < preorder.size() and preorder[newEnd] <= preorder[start]) {
+            newEnd += 1;
         }
-        return verify(preorder, start + 1, newEnd, minVal, preorder[start]) &&
+        return verify(preorder, start + 1, newEnd, minVal, preorder[start]) and
                 verify(preorder, newEnd, end, preorder[start], maxVal);
     }
 public:
     bool verifyPreorder(vector<int>& preorder) {
-        if (preorder.size() <= 1) {
+        int n = preorder.size();
+        if (n <= 1) {
             return true;
         }
-        return verify(preorder, 0, preorder.size(), INT_MIN, INT_MAX);
+        return verify(preorder, 0, n, INT_MIN, INT_MAX);
     }
 };

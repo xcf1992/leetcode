@@ -3,9 +3,11 @@
 
 There are N gas stations along a circular route, where the amount of gas at station i is gas[i].
 
-You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from station i to its next station (i+1). You begin the journey with an empty tank at one of the gas stations.
+You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from station i to its next station (i+1).
+You begin the journey with an empty tank at one of the gas stations.
 
-Return the starting gas station's index if you can travel around the circuit once in the clockwise direction, otherwise return -1.
+Return the starting gas station's index if you can travel around the circuit once in the clockwise direction,
+otherwise return -1.
 
 Note:
 
@@ -14,7 +16,7 @@ Both input arrays are non-empty and have the same length.
 Each element in the input arrays is a non-negative integer.
 Example 1:
 
-Input: 
+Input:
 gas  = [1,2,3,4,5]
 cost = [3,4,5,1,2]
 
@@ -30,7 +32,7 @@ Travel to station 3. The cost is 5. Your gas is just enough to travel back to st
 Therefore, return 3 as the starting index.
 Example 2:
 
-Input: 
+Input:
 gas  = [2,3,4]
 cost = [3,4,3]
 
@@ -54,26 +56,23 @@ using namespace std;
 class Solution {
 public:
     int canCompleteCircuit(vector<int> &gas, vector<int> &cost) {
-        if (gas.size() != cost.size()) {
+        if (gas.size() != cost.size() or gas.empty()) {
             return -1;
         }
-        if (gas.empty()) {
-            return -1;
-        }
-        
+
         vector<int> diff(gas.size());
         int total = 0;
-        for (int i = 0; i != gas.size(); i++) {
+        for (int i = 0; i != gas.size(); ++i) {
             diff[i] = gas[i] - cost[i];
             total += diff[i];
         }
         if (total < 0) {
             return -1;
         }
-        
+
         int start = 0;
         int sum = 0;
-        for (int i = 0; i != diff.size(); i++) {
+        for (int i = 0; i < diff.size(); ++i) {
             sum += diff[i];
             if (sum < 0) {
                 sum = 0;
