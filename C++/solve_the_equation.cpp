@@ -1,6 +1,7 @@
 /*
 640. Solve the Equation
-Solve a given equation and return the value of x in the form of string "x=#value". The equation contains only '+', '-' operation, the variable x and its coefficient.
+Solve a given equation and return the value of x in the form of string "x=#value".
+The equation contains only '+', '-' operation, the variable x and its coefficient.
 
 If there is no solution for the equation, return "No solution".
 
@@ -42,7 +43,6 @@ public:
     string solveEquation(string equation) {
         int coefficient = 0;
         int num = 0;
-
         int i = 0;
         int negative = 1;
         int move = 1;
@@ -83,7 +83,6 @@ public:
         if (coefficient == 0) {
             return num == 0 ? "Infinite solutions" : "No solution";
         }
-
         return "x=" + to_string(num / coefficient);
     }
 };

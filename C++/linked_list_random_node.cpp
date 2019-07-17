@@ -1,10 +1,13 @@
 /*
 382. Linked List Random Node
 
-Given a singly linked list, return a random node's value from the linked list. Each node must have the same probability of being chosen.
+Given a singly linked list,
+return a random node's value from the linked list.
+Each node must have the same probability of being chosen.
 
 Follow up:
-What if the linked list is extremely large and its length is unknown to you? Could you solve this efficiently without using extra space?
+What if the linked list is extremely large and its length is unknown to you?
+Could you solve this efficiently without using extra space?
 
 Example:
 
@@ -16,7 +19,6 @@ Solution solution = new Solution(head);
 
 // getRandom() should return either 1, 2, or 3 randomly. Each element should have equal probability of returning.
 solution.getRandom();
-
 */
 #include <iostream>
 #include <string>
@@ -29,15 +31,12 @@ solution.getRandom();
 #include <stdio.h>
 using namespace std;
 
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode(int x) : val(x), next(nullptr) {}
+};
 
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(nullptr) {}
- * };
- */
 class Solution {
 private:
     ListNode* start = nullptr;
@@ -50,10 +49,9 @@ public:
 
     /** Returns a random node's value. */
     int getRandom() {
-        int result = start->val;
-        ListNode* current = start -> next;
-
-        int count = 2;
+        int result = start -> val;
+        ListNode* current = start;
+        int count = 1;
         while (current) {
             if (rand() % count == 0) {
                 result = current -> val;

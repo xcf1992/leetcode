@@ -12,10 +12,10 @@ Input: [3,2,3,null,3,null,1]
      3
     / \
    2   3
-    \   \ 
+    \   \
      3   1
 
-Output: 7 
+Output: 7
 Explanation: Maximum amount of money the thief can rob = 3 + 3 + 1 = 7.
 Example 2:
 
@@ -24,7 +24,7 @@ Input: [3,4,5,1,3,null,1]
      3
     / \
    4   5
-  / \   \ 
+  / \   \
  1   3   1
 
 Output: 9
@@ -42,16 +42,13 @@ Explanation: Maximum amount of money the thief can rob = 4 + 5 = 9.
 #include <stdio.h>
 using namespace std;
 
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+};
 
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- * };
- */
 class Solution {
 private:
     unordered_map<TreeNode*, int> cache;
@@ -72,7 +69,7 @@ public:
         if (root -> right != nullptr) {
             maxMoney += rob(root -> right -> left) + rob(root -> right -> right);
         }
-        
+
         cache[root] = max(maxMoney, rob(root -> left) + rob(root -> right));
         return cache[root];
     }
