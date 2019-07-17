@@ -1,5 +1,12 @@
 /*
- Given a string s and a list of strings dict, you need to add a closed pair of bold tag <b> and </b> to wrap the substrings in s that exist in dict. If two such substrings overlap, you need to wrap them together by only one pair of closed bold tag. Also, if two substrings wrapped by bold tags are consecutive, you need to combine them.
+ 616. Add Bold Tag in String
+
+ Given a string s and a list of strings dict,
+ you need to add a closed pair of bold tag <b> and </b>
+ to wrap the substrings in s that exist in dict.
+ If two such substrings overlap,
+ you need to wrap them together by only one pair of closed bold tag.
+ Also, if two substrings wrapped by bold tags are consecutive, you need to combine them.
  Example 1:
  Input:
  s = "abcxyz123"
@@ -16,7 +23,6 @@
  The given dict won't contain duplicates, and its length won't exceed 100.
  All the strings in input have length in range [1, 1000].
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -36,18 +42,18 @@ public:
         if (s.empty() || dict.empty()) {
             return s;
         }
-        
+
         vector<pair<int, int>> pos;
         for (string word : dict) {
             for (int i = 0; (i = s.find(word, i)) != string::npos; i++) {
                 pos.push_back(make_pair(i, i + word.size()));
             }
         }
-        
+
         sort(pos.begin(), pos.end(), [](pair<int, int>& a, pair<int, int>& b) {
             return a.first < b.first || (a.first == b.first && a.second < b.second);
         });
-        
+
         vector<pair<int, int>> merge;
         for (int i = 0, j = -1; i < pos.size(); i++) {
             if (j < 0 || pos[i].first > merge[j].second) {
@@ -58,7 +64,7 @@ public:
                 merge[j].second = max(merge[j].second, pos[i].second);
             }
         }
-        
+
         for (int i = merge.size() - 1; i >= 0; i--) {
             s.insert(merge[i].second, "</b>");
             s.insert(merge[i].first, "<b>");

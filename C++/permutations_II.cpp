@@ -12,11 +12,11 @@ Output:
   [1,2,1],
   [2,1,1]
 ]
-
 */
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
 #include <unordered_map>
 #include <algorithm>
 using namespace std;
@@ -34,9 +34,8 @@ private:
                 permutation.push_back(it -> first);
                 it -> second -= 1;
                 generate(result, permutation, count, length);
-
-                permutation.pop_back();
                 it -> second += 1;
+                permutation.pop_back();
             }
         }
     }
@@ -61,13 +60,13 @@ private:
             result.push_back(solution);
             return;
         }
-        
+
         for (int i = 0; i < num.size(); i++) {
             if (visit[i] == 0) {
                 if (i > 0 && num[i - 1] == num[i] && visit[i - 1] == 0) {
                     continue;
                 }
-                
+
                 visit[i] = 1;
                 solution.push_back(num[i]);
                 generate(num, visit, solution, result);
@@ -81,7 +80,7 @@ public:
         vector<int> solution;
         vector<vector<int>> result;
         vector<int> visit(num.size(), 0);
-        
+
         sort(num.begin(), num.end());
         generate(num, visit, solution, result);
         return result;
@@ -96,7 +95,7 @@ private:
             result.push_back(num);
             return;
         }
-        
+
         for (int i = start; i < num.size(); i++) {
             if (i != start and num[i] == num[start]) {
                 continue;
