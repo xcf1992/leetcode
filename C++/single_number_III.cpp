@@ -1,6 +1,9 @@
 /*
 260. Single Number III
-Given an array of numbers nums, in which exactly two elements appear only once and all the other elements appear exactly twice. Find the two elements that appear only once.
+Given an array of numbers nums,
+in which exactly two elements appear only once
+and all the other elements appear exactly twice.
+Find the two elements that appear only once.
 
 Example:
 
@@ -29,14 +32,19 @@ public:
         for (auto num : nums) {
             xorResult ^= num;
         }
-        int lastBit = xorResult & ((xorResult - 1) ^ xorResult);
 
+        /*
+        * find the last bit which is 1 in xorResult;
+        * say xorResult is 1100
+        * then the lastBit will be 100, which means a and b is different in this bit
+        */
+        int lastBit = xorResult & ((xorResult - 1) ^ xorResult);
         int result = 0;
         for (auto num : nums) {
             if (lastBit & num) {
                 result ^= num;
             }
         }
-        return vector<int>{result, result ^ xorResult};
+        return {result, result ^ xorResult};
     }
 };
