@@ -1,9 +1,13 @@
 /*
  549. Binary Tree Longest Consecutive Sequence II
  Given a binary tree, you need to find the length of Longest Consecutive Path in Binary Tree.
- 
- Especially, this path can be either increasing or decreasing. For example, [1,2,3,4] and [4,3,2,1] are both considered valid, but the path [1,2,4,3] is not valid. On the other hand, the path can be in the child-Parent-child order, where not necessarily be parent-child order.
- 
+
+ Especially, this path can be either increasing or decreasing.
+ For example, [1,2,3,4] and [4,3,2,1] are both considered valid,
+ but the path [1,2,4,3] is not valid.
+ On the other hand, the path can be in the child-Parent-child order,
+ where not necessarily be parent-child order.
+
  Example 1:
  Input:
    1
@@ -19,7 +23,6 @@
  Output: 3
  Explanation: The longest consecutive path is [1, 2, 3] or [3, 2, 1].
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -33,17 +36,16 @@
 #include <map>
 using namespace std;
 
-
 struct TreeNode {
-      int val;
-      TreeNode *left;
-      TreeNode *right;
-      TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-  };
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
 
 class Solution {
 private:
-    vector<int> traverse(TreeNode* root, int& result) {
+    vector<int> traverse(TreeNode* root, int& result) { // return the lenght of longest path with gap {-1, 1}
         if (root == nullptr) {
            return {0, 0};
         }
@@ -67,7 +69,7 @@ private:
             }
         }
 
-        result = max(result, max(l1[0] + l2[1], l1[1] + l2[0]) + 1);
+        result = max(result, 1 + max(l1[0] + l2[1], l1[1] + l2[0]));
         return {1 + max(l1[0], l2[0]), 1 + max(l1[1], l2[1])};
     }
 public:
@@ -84,7 +86,7 @@ private:
         if (root == nullptr) {
             return 0;
         }
-        
+
         if (root -> val == preVal + diff) {
             return max(findPath(root -> left, root -> val, diff), findPath(root -> right, root -> val, diff)) + 1;
         }
@@ -95,7 +97,7 @@ public:
         if (root == nullptr) {
             return 0 ;
         }
-        
+
         int l1 = findPath(root -> left, root -> val, -1) + findPath(root -> right, root -> val, 1) + 1;
         int l2 = findPath(root -> left, root -> val, 1) + findPath(root -> right, root -> val, -1) + 1;
         int longest = max(longestConsecutive(root -> left), longestConsecutive(root -> right));

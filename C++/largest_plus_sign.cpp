@@ -1,9 +1,17 @@
 /*
 764. Largest Plus Sign
 
-In a 2D grid from (0, 0) to (N-1, N-1), every cell contains a 1, except those cells in the given list mines which are 0. What is the largest axis-aligned plus sign of 1s contained in the grid? Return the order of the plus sign. If there is none, return 0.
+In a 2D grid from (0, 0) to (N-1, N-1),
+every cell contains a 1,
+except those cells in the given list mines which are 0.
+What is the largest axis-aligned plus sign of 1s contained in the grid?
+Return the order of the plus sign. If there is none, return 0.
 
-An "axis-aligned plus sign of 1s of order k" has some center grid[x][y] = 1 along with 4 arms of length k-1 going up, down, left, and right, and made of 1s. This is demonstrated in the diagrams below. Note that there could be 0s or 1s beyond the arms of the plus sign, only the relevant area of the plus sign is checked for 1s.
+An "axis-aligned plus sign of 1s of order k" has some center grid[x][y] = 1
+along with 4 arms of length k-1 going up, down, left, and right, and made of 1s.
+This is demonstrated in the diagrams below.
+Note that there could be 0s or 1s beyond the arms of the plus sign,
+only the relevant area of the plus sign is checked for 1s.
 
 Examples of Axis-Aligned Plus Signs of Order k:
 
@@ -116,7 +124,7 @@ public:
         for (auto& mine : mines) {
             grid[mine[0]][mine[1]] = 0;
         }
-        
+
         for (int i = 0; i < N; i++) {
             int l = 0, r = 0, u = 0, d = 0;
             for (int j = 0; j < N; j++) {
@@ -126,7 +134,7 @@ public:
                 grid[N - j - 1][i] = min(grid[N - j - 1][i], d = (grid[N - j - 1][i] == 0 ? 0 : d + 1));
             }
         }
-        
+
         int result = 0;
         for (vector<int>& row : grid) {
             for (int& num : row) {
