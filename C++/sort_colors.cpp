@@ -39,12 +39,12 @@ public:
         int last = nums.size() - 1;
         int cur = 0;
         while (cur <= last) {
-            if (nums[cur] == 0) {
+            if (nums[cur] == 0) { // cause the part before cur will always be 0 or 1 already, so we do not need to check cur again after swap
                 swap(nums[first], nums[cur]);
                 first += 1;
                 cur += 1;
             }
-            else if (nums[cur] == 2) {
+            else if (nums[cur] == 2) { // we do not know the value in last, so we cannot move cur, and need to check it again
                 swap(nums[last], nums[cur]);
                 last -= 1;
             }
