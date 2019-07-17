@@ -15,13 +15,12 @@ Output: return the tree root node representing the following tree:
       6
     /   \
    3     5
-    \    / 
-     2  0   
+    \    /
+     2  0
        \
         1
 Note:
 The size of the given array will be in the range [1,1000].
-
 */
 #include <iostream>
 #include <string>
@@ -35,15 +34,13 @@ The size of the given array will be in the range [1,1000].
 #include <stdio.h>
 using namespace std;
 
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
+
 class Solution {
 private:
     TreeNode* construct(int start, int end, vector<int>& nums) {
