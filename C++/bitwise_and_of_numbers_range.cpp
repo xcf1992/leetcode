@@ -1,7 +1,8 @@
 /*
  201. Bitwise AND of Numbers Range
 
- Given a range [m, n] where 0 <= m <= n <= 2147483647, return the bitwise AND of all numbers in this range, inclusive.
+ Given a range [m, n] where 0 <= m <= n <= 2147483647,
+ return the bitwise AND of all numbers in this range, inclusive.
 
  Example 1:
 
@@ -12,7 +13,6 @@
  Input: [0,1]
  Output: 0
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -44,12 +44,11 @@ using namespace std;
  11101
  11110
 
- Because we are trying to find bitwise AND, so if any bit there are at least one 0 and one 1, it always 0. In this case, it is 11000.
- So we are go to cut all these bit that they are different. In this case we cut the right 3 bit.
-
+ Because we are trying to find bitwise AND,
+ so if any bit there are at least one 0 and one 1, it always 0. In this case, it is 11000.
+ So we are go to cut all these bit that they are different.
+ In this case we cut the right 3 bit.
  I think after understand this, the code is trivial:
-
-
  */
 class Solution {
 public:

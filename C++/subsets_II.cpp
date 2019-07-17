@@ -18,7 +18,6 @@ Output:
   []
 ]
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -40,7 +39,7 @@ public:
             result.push_back(subset);
             return result;
         }
-        
+
         sort(S.begin(), S.end());
         result.push_back(subset);
         subset.push_back(S[0]);
@@ -48,13 +47,13 @@ public:
         subset.clear();
         int preValue = S[0];
         int preLength = 1;
-        
+
         for (int i = 1; i < S.size(); i++) {
             if (S[i] != preValue) {
                 preValue = S[i];
                 preLength = 0;
             }
-            
+
             int curLength = result.size();
             for (int j = preLength; j < curLength; j++) {
                 subset = result[j];
@@ -63,7 +62,7 @@ public:
             }
             preLength = curLength;
         }
-        
+
         return result;
     }
 };
