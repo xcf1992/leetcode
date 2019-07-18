@@ -1,36 +1,35 @@
 /*
  856. Score of Parentheses
  Given a balanced parentheses string S, compute the score of the string based on the following rule:
- 
+
  () has score 1
  AB has score A + B, where A and B are balanced parentheses strings.
  (A) has score 2 * A, where A is a balanced parentheses string.
- 
- 
+
+
  Example 1:
- 
+
  Input: "()"
  Output: 1
  Example 2:
- 
+
  Input: "(())"
  Output: 2
  Example 3:
- 
+
  Input: "()()"
  Output: 2
  Example 4:
- 
+
  Input: "(()(()))"
  Output: 6
- 
- 
+
+
  Note:
- 
+
  S is a balanced parentheses string, containing only ( and ).
  2 <= S.length <= 50
  */
-
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -49,11 +48,15 @@ using namespace std;
 /*
 Intuition
 
-The final sum will be a sum of powers of 2, as every core (a substring (), with score 1) will have it's score multiplied by 2 for each exterior set of parentheses that contains that core.
+The final sum will be a sum of powers of 2,
+as every core (a substring (), with score 1) will have it's score multiplied by 2 for each exterior set of parentheses that contains that core.
 
 Algorithm
 
-Keep track of the balance of the string, as defined in Approach #1. For every ) that immediately follows a (, the answer is 1 << balance, as balance is the number of exterior set of parentheses that contains this core.
+Keep track of the balance of the string,
+as defined in Approach #1.
+For every ) that immediately follows a (, the answer is 1 << balance,
+as balance is the number of exterior set of parentheses that contains this core.
 */
 class Solution {
 public:
@@ -62,7 +65,7 @@ public:
         int depth = 0;
         for (int i = 0; i < S.size(); i++) {
             depth += S[i] == '(' ? 1 : -1;
-            if (S[i] == ')' && S[i - 1] == '(') {
+            if (S[i] == ')' and S[i - 1] == '(') {
                 sum += (1 << depth);
             }
         }

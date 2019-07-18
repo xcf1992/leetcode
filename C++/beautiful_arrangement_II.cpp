@@ -1,8 +1,9 @@
 /*
 667. Beautiful Arrangement II
-Given two integers n and k, you need to construct a list which contains n different positive integers ranging from 1 to n 
-and obeys the following requirement: 
-Suppose this list is [a1, a2, a3, ... , an], 
+Given two integers n and k,
+you need to construct a list which contains n different positive integers ranging from 1 to n
+and obeys the following requirement:
+Suppose this list is [a1, a2, a3, ... , an],
 then the list [|a1 - a2|, |a2 - a3|, |a3 - a4|, ... , |an-1 - an|] has exactly k distinct integers.
 
 If there are multiple answers, print any of them.
@@ -48,7 +49,7 @@ order(all diff is 1). Say if k is 5:
 
      i++ j-- i++ j--  i++ i++ i++ ...
 out: 1   9   2   8    3   4   5   6   7
-dif:   8   7   6   5    1   1   1   1 
+dif:   8   7   6   5    1   1   1   1
 */
 class Solution {
 public:

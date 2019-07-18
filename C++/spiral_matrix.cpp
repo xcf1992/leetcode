@@ -1,3 +1,27 @@
+/*
+54. Spiral Matrix
+Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.
+
+Example 1:
+
+Input:
+[
+ [ 1, 2, 3 ],
+ [ 4, 5, 6 ],
+ [ 7, 8, 9 ]
+]
+Output: [1,2,3,6,9,8,7,4,5]
+Example 2:
+
+Input:
+[
+  [1, 2, 3, 4],
+  [5, 6, 7, 8],
+  [9,10,11,12]
+]
+Output: [1,2,3,4,8,12,11,10,9,5,6,7]
+
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -5,77 +29,31 @@
 #include <algorithm>
 using namespace std;
 
-vector<int> spiralOrder(vector<vector<int> > &matrix) {
-        vector <int> result;
-        result.clear();
-        
-        if (matrix.empty()) {
-            return result;
+class Solution {
+private:
+    vector<vector<int> > dirs{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        int m = matrix.size();
+        if (m == 0) {
+            return {};
         }
-            
-        int row = matrix.size();
-        int column = matrix.front().size();
-        int num = 0;
-        int direction = 1; /*1 = right; 2 = down; 3 = left; 4 = up*/
-        int tx = 0;
-		int bx = 0;
-		int ly = 0;
-        int ry = 0;
-        int i = 0;
-        int j = 0;
+        int n = matrix[0].size();
 
-        while (num < row * column) {
-			cout << num << endl;
-            switch (direction) {
-                case 1:
-                while (j != column - ry) {
-                    result.push_back(matrix.at(i).at(j));
-                    j++;
-                    num++;
-                }
-                tx++;
-                i = i + 1;
-                j = j - 1;
-                direction = 2;
-                break;
-                    
-                case 2:
-                while (i != row - bx) {
-                    result.push_back(matrix.at(i).at(j));
-                    i++;
-                    num++;
-                }
-                ry++;
-                i = i - 1;
-                j = j - 1;
-                direction = 3;
-                break;
-                        
-                case 3:
-                while (j >= ly) {
-                    result.push_back(matrix.at(i).at(j));
-                    j--;
-                    num++;
-                }
-                bx++;
-                i = i - 1;
-                j = j + 1;
-                direction = 4;
-                break;
-                    
-                case 4:
-                while (i >= tx) {
-                   result.push_back(matrix.at(i).at(j));
-                   i--;
-                   num++;
-                }
-                ly++;
-                i = i + 1;
-                j = j + 1;
-                direction = 1;
-                break;
+        vector<int> steps{n, m - 1}; // steps we can take during current move
+        int direction = 0;   // index of direction.
+        int curR = 0;
+        int curC = -1;    // initial position
+        vector<int> result;
+        while (steps[direction % 2] > 0) {
+            for (int i = 0; i < steps[direction % 2]; ++i) {
+                curR += dirs[direction][0];
+                curC += dirs[direction][1];
+                result.push_back(matrix[curR][curC]);
             }
+            steps[direction % 2] -= 1;
+            direction = (direction + 1) % 4;
         }
-            
         return result;
     }
+};

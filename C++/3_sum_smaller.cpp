@@ -1,11 +1,13 @@
 /*
  259. 3Sum Smaller
- Given an array of n integers nums and a target, find the number of index triplets i, j, k with 0 <= i < j < k < n that satisfy the condition nums[i] + nums[j] + nums[k] < target.
- 
+ Given an array of n integers nums and a target,
+ find the number of index triplets i, j, k with 0 <= i < j < k < n
+ that satisfy the condition nums[i] + nums[j] + nums[k] < target.
+
  For example, given nums = [-2, 0, 1, 3], and target = 2.
- 
+
  Return 2. Because there are two triplets which sums are less than 2:
- 
+
  [-2, 0, 1]
  [-2, 0, 3]
  Follow up:
@@ -37,7 +39,7 @@ public:
             if (nums[left] + nums[left + 1] + nums[left + 2] >= target) {
                 break;
             }
-            
+
             int mid = left + 1;
             int right = n - 1;
             int limit = target - nums[left];
