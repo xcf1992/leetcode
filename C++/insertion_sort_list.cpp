@@ -37,13 +37,8 @@
 #include <stdio.h>
 #include <map>
 #include <numeric>
+#include "extra_data_types.hpp"
 using namespace std;
-
-struct ListNode {
-      int val;
-     ListNode *next;
-      ListNode(int x) : val(x), next(nullptr) {}
-  };
 
 class Solution {
 public:

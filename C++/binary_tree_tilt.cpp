@@ -8,6 +8,7 @@
 #include <queue>
 #include <stack>
 #include <stdio.h>
+#include "extra_data_types.hpp"
 using namespace std;
 
 /*
@@ -33,7 +34,6 @@ Note:
 The sum of node values in any subtree won't exceed the range of 32-bit integer.
 All the tilt values won't exceed the range of 32-bit integer.
  */
-
 class Solution {
 private:
     int calculate(TreeNode* root, int& tilt) {

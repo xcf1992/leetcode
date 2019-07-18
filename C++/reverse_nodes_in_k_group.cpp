@@ -31,13 +31,8 @@ You may not alter the values in the list's nodes, only nodes itself may be chang
 #include <stdio.h>
 #include <set>
 #include <numeric>
+#include "extra_data_types.hpp"
 using namespace std;
-
-struct ListNode {
-      int val;
-      ListNode *next;
-      ListNode(int x) : val(x), next(NULL) {}
- };
 
 class Solution {
 private:

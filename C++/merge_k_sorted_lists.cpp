@@ -24,13 +24,8 @@ Output: 1->1->2->3->4->4->5->6
 #include <stack>
 #include <stdio.h>
 #include <map>
+#include "extra_data_types.hpp"
 using namespace std;
-
-struct ListNode {
-      int val;
-      ListNode *next;
-      ListNode(int x) : val(x), next(NULL) {}
-  };
 
 class myComp {
 public:
@@ -48,7 +43,7 @@ public:
                 minHeap.push(lists[i]);
             }
         }
-        
+
         ListNode* dummy = new ListNode(-1);
         ListNode* pre = dummy;
         while (!minHeap.empty()) {

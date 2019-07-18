@@ -87,7 +87,7 @@ struct Node {
     Node *right;
     Node* parent;
     Node(int x) : val(x), left(NULL), right(NULL), parent(NULL) {}
-    };
+};
 
 class Solution {
 public:
@@ -104,7 +104,7 @@ public:
             }
             return cur;
         }
-        
+
         cur = node -> parent;
         while (cur and cur -> val < node -> val) {
             cur = cur -> parent;

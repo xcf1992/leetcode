@@ -22,13 +22,8 @@ Output: 1->4->3->2->5->nullptr
 #include <stack>
 #include <stdio.h>
 #include <set>
+#include "extra_data_types.hpp"
 using namespace std;
-
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(nullptr) {}
-};
 
 class Solution {
 public:

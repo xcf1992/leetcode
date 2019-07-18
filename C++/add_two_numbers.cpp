@@ -17,13 +17,8 @@ Explanation: 342 + 465 = 807.
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
+#include "extra_data_types.hpp"
 using namespace std;
-
-struct ListNode {
-     int val;
-     ListNode *next;
-     ListNode(int x) : val(x), next(nullptr) {}
-};
 
 class Solution {
 public:

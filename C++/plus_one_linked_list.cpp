@@ -23,13 +23,8 @@ Output:
 #include <queue>
 #include <stack>
 #include <stdio.h>
+#include "extra_data_types.hpp"
 using namespace std;
-
- struct ListNode {
-      int val;
-      ListNode *next;
-      ListNode(int x) : val(x), next(nullptr) {}
-  };
 
 class Solution {
 public:
@@ -37,28 +32,28 @@ public:
         if (head == nullptr) {
             return head;
         }
-        
+
         stack<ListNode*> stk;
         ListNode* cur = head;
         while (cur != nullptr) {
             stk.push(cur);
             cur = cur -> next;
         }
-        
+
         int add = 1;
         while (!stk.empty()) {
             cur = stk.top();
             stk.pop();
-            
+
             int sum = cur -> val + add;
             cur -> val = sum % 10;
             add = sum / 10;
         }
-        
+
         if (add == 0) {
             return head;
         }
-        
+
         ListNode* newHead = new ListNode(1);
         newHead -> next = head;
         return newHead;

@@ -11,7 +11,7 @@ Return a List of ListNode's representing the linked list parts that are formed.
 
 Examples 1->2->3->4, k = 5 // 5 equal parts [ [1], [2], [3], [4], null ]
 Example 1:
-Input: 
+Input:
 root = [1, 2, 3], k = 5
 Output: [[1],[2],[3],[],[]]
 Explanation:
@@ -20,7 +20,7 @@ For example, the input root has root.val = 1, root.next.val = 2, \root.next.next
 The first element output[0] has output[0].val = 1, output[0].next = null.
 The last element output[4] is null, but it's string representation as a ListNode is [].
 Example 2:
-Input: 
+Input:
 root = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], k = 3
 Output: [[1, 2, 3, 4], [5, 6, 7], [8, 9, 10]]
 Explanation:
@@ -41,28 +41,21 @@ k will be an integer in the range [1, 50].
 #include <queue>
 #include <stack>
 #include <stdio.h>
+#include "extra_data_types.hpp"
 using namespace std;
 
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
 class Solution {
 public:
     vector<ListNode*> splitListToParts(ListNode* root, int k) {
         vector<ListNode *> result(k, nullptr);
-        
+
         int length = 0;
         ListNode* cur = root;
         while (cur != nullptr) {
             length += 1;
             cur = cur -> next;
         }
-        
+
         cur = root;
         int segment = length / k;
         int extra = length % k;
@@ -71,7 +64,7 @@ public:
         while (cur != nullptr) {
             result[index] = cur;
             index += 1;
-            
+
             for (int i = 0; i < segment and cur != nullptr; ++i) {
                 pre = cur;
                 cur = cur -> next;
