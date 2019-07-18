@@ -17,7 +17,7 @@ Explanation: 8 = 2 × 2 × 2
 Example 3:
 
 Input: 14
-Output: false 
+Output: false
 Explanation: 14 is not ugly since it includes another prime factor 7.
 Note:
 
@@ -38,14 +38,14 @@ using namespace std;
 
 class Solution {
 private:
-    int arr[3] = {2, 3, 5};
+    vector<int> factor = {2, 3, 5};
 public:
     bool isUgly(int num) {
         if (num <= 0) {
             return false;
         }
-        
-        for (auto i : arr) {
+
+        for (auto i : factor) {
             while (num % i == 0) {
                 num /= i;
             }
@@ -53,7 +53,6 @@ public:
                 return true;
             }
         }
-        
         return num == 1;
     }
 };

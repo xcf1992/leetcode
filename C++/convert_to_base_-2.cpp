@@ -4,7 +4,7 @@ Given a number N, return a string consisting of "0"s and "1"s that represents it
 
 The returned string must have no leading zeroes, unless the string is "0".
 
- 
+
 
 Example 1:
 
@@ -21,7 +21,7 @@ Example 3:
 Input: 4
 Output: "100"
 Explantion: (-2) ^ 2 = 4
- 
+
 
 Note:
 
@@ -42,13 +42,35 @@ Note:
 #include <numeric>
 using namespace std;
 
+/*
+Intuition:
+Maybe write a base2 function first?
+How about add minus -?
+Done.
+
+Explanation:
+base2 function is quite basis of basis.
+check last digit, shift to right.
+base-2 is totally no difference, just add a sign -.
+
+
+Time Complexity:
+O(logN) Time, O(logN) space.
+Note that I didn't deal with string concatenation,
+and just take this part as O(1).
+
+Instead of create a new string each time,
+we can improve this process using some operations join/reverse or data structure list/vector .
+Like Java we may need StringBuilder,
+but those are not what I want to discuss deeply here.
+*/
 class Solution {
 public:
     string baseNeg2(int N) {
         if (N == 0) {
             return "0";
         }
-        
+
         string result = "";
         while (N != 0) {
             result = to_string(N & 1) + result;

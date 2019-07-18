@@ -56,6 +56,7 @@ struct TrieNode {
     TrieNode* right;
     TrieNode(int v) : val(v), left(nullptr), right(nullptr) {}
 };
+
 class Solution {
 private:
     void insert(TrieNode* root, int num) {
@@ -67,7 +68,7 @@ private:
                     cur -> right = new TrieNode(0);
                 }
                 cur = cur -> right;
-            } 
+            }
             else {
                 if (cur -> left == nullptr) {
                     cur -> left = new TrieNode(1);
@@ -77,6 +78,13 @@ private:
         }
     }
 
+    /*
+    * we set the return value bit by bit from the most significant bit to the least
+    * for each bit if we can find a number with different bit value of cur num,
+    * we set that bit to 1 of return value
+    * otherwise we set it to be 0
+    * and we will move curNode accordingly
+    */
     int find(TrieNode* root, int num) {
         TrieNode* curNode = root;
         int curValue = 0;
@@ -106,7 +114,7 @@ public:
 
         int result = 0;
         for (int num : nums) {
-            result = max(result, find(root, num));;
+            result = max(result, find(root, num));
         }
         return result;
     }
@@ -123,7 +131,7 @@ public:
             for (int num : nums) {
                 values.insert(mask & num);
             }
-            
+
             int temp = result | (1 << i);
             for (int value : values) {
                 if (values.find(temp ^ value) != values.end()) {

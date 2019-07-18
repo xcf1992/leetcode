@@ -62,7 +62,7 @@ class Solution {
 public:
     double largestSumOfAverages(vector<int>& A, int K) {
         int n = A.size();
-        if (A.empty() || K == 0) {
+        if (n == 0 or K == 0) {
             return 0;
         }
 
@@ -84,7 +84,7 @@ public:
                 // we are going to search through based on dp[k - 1][j]
                 // so split first j number into k - 1 groups, j < i
                 // and number j + 1 to i as last group, total k groups
-                // j should be at least k - number, so the index j start from k - 2
+                // j should be at least k - 1 number, so the index j start from k - 2
                 for (int j = k - 2; j < i; j++) {
                     dp[k][i] = max(dp[k][i], dp[k - 1][j] + double(preSum[i] - preSum[j]) / (i - j));
                 }

@@ -3,14 +3,14 @@
 
 Write a program to find the n-th ugly number.
 
-Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. 
+Ugly numbers are positive numbers whose prime factors only include 2, 3, 5.
 
 Example:
 
 Input: n = 10
 Output: 12
 Explanation: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 is the sequence of the first 10 ugly numbers.
-Note:  
+Note:
 
 1 is typically treated as an ugly number.
 n does not exceed 1690.
@@ -47,15 +47,14 @@ public:
         while (numbers.size() < n) {
             int nextNum = min(numbers[multiply2] * 2, min(numbers[multiply3] * 3, numbers[multiply5] * 5));
             numbers.push_back(nextNum);
-            
             if (numbers[multiply2] * 2 == nextNum) {
-                multiply2 += 1;
+                multiply2++;
             }
             if (numbers[multiply3] * 3 == nextNum) {
-                multiply3 += 1;
+                multiply3++;
             }
             if (numbers[multiply5] * 5 == nextNum) {
-                multiply5 += 1;
+                multiply5++;
             }
         }
         return numbers.back();

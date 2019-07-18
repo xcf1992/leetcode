@@ -41,7 +41,8 @@ public:
 
             if (pos.find(diff[i + 1]) == pos.end()) {
                 pos[diff[i + 1]] = i;
-            } else {
+            }
+            else {
                 result = max(result, i - pos[diff[i + 1]]);
             }
         }
