@@ -1,6 +1,8 @@
 /*
 959. Regions Cut By Slashes
- In a N x N grid composed of 1 x 1 squares, each 1 x 1 square consists of a /, \, or blank space.  These characters divide the square into contiguous regions.
+ In a N x N grid composed of 1 x 1 squares,
+ each 1 x 1 square consists of a /, \, or blank space.
+ These characters divide the square into contiguous regions.
 
  (Note that backslash characters are escaped, so a \ is represented as "\\".)
 
@@ -105,8 +107,8 @@ using namespace std;
  */
 class Solution {
 private:
-    int count;
-    int n;
+    int count = 0;
+    int n = 0;
 
     int find(int x, vector<int>& parent) {
         return parent[x] == -1 ? x : find(parent[x], parent);
@@ -129,9 +131,13 @@ public:
         n = grid.size();
         count = n * n * 4;
         vector<int> parent(count, -1);
-
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
+                /*
+                        0
+                    3       1
+                        2
+                */
                 if (i > 0) {
                     unin(index(i - 1, j, 2), index(i, j, 0), parent);
                 }
