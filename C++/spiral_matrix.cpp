@@ -20,7 +20,6 @@ Input:
   [9,10,11,12]
 ]
 Output: [1,2,3,4,8,12,11,10,9,5,6,7]
-
 */
 #include <iostream>
 #include <string>
@@ -31,7 +30,7 @@ using namespace std;
 
 class Solution {
 private:
-    vector<vector<int> > dirs{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    vector<vector<int>> diff{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
         int m = matrix.size();
@@ -47,8 +46,8 @@ public:
         vector<int> result;
         while (steps[direction % 2] > 0) {
             for (int i = 0; i < steps[direction % 2]; ++i) {
-                curR += dirs[direction][0];
-                curC += dirs[direction][1];
+                curR += diff[direction][0];
+                curC += diff[direction][1];
                 result.push_back(matrix[curR][curC]);
             }
             steps[direction % 2] -= 1;
