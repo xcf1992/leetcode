@@ -48,14 +48,8 @@ Another valid answer is [5,2,6,null,4,null,7].
 #include <queue>
 #include <stack>
 #include <stdio.h>
+#include "extra_data_types.hpp"
 using namespace std;
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-};
 
 class Solution {
 private:

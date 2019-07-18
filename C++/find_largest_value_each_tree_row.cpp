@@ -4,13 +4,13 @@
 You need to find the largest value in each row of a binary tree.
 
 Example:
-Input: 
+Input:
 
           1
          / \
         3   2
-       / \   \  
-      5   3   9 
+       / \   \
+      5   3   9
 
 Output: [1, 3, 9]
 */
@@ -24,17 +24,9 @@ Output: [1, 3, 9]
 #include <queue>
 #include <stack>
 #include <stdio.h>
+#include "extra_data_types.hpp"
 using namespace std;
 
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- * };
- */
 class Solution {
 public:
     vector<int> largestValues(TreeNode* root) {

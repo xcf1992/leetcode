@@ -29,14 +29,8 @@ Output: 4
 #include <stack>
 #include <stdio.h>
 #include <map>
+#include "extra_data_types.hpp"
 using namespace std;
-
-struct TreeNode {
-  int val;
-  TreeNode *left;
-  TreeNode *right;
-  TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
 
 class Solution {
 public:

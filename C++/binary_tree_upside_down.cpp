@@ -19,7 +19,7 @@ Output: return the root of the binary tree [4,5,2,#,#,3,1]
   / \
  5   2
     / \
-   3   1  
+   3   1
 Clarification:
 
 Confused what [4,5,2,#,#,3,1] means? Read more below on how binary tree is serialized on OJ.
@@ -42,15 +42,8 @@ The above binary tree is serialized as [1,2,3,#,#,4,#,#,5].
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
+#include "extra_data_types.hpp"
 using namespace std;
-
-
- struct TreeNode {
-     int val;
-    TreeNode *left;
-     TreeNode *right;
-     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- };
 
 class Solution {
 public:
@@ -63,7 +56,7 @@ public:
         TreeNode *rc = root -> right;
         root -> right = nullptr;
         root -> left = nullptr;
-        
+
         TreeNode *newRoot = upsideDownBinaryTree(lc);
         TreeNode* cur = newRoot;
         while (cur -> right != nullptr) {

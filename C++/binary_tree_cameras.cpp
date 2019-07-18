@@ -38,14 +38,8 @@
 #include <stdio.h>
 #include <map>
 #include <numeric>
+#include "extra_data_types.hpp"
 using namespace std;
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
 
 /*
  Greedy

@@ -33,14 +33,8 @@
 #include <map>
 #include <set>
 #include <numeric>
+#include "extra_data_types.hpp"
 using namespace std;
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
 
 class Solution { // iterative same process as 255. Verify Preorder Sequence in Binary Search Tree
 public:

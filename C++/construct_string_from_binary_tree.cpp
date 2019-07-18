@@ -8,6 +8,7 @@
 #include <queue>
 #include <stack>
 #include <stdio.h>
+#include "extra_data_types.hpp"
 using namespace std;
 
 /*
@@ -37,16 +38,6 @@ Output: "1(2()(4))(3)"
 
 Explanation: Almost the same as the first example,
 except we can't omit the first parenthesis pair to break the one-to-one mapping relationship between the input and the output.
- */
-
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- * };
  */
 class Solution {
 public:

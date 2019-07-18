@@ -1,10 +1,10 @@
 /*
 663. Equal Tree Partition
-Given a binary tree with n nodes, your task is to check if it's possible to partition the tree to two trees 
+Given a binary tree with n nodes, your task is to check if it's possible to partition the tree to two trees
 which have the equal sum of values after removing exactly one edge on the original tree.
 
 Example 1:
-Input:     
+Input:
     5
    / \
   10 10
@@ -12,11 +12,11 @@ Input:
    2   3
 
 Output: True
-Explanation: 
+Explanation:
     5
-   / 
+   /
   10
-      
+
 Sum: 15
 
    10
@@ -25,7 +25,7 @@ Sum: 15
 
 Sum: 15
 Example 2:
-Input:     
+Input:
     1
    / \
   2  10
@@ -48,17 +48,9 @@ The range of tree node value is in the range of [-100000, 100000].
 #include <queue>
 #include <stack>
 #include <stdio.h>
+#include "extra_data_types.hpp"
 using namespace std;
 
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
 class Solution {
 private:
     int getSum(TreeNode* root, unordered_map<int, int>& count) {

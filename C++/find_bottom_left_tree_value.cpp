@@ -8,25 +8,16 @@
 #include <queue>
 #include <stack>
 #include <stdio.h>
+#include "extra_data_types.hpp"
 using namespace std;
 
-
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- * };
- */
 class Solution { //dfs
 private:
     void dfs(TreeNode* root, int height, int& longest, int& result) {
         if (root == nullptr) {
             return;
         }
-        
+
         height += 1;
         if (height > longest) {
             longest = height;

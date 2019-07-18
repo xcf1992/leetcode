@@ -11,9 +11,9 @@
                 /                           \
                3                            10
         /            \                          \
-       1              6                          14        
+       1              6                          14
                      / \                        /
-                    4   7                      13 
+                    4   7                      13
 
  Input: [8,3,10,1,6,null,14,null,null,4,7,13]
  Output: 7
@@ -43,14 +43,8 @@
 #include <stack>
 #include <stdio.h>
 #include <map>
+#include "extra_data_types.hpp"
 using namespace std;
-
- struct TreeNode {
-      int val;
-      TreeNode *left;
-      TreeNode *right;
-      TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-  };
 
 class Solution {
 private:

@@ -44,24 +44,16 @@ Therefore, sum = 495 + 491 + 40 = 1026.
 #include <queue>
 #include <stack>
 #include <stdio.h>
+#include "extra_data_types.hpp"
 using namespace std;
 
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- * };
- */
 class Solution {
 private:
     void calculate(TreeNode * root, int current, int& sum) {
         if (root == nullptr) {
             return;
         }
-        
+
         current = current * 10 + root -> val;
         if (root -> left == nullptr and root -> right == nullptr) {
             sum += current;

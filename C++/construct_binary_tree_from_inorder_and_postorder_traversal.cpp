@@ -31,14 +31,8 @@ Return the following binary tree:
 #include <stack>
 #include <stdio.h>
 #include <set>
+#include "extra_data_types.hpp"
 using namespace std;
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-};
 
 class Solution {
 private:

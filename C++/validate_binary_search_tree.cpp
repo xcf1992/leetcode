@@ -35,14 +35,8 @@ Explanation: The root node's value is 5 but its right child's value is 4.
 #include <unordered_map>
 #include <algorithm>
 #include <stack>
+#include "extra_data_types.hpp"
 using namespace std;
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-};
 
 class Solution { // use stack
 public:

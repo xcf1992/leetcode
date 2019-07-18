@@ -54,31 +54,16 @@
 #include <stdio.h>
 #include <map>
 #include <numeric>
+#include "extra_data_types.hpp"
 using namespace std;
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
-
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
 class Solution {
 public:
     vector<vector<int>> verticalTraversal(TreeNode* root) {
         if (root == nullptr) {
             return {};
         }
-        
+
         map<int, vector<pair<int, int>>> column;
         queue<pair<int, TreeNode*>> bfs;
         bfs.push({0, root});
@@ -100,14 +85,14 @@ public:
             }
             row += 1;
         }
-        
+
         vector<vector<int>> result;
         for (auto it = column.begin(); it != column.end(); ++it) {
             vector<pair<int, int>> nums = it -> second;
             sort(nums.begin(), nums.end(), [](pair<int, int>& a, pair<int, int>& b) {
                 return a.first < b.first or (a.first == b.first and a.second < b.second);
             });
-            
+
             vector<int> temp;
             for (pair<int, int>& num : nums) {
                 temp.push_back(num.second);

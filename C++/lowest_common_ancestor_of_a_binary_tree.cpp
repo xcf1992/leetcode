@@ -38,14 +38,8 @@ p and q are different and both values will exist in the binary tree.
 #include <queue>
 #include <stack>
 #include <stdio.h>
+#include "extra_data_types.hpp"
 using namespace std;
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-};
 
 // If either p or q matches is the root, report
 // the presence by returning root (Note that if a key is

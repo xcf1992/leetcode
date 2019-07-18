@@ -1,25 +1,25 @@
 /*
 894. All Possible Full Binary Trees
  A full binary tree is a binary tree where each node has exactly 0 or 2 children.
- 
+
  Return a list of all possible full binary trees with N nodes.  Each element of the answer is the root node of one possible tree.
- 
+
  Each node of each tree in the answer must have node.val = 0.
- 
+
  You may return the final list of trees in any order.
- 
- 
- 
+
+
+
  Example 1:
- 
+
  Input: 7
  Output: [[0,0,0,null,null,0,0,null,null,0,0],[0,0,0,null,null,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,null,null,null,null,0,0],[0,0,0,0,0,null,null,0,0]]
  Explanation:
- 
- 
- 
+
+
+
  Note:
- 
+
  1 <= N <= 20
  */
 
@@ -37,15 +37,8 @@
 #include <stdio.h>
 #include <set>
 #include <numeric>
+#include "extra_data_types.hpp"
 using namespace std;
-
-
-  struct TreeNode {
-      int val;
-      TreeNode *left;
-      TreeNode *right;
-      TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-  };
 
 class Solution {
 private:
@@ -55,15 +48,15 @@ public:
         if (N % 2 == 0) {
             return {};
         }
-        
+
         if (N == 1) {
             return {new TreeNode(0)};
         }
-        
+
         if (cache.find(N) != cache.end()) {
             return cache[N];
         }
-        
+
         vector<TreeNode*> result;
         for (int i = 1; i <= N - 1; i += 2) {
             vector<TreeNode*> leftChildren = allPossibleFBT(i);
@@ -88,11 +81,11 @@ public:
         if (N % 2 == 0) {
             return {};
         }
-        
+
         if (N == 1) {
             return {new TreeNode(0)};
         }
-        
+
         vector<TreeNode*> result;
         for (int i = 1; i <= N - 1; i += 2) {
             vector<TreeNode*> leftChildren = allPossibleFBT(i);

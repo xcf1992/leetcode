@@ -44,14 +44,8 @@ Explanation: Maximum amount of money the thief can rob = 4 + 5 = 9.
 #include <queue>
 #include <stack>
 #include <stdio.h>
+#include "extra_data_types.hpp"
 using namespace std;
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-};
 
 class Solution {
 private:

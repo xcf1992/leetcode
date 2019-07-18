@@ -48,14 +48,9 @@ Could you devise a constant space solution?
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
+#include "extra_data_types.hpp"
 using namespace std;
 
-struct TreeNode {
-    int val;
-   TreeNode *left;
-    TreeNode *right;
-   TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-};
 class Solution {
 private:
     void traverse(TreeNode* root, TreeNode*& prev, TreeNode*& first, TreeNode*& second) {

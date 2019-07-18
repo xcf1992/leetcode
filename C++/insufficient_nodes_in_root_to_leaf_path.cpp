@@ -1,6 +1,6 @@
 /*
 5084. Insufficient Nodes in Root to Leaf Paths
-Given the root of a binary tree, consider all root to leaf paths: paths from the root to any leaf.  
+Given the root of a binary tree, consider all root to leaf paths: paths from the root to any leaf.
 (A leaf is a node with no children.)
 
 A node is insufficient if every such root to leaf path intersecting this node has sum strictly less than limit.
@@ -43,7 +43,7 @@ Input: root = [5,4,8,11,null,17,4,7,1,null,null,5,3], limit = 22
       /                             /
      7                             5
 Output: [5,4,8,11,null,17,4,7,null,null,null,5]
- 
+
 
 Note:
 
@@ -61,14 +61,8 @@ The given tree will have between 1 and 5000 nodes.
 #include <queue>
 #include <stack>
 #include <stdio.h>
+#include "extra_data_types.hpp"
 using namespace std;
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
 
 class Solution {
 private:

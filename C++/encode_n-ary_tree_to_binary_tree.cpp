@@ -32,6 +32,7 @@
 #include <stdio.h>
 #include <map>
 #include <set>
+#include "extra_data_types.hpp"
 using namespace std;
 
 // Definition for a Node.
@@ -47,13 +48,6 @@ using namespace std;
     children = _children;
     }
  };
-
- struct TreeNode {
-      int val;
-      TreeNode *left;
-      TreeNode *right;
-      TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-  };
 
 class Codec {
 public:

@@ -1,10 +1,10 @@
 /*
  Given a binary tree, return the vertical order traversal of its nodes' values. (ie, from top to bottom, column by column).
- 
+
  If two nodes are in the same row and column, the order should be from left to right.
- 
+
  Examples:
- 
+
  Given binary tree [3,9,20,null,null,15,7],
        3
       /\
@@ -68,24 +68,9 @@
 #include <stack>
 #include <stdio.h>
 #include <set>
+#include "extra_data_types.hpp"
 using namespace std;
 
-struct TreeNode {
-      int val;
-      TreeNode *left;
-      TreeNode *right;
-      TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-  };
-
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
 class Solution {
 public:
     vector<vector<int>> verticalOrder(TreeNode* root) {
@@ -101,7 +86,7 @@ public:
                 int pos = bfs.front().first;
                 TreeNode* node = bfs.front().second;
                 bfs.pop();
-                
+
                 nodePos[pos].push_back(node -> val);
                 if (node -> left != nullptr) {
                     bfs.push({pos - 1, node -> left});
@@ -111,7 +96,7 @@ public:
                 }
             }
         }
-        
+
         vector<vector<int>> result;
         for (auto& it : nodePos) {
             result.push_back(it.second);
@@ -126,7 +111,7 @@ private:
         if (root == nullptr) {
             return 0;
         }
-        
+
         return max(getHeight(root -> left), getHeight(root -> right)) + 1;
     }
 public:
@@ -140,16 +125,16 @@ public:
             int index = bfs.front().first;
             TreeNode* cur = bfs.front().second;
             bfs.pop();
-            
+
             if (cur == nullptr) {
                 continue;
             }
-            
+
             pos[index].push_back(cur -> val);
             bfs.push(make_pair(index - 1, cur -> left));
             bfs.push(make_pair(index + 1, cur -> right));
         }
-        
+
         for (auto& col : pos) {
             if (!col.empty()) {
                 result.push_back(col);

@@ -38,14 +38,9 @@
 #include <stdio.h>
 #include <map>
 #include <numeric>
+#include "extra_data_types.hpp"
 using namespace std;
 
-  struct TreeNode {
-      int val;
-      TreeNode *left;
-      TreeNode *right;
-      TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-  };
 class Solution {
 public:
     bool isCompleteTree(TreeNode* root) {
@@ -78,7 +73,7 @@ public:
             for (int i = 0; i < curSize; i++) {
                 TreeNode* node = bfs.front();
                 bfs.pop();
-                
+
                 if (node -> left) {
                     if (!completed) {
                         return false;

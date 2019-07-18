@@ -17,13 +17,14 @@
 #include <stack>
 #include <stdio.h>
 #include <map>
+#include "extra_data_types.hpp"
 using namespace std;
 
 /*
  Given a binary tree, count the number of uni-value subtrees.
- 
+
  A Uni-value subtree means all nodes of the subtree have the same value.
- 
+
  For example:
  Given binary tree,
  5
@@ -32,17 +33,8 @@ using namespace std;
  / \   \
  5   5   5
  return 4.
- 
+
 */
-
-
-struct TreeNode {
-      int val;
-      TreeNode *left;
-      TreeNode *right;
-      TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- };
-
 class Solution {
 private:
     int count(TreeNode* root, int& result) {
@@ -54,7 +46,7 @@ private:
         if (root -> right != nullptr) {
             right = count(root -> right, result);
         }
-        
+
         if (root -> val == left && root -> val == right) {
             result += 1;
             return root -> val;
