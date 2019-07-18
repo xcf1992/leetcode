@@ -45,9 +45,68 @@ Each node of the tree will have a distinct value between 1 and 1000.
 #include "extra_data_types.hpp"
 using namespace std;
 
-class Solution {
+class Solution { //99.25%
+private:
+    pair<TreeNode*, int> traverse(TreeNode* root) {
+        if (!root) {
+            return {nullptr, 0};
+        }
+
+        pair<TreeNode*, int> left = traverse(root->left);
+        pair<TreeNode*, int> right = traverse(root->right);
+        if (left.second > right.second) {
+            return {left.first, left.second + 1};
+        }
+        if (left.second < right.second) {
+            return {right.first, right.second + 1};
+        }
+        return {root, left.second + 1};
+    }
 public:
     TreeNode* lcaDeepestLeaves(TreeNode* root) {
+        return traverse(root).first;
+    }
+};
 
+class Solution1 { // 92.98% created by Chenfu
+private:
+    void traverse(TreeNode* root, vector<TreeNode*>& parent, unordered_set<TreeNode*>& leaves, int cur, int& height) {
+        if (root == nullptr) {
+            return;
+        }
+
+        if (cur > height) {
+            height = cur;
+            leaves.clear();
+        }
+        if (cur == height) {
+            leaves.insert(root);
+        }
+
+        if (root -> left != nullptr) {
+            parent[root -> left -> val] = root;
+        }
+        if (root -> right != nullptr) {
+            parent[root -> right -> val] = root;
+        }
+
+        traverse(root -> left, parent, leaves, cur + 1, height);
+        traverse(root -> right, parent, leaves, cur + 1, height);
+    }
+public:
+    TreeNode* lcaDeepestLeaves(TreeNode* root) {
+        vector<TreeNode*> parent(1001, nullptr);
+        unordered_set<TreeNode*> leaves;
+        int height = 0;
+        traverse(root, parent, leaves, 0, height);
+
+        while (leaves.size() > 1) {
+            unordered_set<TreeNode*> newLeaves;
+            for (auto it = leaves.begin(); it != leaves.end(); it++) {
+                newLeaves.insert(parent[(*it) -> val]);
+            }
+            leaves = newLeaves;
+        }
+        return *leaves.begin();
     }
 };
