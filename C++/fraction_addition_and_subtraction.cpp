@@ -1,6 +1,11 @@
 /*
 592. Fraction Addition and Subtraction
-Given a string representing an expression of fraction addition and subtraction, you need to return the calculation result in string format. The final result should be irreducible fraction. If your final result is an integer, say 2, you need to change it to the format of fraction that has denominator 1. So in this case, 2 should be converted to 2/1.
+Given a string representing an expression of fraction addition and subtraction,
+you need to return the calculation result in string format.
+The final result should be irreducible fraction.
+If your final result is an integer, say 2,
+you need to change it to the format of fraction that has denominator 1.
+So in this case, 2 should be converted to 2/1.
 
 Example 1:
 Input:"-1/2+1/2"
@@ -41,7 +46,7 @@ private:
         }
         return b == 0 ? a : getGCD(b, a % b);
     }
-    
+
     int getLCM(int a, int b) {
         return a == 0 || b == 0 ? 0 : a * b / getGCD(a, b);
     }
@@ -50,7 +55,7 @@ public:
         int n = 0;
         int d = 1;
         int p = 1;
-        
+
         int i = 0;
         while (i < expression.size()) {
             int n1 = 0;
@@ -63,19 +68,19 @@ public:
             else if (expression[i] == '+') {
                 i++;
             }
-            
+
             while (isdigit(expression[i])) {
                 n1 = n1 * 10 + (expression[i] - '0');
                 i++;
             }
-            
+
             i++;
-            
+
             while (isdigit(expression[i]) and i < expression.size()) {
                 d1 = d1 * 10 + (expression[i] - '0');
                 i++;
             }
-            
+
             int lcm = getLCM(d, d1);
             int newn = p * n * (lcm / d) + p1 * n1 * (lcm / d1);
             d = lcm;
@@ -88,7 +93,7 @@ public:
                 n = 0 - newn;
             }
         }
-        
+
         int gcd = getGCD(n, d);
         string result = p == 1 ? "" : "-";
         return result + to_string(n / gcd) + "/" + to_string(d / gcd);

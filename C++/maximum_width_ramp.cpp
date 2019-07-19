@@ -1,10 +1,11 @@
 /*
 962. Maximum Width Ramp
-Given an array A of integers, a ramp is a tuple (i, j) for which i < j and A[i] <= A[j].  The width of such a ramp is j - i.
+Given an array A of integers,
+a ramp is a tuple (i, j) for which i < j and A[i] <= A[j].
+The width of such a ramp is j - i.
 
-Find the maximum width of a ramp in A.  If one doesn't exist, return 0.
-
-
+Find the maximum width of a ramp in A.
+If one doesn't exist, return 0.
 
 Example 1:
 
@@ -25,7 +26,6 @@ Note:
 2 <= A.length <= 50000
 0 <= A[i] <= 50000
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -44,7 +44,7 @@ using namespace std;
  Approach 1: Sort
 Intuition and Algorithm
 
-For all elements like A[i] = v, let's write the indices i in sorted order of their values v. 
+For all elements like A[i] = v, let's write the indices i in sorted order of their values v.
 For example with A[0] = 7, A[1] = 2, A[2] = 5, A[3] = 4, we can write the order of indices i=1, i=3, i=2, i=0.
 
 Then, whenever we write an index i, we know there was a ramp of width i - min(indexes_previously_written) (if this quantity is positive). We can keep track of the minimum of all indexes previously written as m.
@@ -57,6 +57,7 @@ public:
         for (int i = 0; i < n; i++) {
             indexedA.push_back({i, A[i]});
         }
+        
         sort(indexedA.begin(), indexedA.end(), [](pair<int, int>& a, pair<int, int>& b) {
             return a.second < b.second || (a.second == b.second and a.first < b.first);
         });
