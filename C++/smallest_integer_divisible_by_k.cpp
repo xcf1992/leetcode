@@ -1,6 +1,6 @@
 /*
  1022. Smallest Integer Divisible by K
- Given a positive integer K, you need find the smallest positive integer N such that N is divisible by K, 
+ Given a positive integer K, you need find the smallest positive integer N such that N is divisible by K,
  and N only contains the digit 1.
 
  Return the length of N.  If there is no such N, return -1.
@@ -26,7 +26,6 @@
 
  1 <= K <= 10^5
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -46,15 +45,15 @@ using namespace std;
  For a given K, we evaluate 1 % K, 11 % K, 111 % K, ..., 11...1 (K '1's) % K.
 
  If any remainder is 0, then the current number is the smallest integer divisible by K.
- If none of the remainders is 0, then at some point, 
- there must be some duplicate remainders (due to Pigeonhole principle), 
- as the K remainders can only take at most K-1 different values excluding 0. 
+ If none of the remainders is 0, then at some point,
+ there must be some duplicate remainders (due to Pigeonhole principle),
+ as the K remainders can only take at most K-1 different values excluding 0.
 
- In this case, no number with the pattern 1...1 is divisible by K. 
- This is because once a remainder has a duplicate, the next remainder will be in a loop, 
- as the previous remainder determines the next_mod, i.e., next_mod = (10 * prev_mod + 1) % K. 
+ In this case, no number with the pattern 1...1 is divisible by K.
+ This is because once a remainder has a duplicate, the next remainder will be in a loop,
+ as the previous remainder determines the next_mod, i.e., next_mod = (10 * prev_mod + 1) % K.
  Therefore, we will never see remainder==0.
- A simple example is when K is 6. Once we see 1111 % 6 = 1, 
+ A simple example is when K is 6. Once we see 1111 % 6 = 1,
  we immediately know 11111 % 6 will be 5, since 1 % 6 = 1 and 11 % 6 = 5. Therefore, there will be no such number that is divisible by 6.
 
  1 % 6 = 1

@@ -1,12 +1,14 @@
 /*
 650. 2 Keys Keyboard
-Initially on a notepad only one character 'A' is present. You can perform two operations on this notepad for each step:
+Initially on a notepad only one character 'A' is present.
+You can perform two operations on this notepad for each step:
 
 Copy All: You can copy all the characters present on the notepad (partial copy is not allowed).
 Paste: You can paste the characters which are copied last time.
- 
 
-Given a number n. You have to get exactly n 'A' on the notepad by performing the minimum number of steps permitted. Output the minimum number of steps to get n 'A'.
+Given a number n.
+You have to get exactly n 'A' on the notepad by performing the minimum number of steps permitted.
+Output the minimum number of steps to get n 'A'.
 
 Example 1:
 
@@ -17,7 +19,6 @@ Intitally, we have one character 'A'.
 In step 1, we use Copy All operation.
 In step 2, we use Paste operation to get 'AA'.
 In step 3, we use Paste operation to get 'AAA'.
- 
 
 Note:
 
@@ -43,9 +44,9 @@ to get AAA from A we need 3 additional steps (copy-all, then paste, then again p
 
 For generating AAAA we need 2 additional steps from AA.
 however, to get AAAAAAAA, the most optimal way would be from AAAA, with 2 additional steps (copy-all then paste)
-Essentially, we find the next smaller length sequence (than the one under consideration) 
-which can be copied and then pasted over multiple times to generate the desired sequence. 
-The moment we find a length that divides our required sequence length perfectly, 
+Essentially, we find the next smaller length sequence (than the one under consideration)
+which can be copied and then pasted over multiple times to generate the desired sequence.
+The moment we find a length that divides our required sequence length perfectly,
 then we don't need to check for any smaller length sequences.
 */
 class Solution2 { // refine of solution1
@@ -69,7 +70,7 @@ class Solution {
 public:
     int minSteps(int n) { //100%
         if (n == 1) {
-            return 0;   
+            return 0;
         }
         for (int i = 2; i <= sqrt(n); i++) {
             if (n % i == 0) {

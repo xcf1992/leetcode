@@ -1,6 +1,6 @@
 /*
  1016. Binary String With Substrings Representing 1 To N
- Given a binary string S (a string consisting only of '0' and '1's) and a positive integer N, 
+ Given a binary string S (a string consisting only of '0' and '1's) and a positive integer N,
  return true if and only if for every integer X from 1 to N, the binary representation of X is a substring of S.
 
  Example 1:
@@ -18,7 +18,6 @@
  1 <= S.length <= 1000
  1 <= N <= 10^9
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -35,7 +34,6 @@
 using namespace std;
 
 /*
-
  Time Complexity
  Prove I, check number of substring
  Pick two indices, there are at most S^2 substrings,
@@ -80,14 +78,31 @@ using namespace std;
  conculusion: N <= (len(S)-9) == (1000-9)*2 <= 2000, that is N <= 2000.
 
  so why use 1000-2000 as example? it's anther problem, Mr. Lee's solution is so amazing.
- because len(S) <= 1000, if N is bigger, the nums will be less. if N is smaller, the nums will be less. so N = 1000, 10bit, can get the most nums. this is beyond my think. what i think is consider if i should be a programer...
+ because len(S) <= 1000,
+ if N is bigger, the nums will be less.
+ if N is smaller, the nums will be less.
+ so N = 1000, 10bit, can get the most nums.
+ this is beyond my think. what i think is consider if i should be a programer...
  */
 class Solution {
+private:
+    string toBinaryString(int num) {
+        if (num == 0) {
+            return "0";
+        }
+
+        string result = "";
+        while (num > 0) {
+            result.push_back('0' + (num & 1));
+            num >>= 1;
+        }
+        reverse(result.begin(), result.end());
+        return result;
+    }
 public:
     bool queryString(string S, int N) {
         for (int i = N; i > N / 2;  --i) {
-            string b = bitset<32>(i).to_string();
-            string bits = b.substr(b.find("1"));
+            string bits = toBinaryString(i);
             if (S.find(bits) == string::npos) {
                 return false;
             }

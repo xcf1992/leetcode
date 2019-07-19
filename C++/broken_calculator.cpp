@@ -9,8 +9,6 @@
 
  Return the minimum number of operations needed to display the number Y.
 
-
-
  Example 1:
 
  Input: X = 2, Y = 3

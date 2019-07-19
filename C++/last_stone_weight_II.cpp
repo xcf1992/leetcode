@@ -9,7 +9,9 @@
 
  If x == y, both stones are totally destroyed;
  If x != y, the stone of weight x is totally destroyed, and the stone of weight y has new weight y-x.
- At the end, there is at most 1 stone left.  Return the smallest possible weight of this stone (the weight is 0 if there are no stones left.)
+ At the end, there is at most 1 stone left.
+ Return the smallest possible weight of this stone
+ (the weight is 0 if there are no stones left.)
 
  Example 1:
 
@@ -26,7 +28,6 @@
 
  1 <= stones.length <= 30
  1 <= stones[i] <= 100
-
  */
 #include <iostream>
 #include <string>
@@ -51,7 +52,6 @@ Now it's a easy classic knapsack problem.
 As this problem will be quite boring as Q4 (if you read my post),
 I'll leave you a slightly harder problem as follow-up just for more fun.
 Question: Return the biggest possible weight of this stone?
-
 
 FAQ (Some high voted questions)
 Question: How is it a knapsack problem?

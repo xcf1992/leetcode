@@ -1,17 +1,18 @@
 /*
  651. 4 Keys Keyboard
  Imagine you have a special keyboard with the following keys:
- 
+
  Key 1: (A): Print one 'A' on screen.
- 
+
  Key 2: (Ctrl-A): Select the whole screen.
- 
+
  Key 3: (Ctrl-C): Copy selection to buffer.
- 
+
  Key 4: (Ctrl-V): Print buffer on screen appending it after what has already been printed.
- 
- Now, you can only press the keyboard for N times (with the above four keys), find out the maximum numbers of 'A' you can print on screen.
- 
+
+ Now, you can only press the keyboard for N times (with the above four keys),
+ find out the maximum numbers of 'A' you can print on screen.
+
  Example 1:
  Input: N = 3
  Output: 3
@@ -29,7 +30,6 @@
  1 <= N <= 50
  Answers will be in the range of 32-bit signed integer.
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -57,9 +57,22 @@ public:
 };
 
 /*
- The inner loop of the bottom-up DP can be truncated to at most four terms, that is, for dp[i], we only need to choose the largest one from dp[i - 3] * 2, dp[i - 4] * 3, dp[i - 5] * 4, dp[i - 6] * 5, while all the rest terms like dp[i - 7] * 6, dp[i - 8] * 7, ... can be ignored. The reason is as follows: when computing dp[i - 3], we’ve already chosen its value to be the maximum of terms like dp[i - 6] * 2, dp[i - 7] * 3, dp[i - 8] * 4, ..., which implies dp[i - 3] >= dp[i - k] * (k - 4) for k >= 6. This further leads to dp[i - 3] * 2 >= dp[i - k] * (2k - 8) >= dp[i - k] * (k - 1) if k >= 7. So we always have dp[i - 3] * 2 >= dp[i - 7] * 6, dp[i - 3] * 2 >= dp[i - 8] * 7, .... Therefore terms like dp[i - 7] * 6, dp[i - 8] * 7, ... won’t contribute when evaluating dp[i].
- 
- The truncation will make the DP solution run effectively in O(n) time. Also the space complexity can be reduced to O(1) since now we only need to maintain a constant number of variables (seven, I would say, dp[i], dp[i-1], dp[i-2], dp[i-3], dp[i-4], dp[i-5], dp[i-6]). The following is the modified code:
+ The inner loop of the bottom-up DP can be truncated to at most four terms,
+ that is, for dp[i], we only need to choose the largest one from
+ dp[i - 3] * 2, dp[i - 4] * 3, dp[i - 5] * 4, dp[i - 6] * 5,
+ while all the rest terms like dp[i - 7] * 6, dp[i - 8] * 7, ... can be ignored.
+ The reason is as follows: when computing dp[i - 3],
+ we’ve already chosen its value to be the maximum of terms like dp[i - 6] * 2, dp[i - 7] * 3, dp[i - 8] * 4, ...,
+ which implies dp[i - 3] >= dp[i - k] * (k - 4) for k >= 6.
+ This further leads to dp[i - 3] * 2 >= dp[i - k] * (2k - 8) >= dp[i - k] * (k - 1) if k >= 7.
+ So we always have dp[i - 3] * 2 >= dp[i - 7] * 6, dp[i - 3] * 2 >= dp[i - 8] * 7, ....
+ Therefore terms like dp[i - 7] * 6, dp[i - 8] * 7, ...
+ won’t contribute when evaluating dp[i].
+
+ The truncation will make the DP solution run effectively in O(n) time.
+ Also the space complexity can be reduced to O(1) since now we only need to maintain a constant number of variables
+ (seven, I would say, dp[i], dp[i-1], dp[i-2], dp[i-3], dp[i-4], dp[i-5], dp[i-6]).
+ The following is the modified code:
  */
 class Solution1 {
 public:

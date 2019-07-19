@@ -1,6 +1,7 @@
 /*
 1062. Longest Repeating Substring
-Given a string S, find out the length of the longest repeating substring(s). Return 0 if no repeating substring exists.
+Given a string S, find out the length of the longest repeating substring(s).
+Return 0 if no repeating substring exists.
 
 Example 1:
 
@@ -29,7 +30,6 @@ Note:
 The string S consists of only lowercase English letters from 'a' - 'z'.
 1 <= S.length <= 1500
  */
-
 #include <iostream>
 #include <string>
 #include <vector>

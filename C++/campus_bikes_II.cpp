@@ -13,8 +13,6 @@
 
  Example 1:
 
-
-
  Input: workers = [[0,0],[2,1]], bikes = [[1,2],[3,3]]
  Output: 6
  Explanation:
@@ -50,42 +48,42 @@
 #include <numeric>
 using namespace std;
 
-    class Solution { // dfs with memo
-    private:
-        unordered_map<string, int> memo;
-        int M = 0;
-        int N = 0;
+class Solution { // dfs with memo
+private:
+    unordered_map<string, int> memo;
+    int M = 0;
+    int N = 0;
 
-        int getDistance(vector<int>& worker, vector<int>& bike) {
-            return abs(worker[0] - bike[0]) + abs(worker[1] - bike[1]);
+    int getDistance(vector<int>& worker, vector<int>& bike) {
+        return abs(worker[0] - bike[0]) + abs(worker[1] - bike[1]);
+    }
+
+    int dfs(vector<vector<int>>& workers, vector<vector<int>>& bikes, int curWorker, int occupied) {
+        if (curWorker >= N) {
+            return 0;
         }
 
-        int dfs(vector<vector<int>>& workers, vector<vector<int>>& bikes, int curWorker, int occupied) {
-            if (curWorker >= N) {
-                return 0;
-            }
-
-            string key = to_string(curWorker) + "_" + to_string(occupied);
-            if (memo.find(key) != memo.end()) {
-                return memo[key];
-            }
-
-            memo[key] = INT_MAX;
-            for (int i = 0; i < M; ++i) {
-                if ((occupied & (1 << i)) == 0) { // this bike is not taken by anyone
-                    int temp = getDistance(workers[curWorker], bikes[i]) + dfs(workers, bikes, curWorker + 1, (occupied ^ (1 << i)));
-                    memo[key] = min(memo[key], temp);
-                }
-            }
+        string key = to_string(curWorker) + "_" + to_string(occupied);
+        if (memo.find(key) != memo.end()) {
             return memo[key];
         }
-    public:
-        int assignBikes(vector<vector<int>>& workers, vector<vector<int>>& bikes) {
-            M = bikes.size();
-            N = workers.size();
-            return dfs(workers, bikes, 0, 0);
+
+        memo[key] = INT_MAX;
+        for (int i = 0; i < M; ++i) {
+            if ((occupied & (1 << i)) == 0) { // this bike is not taken by anyone
+                int temp = getDistance(workers[curWorker], bikes[i]) + dfs(workers, bikes, curWorker + 1, (occupied ^ (1 << i)));
+                memo[key] = min(memo[key], temp);
+            }
         }
-    };
+        return memo[key];
+    }
+public:
+    int assignBikes(vector<vector<int>>& workers, vector<vector<int>>& bikes) {
+        M = bikes.size();
+        N = workers.size();
+        return dfs(workers, bikes, 0, 0);
+    }
+};
 
 // naive dfs TLE
 class Solution1 {
