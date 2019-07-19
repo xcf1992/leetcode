@@ -1,6 +1,9 @@
 /*
 439. Ternary Expression Parser
-Given a string representing arbitrarily nested ternary expressions, calculate the result of the expression. You can always assume that the given expression is valid and only consists of digits 0-9, ?, :, T and F (T and F represent True and False respectively).
+Given a string representing arbitrarily nested ternary expressions,
+calculate the result of the expression.
+You can always assume that the given expression is valid and only consists of digits 0-9, ?, :, T and F
+(T and F represent True and False respectively).
 
 Note:
 
@@ -58,12 +61,12 @@ public:
         for (int i = expression.size() - 1; i >= 0; i--) {
             char c = expression[i];
             if (!stk.empty() && stk.top() == '?') {
-                stk.pop();
-                char left = stk.top();
-                stk.pop();
-                stk.pop();
-                char right = stk.top();
-                stk.pop();
+                stk.pop(); // pop ?
+                char left = stk.top(); // get left val
+                stk.pop(); // pop left val
+                stk.pop(); // pop :
+                char right = stk.top(); // get right val
+                stk.pop(); // pop right val
                 if (c == 'T') {
                     stk.push(left);
                 }

@@ -1,7 +1,7 @@
 /*
 424. Longest Repeating Character Replacement
-Given a string that consists of only uppercase English letters, 
-you can replace any letter in the string with another letter at most k times. 
+Given a string that consists of only uppercase English letters,
+you can replace any letter in the string with another letter at most k times.
 Find the length of a longest substring containing all repeating letters you can get after performing the above operations.
 
 Note:
@@ -42,11 +42,17 @@ The substring "BBBB" has the longest repeating letters, which is 4.
 using namespace std;
 
 /*
-maxCount may be invalid at some points, but this doesn't matter, 
-because it was valid earlier in the string, 
-and all that matters is finding the max window that occurred anywhere in the string. 
-Additionally, it will expand if and only if enough repeating characters appear in the window to make it expand. 
+maxCount may be invalid at some points, but this doesn't matter,
+because it was valid earlier in the string,
+and all that matters is finding the max window that occurred anywhere in the string.
+Additionally, it will expand if and only if enough repeating characters appear in the window to make it expand.
 So whenever it expands, it's a valid expansion.
+
+=====
+
+as we only care about the max count of a letter in a window,
+within k swap if we can find m occurance of letter x, then current longest result will be m + k
+we only need to update the result if can find a letter repeat more than m times within k swap
 */
 class Solution {
 public:
