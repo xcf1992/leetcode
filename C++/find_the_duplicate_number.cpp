@@ -52,12 +52,12 @@ the index of slow and finder is the duplicate number.
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
-        int slow = nums[0];
-        int fast = nums[nums[0]];
-        while (slow != fast) {
+        int fast = 0;
+        int slow = 0;
+        do { // we need to make fast, and slow to the same value at beginning, otherwise it won't work
             slow = nums[slow];
             fast = nums[nums[fast]];
-        }
+        } while (fast != slow);
 
         fast = 0;
         while (fast != slow) {
