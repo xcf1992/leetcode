@@ -1,5 +1,5 @@
 /*
-817. Linked List Components
+ 817. Linked List Components
  We are given head, the head node of a linked list containing unique integer values.
 
  We are also given the list G, a subset of the values in the linked list.
@@ -29,7 +29,6 @@
  1 <= G.length <= 10000.
  G is a subset of all values in the linked list.
  */
-
 #include <iostream>
 #include <sstream>
 #include <string>
