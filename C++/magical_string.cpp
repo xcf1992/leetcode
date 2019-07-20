@@ -12,7 +12,7 @@ If we group the consecutive '1's and '2's in S, it will be:
 
 and the occurrences of '1's or '2's in each group are:
 
-1 2	2 1 1 2 1 2 2 1 2 2 ......
+1 2 2 1 1 2 1 2 2 1 2 2 ......
 
 You can see that the occurrence sequence above is the S itself.
 
@@ -43,8 +43,7 @@ public:
         string magic = "122";
         int cur = 2;
         while (magic.size() < n) {
-            magic.append(magic[cur] - '0', magic.back() ^ 3); // append (size_t n, char c);
-            // binary form of '1' is 011 0001
+            magic.append(magic[cur] - '0', magic.back() ^ 3); // append (size_t n, char c); 10 ^ 11 -> 01, 01 ^ 11 -> 10
             cur += 1;
         }
         return count(magic.begin(), magic.begin() + n, '1');

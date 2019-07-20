@@ -3,9 +3,9 @@
 
  From any string, we can form a subsequence of that string by deleting some number of characters (possibly no deletions).
 
- Given two strings source and target, return the minimum number of subsequences of source such that their concatenation equals target. If the task is impossible, return -1.
-
-
+ Given two strings source and target,
+ return the minimum number of subsequences of source such that their concatenation equals target.
+ If the task is impossible, return -1.
 
  Example 1:
 
@@ -28,7 +28,6 @@
 
  Both the source and target strings consist of only lowercase English letters from "a"-"z".
  The lengths of source and target string are between 1 and 1000.
-
  */
 #include <iostream>
 #include <string>
@@ -67,11 +66,9 @@ public:
             auto it = upper_bound(dict[index].begin(), dict[index].end(), pos);
             if (it == dict[index].end()) {
                 result += 1;
-                pos = dict[index].front();
+                it = dict[index].begin();
             }
-            else {
-                pos = *it;
-            }
+            pos = *it;
         }
         return result;
     }
