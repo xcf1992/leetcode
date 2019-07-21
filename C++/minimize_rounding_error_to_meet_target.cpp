@@ -30,7 +30,6 @@
  Each string of prices prices[i] represents a real number which is between 0 and 1000 and has exactly 3 decimal places.
  target is between 0 and 1000000.
  */
-
 #include <iostream>
 #include <string>
 #include <vector>

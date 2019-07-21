@@ -14,36 +14,34 @@
 #include "extra_data_types.hpp"
 using namespace std;
 
-class Solution {
+class Solution1 {
 private:
-    pair<double, double> traverse(TreeNode* root, double& result) {
-        if (root == nullptr) {
-            return {0.0, 0.0};
+    vector<int> count(string num) {
+        vector<int> result(2, 0);
+        for (char c : num) {
+            result[c - '0'] += 1;
         }
-        
-        if (root -> left == nullptr and root -> right == nullptr) {
-            result = max(result, (double)(root -> val));
-            return {root -> val, 1.0};
-        }
-        
-        pair<double, double> lft = traverse(root -> left, result);
-        pair<double, double> rgt = traverse(root -> left, result);
-        double sum = root -> val + lft.first + rgt.first;
-        double count = 1 + lft.second + rgt.second;
-        double avg = sum / count;
-        result = max(result, avg);
-        return {sum, count};
+        return result;
     }
 public:
-    double maximumAverageSubtree(TreeNode* root) {
-        double result = 0.0;
-        traverse(root, result);
-        return result;
+    int findMaxForm(vector<string>& strs, int m, int n) {
+        vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
+        for (int i = 0; i <= m; ++i) {
+            for (int j = 0; j <= n; ++j) {
+                for (string str : strs) {
+                    vector<int> digit = count(str);
+                    if (i >= digit[0] and j >= digit[1]) {
+                        dp[i][j] = max(dp[i][j], 1 + dp[i - digit[0]][j - digit[1]]);
+                    }
+                }
+            }
+        }
+        return dp[m][n];
     }
 };
 
 int main() {
-    Solution s;
+    Solution1 s;
     vector<int> temp({1,3,2,4});
     vector<int> temp1({1,3,3,3,2});
     vector<vector<int>> matrix({
@@ -62,10 +60,10 @@ int main() {
         {6,7,1,4,5},
         {5,1,1,2,4}
     });
-    vector<string> words({"cat","cats","and","sand","dog"});
+    vector<string> words({"10","0001","111001","1","0"});
     TreeNode* r1 = new TreeNode(0);
     TreeNode* r2 = new TreeNode(1);
     TreeNode* r3 = new TreeNode(3);
     r1 -> left = r2;
-    s.maximumAverageSubtree(r1);
+    s.findMaxForm(words, 5, 3);
 }
