@@ -14,34 +14,44 @@
 #include "extra_data_types.hpp"
 using namespace std;
 
-class Solution1 {
+class Solution {
 private:
-    vector<int> count(string num) {
-        vector<int> result(2, 0);
-        for (char c : num) {
-            result[c - '0'] += 1;
+    int find(string s, int k, int start, int end) {
+        if (start > end) {
+            return 0;
         }
-        return result;
-    }
-public:
-    int findMaxForm(vector<string>& strs, int m, int n) {
-        vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
-        for (int i = 0; i <= m; ++i) {
-            for (int j = 0; j <= n; ++j) {
-                for (string str : strs) {
-                    vector<int> digit = count(str);
-                    if (i >= digit[0] and j >= digit[1]) {
-                        dp[i][j] = max(dp[i][j], 1 + dp[i - digit[0]][j - digit[1]]);
-                    }
-                }
+        
+        vector<int> count(26, 0);
+        for (int i = start; i <= end; i++) {
+            count[s[i] - 'a'] += 1;
+        }
+        
+        int pos = start;
+        while (pos <= end and count[s[pos] - 'a'] >= k) {
+            pos += 1;
+        }
+        if (pos > end) {
+            return end - start + 1;
+        }
+        
+        int result = 0;
+        int left = start;
+        for (int i = start; i <= end; ++i) {
+            if (count[s[start] - 'a'] < k) {
+                result = max(result, find(s, k, left, i - 1));
+                left = i + 1;
             }
         }
-        return dp[m][n];
+        return max(result, find(s, k, left, end));
+    }
+public:
+    int longestSubstring(string s, int k) {
+        return find(s, k, 0, s.size() - 1);
     }
 };
 
 int main() {
-    Solution1 s;
+    Solution s;
     vector<int> temp({1,3,2,4});
     vector<int> temp1({1,3,3,3,2});
     vector<vector<int>> matrix({
@@ -65,5 +75,5 @@ int main() {
     TreeNode* r2 = new TreeNode(1);
     TreeNode* r3 = new TreeNode(3);
     r1 -> left = r2;
-    s.findMaxForm(words, 5, 3);
+    s.longestSubstring("aaabb", 3);
 }

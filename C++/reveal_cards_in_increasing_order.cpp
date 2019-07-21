@@ -69,15 +69,14 @@ class Solution {
 public:
     vector<int> deckRevealedIncreasing(vector<int>& deck) {
         sort(deck.begin(), deck.end());
-
-        deque<int> res;
-        res.push_front(deck.back());
+        deque<int> result;
+        result.push_front(deck.back());
         for (int i = deck.size() - 2; i >= 0; i--) {
-            res.push_front(res.back());
-            res.pop_back();
-            res.push_front(deck[i]);
+            result.push_front(result.back());
+            result.pop_back();
+            result.push_front(deck[i]);
         }
-        return vector<int>(res.begin(), res.end());
+        return vector<int>(result.begin(), result.end());
     }
 };
 
