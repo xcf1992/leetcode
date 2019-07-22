@@ -35,42 +35,41 @@ class Solution {
 public:
     int numSubarrayBoundedMax(vector<int>& A, int L, int R) {
         int result = 0;
-        int dp = 0;
+        int count = 0;
         int start = -1;
         for (int i = 0; i < A.size(); i++) {
             if (A[i] > R) {
-                dp = 0;
+                count = 0;
                 start = i;
                 continue;
             }
             if (A[i] >= L) {
-                dp = i - start;
+                count = i - start;
             }
-            result += dp;
+            result += count;
         }
         return result;
     }
 };
 
 class Solution1 {
-public:
-    int numSubarrayBoundedMax(vector<int>& A, int L, int R) {
+private:
+    int count(vector<int>& A, int limit) { // count of subarrays with maximum <= limit
         int result = 0;
-        int dp = 0;
-        int start = -1;
-        for (int i = 0; i < A.size(); i++) {
-            if (A[i] < L) {
-                result += dp;
-            }
-            else if (A[i] > R) {
-                dp = 0;
-                start = i;
+        int cur = 0;
+        for (int num : A) {
+            if (num <= limit) {
+                cur += 1;
             }
             else {
-                dp = i - start;
-                result += dp;
+                cur = 0;
             }
+            result += cur;
         }
         return result;
+    }
+public:
+    int numSubarrayBoundedMax(vector<int>& A, int L, int R) {
+        return count(A, R) - count(A, L - 1);
     }
 };
