@@ -14,45 +14,41 @@
 #include "extra_data_types.hpp"
 using namespace std;
 
-class Solution {
-private:
-    int find(string s, int k, int start, int end) {
-        if (start > end) {
-            return 0;
-        }
-        
-        vector<int> count(26, 0);
-        for (int i = start; i <= end; i++) {
-            count[s[i] - 'a'] += 1;
-        }
-        
-        int pos = start;
-        while (pos <= end and count[s[pos] - 'a'] >= k) {
-            pos += 1;
-        }
-        if (pos > end) {
-            return end - start + 1;
-        }
-        
-        int result = 0;
-        int left = start;
-        for (int i = start; i <= end; ++i) {
-            if (count[s[start] - 'a'] < k) {
-                result = max(result, find(s, k, left, i - 1));
-                left = i + 1;
+class Solution { // dp
+public:
+    int mctFromLeafValues(vector<int>& arr) {
+        int n = arr.size();
+        vector<vector<int>> maximum(n, vector<int>(n, INT_MIN));
+        for (int i = 0; i < n; ++i) {
+            maximum[i][i] = arr[i];
+            for (int j = i + 1; j < n; ++j) {
+                maximum[i][j] = max(maximum[i][j - 1], arr[j]);
             }
         }
-        return max(result, find(s, k, left, end));
-    }
-public:
-    int longestSubstring(string s, int k) {
-        return find(s, k, 0, s.size() - 1);
+
+        vector<vector<int>> dp(n, vector<int>(n, INT_MAX));
+        for (int i = 0; i < n; ++i) {
+            dp[i][i] = arr[i];
+            if (i > 0) {
+                dp[i - 1][i] = arr[i - 1] * arr[i];
+            }
+        }
+
+        for (int count = 3; count <= n; count++) {
+            for (int i = 0; i + count - 1 < n; ++i) {
+                int j = i + count - 1;
+                for (int k = i; k < j; ++k) {
+                    dp[i][j] = min(dp[i][j], dp[i][k] + dp[k + 1][j] + maximum[i][k] * maximum[k + 1][j]);
+                }
+            }
+        }
+        return dp[0][n - 1];
     }
 };
 
 int main() {
     Solution s;
-    vector<int> temp({1,3,2,4});
+    vector<int> temp({6,2,4});
     vector<int> temp1({1,3,3,3,2});
     vector<vector<int>> matrix({
         {0,1},
@@ -75,5 +71,5 @@ int main() {
     TreeNode* r2 = new TreeNode(1);
     TreeNode* r3 = new TreeNode(3);
     r1 -> left = r2;
-    s.longestSubstring("aaabb", 3);
+    s.mctFromLeafValues(temp);
 }
