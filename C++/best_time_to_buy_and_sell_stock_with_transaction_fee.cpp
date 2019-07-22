@@ -43,8 +43,13 @@ hold[i] - the maximum profit you can earn if you have to hold at day[i]
 sold[i] - the maximum profit you can earn if you have to sold at day[i]
 
 Formula:
-hold[i] = max(hold[i - 1], sold[i - 1] - p[i])       // if hold at [i-1], no op; if sold at [i-1], buy at [i] with cost of p[i];
-sold[i] = max(sold[i - 1], hold[i - 1] + p[i] - fee) // if sold at [i-1], no op; if hold at [i-1], sell at [i] with gain of p[i] - fee;
+hold[i] = max(hold[i - 1], sold[i - 1] - p[i])
+   if hold at [i-1], no op;
+   if sold at [i-1],
+   buy at [i] with cost of p[i];
+sold[i] = max(sold[i - 1], hold[i - 1] + p[i] - fee)
+   if sold at [i-1], no op;
+   if hold at [i-1], sell at [i] with gain of p[i] - fee;
 
 Initialization:
 hold[0] = 0 - price[0];  // buy shares with cost of p[0];

@@ -27,6 +27,16 @@ and two equal integers should also be considered as a special case of increasing
 #include <map>
 using namespace std;
 
+/*
+A short explanation to the hash table:
+this is to record used numbers so that if we ever encounters a duplicate later,
+it will be skipped.
+For example, if we have {4, 6(1), 7, 6(2), 6(3), ...}.
+At some point the hash table is {4, 6(1)}.
+When we visit 6(2) or 6(3),
+since we find 6(1) is already in the table,
+we skip to the next number.
+*/
 class Solution {
 private:
     void dfs(vector<vector<int>>& result, vector<int>& cur, vector<int>& nums, int index) {

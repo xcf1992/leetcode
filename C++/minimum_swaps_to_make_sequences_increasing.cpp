@@ -72,7 +72,7 @@ For i = 3, notice that A[2] >= A[3],
 which mean the manipulation of A[3] and B[3] and A[2] and B[2] should be opposite.
 In this case, swapRecord[3] = fixRecord[2] + 1 and fixRecord[3] = swapRecord[2]
 For the last elements, it's similiar as the elements when i = 1.
-Either swap or fix is OK. You can try to figure this out. :D
+Either swap or fix is OK. You can try to figure this out.
 
 Finally, we get the minimum of last swapRecord and fixRecord. It should be the result.
 Notice that every ith swapRecord and fixRecord is only relevant with the previous one.

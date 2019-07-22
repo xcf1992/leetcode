@@ -1,28 +1,28 @@
 /*
  469. Convex Polygon
- Given a list of points that form a polygon when joined sequentially, find if this polygon is convex (Convex polygon definition).
- 
+ Given a list of points that form a polygon when joined sequentially,
+ find if this polygon is convex (Convex polygon definition).
+
  Note:
- 
+
  There are at least 3 and at most 10,000 points.
  Coordinates are in the range -10,000 to 10,000.
  You may assume the polygon formed by given points is always a simple polygon (Simple polygon definition). In other words, we ensure that exactly two edges intersect at each vertex, and that edges otherwise don't intersect each other.
  Example 1:
- 
+
  [[0,0],[0,1],[1,1],[1,0]]
- 
+
  Answer: True
- 
+
  Explanation:
  Example 2:
- 
+
  [[0,0],[0,10],[10,10],[10,0],[5,5]]
- 
+
  Answer: False
- 
+
  Explanation:
  */
-
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -60,7 +60,7 @@ public:
       for (int i=0, pos=0, neg=0, n=p.size(); i < n; ++i) {
         long det = det2({p[i], p[(i+1)%n], p[(i+2)%n]});
         if ((pos|=(det>0))*(neg|=(det<0))) return false;
-      }    
+      }
       return true;
     }
 };
@@ -75,7 +75,7 @@ private:
         if (y1 == y2) {
             return x1 > x2 ? 0 : 180;
         }
-        
+
         int tmp = atan(abs(y1 - y2) / abs(x1 - x2)) * 180 / PI;
         if (x1 < x2 && y1 > y2){
             return 180 - tmp;
@@ -88,7 +88,7 @@ private:
         }
         return tmp;
     }
-    
+
     //diff of clock wise from x1y1 to x3y3, with x2y2 as the base point
     double getDiff(int x1, int y1, int x2, int y2, int x3, int y3) {
         double angle1 = getAngle(x1, y1, x2, y2);
@@ -108,14 +108,14 @@ public:
         if (n <= 3) {
             return true;
         }
-        
+
         int less = 0;
         int more = 0;
         for (int i = 0; i < n; i++) {
             int diff = getDiff(points[(i - 1 + n) % n][0], points[(i - 1 + n) % n][1],
                                points[i][0], points[i][1],
                                points[(i + 1) % n][0], points[(i + 1) % n][1]);
-            
+
             if (diff < 180) {
                 less++;
             }
