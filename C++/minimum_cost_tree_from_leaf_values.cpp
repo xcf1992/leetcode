@@ -40,7 +40,7 @@ It is guaranteed that the answer fits into a 32-bit signed integer (ie. it is le
 #include <algorithm>
 #include <cmath>
 #include <queue>
-#include <stk>
+#include <stack>
 #include <stdio.h>
 #include "extra_data_types.hpp"
 using namespace std;
