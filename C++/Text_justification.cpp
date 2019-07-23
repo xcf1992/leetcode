@@ -88,7 +88,7 @@ public:
                 }
                 else {
                     int spaceCount = (maxWidth - len) / (count - 1);
-                    if (j - 1 < (maxWidth - len) % (count - 1)) {
+                    if (j <= (maxWidth - len) % (count - 1)) {
                         spaceCount += 1;
                     }
                     cur += string(spaceCount, ' ');

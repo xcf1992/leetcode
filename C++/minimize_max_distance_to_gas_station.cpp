@@ -1,9 +1,12 @@
 /*
  774. Minimize Max Distance to Gas Station
 
- On a horizontal number line, we have gas stations at positions stations[0], stations[1], ..., stations[N-1], where N = stations.length.
+ On a horizontal number line,
+ we have gas stations at positions stations[0], stations[1], ..., stations[N-1],
+ where N = stations.length.
 
- Now, we add K more gas stations so that D, the maximum distance between adjacent gas stations, is minimized.
+ Now, we add K more gas stations so that D,
+ the maximum distance between adjacent gas stations, is minimized.
 
  Return the smallest possible value of D.
 
@@ -47,7 +50,7 @@ private:
     bool check(vector<int>& stations, int K, double mid) {
         int count = 0;
         for (int i = 0; i < stations.size() - 1; ++i) {
-            count += (stations[i + 1] - stations[i]) / mid;
+            count += ceil((stations[i + 1] - stations[i]) / mid) - 1;
         }
         return count <= K;
     }

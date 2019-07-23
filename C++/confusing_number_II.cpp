@@ -9,8 +9,6 @@ A confusing number is a number that when rotated 180 degrees becomes a different
 
 Given a positive integer N, return the number of confusing numbers between 1 and N inclusive.
 
-
-
 Example 1:
 
 Input: 20
@@ -52,7 +50,7 @@ using namespace std;
 
 class Solution {
 private:
-   const vector<int> rotate = {0, 1, 2, 3, 4, 5, 9, 7, 8, 6};
+   const vector<int> rotate = {0, 1, -1, -1, -1, -1, 9, -1, 8, 6};
    const vector<int> valid = {0, 1, 6, 8, 9};
 
     bool isConfusing(int num) {

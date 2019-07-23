@@ -1,7 +1,9 @@
 /*
 1067. Digit Count in Range
-Given an integer d between 0 and 9, and two positive integers low and high as lower and upper bounds, respectively.
-Return the number of times that d occurs as a digit in all integers between low and high, including the bounds low and high.
+Given an integer d between 0 and 9,
+and two positive integers low and high as lower and upper bounds, respectively.
+Return the number of times that d occurs as a digit in all integers between low and high,
+including the bounds low and high.
 
 Example 1:
 
@@ -40,10 +42,7 @@ private:
         int result = 0;
         for (long i = 1; i <= bound; i *= 10) {
             long divisor = i * 10;
-            int quotient = bound / divisor;
-            if (quotient > 0) {
-                result += quotient * i;
-            }
+            result += (bound / divisor) * i;
             /*
             * when d == 0, when analyzing the remainder,
             * we need avoid taking numbers with "heading zero"
