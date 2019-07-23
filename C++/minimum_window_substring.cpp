@@ -42,10 +42,7 @@ public:
                 if (i == m) {
                     break;
                 }
-                /*
-                should not use count.find(s[i]) != count.end() to check, cause for cases like bba
-                */
-               count[s[i]] -= 1;
+                count[s[i]] -= 1; // should not use count.find(s[i]) != count.end() to check, cause for cases like bba
                 if (count[s[i]] >= 0) {
                     required -= 1;
                 }

@@ -1,10 +1,13 @@
 /*
 42. Trapping Rain Water
 
-Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.
+Given n non-negative integers representing an elevation map where the width of each bar is 1,
+compute how much water it is able to trap after raining.
 
 
-The above elevation map is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped. Thanks Marcos for contributing this image!
+The above elevation map is represented by array [0,1,0,2,1,0,1,3,2,1,2,1].
+In this case, 6 units of rain water (blue section) are being trapped.
+Thanks Marcos for contributing this image!
 
 Example:
 
@@ -40,7 +43,7 @@ public:
             leftMax[i] = max(leftMax[i - 1], height[i]);
             rightMax[n - i - 1] = max(rightMax[n - i], height[n - i - 1]);
         }
-        
+
         int result = 0;
         for (int i = 0; i < n; i++) {
             int wall = min(leftMax[i], rightMax[i]);
