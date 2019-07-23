@@ -1,18 +1,26 @@
 /*
- 224. Basic Calculator
- Implement a basic calculator to evaluate a simple expression string.
- 
- The expression string may contain open ( and closing parentheses ), the plus + or minus sign -, non-negative integers and empty spaces .
- 
- You may assume that the given expression is always valid.
- 
- Some examples:
- "1 + 1" = 2
- " 2-1 + 2 " = 3
- "(1+(4+5+2)-3)+(6+8)" = 23
- Note: Do not use the eval built-in library function.
- */
+224. Basic Calculator
+Implement a basic calculator to evaluate a simple expression string.
 
+The expression string may contain open ( and closing parentheses ),
+the plus + or minus sign -, non-negative integers and empty spaces .
+
+Example 1:
+
+Input: "1 + 1"
+Output: 2
+Example 2:
+
+Input: " 2-1 + 2 "
+Output: 3
+Example 3:
+
+Input: "(1+(4+5+2)-3)+(6+8)"
+Output: 23
+Note:
+You may assume that the given expression is always valid.
+Do not use the eval built-in library function.
+ */
 #include <iostream>
 #include <string>
 #include <vector>
@@ -27,38 +35,39 @@
 using namespace std;
 
 class Solution {
-public:
-    int calculate(string s) {
-        int pos = 0;
-        return evaluate(s, pos);
-    }
-    
+private:
     int evaluate(string& s, int& i) {
         long res = 0;
-        bool negFlag = false;
-        while (i < s.size() && s[i] != ')') {
-            if (s[i] == '+' || s[i] == ' ')
+        int positive = 1;
+        while (i < s.size() and s[i] != ')') {
+            if (s[i] == '+' or s[i] == ' ') {
                 i++;
+            }
             else if (s[i] == '-') {
                 i++;
-                negFlag = true;
+                positive = -1;
             }
             else if (s[i] == '(') {
                 i++;
-                res += negFlag ? - evaluate(s,i) : evaluate(s,i);
-                negFlag = false;
+                res += positive * evaluate(s, i);
+                positive = 1;
             }
             else {
                 long num = 0;
-                while (i < s.size() && isdigit(s[i])) {
+                while (i < s.size() and isdigit(s[i])) {
                     num = num * 10 + s[i] - '0';
                     i += 1;
                 }
-                res += negFlag ? - num : num;
-                negFlag = false;
+                res += positive * num;
+                positive = 1;
             }
         }
         i++;
         return res;
+    }
+public:
+    int calculate(string s) {
+        int pos = 0;
+        return evaluate(s, pos);
     }
 };

@@ -1,9 +1,13 @@
 /*
  269. Alien Dictionary
- There is a new alien language which uses the latin alphabet. However, the order among letters are unknown to you. You receive a list of non-empty words from the dictionary, where words are sorted lexicographically by the rules of this new language. Derive the order of letters in this language.
- 
+ There is a new alien language which uses the latin alphabet.
+ However, the order among letters are unknown to you.
+ You receive a list of non-empty words from the dictionary,
+ where words are sorted lexicographically by the rules of this new language.
+ Derive the order of letters in this language.
+
  Example 1:
- 
+
  Input:
  [
  "wrt",
@@ -12,37 +16,36 @@
  "ett",
  "rftt"
  ]
- 
+
  Output: "wertf"
  Example 2:
- 
+
  Input:
  [
  "z",
  "x"
  ]
- 
+
  Output: "zx"
  Example 3:
- 
+
  Input:
  [
  "z",
  "x",
  "z"
  ]
- 
+
  Output: ""
- 
+
  Explanation: The order is invalid, so return "".
  Note:
- 
+
  You may assume all letters are in lowercase.
  You may assume that if a is a prefix of b, then a must appear before b in the given dictionary.
  If the order is invalid, return an empty string.
  There may be multiple valid order of letters, return any one of them is fine.
  */
-
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -65,14 +68,14 @@ public:
         if (words.empty()) {
             return "";
         }
-        
+
         unordered_map<char, int> indegree;
         for (string word : words) {
             for (char c : word) {
                 indegree[c] = 0;
             }
         }
-        
+
         unordered_map<char, unordered_set<char>> graph;
         for (int i = 0; i < words.size() - 1; i++) {
             string cur = words[i];
@@ -88,7 +91,7 @@ public:
                 }
             }
         }
-        
+
         string result = "";
         queue<char>bfs;
         for (auto& it : indegree) {
@@ -100,7 +103,7 @@ public:
             char cur = bfs.front();
             bfs.pop();
             result.push_back(cur);
-            
+
             if (graph[cur].size() != 0) {
                 for (char c : graph[cur]) {
                     indegree[c] -= 1;
