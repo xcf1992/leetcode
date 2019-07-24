@@ -1,6 +1,8 @@
 /*
  317. Shortest Distance from All Buildings
- You want to build a house on an empty land which reaches all buildings in the shortest amount of distance. You can only move up, down, left and right. You are given a 2D grid of values 0, 1 or 2, where:
+ You want to build a house on an empty land which reaches all buildings in the shortest amount of distance.
+ You can only move up, down, left and right.
+ You are given a 2D grid of values 0, 1 or 2, where:
 
  Each 0 marks an empty land which you can pass by freely.
  Each 1 marks a building which you cannot pass through.
@@ -37,12 +39,13 @@
 #include <numeric>
 using namespace std;
 
-class Solution1 { // 15.08%
+class Solution { // 15.08%
 private:
+    int m = 0;
+    int n = 0;
+
     void update(int house, int distance, int posI, int posJ, vector<vector<int>>& shortest, unordered_map<int, unordered_set<int>>& visited, queue<vector<int>>& bfs, vector<vector<int>>& grid) {
-        int m = grid.size();
-        int n = grid[0].size();
-        if (posI < 0 || posJ < 0 || posI >= m || posJ >= n || grid[posI][posJ] != 0) {
+        if (posI < 0 or posJ < 0 or posI >= m or posJ >= n or grid[posI][posJ] != 0) {
             return;
         }
 
@@ -57,8 +60,8 @@ private:
     }
 public:
     int shortestDistance(vector<vector<int>>& grid) {
-        int m = grid.size();
-        int n = grid[0].size();
+        m = grid.size();
+        n = grid[0].size();
         unordered_map<int, unordered_set<int>> visited; // pos hae been visited by house x
         queue<vector<int>> bfs; // insert pair <house, distance, pos> the distance house x reach pos
         int house = 0;
@@ -73,26 +76,23 @@ public:
         }
 
         vector<vector<int>> shortest(m, vector<int>(n, 0));
+        vector<int> diff({0, 1, 0, -1, 0});
         while (!bfs.empty()) {
-            int curSize = bfs.size();
-            for (int i = 0; i < curSize; i++) {
-                int curHouse = bfs.front()[0];
-                int curDistance = bfs.front()[1];
-                int posI = bfs.front()[2] / n;
-                int posJ = bfs.front()[2] % n;
-                bfs.pop();
+            int curHouse = bfs.front()[0];
+            int curDistance = bfs.front()[1];
+            int posI = bfs.front()[2] / n;
+            int posJ = bfs.front()[2] % n;
+            bfs.pop();
 
-                update(curHouse, curDistance + 1, posI - 1, posJ, shortest, visited, bfs, grid);
-                update(curHouse, curDistance + 1, posI + 1, posJ, shortest, visited, bfs, grid);
-                update(curHouse, curDistance + 1, posI, posJ - 1, shortest, visited, bfs, grid);
-                update(curHouse, curDistance + 1, posI, posJ + 1, shortest, visited, bfs, grid);
+            for (int k = 1; k < diff.size(); ++k) {
+                update(curHouse, curDistance + 1, posI + diff[k], posJ + diff[k - 1], shortest, visited, bfs, grid);
             }
         }
 
         int result = INT_MAX;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if (grid[i][j] == 0 && visited[i * n + j].size() == house) {
+                if (grid[i][j] == 0 and visited[i * n + j].size() == house) {
                     result = min(result, shortest[i][j]);
                 }
             }

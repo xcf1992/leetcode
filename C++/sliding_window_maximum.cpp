@@ -1,7 +1,11 @@
 /*
 239. Sliding Window Maximum
-Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the very right.
-You can only see the k numbers in the window. Each time the sliding window moves right by one position. Return the max sliding window.
+Given an array nums,
+there is a sliding window of size k which is moving from the very left of the array to the very right.
+
+You can only see the k numbers in the window.
+Each time the sliding window moves right by one position.
+Return the max sliding window.
 
 Example:
 
@@ -46,7 +50,7 @@ public:
 
         deque<int> window;
         for (int i = 0; i < k; i++) {
-            while (!window.empty() && nums[i] >= nums[window.back()]) {
+            while (!window.empty() and nums[i] >= nums[window.back()]) {
                 window.pop_back();
             }
             window.push_back(i);
@@ -55,10 +59,10 @@ public:
         vector<int> result;
         result.push_back(nums[window.front()]);
         for (int i = k; i < nums.size(); i++) {
-            while (!window.empty() && nums[i] >= nums[window.back()]) {
+            while (!window.empty() and nums[i] >= nums[window.back()]) {
                 window.pop_back();
             }
-            if (!window.empty() && i - window.front() >= k) {
+            if (!window.empty() and i - window.front() >= k) {
                 window.pop_front();
             }
             window.push_back(i);

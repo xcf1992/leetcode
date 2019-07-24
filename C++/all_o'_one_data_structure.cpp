@@ -73,7 +73,7 @@ public:
         return make_pair(prev == nullptr, next == nullptr);
     }
 
-    pair<bool, bool> insert() {
+    pair<bool, bool> increase() {
         val += 1;
         while (next != nullptr and next -> val < val) {
             Node* n = next;
@@ -162,7 +162,7 @@ public:
             allOneMap[key] = n;
         }
         else {
-            allOneMap[key] -> insert();
+            allOneMap[key] -> increase();
             replaceHeadTail(allOneMap[key]);
         }
     }

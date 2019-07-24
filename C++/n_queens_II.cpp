@@ -2,8 +2,6 @@
 52. N-Queens II
 The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other.
 
-
-
 Given an integer n, return the number of distinct solutions to the n-queens puzzle.
 
 Example:
@@ -37,14 +35,7 @@ Explanation: There are two distinct solutions to the 4-queens puzzle as shown be
 #include <numeric>
 using namespace std;
 
-class Solution {
-public:
-    int totalNQueens(int n) {
-
-    }
-};
-
-class Solution1 { // slow faster than 9.71%
+class Solution { // slow faster than 9.71%
     bool isValid(vector<int>& cur, int n) {
         for (int i = 0; i < n; ++i) {
             for (int j = i + 1; j < n; ++j) {

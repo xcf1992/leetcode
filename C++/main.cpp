@@ -14,35 +14,57 @@
 #include "extra_data_types.hpp"
 using namespace std;
 
-class Solution { // dp
+class Solution {
 public:
-    int mctFromLeafValues(vector<int>& arr) {
-        int n = arr.size();
-        vector<vector<int>> maximum(n, vector<int>(n, INT_MIN));
-        for (int i = 0; i < n; ++i) {
-            maximum[i][i] = arr[i];
-            for (int j = i + 1; j < n; ++j) {
-                maximum[i][j] = max(maximum[i][j - 1], arr[j]);
-            }
-        }
+    vector<vector<string>> findLadders(string beginWord, string endWord, vector<string>& wordList) {
+        vector<vector<string>> result;
+        unordered_set<string> visited;
+        unordered_set<string> dict(wordList.begin(), wordList.end());
+        queue<vector<string>> bfs;
 
-        vector<vector<int>> dp(n, vector<int>(n, INT_MAX));
-        for (int i = 0; i < n; ++i) {
-            dp[i][i] = arr[i];
-            if (i > 0) {
-                dp[i - 1][i] = arr[i - 1] * arr[i];
-            }
-        }
+        int len = 1;
+        int minLen = INT_MAX;
+        bfs.push({beginWord});
+        visited.insert(beginWord);
+        while (!bfs.empty()) {
+            vector<string> ladder = bfs.front();
+            bfs.pop();
 
-        for (int count = 3; count <= n; count++) {
-            for (int i = 0; i + count - 1 < n; ++i) {
-                int j = i + count - 1;
-                for (int k = i; k < j; ++k) {
-                    dp[i][j] = min(dp[i][j], dp[i][k] + dp[k + 1][j] + maximum[i][k] * maximum[k + 1][j]);
+            //"visited" records all the visited nodes on this level
+            //these words will never be visited again after this level
+            //and should be removed from wordList. This is guaranteed
+            // by the shortest path.
+            if (ladder.size() > len) { //reach a new level
+                if (ladder.size() > minLen) {
+                    break;
+                }
+                len = ladder.size();
+            }
+
+            string curWord = ladder.back();
+            for (int i = 0; i < curWord.size(); ++i) {
+                string nextWord = curWord;
+                for (char c = 'a'; c <= 'z'; ++c) {
+                    if (c == curWord[i]) {
+                        continue;
+                    }
+                    nextWord[i] = c;
+                    if (dict.find(nextWord) != dict.end() and visited.find(nextWord) == visited.end()) {
+                        vector<string> newLadder = ladder;
+                        newLadder.push_back(nextWord);
+                        if (nextWord == endWord) {
+                            minLen = len;
+                            result.push_back(newLadder);
+                        }
+                        else {
+                            bfs.push(newLadder);
+                            visited.insert(nextWord);
+                        }
+                    }
                 }
             }
         }
-        return dp[0][n - 1];
+        return result;
     }
 };
 
@@ -66,10 +88,10 @@ int main() {
         {6,7,1,4,5},
         {5,1,1,2,4}
     });
-    vector<string> words({"10","0001","111001","1","0"});
+    vector<string> words({"hot","dot","dog","lot","log","cog"});
     TreeNode* r1 = new TreeNode(0);
     TreeNode* r2 = new TreeNode(1);
     TreeNode* r3 = new TreeNode(3);
     r1 -> left = r2;
-    s.mctFromLeafValues(temp);
+    s.findLadders("hit", "cog", words);
 }

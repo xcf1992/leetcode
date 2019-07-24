@@ -60,16 +60,15 @@ public:
 
         vector<vector<int>> skyline;
         priority_queue<pair<int, int>, vector<pair<int, int>>, myComp> pq;
-
         int cur = 0;
         int lastHeight = 0;
         for (int point : points) {
-            while (cur < buildings.size() and buildings[cur][0] <= point) {
+            while (cur < buildings.size() and buildings[cur][0] <= point) { // push in all buildings starts before point
                 pq.push({buildings[cur][1], buildings[cur][2]});
                 cur += 1;
             }
 
-            while (!pq.empty() && pq.top().first <= point) {
+            while (!pq.empty() && pq.top().first <= point) { // pops out building ends before current point
                 pq.pop();
             }
 
@@ -79,8 +78,8 @@ public:
             }
 
             if (height != lastHeight) {
-                lastHeight = height;
                 skyline.push_back({point, height});
+                lastHeight = height;
             }
         }
         return skyline;

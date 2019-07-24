@@ -2,7 +2,9 @@
  212. Word Search II
  Given a 2D board and a list of words from the dictionary, find all words in the board.
 
- Each word must be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once in a word.
+ Each word must be constructed from letters of sequentially adjacent cell,
+ where "adjacent" cells are those horizontally or vertically neighboring.
+ The same letter cell may not be used more than once in a word.
 
  Example:
 
@@ -62,7 +64,7 @@ private:
     }
 
     void findWord(vector<string>& result, vector<vector<bool>>& visited, vector<vector<char>>& board, TrieNode* cur, int r, int c) {
-        if (r < 0 || c < 0 || r >= board.size() || c >= board[0].size() || visited[r][c] || cur == nullptr) {
+        if (r < 0 or c < 0 or r >= board.size() or c >= board[0].size() or visited[r][c] or cur == nullptr) {
             return;
         }
 
@@ -73,27 +75,30 @@ private:
         }
 
         visited[r][c] = true;
-        findWord(result, visited, board, next, r - 1, c);
-        findWord(result, visited, board, next, r + 1, c);
-        findWord(result, visited, board, next, r, c - 1);
-        findWord(result, visited, board, next, r, c + 1);
+        vector<int> diff = {0, 1, 0, -1, 0};
+        for (int k = 1; k < diff.size(); ++k) {
+            findWord(result, visited, board, next, r + diff[k], c + diff[k - 1]);
+        }
         visited[r][c] = false;
     }
 public:
     vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
+        int m = board.size();
+        if (m == 0) {
+            return {};
+        }
+        int n = board[0].size();
+
         for (string word : words) {
             addWord(word);
         }
-
-        int m = board.size();
-        int n = board[0].size();
-        vector<string> found;
+        vector<string> result;
         vector<vector<bool>> visited(m, vector<bool>(n, false));
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                findWord(found, visited, board, root, i, j);
+                findWord(result, visited, board, root, i, j);
             }
         }
-        return found;
+        return result;
     }
 };

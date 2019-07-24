@@ -1,6 +1,8 @@
 /*
 126. Word Ladder II
-Given two words (beginWord and endWord), and a dictionary's word list, find all shortest transformation sequence(s) from beginWord to endWord, such that:
+Given two words (beginWord and endWord),
+and a dictionary's word list,
+find all shortest transformation sequence(s) from beginWord to endWord, such that:
 
 Only one letter can be changed at a time
 Each transformed word must exist in the word list. Note that beginWord is not a transformed word.
@@ -63,7 +65,7 @@ public:
             //these words will never be visited again after this level
             //and should be removed from wordList. This is guaranteed
             // by the shortest path.
-            if (ladder.size() > len) {
+            if (ladder.size() > len) { //reach a new level
                 for (string word : visited) {
                     dict.erase(word);
                 }
@@ -84,10 +86,17 @@ public:
                         continue;
                     }
                     nextWord[i] = c;
+                    /*
+                    * we do not check if visited here for current level, because it may happen different paths come to the same word at this level
+                    * for example "red" -> "tax", with ["ted","tex","red","tax","tad","den","rex","pee"]
+                    * correct result is [["red","ted","tad","tax"],["red","ted","tex","tax"],["red","rex","tex","tax"]]
+                    * the 2nd and 3rd both will have tex at the 3rd place
+                    * and that's why we need to cleard the words in the beginning when we enter a new level
+                    */
                     if (dict.find(nextWord) != dict.end()) {
+                        visited.insert(nextWord);
                         vector<string> newLadder = ladder;
                         newLadder.push_back(nextWord);
-                        visited.insert(nextWord);
                         if (nextWord == endWord) {
                             minLen = len;
                             result.push_back(newLadder);
