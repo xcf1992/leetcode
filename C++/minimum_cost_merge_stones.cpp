@@ -1,12 +1,13 @@
 /*
  1000. Minimum Cost to Merge Stones
- There are N piles of stones arranged in a row.  The i-th pile has stones[i] stones.
+ There are N piles of stones arranged in a row.
+ The i-th pile has stones[i] stones.
 
- A move consists of merging exactly K consecutive piles into one pile, and the cost of this move is equal to the total number of stones in these K piles.
+ A move consists of merging exactly K consecutive piles into one pile,
+ and the cost of this move is equal to the total number of stones in these K piles.
 
- Find the minimum cost to merge all piles of stones into one pile.  If it is impossible, return -1.
-
-
+ Find the minimum cost to merge all piles of stones into one pile.
+ If it is impossible, return -1.
 
  Example 1:
 
@@ -94,7 +95,7 @@ class Solution {
 public:
     int mergeStones(vector<int>& stones, int K) {
         int n = stones.size();
-        if ((n - 1) % (K - 1)) {
+        if ((n - 1) % (K - 1) != 0) {
             return -1;
         }
 
@@ -134,7 +135,7 @@ public:
             for (int j = i; j < n; j++) {
                 for(int k = 1; k <= K; k++) {
                     if (j - i + 1 == k) {
-                        dp[i][j][k] = 0;
+                        dp[i][j][k] = 0; // it is already k piles so we do not need to do merge at all
                     }
                 }
             }
@@ -148,13 +149,13 @@ public:
                             if (dp[i][m][1] == INT_MAX or dp[m + 1][j][k - 1] == INT_MAX) {
                                 continue;
                             }
-                            dp[i][j][k] = min(dp[i][j][k], dp[i][m][1] + dp[m+1][j][k-1]);
+                            dp[i][j][k] = min(dp[i][j][k], dp[i][m][1] + dp[m + 1][j][k - 1]);
                         }
                         else {
                             if (dp[i][m][1] == INT_MAX or dp[m + 1][j][K - 1] == INT_MAX) {
                                 continue;
                             }
-                            dp[i][j][k] = min(dp[i][j][k], dp[i][m][1] + dp[m + 1][j][K - 1] + sum[j] - sum[i] + stones[i]);
+                            dp[i][j][1] = min(dp[i][j][k], dp[i][m][1] + dp[m + 1][j][K - 1] + sum[j] - sum[i] + stones[i]);
                         }
                     }
 
@@ -226,39 +227,5 @@ public:
             }
         }
         return dp[1][n];
-    }
-};
-
-// should not sort
-class Solution3 {
-private:
-    void merge(int length, int K, int& result, vector<int>& stones) {
-        int sum = 0;
-        int start = stones.size() - length;
-        for (int i = 0; i < K; i++) {
-            sum += stones[start + i];
-        }
-
-        result += sum;
-        if (length == K) {
-            return;
-        }
-
-        length -= K - 1;
-        auto it = lower_bound(stones.begin(), stones.end(), sum);
-        stones.insert(it, sum);
-        merge(length, K, result, stones);
-        return;
-    }
-public:
-    int mergeStones(vector<int>& stones, int K) {
-        int n = stones.size();
-        if (n < K or n % (K - 1) != 1) {
-            return -1;
-        }
-        int result = 0;
-        sort(stones.begin(), stones.end());
-        merge(stones.size(), K, result, stones);
-        return result;
     }
 };

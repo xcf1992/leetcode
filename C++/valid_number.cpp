@@ -18,7 +18,9 @@ Some examples:
 "-+3" => false
 "95a54e53" => false
 
-Note: It is intended for the problem statement to be ambiguous. You should gather all requirements up front before implementing one. However, here is a list of characters that can be in a valid decimal number:
+Note: It is intended for the problem statement to be ambiguous.
+You should gather all requirements up front before implementing one.
+However, here is a list of characters that can be in a valid decimal number:
 
 Numbers 0-9
 Exponent - "e"

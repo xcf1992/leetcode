@@ -125,38 +125,3 @@ public:
         return dp[m][n];
     }
 };
-
-class Solution1 {
-public:
-    bool isMatch(const char *s, const char *p) {
-        if (s == nullptr) {
-            return p == nullptr;
-        }
-        if (p == nullptr) {
-            return false;
-        }
-
-        if (*p == '\0') {
-            return *s == '\0';
-        }
-
-        if (*(p + 1) != '*') {
-            if (*s == '\0') {
-                return false;
-            }
-            if (*p == *s or *p == '.') {
-                return isMatch(s + 1, p + 1);
-            }
-            return false;
-        }
-        else {
-            while (*s != '\0' and (*p == *s or *p == '.')) {
-                if (isMatch(s, p + 2)) {
-                    return true;
-                }
-                s++;
-            }
-            return isMatch(s, p + 2);
-        }
-    }
-};

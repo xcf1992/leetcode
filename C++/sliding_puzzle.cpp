@@ -1,13 +1,17 @@
 /*
 773. Sliding Puzzle
 
-On a 2x3 board,  there are 5 tiles represented by the integers 1 through 5,  and an empty square represented by 0.
+On a 2x3 board, there are 5 tiles represented by the integers 1 through 5,
+and an empty square represented by 0.
 
 A move consists of choosing 0 and a 4-directionally adjacent number and swapping it.
 
 The state of the board is solved if and only if the board is [[1, 2, 3], [4, 5, 0]].
 
-Given a puzzle board,  return the least number of moves required so that the state of the board is solved. If it is impossible for the state of the board to be solved,  return -1.
+Given a puzzle board,
+return the least number of moves required so that the state of the board is solved.
+If it is impossible for the state of the board to be solved,
+return -1.
 
 Examples:
 
@@ -54,7 +58,7 @@ public:
         string puzzle = "";
         for (int i = 0; i < board.size(); i++) {
             for (int j = 0; j < board[0].size(); j++) {
-                puzzle += to_string(board[i][j]);
+                puzzle.push_back(board[i][j] + '0');
             }
         }
         string target = "123450";
@@ -98,9 +102,14 @@ private:
 
         if (puzzle == "123450") {
             minMoves = min(minMoves, curMove);
+            return;
         }
 
-        if (curMove < minMoves and (transform[puzzle] == 0 or transform[puzzle] > curMove)) {
+        if (curMove >= minMoves) {
+            return;
+        }
+
+        if (transform.find(puzzle) == transform.end() or transform[puzzle] > curMove) {
             transform[puzzle] = curMove;
             for (int newZero : moves[swapZero]) {
                 dfs(puzzle,  transform,  swapZero,  newZero,  curMove + 1,  minMoves);
@@ -112,13 +121,13 @@ public:
         string puzzle = "";
         for (int i = 0; i < board.size(); i++) {
             for (int j = 0; j < board[0].size(); j++) {
-                puzzle += to_string(board[i][j]);
+                puzzle.push_back(board[i][j] + '0');
             }
         }
 
         int minMoves = INT_MAX;
         unordered_map<string,  int> transform;
-        dfs(puzzle,  transform,  puzzle.find('0'),  puzzle.find('0'),  0,  minMoves);
+        dfs(puzzle, transform, puzzle.find('0'), puzzle.find('0'), 0, minMoves);
         return minMoves == INT_MAX ? -1 : minMoves;
     }
 };
