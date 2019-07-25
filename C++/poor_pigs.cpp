@@ -1,7 +1,9 @@
 /*
  458. Poor Pigs
  There are 1000 buckets, one and only one of them contains poison,
- the rest are filled with water. They all look the same. If a pig drinks that poison it will die within 15 minutes.
+ the rest are filled with water.
+ They all look the same.
+ If a pig drinks that poison it will die within 15 minutes.
  What is the minimum amount of pigs you need to figure out which bucket contains the poison within one hour.
 
  Answer this question, and write an algorithm for the follow-up general case.
@@ -28,7 +30,8 @@ using namespace std;
 
 /*
  Suppose there are 10 buckest, 10 minutes to test and the pig dies after 3 minutes.
- then we can test at most 3 rounds. For each bucket, a big can drink it during round 1 or round 2 or round 3 or not drink at all ( 4 possibilities ).
+ then we can test at most 3 rounds.
+ For each bucket, a big can drink it during round 1 or round 2 or round 3 or not drink at all ( 4 possibilities ).
  Convert each bucket to a number of base 4.
 
  0 - 00
@@ -42,7 +45,9 @@ using namespace std;
  8 - 20
  9 - 21
  10 - 22
-
+ the value of each digit, means which round the pig should drink the water from this bucket
+ and the first bit means the first pig
+ 
  We need at most 2 digits to represent 10 buckets with base 4. Each digit represents a pig.
  The number indicates at which round should the pig drink water in this bucket.
 

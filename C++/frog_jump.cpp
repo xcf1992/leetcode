@@ -57,7 +57,6 @@ public:
         int n = stones.size();
         unordered_map<int, unordered_set<int>> reach;
         reach[stones.front()].insert(0);
-
         for (int pos : stones) {
             for (int k : reach[pos]) {
                 for (int step = max(1, k - 1); step <= k + 1; ++step) {
@@ -86,7 +85,7 @@ private:
         }
 
         for (int i = lastJump - 1; i <= lastJump + 1; i++) {
-            if (i > 0 && check(cur + i, end, i, visited, stone)) {
+            if (i > 0 and check(cur + i, end, i, visited, stone)) {
                 return true;
             }
         }
