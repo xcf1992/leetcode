@@ -1,7 +1,8 @@
 /*
 140. Word Break II
 Given a non-empty string s and a dictionary wordDict containing a list of non-empty words,
-add spaces in s to construct a sentence where each word is a valid dictionary word. Return all such possible sentences.
+add spaces in s to construct a sentence where each word is a valid dictionary word.
+Return all such possible sentences.
 
 Note:
 
@@ -45,7 +46,6 @@ Output:
 #include <unordered_set>
 using namespace std;
 
-
 class Solution { // dfs with memo
 private:
     unordered_map<string, vector<string>> memo;
@@ -60,13 +60,12 @@ private:
 
         for (int i = s.size() - 1; i >= 0; --i) {
             string word = s.substr(i);
-            if (dict.find(word) != dict.end()) {
-                vector<string> breakWords = generate(dict, s.substr(0, i));
-                if (!breakWords.empty()) {
-                    for (string& bw : breakWords) {
-                        memo[s].push_back(bw + (bw == "" ? "" : " ") + word);
-                    }
-                }
+            if (dict.find(word) == dict.end()) {
+                continue;
+            }
+            vector<string> breakWords = generate(dict, s.substr(0, i));
+            for (string& bw : breakWords) {
+                memo[s].push_back(bw + (bw == "" ? "" : " ") + word);
             }
         }
         return memo[s];

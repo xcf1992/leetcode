@@ -47,11 +47,11 @@ NOTE: input types have been changed on June 17, 2019. Please reset to default co
 using namespace std;
 
 struct Interval {
-      int start;
-      int end;
-      Interval() : start(0), end(0) {}
-      Interval(int s, int e) : start(s), end(e) {}
-  };
+    int start;
+    int end;
+    Interval() : start(0), end(0) {}
+    Interval(int s, int e) : start(s), end(e) {}
+};
 
 class Solution {
 public:
@@ -83,7 +83,7 @@ public:
     }
 };
 
-class Solution { //5.27%
+class Solution1 { //5.27%
 public:
     vector<Interval*> employeeFreeTime(vector<vector<Interval*>>& schedules) {
         vector<Interval*> intervals;
