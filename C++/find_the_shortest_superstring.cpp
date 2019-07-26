@@ -47,6 +47,17 @@ using namespace std;
  https://en.wikipedia.org/wiki/Held%E2%80%93Karp_algorithm
  https://leetcode.com/problems/find-the-shortest-superstring/discuss/194932/Travelling-Salesman-Problem
  https://leetcode.com/problems/find-the-shortest-superstring/discuss/195290/C++-solution-in-less-than-30-lines
+
+ We can use dynamic programming to leverage this recursion.
+ Let dp(mask, i) be the total overlap after putting some words down (represented by a bitmask mask),
+ for which A[i] was the last word put down.
+ Then, the key recursion is
+ dp(mask ^ (1<<j), j) = max(overlap(A[i], A[j]) + dp(mask, i)),
+ where the jth bit is not set in mask, and i ranges over all bits set in mask.
+
+Of course, this only tells us what the maximum overlap is for each set of words.
+We also need to remember each choice along the way (ie. the specific i that made dp(mask ^ (1<<j), j) achieve a minimum)
+so that we can reconstruct the answer.
  */
 class Solution {
 private:
@@ -62,9 +73,7 @@ private:
 public:
     string shortestSuperstring(vector<string>& A) {
         int n = A.size();
-
-        // overlap[i][j], means the number of letters overlapped when put A[j] after A[i]
-        vector<vector<int>> overlap(n, vector<int>(n, 0));
+        vector<vector<int>> overlap(n, vector<int>(n, 0)); // overlap[i][j], means the number of letters overlapped when put A[j] after A[i]
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (i != j) {

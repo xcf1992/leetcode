@@ -46,7 +46,7 @@ public:
         if (n == 0 or k == 0) {
             return {};
         }
-        
+
         unordered_map<string, int> count;
         for (string& word : words) {
             count[word] += 1;
@@ -57,18 +57,16 @@ public:
         for (int i = 0; i <= n - k * len; ++i) {
             unordered_map<string, int> find;
             int j = 0; // j is number of words we have found so far in current substring
-            while (j < k) {
+            for (; j < k; ++j) {
                 string cur = s.substr(i + j * len, len);
-                if (count.find(cur) != count.end()) {
-                    find[cur] += 1;
-                    if (find[cur] > count[cur]) {
-                        break;
-                    }
-                }
-                else {
+                if (count.find(cur) == count.end()) {
                     break;
                 }
-                j += 1;
+
+                find[cur] += 1;
+                if (find[cur] > count[cur]) {
+                    break;
+                }
             }
             if (j == k) {
                 result.push_back(i);
