@@ -1,33 +1,30 @@
 /*
- 5086. Smallest Subsequence of Distinct Characters
+ 1081. Smallest Subsequence of Distinct Characters
  Return the lexicographically smallest subsequence of text that contains all the distinct characters of text exactly once.
- 
- 
- 
+
  Example 1:
- 
+
  Input: "cdadabcc"
  Output: "adbc"
  Example 2:
- 
+
  Input: "abcd"
  Output: "abcd"
  Example 3:
- 
+
  Input: "ecbacba"
  Output: "eacb"
  Example 4:
- 
+
  Input: "leetcode"
  Output: "letcod"
- 
- 
+
+
  Note:
- 
+
  1 <= text.length <= 1000
  text consists of lowercase English letters.
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -50,12 +47,12 @@ public:
         for (char c : text) {
             count[c - 'a'] += 1;
         }
-        
+
         string result = "";
         vector<bool> used(26, false);
         for (char c : text) {
+            count[c - 'a'] -= 1;
             if (used[c - 'a']) {
-                count[c - 'a'] -= 1;
                 continue;
             }
             while (!result.empty() and c < result.back() and count[result.back() - 'a'] > 0) {
@@ -64,7 +61,6 @@ public:
             }
             result.push_back(c);
             used[c - 'a'] = true;
-            count[c - 'a'] -= 1;
         }
         return result;
     }

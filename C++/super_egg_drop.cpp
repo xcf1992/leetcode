@@ -4,13 +4,15 @@
 
  Each egg is identical in function, and if an egg breaks, you cannot drop it again.
 
- You know that there exists a floor F with 0 <= F <= N such that any egg dropped at a floor higher than F will break, and any egg dropped at or below floor F will not break.
+ You know that there exists a floor F with 0 <= F <= N such that any egg dropped at a floor higher than F will break,
+ and any egg dropped at or below floor F will not break.
 
  Each move, you may take an egg (if you have an unbroken one) and drop it from any floor X (with 1 <= X <= N).
 
  Your goal is to know with certainty what the value of F is.
 
- What is the minimum number of moves that you need to know with certainty what F is, regardless of the initial value of F?
+ What is the minimum number of moves that you need to know with certainty what F is,
+ regardless of the initial value of F?
 
 
  Example 1:
@@ -51,6 +53,14 @@
 #include <numeric>
 using namespace std;
 
+class Solution { // binary search
+private:
+
+public:
+    int superEggDrop(int K, int N) {
+
+    }
+};
 /*
  It's natural to attempt dynamic programming,
  as we encounter similar subproblems.
@@ -122,7 +132,7 @@ if egg breaks, F must be in [1,n0] floors, we can use m-1 moves and k-1 eggs to 
 if egg doesn't breaks and F is in [n0+2, n0+n1+1] floors, we can use m-1 moves and k eggs to find out F is which one.
 So, with m moves and k eggs, we can find out F in n0+n1+1 floors, whichever F is.
 */
-class Solution {
+class Solution { // 2d dp
 public:
     int superEggDrop(int K, int N) {
         vector<vector<int>> dp(N + 1, vector<int>(K + 1, 0));

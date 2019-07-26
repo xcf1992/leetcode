@@ -43,7 +43,8 @@ using namespace std;
  Basic idea:
  If we start from sx,sy, it will be hard to find tx, ty.
  If we start from tx,ty, we can find only one path to go back to sx, sy.
- I cut down one by one at first and I got TLE. So I came up with remainder.
+ I cut down one by one at first and I got TLE.
+ So I came up with remainder.
 
  First line:
  if 2 target points are still bigger than 2 starting point, we reduce target points.

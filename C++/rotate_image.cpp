@@ -56,7 +56,7 @@ rotate the input matrix in-place such that it becomes:
 #include <set>
 using namespace std;
 
-// (i,j -> n-1-i, n-1-j), then do a upside down change
+// (i,j -> n-1-j, n-1-i), then do a upside down change
 class Solution {
 public:
     void rotate(vector<vector<int>>& matrix) {

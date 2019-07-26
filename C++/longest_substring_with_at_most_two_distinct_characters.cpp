@@ -40,7 +40,6 @@ public:
         int distinct = 1;
         unordered_map<char, int> count;
         count[s[begin]] = 1;
-
         while (end < n) {
             if (count[s[end]] != 0) {
                 count[s[end]] += 1;

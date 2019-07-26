@@ -15,62 +15,48 @@
 using namespace std;
 
 class Solution {
-public:
-    vector<vector<string>> findLadders(string beginWord, string endWord, vector<string>& wordList) {
-        vector<vector<string>> result;
-        unordered_set<string> visited;
-        unordered_set<string> dict(wordList.begin(), wordList.end());
-        queue<vector<string>> bfs;
+private:
+    void mergeCount(vector<int>& indices, int first, int last, vector<int>& result, vector<int>& nums) {
+        if (first >= last) {
+            return;
+        }
 
-        int len = 1;
-        int minLen = INT_MAX;
-        bfs.push({beginWord});
-        visited.insert(beginWord);
-        while (!bfs.empty()) {
-            vector<string> ladder = bfs.front();
-            bfs.pop();
+        int mid = first + (last - first) / 2;
+        mergeCount(indices, first, mid, result, nums);
+        mergeCount(indices, mid, last, result, nums);
 
-            //"visited" records all the visited nodes on this level
-            //these words will never be visited again after this level
-            //and should be removed from wordList. This is guaranteed
-            // by the shortest path.
-            if (ladder.size() > len) { //reach a new level
-                if (ladder.size() > minLen) {
-                    break;
-                }
-                len = ladder.size();
+        vector<int> temp;
+        int idx1 = first;
+        int idx2 = mid;
+        int semicount = 0; // semicount if the count of numbers have merged in second half before current number in first half
+        while (idx1 < mid or idx2 < last) {
+            if (idx2 == last or (idx1 < mid and nums[indices[idx1]] <= nums[indices[idx2]])) {
+                temp.push_back(indices[idx1]);
+                result[indices[idx1]] += semicount;
+                idx1 += 1;
             }
-
-            string curWord = ladder.back();
-            for (int i = 0; i < curWord.size(); ++i) {
-                string nextWord = curWord;
-                for (char c = 'a'; c <= 'z'; ++c) {
-                    if (c == curWord[i]) {
-                        continue;
-                    }
-                    nextWord[i] = c;
-                    if (dict.find(nextWord) != dict.end() and visited.find(nextWord) == visited.end()) {
-                        vector<string> newLadder = ladder;
-                        newLadder.push_back(nextWord);
-                        if (nextWord == endWord) {
-                            minLen = len;
-                            result.push_back(newLadder);
-                        }
-                        else {
-                            bfs.push(newLadder);
-                            visited.insert(nextWord);
-                        }
-                    }
-                }
+            else {
+                temp.push_back(indices[idx2]);
+                semicount += 1;
+                idx2 += 1;
             }
         }
+        move(temp.begin(), temp.end(), indices.begin() + first);
+    }
+public:
+    vector<int> countSmaller(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> indices(n, 0);
+        iota(indices.begin(), indices.end(), 0);
+        vector<int> result(n, 0);
+        mergeCount(indices, 0, n, result, nums);
         return result;
     }
 };
 
 int main() {
     Solution s;
-    vector<int> temp({6,2,4});
+    vector<int> temp({5,2,6,1});
     vector<int> temp1({1,3,3,3,2});
     vector<vector<int>> matrix({
         {0,1},
@@ -93,5 +79,5 @@ int main() {
     TreeNode* r2 = new TreeNode(1);
     TreeNode* r3 = new TreeNode(3);
     r1 -> left = r2;
-    s.findLadders("hit", "cog", words);
+    s.countSmaller(temp);
 }

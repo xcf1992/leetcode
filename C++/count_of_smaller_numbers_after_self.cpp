@@ -78,6 +78,11 @@ using namespace std;
  merged elements in the 2nd array = (2,5,7,9)
  Additionally, when we need to count the inverse number, we do not need to record the exact elements, we only need to record the numbers. So, we can use a variable to record the number of "merged elements in the 2nd array" (for example, semilen in the code beneath) and the number of smaller elements of each element (for example, results[idx] in the code beneath).
 
+To record the result,
+we need to keep the index of each number in the original array.
+So instead of sort the number in nums,
+we sort the indexes of each number.
+
  Complexities:
 
  Time: O(n log n)
@@ -87,19 +92,18 @@ using namespace std;
 class Solution {
 private:
     void mergeCount(vector<int>& indices, int first, int last, vector<int>& result, vector<int>& nums) {
-        int count = last - first;
-        if (count <= 1) {
+        if (first >= last - 1) {
             return;
         }
 
-        int mid = first + count / 2;
+        int mid = first + (last - first) / 2;
         mergeCount(indices, first, mid, result, nums);
         mergeCount(indices, mid, last, result, nums);
 
         vector<int> temp;
         int idx1 = first;
         int idx2 = mid;
-        int semicount = 0;
+        int semicount = 0; // semicount if the count of numbers have merged in second half before current number in first half
         while (idx1 < mid or idx2 < last) {
             if (idx2 == last or (idx1 < mid and nums[indices[idx1]] <= nums[indices[idx2]])) {
                 temp.push_back(indices[idx1]);
@@ -118,9 +122,8 @@ public:
     vector<int> countSmaller(vector<int>& nums) {
         int n = nums.size();
         vector<int> indices(n, 0);
-        vector<int> result(n, 0);
-        // Fills the range [first, last) with sequentially increasing values, starting with value and repetitively evaluating ++value.
         iota(indices.begin(), indices.end(), 0);
+        vector<int> result(n, 0);
         mergeCount(indices, 0, n, result, nums);
         return result;
     }

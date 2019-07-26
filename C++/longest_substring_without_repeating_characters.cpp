@@ -4,8 +4,8 @@ Given a string, find the length of the longest substring without repeating chara
 Example 1:
 
 Input: "abcabcbb"
-Output: 3 
-Explanation: The answer is "abc", with the length of 3. 
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
 Example 2:
 
 Input: "bbbbb"
@@ -15,7 +15,7 @@ Example 3:
 
 Input: "pwwkew"
 Output: 3
-Explanation: The answer is "wke", with the length of 3. 
+Explanation: The answer is "wke", with the length of 3.
              Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
 */
 #include <iostream>
@@ -31,7 +31,7 @@ public:
         if (s.size() <= 1) {
             return s.size();
         }
-        
+
         int begin = 0;
         int end = 1;
         int result = 1;
@@ -53,7 +53,6 @@ public:
             }
             end++;
         }
-        
         return max(result, end - begin);
     }
 };
