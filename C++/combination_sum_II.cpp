@@ -1,6 +1,5 @@
 /*
 40. Combination Sum II
-
 Given a collection of candidate numbers (candidates) and a target number (target),
 find all unique combinations in candidates where the candidate numbers sums to target.
 
@@ -32,6 +31,7 @@ A combination set is:
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
 #include <unordered_map>
 #include <algorithm>
 using namespace std;
@@ -43,15 +43,14 @@ private:
             result.push_back(combination);
             return;
         }
-        if (target < 0) {
-            return;
-        }
 
         for (int i = level; i < num.size(); i++) {
+            if (num[i] > target) {
+                break;
+            }
             combination.push_back(num[i]);
             generate(num, target - num[i], i + 1, combination, result);
             combination.pop_back();
-
             while (i + 1 < num.size() and num[i + 1] == num[i]) {
                 i++;
             }

@@ -1,6 +1,8 @@
 /*
  322. Coin Change
- You are given coins of different denominations and a total amount of money amount. Write a function to compute the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.
+ You are given coins of different denominations and a total amount of money amount.
+ Write a function to compute the fewest number of coins that you need to make up that amount.
+ If that amount of money cannot be made up by any combination of the coins, return -1.
 
  Example 1:
 
@@ -37,16 +39,21 @@ using namespace std;
 class Solution {
 public:
     int coinChange(vector<int>& coins, int amount) {
+        int n = coins.size();
+        if (n <= 0) {
+            return -1;
+        }
+
+        sort(coins.begin(), coins.end());
         vector<int> dp(amount + 1, INT_MAX);
         dp[0] = 0;
-        sort(coins.begin(), coins.end());
         for (int i = 1; i <= amount; i++) {
-            for (int j = coins.size() - 1; j >= 0; j--) {
-                if (i >= coins[j] && dp[i - coins[j]] != INT_MAX) {
+            for (int j = n - 1; j >= 0; j--) {
+                if (i >= coins[j] and dp[i - coins[j]] != INT_MAX) {
                     dp[i] = min(dp[i], 1 + dp[i - coins[j]]);
                 }
             }
         }
-        return dp.back() == INT_MAX ? -1 : dp.back();
+        return dp[amount] == INT_MAX ? -1 : dp[amount];
     }
 };

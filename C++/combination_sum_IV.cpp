@@ -44,15 +44,40 @@ Special thanks to @pbrother for adding this problem and creating all test cases.
 #include <stdio.h>
 using namespace std;
 
-class Solution {
+/*
+https://leetcode.com/problems/combination-sum-iv/discuss/85074/6-lines-C%2B%2B-DP-solution
+some interesting discussions around test case
+[3,33,333]
+10000
+
+Line 14: Char 27: runtime error: signed integer overflow: 1499877744055434594 + 8139286513820820350 cannot be represented in type 'long long int' (solution.cpp)
+*/
+class Solution { // bottom up
+public:
+    int combinationSum4(vector<int>& nums, int target) {
+        int n = nums.size();
+        if (n <= 0) {
+            return 0;
+        }
+
+        vector<unsigned int> dp(target + 1, 0);
+        dp[0] = 1;
+        for (int i = 1; i <= target; ++i) {
+            for (int num : nums) {
+                if (i >= num) {
+                    dp[i] += dp[i - num];
+                }
+            }
+        }
+        return dp[target];
+    }
+};
+
+class Solution1 { // top down
 private:
     unordered_map<int, int> combination;
 public:
     int combinationSum4(vector<int>& nums, int target) {
-        if (combination.find(target) != combination.end()) {
-            return combination[target];
-        }
-
         if (target == 0) {
             return 1;
         }
@@ -61,11 +86,14 @@ public:
             return 0;
         }
 
-        int result = 0;
-        for (int i = 0; i < nums.size(); i++) {
-            result += combinationSum4(nums, target - nums[i]);
+        if (combination.find(target) != combination.end()) {
+            return combination[target];
         }
-        combination[target] = result;
-        return result;
+
+        combination[target] = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            combination[target] += combinationSum4(nums, target - nums[i]);
+        }
+        return combination[target];
     }
 };

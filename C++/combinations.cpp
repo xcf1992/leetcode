@@ -32,14 +32,15 @@ using namespace std;
 
 class Solution {
 private:
-    void GetResult(int n, int k, int level, vector<int>& combination, vector<vector<int>>& result) {
+    void build(int n, int k, int level, vector<int>& combination, vector<vector<int>>& result) {
         if (combination.size() == k) {
             result.push_back(combination);
+            return;
         }
 
         for (int i = level; i != n + 1; i++) {
             combination.push_back(i);
-            GetResult(n, k, i + 1, combination, result);
+            build(n, k, i + 1, combination, result);
             combination.pop_back();
         }
     }
@@ -47,7 +48,7 @@ public:
     vector<vector<int>> combine(int n, int k) {
         vector<vector<int>> result;
         vector<int> combination;
-        GetResult(n, k, 1, combination, result);
+        build(n, k, 1, combination, result);
         return result;
     }
 };

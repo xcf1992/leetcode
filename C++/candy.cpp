@@ -19,7 +19,6 @@ Input: [1,2,2]
 Output: 4
 Explanation: You can allocate to the first, second and third child with 1, 2, 1 candies respectively.
              The third child gets 1 candy because it satisfies the above two conditions.
-
  */
 #include <iostream>
 #include <string>
@@ -40,7 +39,7 @@ public:
     int candy(vector<int>& ratings) {
         int n = ratings.size();
         if (n <= 1) {
-            return ratings.size();
+            return n;
         }
 
         vector<int> candy(n, 1);
@@ -50,14 +49,11 @@ public:
             }
         }
 
-        int result = n;
         for (int i = n - 2; i >= 0; i--) {
             if (ratings[i] > ratings[i + 1] and candy[i] <= candy[i + 1]) {
                 candy[i] = candy[i + 1] + 1;
             }
-            result += candy[i] - 1;
         }
-        result += candy.back() - 1;
-        return result;
+        return accumulate(candy.begin(), candy.end(), 0);
     }
 };
