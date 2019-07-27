@@ -31,34 +31,58 @@ using namespace std;
 class SummaryRanges {
 private:
     vector<vector<int>> intervals;
+
+    int search(int target) {
+        int left = 0;
+        int right = intervals.size() - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (intervals[mid][0] == target) {
+                return mid;
+            }
+
+            if (intervals[mid][0] > target) {
+                right = mid;
+            }
+            else {
+                left = mid + 1;
+            }
+        }
+        return left;
+    }
 public:
     /** Initialize your data structure here. */
     SummaryRanges() {}
 
     void addNum(int val) {
-        auto it = lower_bound(intervals.begin(), intervals.end(), val, [](vector<int>& a, int v) {
-            return a[0] < v;
-        });
+        int n = intervals.size();
+        if (n == 0) {
+            intervals.push_back({val, val});
+            return;
+        }
 
-        if (it == intervals.end()) {
-            if (intervals.front()[0] <= val + 1) {
-                intervals.front()[0] = val;
+        if (val < intervals[0][0]) {
+            if (val + 1 == intervals[0][0]) {
+                intervals[0][0] = val;
                 return;
             }
             intervals.insert(intervals.begin(), {val, val});
-        }
-        else if (val - 1 <= (*it)[1]) {
-            (*it)[1] = max((*it)[1], val);
-        }
-        else {
-            it += 1;
-            intervals.insert(it, {val, val});
+            return;
         }
 
-        if (it + 1 != intervals.end() && (*it)[1] + 1 >= (*next(it))[0]) {
-            (*next(it))[0] = (*it)[0];
-            intervals.erase(it);
+        if (val > intervals[n - 1][0]) {
+            if (val <= intervals[n - 1][1]) {
+                return;
+            }
+            if (val == intervals[n - 1][1] + 1) {
+                intervals[n - 1][1] = val;
+                return;
+            }
+            intervals.push_back({val, val});
+            return;
         }
+
+        int pos = search(val);
     }
 
     vector<vector<int>> getIntervals() {
