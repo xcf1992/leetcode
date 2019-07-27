@@ -28,6 +28,29 @@ Please reset to default code definition to get new method signature.
 #include <stdio.h>
 using namespace std;
 
+/*
+First, run lower_bound let it point to interval (8,9) because 8 is the first element that is >= 7
+
+(0,2) (4,6) (8,9) (12,15)    temp = (7, 7)
+             ^
+We decrement it because the previous interval can merge 7
+
+(0,2) (4,6) (8,9) (12,15)    temp = (7, 7)
+       ^
+Now, it points to the first mergeable interval (if there is one). In this case, (4,6).
+While this interval is mergeable, merge (4,6) with temp to get
+
+(0,2) (8,9) (12,15)          temp = (4, 7)
+       ^
+Merge (8,9) with temp to get
+
+(0,2) (12,15)                temp = (4, 9)
+       ^
+Can't merge anymore, insert temp
+
+(0,2) (4,9) (12,15)          temp = (4, 9)
+Done.
+*/
 class SummaryRanges {
 private:
     vector<vector<int>> intervals;
@@ -37,12 +60,8 @@ private:
         int right = intervals.size() - 1;
         while (left <= right) {
             int mid = left + (right - left) / 2;
-            if (intervals[mid][0] == target) {
-                return mid;
-            }
-
             if (intervals[mid][0] > target) {
-                right = mid;
+                right = mid - 1;
             }
             else {
                 left = mid + 1;
@@ -55,34 +74,23 @@ public:
     SummaryRanges() {}
 
     void addNum(int val) {
-        int n = intervals.size();
-        if (n == 0) {
+        if (intervals.empty()) {
             intervals.push_back({val, val});
             return;
         }
 
-        if (val < intervals[0][0]) {
-            if (val + 1 == intervals[0][0]) {
-                intervals[0][0] = val;
-                return;
-            }
-            intervals.insert(intervals.begin(), {val, val});
-            return;
+        int index = search(val);
+        if (index > 0 and intervals[index - 1][1] + 1 >= val) {
+            index -= 1;
         }
-
-        if (val > intervals[n - 1][0]) {
-            if (val <= intervals[n - 1][1]) {
-                return;
-            }
-            if (val == intervals[n - 1][1] + 1) {
-                intervals[n - 1][1] = val;
-                return;
-            }
-            intervals.push_back({val, val});
-            return;
+        int start = val;
+        int end = val;
+        while (index < intervals.size() and intervals[index][0] <= val + 1 and val - 1 <= intervals[index][1]) {
+            start = min(intervals[index][0], start);
+            end = max(end, intervals[index][1]);
+            intervals.erase(intervals.begin() + index);
         }
-
-        int pos = search(val);
+        intervals.insert(intervals.begin() + index, {start, end});
     }
 
     vector<vector<int>> getIntervals() {
