@@ -5,8 +5,6 @@
 
  If there is no non-empty subarray with sum at least K, return -1.
 
-
-
  Example 1:
 
  Input: A = [1], K = 1
