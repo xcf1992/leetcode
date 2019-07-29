@@ -37,7 +37,6 @@ public:
         if (n <= 1) {
             return n;
         }
-
         /*
         * Since the width is increasing, we only need to consider height.
         * [3, 4] cannot contains [3, 3], so we need to put [3, 4] before [3, 3]
@@ -47,17 +46,22 @@ public:
             return a[0] < b[0] or (a[0] == b[0] and a[1] > b[1]);
         });
 
-        vector<int> dp;
+        /*
+        * as we sort the envelopes to a increasing array based on width
+        * but for the envelopes with the same width we put envelope with biggest height first
+        * thus we need to find the length of longest increasing subsequnce from this array based on height
+        */
+        vector<int> result;
         for (int i = 0; i < n; i++) {
-            auto it = lower_bound(dp.begin(), dp.end(), envelopes[i][1]);
-            if (it != dp.end()) {
+            auto it = lower_bound(result.begin(), result.end(), envelopes[i][1]);
+            if (it != result.end()) {
                 *it = envelopes[i][1];
             }
             else {
-                dp.push_back(envelopes[i][1]);
+                result.push_back(envelopes[i][1]);
             }
         }
-        return dp.size();
+        return result.size();
     }
 };
 

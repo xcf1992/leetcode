@@ -3,15 +3,18 @@
 
  On a N x N grid of cells, each cell (x, y) with 0 <= x < N and 0 <= y < N has a lamp.
 
- Initially, some number of lamps are on.  lamps[i] tells us the location of the i-th lamp that is on.  Each lamp that is on illuminates every square on its x-axis, y-axis, and both diagonals (similar to a Queen in chess).
+ Initially, some number of lamps are on.
+ lamps[i] tells us the location of the i-th lamp that is on.
+ Each lamp that is on illuminates every square on its x-axis, y-axis, and both diagonals (similar to a Queen in chess).
 
- For the i-th query queries[i] = (x, y), the answer to the query is 1 if the cell (x, y) is illuminated, else 0.
+ For the i-th query queries[i] = (x, y),
+ the answer to the query is 1 if the cell (x, y) is illuminated, else 0.
 
- After each query (x, y) [in the order given by queries], we turn off any lamps that are at cell (x, y) or are adjacent 8-directionally (ie., share a corner or edge with cell (x, y).)
+ After each query (x, y) [in the order given by queries],
+ we turn off any lamps that are at cell (x, y) or are adjacent 8-directionally (ie., share a corner or edge with cell (x, y).)
 
- Return an array of answers.  Each value answer[i] should be equal to the answer of the i-th query queries[i].
-
-
+ Return an array of answers.
+ Each value answer[i] should be equal to the answer of the i-th query queries[i].
 
  Example 1:
 

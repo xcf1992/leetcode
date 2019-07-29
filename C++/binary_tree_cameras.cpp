@@ -6,8 +6,6 @@
 
  Calculate the minimum number of cameras needed to monitor all nodes of the tree.
 
-
-
  Example 1:
 
 
@@ -19,7 +17,8 @@
 
  Input: [0,0,null,0,null,0,null,null,0]
  Output: 2
- Explanation: At least two cameras are needed to monitor all nodes of the tree. The above image shows one of the valid configurations of camera placement.
+ Explanation: At least two cameras are needed to monitor all nodes of the tree.
+ The above image shows one of the valid configurations of camera placement.
 
  Note:
 
@@ -64,7 +63,7 @@ using namespace std;
 
  Here is our greedy solution:
 
- Set cameras on all leaves' parents, thenr emove all covered nodes.
+ Set cameras on all leaves' parents, then remove all covered nodes.
  Repeat step 1 until all nodes are covered.
 
  Apply a recusion function dfs.
@@ -75,7 +74,6 @@ using namespace std;
  For each node,
  if it has a child, which is leaf (node 0), then it needs camera.
  if it has a child, which is the parent of a leaf (node 1), then it's covered.
-
  If it needs camera, then res++ and we return 1.
  If it's covered, we return 2.
  Otherwise, we return 0.
@@ -121,6 +119,7 @@ struct ResultType {
             this -> coveredCamera = coveredCamera;
         }
 };
+
 class Solution1 {
 private:
     ResultType check(TreeNode* root) {

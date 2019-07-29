@@ -39,10 +39,10 @@ private:
     bool match(string &pattern, int i, string &str, int j) {
         int m = pattern.size();
         int n = str.size();
-        if (i == m && j == n) {
+        if (i == m and j == n) {
             return true;
         }
-        if (i == m || j == n) {
+        if (i == m or j == n) {
             return false;
         }
 

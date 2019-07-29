@@ -26,17 +26,15 @@ public:
         }
 
         vector<vector<int>> isPalindrome(n, vector<int>(n, false));
-        vector<int> cut;
+        vector<int> dp(n, n); // we need at most n cuts, to cut the string into single letters
         for (int i = 0; i < n; ++i) {
-            int minC = i;
             for (int j = 0; j <= i; ++j) {
                 if (s[j] == s[i] and (j + 1 >= i - 1 or isPalindrome[j + 1][i - 1])) {
                     isPalindrome[j][i] = true;
-                    minC = j == 0 ? 0 : min(minC, cut[j - 1] + 1);
+                    dp[i] = j == 0 ? 0 : min(dp[i], dp[j - 1] + 1);
                 }
             }
-            cut.push_back(minC);
         }
-        return cut[n - 1];
+        return dp[n - 1];
     }
 };

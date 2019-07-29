@@ -68,8 +68,8 @@ public:
         pair<int, int> last = nums.back();
         indices[last.first][last.second] = indices[val].back();
         nums[indices[val].back()] = last;
+        
         indices[val].pop_back();
-
         if (indices[val].empty()) {
             indices.erase(val);
         }

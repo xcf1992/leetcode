@@ -1,8 +1,13 @@
 /*
  803. Bricks Falling When Hit
- We have a grid of 1s and 0s; the 1s in a cell represent bricks.  A brick will not drop if and only if it is directly connected to the top of the grid, or at least one of its (4-way) adjacent bricks will not drop.
+ We have a grid of 1s and 0s; the 1s in a cell represent bricks.
+ A brick will not drop if and only if it is directly connected to the top of the grid,
+ or at least one of its (4-way) adjacent bricks will not drop.
 
- We will do some erasures sequentially. Each time we want to do the erasure at the location (i, j), the brick (if it exists) on that location will disappear, and then some other bricks may drop because of that erasure.
+ We will do some erasures sequentially.
+ Each time we want to do the erasure at the location (i, j),
+ the brick (if it exists) on that location will disappear,
+ and then some other bricks may drop because of that erasure.
 
  Return an array representing the number of bricks that will drop after each erasure in sequence.
 
@@ -19,7 +24,10 @@
  hits = [[1,1],[1,0]]
  Output: [0,0]
  Explanation:
- When we erase the brick at (1, 0), the brick at (1, 1) has already disappeared due to the last move. So each erasure will cause no bricks dropping.  Note that the erased brick (1, 0) will not be counted as a dropped brick.
+ When we erase the brick at (1, 0),
+ the brick at (1, 1) has already disappeared due to the last move.
+ So each erasure will cause no bricks dropping.
+ Note that the erased brick (1, 0) will not be counted as a dropped brick.
 
  Note:
 
@@ -28,7 +36,6 @@
  It is guaranteed that each erasure will be different from any other erasure, and located inside the grid.
  An erasure may refer to a location with no brick - if it does, no bricks drop.
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -76,20 +83,25 @@ private:
     }
 
     /*
-     * This func is used to union neighbors and calculate the count of bricks that have been unioned to ceiling
-     * Note that if this is iterating from left-top to right-bottom, we only need to union current with left and top
-     * So union4 is a flag determining if we go thru 4 neighbors or just 2;
-     *
-     * basically it is used to update size of each component
-     * and return count of increased brickes become attached to ceiling
-     *
-     * union4 == false means we are initializing
-     */
+    * This func is used to union neighbors and calculate the count of bricks that have been unioned to ceiling
+    * Note that if this is iterating from left-top to right-bottom, we only need to union current with left and top
+    * So union4 is a flag determining if we go thru 4 neighbors or just 2;
+    *
+    * basically it is used to update size of each component
+    * and return count of increased brickes become attached to ceiling
+    *
+    * union4 == false means we are initializing
+    */
     int addBricks(vector<vector<int>>& grid, vector<int>& parent, vector<int>& count, int row, int col, bool union4) {
         int pos = row * n + col;
         parent[pos] = pos;
         count[pos] = 1;
-        int added = pos < n ? 1 : 0; // if key is at ceiling, init count as 1, because this brick has already been fixed.
+        /*
+        * if key is at ceiling, init count as 1, because this brick has already been fixed.
+        * so we will not count this extra brick when we attached component to ceiling
+        * which makes the later adjust -= 1 incorrect in this case if we initialize added as 0
+        */
+        int added = pos < n ? 1 : 0;
         if (row > 0 and grid[row - 1][col] == 1) {
             added += unin(parent, count, pos - n, pos);
         }

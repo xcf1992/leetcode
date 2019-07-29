@@ -91,6 +91,7 @@ struct Cell {
     int value = 0;
     unordered_map<int, int> formula;
 };
+
 class Excel {
 private:
     vector<vector<Cell*>> sheet;
