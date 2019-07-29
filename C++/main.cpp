@@ -16,47 +16,51 @@ using namespace std;
 
 class Solution {
 private:
-    void mergeCount(vector<int>& indices, int first, int last, vector<int>& result, vector<int>& nums) {
-        if (first >= last) {
-            return;
+    int n = 0;
+    int getMaxStone(vector<vector<int>>& dp, vector<int>& preSum, int start, int M) {
+        if (start >= n) {
+            return 0;
         }
 
-        int mid = first + (last - first) / 2;
-        mergeCount(indices, first, mid, result, nums);
-        mergeCount(indices, mid, last, result, nums);
-
-        vector<int> temp;
-        int idx1 = first;
-        int idx2 = mid;
-        int semicount = 0; // semicount if the count of numbers have merged in second half before current number in first half
-        while (idx1 < mid or idx2 < last) {
-            if (idx2 == last or (idx1 < mid and nums[indices[idx1]] <= nums[indices[idx2]])) {
-                temp.push_back(indices[idx1]);
-                result[indices[idx1]] += semicount;
-                idx1 += 1;
-            }
-            else {
-                temp.push_back(indices[idx2]);
-                semicount += 1;
-                idx2 += 1;
-            }
+        int total = preSum[n] - preSum[start];
+        if (start + 2 * M >= n) {
+            return total;
         }
-        move(temp.begin(), temp.end(), indices.begin() + first);
+
+        if (dp[start][M] != INT_MIN) {
+            return dp[start][M];
+        }
+
+        for (int x = M; x < 2 * M; ++x) {
+            dp[start][M] = max(dp[start][M], total - getMaxStone(dp, preSum, start + x, max(M, x)));
+        }
+        return dp[start][M];
     }
 public:
-    vector<int> countSmaller(vector<int>& nums) {
-        int n = nums.size();
-        vector<int> indices(n, 0);
-        iota(indices.begin(), indices.end(), 0);
-        vector<int> result(n, 0);
-        mergeCount(indices, 0, n, result, nums);
-        return result;
+    int stoneGameII(vector<int>& piles) {
+        n = piles.size();
+        if (n == 0) {
+            return 0;
+        }
+
+        vector<int> preSum(n + 1, 0);
+        for (int i = 0; i < n; ++i) {
+            preSum[i + 1] = piles[i] + preSum[i];
+        }
+
+        /*
+         * dp[i][j]
+         * the max stones the first player can get
+         * start with stone[i] (0-based), and with M = j
+         */
+        vector<vector<int>> dp(n, vector<int>(2 * n, INT_MIN));
+        return getMaxStone(dp, preSum, 0, 1);
     }
 };
 
 int main() {
     Solution s;
-    vector<int> temp({5,2,6,1});
+    vector<int> temp({2,7,9,4,4});
     vector<int> temp1({1,3,3,3,2});
     vector<vector<int>> matrix({
         {0,1},
@@ -79,5 +83,5 @@ int main() {
     TreeNode* r2 = new TreeNode(1);
     TreeNode* r3 = new TreeNode(3);
     r1 -> left = r2;
-    s.countSmaller(temp);
+    s.stoneGameII(temp);
 }

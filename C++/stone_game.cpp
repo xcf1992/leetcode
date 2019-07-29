@@ -34,7 +34,6 @@
  1 <= piles[i] <= 500
  sum(piles) is odd.
  */
-
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -65,7 +64,7 @@ using namespace std;
  If sum(piles[even]) < sum(piles[odd]), Alex just picks all odds and wins.
 
  So, Alex always defeats Lee in this game.
- 
+
  Approach 2: 2D DP
  Follow-up:
 
