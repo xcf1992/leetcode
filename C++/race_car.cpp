@@ -1,12 +1,15 @@
 /*
  818. Race Car
- Your car starts at position 0 and speed +1 on an infinite number line.  (Your car can go into negative positions.)
+ Your car starts at position 0 and speed +1 on an infinite number line.
+ (Your car can go into negative positions.)
 
  Your car drives automatically according to a sequence of instructions A (accelerate) and R (reverse).
 
- When you get an instruction "A", your car does the following: position += speed, speed *= 2.
+ When you get an instruction "A", your car does the following:
+ position += speed, speed *= 2.
 
- When you get an instruction "R", your car does the following: if your speed is positive then speed = -1 , otherwise speed = 1.  (Your position stays the same.)
+ When you get an instruction "R", your car does the following:
+ if your speed is positive then speed = -1 , otherwise speed = 1.  (Your position stays the same.)
 
  For example, after commands "AAR", your car goes to positions 0->1->3->3, and your speed goes to 1->2->4->-1.
 
@@ -60,7 +63,7 @@ using namespace std;
  use m A to go backward,
  then use R to change the direction again to move forward,
  by here there are n-1+2+m=n+m+1 operations (n-1 A, two R, m A),
- current position is 2^(n-1)-1 - (2^m-1)=2^(n-1)-2^m,
+ current position is 2^(n-1)-1 - (2^m-1) = 2^(n-1)-2^m,
  the remaining operations is same as dp[i-(2^(n-1)-1)+(2^m-1)]=dp[i-2^(n-1)+2^m)].
 
  Why dp in this way?
@@ -92,12 +95,11 @@ public:
             int n = floor(log2(i)) + 1;
             if (i == pow(2, n) - 1) {
                 dp[i] = n;
+                continue;
             }
-            else {
-                dp[i] = n + 1 + dp[pow(2, n) - 1 - i];
-                for (int m = 0; m < n - 1; m++) {
-                    dp[i] = min(dp[i], n - 1 + 1 + m + 1 + dp[i - pow(2, n - 1) + pow(2, m)]);
-                }
+            dp[i] = n + 1 + dp[pow(2, n) - 1 - i];
+            for (int m = 0; m < n - 1; m++) {
+                dp[i] = min(dp[i], n - 1 + 1 + m + 1 + dp[i - pow(2, n - 1) + pow(2, m)]);
             }
         }
         return dp[target];
@@ -106,7 +108,7 @@ public:
 
 /*
  BFS and pruning and memory states
- too slow beat 7.16%
+ too slow beat 11.03%
  932 ms
  */
 class Solution1 {
@@ -134,15 +136,17 @@ public:
 
                 int newPos = curPos + curSpeed;
                 int newSpeed = curSpeed * 2;
-                if (memo.find(to_string(newPos) + "_" + to_string(newSpeed)) == memo.end()) {
+                string key = to_string(newPos) + "_" + to_string(newSpeed);
+                if (memo.find(key) == memo.end()) {
                     bfs.push({newPos, newSpeed});
-                    memo.insert(to_string(newPos) + "_" + to_string(newSpeed));
+                    memo.insert(key);
                 }
 
                 newSpeed = -1 * curSpeed / abs(curSpeed);
-                if (memo.find(to_string(curPos) + "_" + to_string(newSpeed)) == memo.end()) {
+                key = to_string(curPos) + "_" + to_string(newSpeed);
+                if (memo.find(key) == memo.end()) {
                     bfs.push({curPos, newSpeed});
-                    memo.insert(to_string(curPos) + "_" + to_string(newSpeed));
+                    memo.insert(key);
                 }
             }
             result += 1;

@@ -6,18 +6,20 @@
 
  Mouse starts at node 1 and goes first, Cat starts at node 2 and goes second, and there is a Hole at node 0.
 
- During each player's turn, they must travel along one edge of the graph that meets where they are.  For example, if the Mouse is at node 1, it must travel to any node in graph[1].
+ During each player's turn, they must travel along one edge of the graph that meets where they are.
+ For example, if the Mouse is at node 1, it must travel to any node in graph[1].
 
  Additionally, it is not allowed for the Cat to travel to the Hole (node 0.)
 
  Then, the game can end in 3 ways:
-
  If ever the Cat occupies the same node as the Mouse, the Cat wins.
  If ever the Mouse reaches the Hole, the Mouse wins.
- If ever a position is repeated (ie. the players are in the same position as a previous turn, and it is the same player's turn to move), the game is a draw.
- Given a graph, and assuming both players play optimally, return 1 if the game is won by Mouse, 2 if the game is won by Cat, and 0 if the game is a draw.
+ If ever a position is repeated
+ (ie. the players are in the same position as a previous turn, and it is the same player's turn to move),
+ the game is a draw.
 
-
+ Given a graph, and assuming both players play optimally,
+ return 1 if the game is won by Mouse, 2 if the game is won by Cat, and 0 if the game is a draw.
 
  Example 1:
 
@@ -60,7 +62,8 @@ using namespace std;
  and t is 1 if it is the mouse's move, else 2.
 
  Let's call these states nodes.
- These states form a directed graph: the player whose turn it is has various moves which can be considered as outgoing edges from this node to other nodes.
+ These states form a directed graph:
+ the player whose turn it is has various moves which can be considered as outgoing edges from this node to other nodes.
 
  Some of these nodes are already resolved:
  if the mouse is at the hole (m = 0), then the mouse wins;
@@ -122,25 +125,25 @@ private:
     int MOUSE = 1;
     int CAT = 2;
 
-    vector<vector<int>> parents(vector<vector<int>>& graph, int mouse, int cat, int turn) {
-        vector<vector<int>> next;
+    vector<vector<int>> getParent(vector<vector<int>>& graph, int mouse, int cat, int turn) {
+        vector<vector<int>> pre;
         // current turn is 2 which is cat, previouse is a mouse move lead to current node
         if (turn == 2) {
             // get all pos that a mouse can move to current position
             for (int m : graph[mouse]) {
-                next.push_back({m, cat, 1});
+                pre.push_back({m, cat, 1});
             }
-            return next;
+            return pre;
         }
 
         // previous is a cat move
         for (int c : graph[cat]) {
             // cat cannot from hole 0
             if (c > 0) {
-                next.push_back({mouse, c, 2});
+                pre.push_back({mouse, c, 2});
             }
         }
-        return next;
+        return pre;
     }
 public:
     int catMouseGame(vector<vector<int>>& graph) {
@@ -180,12 +183,13 @@ public:
 
         while (!q.empty()) {
             vector<int> cur = q.front();
-            q.pop();
             int i = cur[0]; // mouse
             int j = cur[1]; // cat
             int t = cur[2]; // turn
             int c = cur[3]; // who wins 1 mouse 2 cat
-            for (vector<int>& parent : parents(graph, i, j, t)) {
+            q.pop();
+
+            for (vector<int>& parent : getParent(graph, i, j, t)) {
                 int i2 = parent[0]; // mouse
                 int j2 = parent[1]; // cat
                 int t2 = parent[2]; // turn
@@ -196,15 +200,14 @@ public:
                     if (t2 == c) {
                         color[i2][j2][t2] = c;
                         q.push({i2, j2, t2, c});
+                        continue;
                     }
-                    else {
-                        // cur node is not a win option for this parent, reduce one for possible win options
-                        degree[i2][j2][t2]--;
-                        if (degree[i2][j2][t2] == 0) {
-                            // if no win option existed, mark this parent as fail
-                            color[i2][j2][t2] = 3 - t2;
-                            q.push({i2, j2, t2, 3 - t2});
-                        }
+                    // cur node is not a win option for this parent, reduce one for possible win options
+                    degree[i2][j2][t2] -= 1;
+                    if (degree[i2][j2][t2] == 0) {
+                        // if no win option existed, mark this parent as fail
+                        color[i2][j2][t2] = 3 - t2;
+                        q.push({i2, j2, t2, 3 - t2});
                     }
                 }
             }

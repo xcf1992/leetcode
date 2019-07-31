@@ -37,15 +37,22 @@ using namespace std;
 /*
  Let ans be the returned answer, so that in particular ans[x] be the answer for node x.
 
- Naively, finding each ans[x] would take O(N)O(N) time (where NN is the number of nodes in the graph), which is too slow.
+ Naively, finding each ans[x] would take O(N) time (where N is the number of nodes in the graph), which is too slow.
  This is the motivation to find out how ans[x] and ans[y] are related, so that we cut down on repeated work.
 
- Let's investigate the answers of neighboring nodes xx and yy. In particular, say xyxy is an edge of the graph, that if cut would form two trees XX (containing xx) and YY (containing yy).
+ Let's investigate the answers of neighboring nodes x and y.
+ In particular, say xy is an edge of the graph,
+ that if cut would form two trees XX(containing x) and Y (containing y).
 
- Tree diagram illustrating recurrence for ans[child]
- Then, as illustrated in the diagram, the answer for xx in the entire tree, is the answer of xx on XX "x@X", plus the answer of yy on YY "y@Y", plus the number of nodes in YY "#(Y)". The last part "#(Y)" is specifically because for any node z in Y, dist(x, z) = dist(y, z) + 1.
+ Then, as illustrated in the diagram,
+ the answer for x in the entire tree, is the answer of x on X "x@X",
+ plus the answer of y on Y "y@Y",
+ plus the number of nodes in Y "#(Y)".
+ The last part "#(Y)" is specifically because for any node z in Y, dist(x, z) = dist(y, z) + 1.
 
- By similar reasoning, the answer for yy in the entire tree is ans[y] = x@X + y@Y + #(X). Hence, for neighboring nodes xx and yy, ans[x] - ans[y] = #(Y) - #(X).
+ By similar reasoning,
+ the answer for y in the entire tree is ans[y] = x@X + y@Y + #(X).
+ Hence, for neighboring nodes x and y, ans[x] - ans[y] = #(Y) - #(X).
 
  When we move our root from one node to its connected node, one part of nodes get closer, one the other part get further.
  If we know exactly hom many nodes in both parts, we can solve this problem.
@@ -84,7 +91,6 @@ private:
                 result[root] += result[child] + count[child];
             }
         }
-        count[root] += 1; // add itself
     }
 
     void updateDistance(int root, vector<vector<int>>& connected, vector<int>& count, vector<int>& result, vector<bool>& visited, int N) {
@@ -108,7 +114,7 @@ public:
             connected[edge[1]].push_back(edge[0]);
         }
         vector<bool> visited(N, false);
-        vector<int> count(N, 0);
+        vector<int> count(N, 1); // the count of child nodes include itself
         vector<int> result(N, 0);
         // we set 0 as root, count of child for each node, update distance accourdingly
         getChildCount(0, connected, count, result, visited);

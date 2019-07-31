@@ -41,45 +41,43 @@
 using namespace std;
 
 /*
-class Solution {
-    public int shortestPathLength(int[][] graph) {
-        int N = graph.length;
-        Queue<State> queue = new LinkedList();
-        int[][] dist = new int[1<<N][N];
-        for (int[] row: dist) Arrays.fill(row, N*N);
-
-        for (int x = 0; x < N; ++x) {
-            queue.offer(new State(1<<x, x));
-            dist[1 << x][x] = 0;
+A path 'state' can be represented as the subset of nodes visited, plus the current 'head' node.
+Then, the problem reduces to a shortest path problem among these states,
+which can be solved with a breadth-first search.
+*/
+class Solution { // BF
+public:
+    int shortestPathLength(vector<vector<int>>& graph) {
+        int n = graph.size();
+        vector<vector<int>> distance(1 << n, vector<int>(n, INT_MAX));
+        queue<pair<int, int>> bfs;
+        for (int i = 0; i < n; ++i) {
+            bfs.push({1 << i, i});
+            distance[1 << i][i] = 0;
         }
 
-        while (!queue.isEmpty()) {
-            State node = queue.poll();
-            int d = dist[node.cover][node.head];
-            if (node.cover == (1<<N) - 1) return d;
+        while (!bfs.empty()) {
+            int state = bfs.front().first;
+            int cur = bfs.front().second;
+            int dis = distance[state][cur];
+            bfs.pop();
 
-            for (int child: graph[node.head]) {
-                int cover2 = node.cover | (1 << child);
-                if (d + 1 < dist[cover2][child]) {
-                    dist[cover2][child] = d + 1;
-                    queue.offer(new State(cover2, child));
+            if (state == (1 << n) - 1) {
+                return dis;
+            }
 
+            for (int nxt : graph[cur]) {
+                int newState = state | (1 << nxt);
+                if (dis + 1 < distance[newState][nxt]) {
+                    distance[newState][nxt] = dis + 1;
+                    bfs.push({newState, nxt});
                 }
             }
         }
-
-        throw null;
+        return -1;
     }
-}
+};
 
-class State {
-    int cover, head;
-    State(int c, int h) {
-        cover = c;
-        head = h;
-    }
-}
-*/
 struct Path {
 public:
     Path(int n, int c, int m) {
