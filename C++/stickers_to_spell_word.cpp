@@ -1,12 +1,16 @@
 /*
  691. Stickers to Spell Word
- We are given N different types of stickers. Each sticker has a lowercase English word on it.
+ We are given N different types of stickers.
+ Each sticker has a lowercase English word on it.
 
- You would like to spell out the given target string by cutting individual letters from your collection of stickers and rearranging them.
+ You would like to spell out the given target string
+ by cutting individual letters from your collection of stickers and rearranging them.
 
- You can use each sticker more than once if you want, and you have infinite quantities of each sticker.
+ You can use each sticker more than once if you want,
+ and you have infinite quantities of each sticker.
 
- What is the minimum number of stickers that you need to spell out the target? If the task is impossible, return -1.
+ What is the minimum number of stickers that you need to spell out the target?
+ If the task is impossible, return -1.
 
  Example 1:
 
@@ -56,28 +60,29 @@
 using namespace std;
 
 class Solution {
+private:
+    int getNextState(string& sticker, string& target, int curState) {
+        int nextState = curState;
+        for (char c : sticker) {
+            for (int i = 0; i < target.size(); ++i) {
+                if (target[i] == c and ((nextState >> i) & 1) == 0) {
+                    nextState |= 1 << i;
+                    break; // if we fit current letter into one slot of target, we should break and check next letter from current sticker
+                }
+            }
+        }
+        return nextState;
+    }
 public:
     int minStickers(vector<string>& stickers, string target) {
         int n = target.size();
         vector<int> dp(1 << n, -1);
         dp[0] = 0;
-        for (int state = 0; state < (1 << n); ++state) {
-            if (dp[state] == -1) {
-                continue;
-            }
-
+        for (int state = 0; state < (1 << n); ++state) if (dp[state] != -1) {
             for (string& sticker : stickers) {
-                int next = state;
-                for (char c : sticker) {
-                    for (int i = 0; i < n; ++i) if (((next >> i) & 1) == 0) {
-                        if (target[i] == c) {
-                            next |= 1 << i;
-                            break; // if we fit current letter into one slot of target, we should break and check next letter from current sticker
-                        }
-                    }
-                }
-                if (dp[next] == -1 or dp[next] > dp[state] + 1) {
-                    dp[next] = dp[state] + 1;
+                int nextState = getNextState(sticker, target, state);
+                if (dp[nextState] == -1 or dp[nextState] > dp[state] + 1) {
+                    dp[nextState] = dp[state] + 1;
                 }
             }
         }
@@ -85,7 +90,39 @@ public:
     }
 };
 
-class Solution1 { // TLE
+class Solution1 { // another way to write the solution, same idea from 1125. Smallest Sufficient Team
+private:
+    int getNextState(string& sticker, string& target, int curState) {
+        int nextState = curState;
+        for (char c : sticker) {
+            for (int i = 0; i < target.size(); ++i) {
+                if (target[i] == c and ((nextState >> i) & 1) == 0) {
+                    nextState |= 1 << i;
+                    break; // if we fit current letter into one slot of target, we should break and check next letter from current sticker
+                }
+            }
+        }
+        return nextState;
+    }
+public:
+    int minStickers(vector<string>& stickers, string target) {
+        int n = target.size();
+        map<int, int> dp;
+        dp[0] = 0;
+        for (string& sticker : stickers) {
+            for (auto it = dp.begin(); it != dp.end(); ++it) {
+                int state = it -> first;
+                int nextState = getNextState(sticker, target, state);
+                if (dp.find(nextState) == dp.end() or dp[nextState] > dp[state] + 1) {
+                    dp[nextState] = dp[state] + 1;
+                }
+            }
+        }
+        return dp.find((1 << n) - 1) == dp.end() ? -1 : dp[(1 << n) - 1];
+    }
+};
+
+class Solution2 { // TLE
 public:
     int minStickers(vector<string>& stickers, string target) {
         int n = stickers.size();
