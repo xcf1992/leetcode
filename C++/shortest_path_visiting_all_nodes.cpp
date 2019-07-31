@@ -45,7 +45,7 @@ A path 'state' can be represented as the subset of nodes visited, plus the curre
 Then, the problem reduces to a shortest path problem among these states,
 which can be solved with a breadth-first search.
 */
-class Solution { // BF
+class Solution { // BFS
 public:
     int shortestPathLength(vector<vector<int>>& graph) {
         int n = graph.size();
