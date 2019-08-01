@@ -98,20 +98,16 @@ private:
             char d = it.first;
             int xDiff = it.second[0];
             int yDiff = it.second[1];
-
             int curX = ball[0];
             int curY = ball[1];
             int length = 0;
             bool drop = false;
 
             path.push_back(d);
-            while (curX + xDiff < M and curX + xDiff >= 0
-                   and curY + yDiff < N and curY + yDiff >= 0
-                   and maze[curX + xDiff][curY + yDiff] != 1) {
+            while (curX + xDiff < M and curX + xDiff >= 0 and curY + yDiff < N and curY + yDiff >= 0 and maze[curX + xDiff][curY + yDiff] != 1) {
                 curX += xDiff;
                 curY += yDiff;
                 length += 1;
-
                 if (curX == hole[0] and curY == hole[1]) {
                     if (distance[hole[0]][hole[1]] > distance[ball[0]][ball[1]] + length) {
                         distance[hole[0]][hole[1]] = distance[ball[0]][ball[1]] + length;

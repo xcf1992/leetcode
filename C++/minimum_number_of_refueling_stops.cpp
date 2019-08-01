@@ -22,7 +22,6 @@
  the car can still refuel there.
  If the car reaches the destination with 0 fuel left, it is still considered to have arrived.
 
-
  Example 1:
 
  Input: target = 1, startFuel = 1, stations = []
@@ -51,7 +50,6 @@
  0 <= stations.length <= 500
  0 < stations[0][0] < stations[1][0] < ... < stations[stations.length-1][0] < target
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -68,11 +66,16 @@ using namespace std;
 
 /*
 use priority queue
-When driving past a gas station, let's remember the amount of fuel it contained. We don't need to decide yet whether to fuel up here or not - for example, there could be a bigger gas station up ahead that we would rather refuel at.
+When driving past a gas station,
+let's remember the amount of fuel it contained.
+We don't need to decide yet whether to fuel up here or not - for example,
+there could be a bigger gas station up ahead that we would rather refuel at.
 
-When we run out of fuel before reaching the next station, we'll retroactively fuel up: greedily choosing the largest gas stations first.
+When we run out of fuel before reaching the next station,
+we'll retroactively fuel up: greedily choosing the largest gas stations first.
 
-This is guaranteed to succeed because we drive the largest distance possible before each refueling stop, and therefore have the largest choice of gas stations to (retroactively) stop at.
+This is guaranteed to succeed because we drive the largest distance possible before each refueling stop,
+and therefore have the largest choice of gas stations to (retroactively) stop at.
 */
 struct myComp {
     bool operator()(int a, int b) {
@@ -109,13 +112,16 @@ public:
 /*
  Let's determine dp[i], the farthest location we can get to using i refueling stops.
  This is motivated by the fact that we want the smallest i for which dp[i] >= target.
- Let's update dp as we consider each station in order. With no stations, clearly we can get a maximum distance of startFuel with 0 refueling stops.
+ Let's update dp as we consider each station in order.
+ With no stations, clearly we can get a maximum distance of startFuel with 0 refueling stops.
 
  Now let's look at the update step. When adding a station station[i] = (location, capacity),
- any time we could reach this station with t refueling stops, we can now reach capacity further with t+1 refueling stops.
+ any time we could reach this station with t refueling stops,
+ we can now reach capacity further with t+1 refueling stops.
 
  For example, if we could reach a distance of 15 with 1 refueling stop,
- and now we added a station at location 10 with 30 liters of fuel, then we could potentially reach a distance of 45 with 2 refueling stops.
+ and now we added a station at location 10 with 30 liters of fuel,
+ then we could potentially reach a distance of 45 with 2 refueling stops.
  --------------------------------------------------------------------------------------------------
  dp[t] means the furthest distance that we can get with t times of refueling.
 

@@ -1,6 +1,7 @@
 /*
  1031. Maximum Sum of Two Non-Overlapping Subarrays
- Given an array A of non-negative integers, return the maximum preSum of elements in two non-overlapping (contiguous) subarrays,
+ Given an array A of non-negative integers,
+ return the maximum preSum of elements in two non-overlapping (contiguous) subarrays,
  which have lengths L and M.
  (For clarification, the L-length subarray could occur before or after the M-length subarray.)
 
@@ -34,7 +35,6 @@
  L + M <= A.length <= 1000
  0 <= A[i] <= 1000
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -54,16 +54,15 @@ class Solution {
 public:
     int maxSumTwoNoOverlap(vector<int>& A, int L, int M) {
         int n = A.size();
-        vector<int> preSum(n, 0);
-        preSum[0] = A[0];
-        for (int i = 1; i < n; ++i) {
-            preSum[i] = preSum[i - 1] + A[i];
+        vector<int> preSum(n + 1, 0);
+        for (int i = 1; i <= n; ++i) {
+            preSum[i] = preSum[i - 1] + A[i - 1];
         }
 
-        int result = preSum[L + M - 1];
-        int Lmax = preSum[L - 1]; // max preSum of contiguous L elements before the last M elements.
-        int Mmax = preSum[M - 1]; // max preSum of contiguous M elements before the last L elements.
-        for (int i = L + M; i < n; ++i) {
+        int result = preSum[L + M];
+        int Lmax = preSum[L]; // max preSum of contiguous L elements before the last M elements.
+        int Mmax = preSum[M]; // max preSum of contiguous M elements before the last L elements.
+        for (int i = L + M + 1; i <= n; ++i) {
             Lmax = max(Lmax, preSum[i - M] - preSum[i - L - M]);
             Mmax = max(Mmax, preSum[i - L] - preSum[i - L - M]);
             result = max(result, max(Lmax + preSum[i] - preSum[i - M], Mmax + preSum[i] - preSum[i - L]));

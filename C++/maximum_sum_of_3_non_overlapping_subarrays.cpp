@@ -48,28 +48,28 @@ class Solution {
 public:
     vector<int> maxSumOfThreeSubarrays(vector<int>& nums, int k) {
         int n = nums.size();
-        vector<int> sum = {0};
-        for (int i : nums) {
-            sum.push_back(sum.back() + i);
+        vector<int> preSum(n + 1, 0);
+        for (int i = 1; i <= n; ++i) {
+            preSum[i] = preSum[i - 1] + nums[i - 1];
         }
 
         vector<int> posLeft(n, 0);
-        int curMax = sum[k] - sum[0];
+        int curMax = preSum[k] - preSum[0];
         for (int i = k; i < n; i++) {
             posLeft[i] = posLeft[i - 1];
-            if (sum[i + 1] - sum[i + 1 - k] > curMax) {
+            if (preSum[i + 1] - preSum[i + 1 - k] > curMax) {
                 posLeft[i] = i - k + 1;
-                curMax = sum[i + 1] - sum[i + 1 - k];
+                curMax = preSum[i + 1] - preSum[i + 1 - k];
             }
         }
 
         vector<int> posRight(n, n - k);
-        curMax = sum[n] - sum[n - k];
+        curMax = preSum[n] - preSum[n - k];
         for (int i = n - k - 1; i >= 0; i--) {
             posRight[i] = posRight[i + 1];
-            if (sum[i + k] - sum[i] >= curMax) { // as we prefer lexicographically smaller result, so even sum is equal we will update when check backwardly
+            if (preSum[i + k] - preSum[i] >= curMax) {
                 posRight[i] = i;
-                curMax = sum[i + k] - sum[i];
+                curMax = preSum[i + k] - preSum[i];
             }
         }
 
@@ -78,9 +78,9 @@ public:
         for (int i = k; i <= n - 2 * k; i++) {
             int left = posLeft[i - 1];
             int right = posRight[i + k];
-            curMax = sum[left + k] - sum[left] +
-                   sum[i + k] - sum[i] +
-                   sum[right + k] - sum[right];
+            curMax = preSum[left + k] - preSum[left] +
+                   preSum[i + k] - preSum[i] +
+                   preSum[right + k] - preSum[right];
             if (curMax > maxSum) {
                 maxSum = curMax;
                 result = {left, i, right};

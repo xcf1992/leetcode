@@ -43,7 +43,7 @@ public:
         }
         int k = costs[0].size();
 
-        vector<int> minCost(costs[0]);
+        vector<int> minCost = costs[0];
         int least = INT_MAX;
         int lstIndex = -1;
         int less = INT_MAX;

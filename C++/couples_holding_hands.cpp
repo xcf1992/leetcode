@@ -35,6 +35,9 @@ row is guaranteed to be a permutation of 0...len(row)-1.
 #include <numeric>
 using namespace std;
 
+/*
+https://leetcode.com/problems/couples-holding-hands/discuss/336706/The-general-mathematical-idea%3A-permutation-graph-and-graph-decomposition.
+*/
 class Solution {
 public:
     int minSwapsCouples(vector<int>& row) {
@@ -50,7 +53,7 @@ public:
             if (row[i] + odd != row[i + 1]) {
                 int couple = pos[row[i] + odd];
                 swap(pos[row[i] + odd], pos[row[i + 1]]);
-                swap(row[i + 1], row[couple]);
+                swap(row[couple], row[i + 1]);
                 result += 1;
             }
         }
@@ -64,8 +67,8 @@ hint:
 Say there are N two-seat couches.
 For each couple, draw an edge from the couch of one partner to the couch of the other partner.
 
-so all the connected couches will become separate components, we number of couches in each component minus 1
-will be the number of swaps needed.
+so all the connected couches will become separate components,
+the sum of number of couches in each component minus 1 will be the number of swaps needed.
 */
 class Solution1 {
 private:
@@ -95,12 +98,12 @@ public:
             }
         }
 
-        int result = 0;
+        int components = 0;
         for (int i = 0; i < n / 2; ++i) {
             if (parent[i] == i) {
-                result += count[i] - 1;
+                components += 1;
             }
         }
-        return result;
+        return n / 2 - components;
     }
 };

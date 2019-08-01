@@ -1,7 +1,8 @@
 /*
  466. Count The Repetitions
 
- Define S = [s,n] as the string S which consists of n connected strings s. For example, ["abc", 3] ="abcabcabc".
+ Define S = [s,n] as the string S which consists of n connected strings s.
+ For example, ["abc", 3] ="abcabcabc".
 
  On the other hand, we define that string s1 can be obtained from string s2
  if we can remove some characters from s2 such that it becomes s1.
@@ -81,7 +82,6 @@ using namespace std;
  you'll know that the following nextIndexs and increments of repeatCount will repeat a pattern.
 
  So let's separate the s1 segments into 3 parts:
-
  the prefix part before repetitive pattern
  the repetitive part
  the suffix part after repetitive pattern (incomplete repetitive pattern remnant)
@@ -90,36 +90,34 @@ using namespace std;
 class Solution {
 public:
     int getMaxRepetitions(string s1, int n1, string s2, int n2) {
-        if (n1 == 0) {
+        int l1 = s1.size();
+        if (l1 == 0 or n1 == 0) {
             return 0;
         }
-
         int l2 = s2.size();
+
         vector<int> nextIndexr(l2 + 1, 0); // nextIndex at start of each s1 block
         vector<int> countr(l2 + 1, 0); // count of repititions till the present s1 block
-
         int nextIndex = 0;
         int count = 0;
         for (int i = 0; i < n1; i++) {
-            for (int j = 0; j < s1.size(); j++) {
+            for (int j = 0; j < l1; j++) {
                 if (s1[j] == s2[nextIndex]) {
-                    ++nextIndex;
+                    nextIndex += 1;
                 }
                 if (nextIndex == s2.size()) {
                     nextIndex = 0;
-                    ++count;
+                    count += 1;
                 }
             }
 
             countr[i] = count;
             nextIndexr[i] = nextIndex;
-            for (int k = 0; k < i; k++) {
-                if (nextIndexr[k] == nextIndex) {
-                    int prev_count = countr[k];
-                    int pattern_count = (countr[i] - countr[k]) * ((n1 - 1 - k) / (i - k));
-                    int remain_count = countr[k + (n1 - 1 - k) % (i - k)] - countr[k];
-                    return (prev_count + pattern_count + remain_count) / n2;
-                }
+            for (int k = 0; k < i; k++) if (nextIndexr[k] == nextIndex) {
+                int prev_count = countr[k]; // count from [0, k]
+                int pattern_count = (countr[i] - countr[k]) * ((n1 - 1 - k) / (i - k));
+                int remain_count = countr[k + (n1 - 1 - k) % (i - k)] - countr[k];
+                return (prev_count + pattern_count + remain_count) / n2;
             }
         }
         return countr[n1 - 1] / n2;
