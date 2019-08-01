@@ -59,6 +59,8 @@ It's better explained through an example. Let's say the target is 'aabccbc', and
 '****cbc' ? '*b*' = []
 '****cbc' ? '**c' = [2]
 '*****bc' ? '*bc' = [4]
+
+still too slow https://leetcode.com/problems/stamping-the-sequence/discuss/285844/C%2B%2B-Very-Short-No-extra-space-(except-for-answer)-Beats-100100-(16ms-9mb)
 */
 class Solution {
 public:
