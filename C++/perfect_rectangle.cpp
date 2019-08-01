@@ -1,10 +1,12 @@
 /*
  391. Perfect Rectangle
 
- Given N axis-aligned rectangles where N > 0, determine if they all together form an exact cover of a rectangular region.
+ Given N axis-aligned rectangles where N > 0,
+ determine if they all together form an exact cover of a rectangular region.
 
- Each rectangle is represented as a bottom-left point and a top-right point. For example, a unit square is represented as [1,1,2,2]. (coordinate of bottom-left point is (1, 1) and top-right point is (2, 2)).
-
+ Each rectangle is represented as a bottom-left point and a top-right point.
+ For example, a unit square is represented as [1,1,2,2].
+ (coordinate of bottom-left point is (1, 1) and top-right point is (2, 2)).
 
  Example 1:
 
@@ -124,35 +126,19 @@ The real question is whether it can also be true for some non-perfect rectangle.
  */
 class Solution {
 private:
+    void update(unordered_set<string>& points, string p) {
+        if (points.find(p) == points.end()) {
+            points.insert(p);
+            return;
+        }
+        points.erase(p);
+    }
+
     void updatePoints(unordered_set<string>& points, vector<int>& rect) {
-        string p1 = to_string(rect[0]) + "_" + to_string(rect[1]);
-        string p2 = to_string(rect[0]) + "_" + to_string(rect[3]);
-        string p3 = to_string(rect[2]) + "_" + to_string(rect[3]);
-        string p4 = to_string(rect[2]) + "_" + to_string(rect[1]);
-        if (points.find(p1) == points.end()) {
-            points.insert(p1);
-        }
-        else {
-            points.erase(p1);
-        }
-        if (points.find(p2) == points.end()) {
-            points.insert(p2);
-        }
-        else {
-            points.erase(p2);
-        }
-        if (points.find(p3) == points.end()) {
-            points.insert(p3);
-        }
-        else {
-            points.erase(p3);
-        }
-        if (points.find(p4) == points.end()) {
-            points.insert(p4);
-        }
-        else {
-            points.erase(p4);
-        }
+        update(points, to_string(rect[0]) + "_" + to_string(rect[1]));
+        update(points, to_string(rect[0]) + "_" + to_string(rect[3]));
+        update(points, to_string(rect[2]) + "_" + to_string(rect[3]));
+        update(points, to_string(rect[2]) + "_" + to_string(rect[1]));
     }
 
     bool isValid(unordered_set<string>& points, int leftX, int leftY, int rightX, int rightY) {

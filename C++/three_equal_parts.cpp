@@ -1,6 +1,8 @@
 /*
  927. Three Equal Parts
- Given an array A of 0s and 1s, divide the array into 3 non-empty parts such that all of these parts represent the same binary value.
+ Given an array A of 0s and 1s,
+ divide the array into 3 non-empty parts
+ such that all of these parts represent the same binary value.
 
  If it is possible, return any [i, j] with i+1 < j, such that:
 
@@ -10,9 +12,8 @@
  All three parts have equal binary value.
  If it is not possible, return [-1, -1].
 
- Note that the entire part is used when considering what binary value it represents.  For example, [1,1,0] represents 6 in decimal, not 3.  Also, leading zeros are allowed, so [0,1,1] and [1,1] represent the same value.
-
-
+ Note that the entire part is used when considering what binary value it represents.
+ For example, [1,1,0] represents 6 in decimal, not 3.  Also, leading zeros are allowed, so [0,1,1] and [1,1] represent the same value.
 
  Example 1:
 
@@ -46,6 +47,7 @@ using namespace std;
 /*
  The basic idea if the result exists then every part should have the same number of 1
  we find the start and end pos of 1 in each part and check if the number created is equal
+
  Besides, we need to confirm that
  number of 0 after last 1 in each part should be bigger than or eauql to
  the tail 0 of the third part
@@ -77,19 +79,18 @@ public:
             return {-1, -1};
         }
         int n = A.size();
-        int ones = total / 3;
-        if (ones == 0) {
+        if (total == 0) {
             return {0, n - 1};
         }
 
         int count = 0;
+        int ones = total / 3;
         int s1 = -1, e1 = -1;
         int s2 = -1, e2 = -1;
         int s3 = -1, e3 = -1;
         for (int i = 0; i < n; i++) {
             if (A[i] == 1) {
                 count += 1;
-
                 if (count == 1) {
                     s1 = i;
                 }

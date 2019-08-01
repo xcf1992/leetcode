@@ -14,29 +14,46 @@
 #include "extra_data_types.hpp"
 using namespace std;
 
-class Solution {
-public:
-    string makeLargestSpecial(string S) {
-        vector<string> specials;
+class Solution { // binary search
+private:
+    vector<int> under(double limit, vector<int>& A) {
+        double numer = 0.0;
+        double denom = 1.0;
         int count = 0;
-        for (char c : S) {
-            if (count == 0) {
-                specials.push_back("");
+        int i = -1;
+        int n = A.size();
+        for (int j = 1; j < n; ++j) {
+            // For each j, find the largest i so that primes[i] / primes[j] < x
+            // It has to be at least as big as the previous i, so reuse it ("two pointer")
+            while ((double)A[i + 1] < (double)A[j] * limit) {
+                i += 1;
             }
-            count += c == '1' ? 1 : -1;
-            specials.back().push_back(c);
+            count += i + 1;
+            // There are i+1 fractions: (primes[0], primes[j]),
+            // (primes[1], primes[j]), ..., (primes[i], primes[j])
+            if (i > 0 and numer * (double)A[j] < denom * (double)A[i]) {
+                numer = A[i];
+                denom = A[j];
+            }
         }
-
-        for (string& special : specials) {
-            special = "1" + makeLargestSpecial(special.substr(1, special.size() - 2)) + "0";
-        }
-
-        sort(specials.begin(), specials.end(), [](string& a, string& b) {
-            return a > b;
-        });
-        string result = "";
-        for (string special : specials) {
-            result += special;
+        return {count, (int)numer, (int)denom};
+    }
+public:
+    vector<int> kthSmallestPrimeFraction(vector<int> A, int K) {
+        double left = 0;
+        double right = 1;
+        vector<int> result({0, 1});
+        while (right - left > 1e-9) {
+            double mid = left + (right - left) / 2;
+            vector<int> smaller = under(mid, A);
+            if (smaller[0] < K) {
+                left = mid;
+            }
+            else {
+                right = mid;
+                result[0] = smaller[1];
+                result[1] = smaller[2];
+            }
         }
         return result;
     }
@@ -67,5 +84,5 @@ int main() {
     TreeNode* r2 = new TreeNode(1);
     TreeNode* r3 = new TreeNode(3);
     r1 -> left = r2;
-    s.makeLargestSpecial("11011000");
+    s.kthSmallestPrimeFraction({1, 7}, 1);
 }

@@ -2,9 +2,8 @@
  906. Super Palindromes
  Let's say a positive integer is a superpalindrome if it is a palindrome, and it is also the square of a palindrome.
 
- Now, given two positive integers L and R (represented as strings), return the number of superpalindromes in the inclusive range [L, R].
-
-
+ Now, given two positive integers L and R (represented as strings),
+ return the number of superpalindromes in the inclusive range [L, R].
 
  Example 1:
 
@@ -36,15 +35,15 @@
 using namespace std;
 
 /*
- Intuition
+Intuition
 
- Say P = R^2 is a superpalindrome.
+Say P = R^2 is a superpalindrome.
 
- Because R is a palindrome, the first half of the digits in R determine R up to two possibilities.
- We can iterate through these digits:
- let k be the first half of the digits in R.
- For example, if k = 1234, then R = 1234321 or R = 12344321.
- Each possibility has either an odd or an even number of digits in R.
+Because R is a palindrome, the first half of the digits in R determine R up to two possibilities.
+We can iterate through these digits:
+let k be the first half of the digits in R.
+For example, if k = 1234, then R = 1234321 or R = 12344321.
+Each possibility has either an odd or an even number of digits in R.
 because P < 10 ^ 18, so R < 10^9, R = k||k'(concatenation),
 where k and k' reversed(and also possibly truncated by one digit)
 and k < 10^5 = MAGIC
@@ -61,7 +60,7 @@ as we would like to break early so as not to do extra work.
 To check whether an integer is a palindrome,
 we could check whether it is equal to its reverse.
 To create the reverse of an integer, we can do it digit by digit.
- */
+*/
 class Solution {
 private:
     int MAGIC = 1e5;
