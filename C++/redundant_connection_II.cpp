@@ -1,10 +1,19 @@
 /*
  685. Redundant Connection II
- In this problem, a rooted tree is a directed graph such that, there is exactly one node (the root) for which all other nodes are descendants of this node, plus every node has exactly one parent, except for the root node which has no parents.
+ In this problem, a rooted tree is a directed graph such that,
+ there is exactly one node (the root) for which all other nodes are descendants of this node,
+ plus every node has exactly one parent,
+ except for the root node which has no parents.
 
- The given input is a directed graph that started as a rooted tree with N nodes (with distinct values 1, 2, ..., N), with one additional directed edge added. The added edge has two different vertices chosen from 1 to N, and was not an edge that already existed.
+ The given input is a directed graph that started as a rooted tree with N nodes
+ (with distinct values 1, 2, ..., N),
+ with one additional directed edge added.
+ The added edge has two different vertices chosen from 1 to N,
+ and was not an edge that already existed.
 
- The resulting graph is given as a 2D-array of edges. Each element of edges is a pair [u, v] that represents a directed edge connecting nodes u and v, where u is a parent of child v.
+ The resulting graph is given as a 2D-array of edges.
+ Each element of edges is a pair [u, v] that represents a directed edge connecting nodes u and v,
+ where u is a parent of child v.
 
  Return an edge that can be removed so that the resulting graph is a rooted tree of N nodes.
  If there are multiple answers, return the answer that occurs last in the given 2D-array.
@@ -94,17 +103,17 @@ public:
                 continue;
             }
 
-            int p = edge[0];
-            int c = edge[1];
-            int cur = find(parent, p);
-            if (cur == c) {
+            int u = edge[0];
+            int v = edge[1];
+            int pu = find(parent, u);
+            if (pu == v) {
                 if (result.empty()) {
                     return edge;
                 }
                 // cause currently we have removed result[1] already but still has circle
                 return result[0];
             }
-            parent[c] = cur;
+            parent[v] = pu;
         }
         return result[1]; // return candidate occur last
     }

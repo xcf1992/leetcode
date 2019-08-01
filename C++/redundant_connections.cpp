@@ -52,20 +52,18 @@ private:
     }
 public:
     vector<int> findRedundantConnection(vector<vector<int>>& edges) {
-        int n = edges.size() + 1;
-        vector<int> parent(n, 0);
+        int n = edges.size();
+        vector<int> parent(n + 1, 0);
         vector<int> result;
         for (auto edge : edges) {
             int start = edge[0];
             int end = edge[1];
-
             int parentX = find(parent, start);
             int parentY = find(parent, end);
             if (parentX == parentY) {
                 result = edge;
                 break;
             }
-
             parent[parentX] = parentY;
         }
         return result;

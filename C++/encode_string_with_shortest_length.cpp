@@ -50,7 +50,8 @@ using namespace std;
 
 /*
 O(n ^ 3)
-Even though many of us use the following smart condition in code to check for substring repetition, I didn't see a rigorous proof. So here is one.
+Even though many of us use the following smart condition in code to check for substring repetition,
+I didn't see a rigorous proof. So here is one.
 
 Why condition (s+s).find(s,1) < s.size() is equivalent to substring repetition?
 
@@ -73,7 +74,7 @@ so condition 2 is obtained.
 (s+s)[i+L] == s[(i+L)%N] == s[((i+L)%N)%L] == s[(i+L)%L] == s[i],
 which means (s+s).substr(L,N) == s, so condition 1 is obtained.
 */
-class Solution {
+class Solution1 {
 private:
     string compress(string& s, int start, int end, vector<vector<string>>& dp) {
         string temp = s.substr(start, end - start + 1);
@@ -107,5 +108,52 @@ public:
             }
         }
         return dp[0][n - 1];
+    }
+};
+
+class Solution { // dfs with memo O(n ^ 3)
+private:
+    unordered_map<string, string> memo;
+
+    int numRepetition(string& s, string sub) {
+        int count = 0;
+        int pos = 0;
+        while (pos < s.size()) {
+            if (s.substr(pos, sub.size()) != sub) {
+                break;
+            }
+            count += 1;
+            pos += sub.size();
+        }
+        return count;
+    }
+public:
+    string encode(string s) {
+        int n = s.size();
+        if (n < 5) {
+            return s;
+        }
+        if (memo.find(s) != memo.end()) {
+            return memo[s];
+        }
+
+        memo[s] = s;
+        for (int i = 0; i < n; ++i) {
+            string sub = s.substr(0, i + 1);
+            int count = numRepetition(s, sub);
+            string temp = "";
+            for (int k = 1; k <= count; ++k) {
+                if (k == 1) {
+                    temp = sub + encode(s.substr(i + 1));
+                }
+                else {
+                    temp = to_string(k) + "[" + encode(sub) + "]" + encode(s.substr(k * sub.size()));
+                }
+                if (temp.size() < memo[s].size()) {
+                    memo[s] = temp;
+                }
+            }
+        }
+        return memo[s];
     }
 };
