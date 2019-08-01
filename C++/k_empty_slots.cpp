@@ -1,16 +1,18 @@
 /*
 683. K Empty Slots
-You have N bulbs in a row numbered from 1 to N. Initially, all the bulbs are turned off. We turn on exactly one bulb everyday until all bulbs are on after N days.
+You have N bulbs in a row numbered from 1 to N.
+Initially, all the bulbs are turned off.
+We turn on exactly one bulb everyday until all bulbs are on after N days.
 
 You are given an array bulbs of length N where bulbs[i] = x
 means that on the (i+1)th day, we will turn on the bulb at position x
 where i is 0-indexed and x is 1-indexed.
 
-Given an integer K, find out the minimum day number such that there exists two turned on bulbs that have exactly K bulbs between them that are all turned off.
+Given an integer K,
+find out the minimum day number such that there exists two turned on bulbs
+that have exactly K bulbs between them that are all turned off.
 
 If there isn't such day, return -1.
-
-
 
 Example 1:
 
@@ -64,12 +66,30 @@ and for the second interval to be a candidate, days[right1] > days[left2], a con
 
 That means whenever whether some interval can be a candidate and it fails first at i,
 indices j < i can't be the start of a candidate interval. This motivates a sliding window approach.
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+The idea is to use an array days[] to record each position's flower's blooming day.
+That means days[i] is the blooming day of the flower in position i+1.
+
+We just need to find a subarray days[left, left+1,..., left+k-1, right]
+which satisfies: for any i = left+1,..., left+k-1,
+we can have days[left] < days[i] && days[right] < days[i].
+Then, the result is max(days[left], days[right]).
+-=-=-=-=-=-
+It took me a while to figure out why we need to update left to i instead of (left+1),
+when we find the current window is invalid, and I want to share the idea:
+
+if days[i] < days[left]/days[right],
+since we already know days[left]/days[right] < days[k] for k = left+1, ... i-1,
+then days[i] < days[k] for k=left+1,...,i-1.
+So any window starting from left+1~i-1 will not be valid because of the existence of days[i],
+so we have to set left to i, to make the window potentially valid.
+This make all the information from already scanned positions useful.
 */
 class Solution { // O(N)
 public:
     int kEmptySlots(vector<int>& bulbs, int K) {
         int n = bulbs.size();
-        vector<int> days(n, 0);
+        vector<int> days(n, 0); // days[i] means bulbs i + 1 was turned on at days[i]
         for (int i = 0; i < n; i++) {
             days[bulbs[i] - 1] = i + 1;
         }
@@ -105,7 +125,7 @@ public:
                 return day;
             }
             it = lighted.insert(bulb).first;
-            if (it != lighted.begin() and bulb - *(--it) == K + 1) {
+            if (it != lighted.begin() and bulb - *prev(it) == K + 1) {
                 return day;
             }
             day += 1;

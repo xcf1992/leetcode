@@ -1,11 +1,16 @@
 /*
  527. Word Abbreviation
 
- Given an array of n distinct non-empty strings, you need to generate minimal possible abbreviations for every word following rules below.
+ Given an array of n distinct non-empty strings,
+ you need to generate minimal possible abbreviations for every word following rules below.
 
- Begin with the first character and then the number of characters abbreviated, which followed by the last character.
- If there are any conflict, that is more than one words share the same abbreviation, a longer prefix is used instead of only the first character until making the map from word to abbreviation become unique. In other words, a final abbreviation cannot map to more than one original words.
- If the abbreviation doesn't make the word shorter, then keep it as original.
+ 1. Begin with the first character and then the number of characters abbreviated, which followed by the last character.
+ 2. If there are any conflict,
+    that is more than one words share the same abbreviation,
+    a longer prefix is used instead of only the first character until making the map from word to abbreviation become unique.
+    In other words, a final abbreviation cannot map to more than one original words.
+ 3. If the abbreviation doesn't make the word shorter, then keep it as original.
+
  Example:
  Input: ["like", "god", "internal", "me", "internet", "interval", "intension", "face", "intrusion"]
  Output: ["l2e","god","internal","me","i6t","interval","inte4n","f2e","intr4n"]
@@ -28,15 +33,14 @@
 #include <map>
 #include <set>
 using namespace std;
-
 /*
-For example, let's say we have "aabaaa", "aacaaa", "aacdaa", then we start with "a4a", "a4a", "a4a". 
-Since these are duplicated, we lengthen them to "aa3a", "aa3a", "aa3a". They are still duplicated, 
-so we lengthen them to "aab2a", "aac2a", "aac2a". 
+For example, let's say we have "aabaaa", "aacaaa", "aacdaa", then we start with "a4a", "a4a", "a4a".
+Since these are duplicated, we lengthen them to "aa3a", "aa3a", "aa3a". They are still duplicated,
+so we lengthen them to "aab2a", "aac2a", "aac2a".
 The last two are still duplicated, so we lengthen them to "aacaaa", "aacdaa".
 
-Throughout this process, we were tracking an index prefix[i] 
-which told us up to what index to take the prefix to. 
+Throughout this process, we were tracking an index prefix[i]
+which told us up to what index to take the prefix to.
 For example, prefix[i] = 2 means to take a prefix of word[0], word[1], word[2].
 */
 class Solution {
@@ -48,8 +52,7 @@ private:
         }
 
         string result = "";
-        result += s.substr(0, k);
-        result += to_string(length - 1 - k);
+        result += s.substr(0, k) + to_string(length - 1 - k);
         result.push_back(s.back());
         return result;
     }
@@ -70,7 +73,6 @@ public:
                         mem.push_back(j);
                     }
                 }
-
                 if (mem.empty()) {
                     break;
                 }

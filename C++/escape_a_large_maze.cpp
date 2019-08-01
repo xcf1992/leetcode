@@ -1,13 +1,13 @@
 /*
  1036. Escape a Large Maze
 
- In a 1 million by 1 million grid, the coordinates of each grid square are (x, y) with 0 <= x, y < 10^6.
+ In a 1 million by 1 million grid,
+ the coordinates of each grid square are (x, y) with 0 <= x, y < 10^6.
 
- We start at the source square and want to reach the target square.  Each move, we can walk to a 4-directionally adjacent square in the grid that isn't in the given list of blocked squares.
+ We start at the source square and want to reach the target square.
+ Each move, we can walk to a 4-directionally adjacent square in the grid that isn't in the given list of blocked squares.
 
  Return true if and only if it is possible to reach the target square through a sequence of moves.
-
-
 
  Example 1:
 
@@ -71,7 +71,6 @@ https://leetcode.com/problems/escape-a-large-maze/discuss/282849/Python-Maximum-
         .    X
  200    | X
  */
-
 /*
  The maximum area is not 10000. Even it's accepted with bound 10000, it's wrong.
  All cells are discrete, so there is nothing to do with pi.
@@ -92,27 +91,20 @@ https://leetcode.com/problems/escape-a-large-maze/discuss/282849/Python-Maximum-
 class Solution {
 private:
     int length = 1e6;
+    vector<int> rDiff = {0, 0, 1, -1};
+    vector<int> cDiff = {1, -1, 0, 0};
 
     bool search(vector<int>& source, vector<int>& target, unordered_map<int, unordered_map<int, bool>>& blocked) {
         unordered_map<int, unordered_map<int, bool>> visited;
         visited[source[0]][source[1]] = true;
-
         queue<pair<int, int>> bfs;
         bfs.push({source[0], source[1]});
-
-        vector<int> rDiff = {0, 0, 1, -1};
-        vector<int> cDiff = {1, -1, 0, 0};
         int area = 1;
         while (!bfs.empty()) {
             int r = bfs.front().first;
             int c = bfs.front().second;
             bfs.pop();
-
-            if (r == target[0] and c == target[1]) {
-                return true;
-            }
-
-            if (area == 20000) {
+            if ((r == target[0] and c == target[1]) or area == 20000) {
                 return true;
             }
 

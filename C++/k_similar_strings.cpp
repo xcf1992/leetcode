@@ -1,31 +1,31 @@
 /*
- 854. K-Similar Strings
- Strings A and B are K-similar (for some non-negative integer K)
- if we can swap the positions of two letters in A exactly K times so that the resulting string equals B.
+854. K-Similar Strings
+Strings A and B are K-similar (for some non-negative integer K)
+if we can swap the positions of two letters in A exactly K times so that the resulting string equals B.
 
- Given two anagrams A and B, return the smallest K for which A and B are K-similar.
+Given two anagrams A and B, return the smallest K for which A and B are K-similar.
 
- Example 1:
+Example 1:
 
- Input: A = "ab", B = "ba"
- Output: 1
- Example 2:
+Input: A = "ab", B = "ba"
+Output: 1
+Example 2:
 
- Input: A = "abc", B = "bca"
- Output: 2
- Example 3:
+Input: A = "abc", B = "bca"
+Output: 2
+Example 3:
 
- Input: A = "abac", B = "baca"
- Output: 2
- Example 4:
+Input: A = "abac", B = "baca"
+Output: 2
+Example 4:
 
- Input: A = "aabc", B = "abca"
- Output: 2
- Note:
+Input: A = "aabc", B = "abca"
+Output: 2
+Note:
 
- 1 <= A.length == B.length <= 20
- A and B contain only lowercase letters from the set {'a', 'b', 'c', 'd', 'e', 'f'}
- */
+1 <= A.length == B.length <= 20
+A and B contain only lowercase letters from the set {'a', 'b', 'c', 'd', 'e', 'f'}
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -41,6 +41,39 @@
 using namespace std;
 
 class Solution { // DFS with memo
+private:
+    unordered_map<string, int> memo;
+public:
+    int kSimilarity(string cur, string target) {
+        if (cur == target) {
+            return 0;
+        }
+
+        if (memo.find(cur) != memo.end()) {
+            return memo[cur];
+        }
+
+        int pos = 0;
+        int len = cur.size();
+        for (; pos < len; ++pos) {
+            if (cur[pos] != target[pos]) {
+                break;
+            }
+        }
+
+        memo[cur] = len;
+        for (int i = pos + 1; i < len; ++i) {
+            if (cur[i] == target[pos]) {
+                string temp = cur;
+                swap(temp[pos], temp[i]);
+                memo[cur] = min(memo[cur], 1 + kSimilarity(temp, target));
+            }
+        }
+        return memo[cur];
+    }
+};
+
+class Solution2 { // DFS with memo
 private:
     unordered_map<string, int> memo;
 

@@ -14,47 +14,36 @@
 #include "extra_data_types.hpp"
 using namespace std;
 
-class Solution {
+class Solution { // DFS with memo
 private:
-    int n = 0;
-    int getMaxStone(vector<vector<int>>& dp, vector<int>& preSum, int start, int M) {
-        if (start >= n) {
-            return 0;
-        }
-
-        int total = preSum[n] - preSum[start];
-        if (start + 2 * M >= n) {
-            return total;
-        }
-
-        if (dp[start][M] != INT_MIN) {
-            return dp[start][M];
-        }
-
-        for (int x = M; x < 2 * M; ++x) {
-            dp[start][M] = max(dp[start][M], total - getMaxStone(dp, preSum, start + x, max(M, x)));
-        }
-        return dp[start][M];
-    }
+    unordered_map<string, int> memo;
 public:
-    int stoneGameII(vector<int>& piles) {
-        n = piles.size();
-        if (n == 0) {
+    int kSimilarity(string cur, string target) {
+        if (cur == target) {
             return 0;
         }
 
-        vector<int> preSum(n + 1, 0);
-        for (int i = 0; i < n; ++i) {
-            preSum[i + 1] = piles[i] + preSum[i];
+        if (memo.find(cur) != memo.end()) {
+            return memo[cur];
         }
 
-        /*
-         * dp[i][j]
-         * the max stones the first player can get
-         * start with stone[i] (0-based), and with M = j
-         */
-        vector<vector<int>> dp(n, vector<int>(2 * n, INT_MIN));
-        return getMaxStone(dp, preSum, 0, 1);
+        int pos = 0;
+        int len = cur.size();
+        for (; pos < len; ++pos) {
+            if (cur[pos] != target[pos]) {
+                break;
+            }
+        }
+
+        memo[cur] = len;
+        for (int i = pos + 1; i < len; ++i) {
+            if (cur[i] == target[pos]) {
+                swap(cur[pos], cur[i]);
+                memo[cur] = min(memo[cur], 1 + kSimilarity(cur, target));
+                swap(cur[pos], cur[i]);
+            }
+        }
+        return memo[cur];
     }
 };
 
@@ -83,5 +72,5 @@ int main() {
     TreeNode* r2 = new TreeNode(1);
     TreeNode* r3 = new TreeNode(3);
     r1 -> left = r2;
-    s.stoneGameII(temp);
+    s.kSimilarity("ab", "ba");
 }
