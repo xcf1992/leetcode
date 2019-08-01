@@ -1,5 +1,5 @@
 /*
- 1015. Numbers With 1 Repeated Digit
+ 1015. Numbers With Repeated Digit
 
  Given a positive integer N, return the number of positive integers less than or equal to N that have at least 1 repeated digit.
 
@@ -72,7 +72,9 @@ using namespace std;
  Now let us see the 4-digit permutations. As per the logic being followed,
  we are counting number of permutations for a given number of digits.
 
- So we cannot separately count 'numbers less than given number' following this permutation formula without 'prefixing' it digit-by-digit of the given number.
+ So we cannot separately count 'numbers less than given number'
+ following this permutation formula without 'prefixing' it digit-by-digit of the given number.
+
  For example:
  4 digit permutations look like this:
  1XXX to 4XXX (4 digit nos. less than 5XXX. If we add in 5XXX as well,

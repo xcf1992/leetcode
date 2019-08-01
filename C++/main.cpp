@@ -14,36 +14,31 @@
 #include "extra_data_types.hpp"
 using namespace std;
 
-class Solution { // DFS with memo
-private:
-    unordered_map<string, int> memo;
+class Solution {
 public:
-    int kSimilarity(string cur, string target) {
-        if (cur == target) {
-            return 0;
-        }
-
-        if (memo.find(cur) != memo.end()) {
-            return memo[cur];
-        }
-
-        int pos = 0;
-        int len = cur.size();
-        for (; pos < len; ++pos) {
-            if (cur[pos] != target[pos]) {
-                break;
+    string makeLargestSpecial(string S) {
+        vector<string> specials;
+        int count = 0;
+        for (char c : S) {
+            if (count == 0) {
+                specials.push_back("");
             }
+            count += c == '1' ? 1 : -1;
+            specials.back().push_back(c);
         }
 
-        memo[cur] = len;
-        for (int i = pos + 1; i < len; ++i) {
-            if (cur[i] == target[pos]) {
-                swap(cur[pos], cur[i]);
-                memo[cur] = min(memo[cur], 1 + kSimilarity(cur, target));
-                swap(cur[pos], cur[i]);
-            }
+        for (string& special : specials) {
+            special = "1" + makeLargestSpecial(special.substr(1, special.size() - 2)) + "0";
         }
-        return memo[cur];
+
+        sort(specials.begin(), specials.end(), [](string& a, string& b) {
+            return a > b;
+        });
+        string result = "";
+        for (string special : specials) {
+            result += special;
+        }
+        return result;
     }
 };
 
@@ -72,5 +67,5 @@ int main() {
     TreeNode* r2 = new TreeNode(1);
     TreeNode* r3 = new TreeNode(3);
     r1 -> left = r2;
-    s.kSimilarity("ab", "ba");
+    s.makeLargestSpecial("11011000");
 }

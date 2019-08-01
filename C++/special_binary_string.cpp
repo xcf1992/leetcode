@@ -50,6 +50,8 @@ public:
             specials.back().push_back(c);
         }
 
+        // cause S itself is guaranteed to be a special binary string, so the first digit must be 1 and last digit must be 0
+        // otherwise it will violate the rule
         for (string& special : specials) {
             special = "1" + makeLargestSpecial(special.substr(1, special.size() - 2)) + "0";
         }

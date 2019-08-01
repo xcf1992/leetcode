@@ -36,28 +36,66 @@ Try to solve it in linear time/space.
 using namespace std;
 
 /*
-Suppose for each of the nn elements in our array, there was a bucket. Then each element would occupy one bucket. Now what if we reduced, the number of buckets? Some buckets would have to accommodate more than one element.
+Suppose for each of the n elements in our array, there was a bucket.
+Then each element would occupy one bucket.
+Now what if we reduced, the number of buckets?
+Some buckets would have to accommodate more than one element.
 
-Now let's talk about the gaps between the elements. Let's take the best case, where all elements of the array are sorted and have a uniform gap between them. This means every adjacent pair of elements differ by the same constant value. So for nn elements of the array, there are n-1n−1 gaps, each of width, say, tt. It is trivial to deduce that t = (max - min)/(n-1)t=(max−min)/(n−1) (where maxmax and minmin are the minimum and maximum elements of the array). This width is the maximal width/gap between two adjacent elements in the array; precisely the quantity we are looking for!
+Now let's talk about the gaps between the elements.
+Let's take the best case,
+where all elements of the array are sorted and have a uniform gap between them.
+This means every adjacent pair of elements differ by the same constant value.
+So for n elements of the array,
+there are n-1 gaps, each of width, say, t.
+It is trivial to deduce that t = (max - min)/(n-1)
+(where max and minmin are the minimum and maximum elements of the array).
+This width is the maximal width/gap between two adjacent elements in the array;
+precisely the quantity we are looking for!
 
-One can safely argue that this value of tt, is in fact, the smallest value that tt can ever accomplish of any array with the same number of elements (i.e. nn) and the same range (i.e. (max - min)(max−min)). To test this fact, you can start with a uniform width array (as described above) and try to reduce the gap between any two adjacent elements. If you reduce the gap between arr[i-1]arr[i−1] and arr[i]arr[i] to some value t - pt−p, then you will notice that the gap between arr[i]arr[i] and arr[i+1]arr[i+1] would have increased to t + pt+p. Hence the maximum attainable gap would have become t + pt+p from tt. Thus the value of the maximum gap tt can only increase.
+One can safely argue that this value of t, is in fact,
+the smallest value that t can ever accomplish of any array with the same number of elements (i.e. n)
+and the same range (i.e. (max - min).
+To test this fact, you can start with a uniform width array (as described above)
+and try to reduce the gap between any two adjacent elements.
+If you reduce the gap between arr[i-1] and arr[i] to some value t - p,
+then you will notice that the gap between arr[i] and arr[i+1] would have increased to t + p.
+Hence the maximum attainable gap would have become t + p from t.
+Thus the value of the maximum gap tt can only increase.
 
 *--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--
-This (curMax - curMin) / (n - 1) would actually be the min(max gap), if we pick randomly n numbers from [curMin, curMax]
+This (curMax - curMin) / (n - 1) would actually be the min(max gap),
+if we pick randomly n numbers from [curMin, curMax]
 As we put numbers into buckets
-then the max Gap will only happen betten adjacent bucket
-cause gap between numbers in the same bucket will always smaller than (curMax - curMin) / (n - 1), which make it cannot be the result
+then the max Gap will only happen between adjacent bucket
+cause gap between numbers in the same bucket will always smaller than (curMax - curMin) / (n - 1),
+which make it cannot be the result
 *--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--
 
-Coming back to our problem, we have already established by application of the Pigeonhole Principle, that if we used buckets instead of individual elements as our base for comparison, the number of comparisons would reduce if we could accommodate more than one element in a single bucket. That does not immediately solve the problem though. What if we had to compare elements within a bucket? We would end up no better.
+Coming back to our problem,
+we have already established by application of the Pigeonhole Principle,
+that if we used buckets instead of individual elements as our base for comparison,
+the number of comparisons would reduce if we could accommodate more than one element in a single bucket.
+That does not immediately solve the problem though.
+What if we had to compare elements within a bucket?
+We would end up no better.
 
-So the current motivation remains: somehow, if we only had to compare among the buckets, and not the elements within the buckets, we would be good. It would also solve our sorting problem: we would just distribute the elements to the right buckets. Since the buckets can be already ordered, and we only compare among buckets, we wouldn't have to compare all elements to sort them!
+So the current motivation remains:
+somehow, if we only had to compare among the buckets,
+and not the elements within the buckets, we would be good.
+It would also solve our sorting problem: we would just distribute the elements to the right buckets.
+Since the buckets can be already ordered, and we only compare among buckets,
+we wouldn't have to compare all elements to sort them!
 
-But if we only had buckets to compare, we would have to ensure, that the gap between the buckets itself represent the maximal gap in the input array. How do we go about doing that?
+But if we only had buckets to compare, we would have to ensure,
+that the gap between the buckets itself represent the maximal gap in the input array.
+How do we go about doing that?
 
-We could do that just by setting the buckets to be smaller than t = (max - min)/(n-1)t=(max−min)/(n−1) (as described above). Since the gaps (between elements) within the same bucket would only be \leq t≤t, we could deduce that the maximal gap would indeed occur only between two adjacent buckets.
+We could do that just by setting the buckets to be smaller than t = (max - min)/(n-1) (as described above).
+Since the gaps (between elements) within the same bucket would only be <= t,
+we could deduce that the maximal gap would indeed occur only between two adjacent buckets.
 
-Hence by setting bucket size bb to be 1 < b \leq (max - min)/(n-1)1<b≤(max−min)/(n−1), we can ensure that at least one of the gaps between adjacent buckets would serve as the maximal gap.
+Hence by setting bucket size bb to be 1 < b <= (max−min)/(n−1),
+we can ensure that at least one of the gaps between adjacent buckets would serve as the maximal gap.
 
 Algorithm
 
@@ -68,7 +106,7 @@ Algorithm
  - Hence the ith bucket would hold the range of values: [min + (i-1) * b, min + i*b) (1-based indexing).
 
  - It is trivial to calculate the index of the bucket to which a particular element belongs.
-   That is given by \⌊(num−min)/b⌋ (0-based indexing) where num is the element in question.
+   That is given by ⌊(num−min)/b⌋ (0-based indexing) where num is the element in question.
 
  - Once all n elements have been distributed, we compare k-1 adjacent bucket pairs to find the maximum gap.
 */
@@ -102,7 +140,6 @@ public:
             if (bkt[0] == 0) {
                 continue;
             }
-
             result = max(result, bkt[1] - curMin);
             curMin = bkt[2];
         }

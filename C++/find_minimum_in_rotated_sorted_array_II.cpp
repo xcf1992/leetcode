@@ -20,7 +20,6 @@ Note:
 
 This is a follow up problem to Find Minimum in Rotated Sorted Array.
 Would allow duplicates affect the run-time complexity? How and why?
-
 */
 #include <iostream>
 #include <string>
@@ -37,12 +36,11 @@ using namespace std;
 // When num[mid] == num[hi], we couldn't sure the position of minimum in mid's left or right, so just let upper bound reduce one.
 class Solution {
 public:
-    int findMin(vector<int> &num) {
+    int findMin(vector<int>& num) {
         int lo = 0;
         int hi = num.size() - 1;
         while (lo < hi) {
             int mid = lo + (hi - lo) / 2;
-
             if (num[mid] > num[hi]) {
                 lo = mid + 1;
             }
@@ -50,7 +48,7 @@ public:
                 hi = mid;
             }
             else { // when num[mid] and num[hi] are same
-                hi--;
+                hi -= 1;
             }
         }
         return num[lo];
