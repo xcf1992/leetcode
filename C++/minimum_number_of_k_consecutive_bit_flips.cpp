@@ -1,11 +1,13 @@
 /*
  995. Minimum Number of K Consecutive Bit Flips
 
- In an array A containing only 0s and 1s, a K-bit flip consists of choosing a (contiguous) subarray of length K and simultaneously changing every 0 in the subarray to 1, and every 1 in the subarray to 0.
+ In an array A containing only 0s and 1s,
+ a K-bit flip consists of choosing a (contiguous) subarray of length K
+ and simultaneously changing every 0 in the subarray to 1,
+ and every 1 in the subarray to 0.
 
- Return the minimum number of K-bit flips required so that there is no 0 in the array.  If it is not possible, return -1.
-
-
+ Return the minimum number of K-bit flips required so that there is no 0 in the array.
+ If it is not possible, return -1.
 
  Example 1:
 
@@ -52,7 +54,6 @@ using namespace std;
  There is only one way to filp A[0],
  and A[0] will tell us if we need to filp the range A[0] ~ A[K -1].
  So we start from the leftmost one by one using a greedy idea to solve this problem.
-
 
  Solution 1
  Explanation
