@@ -1,9 +1,13 @@
 /*
  630. Course Schedule III
 
- There are n different online courses numbered from 1 to n. Each course has some duration(course length) t and closed on dth day. A course should be taken continuously for t days and must be finished before or on the dth day. You will start at the 1st day.
+ There are n different online courses numbered from 1 to n.
+ Each course has some duration(course length) t and closed on dth day.
+ A course should be taken continuously for t days and must be finished before or on the dth day.
+ You will start at the 1st day.
 
- Given n online courses represented by pairs (t,d), your task is to find the maximal number of courses that can be taken.
+ Given n online courses represented by pairs (t,d),
+ your task is to find the maximal number of courses that can be taken.
 
  Example:
 
@@ -41,18 +45,18 @@ using namespace std;
 
  At each deadline:
 
- we try to take as many as courses possible, (say take k courses) # rule1
- *the courses take in total cur days,
- if there are multiple ways of taking k courses, we keep the way which has least cur. # rule2
- At deadline d with course duration = t:
+ we try to take as many as courses possible, (say take k courses)
+ # rule1 *the
+ courses take in total cur days,
+ if there are multiple ways of taking k courses, we keep the way which has least cur.
 
+ # rule2
+ At deadline d with course duration = t:
  If cur + t <= d, that means we can take the course without violating its deadline, so we take it:
  cur += t
 
  Else, that means we can't simply take the course:
-
  If t >= the max duration of any courses currently taken, then it won't benefit us by taking this course, so we skip it.
-
  If t < the max duration of any courses currently taken:
     let max_t be the course taken which has max duration,
     since t < max_t, we should use course t to replace max_t,
@@ -68,15 +72,15 @@ using namespace std;
 
 
  1. Why we just pop out the last longest course that is screwing total day time?
-
- Because all the courses that we have saw till now all complete before the d day. Hence we can just simply remove any of the course from it.
+ Because all the courses that we have saw till now all complete before the d day.
+ Hence we can just simply remove any of the course from it.
  Ideally we should remove the course which will give the maximum savings(d - t).
- But since the courses are sorted by d ,
+ But since the courses are sorted by d,
  Just the largest t course removal will suffice.
  Hence we can save some time for the next incoming courses
 
- 2. When we replace a longer course with a much shorter one, does that mean we'll have enough room to take some courses previously ignored for being too long?
-
+ 2. When we replace a longer course with a much shorter one,
+ does that mean we'll have enough room to take some courses previously ignored for being too long?
  The answer is NO, because any courses we missed would be longer than what's in priority queue.
  So the increase in number of days cannot be larger than the largest element in queue,
  and certainly will be less than a previously ignored course which has to be even longer.
@@ -106,5 +110,37 @@ public:
             }
         }
         return maxHeap.size();
+    }
+};
+
+class Solution1 { // dfs with memo TLE
+private:
+    int schedule(vector<vector<int>>& courses, vector<vector<int>>& dp, int start, int curTime) {
+        if (start >= courses.size()) {
+            return 0;
+        }
+        if (dp[start][curTime] != -1) {
+            return dp[start][curTime];
+        }
+
+        dp[start][curTime] = 0;
+        if (curTime + courses[start][0] <= courses[start][1]) {
+            dp[start][curTime] = 1 + schedule(courses, dp, start + 1, curTime + courses[start][0]);
+        }
+        dp[start][curTime] = max(dp[start][curTime], schedule(courses, dp, start + 1, curTime));
+        return dp[start][curTime];
+    }
+public:
+    int scheduleCourse(vector<vector<int>>& courses) {
+        int n = courses.size();
+        if (n == 0) {
+            return 0;
+        }
+
+        sort(courses.begin(), courses.end(), [](vector<int>& a, vector<int>& b) {
+            return a[1] < b[1];
+        });
+        vector<vector<int>> dp(n, vector<int>(courses.back()[1] + 1, -1));
+        return schedule(courses, dp, 0, 0);
     }
 };
