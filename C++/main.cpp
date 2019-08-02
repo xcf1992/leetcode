@@ -14,52 +14,54 @@
 #include "extra_data_types.hpp"
 using namespace std;
 
-class Solution { // dp
+class Solution {
 private:
-    bool isPerfectSquare(int n1, int n2) {
-        int root = sqrt(n1 + n2);
-        return root * root == n1 + n2;
+    bool parse(string& expression, int& pos) {
+        int n = expression.size();
+        if (pos >= n) {
+            return true;
+        }
+
+        char op = ' ';
+        vector<bool> vals;
+        while (pos < n and expression[pos] != ')') {
+            if (expression[pos] == '!' or expression[pos] == '&' or expression[pos] == '|') {
+                if (op == ' ') {
+                    op = expression[pos];
+                }
+                else {
+                    vals.push_back(parse(expression, pos));
+                }
+            }
+            else if (expression[pos] == 't' or expression[pos] == 'f') {
+                vals.push_back('t' == expression[pos]);
+            }
+            pos += 1;
+        }
+        pos += 1; // skip the last )
+
+        if (op == '!') {
+            return !vals[0];
+        }
+        while (vals.size() > 1) {
+            bool v1 = vals.back();
+            vals.pop_back();
+            bool v2 = vals.back();
+            vals.pop_back();
+            if (op == '&') {
+                vals.push_back(v1 and v2);
+            }
+            else {
+                vals.push_back(v1 or v2);
+            }
+        }
+        return vals[0];
     }
 public:
-    int numSquarefulPerms(vector<int>& A) {
-        int n = A.size();
-        vector<vector<int>> adj;
-        for (int i = 0; i < n; ++i) {
-            for (int j = i + 1; j < n; ++j) if (isPerfectSquare(A[i], A[j])) {
-                adj[i].push_back(j);
-                adj[j].push_back(i);
-            }
-        }
-
-        vector<vector<int>> dp(1 << n, vector<int>(n, 0));
-        for (int i = 0; i < n; ++i) {
-            dp[1 << i][i] = 1;
-        }
-
-        for (int state = 3; state < (1 << n); ++state) {
-            for (int i = 0; i < n; ++i) if (state & (1 << i)) {
-                for (int j : adj[i]) if (state & (1 << j)) {
-                    dp[state][i] += dp[state ^ (1 << i)][j];
-                }
-            }
-        }
-
-        int result = 0;
-        for (int i = 0; i < n; ++i) {
-            result += dp[(1 << n) - 1][i];
-        }
-
-        /** Divide out permutations of equal elements. */
-        for (int i = 0; i < n; i++) {
-            int k = 1;
-            for (int j = i + 1; j < n; j++) {
-                if (A[i] == A[j]) {
-                    k++;
-                }
-            }
-            result /= k;
-        }
-        return result;
+    bool parseBoolExpr(string expression) {
+        int pos = 0;
+        cout << expression.size();
+        return parse(expression, pos);
     }
 };
 
@@ -88,5 +90,5 @@ int main() {
     TreeNode* r2 = new TreeNode(1);
     TreeNode* r3 = new TreeNode(3);
     r1 -> left = r2;
-    s.numSquarefulPerms(temp);
+    s.parseBoolExpr("!(&(&(!(&(f)),&(t),|(f,f,t)),&(t),&(t,t,f)))");
 }

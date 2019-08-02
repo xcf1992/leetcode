@@ -51,6 +51,55 @@ expression is a valid expression representing a boolean, as given in the descrip
 using namespace std;
 
 class Solution {
+private:
+    bool parse(string& expression, int& pos) {
+        int n = expression.size();
+        if (pos >= n) {
+            return true;
+        }
+
+        char op = ' ';
+        vector<bool> vals;
+        while (pos < n and expression[pos] != ')') {
+            if (expression[pos] == '!' or expression[pos] == '&' or expression[pos] == '|') {
+                if (op == ' ') {
+                    op = expression[pos];
+                }
+                else {
+                    vals.push_back(parse(expression, pos));
+                }
+            }
+            else if (expression[pos] == 't' or expression[pos] == 'f') {
+                vals.push_back('t' == expression[pos]);
+            }
+            pos += 1;
+        }
+
+        if (op == '!') {
+            return !vals[0];
+        }
+        while (vals.size() > 1) {
+            bool v1 = vals.back();
+            vals.pop_back();
+            bool v2 = vals.back();
+            vals.pop_back();
+            if (op == '&') {
+                vals.push_back(v1 and v2);
+            }
+            else {
+                vals.push_back(v1 or v2);
+            }
+        }
+        return vals[0];
+    }
+public:
+    bool parseBoolExpr(string expression) {
+        int pos = 0;
+        return parse(expression, pos);
+    }
+};
+
+class Solution1 { // stack
 public:
     bool parseBoolExpr(string expr) {
         stack<char> val, op;
@@ -72,15 +121,15 @@ public:
                 }
                 while (val.top() != '(') { // Keep popping the values till the top element is (
                     if (p == '&') {
-                        v = v && (val.top() == 't');
+                        v = v and (val.top() == 't');
                     }
                     else {
-                        v = v || (val.top() == 't');
+                        v = v or (val.top() == 't');
                     }
                     val.pop();
                 }
                 val.pop(); // This pop is needed to pop the (
-                val.push(v ? 't' : 'f'); 
+                val.push(v ? 't' : 'f');
             }
         }
         return val.top() == 't'; // Return the final result by converting it to a bool value
