@@ -1,8 +1,12 @@
 /*
 805. Split Array With Same Average
-In a given integer array A, we must move every element of A to either list B or list C. (B and C initially start empty.)
+In a given integer array A,
+we must move every element of A to either list B or list C.
+(B and C initially start empty.)
 
-Return true if and only if after such a move, it is possible that the average value of B is equal to the average value of C, and B and C are both non-empty.
+Return true if and only if after such a move,
+it is possible that the average value of B is equal to the average value of C,
+and B and C are both non-empty.
 
 Example :
 Input:
@@ -49,15 +53,15 @@ using namespace std;
  */
 class Solution {
 private:
-    bool find(int target, int num, int sum, int index, vector<int>& A) {
-        if (index + num > A.size()) {
+    bool find(int target, int count, int sum, int index, vector<int>& A) {
+        if (index + count > A.size()) {
             return false;
         }
-        if (num == 0) {
+        if (count == 0) {
             return sum == target;
         }
         // if we pick current number than the left num need minus 1 and add value to current sum
-        return find(target, num - 1, sum + A[index], index + 1, A) or find(target, num, sum, index + 1, A);
+        return find(target, count - 1, sum + A[index], index + 1, A) or find(target, count, sum, index + 1, A);
     }
 public:
     bool splitArraySameAverage(vector<int>& A) {
