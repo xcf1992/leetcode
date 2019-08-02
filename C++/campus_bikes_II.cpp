@@ -1,6 +1,5 @@
 /*
-1066. Campus Bikes II
-
+ 1066. Campus Bikes II
  On a campus represented as a 2D grid, there are N workers and M bikes, with N <= M.
  Each worker and bike is a 2D coordinate on this grid.
 
@@ -48,6 +47,39 @@
 #include <numeric>
 using namespace std;
 
+class Solution { // dfs with memo, use vector as memo, much faster than map from 50ms ~ 12ms
+private:
+    int M = 0;
+    int N = 0;
+
+    int getDistance(vector<int>& worker, vector<int>& bike) {
+        return abs(worker[0] - bike[0]) + abs(worker[1] - bike[1]);
+    }
+
+    int dfs(vector<vector<int>>& workers, vector<vector<int>>& bikes, vector<vector<int>>& memo, int curWorker, int occupied) {
+        if (curWorker >= N) {
+            return 0;
+        }
+
+        if (memo[occupied][curWorker] != INT_MAX) {
+            return memo[occupied][curWorker];
+        }
+
+        for (int i = 0; i < M; ++i) if ((occupied & (1 << i)) == 0) { // this bike is not taken by anyone
+            int temp = getDistance(workers[curWorker], bikes[i]) + dfs(workers, bikes, memo, curWorker + 1, (occupied | (1 << i)));
+            memo[occupied][curWorker] = min(memo[occupied][curWorker], temp);
+        }
+        return memo[occupied][curWorker];
+    }
+public:
+    int assignBikes(vector<vector<int>>& workers, vector<vector<int>>& bikes) {
+        M = bikes.size();
+        N = workers.size();
+        vector<vector<int>> memo(1 << M, vector<int>(N, INT_MAX));
+        return dfs(workers, bikes, memo, 0, 0);
+    }
+};
+
 class Solution { // dfs with memo
 private:
     unordered_map<string, int> memo;
@@ -69,11 +101,9 @@ private:
         }
 
         memo[key] = INT_MAX;
-        for (int i = 0; i < M; ++i) {
-            if ((occupied & (1 << i)) == 0) { // this bike is not taken by anyone
-                int temp = getDistance(workers[curWorker], bikes[i]) + dfs(workers, bikes, curWorker + 1, (occupied ^ (1 << i)));
-                memo[key] = min(memo[key], temp);
-            }
+        for (int i = 0; i < M; ++i) if ((occupied & (1 << i)) == 0) { // this bike is not taken by anyone
+            int temp = getDistance(workers[curWorker], bikes[i]) + dfs(workers, bikes, curWorker + 1, (occupied | (1 << i)));
+            memo[key] = min(memo[key], temp);
         }
         return memo[key];
     }
