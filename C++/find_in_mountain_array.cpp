@@ -110,7 +110,6 @@ public:
             if (mountainArr.get(mid) == target) {
                 return mid;
             }
-
             if (mountainArr.get(mid) < target) {
                 left = mid + 1;
             }
@@ -127,7 +126,6 @@ public:
             if (mountainArr.get(mid) == target) {
                 return mid;
             }
-
             if (mountainArr.get(mid) < target) {
                 right = mid - 1;
             }
