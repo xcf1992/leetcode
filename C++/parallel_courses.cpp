@@ -50,9 +50,77 @@ There are no repeated relations in the input.
 #include <map>
 using namespace std;
 
-class Solution {
+class Solution { // bfs 72.3%
 public:
     int minimumSemesters(int N, vector<vector<int>>& relations) {
+        vector<int> preCount(N, 0);
+        vector<unordered_set<int>> learnAfter(N);
+        for (vector<int>& relation : relations) {
+            preCount[relation[1] - 1] += 1;
+            learnAfter[relation[0] - 1].insert(relation[1] - 1);
+        }
 
+        queue<int> bfs;
+        int courseLeft = N;
+        for (int i = 0; i < N; ++i) if (preCount[i] == 0) {
+            bfs.push(i);
+            courseLeft -= 1;
+        }
+        if (bfs.empty()) {
+            return -1;
+        }
+
+        int result = 0;
+        while (!bfs.empty()) {
+            result += 1;
+            int curSize = bfs.size();
+            for (int i = 0; i < curSize; ++i) {
+                int cur = bfs.front();
+                bfs.pop();
+                for (int nxt : learnAfter[cur]) {
+                    preCount[nxt] -= 1;
+                    if (preCount[nxt] == 0) {
+                        bfs.push(nxt);
+                        courseLeft -= 1;
+                    }
+                }
+            }
+        }
+        return courseLeft == 0 ? result : -1;
+    }
+};
+
+class Solution1 { // 36.6%
+public:
+    int minimumSemesters(int N, vector<vector<int>>& relations) {
+        vector<int> preCount(N, 0);
+        vector<unordered_set<int>> learnAfter(N);
+        for (vector<int>& relation : relations) {
+            preCount[relation[1] - 1] += 1;
+            learnAfter[relation[0] - 1].insert(relation[1] - 1);
+        }
+
+        int courseLeft = N;
+        int result = 0;
+        while (courseLeft > 0) {
+            result += 1;
+            vector<int> complelted;
+            for (int i = 0; i < N; ++i) if (preCount[i] == 0) {
+                complelted.push_back(i);
+                preCount[i] = -1;
+                courseLeft -= 1;
+            }
+
+            if (complelted.empty()) {
+                break;
+            }
+
+            for (int c : complelted) {
+                for (int nxt : learnAfter[c]) {
+                    preCount[nxt] -= 1;
+                }
+            }
+        }
+        return courseLeft == 0 ? result : -1;
     }
 };
