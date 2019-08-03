@@ -2,11 +2,18 @@
  839. Similar String Groups
  Two strings X and Y are similar if we can swap two letters (in different positions) of X, so that it equals Y.
 
- For example, "tars" and "rats" are similar (swapping at positions 0 and 2), and "rats" and "arts" are similar, but "star" is not similar to "tars", "rats", or "arts".
+ For example, "tars" and "rats" are similar (swapping at positions 0 and 2),
+ and "rats" and "arts" are similar,
+ but "star" is not similar to "tars", "rats", or "arts".
 
- Together, these form two connected groups by similarity: {"tars", "rats", "arts"} and {"star"}.  Notice that "tars" and "arts" are in the same group even though they are not similar.  Formally, each group is such that a word is in the group if and only if it is similar to at least one other word in the group.
+ Together, these form two connected groups by similarity: {"tars", "rats", "arts"} and {"star"}.
+ Notice that "tars" and "arts" are in the same group even though they are not similar.
+ Formally, each group is such that a word is in the group,
+ if and only if it is similar to at least one other word in the group.
 
- We are given a list A of strings.  Every string in A is an anagram of every other string in A.  How many groups are there?
+ We are given a list A of strings.
+ Every string in A is an anagram of every other string in A.
+ How many groups are there?
 
  Example 1:
 
@@ -46,8 +53,9 @@ private:
 
     bool similar(string a, string b) {
         int diff = 0;
-        for (int i = 0; i < a.size(); i++) {
-            if (a[i] != b[i] and ++diff > 2) {
+        for (int i = 0; i < a.size(); i++) if (a[i] != b[i]) {
+            diff += 1;
+            if (diff > 2) {
                 return false;
             }
         }
@@ -88,7 +96,7 @@ private:
                 diff++;
             }
         }
-        return diff == 2 || (diff == 0 && a.size() >=2);
+        return diff == 2 or (diff == 0 and a.size() >= 2);
     }
 public:
     int numSimilarGroups(vector<string>& A) {
@@ -112,7 +120,7 @@ public:
                 int cur = bfs.front();
                 bfs.pop();
                 for (int next = 0; next < n; next++) {
-                    if (visited[next] || !similar(A[cur], A[next])) {
+                    if (visited[next] or !similar(A[cur], A[next])) {
                         continue;
                     }
                     visited[next] = true;

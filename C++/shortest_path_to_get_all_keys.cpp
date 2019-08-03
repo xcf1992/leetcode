@@ -18,8 +18,6 @@
 
  Return the lowest number of moves to acquire all keys.  If it's impossible, return -1.
 
-
-
  Example 1:
 
  Input: ["@.a.#","###.#","b.A.B"]
@@ -52,9 +50,6 @@
 using namespace std;
 
 class Solution {
-private:
-    vector<int> rDiff = {0, 0, 1, -1};
-    vector<int> cDiff = {1, -1, 0, 0};
 public:
     int shortestPathAllKeys(vector<string>& grid) {
         int m = grid.size();
@@ -64,7 +59,7 @@ public:
         int n = grid[0].size();
 
         unordered_map<int, unordered_set<int>> visited;
-        queue<pair<int, int>> bfs;
+        queue<pair<int, int>> bfs; // {curPos, key-bit-mask}
         int target = 0;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
@@ -78,6 +73,8 @@ public:
             }
         }
 
+        vector<int> rDiff = {0, 0, 1, -1};
+        vector<int> cDiff = {1, -1, 0, 0};
         int step = 0;
         while (!bfs.empty()) {
             int curSize = bfs.size();
@@ -90,7 +87,6 @@ public:
                 if (keyMap == target) {
                     return step;
                 }
-
                 for (int d = 0; d < 4; d++) {
                     int nr = row + rDiff[d];
                     int nc = col + cDiff[d];
