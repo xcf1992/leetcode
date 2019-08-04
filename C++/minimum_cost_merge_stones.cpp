@@ -155,7 +155,7 @@ public:
                             if (dp[i][m][1] == INT_MAX or dp[m + 1][j][K - 1] == INT_MAX) {
                                 continue;
                             }
-                            dp[i][j][1] = min(dp[i][j][k], dp[i][m][1] + dp[m + 1][j][K - 1] + sum[j] - sum[i] + stones[i]);
+                            dp[i][j][1] = min(dp[i][j][1], dp[i][m][1] + dp[m + 1][j][K - 1] + sum[j] - sum[i] + stones[i]);
                         }
                     }
 

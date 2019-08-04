@@ -22,7 +22,6 @@
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 Bascially,
 it goes through all palindrome numbers with 2n digits in a descending order.
@@ -49,7 +48,7 @@ public:
         }
 
         int upper = pow(10, n) - 1;
-        int lower = pow(10, n-1);
+        int lower = pow(10, n - 1);
         for (int v = upper; v >= lower; --v) {
             long palindrome = buildPalindrome(v);
             for (long factor = upper; factor * factor >= palindrome; --factor) {

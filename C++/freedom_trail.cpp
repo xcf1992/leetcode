@@ -61,7 +61,8 @@ public:
         int ksize = key.size();
         vector<vector<int>> dp(ksize + 1, vector<int>(rsize, INT_MAX));
         dp[0][0] = 0;
-        vector<int> curPos(1, 0);
+        vector<int> curPos;
+        curPos.push_back(0);
         for (int i = 0; i < ksize; i++) {
             for (int nextIndex : pos[key[i]]) {
                 for (int curIndex : curPos) {

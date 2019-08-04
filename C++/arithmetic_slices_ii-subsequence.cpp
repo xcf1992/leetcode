@@ -20,9 +20,9 @@
 
  The function should return the number of arithmetic subsequence slices in the array A.
 
- The input contains N integers. Every integer is in the range of -2^31 and 2^31-1 and 0 ≤ N ≤ 1000.
+ The input contains N integers.
+ Every integer is in the range of -2^31 and 2^31-1 and 0 ≤ N ≤ 1000.
  The output is guaranteed to be less than 231-1.
-
 
  Example:
 
@@ -40,7 +40,6 @@
  [2,4,6,8,10]
  [2,6,10]
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -54,15 +53,15 @@
 #include <map>
 #include <numeric>
 using namespace std;
-
 /*
 I think the idea is to store the diff and number of times this diff has appeared before in a hash map for each element;
 And we only calculate the diff between current element and the element before current.
 for example:
 [2] stores a empty hashmap
 [2,4] now 4 stores a mapentry [2,1] because 4-2 = 2,and for element 2 stores nothing
-[2,4,6] 6-4 =2 and since element 4 stores[2,1], which means diff 2 has appeared once before, so count = 1 and we put [2,2] in 6. Also 6-2 = 4, we put [4,1] in 6;
- */
+[2,4,6] 6-4 =2 and since element 4 stores[2,1], which means diff 2 has appeared once before,
+so count = 1 and we put [2,2] in 6. Also 6-2 = 4, we put [4,1] in 6;
+*/
 class Solution {
 public:
     int numberOfArithmeticSlices(vector<int>& A) {
@@ -77,7 +76,11 @@ public:
             for (int j = 0; j < i; j++) {
                 long long gap = (long long)A[i] - (long long)A[j];
                 dp[i][gap] += 1;
-                if (dp[j].find(gap) != dp[j].end()) { // if there are subsequence end at j with gap, add together
+                if (dp[j].find(gap) != dp[j].end()) {
+                    /*
+                    * if there are subsequence end at j with gap, add together,
+                    * which ensure there are at least three elements in this arithmetic sequence
+                    */
                     dp[i][gap] += dp[j][gap];
                     result += dp[j][gap];
                 }

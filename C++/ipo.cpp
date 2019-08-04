@@ -11,7 +11,8 @@
  Initially, you have W capital.
  When you finish a project, you will obtain its pure profit and the profit will be added to your total capital.
 
- To sum up, pick a list of at most k distinct projects from given projects to maximize your final capital, and output your final maximized capital.
+ To sum up, pick a list of at most k distinct projects from given projects to maximize your final capital,
+ and output your final maximized capital.
 
  Example 1:
  Input: k=2, W=0, Profits=[1,2,3], Capital=[0,1,1].
