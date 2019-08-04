@@ -31,13 +31,16 @@
 #include <stdio.h>
 #include <set>
 using namespace std;
-
 /*
  Since the steps of the jump may be greater than 1,
  not all integer values can be taken by K.
+
  For example, K cannot be 5 as the step at x = 25 is two so K will jump from 4 directly to 6,
  thus skip the middle value of 5 (see the red dashed line between two brown lines in the above plot).
- We shall call these skipped integers as invalid values for K and conclude there are NO integers x such that x! has K trailing zeros at these K values.
+
+ We shall call these skipped integers as invalid values for K
+ and conclude there are NO integers x such that x! has K trailing zeros at these K values.
+
  Furthermore, for each valid K value, there will be exactly FIVE integers x such that x! has K trailing zeros
  (this is because if x is an integer multiple of 5, then x+1, x+2, x+3, x+4 will have no factor of 5,
  thus the jump step at each of these points will be 0, which implies K will remain the same in the range [x, x+4]).
@@ -46,21 +49,10 @@ using namespace std;
 
  As a direct result of the above observation, all the valid K values will form an ordered list of ranges
  where each range consists of 5 continuous integers, i.e., the valid K values are: [0, 5), [6, 11), [12, 17), …, etc.
- The K values will break up whenever x is an integer multiple of 25 and the size
-  (i.e., number of elements) of the gap between the two separated ranges will be given by the number of factor 5 in x minus 1
-  (note it’s the number of factor minus 1, not x, and is equivalent to the number of factor 5 in x/5).
-
- Since the steps of the jump may be greater than 1,
- not all integer values can be taken by K.
- For example, K cannot be 5 as the step at x = 25 is two so K will jump from 4 directly to 6,
- thus skip the middle value of 5 (see the red dashed line between two brown lines in the above plot).
- We shall call these skipped integers as invalid values for K and conclude there are NO integers x
- such that x! has K trailing zeros at these K values. Furthermore, for each valid K value,
- there will be exactly FIVE integers x such that x! has K trailing zeros
- (this is because if x is an integer multiple of 5, then x+1, x+2, x+3, x+4 will have no factor of 5,
- thus the jump step at each of these points will be 0, which implies K will remain the same in the range [x, x+4]).
- In summary, we conclude the number of integers x such that x! has K trailing zeros will be either 0 or 5,
- where the former corresponds to invalid K values while the latter corresponds to valid K values.
+ The K values will break up whenever x is an integer multiple of 25
+ and the size(i.e., number of elements) of the gap between the two separated ranges
+ will be given by the number of factor 5 in x minus 1
+(note it’s the number of factor minus 1, not x, and is equivalent to the number of factor 5 in x/5).
 
  Let K = numOfTrailingZeros(x), then K will jump whenever x is an integer multiple of 5
  (this is a direct result of the fact that the number of factor 5 in x! will change whenever x is an integer multiple of 5).
@@ -81,7 +73,6 @@ public:
     int preimageSizeFZF(long K) {
         long left = 0;
         long right = 5 * (K + 1);
-
         while (left <= right) {
             long mid = (right - left) / 2 + left;
             long count = trailingZeros(mid);

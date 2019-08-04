@@ -1,17 +1,22 @@
 /*
  699. Falling Squares
- On an infinite number line (x-axis), we drop given squares in the order they are given.
+ On an infinite number line (x-axis),
+ we drop given squares in the order they are given.
 
- The i-th square dropped (positions[i] = (left, side_length)) is a square with the left-most point being positions[i][0] and sidelength positions[i][1].
+ The i-th square dropped (positions[i] = (left, side_length))
+ is a square with the left-most point being positions[i][0] and sidelength positions[i][1].
 
  The square is dropped with the bottom edge parallel to the number line,
- and from a higher height than all currently landed squares. We wait for each square to stick before dropping the next.
+ and from a higher height than all currently landed squares.
+ We wait for each square to stick before dropping the next.
 
- The squares are infinitely sticky on their bottom edge, and will remain fixed to any positive length surface they touch
- (either the number line or another square). Squares dropped adjacent to each other will not stick together prematurely.
+ The squares are infinitely sticky on their bottom edge,
+ and will remain fixed to any positive length surface they touch
+ (either the number line or another square).
+ Squares dropped adjacent to each other will not stick together prematurely.
 
-
- Return a list ans of heights. Each height ans[i] represents the current highest height of any square we have dropped,
+ Return a list ans of heights.
+ Each height ans[i] represents the current highest height of any square we have dropped,
  after dropping squares represented by positions[0], positions[1], ..., positions[i].
 
  Example 1:
@@ -82,8 +87,9 @@ using namespace std;
     The new height = current height + the length of dropped square.
  4. then we need to update new height from index[pos[0]] to index[pos[0] + pos[1] - 1].
 
- The key point of this solution is we first get all sorted coordinates of droped squares, and map the coordinates to
- index. So we can easily update and query height.
+ The key point of this solution is we first get all sorted coordinates of droped squares,
+ and map the coordinates to index.
+ So we can easily update and query height.
  */
 class Solution {
 private:
@@ -122,9 +128,10 @@ public:
         for (vector<int>& pos : positions) {
             int left = index[pos[0]];
             int right = index[pos[0] + pos[1] - 1];
-            int height = query(left, right, heights) + pos[1];
 
+            int height = query(left, right, heights) + pos[1];
             update(left, right, height, heights);
+
             current = max(current, height);
             result.push_back(current);
         }
