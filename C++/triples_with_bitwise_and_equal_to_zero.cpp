@@ -54,9 +54,11 @@ using namespace std;
 
  Trick:
  We don't have to go through (0 ~ 1 << 16) to find the answer.
- If (A[k] & X) != 0, we can skip next (A[i] & X) -1 values and still get correct result.
+ If (A[k] & X) != 0, we can skip next (A[i] & X) - 1 values and still get correct result.
 
- For example: Assume A[k] is 0x11000 and X is 0x1000. Obviously, the next (0x1000 - 1) values (0x1001 to 0x1111) will not meet the requirement.
+ For example:
+ Assume A[k] is 0x11000 and X is 0x1000.
+ Obviously, the next (0x1000 - 1) values (0x1001 to 0x1111) will not meet the requirement.
  */
 class Solution {
 public:
@@ -88,19 +90,17 @@ class Solution1 {
 public:
     int countTriplets(vector<int>& A) {
         int n = A.size();
-        vector<int> dp(1 << 16);
+        vector<int> count(1 << 16);
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                dp[A[i] & A[j]] += 1;
+                count[A[i] & A[j]] += 1;
             }
         }
 
         int result = 0;
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < (1 << 16); j++) {
-                if ((A[i] & j) == 0) {
-                    result += dp[j];
-                }
+            for (int j = 0; j < (1 << 16); j++) if ((A[i] & j) == 0) {
+                result += count[j];
             }
         }
         return result;

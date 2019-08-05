@@ -1,4 +1,5 @@
 /*
+ 879. Profitable Schemes
  There are G people in a gang, and a list of various crimes they could commit.
 
  The i-th crime generates a profit[i] and requires group[i] gang members to participate.
@@ -8,9 +9,8 @@
  Let's call a profitable scheme any subset of these crimes that generates at least P profit,
  and the total number of gang members participating in that subset of crimes is at most G.
 
- How many schemes can be chosen?  Since the answer may be very large, return it modulo 10^9 + 7.
-
-
+ How many schemes can be chosen?
+ Since the answer may be very large, return it modulo 10^9 + 7.
 
  Example 1:
 
@@ -49,7 +49,6 @@
 #include <map>
 #include <numeric>
 using namespace std;
-
 /*
 Well, it is a Knapsack problem and my first intuition is dp.
 
@@ -66,7 +65,7 @@ For each pair (p, g) of (profit, group), I update the count in dp.
 Time Complexity:
 O(NPG)
 */
-class Solution3 {
+class Solution2 {
 private:
     int mod = 1e9 + 7;
 public:
@@ -85,7 +84,7 @@ public:
         }
 
         int result = 0;
-        for (int count: dp[P]) {
+        for (int count : dp[P]) {
             result = (result + count) % mod;
         }
         return result;
@@ -96,7 +95,7 @@ public:
 Because all k dimension only depends on k - 1 dimension, so we can improve it to 2D array which only has i and j dimension.
 Just be careful about that i and j should be decrease, in order to get correct old k - 1 dimension value.
 */
-class Solution2 {
+class Solution {
 private:
     int mod = 1e9 + 7;
 public:
@@ -105,16 +104,18 @@ public:
         vector<vector<int>> dp(P + 1, vector<int>(G + 1, 0));
         // when there is 0 crime, 0 scheme existed for any profit > 0 or group > 0
         dp[0][0] = 1;
-        for (int i = 1; i <= n; i++) {
-            int p = profit[i - 1];
-            int g = group[i - 1];
+        for (int i = 0; i < n; ++i) {
+            int p = profit[i];
+            int g = group[i];
+            /*
+            * cause we reuse the same matrix while loop through differernt crime,
+            * we will have to iterate from the back of the matrix,
+            * so we do not update previous value, while we still needed
+            */
             for (int j = P; j >= 0; j--) {
                 for (int k = G; k >= g; k--) {
-                    long count = dp[j][k];
-                    if (k >= g) {
-                        count += dp[max(0, j - p)][k - g];
-                    }
-                    dp[j][k] = count % mod;
+                    dp[j][k] += dp[max(0, j - p)][k - g];
+                    dp[j][k] %= mod;
                 }
             }
         }
@@ -170,7 +171,7 @@ public:
 /*
  dp[i][j] means the count of schemes with i profit and j members.
  */
-class Solution {
+class Solution3 {
 private:
     int mod = 1e9 + 7;
     int dfs(int g, int p, int index, vector<int>& group, vector<int>& profit, vector<vector<vector<int>>>& memo) {

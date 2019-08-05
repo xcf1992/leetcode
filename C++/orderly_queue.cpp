@@ -1,12 +1,12 @@
 /*
  899. Orderly Queue
- A string S of lowercase letters is given.  Then, we may make any number of moves.
+ A string S of lowercase letters is given.
+ Then, we may make any number of moves.
 
- In each move, we choose one of the first K letters (starting from the left), remove it, and place it at the end of the string.
+ In each move, we choose one of the first K letters (starting from the left),
+ remove it, and place it at the end of the string.
 
  Return the lexicographically smallest string we could have after any number of moves.
-
-
 
  Example 1:
 
@@ -42,7 +42,6 @@
 #include <map>
 #include <numeric>
 using namespace std;
-
 /*
  If K == 1, we can only rotate the whole string.
  There are S.length different states and
@@ -57,9 +56,14 @@ using namespace std;
  then rotate ith big letter to the end (method 2).
  2XXX01 -> XXX012
 
- Actually, when K>=2, we can prove that we can use the first 2 elements as a buffer to swap any two adjacent characters. Since we can reach any permutation by swapping adjacent characters (like bubble sort), in this case the minimal reachable permutation is the sorted S.
+ Actually, when K>=2,
+ we can prove that we can use the first 2 elements as a buffer to swap any two adjacent characters.
+ Since we can reach any permutation by swapping adjacent characters (like bubble sort),
+ in this case the minimal reachable permutation is the sorted S.
 
-Assume that we want to swap S[i] and S[i+1], we can first pop first i-1 characters to the end, then pop i+1 and i, finally pop i+2~end.
+Assume that we want to swap S[i] and S[i+1],
+we can first pop first i-1 characters to the end,
+then pop i+1 and i, finally pop i+2~end.
 
 Example:
 K=2 S=bacdb Assume that we want to swap S[1] = a and S[2] = c

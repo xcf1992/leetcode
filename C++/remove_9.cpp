@@ -1,10 +1,9 @@
 /*
 660. Remove 9
 Start from integer 1, remove any integer that contains 9 such as 9, 19, 29...
-
 So now, you will have a new integer sequence: 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, ...
-
-Given a positive integer n, you need to return the n-th integer after removing. Note that 1 will be the first integer.
+Given a positive integer n, you need to return the n-th integer after removing.
+Note that 1 will be the first integer.
 
 Example 1:
 Input: 9
@@ -22,7 +21,6 @@ Hint: n will not exceed 9 x 10^8.
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 Let's write the first numbers and try to notice a pattern. Those numbers are:
 
@@ -38,15 +36,17 @@ Indeed, every base-9 number is a number in this sequence, and every number in th
 Both this sequence and the sequence of all base-9 numbers are in increasing order.
 The answer is therefore just the n-th base-9 number.
 ==============-=============
-Think it this way: you're asked to count n numbers in number system where only digits 0..8 are used(base 9). Now this solution just does that, but keeps base(s in code) 10 as answer required is in decimal.
-
+Think it this way:
+you're asked to count n numbers in number system where only digits 0..8 are used(base 9).
+Now this solution just does that,
+but keeps base(s in code) 10 as answer required is in decimal.
 This method will not work if we modify problem to remove 8 or say 5.
 */
 class Solution {
 public:
     int newInteger(int n) {
-        int result = 0;
-        int s = 1;
+        long result = 0;
+        long s = 1;
         while (n > 0) {
             result += n % 9 * s;
             s *= 10;
@@ -56,28 +56,16 @@ public:
     }
 };
 
+// return n base 9
 class Solution1 {
 public:
     int newInteger(int n) {
-
-        //
-        // return n base 9
-        //
         string base9 = "";
-
-        while ( n > 0){
-
-            //
-            // right-most base9 digit, add onto the front of the string
-            //
-            base9 = to_string(n % 9) + base9;
-
-            //
-            // right-shift n base9, this removes the right-most digit base9
-            //
+        while (n > 0){
+            base9.push_back('0' + n % 9);
             n /= 9;
         }
-
+        reverse(base9.begin(), base9.end());
         return stoi(base9);
     }
 };

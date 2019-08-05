@@ -16,52 +16,30 @@ using namespace std;
 
 class Solution {
 private:
-    bool parse(string& expression, int& pos) {
-        int n = expression.size();
-        if (pos >= n) {
-            return true;
-        }
-
-        char op = ' ';
-        vector<bool> vals;
-        while (pos < n and expression[pos] != ')') {
-            if (expression[pos] == '!' or expression[pos] == '&' or expression[pos] == '|') {
-                if (op == ' ') {
-                    op = expression[pos];
-                }
-                else {
-                    vals.push_back(parse(expression, pos));
-                }
-            }
-            else if (expression[pos] == 't' or expression[pos] == 'f') {
-                vals.push_back('t' == expression[pos]);
-            }
-            pos += 1;
-        }
-        pos += 1; // skip the last )
-
-        if (op == '!') {
-            return !vals[0];
-        }
-        while (vals.size() > 1) {
-            bool v1 = vals.back();
-            vals.pop_back();
-            bool v2 = vals.back();
-            vals.pop_back();
-            if (op == '&') {
-                vals.push_back(v1 and v2);
-            }
-            else {
-                vals.push_back(v1 or v2);
-            }
-        }
-        return vals[0];
-    }
+    int mod = 1e9 + 7;
 public:
-    bool parseBoolExpr(string expression) {
-        int pos = 0;
-        cout << expression.size();
-        return parse(expression, pos);
+    int profitableSchemes(int G, int P, vector<int> group, vector<int> profit) {
+        int n = group.size();
+        vector<vector<int>> dp(P + 1, vector<int>(G + 1, 0));
+        // when there is 0 crime, 0 scheme existed for any profit > 0 or group > 0
+        dp[0][0] = 1;
+        for (int i = 0; i < n; ++i) {
+            int p = profit[i];
+            int g = group[i];
+            for (int j = P; j >= 0; j--) {
+                for (int k = G; k >= g; k--) {
+                    dp[j][k] += dp[max(0, j - p)][k - g];
+                    dp[j][k] %= mod;
+                }
+            }
+        }
+        
+        long result = 0;
+        for (int i = 0; i <= G; i++) {
+            result += dp[P][i];
+            result %= mod;
+        }
+        return result;
     }
 };
 
@@ -90,5 +68,5 @@ int main() {
     TreeNode* r2 = new TreeNode(1);
     TreeNode* r3 = new TreeNode(3);
     r1 -> left = r2;
-    s.parseBoolExpr("!(&(&(!(&(f)),&(t),|(f,f,t)),&(t),&(t,t,f)))");
+    s.profitableSchemes(5, 3, {2,2}, {2,3});
 }

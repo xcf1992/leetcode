@@ -25,7 +25,6 @@
  1 <= A.length <= 20000
  1 <= A[i] <= 100000
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -43,12 +42,10 @@ using namespace std;
 class Solution {
 private:
     void getFactors(int index, int number, unordered_map<int, vector<int>>& factorToIndex) {
-        for (int i = 2; i * i <= number; ++i) {
-            if (number % i == 0) {
-                factorToIndex[i].push_back(index);
-                while (number % i == 0) {
-                    number /= i;
-                }
+        for (int i = 2; i * i <= number; ++i) if (number % i == 0) {
+            factorToIndex[i].push_back(index);
+            while (number % i == 0) {
+                number /= i;
             }
         }
         if (number > 1) {
