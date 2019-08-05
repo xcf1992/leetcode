@@ -1,26 +1,30 @@
 /*
 1096. Brace Expresultion II
-Under a grammar given below, strings can represent a set of lowercase words.  Let's use R(expr) to denote the set of words the expression represents.
+Under a grammar given below, strings can represent a set of lowercase words.
+Let's use R(expr) to denote the set of words the expression represents.
 
 Grammar can best be understood through simple examples:
 
 Single letters represent a singleton set containing that word.
-R("a") = {"a"}
-R("w") = {"w"}
+    R("a") = {"a"}
+    R("w") = {"w"}
 When we take a comma delimited list of 2 or more expressions, we take the union of possibilities.
-R("{a,b,c}") = {"a","b","c"}
-R("{{a,b},{b,c}}") = {"a","b","c"} (notice the final set only contains each word at most once)
-When we concatenate two expressions, we take the set of possible concatenations between two words where the first word comes from the first expression and the second word comes from the second expression.
-R("{a,b}{c,d}") = {"ac","ad","bc","bd"}
-R("a{b,c}{d,e}f{g,h}") = {"abdfg", "abdfh", "abefg", "abefh", "acdfg", "acdfh", "acefg", "acefh"}
+    R("{a,b,c}") = {"a","b","c"}
+    R("{{a,b},{b,c}}") = {"a","b","c"} (notice the final set only contains each word at most once)
+When we concatenate two expressions,
+we take the set of possible concatenations between two words where the first word comes from the first expression
+and the second word comes from the second expression.
+    R("{a,b}{c,d}") = {"ac","ad","bc","bd"}
+    R("a{b,c}{d,e}f{g,h}") = {"abdfg", "abdfh", "abefg", "abefh", "acdfg", "acdfh", "acefg", "acefh"}
+
 Formally, the 3 rules for our grammar:
+    For every lowercase letter x, we have R(x) = {x}
+    For expressions e_1, e_2, ... , e_k with k >= 2, we have R({e_1,e_2,...}) = R(e_1) ∪ R(e_2) ∪ ...
+    For expressions e_1 and e_2, we have R(e_1 + e_2) = {a + b for (a, b) in R(e_1) × R(e_2)},
+    where + denotes concatenation, and × denotes the cartesian product.
 
-For every lowercase letter x, we have R(x) = {x}
-For expressions e_1, e_2, ... , e_k with k >= 2, we have R({e_1,e_2,...}) = R(e_1) ∪ R(e_2) ∪ ...
-For expressions e_1 and e_2, we have R(e_1 + e_2) = {a + b for (a, b) in R(e_1) × R(e_2)}, where + denotes concatenation, and × denotes the cartesian product.
-Given an expression representing a set of words under the given grammar, return the sorted list of words that the expression represents.
-
-
+Given an expression representing a set of words under the given grammar,
+return the sorted list of words that the expression represents.
 
 Example 1:
 
@@ -54,6 +58,76 @@ The given expression represents a set of words based on the grammar given in the
 #include <numeric>
 using namespace std;
 
+class Solution {
+private:
+    unordered_set<string> merge(unordered_set<string>& a, unordered_set<string>& b) {
+        if (a.empty() or b.empty()) {
+            return a.empty() ? b : a;
+        }
+
+        unordered_set<string> result;
+        for (string s1 : a) {
+            for (string s2 : b) {
+                result.insert(s1 + s2);
+            }
+        }
+        return result;
+    }
+
+    string getWord(string& expr, int& i) {
+        string result = "";
+        while ('a' <= expr[i] and expr[i] <= 'z') {
+            result.push_back(expr[i]);
+            i += 1;
+        }
+        return result;
+    }
+
+    unordered_set<string> dfs(string& expr, int& i) {
+        unordered_set<string> S;
+        unordered_set<string> result;
+        while (i < expr.size() and expr[i] != '}') {
+            if (expr[i] == ',') {
+                for (auto& s : S) {
+                    result.insert(s);
+                }
+                S.clear();
+                i += 1;
+            }
+
+            unordered_set<string> temp;
+            if (expr[i] == '{') {
+                i += 1;
+                temp = dfs(expr, i);
+                i += 1;
+            }
+            else {
+                temp.insert(getWord(expr, i));
+            }
+
+            if (S.empty()) {
+                S = temp;
+            }
+            else {
+                S = merge(S, temp);
+            }
+        }
+
+        for (auto& s : S) {
+            result.insert(s);
+        }
+        return result;
+    }
+public:
+    vector<string> braceExpansionII(string expression) {
+        int i = 0;
+        unordered_set<string> S = dfs(expression, i);
+        vector<string> result(S.begin(), S.end());
+        sort(result.begin(), result.end());
+        return result;
+    }
+};
+
 /*
 题意：告诉我们三个规则。
 
@@ -79,7 +153,7 @@ using namespace std;
 
 由此，我们可以写出对应的递归方程来。
 */
-class Solution {
+class Solution1 {
 private:
     set<string> merge(set<string>& a, set<string>& b) {
         if (a.empty() or b.empty()) {
