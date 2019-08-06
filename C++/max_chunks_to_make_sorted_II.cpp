@@ -60,7 +60,7 @@ public:
 
         int result = 1;
         for (int i = 1; i < n; i++) {
-            if (rightMin[i] > leftMax[i - 1]) {
+            if (rightMin[i] >= leftMax[i - 1]) {
                 result += 1;
             }
         }
