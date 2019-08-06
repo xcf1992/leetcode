@@ -1,12 +1,15 @@
 /*
  956. Tallest Billboard
- You are installing a billboard and want it to have the largest height.  The billboard will have two steel supports, one on each side.  Each steel support must be an equal height.
+ You are installing a billboard and want it to have the largest height.
+ The billboard will have two steel supports, one on each side.
+ Each steel support must be an equal height.
 
- You have a collection of rods which can be welded together.  For example, if you have rods of lengths 1, 2, and 3, you can weld them together to make a support of length 6.
+ You have a collection of rods which can be welded together.
+ For example, if you have rods of lengths 1, 2, and 3,
+ you can weld them together to make a support of length 6.
 
- Return the largest possible height of your billboard installation.  If you cannot support the billboard, return 0.
-
-
+ Return the largest possible height of your billboard installation.
+ If you cannot support the billboard, return 0.
 
  Example 1:
 
@@ -44,7 +47,6 @@
 #include <map>
 #include <numeric>
 using namespace std;
-
 /*
 Explanation:
 dp[d] mean the maximum pair of sum we can get with pair difference d
@@ -125,8 +127,8 @@ public:
  Thus, dp[i][j] comes from dp[i-1][j+rods[i]], the length of bag1 remains still. so is still dp[i - 1][diff]
 
  we add rods[i] to bag0 and bag0 is now longer than bag1.
- We have current bag1 - bag0 = j; and previously bag0 - (bag1 - rod[i]) = x
- so we can get x = rod[i] - j; As previously bag0 = dp[i-1][rods[i]-j], and it is now j less than current bag1
+ We have current bag1 - bag0 = j; and previously, bag0 - (bag1 - rod[i]) = x
+ so we can get x = rod[i] - j; As previously, bag0 = dp[i-1][rods[i]-j], and it is now j less than current bag1
  Thus, dp[i][j] comes from dp[i-1][rods[i]-j], dp[i][j] = dp[i-1][rods[i]-j]+j
 
  After all, just output dp[n][0].

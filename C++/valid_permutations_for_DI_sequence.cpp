@@ -1,6 +1,7 @@
 /*
  903. Valid Permutations for DI Sequence
- We are given S, a length n string of characters from the set {'D', 'I'}. (These letters stand for "decreasing" and "increasing".)
+ We are given S, a length n string of characters from the set {'D', 'I'}.
+ (These letters stand for "decreasing" and "increasing".)
 
  A valid permutation is a permutation P[0], P[1], ..., P[n] of integers {0, 1, ..., n}, such that for all i:
 
@@ -41,7 +42,6 @@
 #include <map>
 #include <numeric>
 using namespace std;
-
 /*
  dp[i][j] means the number of possible permutations of first i + 1 digits,
  which also identifies first i letters in the DI string

@@ -4,8 +4,6 @@
 
  Since the result may be large, return the answer modulo 10^9 + 7.
 
-
-
  Example 1:
 
  Input: "abc"
@@ -27,7 +25,6 @@
  S contains only lowercase letters.
  1 <= S.length <= 2000
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -41,7 +38,6 @@
 #include <map>
 #include <numeric>
 using namespace std;
-
 /*
  Even though the final code for this problem is very short, it is not very intuitive to find the answer.
  In the solution below, we'll focus on finding all subsequences (including empty ones), and subtract the empty subsequence at the end.
@@ -61,8 +57,7 @@ using namespace std;
  dp[2] = 7 as it counts ("", "a", "b", "aa", "ab", "ba", "aba");
  dp[3] = 12, as it counts ("", "a", "b", "aa", "ab", "ba", "bb", "aab", "aba", "abb", "bab", "abab").
  We have that dp[3] counts dp[2], plus("b", "aa", "ab", "ba", "aba") with "b" added to it.
- Notice that("", "a") are missing from this list,
- as they get double counted.
+ Notice that("", "a") are missing from this list, as they get double counted.
  In general, the sequences that resulted from putting "b" the last time (ie."b", "ab"`) will get double counted.
 
  This insight leads to the recurrence:
@@ -82,7 +77,6 @@ public:
         int n = S.size();
         vector<long> dp(n + 1, 1);
         vector<int> last(26, -1);
-
         for (int i = 1; i <= n; i++) {
             int cur = S[i - 1] - 'a';
             dp[i] = 2 * dp[i - 1];

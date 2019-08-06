@@ -1,14 +1,22 @@
 /*
 731. My Calendar II
-Implement a MyCalendarTwo class to store your events. A new event can be added if adding the event will not cause a triple booking.
+Implement a MyCalendarTwo class to store your events.
+A new event can be added if adding the event will not cause a triple booking.
 
-Your class will have one method, book(int start, int end). Formally, this represents a booking on the half open interval [start, end), the range of real numbers x such that start <= x < end.
+Your class will have one method, book(int start, int end).
+Formally, this represents a booking on the half open interval [start, end),
+the range of real numbers x such that start <= x < end.
 
-A triple booking happens when three events have some non-empty intersection (ie., there is some time that is common to all 3 events.)
+A triple booking happens when three events have some non-empty intersection
+(ie., there is some time that is common to all 3 events.)
 
-For each call to the method MyCalendar.book, return true if the event can be added to the calendar successfully without causing a triple booking. Otherwise, return false and do not add the event to the calendar.
+For each call to the method MyCalendar.book,
+return true if the event can be added to the calendar successfully without causing a triple booking.
+Otherwise, return false and do not add the event to the calendar.
 
-Your class will be called like this: MyCalendar cal = new MyCalendar(); MyCalendar.book(start, end)
+Your class will be called like this: MyCalendar cal = new MyCalendar();
+MyCalendar.book(start, end)
+
 Example 1:
 
 MyCalendar();
@@ -44,16 +52,20 @@ In calls to MyCalendar.book(start, end), start and end are integers in the range
 #include <map>
 #include <stdio.h>
 using namespace std;
-
 /*
 The big idea is pretty simple:
-Each time of book, instead of fail a book when there is 1 or more overlap with existing books as in MyCalendar I, we just want to make sure these overlaps does not overlap - having overlap is now ok, but overlapped period cannot be overlapped again.
+Each time of book,
+instead of fail a book when there is 1 or more overlap with existing books as in MyCalendar I,
+we just want to make sure these overlaps does not overlap - having overlap is now ok,
+but overlapped period cannot be overlapped again.
 So we just need to keep track of all the overlaps with any previous books
 
 MyCalendar I can be reused to track the overlaps during each book.
 
 How to calculate overlap of 2 intervals
-Assume a start earlier than b, (if not reverse), there could be 3 case, but in any case, an overlap(either positive or negative) can always be represented as:
+Assume a start earlier than b, (if not reverse),
+there could be 3 case, but in any case,
+an overlap(either positive or negative) can always be represented as:
 (max(a0, b0), min(a1, b1))
 
 case 1: b ends before a ends:

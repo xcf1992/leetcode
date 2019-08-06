@@ -44,20 +44,7 @@ private:
             result += (j - s2);
             i += 1;
         }
-
-        vector<int> left(nums.begin() + s1, nums.begin() + e1 + 1);
-        vector<int> right(nums.begin() + s2, nums.begin() + e2 + 1);
-        int pos = s1;
-        i = 0, j = 0;
-        int lenL = left.size(), lenR = right.size();
-        while (i < lenL or j < lenR) {
-            if (j >= lenR or (i < lenL and left[i] <= right[j])) {
-                nums[pos++] = left[i++];
-            }
-            else {
-                nums[pos++] = right[j++];
-            }
-        }
+        inplace_merge(nums.begin() + s1, nums.begin() + s2, nums.begin() + e2 + 1);
     }
 
     void mergeSort(vector<int>& nums, int start, int end, int& result) {

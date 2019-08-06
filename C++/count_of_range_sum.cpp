@@ -25,7 +25,6 @@
 #include <stdio.h>
 #include <map>
 using namespace std;
-
 /*
  merge sort here is just to split the whole problem into two separate parts so there is a
  count = mergeSort(sum,lower,upper,low,mid) + mergeSort(sum,lower,upper,mid,high);
@@ -41,28 +40,28 @@ using namespace std;
  */
 class Solution {
 private:
-    int mergeSort(vector<long>& sum, int lower, int upper, int left, int right) {
+    int mergeSort(vector<long>& preSum, int lower, int upper, int left, int right) {
         if (right - left <= 1) {
             return 0;
         }
-        
+
         int mid = left + (right - left) / 2;
-        int count = mergeSort(sum, lower, upper, left, mid) + mergeSort(sum, lower, upper, mid, right);
+        int count = mergeSort(preSum, lower, upper, left, mid) + mergeSort(preSum, lower, upper, mid, right);
         for (int i = left; i < mid; ++i) {
-            auto m = lower_bound(sum.begin() + mid, sum.begin() + right, sum[i] + lower);
-            auto n = upper_bound(sum.begin() + mid, sum.begin() + right, sum[i] + upper);
+            auto m = lower_bound(preSum.begin() + mid, preSum.begin() + right, preSum[i] + lower);
+            auto n = upper_bound(preSum.begin() + mid, preSum.begin() + right, preSum[i] + upper);
             count += n - m;
         }
-        inplace_merge(sum.begin() + left, sum.begin() + mid, sum.begin() + right);
+        inplace_merge(preSum.begin() + left, preSum.begin() + mid, preSum.begin() + right);
         return count;
     }
 public:
     int countRangeSum(vector<int>& nums, int lower, int upper) {
         int len = nums.size();
-        vector<long> sum(len + 1, 0);
+        vector<long> preSum(len + 1, 0);
         for (int i = 0; i < len; ++i) {
-            sum[i + 1] = sum[i] + nums[i];
+            preSum[i + 1] = preSum[i] + nums[i];
         }
-        return mergeSort(sum, lower, upper, 0, len + 1);
+        return mergeSort(preSum, lower, upper, 0, len + 1);
     }
 };
