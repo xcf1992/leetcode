@@ -80,7 +80,7 @@ public:
     }
 };
 
-class Solution { // dfs with memo
+class Solution1 { // dfs with memo
 private:
     unordered_map<string, int> memo;
     int M = 0;
@@ -116,7 +116,7 @@ public:
 };
 
 // naive dfs TLE
-class Solution1 {
+class Solution2 {
 private:
     int result = INT_MAX;
 

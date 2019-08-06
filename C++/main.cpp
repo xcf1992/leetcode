@@ -16,30 +16,27 @@ using namespace std;
 
 class Solution {
 private:
-    int mod = 1e9 + 7;
+    unordered_map<string, int> memo;
 public:
-    int profitableSchemes(int G, int P, vector<int> group, vector<int> profit) {
-        int n = group.size();
-        vector<vector<int>> dp(P + 1, vector<int>(G + 1, 0));
-        // when there is 0 crime, 0 scheme existed for any profit > 0 or group > 0
-        dp[0][0] = 1;
-        for (int i = 0; i < n; ++i) {
-            int p = profit[i];
-            int g = group[i];
-            for (int j = P; j >= 0; j--) {
-                for (int k = G; k >= g; k--) {
-                    dp[j][k] += dp[max(0, j - p)][k - g];
-                    dp[j][k] %= mod;
-                }
+    int longestDecomposition(string text) {
+        int n = text.size();
+        if (n <= 1) {
+            return n;
+        }
+
+        if (memo.find(text) != memo.end()) {
+            return memo[text];
+        }
+
+        memo[text] = 1;
+        for (int len = 1; len <= n / 2; ++len) {
+            string left = text.substr(len);
+            string right = text.substr(n - len, len);
+            if (left == right) {
+                memo[text] = max(memo[text], 2 + longestDecomposition(text.substr(len, n - len * 2)));
             }
         }
-        
-        long result = 0;
-        for (int i = 0; i <= G; i++) {
-            result += dp[P][i];
-            result %= mod;
-        }
-        return result;
+        return memo[text];
     }
 };
 
@@ -68,5 +65,5 @@ int main() {
     TreeNode* r2 = new TreeNode(1);
     TreeNode* r3 = new TreeNode(3);
     r1 -> left = r2;
-    s.profitableSchemes(5, 3, {2,2}, {2,3});
+    s.longestDecomposition("ghiabcdefhelloadamhelloabcdefghi");
 }
