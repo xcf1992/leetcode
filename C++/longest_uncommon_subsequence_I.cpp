@@ -43,7 +43,6 @@ public:
         if (lenA != lenB) {
             return max(lenA, lenB);
         }
-
         return a == b ? -1 : lenA;
     }
 };

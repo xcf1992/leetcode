@@ -50,7 +50,6 @@ private:
                 result = min(result, (long)abs(prev -> val - root -> val));
             }
         }
-
         prev = root;
         find(root -> right, prev, result);
     }

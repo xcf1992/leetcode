@@ -60,7 +60,7 @@ private:
         if (s -> val != t -> val) {
             return false;
         }
-        return sameTree(s -> left, t -> left) && sameTree(s -> right, t -> right);
+        return sameTree(s -> left, t -> left) and sameTree(s -> right, t -> right);
     }
 public:
     bool isSubtree(TreeNode* s, TreeNode* t) {

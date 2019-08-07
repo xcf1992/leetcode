@@ -94,8 +94,8 @@ public:
             return 0;
         }
 
-        int curMin = nums.back();
         int curMax = nums.front();
+        int curMin = nums.back();
         int left = 0;
         int right = -1;
         for (int i = 1; i < n; i++) {

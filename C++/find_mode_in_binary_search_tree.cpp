@@ -1,6 +1,7 @@
 /*
 501. Find Mode in Binary Search Tree
-Given a binary search tree (BST) with duplicates, find all the mode(s) (the most frequently occurred element) in the given BST.
+Given a binary search tree (BST) with duplicates,
+find all the mode(s) (the most frequently occurred element) in the given BST.
 
 Assume a BST is defined as follows:
 
@@ -47,27 +48,24 @@ private:
         if (root == nullptr) {
             return;
         }
-        find(root -> left, result, count, maxCount);
 
-        if (pre == nullptr) {
+        find(root -> left, result, count, maxCount);
+        if (pre == nullptr or root -> val != pre -> val) {
             count = 1;
-        }
-        else if (root -> val == pre -> val) {
-            count += 1;
         }
         else {
-            if (count > maxCount) {
-                result.clear();
-                result.push_back(pre -> val);
-                maxCount = count;
-            }
-            else if (count == maxCount) {
-                result.push_back(pre -> val);
-            }
-            count = 1;
+            count += 1;
+        }
+
+        if (count > maxCount) {
+            result.clear();
+            result.push_back(root -> val);
+            maxCount = count;
+        }
+        else if (count == maxCount) {
+            result.push_back(root -> val);
         }
         pre = root;
-
         find(root -> right, result, count, maxCount);
     }
 public:
@@ -78,16 +76,6 @@ public:
         vector<int> result;
 
         find(root, result, count, maxCount);
-        if (pre == nullptr) { // we need to check for last several nodes if they have the same value, cause there may have no chance to update if they are all the same
-            return result;
-        }
-        if (count == maxCount) {
-            result.push_back(pre -> val);
-        }
-        if (count > maxCount) {
-            result.clear();
-            result.push_back(pre -> val);
-        }
         return result;
     }
 };

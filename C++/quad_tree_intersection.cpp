@@ -1,8 +1,14 @@
 /*
  558. Quad Tree Intersection
- A quadtree is a tree data in which each internal node has exactly four children: topLeft, topRight, bottomLeft and bottomRight. Quad trees are often used to partition a two-dimensional space by recursively subdividing it into four quadrants or regions.
+ A quadtree is a tree data in which each internal node has exactly four children:
+ topLeft, topRight, bottomLeft and bottomRight.
+ Quad trees are often used to partition a two-dimensional space by recursively subdividing it into four quadrants or regions.
 
- We want to store True/False information in our quad tree. The quad tree is used to represent a N * N boolean grid. For each node, it will be subdivided into four children nodes until the values in the region it represents are all the same. Each node has another two boolean attributes : isLeaf and val. isLeaf is true if and only if the node is a leaf node. The val attribute for a leaf node contains the value of the region it represents.
+ We want to store True/False information in our quad tree.
+ The quad tree is used to represent a N * N boolean grid.
+ For each node, it will be subdivided into four children nodes until the values in the region it represents are all the same.
+ Each node has another two boolean attributes : isLeaf and val. isLeaf is true if and only if the node is a leaf node.
+ The val attribute for a leaf node contains the value of the region it represents.
 
  For example, below are two quad trees A and B:
 
@@ -74,7 +80,7 @@
 #include <set>
 using namespace std;
 
- class Node {
+class Node {
 public:
     bool val;
     bool isLeaf;

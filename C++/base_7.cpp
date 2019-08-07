@@ -36,7 +36,6 @@ public:
             result.push_back(num % 7 + '0');
             num = num / 7;
         } while (num > 0);
-
         reverse(result.begin(), result.end());
         return negative ? "-" + result : result;
     }
