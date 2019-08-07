@@ -29,11 +29,9 @@ public:
         int n = nums.size();
         int zeroP = 0;
         int notZeroP = 0;
-        for (; notZeroP < n; ++notZeroP) {
-            if (nums[notZeroP] != 0) {
-                nums[zeroP] = nums[notZeroP];
-                zeroP++;
-            }
+        for (; notZeroP < n; ++notZeroP) if (nums[notZeroP] != 0) {
+            nums[zeroP] = nums[notZeroP];
+            zeroP++;
         }
         for (; zeroP < n; ++zeroP) {
             nums[zeroP] = 0;

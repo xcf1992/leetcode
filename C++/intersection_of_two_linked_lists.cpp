@@ -56,7 +56,7 @@ using namespace std;
 
 class Solution {
 public:
-    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+    ListNode* getIntersectionNode(ListNode* headA, ListNode* headB) {
         if (headA == nullptr or headB == nullptr) {
             return nullptr;
         }
@@ -86,8 +86,8 @@ public:
             gap -= 1;
             cur = cur -> next;
         }
+        
         ListNode* curB = headB;
-
         while (cur != curB) {
             cur = cur -> next;
             curB = curB -> next;
