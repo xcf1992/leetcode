@@ -1,4 +1,5 @@
 /*
+ 859. Buddy Strings
  Given two strings A and B of lowercase letters,
  return true if and only if we can swap two letters in A so that the result equals B.
 
@@ -30,7 +31,6 @@
  0 <= B.length <= 20000
  A and B consist only of lowercase letters.
  */
-
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -50,19 +50,16 @@ class Solution {
 public:
     bool buddyStrings(string A, string B) {
         int n = A.size();
-        if (A == B && set<char>(A.begin(), A.end()).size() < n) { // there are duplicate letters
-            return true;
-        }
-
         if (n <= 1 or n != B.size()) {
             return false;
         }
+        if (A == B and set<char>(A.begin(), A.end()).size() < n) { // there are duplicate letters
+            return true;
+        }
 
         vector<int> diff;
-        for (int i = 0; i < n; i++) {
-            if (A[i] != B[i]) {
-                diff.push_back(i);
-            }
+        for (int i = 0; i < n; i++) if (A[i] != B[i]) {
+            diff.push_back(i);
         }
         return diff.size() == 2 and A[diff[0]] == B[diff[1]] and A[diff[1]] == B[diff[0]];
     }

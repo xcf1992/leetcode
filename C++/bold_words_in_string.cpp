@@ -51,9 +51,7 @@ public:
             if (marked[i] && (i == 0 || !marked[i - 1])) {
                 result += "<b>";
             }
-
             result.push_back(S[i]);
-
             if (marked[i] && (i == S.size() - 1 || !marked[i + 1])) {
                 result += "</b>";
             }

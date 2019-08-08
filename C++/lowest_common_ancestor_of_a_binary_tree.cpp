@@ -41,21 +41,23 @@ p and q are different and both values will exist in the binary tree.
 #include "extra_data_types.hpp"
 using namespace std;
 
-// If either p or q matches is the root, report
-// the presence by returning root (Note that if a key is
-// ancestor of other, then the ancestor key becomes LCA
-// If both of the above calls return Non-nullptr, then one key
-// is present in once subtree and other is present in other,
-// So this node is the LCA
+/*
+If either p or q matches is the root, report
+the presence by returning root (Note that if a key is
+ancestor of other, then the ancestor key becomes LCA
+If both of the above calls return Non-nullptr, then one key
+is present in once subtree and other is present in other,
+So this node is the LCA
+*/
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        if (root == nullptr or root == p or root== q) {
+        if (root == nullptr or root == p or root == q) {
             return root;
         }
 
-        TreeNode *left_lca  = lowestCommonAncestor(root -> left, p, q);
-        TreeNode *right_lca = lowestCommonAncestor(root -> right, p, q);
+        TreeNode* left_lca  = lowestCommonAncestor(root -> left, p, q);
+        TreeNode* right_lca = lowestCommonAncestor(root -> right, p, q);
         if (left_lca and right_lca) {
             return root;
         }

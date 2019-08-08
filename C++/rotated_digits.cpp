@@ -34,13 +34,19 @@ N  will be in range [1, 10000].
 #include <stdio.h>
 using namespace std;
 
+/*
+Using a int[] for dp.
+dp[i] = 0, invalid number
+dp[i] = 1, valid and same number
+dp[i] = 2, valid and different number
+*/
 class Solution {
 public:
     int rotatedDigits(int N) {
         vector<int> dp(N + 1, 0);
         int result = 0;
         for (int i = 0; i <= N; ++i) {
-            if (i == 0 or i == 1 || i == 8) {
+            if (i == 0 or i == 1 or i == 8) {
                 dp[i] = 1; // rotated same
             }
             else if (i == 2 or i == 5 or i == 6 or i == 9) { // rotated differently
