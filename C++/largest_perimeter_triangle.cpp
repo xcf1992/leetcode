@@ -70,13 +70,10 @@ public:
         }
 
         sort(A.begin(), A.end());
-        int result = 0;
-        for (int i = n - 1; i >= 2; --i) {
-            if (A[i] < A[i - 1] + A[i - 2]) {
-                result = max(result, A[i] + A[i - 1] + A[i - 2]);
-            }
+        for (int i = n - 1; i >= 2; --i) if (A[i] < A[i - 1] + A[i - 2]) {
+            return A[i] + A[i - 1] + A[i - 2];
         }
-        return result;
+        return 0;
     }
 };
 

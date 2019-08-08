@@ -5,7 +5,8 @@
  The smallest 24 hour time is 00:00, and the largest is 23:59.
  Starting from 00:00, a time is larger if more time has elapsed since midnight.
 
- Return the answer as a string of length 5.  If no valid time can be made, return an empty string.
+ Return the answer as a string of length 5.
+ If no valid time can be made, return an empty string.
 
  Example 1:
 
@@ -54,21 +55,19 @@ private:
         return true;
     }
 
-    bool firstValid(vector<int>& A, vector<bool>& used, string& result) {
+    bool dfs(vector<int>& A, vector<bool>& used, string& result) {
         if (result.size() == 4) {
             return valid(result);
         }
 
-        for (int i = 0; i < 4; i++) {
-            if (!used[i]) {
-                result += ('0' + A[i]);
-                used[i] = true;
-                if (firstValid(A, used, result)) {
-                    return true;
-                }
-                result.pop_back();
-                used[i] = false;
+        for (int i = 0; i < 4; i++) if (!used[i]) {
+            result.push_back('0' + A[i]);
+            used[i] = true;
+            if (dfs(A, used, result)) {
+                return true;
             }
+            used[i] = false;
+            result.pop_back();
         }
         return false;
     }
@@ -77,7 +76,7 @@ public:
         sort(A.rbegin(), A.rend());
         vector<bool> used(4, false);
         string result = "";
-        if (!firstValid(A, used, result)) {
+        if (!dfs(A, used, result)) {
             return "";
         }
         result.insert(2, ":");

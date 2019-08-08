@@ -70,12 +70,8 @@ public:
             aSum += a;
             candyA.insert(a);
         }
-
-        int bSum = 0;
-        for (int b : B) {
-            bSum += b;
-        }
-
+        
+        int bSum = accumulate(B.begin(), B.end(), 0);
         int gap = bSum - aSum;
         vector<int> result;
         for (int b : B) {

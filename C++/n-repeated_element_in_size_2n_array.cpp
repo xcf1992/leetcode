@@ -24,7 +24,6 @@ Note:
 0 <= A[i] < 10000
 A.length is even
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -38,7 +37,6 @@ A.length is even
 #include <map>
 #include <numeric>
 using namespace std;
-
 /*
 If we ever find a repeated element, it must be the answer. Let's call this answer the major element.
 
@@ -54,11 +52,15 @@ class Solution {
 public:
     int repeatedNTimes(vector<int>& A) {
         int n = A.size();
-        for (int k = 1; k <= 3; ++k) {
-            for (int i = 0; i + k < n; ++i) {
-                if (A[i] == A[i + k]) {
-                    return A[i];
-                }
+        for (int i = 0; i < n - 3; ++i) {
+            if (A[i] == A[i + 1] or A[i] == A[i + 2] or A[i] == A[i + 3]) {
+                return A[i];
+            }
+            if (A[i + 1] == A[i + 2] or A[i + 1] == A[i + 3]) {
+                return A[i + 1];
+            }
+            if (A[i + 2] == A[i + 3]) {
+                return A[i + 2];
             }
         }
         return -1;
