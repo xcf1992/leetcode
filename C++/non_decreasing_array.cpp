@@ -13,7 +13,6 @@
  Output: False
  Explanation: You can't get a non-decreasing array by modify at most one element.
  Note: The n belongs to [1, 10,000].
-
  */
 #include <iostream>
 #include <string>
@@ -40,21 +39,19 @@ private:
     }
 public:
     bool checkPossibility(vector<int>& nums) {
-        for (int i = 1; i < nums.size(); i++) {
-            if (nums[i] < nums[i - 1]) {
-                int temp = nums[i - 1];
-                nums[i - 1] = i - 2 >= 0 ? nums[i - 2] : nums[i];
-                if (nondreasing(nums)) {
-                    return true;
-                }
-
-                nums[i - 1] = temp;
-                nums[i] = i + 1 < nums.size() ? nums[i + 1] : nums[i - 1];
-                if (nondreasing(nums)) {
-                    return true;
-                }
-                return false;
+        for (int i = 1; i < nums.size(); i++) if (nums[i] < nums[i - 1]) {
+            int temp = nums[i - 1];
+            nums[i - 1] = i - 2 >= 0 ? nums[i - 2] : nums[i];
+            if (nondreasing(nums)) {
+                return true;
             }
+
+            nums[i - 1] = temp;
+            nums[i] = i + 1 < nums.size() ? nums[i + 1] : nums[i - 1];
+            if (nondreasing(nums)) {
+                return true;
+            }
+            return false;
         }
         return true;
     }

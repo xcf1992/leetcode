@@ -1,6 +1,3 @@
-#include <iostream>
-#include <string>
-#include <vector>
 /*
 671. Second Minimum Node In a Binary Tree
 Given a non-empty special binary tree consisting of nodes with the non-negative value,
@@ -35,6 +32,9 @@ Input:
 Output: -1
 Explanation: The smallest value is 2, but there isn't any second smallest value.
 */
+#include <iostream>
+#include <string>
+#include <vector>
 #include <unordered_map>
 #include <unordered_set>
 #include <algorithm>
@@ -71,6 +71,6 @@ public:
         int minVal = root -> val;
         int result = -1;
         search(root, minVal, result);
-        return result != -1 ? result : -1;
+        return result;
     }
 };
