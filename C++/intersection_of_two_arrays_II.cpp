@@ -42,7 +42,7 @@ public:
         }
 
         for (int i = 0; i < nums2.size(); i++) {
-            if (intersection.find(nums2[i]) != intersection.end() && intersection[nums2[i]] > 0) {
+            if (intersection.find(nums2[i]) != intersection.end() and intersection[nums2[i]] > 0) {
                 result.push_back(nums2[i]);
                 intersection[nums2[i]] -= 1;
             }
