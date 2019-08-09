@@ -44,10 +44,8 @@ public:
     void duplicateZeros(vector<int>& arr) {
         int n = arr.size();
         int index = 0;
-        for (int i = 0; i < n; ++i, ++index) {
-            if (arr[i] == 0) {
-                index += 1;
-            }
+        for (int i = 0; i < n; ++i, ++index) if (arr[i] == 0) {
+            index += 1;
         }
         index -= 1; // in case [1,0,2,3,0,4,5,0], after loop, index will be 11, minus 1 here so it will be the last available index
 
