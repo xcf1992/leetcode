@@ -1,8 +1,13 @@
 /*
 482. License Key Formatting
-You are given a license key represented as a string S which consists only alphanumeric character and dashes. The string is separated into N+1 groups by N dashes.
+You are given a license key represented as a string S which consists only alphanumeric character and dashes.
+The string is separated into N+1 groups by N dashes.
 
-Given a number K, we would want to reformat the strings such that each group contains exactly K characters, except for the first group which could be shorter than K, but still must contain at least one character. Furthermore, there must be a dash inserted between two groups and all lowercase letters should be converted to uppercase.
+Given a number K,
+we would want to reformat the strings such that each group contains exactly K characters,
+except for the first group which could be shorter than K,
+but still must contain at least one character.
+Furthermore, there must be a dash inserted between two groups and all lowercase letters should be converted to uppercase.
 
 Given a non-empty string S and a number K, format the string according to the rules described above.
 
@@ -44,19 +49,19 @@ public:
         for (int i = S.size() - 1; i >= 0; i--) {
             char c = toupper(S[i]);
             if (c != '-') {
-                result.insert(result.begin(), c);
+                result.push_back(c);
                 segment += 1;
                 if (segment == K) {
                     segment = 0;
-                    result.insert(result.begin(), '-');
+                    result.push_back('-');
                 }
             }
         }
 
-        int remove = 0;
-        while (result[remove] == '-') {
-            remove += 1;
+        if (result.back() == '-') {
+            result.pop_back();
         }
-        return result.substr(remove);
+        reverse(result.begin(), result.end());
+        return result;
     }
 };
