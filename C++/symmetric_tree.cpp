@@ -37,6 +37,7 @@ Bonus points if you could solve it both recursively and iteratively.
 #include "extra_data_types.hpp"
 using namespace std;
 
+// iterative solution would be using two queue to store left tree and right tree, with left tree put lc first and right tree put rc first
 class Solution {
 private:
     bool symmetric(TreeNode* root1, TreeNode* root2) {
