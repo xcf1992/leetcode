@@ -17,7 +17,6 @@ add(3); add(1); add(2);
 find(3) -> true
 find(6) -> false
 */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -26,22 +25,20 @@ find(6) -> false
 using namespace std;
 
 class TwoSum {
-    unordered_map<int,int> num_to_count; 
+    unordered_map<int,int> count;
 public:
     /** Initialize your data structure here. */
     TwoSum() {}
-    
+
     /** Add the number to an internal data structure.. */
     void add(int number) {
-        num_to_count[number]++;
+        count[number] += 1;
     }
-    
+
     /** Find if there exists any pair of numbers which sum is equal to the value. */
     bool find(int value) {
-        for(const auto& el : num_to_count) {
-            if(num_to_count.find(value - el.first) != end(num_to_count) and
-               (value - el.first != el.first or el.second > 1))
-                    return true;
+        for(auto& el : count) if (count.find(value - el.first) != end(count) and (value - el.first != el.first or el.second > 1)) {
+            return true;
         }
         return false;
     }
@@ -51,7 +48,7 @@ class TwoSum1 {
 private:
     unordered_map<int, bool> num;
     unordered_map<int, bool> sumTable;
-    
+
 public:
     void add(int number) {
         if (num.empty()) {
@@ -71,26 +68,12 @@ public:
         }
         num[number] = true;
         return;
-	}
+    }
 
-	bool find(int value) {
-	    if (sumTable.find(value) == sumTable.end()) {
-	        return false;
-	    }
-	    return true;
-	}
+    bool find(int value) {
+        if (sumTable.find(value) == sumTable.end()) {
+            return false;
+        }
+        return true;
+    }
 };
-
-int main() {
-	TwoSum t;
-	t.add(0);
-	t.add(0);
-	bool b = t.find(0);
-	if (b) {
-		cout << "true" << endl;
-	}
-	else {
-		cout << "false" << endl;
-	}
-	return 0;
-}
