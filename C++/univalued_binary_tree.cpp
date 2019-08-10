@@ -54,7 +54,6 @@ public:
         if (root -> right != nullptr and root -> val != root -> right -> val) {
             return false;
         }
-
         return isUnivalTree(root -> left) and isUnivalTree(root -> right);
     }
 };
