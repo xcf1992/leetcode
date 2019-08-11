@@ -1,3 +1,35 @@
+/*
+653. Two Sum IV - Input is a BST
+Given a Binary Search Tree and a target number,
+return true if there exist two elements in the BST such that their sum is equal to the given target.
+
+Example 1:
+
+Input:
+    5
+   / \
+  3   6
+ / \   \
+2   4   7
+
+Target = 9
+
+Output: True
+
+
+Example 2:
+
+Input:
+    5
+   / \
+  3   6
+ / \   \
+2   4   7
+
+Target = 28
+
+Output: False
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -12,20 +44,18 @@
 using namespace std;
 
 class Solution {
-    void getNums(TreeNode* root, vector<int>& nums) {
+    void toList(TreeNode* root, vector<int>& nums) {
         if (root == nullptr) {
             return;
         }
-
-        getNums(root -> left, nums);
+        toList(root -> left, nums);
         nums.push_back(root -> val);
-        getNums(root -> right, nums);
-        return;
+        toList(root -> right, nums);
     }
 public:
     bool findTarget(TreeNode* root, int k) {
         vector<int> nums;
-        getNums(root, nums);
+        toList(root, nums);
 
         int left = 0;
         int right = nums.size() - 1;
@@ -33,7 +63,8 @@ public:
             if (nums[left] + nums[right] == k) {
                 return true;
             }
-            else if (nums[left] + nums[right] < k) {
+
+            if (nums[left] + nums[right] < k) {
                 left += 1;
             }
             else {

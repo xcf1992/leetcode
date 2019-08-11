@@ -9,11 +9,10 @@
 
  Return true if and only if the nodes corresponding to the values x and y are cousins.
 
-
-
  Example 1:
-
-
+                1
+        2               3
+    4
  Input: root = [1,2,3,4], x = 4, y = 3
  Output: false
  Example 2:
@@ -65,14 +64,10 @@ private:
         }
 
         if (root -> left != nullptr and root -> right != nullptr) {
-            if (root -> left -> val == x and root -> right -> val == y) {
-                cousin = false;
-            }
-            if (root -> left -> val == y and root -> right -> val == x) {
+            if ((root -> left -> val == x and root -> right -> val == y) or (root -> left -> val == y and root -> right -> val == x)) {
                 cousin = false;
             }
         }
-
         isCousin(root -> left, depth + 1, x, y, dx, dy, cousin);
         isCousin(root -> right, depth + 1, x, y, dx, dy, cousin);
     }
@@ -82,9 +77,6 @@ public:
         int dy = 0;
         bool cousin = true;
         isCousin(root, 0, x, y, dx, dy, cousin);
-        if (!cousin) {
-            return false;
-        }
-        return dx == dy;
+        return cousin and dx == dy;
     }
 };
