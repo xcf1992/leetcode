@@ -5,8 +5,6 @@ For strings S and T, we say "T divides S" if and only if S = T + ... + T  (T con
 
 Return the largest string X such that X divides str1 and X divides str2.
 
- 
-
 Example 1:
 
 Input: str1 = "ABCABC", str2 = "ABC"
@@ -19,7 +17,7 @@ Example 3:
 
 Input: str1 = "LEET", str2 = "CODE"
 Output: ""
- 
+
 
 Note:
 
@@ -39,14 +37,46 @@ str1[i] and str2[i] are English uppercase letters.
 #include <stdio.h>
 using namespace std;
 
+/*
+Try to explain it here:
+Assume 2 strings are divided by T
+Then:
+str1 = nT
+str2 = mT
+
+n > m:
+tempStr = str1-str2 = (n-m)T = kT
+str2 - tempStr = (m-k)T = aT
+....
+
+At the end, there will be xT with one string, and empty with another string.
+*/
 class Solution {
+public:
+    string gcdOfStrings(string str1, string str2) {
+        if (str1.size() < str2.size()) {
+            swap(str1, str2);
+        }
+
+        if (str2.empty()) {
+            return str1;
+        }
+
+        if (str1.substr(0, str2.size()) != str2) {
+            return "";
+        }
+        return gcdOfStrings(str1.substr(str2.size()), str2);
+    }
+};
+
+class Solution1 { // 5%
 private:
     bool divisable(string str1, string str2) {
         int n1 = str1.size();
         int n2 = str2.size();
         if (n1 % n2 != 0) {
             return false;
-        } 
+        }
 
         for (int i = 0; i < n1; i += n2) {
             string temp = str1.substr(i, n2);

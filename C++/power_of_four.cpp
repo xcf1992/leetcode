@@ -31,7 +31,7 @@ public:
             return false;
         }
 
-        if ((num & (num - 1)) != 0) {
+        if ((num & (num - 1)) != 0) { // it is power of 2
             return false;
         }
 
