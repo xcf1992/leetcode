@@ -1,6 +1,7 @@
 /*
 1099. Two Sum Less Than K
-Given an array A of integers and integer K, return the maximum S such that there exists i < j with A[i] + A[j] = S and S < K.
+Given an array A of integers and integer K,
+return the maximum S such that there exists i < j with A[i] + A[j] = S and S < K.
 If no i, j exist satisfying this equation, return -1.
 
 Example 1:
@@ -41,11 +42,11 @@ using namespace std;
 class Solution {
 public:
     int twoSumLessThanK(vector<int>& A, int K) {
-        int result = -1;
         sort(A.begin(), A.end());
 
         int i = 0;
         int j = A.size() - 1;
+        int result = -1;
         while (i < j) {
             if (A[i] + A[j] < K) {
                 result = max(result, A[i] + A[j]);
