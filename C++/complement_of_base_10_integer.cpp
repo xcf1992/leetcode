@@ -32,7 +32,6 @@
 
  0 <= N < 10^9
  */
-
 #include <iostream>
 #include <string>
 #include <vector>

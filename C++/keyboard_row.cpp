@@ -1,3 +1,20 @@
+/*
+500. Keyboard Row
+Given a List of words,
+return the words that can be typed using letters of alphabet on only one row's of American keyboard like the image below.
+
+
+Example:
+
+Input: ["Hello", "Alaska", "Dad", "Peace"]
+Output: ["Alaska", "Dad"]
+
+
+Note:
+
+You may use one character in the keyboard more than once.
+You may assume the input string will only contain letters of alphabet.
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -10,10 +27,9 @@
 #include <stdio.h>
 using namespace std;
 
-
 class Solution {
 private:
-    unordered_map<char, int> letters {
+    unordered_map<char, int> letters = {
         { 'q', 1 }, { 'w', 1 }, { 'e', 1 }, { 'r', 1 }, { 't', 1 }, { 'y', 1 }, { 'u', 1 }, { 'i', 1 }, { 'o', 1 }, { 'p', 1 },
         { 'a', 2 }, { 's', 2 }, { 'd', 2 }, { 'f', 2 }, { 'g', 2 }, { 'h', 2 }, { 'j', 2 }, { 'k', 2 }, { 'l', 2 },
         { 'z', 3 }, { 'x', 3 }, { 'c', 3 }, { 'v', 3 }, { 'b', 3 }, { 'n', 3 }, { 'm', 3 },
@@ -24,31 +40,19 @@ private:
 
     bool validate(string word) {
         int row = letters[word[0]];
-
         for (int i = 1; i < word.size(); i++) {
             if (letters[word[i]] != row) {
                 return false;
             }
         }
-
         return true;
     }
-
 public:
     vector<string> findWords(vector<string>& words) {
         vector<string> result;
-
-        for (int i = 0; i < words.size(); i++) {
-            if (validate(words[i])) {
-                result.push_back(words[i]);
-            }
+        for (int i = 0; i < words.size(); i++) if (validate(words[i])) {
+            result.push_back(words[i]);
         }
-
         return result;
     }
 };
-
-int main() {
-    Solution s;
-    return 0;
-}

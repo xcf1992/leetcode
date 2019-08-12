@@ -3,13 +3,15 @@
 
  Three stones are on a number line at positions a, b, and c.
 
- Each turn, let's say the stones are currently at positions x, y, z with x < y < z.  You pick up the stone at either position x or position z, and move that stone to an integer position k, with x < k < z and k != y.
+ Each turn, let's say the stones are currently at positions x, y, z with x < y < z.
+ You pick up the stone at either position x or position z,
+ and move that stone to an integer position k, with x < k < z and k != y.
 
  The game ends when you cannot make any more moves, ie. the stones are in consecutive positions.
 
- When the game ends, what is the minimum and maximum number of moves that you could have made?  Return the answer as an length 2 array: answer = [minimum_moves, maximum_moves]
-
-
+ When the game ends,
+ what is the minimum and maximum number of moves that you could have made?
+ Return the answer as an length 2 array: answer = [minimum_moves, maximum_moves]
 
  Example 1:
 
@@ -47,10 +49,8 @@ using namespace std;
 class Solution {
 public:
     vector<int> numMovesStones(int a, int b, int c) {
-        vector<int> stones = {a, b, c};
+        vector<int> stones({a, b, c});
         sort(stones.begin(), stones.end());
-
-        vector<int> result = {0, 0};
         if (stones[1] - stones[0] == 1) {
             return {min(1, stones[2] - stones[1] - 1), stones[2] - stones[1] - 1};
         }

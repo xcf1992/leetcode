@@ -38,13 +38,14 @@ public:
                 if (firstWin.find(s) == firstWin.end()) {
                     firstWin[s] = canWin(s);
                 }
-                
+
                 if (!firstWin[s]) {
                     return true;
                 }
                 s[i] = s[i - 1] = '+';
             }
         }
+        firstWin[s] = false;
         return false;
     }
 };

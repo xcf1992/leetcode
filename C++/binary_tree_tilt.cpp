@@ -1,20 +1,11 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <unordered_map>
-#include <unordered_set>
-#include <algorithm>
-#include <cmath>
-#include <queue>
-#include <stack>
-#include <stdio.h>
-#include "extra_data_types.hpp"
-using namespace std;
-
 /*
+563. Binary Tree Tilt
 Given a binary tree, return the tilt of the whole tree.
 
-The tilt of a tree node is defined as the absolute difference between the sum of all left subtree node values and the sum of all right subtree node values. Null node has tilt 0.
+The tilt of a tree node is defined as
+the absolute difference between the sum of all left subtree node values
+and the sum of all right subtree node values.
+Null node has tilt 0.
 
 The tilt of the whole tree is defined as the sum of all nodes' tilt.
 
@@ -34,33 +25,39 @@ Note:
 The sum of node values in any subtree won't exceed the range of 32-bit integer.
 All the tilt values won't exceed the range of 32-bit integer.
  */
+#include <iostream>
+#include <string>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+#include <algorithm>
+#include <cmath>
+#include <queue>
+#include <stack>
+#include <stdio.h>
+#include "extra_data_types.hpp"
+using namespace std;
+
 class Solution {
 private:
-    int calculate(TreeNode* root, int& tilt) {
+    int calculate(TreeNode* root, int& result) {
         if (root == nullptr) {
             return 0;
         }
 
         int sum = root -> val;
-        int left = calculate(root -> left, tilt);
-        int right = calculate(root -> right, tilt);
-        tilt += abs(left - right);
-        return sum + left + right;
+        int lSum = calculate(root -> left, result);
+        int rSum = calculate(root -> right, result);
+        result += abs(lSum - rSum);
+        return sum + lSum + rSum;
     }
 public:
     int findTilt(TreeNode* root) {
         if (root == nullptr) {
             return 0;
         }
-        int tilt = 0;
-        int left = calculate(root -> left, tilt);
-        int right = calculate(root -> right, tilt);
-
-        return tilt + abs(left - right);
+        int result = 0;
+        calculate(root, result);
+        return result;
     }
 };
-
-int main() {
-    Solution s;
-    return 0;
-}

@@ -1,10 +1,18 @@
 /*
- We are to write the letters of a given string S, from left to right into lines. Each line has maximum width 100 units, and if writing a letter would cause the width of the line to exceed 100 units, it is written on the next line. We are given an array widths, an array where widths[0] is the width of 'a', widths[1] is the width of 'b', ..., and widths[25] is the width of 'z'.
- 
- Now answer two questions: how many lines have at least one character from S, and what is the width used by the last such line? Return your answer as an integer list of length 2.
- 
- 
- 
+ 806. Number of Lines To Write String
+ We are to write the letters of a given string S,
+ from left to right into lines.
+ Each line has maximum width 100 units,
+  and if writing a letter would cause the width of the line to exceed 100 units,
+  it is written on the next line. We are given an array widths,
+  an array where widths[0] is the width of 'a',
+  widths[1] is the width of 'b', ..., and widths[25] is the width of 'z'.
+
+ Now answer two questions:
+ how many lines have at least one character from S,
+ and what is the width used by the last such line?
+ Return your answer as an integer list of length 2.
+
  Example :
  Input:
  widths = [10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10]
@@ -24,16 +32,15 @@
  For the last 'a', it is written on the second line because
  there is only 2 units left in the first line.
  So the answer is 2 lines, plus 4 units in the second line.
- 
- 
+
+
  Note:
- 
+
  The length of S will be in the range [1, 1000].
  S will only contain lowercase letters.
  widths is an array of length 26.
  widths[i] will be in the range of [2, 10].
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -50,22 +57,21 @@ using namespace std;
 class Solution {
 public:
     vector<int> numberOfLines(vector<int>& widths, string S) {
-        vector<int> result(2, 0);
         if (S.empty()) {
-            return result;
+            return {0, 0};
         }
+
         int line = 0;
+        int width = 0;
         for (char c : S) {
-            if (line + widths[c - 'a'] <= 100) {
-                line += widths[c - 'a'];
+            if (width + widths[c - 'a'] <= 100) {
+                width += widths[c - 'a'];
             }
             else {
-                line = widths[c - 'a'];
-                result[0] += 1;
+                width = widths[c - 'a'];
+                line += 1;
             }
         }
-        result[0] += 1;
-        result[1] = line;
-        return result;
+        return {line + 1, width};
     }
 };
