@@ -1,3 +1,21 @@
+/*
+347. Top K Frequent Elements
+Given a non-empty array of integers, return the k most frequent elements.
+
+Example 1:
+
+Input: nums = [1,1,1,2,2,3], k = 2
+Output: [1,2]
+Example 2:
+
+Input: nums = [1], k = 1
+Output: [1]
+Note:
+
+You may assume k is always valid, 1 ≤ k ≤ number of unique elements.
+Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
+
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -10,15 +28,13 @@
 #include <stdio.h>
 using namespace std;
 
+struct myCmp {
+    bool operator()(pair<int, int>& myPair1, pair<int, int>& myPair2) {
+        return myPair1.first < myPair2.first;
+    }
+};
 
 class Solution {
-private:
-    struct myCmp {
-        bool operator()(const pair<int, int> &myPair1, const pair<int, int> &myPair2) {
-            return myPair1.first < myPair2.first;
-        }
-        
-    };
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
         std::vector<int> result;
@@ -30,20 +46,14 @@ public:
 
         priority_queue<pair<int, int>, vector<pair<int, int> >, myCmp> pq;
         for (auto& it : frequency) {
-            pq.push(make_pair(it.second, it.first));
+            pq.push({it.second, it.first});
         }
 
-        while (!pq.empty() && result.size() < k) {
+        while (!pq.empty() and result.size() < k) {
             auto& p = pq.top();
             result.push_back(p.second);
             pq.pop();
         }
-        
         return result;
     }
 };
-
-int main() {
-    Solution s;
-    return 0;
-}
