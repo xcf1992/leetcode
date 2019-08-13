@@ -38,16 +38,42 @@ using namespace std;
 
 class Solution {
 public:
-    string convert(string s, int nRows) {
-        if (s.empty() || s.size() <= nRows || nRows == 1) {
+    string convert(string s, int numRows) {
+        if (s.empty() or s.size() <= numRows or numRows == 1) {
             return s;
         }
-        
+
+        vector<string> result(numRows, "");
+        int row = 0;
+        int direct = 1;
+        for (int i = 0; i < s.size(); ++i) {
+            result[row].push_back(s[i]);
+            if (row + direct >= numRows or row + direct < 0) {
+                direct = 0 - direct;
+            }
+            row += direct;
+        }
+
+        string line = "";
+        for (string re : result) {
+            line += re;
+        }
+        return line;
+    }
+};
+
+class Solution1 {
+public:
+    string convert(string s, int nRows) {
+        if (s.empty() or s.size() <= nRows or nRows == 1) {
+            return s;
+        }
+
         string result = "";
         for (int i = 0; i != nRows; i++) {
             int gap1 = 2 * nRows - 2 - 2 * i;
             int gap2 = 2 * i;
-            
+
             int j = i;
             result.push_back(s[i]);
             while (j < s.size()) {
@@ -57,7 +83,7 @@ public:
                         result.push_back(s[j]);
                     }
                 }
-                
+
                 if (gap2 != 0) {
                     j += gap2;
                     if (j < s.size()) {
@@ -65,7 +91,7 @@ public:
                     }
                 }
             }
-        }    
+        }
         return result;
     }
 };
