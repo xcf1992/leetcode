@@ -82,7 +82,7 @@ public:
         }
 
         if (memo.find(key) != memo.end()) {
-            CacheNode *cur = memo[key];
+            CacheNode* cur = memo[key];
             cur -> val = value;
             get(key);
             return;
@@ -90,7 +90,7 @@ public:
 
         CacheNode* newNode = new CacheNode(key, value);
         size += 1;
-        newNode -> next = head->next;
+        newNode -> next = head -> next;
         head -> next -> pre = newNode;
         newNode -> pre = head;
         head -> next = newNode;

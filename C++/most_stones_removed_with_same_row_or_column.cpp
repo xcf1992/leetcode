@@ -1,6 +1,7 @@
 /*
  947. Most Stones Removed with Same Row or Column
- On a 2D plane, we place stones at some integer coordinate points.  Each coordinate point may have at most one stone.
+ On a 2D plane, we place stones at some integer coordinate points.
+ Each coordinate point may have at most one stone.
 
  Now, a move consists of removing a stone that shares a column or row with another stone on the grid.
 

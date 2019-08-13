@@ -30,7 +30,6 @@
 #include <map>
 #include <numeric>
 using namespace std;
-
 /*
  Let there be a subarray (i, j) whose sum is divisible by k
  sum(i, j) = sum(0, j) - sum(0, i-1)

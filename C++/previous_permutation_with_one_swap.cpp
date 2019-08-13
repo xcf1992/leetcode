@@ -5,7 +5,7 @@
  return the lexicographically largest permutation that is smaller than A,
  that can be made with one swap (A swap exchanges the positions of two numbers A[i] and A[j]).
  If it cannot be done, then return the same array.
- 
+
  Example 1:
 
  Input: [3,2,1]

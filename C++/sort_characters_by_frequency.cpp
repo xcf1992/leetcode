@@ -63,10 +63,8 @@ public:
         }
 
         string result = "";
-        for (int i = n; i > 0; --i) {
-            if (!bucket[i].empty()) {
-                result += bucket[i];
-            }
+        for (int i = n; i > 0; --i) if (!bucket[i].empty()) {
+            result += bucket[i];
         }
         return result;
     }

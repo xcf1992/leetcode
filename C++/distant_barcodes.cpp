@@ -39,7 +39,8 @@ using namespace std;
 /*
 faster solution
 Intuition
-In the worst case, we can have (N + 1) / 2 occurrences of the same barcode. This barcode needs to be placed in [0, 2, 4 ...] positions to avoid the repetition.
+In the worst case, we can have (N + 1) / 2 occurrences of the same barcode.
+This barcode needs to be placed in [0, 2, 4 ...] positions to avoid the repetition.
 
 Solution
 Count occurrences of each barcode using a hash map
