@@ -34,26 +34,26 @@ class Solution {
 public:
     vector<int> partitionLabels(string S) {
         vector<int> result;
-        int sum = 0;
-        vector<int> labels(26, -1);
+        int start = 0; // the start position of current partition
+        vector<int> index(26, -1);
         for (int i = 0; i < S.size(); i++) {
             char c = S[i];
-            if (labels[c - 'a'] == -1) {
-                labels[c - 'a'] = i;
+            if (index[c - 'a'] == -1) {
+                index[c - 'a'] = i;
                 result.push_back(1);
-                sum += 1;
+                start += 1;
             }
             else {
-                int pos = labels[c - 'a'];
+                int pos = index[c - 'a'];
                 int cur = i;
                 while (cur > pos) {
                     cur -= result.back();
-                    sum -= result.back();
+                    start -= result.back();
                     result.pop_back();
                 }
-                result.push_back(i - sum + 1);
-                sum += result.back();
-                labels[c - 'a'] = i;
+                result.push_back(i - start + 1);
+                start += result.back();
+                index[c - 'a'] = i;
             }
         }
         return result;
