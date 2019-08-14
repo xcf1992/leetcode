@@ -37,7 +37,6 @@ You must return the copy of the given node as a reference to the cloned graph.
 #include <numeric>
 using namespace std;
 
-
 // Definition for a Node.
 class Node {
 public:
