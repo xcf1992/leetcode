@@ -31,7 +31,24 @@ Output:
 #include <stdio.h>
 using namespace std;
 
-class Solution {
+class Solution { // bit manipulation
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        int n = nums.size();
+        int count = 1 << n;
+        vector<vector<int>> result(count);
+        for (int i = 0; i < count; i++) {
+            for (int j = 0; j < n; j++) {
+                if ((i >> j) & 1) {
+                    result[i].push_back(nums[j]);
+                }
+            }
+        }
+        return result;
+    }
+};
+
+class Solution1 { //5.58%
 private:
     void construct(vector<int> &S, int index, vector<vector<int>>& result, vector<int> current) {
         if (index == S.size()) {
