@@ -21,33 +21,25 @@ using namespace std;
 
 class Solution {
 private:
-    ListNode *mergeList(ListNode *cp1, ListNode *cp2) {
+    ListNode* mergeList(ListNode *cp1, ListNode *cp2) {
         ListNode *dummy = new ListNode(-1);
         ListNode *cur = dummy;
 
-        while (cp1 != nullptr && cp2 != nullptr) {
-            if (cp1->val > cp2->val) {
-                cur->next = cp2;
-                cp2 = cp2->next;
+        while (cp1 != nullptr or cp2 != nullptr) {
+            if (cp1 == nullptr or (cp2 != nullptr and cp1 -> val > cp2 -> val)) {
+                cur -> next = cp2;
+                cp2 = cp2 -> next;
             }
             else {
                 cur->next = cp1;
                 cp1 = cp1->next;
             }
-            cur = cur->next;
+            cur = cur -> next;
         }
-
-        if (cp1 != nullptr) {
-            cur->next = cp1;
-        }
-        else {
-            cur->next = cp2;
-        }
-
-        return dummy->next;
+        return dummy -> next;
     }
 public:
-    ListNode *sortList(ListNode *head) {
+    ListNode* sortList(ListNode *head) {
         if (head == nullptr || head -> next == nullptr) {
             return head;
         }

@@ -1,4 +1,5 @@
 /*
+ 889. Construct Binary Tree from Preorder and Postorder Traversal
  Return any binary tree that matches the given preorder and postorder traversals.
 
  Values in the traversals pre and post are distinct positive integers.
@@ -17,7 +18,6 @@
  pre[] and post[] are both permutations of 1, 2, ..., pre.length.
  It is guaranteed an answer exists. If there exists multiple answers, you can return any of them.
  */
-
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -44,18 +44,8 @@ using namespace std;
  Find the index of pre[a+1] in post, then we know the left subtree should be constructed from pre[a+1, a+idx-c+1] and post[c, idx].
  */
 class Solution {
-public:
+private:
     unordered_map<int, int> m; // value->index
-    TreeNode* constructFromPrePost(vector<int>& pre, vector<int>& post) {
-        if (pre.empty()) {
-            return nullptr;
-        }
-        int len = post.size();
-        for (int i = 0; i < len; i++) {
-            m[post[i]] = i;
-        }
-        return construct(pre, post, 0, len - 1, 0, len - 1);
-    }
 
     TreeNode* construct(vector<int>& pre, vector<int>& post, int preS, int preE, int postS, int postE) {
         TreeNode* root = new TreeNode(pre[preS]);
@@ -74,5 +64,16 @@ public:
 
         root -> right = construct(pre, post, preS + len + 1, preE, idx + 1, postE - 1);
         return root;
+    }
+public:
+    TreeNode* constructFromPrePost(vector<int>& pre, vector<int>& post) {
+        if (pre.empty()) {
+            return nullptr;
+        }
+        int len = post.size();
+        for (int i = 0; i < len; i++) {
+            m[post[i]] = i;
+        }
+        return construct(pre, post, 0, len - 1, 0, len - 1);
     }
 };

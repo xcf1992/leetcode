@@ -1,4 +1,6 @@
 /*
+ 314. Binary Tree Vertical Order Traversal
+
  Given a binary tree, return the vertical order traversal of its nodes' values. (ie, from top to bottom, column by column).
 
  If two nodes are in the same row and column, the order should be from left to right.
@@ -56,7 +58,6 @@
  [7]
  ]
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -67,7 +68,7 @@
 #include <queue>
 #include <stack>
 #include <stdio.h>
-#include <set>
+#include <map>
 #include "extra_data_types.hpp"
 using namespace std;
 
@@ -77,6 +78,7 @@ public:
         if (root == nullptr) {
             return {};
         }
+        
         map<int, vector<int>> nodePos;
         queue<pair<int, TreeNode*>> bfs;
         bfs.push({0, root});
