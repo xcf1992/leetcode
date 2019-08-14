@@ -1,4 +1,4 @@
-/
+/*
 364. Nested List Weight Sum II
 Given a nested list of integers,
 return the sum of all integers in the list weighted by their depth.
@@ -19,7 +19,7 @@ Example 2:
 Input: [1,[4,[6]]]
 Output: 17
 Explanation: One 1 at depth 3, one 4 at depth 2, and one 6 at depth 1; 13 + 42 + 61 = 17.
-/
+*/
 #include <iostream>
 #include <string>
 #include <vector>
