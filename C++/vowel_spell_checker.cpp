@@ -66,7 +66,7 @@ private:
 
     string devowel(string word) {
         for (char& c : word) {
-            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+            if (c == 'a' or c == 'e' or c == 'i' or c == 'o' or c == 'u') {
                 c = '_';
             }
         }

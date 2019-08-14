@@ -27,7 +27,7 @@ using namespace std;
 
 class Solution {
 public:
-    ListNode *reverseBetween(ListNode *head, int m, int n) {
+    ListNode* reverseBetween(ListNode *head, int m, int n) {
         if (head == nullptr or head -> next == nullptr or n == m) {
             return head;
         }

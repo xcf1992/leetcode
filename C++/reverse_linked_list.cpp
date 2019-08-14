@@ -45,7 +45,7 @@ public:
     }
 };
 
-class Solution { // recursive
+class Solution1 { // recursive
 public:
     ListNode* reverseList(ListNode* head) {
         if (head == nullptr or head -> next == nullptr) {
