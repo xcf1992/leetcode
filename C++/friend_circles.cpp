@@ -81,18 +81,14 @@ public:
         vector<int> count(n, 1);
 
         for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < n; ++j) {
-                if (M[i][j]) {
-                    unin(i, j, friends, count);
-                }
+            for (int j = 0; j < n; ++j) if (M[i][j]) {
+                unin(i, j, friends, count);
             }
         }
 
         int result = 0;
-        for (int i = 0; i < n; ++i) {
-            if (friends[i] == i) {
-                result += 1;
-            }
+        for (int i = 0; i < n; ++i) if (friends[i] == i) {
+            result += 1;
         }
         return result;
     }

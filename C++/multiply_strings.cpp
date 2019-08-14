@@ -1,3 +1,24 @@
+/*
+43. Multiply Strings
+Given two non-negative integers num1 and num2 represented as strings,
+return the product of num1 and num2, also represented as a string.
+
+Example 1:
+
+Input: num1 = "2", num2 = "3"
+Output: "6"
+Example 2:
+
+Input: num1 = "123", num2 = "456"
+Output: "56088"
+Note:
+
+The length of both num1 and num2 is < 110.
+Both num1 and num2 contain only digits 0-9.
+Both num1 and num2 do not contain any leading zero, except the number 0 itself.
+You must not use any built-in BigInteger library or convert the inputs to integer directly.
+
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -11,11 +32,11 @@ private:
         if (num1.size() < num2.size()) {
             swap(num1, num2);
         }
-        
+
         int add = 0;
         int n1 = num1.size() - 1;
         int n2 = num2.size() - 1;
-        while (n1 >= 0 || n2 >= 0) {
+        while (n1 >= 0 or n2 >= 0) {
             int sum = 0;
             sum += add;
             if (n1 >= 0) {
@@ -33,18 +54,13 @@ private:
     }
 public:
     string multiply(string num1, string num2) {
-        if (num1.empty() || num2.empty()) {
+        if (num1.empty() or num2.empty() or num1 == "0" or num2 == "0") {
             return "0";
         }
-        
-        if (num1 == "0" || num2 == "0") {
-            return "0";
-        }
-        
         if (num1.size() < num2.size()) {
             swap(num1, num2);
         }
-        
+
         vector<string> products;
         string tail = "";
         for (int pos = num2.size() - 1; pos >= 0; pos--) {
@@ -52,7 +68,7 @@ public:
                 tail.push_back('0');
                 continue;
             }
-            
+
             string product = "";
             int add = 0;
             int d2 = num2[pos] - '0';
@@ -70,7 +86,7 @@ public:
             products.push_back(product);
             tail.push_back('0');
         }
-        
+
         string addSum = products[0];
         for (int i = 1; i < products.size(); i++) {
             addSum = addString(addSum, products[i]);
