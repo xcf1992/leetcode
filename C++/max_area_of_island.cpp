@@ -1,3 +1,31 @@
+/*
+695. Max Area of Island
+Given a non-empty 2D array grid of 0's and 1's,
+an island is a group of 1's (representing land) connected 4-directionally (horizontal or vertical.)
+You may assume all four edges of the grid are surrounded by water.
+
+Find the maximum area of an island in the given 2D array.
+(If there is no island, the maximum area is 0.)
+
+Example 1:
+
+[[0,0,1,0,0,0,0,1,0,0,0,0,0],
+ [0,0,0,0,0,0,0,1,1,1,0,0,0],
+ [0,1,1,0,1,0,0,0,0,0,0,0,0],
+ [0,1,0,0,1,1,0,0,1,0,1,0,0],
+ [0,1,0,0,1,1,0,0,1,1,1,0,0],
+ [0,0,0,0,0,0,0,0,0,0,1,0,0],
+ [0,0,0,0,0,0,0,1,1,1,0,0,0],
+ [0,0,0,0,0,0,0,1,1,0,0,0,0]]
+Given the above grid, return 6. Note the answer is not 11, because the island must be connected 4-directionally.
+Example 2:
+
+[[0,0,0,0,0,0,0,0]]
+Given the above grid, return 0.
+Note: The length of each dimension in the given grid does not exceed 50.
+
+
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -12,32 +40,32 @@ using namespace std;
 
 class Solution {
 private:
-    void check(int x, int y, int& temp, int& result, vector<vector<int>>& grid, vector<vector<bool>>& visit) {
-        int m = grid.size();
-        int n = grid[0].size();
-        if (x >= 0 && x < m && y >= 0 && y < n && !visit[x][y] && grid[x][y] == 1) {
-            visit[x][y] = true;
-            temp += 1;
+    int m = 0;
+    int n = 0;
+    vector<int> diff = {0, 1, 0, -1, 0};
 
-            check(x, y + 1, temp, result, grid, visit);
-            check(x, y - 1, temp, result, grid, visit);
-            check(x + 1, y, temp, result, grid, visit);
-            check(x - 1, y, temp, result, grid, visit);
+    void check(int r, int c, int& area, vector<vector<int>>& grid) {
+        if (r < 0 or r >= m or c < 0 or c >= n or grid[r][c] != 1) {
+            return;
         }
-        result = max(result, temp);
+
+        area += 1;
+        grid[r][c] = -1;
+        for (int i = 1; i < diff.size(); ++i) {
+            check(r + diff[i], c + diff[i - 1], area, grid);
+        }
     }
 public:
     int maxAreaOfIsland(vector<vector<int>>& grid) {
+        m = grid.size();
+        n = grid[0].size();
+
         int result = 0;
-        int m = grid.size();
-        int n = grid[0].size();
-        vector<vector<bool>> visit(m, vector<bool>(n, false));
         for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (!visit[i][j] && grid[i][j] == 1) {
-                    int temp = 0;
-                    check(i, j, temp, result, grid, visit);
-                }
+            for (int j = 0; j < n; j++) if (grid[i][j] == 1) {
+                int area = 0;
+                check(i, j, area, grid);
+                result = max(area, result);
             }
         }
         return result;

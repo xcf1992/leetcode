@@ -8,7 +8,6 @@
  Input: "25525511135"
  Output: ["255.255.11.135", "255.255.111.35"]
  */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -24,19 +23,9 @@
 using namespace std;
 
 class Solution {
-public:
-    vector<string> restoreIpAddresses(string s) {
-        if (s.empty() || s.size() > 3 * 4 || s.size() < 4) {
-            return {};
-        }
-
-        vector<string> result;
-        dfs(s, result, 0, 0, "");
-        return result;
-    }
-
+private:
     void dfs(string s, vector<string> &result, int start, int step, string ip) {
-        if (s.size() < start || step > 4) {
+        if (s.size() < start or step > 4) {
             return;
         }
 
@@ -54,6 +43,15 @@ public:
                 dfs(s, result, start + len, step + 1, ip + "." + tip);
             }
         }
-        return;
+    }
+public:
+    vector<string> restoreIpAddresses(string s) {
+        if (s.empty() or s.size() > 3 * 4 or s.size() < 4) {
+            return {};
+        }
+
+        vector<string> result;
+        dfs(s, result, 0, 0, "");
+        return result;
     }
 };
