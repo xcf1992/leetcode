@@ -27,9 +27,6 @@ Input: head = [1], pos = -1
 Output: no cycle
 Explanation: There is no cycle in the linked list.
 
-
-
-
 Follow-up:
 Can you solve it without using extra space?
  */

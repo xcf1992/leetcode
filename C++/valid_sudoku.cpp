@@ -91,9 +91,8 @@ private:
     }
 
     bool checkColumns(vector<vector<char>>& board) {
-        vector<char> values;
         for (int j = 0; j < n; ++j) {
-            values.clear();
+            vector<char> values;
             for (int i = 0; i < n; ++i) {
                 values.push_back(board[i][j]);
             }
@@ -105,10 +104,9 @@ private:
     }
 
     bool checkSubboxes(vector<vector<char>>& board) {
-        vector<char> values;
         for (int i = 0; i < n; i += 3) {
             for (int j = 0; j < n; j += 3) {
-                values.clear();
+                vector<char> values;
                 for (int row = 0; row < 3; ++row) {
                     for (int col = 0; col < 3; ++col) {
                         values.push_back(board[i + row][j + col]);

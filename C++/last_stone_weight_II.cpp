@@ -112,16 +112,35 @@ class Solution {
 public:
     int lastStoneWeightII(vector<int>& stones) {
         int sum = accumulate(stones.begin(), stones.end(), 0);
-        vector<bool> dp(sum + 1, false);
+        vector<int> dp(sum + 1, false);
         dp[0] = true;
 
         int cur = 0;
         for (int stone : stones) {
             cur += stone;
             for (int i = cur; i >= stone; --i) {
-                if (dp[i - stone]) {
-                    dp[i] = true;
-                }
+                dp[i] |= dp[i - stone];
+            }
+        }
+
+        for (int i = sum / 2; i > 0; --i) {
+            if (dp[i]) {
+                return sum - i - i;
+            }
+        }
+        return 0;
+    }
+};
+
+class Solution1 {
+public:
+    int lastStoneWeightII(vector<int>& stones) {
+        int sum = accumulate(stones.begin(), stones.end(), 0);
+        vector<int> dp(sum / 2 + 1, false);
+        dp[0] = true;
+        for (int stone : stones) {
+            for (int i = sum / 2; i >= stone; --i) {
+                dp[i] |= dp[i - stone];
             }
         }
 
@@ -139,7 +158,7 @@ public:
  2. Use dynamic programming: for every possible sum with N stones, those sums +x or -x is possible with N+1 stones, where x is the value of the newest stone. (This overcounts sums that are all positive or all negative, but those don't matter.)
  https://leetcode.com/problems/last-stone-weight-ii/discuss/295401/C%2B%2B-DP-inspired-by-the-hints-double-100-with-explanation
  */
-class Solution {
+class Solution2 {
 public:
     int lastStoneWeightII(vector<int>& stones) {
         unordered_set<int> stoneLeft;

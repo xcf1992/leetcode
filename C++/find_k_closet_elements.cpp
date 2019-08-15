@@ -32,24 +32,65 @@ Please reload the code definition to get the latest changes.
 #include <map>
 using namespace std;
 
+/*
+Intuition
+The array is sorted.
+If we want find the one number closest to x,
+we don't have to check one by one.
+it's straightforward to use binary research.
+
+Now we want the k closest,
+the logic should be similar.
+
+
+Explanation:
+Assume we are taking A[i] ~ A[i + k -1].
+We can binary research i
+We compare the distance between x - A[mid] and A[mid - k] - x
+
+If x - A[mid] > A[mid + k] - x,
+it means A[mid + 1] ~ A[mid + k] is better than A[mid] ~ A[mid + k - 1],
+and we have mid smaller than the right i.
+So assign left = mid + 1.
+
+Note that, you shouldn't compare the absolute value abs(x - A[mid]) and abs(A[mid + k] - x).
+It's wrong though it get accepetd.
+It fails at the case A = [1,1,2,2,2,2,2,3,3], x=3, k=2
+
+
+Time Complexity:
+O(log(N - K)) to binary research and find reseult
+O(K) to create the returned list.
+*/
 class Solution {
+public:
+    vector<int> findClosestElements(vector<int>& A, int k, int x) {
+        int left = 0, right = A.size() - k;
+        while (left < right) {
+            int mid = (left + right) / 2;
+            if (x - A[mid] > A[mid + k] - x)
+                left = mid + 1;
+            else
+                right = mid;
+        }
+        return vector<int>(A.begin() + left, A.begin() + left + k);
+    }
+};
+
+class Solution1 {
 public:
     vector<int> findClosestElements(vector<int>& arr, int k, int x) {
         int left = 0;
         int right = arr.size() - 1;
         while (left < right) {
             int mid = left + (right - left) / 2;
-            if (arr[mid] == x) {
-                left = mid;
-                break;
-            }
-            else if (arr[mid] > x) {
-                right = mid;
-            }
-            else {
+            if (arr[mid] < x) {
                 left = mid + 1;
             }
-        } // left will point first number in arr >= x
+            else {
+                right = mid;
+            }
+        } // left will point first number in arr >= x, could be replaced by left = lower_bound(arr.begin(), arr.end(), x) - arr.begin();
 
         int start = left - 1;
         int end = left;

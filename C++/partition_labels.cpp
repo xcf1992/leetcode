@@ -34,25 +34,21 @@ class Solution {
 public:
     vector<int> partitionLabels(string S) {
         vector<int> result;
-        int start = 0; // the start position of current partition
         vector<int> index(26, -1);
         for (int i = 0; i < S.size(); i++) {
             char c = S[i];
             if (index[c - 'a'] == -1) {
                 index[c - 'a'] = i;
                 result.push_back(1);
-                start += 1;
             }
             else {
                 int pos = index[c - 'a'];
-                int cur = i;
-                while (cur > pos) {
-                    cur -= result.back();
+                int start = i;
+                while (start > pos) {
                     start -= result.back();
                     result.pop_back();
                 }
                 result.push_back(i - start + 1);
-                start += result.back();
                 index[c - 'a'] = i;
             }
         }
