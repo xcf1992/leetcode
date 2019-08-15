@@ -1,3 +1,34 @@
+/*
+230. Kth Smallest Element in a BST
+Given a binary search tree, write a function kthSmallest to find the kth smallest element in it.
+
+Note:
+You may assume k is always valid, 1 ≤ k ≤ BST's total elements.
+
+Example 1:
+
+Input: root = [3,1,4,null,2], k = 1
+   3
+  / \
+ 1   4
+  \
+   2
+Output: 1
+Example 2:
+
+Input: root = [5,3,6,2,4,null,null,1], k = 3
+       5
+      / \
+     3   6
+    / \
+   2   4
+  /
+ 1
+Output: 3
+Follow up:
+What if the BST is modified (insert/delete operations) often and you need to find the kth smallest frequently?
+How would you optimize the kthSmallest routine?
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -13,32 +44,28 @@ using namespace std;
 
 class Solution {
 private:
-    int find(TreeNode* root, int& k) {
-        int result;
-        if (root -> left) {
-            result = find(root -> left, k);
+    void find(TreeNode* root, int& k, int& result) {
+        if (root == nullptr) {
+            return;
         }
+
+        find(root -> left, k, result);
         if (k == 0) {
-            return result;
+            return;
         }
 
         k -= 1;
         if (k == 0) {
-            return root -> val;
+            result = root -> val;
+            return;
         }
 
-        if (root -> right) {
-            return find(root -> right, k);
-        }
-        return -1;
+        find(root -> right, k, result);
     }
 public:
     int kthSmallest(TreeNode* root, int k) {
-        return find(root, k);
+        int result = -1;
+        find(root, k, result);
+        return result;
     }
 };
-
-int main() {
-    Solution s;
-    return 0;
-}

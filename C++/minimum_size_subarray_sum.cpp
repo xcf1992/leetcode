@@ -30,6 +30,31 @@ class Solution {
 public:
     int minSubArrayLen(int s, vector<int>& nums) {
         int n = nums.size();
+        vector<int> preSum(n + 1, 0);
+        for (int i = 0; i < n; i++) {
+            preSum[i + 1] = preSum[i] + nums[i];
+        }
+
+        int result = n + 1;
+        for (int i = 0; i <= n; ++i) {
+            int target = preSum[i] + s;
+            auto it = lower_bound(preSum.begin(), preSum.end(), target);
+            if (it != preSum.end()) {
+                int index = it - preSum.begin();
+                result = min(result, index - i);
+            }
+            else {
+                break;
+            }
+        }
+        return result == n + 1 ? 0 : result;
+    }
+};
+
+class Solution1 {
+public:
+    int minSubArrayLen(int s, vector<int>& nums) {
+        int n = nums.size();
         int result = n + 1;
         int left = 0;
         int sum = 0;
@@ -45,7 +70,7 @@ public:
     }
 };
 
-class Solution1 {
+class Solution2 {
 public:
     int minSubArrayLen(int s, vector<int>& nums) {
         int n = nums.size();
@@ -71,30 +96,5 @@ public:
             que.push(i);
         }
         return result;
-    }
-};
-
-class Solution2 {
-public:
-    int minSubArrayLen(int s, vector<int>& nums) {
-        int n = nums.size();
-        vector<int> preSum(n + 1, 0);
-        for (int i = 0; i < n; i++) {
-            preSum[i + 1] = preSum[i] + nums[i];
-        }
-
-        int result = n + 1;
-        for (int i = 0; i <= n; ++i) {
-            int target = preSum[i] + s;
-            auto it = lower_bound(preSum.begin(), preSum.end(), target);
-            if (it != preSum.end()) {
-                int index = it - preSum.begin();
-                result = min(result, index - i);
-            }
-            else {
-                break;
-            }
-        }
-        return result == n + 1 ? 0 : result;
     }
 };

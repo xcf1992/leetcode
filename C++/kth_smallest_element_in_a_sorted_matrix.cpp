@@ -1,6 +1,7 @@
 /*
 378. Kth Smallest Element in a Sorted Matrix
-Given a n x n matrix where each of the rows and columns are sorted in ascending order, find the kth smallest element in the matrix.
+Given a n x n matrix where each of the rows and columns are sorted in ascending order,
+find the kth smallest element in the matrix.
 
 Note that it is the kth smallest element in the sorted order, not the kth distinct element.
 
@@ -53,7 +54,9 @@ Multiple Kth smallest element in matrix.
 k = 9
 Result = 7
 
-Count won't be equal to k, but "hi" is still guaranteed to stop at right spot. In the above example, the count is 11 when "mid" is 7. After "hi" shrinks to mid, it will not move until "lo" comes to him.
+Count won't be equal to k, but "hi" is still guaranteed to stop at right spot.
+In the above example, the count is 11 when "mid" is 7.
+After "hi" shrinks to mid, it will not move until "lo" comes to him.
 
 To sum up, "lo" is ensured to reach an authentic element in the matrix, because "hi" will approach and sit at the right spot anyway.
 */

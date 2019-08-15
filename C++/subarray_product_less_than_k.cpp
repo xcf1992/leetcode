@@ -56,7 +56,7 @@ public:
     }
 };
 
-class Solution {
+class Solution1 {
 public:
     int numSubarrayProductLessThanK(vector<int>& nums, int k) {
         if (nums.empty()) {
