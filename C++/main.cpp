@@ -14,35 +14,38 @@
 #include "extra_data_types.hpp"
 using namespace std;
 
-class Solution {
+class MajorityChecker {
 private:
-    unordered_map<string, int> memo;
+    unordered_map<int, vector<int>> index;
+    vector<int> nums;
 public:
-    int longestDecomposition(string text) {
-        int n = text.size();
-        if (n <= 1) {
-            return n;
+    MajorityChecker(vector<int>& arr) {
+        for (int i = 0; i < arr.size(); ++i) {
+            index[arr[i]].push_back(i);
         }
-
-        if (memo.find(text) != memo.end()) {
-            return memo[text];
-        }
-
-        memo[text] = 1;
-        for (int len = 1; len <= n / 2; ++len) {
-            string left = text.substr(len);
-            string right = text.substr(n - len, len);
-            if (left == right) {
-                memo[text] = max(memo[text], 2 + longestDecomposition(text.substr(len, n - len * 2)));
+        nums = arr;
+        srand(time(NULL));
+    }
+    
+    int query(int left, int right, int threshold) {
+        int len = right - left + 1;
+        for (int i = 0; i < 10; ++i) {
+            int pick = nums[left + rand() % len];
+            auto start = lower_bound(index[pick].begin(), index[pick].end(), left);
+            if (start == index[pick].end()) {
+                continue;
+            }
+            auto end = upper_bound(index[pick].begin(), index[pick].end(), left);
+            if (end - start >= threshold) {
+                return pick;
             }
         }
-        return memo[text];
+        return -1;
     }
 };
 
 int main() {
-    Solution s;
-    vector<int> temp({1,17,8});
+    vector<int> temp({1,1,2,2,1,1});
     vector<int> temp1({1,3,3,3,2});
     vector<vector<int>> matrix({
         {0,1},
@@ -65,5 +68,7 @@ int main() {
     TreeNode* r2 = new TreeNode(1);
     TreeNode* r3 = new TreeNode(3);
     r1 -> left = r2;
-    s.longestDecomposition("ghiabcdefhelloadamhelloabcdefghi");
+    
+    MajorityChecker checker(temp);
+    checker.query(0, 5, 4);
 }
