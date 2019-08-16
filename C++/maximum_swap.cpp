@@ -1,11 +1,20 @@
-//
-//  maximum_swap.cpp
-//  C++
-//
-//  Created by Chenfu Xie on 1/21/18.
-//  Copyright © 2018 Chenfu Xie. All rights reserved.
-//
+/*
+670. Maximum Swap
+Given a non-negative integer,
+you could swap two digits at most once to get the maximum valued number.
+Return the maximum valued number you could get.
 
+Example 1:
+Input: 2736
+Output: 7236
+Explanation: Swap the number 2 and the number 7.
+Example 2:
+Input: 9973
+Output: 9973
+Explanation: No swap.
+Note:
+The given number is in the range [0, 108]
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -25,10 +34,10 @@ public:
         string number = to_string(num);
         int n = number.size();
         vector<pair<char, int>> bigger(n, {'0', -1});
-        
+
         char curMax = number.back();
         int pos = n - 1;
-        for (int i = number.size() - 2; i>= 0; --i) {
+        for (int i = number.size() - 2; i >= 0; --i) {
             if (number[i] > curMax) {
                 curMax = number[i];
                 pos = i;
@@ -37,7 +46,7 @@ public:
                 bigger[i] = {curMax, pos};
             }
         }
-        
+
         for (int i = 0; i < n - 1; ++i) {
             if (bigger[i].first != '0') {
                 swap(number[i], number[bigger[i].second]);
@@ -54,13 +63,13 @@ public:
         if (num < 10) {
             return num;
         }
-        
+
         vector<int> digits;
         while (num > 0) {
             digits.push_back(num % 10);
             num /= 10;
         }
-        
+
         int maxIndex = -1;
         int leftIndex = -1;
         int rightIndex = -1;
@@ -73,7 +82,7 @@ public:
                 rightIndex = i;
             }
         }
-        
+
         swap(digits[leftIndex], digits[rightIndex]);
         int result = 0;
         for (int i = digits.size() - 1; i >= 0; i--) {

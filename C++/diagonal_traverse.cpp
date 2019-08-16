@@ -1,9 +1,8 @@
 /*
 498. Diagonal Traverse
 
-Given a matrix of M x N elements (M rows, N columns), return all elements of the matrix in diagonal order as shown in the below image.
-
- 
+Given a matrix of M x N elements (M rows, N columns),
+return all elements of the matrix in diagonal order as shown in the below image.
 
 Example:
 
@@ -18,7 +17,7 @@ Output:  [1,2,4,7,5,3,6,8,9]
 
 Explanation:
 
- 
+
 
 Note:
 
@@ -44,6 +43,7 @@ public:
             return {};
         }
         int n = matrix[0].size();
+
         vector<pair<int, int>> stk;
         stk.push_back({0, 0});
         vector<int> result;
@@ -51,12 +51,11 @@ public:
         while (!stk.empty()) {
             vector<pair<int, int>> next;
             vector<int> cur;
-            
             for (int k = 0; k < stk.size(); ++k) {
                 int i = stk[k].first;
                 int j = stk[k].second;
                 cur.push_back(matrix[i][j]);
-                
+
                 if (j == 0 and i + 1 < m) {
                     next.push_back({i + 1, j});
                 }
@@ -65,7 +64,7 @@ public:
                 }
             }
             stk = next;
-            
+
             int start = step == 1 ? 0 : cur.size() - 1;
             int end = step == 1 ? cur.size() - 1 : 0;
             for (int i = start; (step == 1 and i <= end) or (step == 0 and i >= end); i += step == 1 ? 1 : -1) {
@@ -77,7 +76,7 @@ public:
     }
 };
 
-class Solution {
+class Solution1 {
 public:
     vector<int> findDiagonalOrder(vector<vector<int>>& matrix) {
         vector<int> result;

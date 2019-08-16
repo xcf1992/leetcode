@@ -1,11 +1,21 @@
-//
-//  count_univalue_tree.cpp
-//  C++
-//
-//  Created by Chenfu Xie on 2/28/18.
-//  Copyright © 2018 Chenfu Xie. All rights reserved.
-//
+/*
+ 250. Count Univalue Subtrees
+Given a binary tree, count the number of uni-value subtrees.
 
+A Uni-value subtree means all nodes of the subtree have the same value.
+
+Example :
+
+Input:  root = [5,1,5,5,5,null,5]
+
+              5
+             / \
+            1   5
+           / \   \
+          5   5   5
+
+Output: 4
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -20,26 +30,11 @@
 #include "extra_data_types.hpp"
 using namespace std;
 
-/*
- Given a binary tree, count the number of uni-value subtrees.
-
- A Uni-value subtree means all nodes of the subtree have the same value.
-
- For example:
- Given binary tree,
- 5
- / \
- 1   5
- / \   \
- 5   5   5
- return 4.
-
-*/
 class Solution {
 private:
     int count(TreeNode* root, int& result) {
         int left = root -> val;
-        int right = root -> val;
+        int right = root -> val; // we have to do this in case one of the child is null while another is not
         if (root -> left != nullptr) {
             left = count(root -> left, result);
         }
