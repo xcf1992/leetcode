@@ -85,8 +85,3 @@ public:
         return head;
     }
 };
-
-int main() {
-    Solution s;
-    return 0;
-}

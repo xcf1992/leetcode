@@ -62,19 +62,19 @@ private:
             for (int j = 0; j < m; ++j) {
                 if (board[i][j]) {
                     int i0 = i, i1 = i, j0 = j, j1 = j;
-                    while (i1 < n && i1 < i + 3 && board[i1][j] == board[i][j]) {
+                    while (i1 < n and i1 < i + 3 and board[i1][j] == board[i][j]) {
                         i1++;
                     }
-                    while (i0 >= 0 && i0 > i - 3 && board[i0][j] == board[i][j]) {
+                    while (i0 >= 0 and i0 > i - 3 and board[i0][j] == board[i][j]) {
                         i0--;
                     }
-                    while (j1 < m && j1 < j + 3 && board[i][j1] == board[i][j]) {
+                    while (j1 < m and j1 < j + 3 and board[i][j1] == board[i][j]) {
                         j1++;
                     }
-                    while (j0 >= 0 && j0 > j - 3 && board[i][j0] == board[i][j]){
+                    while (j0 >= 0 and j0 > j - 3 and board[i][j0] == board[i][j]){
                         j0--;
                     }
-                    if (i1 - i0 > 3 || j1 - j0 > 3) {
+                    if (i1 - i0 > 3 or j1 - j0 > 3) {
                         candy.push_back({i,j});
                     }
                 }
@@ -107,7 +107,7 @@ public:
     vector<vector<int>> candyCrush(vector<vector<int>>& board) {
         int n = board.size();
         int m = board[0].size();
-        while(crush(board, n, m)) {
+        while (crush(board, n, m)) {
             drop(board, n, m);
         }
         return board;

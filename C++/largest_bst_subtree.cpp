@@ -46,7 +46,7 @@ private:
         if (root == nullptr) {
             // cause when we do compare, we use current node value to compare with left Max, and right min
             // so we need to assign max to be INT_MIN and min to INT_MAX to make a leaf node always a BST
-            return {INT_MAX, INT_MIN, 0};
+            return {INT_MAX, INT_MIN, 0}; // min, max, count
         }
 
         vector<int> leftSub = count(root -> left);

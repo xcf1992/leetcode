@@ -39,7 +39,6 @@ public:
                 result[bigger.top()] = num;
                 bigger.pop();
             }
-
             if (i < n) {
                 bigger.push(i);
             }

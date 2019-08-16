@@ -21,7 +21,8 @@ Example 2:
 Input: [5,2,1,3,6]
 Output: true
 Follow up:
-Could you do it using only constant space complexity?*/
+Could you do it using only constant space complexity?
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -57,7 +58,7 @@ public:
                     return false;
                 }
             }
-            else{
+            else {
                 while (!stk.empty() && stk.top() < preorder[i]) {
                     lower_bound = stk.top();
                     stk.pop();
