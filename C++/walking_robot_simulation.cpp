@@ -35,7 +35,6 @@
  -30000 <= obstacle[i][1] <= 30000
  The answer is guaranteed to be less than 2 ^ 31.
  */
-
 #include <iostream>
 #include <sstream>
 #include <string>

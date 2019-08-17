@@ -81,7 +81,6 @@ private:
         }
         path -= 1;
         visited[row][col] = false;
-        return;
     }
 public:
     int uniquePathsIII(vector<vector<int>>& grid) {
