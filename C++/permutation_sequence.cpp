@@ -42,10 +42,10 @@ public:
             digit.push_back(i);
             count *= i;
         }
-        
+
         string result = "";
-        for (int i = 0; i != n; i++) {
-            count = count / (n - i);
+        for (int i = 0; i < n; i++) {
+            count /= (n - i);
             int index = ((k - 1) / count) + 1;
 
             int available = 0;

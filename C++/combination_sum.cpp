@@ -36,7 +36,7 @@ using namespace std;
 
 class Solution {
 private:
-    void check(vector<int>& candidates, int target, int start, vector<int> combination, vector<vector<int>>& result) {
+    void dfs(vector<int>& candidates, int target, int start, vector<int> combination, vector<vector<int>>& result) {
         if (target == 0) {
             result.push_back(combination);
             return;
@@ -47,7 +47,7 @@ private:
                 return;
             }
             combination.push_back(candidates[i]);
-            check(candidates, target - candidates[i], i, combination, result);
+            dfs(candidates, target - candidates[i], i, combination, result);
             combination.pop_back();
         }
     }
@@ -55,7 +55,7 @@ public:
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         sort(candidates.begin(), candidates.end());
         vector<vector<int>> result;
-        check(candidates, target, 0, {}, result);
+        dfs(candidates, target, 0, {}, result);
         return result;
     }
 };

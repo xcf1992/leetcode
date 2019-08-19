@@ -30,18 +30,18 @@ using namespace std;
 
 class Solution {
 private:
-    void getCombinations(vector<vector<int>>& result, vector<int> combination, int k, int target, int start) {
+    void dfs(vector<vector<int>>& result, vector<int> combination, int k, int target, int start) {
         if (k == 0 and target == 0) {
             result.push_back(combination);
             return;
         }
-        if (start > target or k < 0) {
+        if (start > target or k <= 0) {
             return;
         }
 
         for (int i = start; i <= 9; i++) {
             combination.push_back(i);
-            getCombinations(result, combination, k - 1, target - i, i + 1);
+            dfs(result, combination, k - 1, target - i, i + 1);
             combination.pop_back();
         }
     }
@@ -49,7 +49,7 @@ public:
     vector<vector<int>> combinationSum3(int k, int n) {
         vector<vector<int>> result;
         vector<int> combination;
-        getCombinations(result, combination, k, n, 1);
+        dfs(result, combination, k, n, 1);
         return result;
     }
 };

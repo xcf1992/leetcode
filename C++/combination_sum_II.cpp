@@ -38,7 +38,7 @@ using namespace std;
 
 class Solution {
 private:
-    void generate(vector<int>& num, int target, int level, vector<int>& combination, vector<vector<int>>& result) {
+    void dfs(vector<int>& num, int target, int level, vector<int>& combination, vector<vector<int>>& result) {
         if (target == 0) {
             result.push_back(combination);
             return;
@@ -46,10 +46,10 @@ private:
 
         for (int i = level; i < num.size(); i++) {
             if (num[i] > target) {
-                break;
+                return;
             }
             combination.push_back(num[i]);
-            generate(num, target - num[i], i + 1, combination, result);
+            dfs(num, target - num[i], i + 1, combination, result);
             combination.pop_back();
             while (i + 1 < num.size() and num[i + 1] == num[i]) {
                 i++;
@@ -61,7 +61,7 @@ public:
         vector<vector<int>> result;
         vector<int> combination;
         sort(num.begin(), num.end());
-        generate(num, target, 0, combination, result);
+        dfs(num, target, 0, combination, result);
         return result;
     }
 };

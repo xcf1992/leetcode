@@ -29,8 +29,6 @@ What limitation we need to add to the question to allow negative numbers?
 
 Credits:
 Special thanks to @pbrother for adding this problem and creating all test cases.
-
-
 */
 #include <iostream>
 #include <string>
@@ -50,7 +48,12 @@ some interesting discussions around test case
 [3,33,333]
 10000
 
-Line 14: Char 27: runtime error: signed integer overflow: 1499877744055434594 + 8139286513820820350 cannot be represented in type 'long long int' (solution.cpp)
+The problem with negative numbers is that now the combinations could be potentially of infinite length.
+Think about nums = [-1, 1] and target = 1.
+We can have all sequences of arbitrary length that follow the patterns -1, 1, -1, 1, ..., -1, 1, 1
+and 1, -1, 1, -1, ..., 1, -1, 1 (there are also others, of course, just to give an example).
+So we should limit the length of the combination sequence,
+so as to give a bound to the problem.
 */
 class Solution { // bottom up
 public:
@@ -63,10 +66,8 @@ public:
         vector<unsigned int> dp(target + 1, 0);
         dp[0] = 1;
         for (int i = 1; i <= target; ++i) {
-            for (int num : nums) {
-                if (i >= num) {
-                    dp[i] += dp[i - num];
-                }
+            for (int num : nums) if (i >= num) {
+                dp[i] += dp[i - num];
             }
         }
         return dp[target];

@@ -17,7 +17,7 @@ Output:
   [1,2],
   []
 ]
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -30,9 +30,44 @@ Output:
 #include <map>
 using namespace std;
 
+class Solution {
+private:
+    void construct(map<int, int>& count, vector<vector<int>>& result, vector<int> sub, int level) {
+        if (level >= count.size()) {
+            result.push_back(sub);
+            return;
+        }
+
+        construct(count, result, sub, level + 1);
+        
+        auto it = count.begin();
+        for (int i = 0; i < level; ++i) {
+            it++;
+        }
+        int num = it -> first;
+        int cnt = it -> second;
+        for (int i = 0; i < cnt; ++i) {
+            sub.push_back(num);
+            construct(count, result, sub, level + 1);
+        }
+    }
+public:
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        map<int, int> count;
+        for (int num: nums) {
+            count[num] += 1;
+        }
+
+        vector<vector<int>> result;
+        vector<int> sub;
+        construct(count, result, sub, 0);
+        return result;
+    }
+};
+
 class Solution1 {
 public:
-    vector<vector<int> > subsetsWithDup(vector<int> &S) {
+    vector<vector<int> > subsetsWithDup(vector<int>& S) {
         vector<int> subset;
         vector<vector<int>> result;
         if (S.empty()) {
@@ -63,40 +98,6 @@ public:
             preLength = curLength;
         }
 
-        return result;
-    }
-};
-
-class Solution {
-private:
-    void construct(map<int, int>& count, vector<vector<int>>& result, vector<int> sub, int level) {
-        if (level >= count.size()) {
-            result.push_back(sub);
-            return;
-        }
-
-        auto it = count.begin();
-        for (int i = 0; i < level; ++i) {
-            it++;
-        }
-        int num = it -> first;
-        int cnt = it -> second;
-        construct(count, result, sub, level + 1);
-        for (int i = 0; i < cnt; ++i) {
-            sub.push_back(num);
-            construct(count, result, sub, level + 1);
-        }
-    }
-public:
-    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
-        map<int, int> count;
-        for (int num: nums) {
-            count[num] += 1;
-        }
-
-        vector<vector<int>> result;
-        vector<int> sub;
-        construct(count, result, sub, 0);
         return result;
     }
 };

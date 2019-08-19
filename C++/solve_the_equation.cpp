@@ -12,19 +12,22 @@ If there is exactly one solution for the equation, we ensure that the value of x
 Example 1:
 Input: "x+5-3+x=6+x-2"
 Output: "x=2"
+
 Example 2:
 Input: "x=x"
 Output: "Infinite solutions"
+
 Example 3:
 Input: "2x=x"
 Output: "x=0"
+
 Example 4:
 Input: "2x+3x-6x=x+2"
 Output: "x=-1"
+
 Example 5:
 Input: "x=x+2"
 Output: "No solution"
-
 */
 #include <iostream>
 #include <string>
@@ -44,37 +47,38 @@ public:
         int coefficient = 0;
         int num = 0;
         int i = 0;
-        int negative = 1;
+        int positive = 1;
         int move = 1;
         while (i < equation.size()) {
             if (equation[i] == 'x') {
-                coefficient += negative * move;
+                coefficient += positive * move;
                 i++;
             }
             else if (equation[i] == '-') {
-                negative = -1;
+                positive = -1;
                 i++;
             }
             else if (equation[i] == '+') {
-                negative = 1;
+                positive = 1;
                 i++;
             }
-            else if (equation[i] >= '0' && equation[i] <= '9') {
+            else if (isdigit(equation[i])) {
                 int start = i;
-                while (equation[i] >= '0' && equation[i] <= '9') {
+                while (isdigit(equation[i])) {
                     i++;
                 }
                 int value = stoi(equation.substr(start, i - start));
+
                 if (equation[i] == 'x') {
-                    coefficient += negative * value * move;
+                    coefficient += positive * value * move;
                     i++;
                 }
                 else {
-                    num -= negative * value * move;
+                    num -= positive * value * move;
                 }
             }
             else if (equation[i] == '=') {
-                negative = 1;
+                positive = 1;
                 move = -1;
                 i++;
             }
