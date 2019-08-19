@@ -1,33 +1,36 @@
 /*
- Alice plays the following game, loosely based on the card game "21".
- 
- Alice starts with 0 points, and draws numbers while she has less than K points.  During each draw, she gains an integer number of points randomly from the range [1, W], where W is an integer.  Each draw is independent and the outcomes have equal probabilities.
- 
- Alice stops drawing numbers when she gets K or more points.  What is the probability that she has N or less points?
- 
- Example 1:
- 
- Input: N = 10, K = 1, W = 10
- Output: 1.00000
- Explanation:  Alice gets a single card, then stops.
- Example 2:
- 
- Input: N = 6, K = 1, W = 10
- Output: 0.60000
- Explanation:  Alice gets a single card, then stops.
- In 6 out of W = 10 possibilities, she is at or below N = 6 points.
- Example 3:
- 
- Input: N = 21, K = 17, W = 10
- Output: 0.73278
- Note:
- 
- 0 <= K <= N <= 10000
- 1 <= W <= 10000
- Answers will be accepted as correct if they are within 10^-5 of the correct answer.
- The judging time limit has been reduced for this question.
- */
+837. New 21 Game
+Alice plays the following game, loosely based on the card game "21".
 
+Alice starts with 0 points, and draws numbers while she has less than K points.
+During each draw, she gains an integer number of points randomly from the range [1, W], where W is an integer.
+Each draw is independent and the outcomes have equal probabilities.
+
+Alice stops drawing numbers when she gets K or more points.
+What is the probability that she has N or less points?
+
+Example 1:
+
+Input: N = 10, K = 1, W = 10
+Output: 1.00000
+Explanation:  Alice gets a single card, then stops.
+Example 2:
+
+Input: N = 6, K = 1, W = 10
+Output: 0.60000
+Explanation:  Alice gets a single card, then stops.
+In 6 out of W = 10 possibilities, she is at or below N = 6 points.
+Example 3:
+
+Input: N = 21, K = 17, W = 10
+Output: 0.73278
+Note:
+
+0 <= K <= N <= 10000
+1 <= W <= 10000
+Answers will be accepted as correct if they are within 10^-5 of the correct answer.
+The judging time limit has been reduced for this question.
+*/
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -60,7 +63,7 @@ So we don't include dp[x] into the running_sum when x >= K.
 class Solution {
 public:
     double new21Game(int N, int K, int W) {
-        if (N >= K + W - 1 || K == 0) {
+        if (N >= K - 1 + W or K == 0) {
             return 1.0;
         }
 
@@ -78,9 +81,9 @@ public:
                 wSum += dp[i];
             }
         }
-        
+
         double result = 0.0;
-        for (int i = K; i < N + 1; i++) {
+        for (int i = K; i <= N; i++) {
             result += dp[i];
         }
         return result;
@@ -90,11 +93,11 @@ public:
 /*
  the transition equation dp[i] = (dp[i - W] + dp[i - W + 1] + ... + dp[i - 1]) / W
  could be simplified to dp[i] = (sum[i - 1] - sum[i - W - 1]) / W.
- 
+
  dp[i] = (sum[i - 1] - sum[i - W - 1]) / W
  sum[i] = sum[i - 1] + dp[i]
  => sum[i] = sum[i - 1] + (sum[i - 1] - sum[i - W - 1]) / W
- 
+
  Furthermore, if we use dp[i] to directly represent the sum[i],
  we can get dp[i] = dp[i - 1] + (dp[i - 1] - dp[i - W - 1]) / W.
  This equation takes us to the final O(K + W) solution. Just take care with the beginning and the end of the array.
@@ -110,19 +113,19 @@ public:
         dp[0] = 1.0;
         for (int i = 1; i < K + W; i++) {
             dp[i] = dp[i - 1];
-            
+
             if (i <= W) {
                 dp[i] += dp[i - 1] / W;
             }
             else {
                 dp[i] += (dp[i - 1] - dp[i - W - 1]) / W;
             }
-            
+
             if (i > K) {
                 dp[i] -= (dp[i - 1] - dp[K - 1]) / W;
             }
         }
-        
+
         return dp[N] - dp[K - 1];
     }
 };
@@ -151,7 +154,7 @@ public:
                 }
             }
         }
-        
+
         double result = 0.0;
         for (int i = K; i <= N; i++) {
             result += dp[i];
