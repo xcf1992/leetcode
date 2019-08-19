@@ -1,6 +1,7 @@
 /*
  907. Sum of Subarray Minimums
- Given an array of integers A, find the sum of min(B), where B ranges over every (contiguous) subarray of A.
+ Given an array of integers A, find the sum of min(B),
+ where B ranges over every (contiguous) subarray of A.
 
  Since the answer may be large, return the answer modulo 10^9 + 7.
 
@@ -30,7 +31,6 @@
 #include <map>
 #include <numeric>
 using namespace std;
-
 /*
  I guess this is a general intuition for most solution.
  res = sum(A[i] * f(i))
@@ -88,11 +88,12 @@ private:
 public:
     int sumSubarrayMins(vector<int>& A) {
         int n = A.size();
-        vector<int> left(n, 0), right(n, 0);
+        vector<int> left(n, 0);
+        vector<int> right(n, 0);
         stack<pair<int, int>> stk1, stk2;
         for (int i = 0; i < n; i++) {
             int count = 1;
-            while (!stk1.empty() and stk1.top().first > A[i]) {
+            while (!stk1.empty() and stk1.top().first > A[i]) { // the count of number A[j] which > A[i], where j <= i
                 count += stk1.top().second;
                 stk1.pop();
             }
@@ -101,7 +102,7 @@ public:
 
             int j = n - 1 - i;
             count = 1;
-            while (!stk2.empty() and stk2.top().first >= A[j]) {
+            while (!stk2.empty() and stk2.top().first >= A[j]) { // the count of number A[j] which >= A[i], where j >= i
                 count += stk2.top().second;
                 stk2.pop();
             }

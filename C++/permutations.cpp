@@ -25,12 +25,12 @@ using namespace std;
 
 class Solution {
 private:
-    void generate(vector<vector<int>> &result, vector<int> &num, int level) {
+    void generate(vector<vector<int>>& result, vector<int>& num, int level) {
         if (level == num.size()) {
             result.push_back(num);
             return;
         }
-        
+
         for (int i = level; i < num.size(); i++) {
             swap(num[i], num[level]);
             generate(result, num, level + 1);
@@ -38,7 +38,7 @@ private:
         }
     }
 public:
-    vector<vector<int> > permute(vector<int> &num) {
+    vector<vector<int> > permute(vector<int>& num) {
         vector<vector<int>> result;
         generate(result, num, 0);
         return result;

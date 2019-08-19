@@ -29,14 +29,12 @@ private:
             return;
         }
 
-        for (auto it = count.begin(); it != count.end(); it++) {
-            if (it -> second > 0) {
-                permutation.push_back(it -> first);
-                it -> second -= 1;
-                generate(result, permutation, count, length);
-                it -> second += 1;
-                permutation.pop_back();
-            }
+        for (auto it = count.begin(); it != count.end(); it++) if (it -> second > 0) {
+            permutation.push_back(it -> first);
+            it -> second -= 1;
+            generate(result, permutation, count, length);
+            it -> second += 1;
+            permutation.pop_back();
         }
     }
 public:
