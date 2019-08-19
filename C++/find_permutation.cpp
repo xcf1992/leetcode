@@ -7,6 +7,7 @@ By now, you are given a secret signature consisting of character 'D' and 'I'.
 And our secret signature was constructed by a special integer array,
 which contains uniquely all the different number from 1 to n
 (n is the length of the secret signature plus 1).
+
 For example, the secret signature "DI" can be constructed by array [2,1,3] or [3,1,2],
 but won't be constructed by array [3,2,4] or [2,1,3,4],
 which are both illegal constructing special string that can't represent the "DI" secret signature.
@@ -25,7 +26,7 @@ Input: "DI"
 Output: [2,1,3]
 Explanation: Both [2,1,3] and [3,1,2] can construct the secret signature "DI",
 but since we want to find the one with the smallest lexicographical permutation, you need to output [2,1,3]
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -43,7 +44,7 @@ using namespace std;
 /*
 Let's revisit the important points of the given problem statement.
 For a given n, we need to use all the integers in the range (1,n)
-to generate a lexicographically smallest permutation of these nn numbers which satsfies the pattern given in the string s.
+to generate a lexicographically smallest permutation of these n numbers which satsfies the pattern given in the string s.
 
 Firstly, we note that the lexicographically smallest permutation that can be generated(irrelevant of the given pattern s)
 using the n integers from (1,n) is [1, 2, 3,.., n](say min).
@@ -128,7 +129,7 @@ public:
                 while (right < n and s[right] == 'D') {
                     right += 1;
                 }
-                i = right - 1;
+                i = right - 1; // cause we will have i++ later
 
                 while (left < right) {
                     swap(result[left], result[right]);

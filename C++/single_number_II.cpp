@@ -46,9 +46,7 @@ public:
         int result = 0;
         for (int i = 0; i < 32; ++i) {
             int digit = bits[i] % 3;
-            if (digit) {
-                result |= (1 << i);
-            }
+            result |= (digit << i);
         }
         return result;
     }
