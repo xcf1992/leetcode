@@ -36,7 +36,6 @@ Your output answer is guaranteed to be fitted in a 32-bit integer.
 #include <map>
 #include <numeric>
 using namespace std;
-
 /*
 The original problem statement is equivalent to:
 Find a subset of nums that need to be positive, and the rest of them negative, such that the sum is equal to target
