@@ -1,22 +1,24 @@
 /*
- Design a data structure that supports the following two operations:
+211. Add and Search Word - Data structure design
+Design a data structure that supports the following two operations:
 
- void addWord(word)
- bool search(word)
- search(word) can search a literal word or a regular expression string containing only letters a-z or .. A . means it can represent any one letter.
+void addWord(word)
+bool search(word)
+search(word) can search a literal word or a regular expression string containing only letters a-z or .. A
+. means it can represent any one letter.
 
- Example:
+Example:
 
- addWord("bad")
- addWord("dad")
- addWord("mad")
- search("pad") -> false
- search("bad") -> true
- search(".ad") -> true
- search("b..") -> true
- Note:
- You may assume that all words are consist of lowercase letters a-z.
- */
+addWord("bad")
+addWord("dad")
+addWord("mad")
+search("pad") -> false
+search("bad") -> true
+search(".ad") -> true
+search("b..") -> true
+Note:
+You may assume that all words are consist of lowercase letters a-z.
+*/
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -35,7 +37,6 @@ using namespace std;
 struct TrieNode {
     vector<TrieNode*> children = vector<TrieNode*>(26, nullptr);
     bool isWord = false;
-
     TrieNode(bool word = false): isWord(word) {}
 };
 
@@ -90,9 +91,7 @@ private:
     Trie trie;
 public:
     /** Initialize your data structure here. */
-    WordDictionary() {
-
-    }
+    WordDictionary() {}
 
     /** Adds a word into the data structure. */
     void addWord(string word) {
@@ -104,7 +103,6 @@ public:
         return trie.search(word);
     }
 };
-
 /**
  * Your WordDictionary object will be instantiated and called as such:
  * WordDictionary obj = new WordDictionary();
