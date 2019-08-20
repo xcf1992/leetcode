@@ -28,12 +28,10 @@ private:
             return;
         }
 
-        for (int j = start; j < s.size(); j++) {
-            if (dp[start][j]) {
-                cur.push_back(s.substr(start, j - start + 1));
-                dfs(results, cur, s, j + 1, dp);;
-                cur.pop_back();
-            }
+        for (int j = start; j < s.size(); j++) if (dp[start][j]) {
+            cur.push_back(s.substr(start, j - start + 1));
+            dfs(results, cur, s, j + 1, dp);;
+            cur.pop_back();
         }
     }
 public:
