@@ -60,16 +60,15 @@ public:
         if (cache.find(n) != cache.end()) {
             return cache[n];
         }
-        
+
         if (n <= 3) {
             return n - 1;
         }
-        
+
         if (n % 2 == 0) {
             cache[n] = 1 + integerReplacement(n / 2);
             return cache[n];
         }
-        
         cache[n] = 1 + min(integerReplacement(n - 1), 1 + integerReplacement(((long)n + 1) / 2));
         return cache[n];
     }

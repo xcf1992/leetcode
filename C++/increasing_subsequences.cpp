@@ -26,7 +26,6 @@ and two equal integers should also be considered as a special case of increasing
 #include <stdio.h>
 #include <map>
 using namespace std;
-
 /*
 A short explanation to the hash table:
 this is to record used numbers so that if we ever encounters a duplicate later,

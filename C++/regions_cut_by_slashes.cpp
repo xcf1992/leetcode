@@ -1,75 +1,70 @@
 /*
 959. Regions Cut By Slashes
- In a N x N grid composed of 1 x 1 squares,
- each 1 x 1 square consists of a /, \, or blank space.
- These characters divide the square into contiguous regions.
+In a N x N grid composed of 1 x 1 squares,
+each 1 x 1 square consists of a /, \, or blank space.
+These characters divide the square into contiguous regions.
 
- (Note that backslash characters are escaped, so a \ is represented as "\\".)
+(Note that backslash characters are escaped, so a \ is represented as "\\".)
 
- Return the number of regions.
+Return the number of regions.
 
+Example 1:
 
+Input:
+[
+" /",
+"/ "
+]
+Output: 2
+Explanation: The 2x2 grid is as follows:
 
- Example 1:
+Example 2:
 
- Input:
- [
- " /",
- "/ "
- ]
- Output: 2
- Explanation: The 2x2 grid is as follows:
+Input:
+[
+" /",
+"  "
+]
+Output: 1
+Explanation: The 2x2 grid is as follows:
 
- Example 2:
+Example 3:
 
- Input:
- [
- " /",
- "  "
- ]
- Output: 1
- Explanation: The 2x2 grid is as follows:
+Input:
+[
+"\\/",
+"/\\"
+]
+Output: 4
+Explanation: (Recall that because \ characters are escaped, "\\/" refers to \/, and "/\\" refers to /\.)
+The 2x2 grid is as follows:
 
- Example 3:
+Example 4:
 
- Input:
- [
- "\\/",
- "/\\"
- ]
- Output: 4
- Explanation: (Recall that because \ characters are escaped, "\\/" refers to \/, and "/\\" refers to /\.)
- The 2x2 grid is as follows:
+Input:
+[
+"/\\",
+"\\/"
+]
+Output: 5
+Explanation: (Recall that because \ characters are escaped, "/\\" refers to /\, and "\\/" refers to \/.)
+The 2x2 grid is as follows:
 
- Example 4:
+Example 5:
 
- Input:
- [
- "/\\",
- "\\/"
- ]
- Output: 5
- Explanation: (Recall that because \ characters are escaped, "/\\" refers to /\, and "\\/" refers to \/.)
- The 2x2 grid is as follows:
+Input:
+[
+"//",
+"/ "
+]
+Output: 3
+Explanation: The 2x2 grid is as follows:
 
- Example 5:
+Note:
 
- Input:
- [
- "//",
- "/ "
- ]
- Output: 3
- Explanation: The 2x2 grid is as follows:
-
-
-
- Note:
-
- 1 <= grid.length == grid[0].length <= 30
- grid[i][j] is either '/', '\', or ' '.
- */
-
+1 <= grid.length == grid[0].length <= 30
+grid[i][j] is either '/', '\', or ' '.
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -83,28 +78,27 @@
 #include <map>
 #include <numeric>
 using namespace std;
-
 /*
- Split a cell in to 4 parts like this.
- We give it a number top is 1, right is 2, bottom is 3 left is 4.
+Split a cell in to 4 parts like this.
+We give it a number top is 1, right is 2, bottom is 3 left is 4.
 
- Two adjacent parts in different cells are contiguous regions.
- In case '/', top and left are contiguous, botton and right are contiguous.
- In case '\\', top and right are contiguous, bottom and left are contiguous.
- In case ' ', all 4 parts are contiguous.
+Two adjacent parts in different cells are contiguous regions.
+In case '/', top and left are contiguous, botton and right are contiguous.
+In case '\\', top and right are contiguous, bottom and left are contiguous.
+In case ' ', all 4 parts are contiguous.
 
- Congratulation.
- Now you have another problem of counting the number of islands.
+Congratulation.
+Now you have another problem of counting the number of islands.
 
- DFS will be good enough to solve it.
- As I did in 947.Most Stones Removed with Same Row or Column
- I solve it with union find.
+DFS will be good enough to solve it.
+As I did in 947.Most Stones Removed with Same Row or Column
+I solve it with union find.
 
- Good luck and have fun.
+Good luck and have fun.
 
- Time Complexity:
- O(N^2)
- */
+Time Complexity:
+O(N^2)
+*/
 class Solution {
 private:
     int count = 0;

@@ -1,23 +1,23 @@
 /*
 306. Additive Number
- Additive number is a string whose digits can form additive sequence.
+Additive number is a string whose digits can form additive sequence.
 
- A valid additive sequence should contain at least three numbers.
- Except for the first two numbers, each subsequent number in the sequence must be the sum of the preceding two.
+A valid additive sequence should contain at least three numbers.
+Except for the first two numbers, each subsequent number in the sequence must be the sum of the preceding two.
 
- For example:
- "112358" is an additive number because the digits can form an additive sequence: 1, 1, 2, 3, 5, 8.
+For example:
+"112358" is an additive number because the digits can form an additive sequence: 1, 1, 2, 3, 5, 8.
 
- 1 + 1 = 2, 1 + 2 = 3, 2 + 3 = 5, 3 + 5 = 8
- "199100199" is also an additive number, the additive sequence is: 1, 99, 100, 199.
- 1 + 99 = 100, 99 + 100 = 199
- Note: Numbers in the additive sequence cannot have leading zeros, so sequence 1, 2, 03 or 1, 02, 3 is invalid.
+1 + 1 = 2, 1 + 2 = 3, 2 + 3 = 5, 3 + 5 = 8
+"199100199" is also an additive number, the additive sequence is: 1, 99, 100, 199.
+1 + 99 = 100, 99 + 100 = 199
+Note: Numbers in the additive sequence cannot have leading zeros, so sequence 1, 2, 03 or 1, 02, 3 is invalid.
 
- Given a string containing only digits '0'-'9', write a function to determine if it's an additive number.
+Given a string containing only digits '0'-'9', write a function to determine if it's an additive number.
 
- Follow up:
- How would you handle overflow for very large input integers?
- */
+Follow up:
+How would you handle overflow for very large input integers?
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -30,7 +30,6 @@
 #include <stdio.h>
 #include <map>
 using namespace std;
-
 /*
 use a helper function to add two strings.
 
@@ -100,10 +99,10 @@ public:
 class Solution {
 private:
     bool isValid(string num1, string num2, string num3) {
-        if (num1.size() > 1 && num1[0] == '0') {
+        if (num1.size() > 1 and num1[0] == '0') {
             return false;
         }
-        if (num2.size() > 1 && num2[0] == '0') {
+        if (num2.size() > 1 and num2[0] == '0') {
             return false;
         }
 
@@ -112,7 +111,7 @@ private:
             return true;
         }
 
-        if (num3.size() <= sum.size() || sum != num3.substr(0, sum.size())) {
+        if (num3.size() <= sum.size() or sum != num3.substr(0, sum.size())) {
             return false;
         }
         return isValid(num2, sum, num3.substr(sum.size()));

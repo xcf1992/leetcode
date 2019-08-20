@@ -37,7 +37,6 @@ The length of the input is in range of [1, 10000]
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 Call a chain a sequence of 3 or more consecutive numbers.
 

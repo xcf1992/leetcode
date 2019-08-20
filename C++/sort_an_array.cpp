@@ -2,8 +2,6 @@
 912. Sort an Array
 Given an array of integers nums, sort the array in ascending order.
 
-
-
 Example 1:
 
 Input: [5,2,3,1]

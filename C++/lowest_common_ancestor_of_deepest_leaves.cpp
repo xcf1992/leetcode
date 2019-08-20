@@ -45,11 +45,11 @@ Each node of the tree will have a distinct value between 1 and 1000.
 #include "extra_data_types.hpp"
 using namespace std;
 
-class Solution { //99.25%
+class Solution {
 private:
     pair<TreeNode*, int> traverse(TreeNode* root) {
-        if (!root) {
-            return {nullptr, 0};
+        if (root == nullptr) {
+            return {nullptr, 0}; // return the lca node and its height
         }
 
         pair<TreeNode*, int> left = traverse(root->left);
@@ -89,7 +89,6 @@ private:
         if (root -> right != nullptr) {
             parent[root -> right -> val] = root;
         }
-
         traverse(root -> left, parent, leaves, cur + 1, height);
         traverse(root -> right, parent, leaves, cur + 1, height);
     }

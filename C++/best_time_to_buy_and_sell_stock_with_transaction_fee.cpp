@@ -36,7 +36,6 @@ Note:
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 Definition:
 hold[i] - the maximum profit you can earn if you have to hold at day[i]
@@ -64,6 +63,20 @@ public:
             int temp = noStockProfit;
             noStockProfit = max(noStockProfit, haveStockProfit + price);
             haveStockProfit = max(haveStockProfit, temp - price - fee);
+        }
+        return noStockProfit;
+    }
+};
+
+class Solution1 {
+public:
+    int maxProfit(vector<int>& prices, int fee) {
+        int haveStockProfit = -prices[0] - fee;
+        int noStockProfit = 0;
+        for (int i = 1; i < prices.size(); ++i) {
+            int temp = noStockProfit;
+            noStockProfit = max(noStockProfit, haveStockProfit + prices[i]);
+            haveStockProfit = max(haveStockProfit, temp - prices[i] - fee);
         }
         return noStockProfit;
     }
