@@ -26,7 +26,6 @@ n does not exceed 1690.
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 We have an array k of first n ugly number. We only know, at the beginning, the first one, which is 1. Then
 

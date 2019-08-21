@@ -44,18 +44,18 @@ N is a positive integer and will not exceed 15.
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 The idea behind this approach is simple. We try to create all the permutations of numbers from 1 to N.
-We can fix one number at a particular position and check for the divisibility criteria of that number
-at the particular position. But, we need to keep a track of the numbers which have already been considered earlier
+We can fix one number at a particular position and check for the divisibility criteria of that number at the particular position.
+But, we need to keep a track of the numbers which have already been considered earlier
 so that they aren't reconsidered while generating the permutations.
 If the current number doesn't satisfy the divisibility criteria,
 we can leave all the permutations that can be generated with that number at the particular position.
 This helps to prune the search space of the permutations to a great extent.
 We do so by trying to place each of the numbers at each position.
 
-We make use of a visited array of size N. Here, visited[i] refers to the ith number being already placed/not
+We make use of a visited array of size N.
+Here, visited[i] refers to the ith number being already placed/not
 placed in the array being formed till now(True indicates that the number has already been placed).
 
 We make use of a calculate function, which puts all the numbers pending numbers from 1 to N

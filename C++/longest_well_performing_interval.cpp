@@ -32,7 +32,6 @@ Constraints:
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 The point is, seen stores the FIRST (very important) appearance of each score.
 If we think the initial score is 0,
@@ -43,6 +42,10 @@ This means if you want to arrive score - x,
 you must have already arrived score - 1 before,
 because we start from 0.
 Hope this can clarify some confusions.
+
+We want a positive score, so we want to know the first occurrence of score - 1.
+score - x also works, but it comes later than score - 1.
+So the maximum interval is i - seen[score - 1]
 */
 class Solution {
 public:

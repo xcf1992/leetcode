@@ -1,24 +1,24 @@
 /*
 930. Binary Subarrays With Sum
- In an array A of 0s and 1s, how many non-empty subarrays have sum S?
+In an array A of 0s and 1s, how many non-empty subarrays have sum S?
 
- Example 1:
+Example 1:
 
- Input: A = [1,0,1,0,1], S = 2
- Output: 4
- Explanation:
- The 4 subarrays are bolded below:
- [1,0,1,0,1]
- [1,0,1,0,1]
- [1,0,1,0,1]
- [1,0,1,0,1]
+Input: A = [1,0,1,0,1], S = 2
+Output: 4
+Explanation:
+The 4 subarrays are bolded below:
+[1,0,1,0,1]
+[1,0,1,0,1]
+[1,0,1,0,1]
+[1,0,1,0,1]
 
- Note:
+Note:
 
- A.length <= 30000
- 0 <= S <= A.length
- A[i] is either 0 or 1.
- */
+A.length <= 30000
+0 <= S <= A.length
+A[i] is either 0 or 1.
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -32,27 +32,26 @@
 #include <map>
 #include <numeric>
 using namespace std;
-
 /*
- another solution:
- Intuition
+another solution:
+Intuition
 
- Let P[i] = A[0] + A[1] + ... + A[i-1].
- Then P[j+1] - P[i] = A[i] + A[i+1] + ... + A[j],
- the sum of the subarray [i, j].
+Let P[i] = A[0] + A[1] + ... + A[i-1].
+Then P[j+1] - P[i] = A[i] + A[i+1] + ... + A[j],
+the sum of the subarray [i, j].
 
- Hence, we are looking for the number of i < j with P[j] - P[i] = S.
+Hence, we are looking for the number of i < j with P[j] - P[i] = S.
 
- Algorithm
+Algorithm
 
- For each j, let's count the number of i with P[j] = P[i] + S.
- This is analogous to counting the number of subarrays ending in j with sum S.
+For each j, let's count the number of i with P[j] = P[i] + S.
+This is analogous to counting the number of subarrays ending in j with sum S.
 
- It comes down to counting how many P[i] + S we've seen before.
- We can keep this count on the side to help us find the final answer.
+It comes down to counting how many P[i] + S we've seen before.
+We can keep this count on the side to help us find the final answer.
 
- the key point is to count the number of one between each 1
- */
+the key point is to count the number of one between each 1
+*/
 class Solution {
 public:
     int numSubarraysWithSum(vector<int>& A, int S) {

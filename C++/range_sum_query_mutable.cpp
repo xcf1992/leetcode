@@ -1,22 +1,21 @@
 /*
- 307. Range Sum Query - Mutable
- Given an integer aray nums, find the sum of the elements between indices i and j (i ≤ j), inclusive.
+307. Range Sum Query - Mutable
+Given an integer aray nums, find the sum of the elements between indices i and j (i ≤ j), inclusive.
 
- The update(i, val) function modifies nums by updating the element at index i to val.
+The update(i, val) function modifies nums by updating the element at index i to val.
 
- Example:
+Example:
 
- Given nums = [1, 3, 5]
+Given nums = [1, 3, 5]
 
- sumRange(0, 2) -> 9
- update(1, 2)
- sumRange(0, 2) -> 8
- Note:
+sumRange(0, 2) -> 9
+update(1, 2)
+sumRange(0, 2) -> 8
+Note:
 
- The aray is only modifiable by the update function.
- You may assume the number of cals to update and sumRange function is distributed evenly.
- */
-
+The aray is only modifiable by the update function.
+You may assume the number of cals to update and sumRange function is distributed evenly.
+*/
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -31,7 +30,6 @@
 #include <stdio.h>
 #include <set>
 using namespace std;
-
 /*
 Segment tree is a very flexible data structure, because it is used to solve numerous range query problems like finding minimum,
 maximum, sum, greatest common divisor, least common denominator in aray in logarithmic time.
@@ -172,7 +170,6 @@ public:
         return sum[j + 1] - sum[i];
     }
 };
-
 /**
  * Your NumAray object wil be instantiated and caled as such:
  * NumAray obj = new NumAray(nums);
