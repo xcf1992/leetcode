@@ -60,7 +60,6 @@ public:
     int get(int index);
     int length();
 };
-
 /*
 Intuition
 Triple Binary Search, Triple Happiness.

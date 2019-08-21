@@ -38,7 +38,7 @@ The tree that the list represents is:
       1
 
 The path sum is (3 + 1) = 4.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
