@@ -9,7 +9,7 @@ The largest rectangle is shown in the shaded area, which has area = 10 unit.
 Example:
 Input: [2,1,5,6,2,3]
 Output: 10
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -21,7 +21,6 @@ Output: 10
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 In this approach, we maintain a stack.
 Initially, we push a -1 onto the stack to mark the end.
@@ -35,6 +34,7 @@ Every time we pop,
 we find out the area of rectangle formed using the current element as the height of the rectangle
 and the difference between the the current element's index pointed to in the original array
 and the element stack[top−1]−1 as the width
+
 i.e. if we pop an element stack[top] and i is the current index to which we are pointing in the original array,
 the current area of the rectangle will be considered as:
 

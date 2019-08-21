@@ -39,7 +39,6 @@ Each answers[i] will be an integer in the range [0, 999].
 #include <stdio.h>
 #include <map>
 using namespace std;
-
 /*
 Each rabbit that says a different number must be a different color,
 and a rabbit only tells us information about rabbits of its color.

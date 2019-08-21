@@ -1,8 +1,8 @@
 /*
 583. Delete Operation for Two Strings
 
-Given two words word1 and word2, 
-find the minimum number of steps required to make word1 and word2 the same, 
+Given two words word1 and word2,
+find the minimum number of steps required to make word1 and word2 the same,
 where in each step you can delete one character in either string.
 
 Example 1:
@@ -46,7 +46,7 @@ public:
     }
 };
 
-class Solution {
+class Solution1 {
 public:
     int minDistance(string word1, string word2) {
         int m = word1.size();

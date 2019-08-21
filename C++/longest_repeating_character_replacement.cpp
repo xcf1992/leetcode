@@ -49,6 +49,13 @@ Additionally, it will expand if and only if enough repeating characters appear i
 So whenever it expands, it's a valid expansion.
 
 =====
+Example: For a window "xxxyz", end-start+1-maxCount would equal 2. (maxCount is 3 and there are 2 characters here, "y" and "z" that are not "x" in the window.)
+
+We are allowed to have at most k replacements in the window, so when end-start+1-maxCount > k, then there are more characters in the window than we can replace, and we need to shrink the window.
+
+If we have window with "xxxy" and k = 1, that's fine because end-start+1-maxCount = 1, which is not > k. maxLength gets updated to 4.
+
+But if we then find a "z" after, like "xxxyz", then we need to shrink the window because now end-start+1-maxCount = 2, and 2 > 1. The window becomes "xxyz".
 
 as we only care about the max count of a letter in a window,
 within k swap if we can find m occurance of letter x, then current longest result will be m + k

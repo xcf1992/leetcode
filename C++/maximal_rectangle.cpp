@@ -57,7 +57,7 @@ public:
                     * When we "expand" the rectangle to the left, we know it can't expand past that point,
                     * otherwise it'll run into the zero.
                     */
-                   left[j] = 0;
+                    left[j] = 0;
                     curLeft = j + 1;
                 }
             }

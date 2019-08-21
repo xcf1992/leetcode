@@ -4,8 +4,6 @@ Given a number N, return a string consisting of "0"s and "1"s that represents it
 
 The returned string must have no leading zeroes, unless the string is "0".
 
-
-
 Example 1:
 
 Input: 2
@@ -26,7 +24,7 @@ Explantion: (-2) ^ 2 = 4
 Note:
 
 0 <= N <= 10^9
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -73,9 +71,10 @@ public:
 
         string result = "";
         while (N != 0) {
-            result = to_string(N & 1) + result;
+            result.push_back((N & 1) + '0');
             N = 0 - (N >> 1);
         }
+        reverse(result.begin(), result.end());
         return result;
     }
 };

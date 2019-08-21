@@ -53,7 +53,6 @@ In this question, we represent the board using a 2D array.
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 Essentially, the second follow-up asks us to address the scalability aspect of the problem.
 What would happen if the board is infinitely large?

@@ -108,7 +108,6 @@ public:
     }
 };
 
-
 class Solution1 { // pure dfs
 private:
     void pickSpecial(vector<int>& price, vector<vector<int>>& special, int start, vector<int>& needs,
