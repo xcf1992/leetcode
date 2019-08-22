@@ -28,20 +28,14 @@ using namespace std;
 class Solution {
 public:
     vector<int> dailyTemperatures(vector<int>& temperatures) {
-        stack<pair<int, int>> tempDate;
+        stack<int> tempDate;
         vector<int> result(temperatures.size(), 0);
         for (int i = temperatures.size() - 1; i >= 0; i--) {
-            while (!tempDate.empty()) {
-                pair<int, int> warmer = tempDate.top();
-                if (temperatures[i] < warmer.first) {
-                    result[i] = warmer.second - i;
-                    break;
-                }
-                else {
-                    tempDate.pop();
-                }
+            while (!tempDate.empty() and temperatures[i] >= temperatures[tempDate.top()]) {
+                tempDate.pop();
             }
-            tempDate.push({temperatures[i], i});
+            result[i] = tempDate.empty() ? 0 : tempDate.top() - i;
+            tempDate.push(i);
         }
         return result;
     }

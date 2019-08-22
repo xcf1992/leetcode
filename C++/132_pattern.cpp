@@ -1,30 +1,30 @@
 /*
- 456. 132 Pattern
- Given a sequence of n integers a1, a2, ..., an,
- a 132 pattern is a subsequence ai, aj, ak such that i < j < k and ai < ak < aj.
- Design an algorithm that takes a list of n numbers as input and checks whether there is a 132 pattern in the list.
+456. 132 Pattern
+Given a sequence of n integers a1, a2, ..., an,
+a 132 pattern is a subsequence ai, aj, ak such that i < j < k and ai < ak < aj.
+Design an algorithm that takes a list of n numbers as input and checks whether there is a 132 pattern in the list.
 
- Note: n will be less than 15,000.
+Note: n will be less than 15,000.
 
- Example 1:
- Input: [1, 2, 3, 4]
+Example 1:
+Input: [1, 2, 3, 4]
 
- Output: False
+Output: False
 
- Explanation: There is no 132 pattern in the sequence.
- Example 2:
- Input: [3, 1, 4, 2]
+Explanation: There is no 132 pattern in the sequence.
+Example 2:
+Input: [3, 1, 4, 2]
 
- Output: True
+Output: True
 
- Explanation: There is a 132 pattern in the sequence: [1, 4, 2].
- Example 3:
- Input: [-1, 3, 2, 0]
+Explanation: There is a 132 pattern in the sequence: [1, 4, 2].
+Example 3:
+Input: [-1, 3, 2, 0]
 
- Output: True
+Output: True
 
- Explanation: There are three 132 patterns in the sequence: [-1, 3, 2], [-1, 3, 0] and [-1, 2, 0].
- */
+Explanation: There are three 132 patterns in the sequence: [-1, 3, 2], [-1, 3, 0] and [-1, 2, 0].
+*/
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -39,7 +39,6 @@
 #include <stdio.h>
 #include <set>
 using namespace std;
-
 /*
 INTUITION:
 Suppose we want to find a 123 sequence with s1 < s2 < s3,
@@ -87,18 +86,18 @@ i = 2, nums = [ 9, 11, 8, 9, 10, 7, 9 ], S1 candidate = 8, S3 candidate = 9, Sta
 class Solution {
 public:
     bool find132pattern(vector<int>& nums) {
-        stack<int> stk;
-        int s3 = INT_MIN;
+        stack<int> s3stk;
+        int s2 = INT_MIN;
         for (int i = nums.size() - 1; i >= 0; i--) {
-            if (nums[i] < s3) {
+            if (nums[i] < s2) {
                 return true;
             }
 
-            while (!stk.empty() and stk.top() < nums[i]) {
-                s3 = stk.top();
-                stk.pop();
+            while (!s3stk.empty() and s3stk.top() < nums[i]) {
+                s2 = s3stk.top();
+                s3stk.pop();
             }
-            stk.push(nums[i]);
+            s3stk.push(nums[i]);
         }
         return false;
     }

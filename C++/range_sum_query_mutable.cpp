@@ -29,6 +29,7 @@ You may assume the number of cals to update and sumRange function is distributed
 #include <stack>
 #include <stdio.h>
 #include <set>
+#include "extra_data_types.hpp"
 using namespace std;
 /*
 Segment tree is a very flexible data structure, because it is used to solve numerous range query problems like finding minimum,
@@ -142,6 +143,70 @@ public:
             right /= 2;
         }
         return sum;
+    }
+};
+
+class NumArray { // segment tree 91%
+private:
+    TreeNode* root = nullptr;
+    int n = 0;
+
+    TreeNode* build(int start, int end, vector<int>& nums) {
+        if (start == end) {
+            return new TreeNode(nums[start]);
+        }
+
+        TreeNode* cur = new TreeNode(0);
+        int mid = start + (end - start) / 2;
+        cur -> left = build(start, mid, nums);
+        cur -> right = build(mid + 1, end, nums);
+        cur -> val = cur -> left -> val + cur -> right -> val;
+        return cur;
+    }
+
+    void update(int start, int end, int index, int val, TreeNode* cur) {
+        if (start == end) {
+            cur -> val = val;
+            return;
+        }
+
+        int mid = start + (end - start) / 2;
+        if (start <= index and index <= mid) {
+            update(start, mid, index, val, cur -> left);
+        }
+        else {
+            update(mid + 1, end, index, val, cur -> right);
+        }
+        cur -> val = cur -> left -> val + cur -> right -> val;
+    }
+
+    int query(int start, int end, int left, int right, TreeNode* cur) {
+        if (start > right or left > end) {
+            return 0;
+        }
+
+        if (left <= start and end <= right) {
+            return cur -> val;
+        }
+
+        int mid = start + (end - start) / 2;
+        return query(start, mid, left, right, cur -> left) + query(mid + 1, end, left, right, cur -> right);
+    }
+public:
+    NumArray(vector<int>& nums) {
+        n = nums.size();
+        if (n == 0) {
+            return;
+        }
+        root = build(0, n - 1, nums);
+    }
+
+    void update(int i, int val) {
+        update(0, n - 1, i, val, root);
+    }
+
+    int sumRange(int i, int j) {
+        return query(0, n - 1, i, j, root);
     }
 };
 

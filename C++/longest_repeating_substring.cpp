@@ -29,7 +29,7 @@ Note:
 
 The string S consists of only lowercase English letters from 'a' - 'z'.
 1 <= S.length <= 1500
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

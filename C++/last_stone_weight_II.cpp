@@ -123,10 +123,8 @@ public:
             }
         }
 
-        for (int i = sum / 2; i > 0; --i) {
-            if (dp[i]) {
-                return sum - i - i;
-            }
+        for (int i = sum / 2; i > 0; --i) if (dp[i]) {
+            return sum - i - i;
         }
         return 0;
     }

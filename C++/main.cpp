@@ -14,37 +14,73 @@
 #include "extra_data_types.hpp"
 using namespace std;
 
-class MajorityChecker {
+class NumArray { // segment tree
 private:
-    unordered_map<int, vector<int>> index;
+    TreeNode* root;
     vector<int> nums;
-public:
-    MajorityChecker(vector<int>& arr) {
-        for (int i = 0; i < arr.size(); ++i) {
-            index[arr[i]].push_back(i);
+
+    TreeNode* build(int start, int end, vector<int>& nums) {
+        if (start == end) {
+            return new TreeNode(nums[start]);
         }
-        nums = arr;
-        srand(time(NULL));
+
+        TreeNode* cur = new TreeNode(0);
+        int mid = start + (end - start) / 2;
+        cur -> left = build(start, mid, nums);
+        cur -> right = build(mid + 1, end, nums);
+        cur -> val = cur -> left -> val + cur -> right -> val;
+        return cur;
     }
-    
-    int query(int left, int right, int threshold) {
-        int len = right - left + 1;
-        for (int i = 0; i < 10; ++i) {
-            int pick = nums[left + rand() % len];
-            auto start = lower_bound(index[pick].begin(), index[pick].end(), left);
-            if (start == index[pick].end()) {
-                continue;
-            }
-            auto end = upper_bound(index[pick].begin(), index[pick].end(), left);
-            if (end - start >= threshold) {
-                return pick;
-            }
+
+    void update(int start, int end, int index, int val, TreeNode* cur) {
+        if (start == end) {
+            cur -> val = val;
+            return;
         }
-        return -1;
+
+        int mid = start + (end - start) / 2;
+        if (start <= index and index <= mid) {
+            update(start, mid, index, val, cur -> left);
+        }
+        else {
+            update(mid + 1, end, index, val, cur -> right);
+        }
+        cur -> val = cur -> left -> val + cur -> right -> val;
+    }
+
+    int query(int start, int end, int left, int right, TreeNode* cur) {
+        if (start > right or left > end) {
+            return 0;
+        }
+
+        if (left <= start and end <= right) {
+            return cur -> val;
+        }
+
+        int mid = start + (end - start) / 2;
+        return query(start, mid, left, right, cur -> left) + query(mid + 1, end, left, right, cur -> right);
+    }
+public:
+    NumArray(vector<int> nums) {
+        nums = nums;
+        root = build(0, nums.size() - 1, nums);
+    }
+
+    void update(int i, int val) {
+        update(0, nums.size() - 1, i, val, root);
+    }
+
+    int sumRange(int i, int j) {
+        return query(0, nums.size() - 1, i, j, root);
     }
 };
 
 int main() {
+    NumArray nums({1,3,5});
+    nums.update(0, 2);
+    nums.update(1, 2);
+    nums.sumRange(0, 2);
+
     vector<int> temp({1,1,2,2,1,1});
     vector<int> temp1({1,3,3,3,2});
     vector<vector<int>> matrix({
@@ -68,7 +104,4 @@ int main() {
     TreeNode* r2 = new TreeNode(1);
     TreeNode* r3 = new TreeNode(3);
     r1 -> left = r2;
-    
-    MajorityChecker checker(temp);
-    checker.query(0, 5, 4);
 }

@@ -1,26 +1,26 @@
 /*
- 943. Find the Shortest Superstring
- Given an array A of strings, find any smallest string that contains each string in A as a substring.
+943. Find the Shortest Superstring
+Given an array A of strings, find any smallest string that contains each string in A as a substring.
 
- We may assume that no string in A is substring of another string in A.
-
-
- Example 1:
-
- Input: ["alex","loves","leetcode"]
- Output: "alexlovesleetcode"
- Explanation: All permutations of "alex","loves","leetcode" would also be accepted.
- Example 2:
-
- Input: ["catg","ctaagt","gcta","ttca","atgcatc"]
- Output: "gctaagttcatgcatc"
+We may assume that no string in A is substring of another string in A.
 
 
- Note:
+Example 1:
 
- 1 <= A.length <= 12
- 1 <= A[i].length <= 20
- */
+Input: ["alex","loves","leetcode"]
+Output: "alexlovesleetcode"
+Explanation: All permutations of "alex","loves","leetcode" would also be accepted.
+Example 2:
+
+Input: ["catg","ctaagt","gcta","ttca","atgcatc"]
+Output: "gctaagttcatgcatc"
+
+
+Note:
+
+1 <= A.length <= 12
+1 <= A[i].length <= 20
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -34,31 +34,30 @@
 #include <map>
 #include <numeric>
 using namespace std;
-
 /*
- graph[i][j] means the length of string to append when A[i] followed by A[j].
- eg. A[i] = abcd, A[j] = bcde, then graph[i][j] = 1
+graph[i][j] means the length of string to append when A[i] followed by A[j].
+eg. A[i] = abcd, A[j] = bcde, then graph[i][j] = 1
 
- Then the problem becomes to: find the shortest path in this graph which visits every node exactly once.
- This is a Travelling Salesman Problem.
+Then the problem becomes to: find the shortest path in this graph which visits every node exactly once.
+This is a Travelling Salesman Problem.
 
- Apply TSP DP solution. Remember to record the path.
- Time complexity: O(n^2 * 2^n)
- https://en.wikipedia.org/wiki/Held%E2%80%93Karp_algorithm
- https://leetcode.com/problems/find-the-shortest-superstring/discuss/194932/Travelling-Salesman-Problem
- https://leetcode.com/problems/find-the-shortest-superstring/discuss/195290/C++-solution-in-less-than-30-lines
+Apply TSP DP solution. Remember to record the path.
+Time complexity: O(n^2 * 2^n)
+https://en.wikipedia.org/wiki/Held%E2%80%93Karp_algorithm
+https://leetcode.com/problems/find-the-shortest-superstring/discuss/194932/Travelling-Salesman-Problem
+https://leetcode.com/problems/find-the-shortest-superstring/discuss/195290/C++-solution-in-less-than-30-lines
 
- We can use dynamic programming to leverage this recursion.
- Let dp(mask, i) be the total overlap after putting some words down (represented by a bitmask mask),
- for which A[i] was the last word put down.
- Then, the key recursion is
- dp(mask ^ (1<<j), j) = max(overlap(A[i], A[j]) + dp(mask, i)),
- where the jth bit is not set in mask, and i ranges over all bits set in mask.
+We can use dynamic programming to leverage this recursion.
+Let dp(mask, i) be the total overlap after putting some words down (represented by a bitmask mask),
+for which A[i] was the last word put down.
+Then, the key recursion is
+dp(mask ^ (1<<j), j) = max(overlap(A[i], A[j]) + dp(mask, i)),
+where the jth bit is not set in mask, and i ranges over all bits set in mask.
 
 Of course, this only tells us what the maximum overlap is for each set of words.
 We also need to remember each choice along the way (ie. the specific i that made dp(mask ^ (1<<j), j) achieve a minimum)
 so that we can reconstruct the answer.
- */
+*/
 class Solution {
 private:
     int count(string a, string b) {

@@ -2,8 +2,10 @@
 312. Burst Balloons
 
 Given n balloons, indexed from 0 to n-1. Each balloon is painted with a number on it represented by array nums.
-You are asked to burst all the balloons. If the you burst balloon i you will get nums[left] * nums[i] * nums[right] coins.
-Here left and right are adjacent indices of i. After the burst, the left and right then becomes adjacent.
+You are asked to burst all the balloons.
+If the you burst balloon i you will get nums[left] * nums[i] * nums[right] coins.
+Here left and right are adjacent indices of i.
+After the burst, the left and right then becomes adjacent.
 
 Find the maximum coins you can collect by bursting the balloons wisely.
 
@@ -29,7 +31,6 @@ Explanation: nums = [3,1,5,8] --> [3,5,8] -->   [3,8]   -->  [8]  --> []
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 I think the most upvoted post didn't talk about what dp[i][j] represent and what exactly does the transition function :
 

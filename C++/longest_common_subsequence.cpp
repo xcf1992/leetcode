@@ -32,8 +32,7 @@ Constraints:
 1 <= text1.length <= 1000
 1 <= text2.length <= 1000
 The input strings consist of lowercase English characters only.
-
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

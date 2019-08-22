@@ -33,7 +33,7 @@ Constraints:
 Elements of req_skills and people[i] are (respectively) distinct.
 req_skills[i][j], people[i][j][k] are lowercase English letters.
 It is guaranteed a sufficient team exists.
- */
+*/
 #include <iostream>
 #include <sstream>
 #include <string>
