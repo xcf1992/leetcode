@@ -74,22 +74,22 @@ Initialy we set l with left leaf L and r with right leaf R.
 Range [l,r] shrinks on each iteration til range borders meets after approximately logn iterations of the algorithm
 
 Loop til l <= r
-    1. Check if l is right child of its parent PP
-        a. l is right child of PP.
-           Then PP contains sum of range of l and another child which is outside the range
-           [l,r] and we don't need parent PP sum. Add l to sum without its parent P and set l to point to the right of P
-           on the upper level.
-        b. l is not right child of PP.
-           Then parent PP contains sum of range which lies in [l,r].
+    1. Check if l is right child of its parent P
+        a. l is right child of P.
+           Then P contains sum of range of l and another child which is outside the range [l,r]
+           and we don't need parent P sum.
+           Add l to sum without its parent P and set l to point to the right of P on the upper level.
+        b. l is not right child of P.
+           Then parent P contains sum of range which lies in [l,r].
            Add P to sum and set l to point to the parent of P
-    2. Check if r is left child of its parent PP
-        a. r is left child of PP.
-           Then PP contains sum of range of r and another child which is outside the range [l, r]
+    2. Check if r is left child of its parent P
+        a. r is left child of P.
+           Then P contains sum of range of r and another child which is outside the range [l, r]
            and we don't need parent P sum.
            Add r to sum without its parent P and set r to point to the left of P on the upper level.
-        b. r is not left child of PP.
-           Then parent PP contains sum of range which lies in [l, r].
-           Add PP to sumsum and set r to point to the parent of PP
+        b. r is not left child of P.
+           Then parent P contains sum of range which lies in [l, r].
+           Add P to sumsum and set r to point to the parent of P
 */
 class NumArray { // segment tree implementation
 private:
