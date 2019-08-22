@@ -70,7 +70,7 @@ public:
                 return true;
             }
 
-            bool completed = false;
+            bool completed = false; // means we should have already checked all the nodes in next level
             for (int i = 0; i < curSize; i++) {
                 TreeNode* node = bfs.front();
                 bfs.pop();
@@ -91,9 +91,7 @@ public:
                         }
                     }
                     else {
-                        if (!completed) {
-                            completed = true;
-                        }
+                        completed = true;
                     }
                 }
                 else {
