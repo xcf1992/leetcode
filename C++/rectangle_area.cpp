@@ -10,7 +10,7 @@ Example:
 
 Input: A = -3, B = 0, C = 3, D = 4, E = 0, F = -1, G = 9, H = 2
 Output: 45
- */
+*/
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -30,7 +30,7 @@ class Solution {
 public:
     int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
         long a1 = (long) (C - A) * (D - B) + (long) (G - E) * (H - F);
-        if (G > A && E < C && H > B && F < D) {
+        if (G > A and E < C and H > B and F < D) {
             return a1 - (min(C,G) - max(A,E)) * (min(D,H) - max(B,F));
         }
         return a1;

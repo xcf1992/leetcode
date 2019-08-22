@@ -1,3 +1,30 @@
+/*
+161. One Edit Distance
+Given two strings s and t, determine if they are both one edit distance apart.
+
+Note:
+
+There are 3 possiblities to satisify one edit distance apart:
+
+Insert a character into s to get t
+Delete a character from s to get t
+Replace a character of s to get t
+Example 1:
+
+Input: s = "ab", t = "acb"
+Output: true
+Explanation: We can insert 'c' into s to get t.
+Example 2:
+
+Input: s = "cab", t = "ad"
+Output: false
+Explanation: We cannot get t from s by only one step.
+Example 3:
+
+Input: s = "1203", t = "1213"
+Output: true
+Explanation: We can replace '0' with '1' to get t.
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -9,71 +36,17 @@ using namespace std;
 class Solution {
 public:
     bool isOneEditDistance(string s, string t) {
-		int m = s.size();
-		int n = t.size();
-        if (s.empty()) {
-            if (t.size() == 1) {
-                return true;
+        int m = s.size();
+        int n = t.size();
+        if (m > n) {
+            return isOneEditDistance(t, s);
+        }
+        for (int i = 0; i < m; i++) if (s[i] != t[i]) {
+            if (m == n) {
+                return s.substr(i + 1) == t.substr(i + 1);
             }
-            return false;
+            return s.substr(i) == t.substr(i + 1);
         }
-        if (t.empty()) {
-            if (s.size() == 1) {
-                return true;
-            }
-            return false;
-        }
-		if (m - n > 1 || n - m > 1) {
-            return false;
-        }
-        
-        bool first = true;
-        if (s.size() == t.size()) {
-            for (int i = 0; i < s.size(); i++) {
-                if (s[i] != t[i]) {
-                    if (first) {
-                        first = false;
-                    }
-                    else {
-                        return false;
-                    }
-                }
-            }
-            if (!first) {
-                return true;
-            }
-            return false;
-        }
-        
-        if (s.size() < t.size()) {
-            string temp = s;
-            s = t;
-            t = temp;
-        }
-        
-        int i = 0;
-        int j = 0;
-        while (i < s.size() && j < t.size()) {
-            if (s[i] == t[j]) {
-                i++;
-                j++;
-            }
-            else {
-                i++;
-            }
-        }
-        
-        if (j == t.size()) {
-            return true;
-        }
-        return false;
+        return m + 1 == n;
     }
 };
-
-int main() {
-	Solution s;
-	string a = "a";
-	string b = "ba";
-	s.isOneEditDistance(a, b);
-	return 0;
-}
