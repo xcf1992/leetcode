@@ -6,8 +6,6 @@ Given two arrays of integers with equal lengths, return the maximum value of:
 
 where the maximum is taken over all 0 <= i, j < arr1.length.
 
-
-
 Example 1:
 
 Input: arr1 = [1,2,3,4], arr2 = [-1,4,5,6]
@@ -35,7 +33,6 @@ Constraints:
 #include <stdio.h>
 #include "extra_data_types.hpp"
 using namespace std;
-
 /*
 https://leetcode.com/problems/maximum-of-absolute-value-expression/discuss/340070/topic
 |a-b|可以看成是 Math.max(a-b,b-a)；

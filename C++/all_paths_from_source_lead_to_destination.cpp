@@ -57,8 +57,7 @@ The number of edges in the graph is between 0 and 10000
 edges[i].length == 2
 0 <= source <= n - 1
 0 <= destination <= n - 1
- */
-
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -101,7 +100,6 @@ public:
         for (vector<int>& edge : edges) {
             connect[edge[0]].push_back(edge[1]);
         }
-
         vector<int> visited(n, 0);
         return dfs(connect, source, destination, visited);
     }

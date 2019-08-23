@@ -73,7 +73,7 @@ public:
         if (getHeight(root -> right) == h - 1) {
             return (1 << h) + countNodes(root -> right);
         }
-        return (1 << h - 1) + countNodes(root -> left);
+        return (1 << (h - 1)) + countNodes(root -> left);
     }
 };
 

@@ -23,7 +23,7 @@ In step 3, we use Paste operation to get 'AAA'.
 Note:
 
 The n will be in the range [1, 1000].
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -35,7 +35,6 @@ The n will be in the range [1, 1000].
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 Allow me to explain what is being done here.
 As per the keyboard operations:

@@ -28,7 +28,6 @@ Note: N is an integer in the range [0, 10^9].
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 Intuition
 
