@@ -29,7 +29,6 @@ Only two moves are needed (remember each move increments or decrements one eleme
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 In the previous approach,
 we went for finding the median after sorting and then calculated the number of moves required.

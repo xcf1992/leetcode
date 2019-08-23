@@ -43,7 +43,6 @@ Note:
 bottom will be a string with length in range [2, 8].
 allowed will have length in range [0, 200].
 Letters in all strings will be chosen from the set {'A', 'B', 'C', 'D', 'E', 'F', 'G'}.
-
 */
 #include <iostream>
 #include <string>
@@ -87,7 +86,7 @@ public:
     }
 };
 
-class Solution {
+class Solution1 {
 private:
     bool dfs(string bottom, string curRow, int index, unordered_multimap<string, char> validBlock) {
         if (index == curRow.size()) {
