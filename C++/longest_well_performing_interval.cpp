@@ -45,6 +45,7 @@ Hope this can clarify some confusions.
 
 We want a positive score, so we want to know the first occurrence of score - 1.
 score - x also works, but it comes later than score - 1.
+there must be a score - x + 1 to the left of score - x,
 So the maximum interval is i - seen[score - 1]
 */
 class Solution {

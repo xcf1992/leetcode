@@ -68,7 +68,7 @@ public:
             }
             /*
             * In the end, we'll get a max count of the repeated characters with no more than one-character gap.
-            * If we have more of that character somewhere in the string (idx[n].size() > mx),
+            * If we have more of that character somewhere in the string (idx[n].size() > len),
             * we add 1 for the swap operation.
             */
             result = max(result, len + (index[i].size() > len ? 1 : 0));

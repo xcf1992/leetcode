@@ -48,16 +48,16 @@ class Solution {
 public:
     int minSwaps(vector<int>& data) {
         int count = 0;
-        for (int d : data) if (d == 1) {
-            count += 1;
+        for (int d : data) {
+            count += d;
         }
         if (count <= 1) {
             return 0;
         }
 
         int cur = 0;
-        for (int i = 0; i < count; ++i) if (data[i] == 1) {
-            cur += 1;
+        for (int i = 0; i < count; ++i) {
+            cur += data[i];
         }
 
         int result = count - cur;
