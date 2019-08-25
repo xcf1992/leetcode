@@ -47,7 +47,6 @@ Constraints:
 #include <set>
 #include <numeric>
 using namespace std;
-
 /*
 定义dp[i]为前i本书能够到达的最小高度。
 则对于第i+1本书，有若干选择。
@@ -64,12 +63,10 @@ public:
         int n = books.size();
         vector<int> dp(n + 1, 1000 * 1000);
         dp[0] = 0;
-
         for (int i = 1; i <= n; ++i) {
-            vector<int>& book = books[i - 1];
-            int w = book[0];
-            int h = book[1];
-            
+            int w = books[i - 1][0];
+            int h = books[i - 1][1];
+
             dp[i] = dp[i - 1] + h;
             for (int j = i - 1; j > 0; --j) {
                 w += books[j - 1][0];
@@ -84,9 +81,9 @@ public:
     }
 };
 
-class Solution { // dfs with memo
+class Solution1 { // dfs with memo
 private:
-    unordered_map<int, int> memo;
+    unordered_map<int, int> memo; // memo[i] means the min height needed to store books from i ~ n - 1
     int n = 0;
 
     int dfs(vector<vector<int>>& books, int index, int shelf_width) {

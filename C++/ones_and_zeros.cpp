@@ -58,7 +58,7 @@ public:
             vector<int> digit = count(num);
             for (int i = m; i >= digit[0]; i--) {
                 for (int j = n; j >= digit[1]; j--) {
-                    dp[i][j] = max(dp[i - digit[0]][j - digit[1]] + 1, dp[i][j]);
+                    dp[i][j] = max(dp[i][j], dp[i - digit[0]][j - digit[1]] + 1);
                 }
             }
         }

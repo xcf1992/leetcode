@@ -4,7 +4,8 @@ Given the root of a binary tree, each node in the tree has a distinct value.
 
 After deleting all nodes with a value in to_delete, we are left with a forest (a disjoint union of trees).
 
-Return the roots of the trees in the remaining forest.  You may return the result in any order.
+Return the roots of the trees in the remaining forest.
+You may return the result in any order.
 
 
 
@@ -23,7 +24,7 @@ The number of nodes in the given tree is at most 1000.
 Each node has a distinct value between 1 and 1000.
 to_delete.length <= 1000
 to_delete contains distinct values between 1 and 1000.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -63,5 +64,40 @@ public:
         vector<TreeNode*> result;
         deleteNodes(root, true, deleted, result);
         return result;
+    }
+};
+
+class Solution1 { // slow 21.87%
+private:
+    TreeNode* deleteNodes(TreeNode* root, unordered_set<int>& to_delete, unordered_set<TreeNode*>& result) {
+        if (root == nullptr) {
+            return root;
+        }
+
+        bool deleted = to_delete.find(root -> val) != to_delete.end();
+        if (deleted) {
+            if (root -> left != nullptr) {
+                result.insert(root -> left);
+            }
+            if (root -> right != nullptr) {
+                result.insert(root -> right);
+            }
+            if (result.find(root) != result.end()) {
+                result.erase(root);
+            }
+        }
+
+        root -> left = deleteNodes(root -> left, to_delete, result);
+        root -> right = deleteNodes(root -> right, to_delete, result);
+        return deleted ? nullptr : root;
+    }
+
+public:
+    vector<TreeNode*> delNodes(TreeNode* root, vector<int>& to_delete) {
+        unordered_set<int> deleted(to_delete.begin(), to_delete.end());
+        unordered_set<TreeNode*> result;
+        result.insert(root);
+        deleteNodes(root, deleted, result);
+        return vector<TreeNode*>(result.begin(), result.end());
     }
 };

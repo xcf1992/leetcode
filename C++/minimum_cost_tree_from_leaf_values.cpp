@@ -8,16 +8,17 @@ consider all binary trees such that:
   (Recall that a node is a leaf if and only if it has 0 children.)
   The value of each non-leaf node is equal to the product of the largest leaf value in its left and right subtree resultpectively.
 
-Among all possible binary trees considered, return the smallest possible sum of the values of each non-leaf node.  It is guaranteed this sum fits into a 32-bit integer.
-
-
+Among all possible binary trees considered,
+return the smallest possible sum of the values of each non-leaf node.
+It is guaranteed this sum fits into a 32-bit integer.
 
 Example 1:
 
 Input: arr = [6,2,4]
 Output: 32
 Explanation:
-There are two possible trees.  The first has non-leaf node sum 36, and the second has non-leaf node sum 32.
+There are two possible trees.
+The first has non-leaf node sum 36, and the second has non-leaf node sum 32.
 
     24            24
    /  \          /  \
@@ -44,7 +45,6 @@ It is guaranteed that the answer fits into a 32-bit signed integer (ie. it is le
 #include <stdio.h>
 #include "extra_data_types.hpp"
 using namespace std;
-
 /*
 First thought:
 Find the cost for the interval [i,j].
@@ -104,7 +104,7 @@ public:
         for (int a : arr) {
             while (stk.back() <= a) {
                 int mid = stk.back();
-                stk.pop_back();
+                stk.pop_back(); // because is a inorder traversal sequence, so we can only choose node to the left and right, and as close as possible
                 result += mid * min(stk.back(), a); // current stk.back is on the left of mid, while a is on the right
             }
             stk.push_back(a);

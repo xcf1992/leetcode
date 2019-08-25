@@ -25,7 +25,7 @@ where you could cut from the middle character 'a' and get "zyxcba".
 Note:
 The input strings will only contain lowercase letters.
 The total length of all the strings will not over 1,000.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -37,7 +37,6 @@ The total length of all the strings will not over 1,000.
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 To solve this problem, we must keep in heart the following points:
 
@@ -61,12 +60,7 @@ private:
         }
     }
 
-    void solve(vector<string>& strs, int i, bool flag, string& result) {
-        string str = strs[i];
-        if (flag) {
-            reverse(str.begin(), str.end());
-        }
-
+    void solve(vector<string>& strs, int i, string& result) {
         string before = "";
         string after = "";
         for (int j = 0; j < i; j++) {
@@ -76,9 +70,14 @@ private:
             after += strs[j];
         }
 
-        for (int k = 0; k < str.size(); k++) {
-            string cur = str.substr(k) + after + before + str.substr(0, k);
-            result = result == "" ? cur : max(result, cur);
+        string str1 = strs[i];
+        string str2 = strs[i];
+        reverse(str2.begin(), str2.end());
+        for (int k = 0; k < str1.size(); k++) {
+            string cur1 = str1.substr(k) + after + before + str1.substr(0, k);
+            string cur2 = str2.substr(k) + after + before + str2.substr(0, k);
+            result = result == "" ? cur1 : max(result, cur1);
+            result = result == "" ? cur2 : max(result, cur2);
         }
     }
 public:
@@ -90,8 +89,7 @@ public:
         findMaxStrings(strs);
         string result = "";
         for (int i = 0; i < strs.size(); i++) {
-            solve(strs, i, true, result);
-            solve(strs, i, false, result);
+            solve(strs, i, result);
         }
         return result;
     }
