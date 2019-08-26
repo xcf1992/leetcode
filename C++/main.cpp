@@ -14,72 +14,86 @@
 #include "extra_data_types.hpp"
 using namespace std;
 
-class NumArray { // segment tree
+struct TrieNode {
+    unordered_map<string, TrieNode*> child;
+    bool isFile;
+    int content;
+
+    TrieNode() {
+        isFile = false;
+        content = -1;
+    }
+};
+
+class FileSystem {
 private:
-    TreeNode* root;
-    vector<int> nums;
+    TrieNode* root = nullptr;
 
-    TreeNode* build(int start, int end, vector<int>& nums) {
-        if (start == end) {
-            return new TreeNode(nums[start]);
+    vector<string> split(string& path) {
+        vector<string> result;
+        string cur = "";
+        for (int i = 1; i < path.size(); ++i) {
+            char c = path[i];
+            if (c == '/') {
+                result.push_back(path);
+                path = "";
+            }
+            else {
+                path.push_back(c);
+            }
         }
-
-        TreeNode* cur = new TreeNode(0);
-        int mid = start + (end - start) / 2;
-        cur -> left = build(start, mid, nums);
-        cur -> right = build(mid + 1, end, nums);
-        cur -> val = cur -> left -> val + cur -> right -> val;
-        return cur;
+        result.push_back(cur);
+        return result;
     }
 
-    void update(int start, int end, int index, int val, TreeNode* cur) {
-        if (start == end) {
-            cur -> val = val;
-            return;
+    bool insert(vector<string>& path, int value) {
+        int n = path.size();
+        TrieNode* cur = root;
+        for (int i = 0; i < n; ++i) {
+            if (cur -> child.find(path[i]) == cur -> child.end() and i != n - 1) {
+                return false;
+            }
+            else {
+                cur -> child[path[i]] = new TrieNode();
+            }
+            cur = cur -> child[path[i]];
         }
-
-        int mid = start + (end - start) / 2;
-        if (start <= index and index <= mid) {
-            update(start, mid, index, val, cur -> left);
-        }
-        else {
-            update(mid + 1, end, index, val, cur -> right);
-        }
-        cur -> val = cur -> left -> val + cur -> right -> val;
+        cur -> isFile = true;
+        cur -> content = value;
+        return true;
     }
 
-    int query(int start, int end, int left, int right, TreeNode* cur) {
-        if (start > right or left > end) {
-            return 0;
+    int find(vector<string>& path) {
+        int n = path.size();
+        TrieNode* cur = root;
+        for (int i = 0; i < n; ++i) {
+            if (cur -> child.find(path[i]) == cur -> child.end()) {
+                return -1;
+            }
+            cur = cur -> child[path[i]];
         }
-
-        if (left <= start and end <= right) {
-            return cur -> val;
-        }
-
-        int mid = start + (end - start) / 2;
-        return query(start, mid, left, right, cur -> left) + query(mid + 1, end, left, right, cur -> right);
+        return cur -> content;
     }
 public:
-    NumArray(vector<int> nums) {
-        nums = nums;
-        root = build(0, nums.size() - 1, nums);
+    FileSystem() {
+        root = new TrieNode();
     }
 
-    void update(int i, int val) {
-        update(0, nums.size() - 1, i, val, root);
+    bool create(string path, int value) {
+        vector<string> p = split(path);
+        return insert(p, value);
     }
 
-    int sumRange(int i, int j) {
-        return query(0, nums.size() - 1, i, j, root);
+    int get(string path) {
+        vector<string> p = split(path);
+        return find(p);
     }
 };
 
 int main() {
-    NumArray nums({1,3,5});
-    nums.update(0, 2);
-    nums.update(1, 2);
-    nums.sumRange(0, 2);
+    FileSystem fs;
+    fs.create("/a", 1);
+    fs.get("/a");
 
     vector<int> temp({1,1,2,2,1,1});
     vector<int> temp1({1,3,3,3,2});
