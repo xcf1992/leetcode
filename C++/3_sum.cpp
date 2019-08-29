@@ -43,71 +43,23 @@ public:
             int left = i + 1;
             int right = n - 1;
             while (left < right) {
-                while (left > i + 1 and left < n and num[left] == num[left - 1]) {
+                int sum = num[left] + num[right];
+                if (sum < target) {
                     left += 1;
                 }
-                while (right < n - 1 and right >= 0 and num[right] == num[right + 1]) {
-                    right--;
+                else if (sum > target) {
+                    right -= 1;
                 }
-                if (left >= right) {
-                    break;
-                }
-
-                if (num[left] + num[right] == target) {
+                else {
                     results.push_back({num[i], num[left], num[right]});
-                    left++;
-                }
-                else if (num[left] + num[right] < target) {
-                    left++;
-                }
-                else if (num[left] + num[right] > target) {
-                    right--;
-                }
-            }
-        }
-        return results;
-    }
-};
-
-class Solution1 {
-public:
-    vector<vector<int>> threeSum(vector<int> &num) {
-        if (num.size() <= 2 || (num.size() == 3 && num[0] + num[1] + num[2] != 0)) {
-            return {};
-        }
-
-        sort(num.begin(), num.end());
-        int oldVal = num[0];
-        vector<vector<int>> results;
-        for (int i = 0; i < num.size(); i++) {
-            if (i > 0 && num[i] == oldVal) {
-                continue;
-            }
-            oldVal = num[i];
-            int target = 0 - num[i];
-            int left = i + 1;
-            int right = num.size() - 1;
-
-            while (left < right) {
-                while (left > i + 1 and num[left] == num[left - 1]) {
-                    left++;
-                }
-                while (right < num.size() - 1 and num[right] == num[right + 1]) {
-                    right--;
-                }
-                if (left >= right) {
-                    break;
-                }
-
-                if (num[left] + num[right] == target) {
-                    results.push_back({num[i], num[left], num[right]});
-                    left++;
-                }
-                else if (num[left] + num[right] < target) {
-                    left++;
-                }
-                else if (num[left] + num[right] > target) {
-                    right--;
+                    int front = num[left];
+                    int back = num[right];
+                    while (left < right and num[left] == front) {
+                        left += 1;
+                    }
+                    while (left < back and num[right] == back) {
+                        right -= 1;
+                    }
                 }
             }
         }
