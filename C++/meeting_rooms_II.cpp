@@ -35,7 +35,7 @@ public:
 
         priority_queue<int, vector<int>, greater<int>> min_heap;
         int result = 0;
-        for (vector<int>& interval : intervals){
+        for (vector<int>& interval : intervals) {
             while (!min_heap.empty() and interval[0] >= min_heap.top()) { // some meetings have ended already
                 min_heap.pop();
             }

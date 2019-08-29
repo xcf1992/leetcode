@@ -69,7 +69,7 @@ public:
                     result += count[i] * (count[i] - 1) * (count[i] - 2) / 6;
                 }
                 else if (i == j and j != k) {
-                    result += count[i] * (count[i] - 1) / 2 * count[k];
+                    result += count[i] * (count[i] - 1) * count[k] / 2;
                 }
                 else if (i < j and j < k) {
                     result += count[i] * count[j] * count[k];

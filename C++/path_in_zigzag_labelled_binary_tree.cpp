@@ -39,7 +39,6 @@ Constraints:
 #include <set>
 #include <numeric>
 using namespace std;
-
 /*
 Determine the tree level where our value is located.
 The maximum label in the level is 1 << level - 1,
@@ -58,7 +57,7 @@ public:
         while (label > 1) {
             result[level - 1] = label;
             level -= 1;
-            
+
             int parentStart = 1 << (level - 1);
             int parentEnd = (1 << level) - 1;
             label = parentEnd - (label / 2 - parentStart);
