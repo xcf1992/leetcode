@@ -1,21 +1,21 @@
 /*
- 336. Palindrome Pairs
- Given a list of unique words,
- find all pairs of distinct indices (i, j) in the given list,
- so that the concatenation of the two words,
- i.e. words[i] + words[j] is a palindrome.
+336. Palindrome Pairs
+Given a list of unique words,
+find all pairs of distinct indices (i, j) in the given list,
+so that the concatenation of the two words,
+i.e. words[i] + words[j] is a palindrome.
 
- Example 1:
+Example 1:
 
- Input: ["abcd","dcba","lls","s","sssll"]
- Output: [[0,1],[1,0],[3,2],[2,4]]
- Explanation: The palindromes are ["dcbaabcd","abcddcba","slls","llssssll"]
- Example 2:
+Input: ["abcd","dcba","lls","s","sssll"]
+Output: [[0,1],[1,0],[3,2],[2,4]]
+Explanation: The palindromes are ["dcbaabcd","abcddcba","slls","llssssll"]
+Example 2:
 
- Input: ["bat","tab","cat"]
- Output: [[0,1],[1,0]]
- Explanation: The palindromes are ["battab","tabbat"]
- */
+Input: ["bat","tab","cat"]
+Output: [[0,1],[1,0]]
+Explanation: The palindromes are ["battab","tabbat"]
+*/
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -31,20 +31,19 @@
 #include <set>
 #include <numeric>
 using namespace std;
-
 /*
- Traverse the array, build map. Key is the reversed string, value is index in array (0 based)
+Traverse the array, build map. Key is the reversed string, value is index in array (0 based)
 
- Edge case - check if empty string exists. It's interesting that for given words {"a", ""},
- it's expected to return two results [0,1] and [1,0]. Since my main logic can cover [0, 1] concatenate("a", ""),
- so as to cover the other situation concatenate("", "a"), I need to traverse the words array again,
- find the palindrome word candidate except "" itself, and add pair("", palindrome word) to the final answer.
+Edge case - check if empty string exists. It's interesting that for given words {"a", ""},
+it's expected to return two results [0,1] and [1,0]. Since my main logic can cover [0, 1] concatenate("a", ""),
+so as to cover the other situation concatenate("", "a"), I need to traverse the words array again,
+find the palindrome word candidate except "" itself, and add pair("", palindrome word) to the final answer.
 
- Main logic part. Partition the word into left and right, and see
- 1) if there exists a candidate in map equals the left side of current word,
-    and right side of current word is palindrome, so concatenate(current word, candidate) forms a pair: left | right | candidate.
- 2) same for checking the right side of current word: candidate | left | right.
- */
+Main logic part. Partition the word into left and right, and see
+1) if there exists a candidate in map equals the left side of current word,
+and right side of current word is palindrome, so concatenate(current word, candidate) forms a pair: left | right | candidate.
+2) same for checking the right side of current word: candidate | left | right.
+*/
 class Solution {
 private:
     bool isPalindrome(string word) {

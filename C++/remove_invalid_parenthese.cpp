@@ -30,7 +30,6 @@ Output: [""]
 #include <stdio.h>
 #include <map>
 using namespace std;
-
 /*
 Key Points:
 
@@ -59,7 +58,7 @@ Now one may ask. What about ‘(‘? What if s = ‘(()(()’ in which we need r
 The answer is: do the same from right to left.
 However a cleverer idea is: reverse the string and reuse the code!
 */
-class Solution { // 5.83%
+class Solution { // 25.08%
 private:
     bool isValid(string s) {
         int count = 0;
@@ -88,11 +87,12 @@ public:
         while (!bfs.empty()) {
             string curS = bfs.front();
             bfs.pop();
+            if (curS.size() < length) {
+                continue; // we should skip if we have to remove more parenthese than minimum
+            }
             if (isValid(curS)) {
-                if (curS.size() >= length) {
-                    length = curS.size();
-                    result.push_back(curS);
-                }
+                length = curS.size();
+                result.push_back(curS);
                 continue;
             }
 

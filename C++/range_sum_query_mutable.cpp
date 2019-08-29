@@ -146,6 +146,7 @@ public:
     }
 };
 
+// https://www.hackerearth.com/practice/data-structures/advanced-data-structures/segment-trees/tutorial/
 class NumArray { // segment tree 91%
 private:
     TreeNode* root = nullptr;

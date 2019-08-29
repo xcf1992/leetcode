@@ -26,7 +26,6 @@ The median is (2 + 3)/2 = 2.5
 #include <unordered_map>
 #include <algorithm>
 using namespace std;
-
 /*
 To solve this problem, we need to understand "What is the use of median".
 In statistics, the median is used for dividing a set into two equal length subsets,
@@ -105,15 +104,17 @@ max(A[i-1], B[j-1]) (when m + n is odd)
 or (max(A[i-1], B[j-1]) + min(A[i], B[j]))/2 (when m + n is even)
 
 Now let's consider the edges values i=0,i=m,j=0,j=n
-where A[i-1],B[j-1],A[i],B[j] may not exist. Actually this situation is easier than you think.
+where A[i-1],B[j-1],A[i],B[j] may not exist.
+Actually this situation is easier than you think.
 
 What we need to do is ensuring that max(left_part) <= min(right_part).
 So, if i and j are not edges values(means A[i-1],B[j-1],A[i],B[j] all exist),
 then we must check both B[j-1] <= A[i] and A[i-1] <= B[j].
 But if some of A[i-1],B[j-1],A[i],B[j] don't exist,
 then we don't need to check one(or both) of these two conditions.
-For example, if i=0, then A[i-1] doesn't exist, then we don't need to check A[i-1] <= B[j]. So, what we need to do is:
+For example, if i=0, then A[i-1] doesn't exist, then we don't need to check A[i-1] <= B[j].
 
+So, what we need to do is:
 Searching i in [0, m], to find an object `i` that:
     (j == 0 or i == m or B[j-1] <= A[i]) and
     (i == 0 or j == n or A[i-1] <= B[j])
