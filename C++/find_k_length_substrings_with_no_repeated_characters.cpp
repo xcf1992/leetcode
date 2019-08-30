@@ -2,8 +2,6 @@
 1100. Find K-Length Substrings With No Repeated Characters
 Given a string S, return the number of substrings of length K with no repeated characters.
 
-
-
 Example 1:
 
 Input: S = "havefunonleetcode", K = 5
@@ -23,7 +21,7 @@ Note:
 1 <= S.length <= 10^4
 All characters of S are lowercase English letters.
 1 <= K <= 10^4
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

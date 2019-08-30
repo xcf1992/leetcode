@@ -8,8 +8,6 @@ Every even-indexed element is greater than adjacent elements, ie. A[0] > A[1] < 
 OR, every odd-indexed element is greater than adjacent elements, ie. A[0] < A[1] > A[2] < A[3] > A[4] < ...
 Return the minimum number of moves to transform the given array nums into a zigzag array.
 
-
-
 Example 1:
 
 Input: nums = [1,2,3]
@@ -25,7 +23,7 @@ Constraints:
 
 1 <= nums.length <= 1000
 1 <= nums[i] <= 1000
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -41,6 +39,21 @@ Constraints:
 using namespace std;
 
 class Solution {
+public:
+    int movesToMakeZigzag(vector<int>& nums) {
+        vector<int> res(2, 0);
+        int n = nums.size();
+        int left, right;
+        for (int i = 0; i < n; ++i) {
+            left = i > 0 ? nums[i - 1] : 1001;
+            right = i + 1 < n ? nums[i + 1] : 1001;
+            res[i % 2] += max(0, nums[i] - min(left, right) + 1);
+        }
+        return min(res[0], res[1]);
+    }
+};
+
+class Solution1 {
 private:
     void getCount(vector<int> nums, int& count, int start) {
         int n = nums.size();
