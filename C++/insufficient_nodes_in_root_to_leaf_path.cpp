@@ -84,7 +84,6 @@ private:
         if (!rightSufficient) {
             root -> right = nullptr;
         }
-
         return leftSufficient or rightSufficient;
     }
 public:

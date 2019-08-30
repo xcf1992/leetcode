@@ -8,8 +8,6 @@ Then, we choose a subset S of these items, such that:
 For every label L, the number of items in S with label L is <= use_limit.
 Return the largest possible sum of the subset S.
 
-
-
 Example 1:
 
 Input: values = [5,4,3,2,1], labels = [1,1,2,2,3], num_wanted = 3, use_limit = 1
