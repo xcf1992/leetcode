@@ -1,27 +1,27 @@
 /*
- 772. Basic Calculator III
- Implement a basic calculator to evaluate a simple expression string.
+772. Basic Calculator III
+Implement a basic calculator to evaluate a simple expression string.
 
- The expression string may contain open ( and closing parentheses ),
- the plus + or minus sign -,
- non-negative integers and empty spaces .
+The expression string may contain open ( and closing parentheses ),
+the plus + or minus sign -,
+non-negative integers and empty spaces .
 
- The expression string contains only non-negative integers, +, -, *, / operators ,
- open ( and closing parentheses ) and empty spaces .
- The integer division should truncate toward zero.
+The expression string contains only non-negative integers, +, -, *, / operators ,
+open ( and closing parentheses ) and empty spaces .
+The integer division should truncate toward zero.
 
- You may assume that the given expression is always valid.
- All intermediate results will be in the range of [-2147483648, 2147483647].
+You may assume that the given expression is always valid.
+All intermediate results will be in the range of [-2147483648, 2147483647].
 
- Some examples:
+Some examples:
 
- "1 + 1" = 2
- " 6-4 / 2 " = 4
- "2*(5+5*2)/3+(6/2+8)" = 21
- "(2+6* 3+5- (3*14/7+2)*5)+3"=-12
+"1 + 1" = 2
+" 6-4 / 2 " = 4
+"2*(5+5*2)/3+(6/2+8)" = 21
+"(2+6* 3+5- (3*14/7+2)*5)+3"=-12
 
- Note: Do not use the eval built-in library function.
- */
+Note: Do not use the eval built-in library function.
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -50,7 +50,7 @@ private:
     int parseExp(string& s, int& i) {
         vector<int> nums;
         char op = '+';
-        for (; i < s.size() and op != ')'; ++i) {
+        for (; i < s.size() and op != ')'; ++i) { // when op becomes ), we will still have ++i, and skip it and jump back to upper level
             if (s[i] == ' ') {
                 continue;
             }

@@ -1,26 +1,30 @@
 /*
- 727. Minimum Window Subsequence
+727. Minimum Window Subsequence
 
- Given strings S and T, find the minimum (contiguous) substring W of S, so that T is a subsequence of W.
+Given strings S and T, find the minimum (contiguous) substring W of S,
+so that T is a subsequence of W.
 
- If there is no such window in S that covers all characters in T, return the empty string "". If there are multiple such minimum-length windows, return the one with the left-most starting index.
+If there is no such window in S that covers all characters in T,
+return the empty string "".
+If there are multiple such minimum-length windows,
+return the one with the left-most starting index.
 
- Example 1:
+Example 1:
 
- Input:
- S = "abcdebdde", T = "bde"
- Output: "bcde"
- Explanation:
- "bcde" is the answer because it occurs before "bdde" which has the same length.
- "deb" is not a smaller window because the elements of T in the window must occur in order.
+Input:
+S = "abcdebdde", T = "bde"
+Output: "bcde"
+Explanation:
+"bcde" is the answer because it occurs before "bdde" which has the same length.
+"deb" is not a smaller window because the elements of T in the window must occur in order.
 
 
- Note:
+Note:
 
- All the strings in the input will only contain lowercase letters.
- The length of S will be in the range [1, 20000].
- The length of T will be in the range [1, 100].
- */
+All the strings in the input will only contain lowercase letters.
+The length of S will be in the range [1, 20000].
+The length of T will be in the range [1, 100].
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -33,7 +37,6 @@
 #include <stdio.h>
 #include <map>
 using namespace std;
-
 /* DP
 这道题给了我们两个字符串S和T，让我们找出S的一个长度最短子串W，使得T是W的子序列，如果长度相同，取起始位置靠前的。清楚子串和子序列的区别，
 那么题意就不难理解，题目中给的例子也很好的解释了题意。我们经过研究可以发现，返回的子串的起始字母和T的起始字母一定相同，这样才能保证最短。
@@ -54,7 +57,7 @@ That is a question! 仔细想一想，其实起始位置是长度的基础，因
 因为S中的起始位置为0，长度为1的子串可以包含T。如果当 S = "d", T = "b"，
 那么我们有 dp[1][1] = -1，因为我们的dp数组初始化均为-1，表示未匹配或者无法匹配。
 下面来看一个稍稍复杂些的例子，S = "dbd", T = "bd"，我们的dp数组是：
-∅  b  d
+   ∅  b  d
 ∅  ?  ?  ?
 d  ? -1 -1
 b  ?  1 -1
@@ -69,7 +72,7 @@ d  ?  1  1
 
 嗯，这就是递推式的核心了，下面再来看边界怎么赋值，由于j比如小于等于i，所以第一行的第二个位置往后一定都是-1，我们只需要给第一列赋值即可。通过前面的分析，我们知道了当 S[i] == T[j] 时，我们取的是左上角的dp值，表示当前字母在S中的位置，由于我们dp数组提前加过1，所以第一列的数只要赋值为当前行数即可。最终的dp数组如下：
 
-∅  b  d
+   ∅  b  d
 ∅  0 -1 -1
 d  1 -1 -1
 b  2  1 -1
@@ -84,14 +87,16 @@ public:
     string minWindow(string S, string T) {
         int m = S.size();
         int n = T.size();
+        if (m < n) {
+            return "";
+        }
+
         int start = -1;
         int minLen = S.size();
-
         vector<vector<int>> dp(m + 1, vector<int>(n + 1, -1));
         for (int i = 0; i <= m; ++i) {
             dp[i][0] = i;
         }
-
         for (int i = 1; i <= m; ++i) {
             for (int j = 1; j <= min(i, n); ++j) {
                 if (S[i - 1] == T[j - 1]) {

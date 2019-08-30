@@ -14,88 +14,40 @@
 #include "extra_data_types.hpp"
 using namespace std;
 
-struct TrieNode {
-    unordered_map<string, TrieNode*> child;
-    bool isFile;
-    int content;
-
-    TrieNode() {
-        isFile = false;
-        content = -1;
-    }
-};
-
-class FileSystem {
+class Solution {
 private:
-    TrieNode* root = nullptr;
-
-    vector<string> split(string& path) {
-        vector<string> result;
-        string cur = "";
-        for (int i = 1; i < path.size(); ++i) {
-            char c = path[i];
-            if (c == '/') {
-                result.push_back(path);
-                path = "";
-            }
-            else {
-                path.push_back(c);
-            }
+    int mergeSort(vector<long>& preSum, int lower, int upper, int left, int right) {
+        if (left == right - 1) {
+            return preSum[left] >= lower and preSum[right] <= upper ? 1 : 0;
         }
-        result.push_back(cur);
-        return result;
-    }
 
-    bool insert(vector<string>& path, int value) {
-        int n = path.size();
-        TrieNode* cur = root;
-        for (int i = 0; i < n; ++i) {
-            if (cur -> child.find(path[i]) == cur -> child.end() and i != n - 1) {
-                return false;
-            }
-            else {
-                cur -> child[path[i]] = new TrieNode();
-            }
-            cur = cur -> child[path[i]];
+        int mid = left + (right - left) / 2;
+        int count = mergeSort(preSum, lower, upper, left, mid) + mergeSort(preSum, lower, upper, mid, right);
+        for (int i = left; i < mid; ++i) {
+            auto m = lower_bound(preSum.begin() + mid, preSum.begin() + right, preSum[i] + lower);
+            auto n = upper_bound(preSum.begin() + mid, preSum.begin() + right, preSum[i] + upper);
+            count += n - m;
         }
-        cur -> isFile = true;
-        cur -> content = value;
-        return true;
-    }
-
-    int find(vector<string>& path) {
-        int n = path.size();
-        TrieNode* cur = root;
-        for (int i = 0; i < n; ++i) {
-            if (cur -> child.find(path[i]) == cur -> child.end()) {
-                return -1;
-            }
-            cur = cur -> child[path[i]];
-        }
-        return cur -> content;
+        inplace_merge(preSum.begin() + left, preSum.begin() + mid, preSum.begin() + right);
+        return count;
     }
 public:
-    FileSystem() {
-        root = new TrieNode();
-    }
-
-    bool create(string path, int value) {
-        vector<string> p = split(path);
-        return insert(p, value);
-    }
-
-    int get(string path) {
-        vector<string> p = split(path);
-        return find(p);
+    int countRangeSum(vector<int>& nums, int lower, int upper) {
+        int len = nums.size();
+        vector<long> preSum(len, 0);
+        preSum[0] = nums[0];
+        for (int i = 1; i < len; ++i) {
+            preSum[i] = preSum[i - 1] + nums[i];
+        }
+        return mergeSort(preSum, lower, upper, 0, len);
     }
 };
 
 int main() {
-    FileSystem fs;
-    fs.create("/a", 1);
-    fs.get("/a");
+    vector<int> temp({-2,5,-1});
+    Solution s;
+    s.countRangeSum(temp, -2, 2);
 
-    vector<int> temp({1,1,2,2,1,1});
     vector<int> temp1({1,3,3,3,2});
     vector<vector<int>> matrix({
         {0,1},
