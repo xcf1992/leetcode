@@ -18,7 +18,6 @@ Example 2:
 
 Input: nums = [4,5,6,7,0,1,2], target = 3
 Output: -1
-
 */
 #include <iostream>
 #include <string>
@@ -31,7 +30,6 @@ Output: -1
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 1- take the middle and compare with target, if matches return.
 2- if middle is bigger than left side, it means left is sorted
@@ -53,7 +51,7 @@ public:
             }
 
             if (nums[mid] >= nums[left]) {
-                if (target >= nums[left] && target < nums[mid]) {
+                if (target >= nums[left] and target < nums[mid]) {
                     right = mid - 1;
                 }
                 else {
@@ -61,7 +59,7 @@ public:
                 }
             }
             else {
-                if (target > nums[mid] && target <= nums[right]) {
+                if (target > nums[mid] and target <= nums[right]) {
                     left = mid + 1;
                 }
                 else {

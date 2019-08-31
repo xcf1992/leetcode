@@ -36,7 +36,7 @@ class Solution {
 private:
     string decode(string& s, int& i) {
         string result = "";
-        while (i < s.size() && s[i] != ']') {
+        while (i < s.size() and s[i] != ']') {
             if (isalpha(s[i])) {
                 result.push_back(s[i]);
             }

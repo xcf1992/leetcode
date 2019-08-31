@@ -73,7 +73,7 @@ public:
 
         int index = it -> second;
         nums[index] = nums.back();
-        indices.find(nums[index]) -> second = index;
+        indices[nums[index]] = index;
         nums.pop_back();
         indices.erase(it);
         return true;
@@ -85,7 +85,6 @@ public:
         return nums[pos];
     }
 };
-
 /**
  * Your RandomizedSet object will be instantiated and called as such:
  * RandomizedSet obj = new RandomizedSet();
