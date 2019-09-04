@@ -40,7 +40,7 @@ rotate the input matrix in-place such that it becomes:
   [12, 6, 8, 9],
   [16, 7,10,11]
 ]
- */
+*/
 #include <iostream>
 #include <sstream>
 #include <string>

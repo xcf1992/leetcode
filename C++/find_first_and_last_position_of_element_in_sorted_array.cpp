@@ -15,7 +15,7 @@ Example 2:
 
 Input: nums = [5,7,7,8,8,10], target = 6
 Output: [-1,-1]
- */
+*/
 #include <iostream>
 #include <sstream>
 #include <string>

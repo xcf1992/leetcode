@@ -14,39 +14,57 @@
 #include "extra_data_types.hpp"
 using namespace std;
 
-class Solution {
-private:
-    int mergeSort(vector<long>& preSum, int lower, int upper, int left, int right) {
-        if (left == right - 1) {
-            return preSum[left] >= lower and preSum[right] <= upper ? 1 : 0;
+class Codec {
+public:
+
+    // Encodes a tree to a single string.
+    string serialize(TreeNode* root) {
+        return root == nullptr ? "" : to_string(root -> val) +
+        "(" + serialize(root -> left) + ")" +
+        "(" + serialize(root -> right) + ")";
+    }
+
+    // Decodes your encoded data to tree.
+    TreeNode* deserialize(string data) {
+        cout << data;
+        int pos = 0;
+        return myDeserialize(data, pos);
+    }
+
+    TreeNode* myDeserialize(string& data, int& pos) {
+        int n = data.size();
+        int i = pos;
+        bool found = false;
+
+        while (data[i] != '(' && data[i] != ')' && i < n) {
+            i++;
         }
 
-        int mid = left + (right - left) / 2;
-        int count = mergeSort(preSum, lower, upper, left, mid) + mergeSort(preSum, lower, upper, mid, right);
-        for (int i = left; i < mid; ++i) {
-            auto m = lower_bound(preSum.begin() + mid, preSum.begin() + right, preSum[i] + lower);
-            auto n = upper_bound(preSum.begin() + mid, preSum.begin() + right, preSum[i] + upper);
-            count += n - m;
+        if (i == pos) {
+            return nullptr;
         }
-        inplace_merge(preSum.begin() + left, preSum.begin() + mid, preSum.begin() + right);
-        return count;
-    }
-public:
-    int countRangeSum(vector<int>& nums, int lower, int upper) {
-        int len = nums.size();
-        vector<long> preSum(len, 0);
-        preSum[0] = nums[0];
-        for (int i = 1; i < len; ++i) {
-            preSum[i] = preSum[i - 1] + nums[i];
-        }
-        return mergeSort(preSum, lower, upper, 0, len);
+
+        int val = stoi(data.substr(pos, i - pos));
+        TreeNode* node = new TreeNode(val);
+
+        pos = i;
+        pos++;
+        node -> left = myDeserialize(data, pos);
+        pos++;
+        pos++;
+        node -> right = myDeserialize(data, pos);
+        pos++;
+        return node;
     }
 };
 
 int main() {
-    vector<int> temp({-2,5,-1});
-    Solution s;
-    s.countRangeSum(temp, -2, 2);
+    TreeNode* r = new TreeNode(2);
+    r -> left = new TreeNode(1);
+    r -> right = new TreeNode(3);
+    Codec co;
+    string x = co.serialize(r);
+    co.deserialize(x);
 
     vector<int> temp1({1,3,3,3,2});
     vector<vector<int>> matrix({

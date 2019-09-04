@@ -33,7 +33,7 @@ private:
     TreeNode* myDeserialize(string& data, int& pos) {
         int n = data.size();
         int i = pos;
-        while (data[i] != '(' && data[i] != ')' && i < n) {
+        while (data[i] != '(' and data[i] != ')' and i < n) {
             i++;
         }
 
@@ -84,7 +84,7 @@ private:
             }
         }
 
-        if (i == pos && i < n) {
+        if (i == pos and i < n) {
             return nullptr;
         }
 
@@ -133,7 +133,7 @@ private:
         }
 
         int cur = pos;
-        while (data[cur] <= '9' && data[cur] >= '0') {
+        while (data[cur] <= '9' and data[cur] >= '0') {
             cur++;
         }
         int value = stoi(data.substr(pos, cur - pos));
