@@ -1,11 +1,11 @@
 /*
- 233. Number of Digit One
- Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n.
+233. Number of Digit One
+Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n.
 
- For example:
- Given n = 13,
- Return 6, because digit 1 occurred in the following numbers: 1, 10, 11, 12, 13.
- */
+For example:
+Given n = 13,
+Return 6, because digit 1 occurred in the following numbers: 1, 10, 11, 12, 13.
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -17,7 +17,6 @@
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 Solution explanation:
 
@@ -124,7 +123,7 @@ Lets take an example, say n= 1234
 
 No of ’1’ in ones place = 1234/10 (corresponding to 1,11,21,...1221) + min(4,1)(corresponding to 1231) = 124
 
-No of ’1’ in tens place = (1234/100)*10 (corresponding to 10,11,12,...,110,111,...1919) + min(25,10)(corresponding to 1210,1211,...1219)=130
+No of ’1’ in tens place = (1234/100)*10 (corresponding to 10,11,12,...,110,111,...1119) + min(25,10)(corresponding to 1210,1211,...1219)=130
 
 No of ’1’ in hundreds place = (1234/1000)*100 (corresponding to 100,101,102,...,199) + min(135,100)(corresponding to 1100,1101...1199)=200
 
@@ -143,8 +142,8 @@ public:
         for (long i = 1; i <= n; i *= 10) {
             long divider = i * 10;
             result += (n / divider) * i;
-            if (n % divider - i + 1 > 0) {
-                result += min(i, n % divider - i + 1);
+            if (n % divider >= i) {
+                result += min(i, n % divider - i + 1); // n % divider - i + 1 will be the count, take **17 for example, there will be 10 ~ 17, 8 ones
             }
         }
         return result;

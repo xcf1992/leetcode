@@ -1,18 +1,18 @@
 /*
- 221. Maximal Square
- Given a 2D binary matrix filled with 0's and 1's, find the largest square containing only 1's and return its area.
+221. Maximal Square
+Given a 2D binary matrix filled with 0's and 1's, find the largest square containing only 1's and return its area.
 
- Example:
+Example:
 
- Input:
+Input:
 
- 1 0 1 0 0
- 1 0 1 1 1
- 1 1 1 1 1
- 1 0 0 1 0
+1 0 1 0 0
+1 0 1 1 1
+1 1 1 1 1
+1 0 0 1 0
 
- Output: 4
- */
+Output: 4
+*/
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -64,9 +64,9 @@ private:
         int result = 1;
         int bot = x + 1;
         int maxLength = length;
-        while (bot < matrix.size() && matrix[bot][y] == '1' && bot - x < length) {
+        while (bot < matrix.size() and matrix[bot][y] == '1' and bot - x < length) {
             int right = y + 1;
-            while (right < matrix[0].size() && right - y < length && matrix[bot][right] == '1') {
+            while (right < matrix[0].size() and right - y < length and matrix[bot][right] == '1') {
                 right += 1;
             }
             maxLength = min(maxLength, right - y);
@@ -88,7 +88,7 @@ public:
             for (int j = 0; j < n; j++) {
                 if (matrix[i][j] == '1') {
                     int right = j;
-                    while (right < n && matrix[i][right] == '1') {
+                    while (right < n and matrix[i][right] == '1') {
                         right += 1;
                     }
                     result = max(result, square(i, j, right - j, matrix));

@@ -8,7 +8,7 @@ Example:
 
 Input: 1->2->3->4->5->nullptr, m = 2, n = 4
 Output: 1->4->3->2->5->nullptr
- */
+*/
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -27,7 +27,7 @@ using namespace std;
 
 class Solution {
 public:
-    ListNode* reverseBetween(ListNode *head, int m, int n) {
+    ListNode* reverseBetween(ListNode* head, int m, int n) {
         if (head == nullptr or head -> next == nullptr or n == m) {
             return head;
         }

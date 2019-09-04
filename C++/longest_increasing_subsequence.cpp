@@ -24,7 +24,6 @@ Follow up: Could you improve it to O(n log n) time complexity?
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 https://www.geeksforgeeks.org/longest-monotonically-increasing-subsequence-size-n-log-n/
 Basically we are trying to log longest increasing subsequence in lis

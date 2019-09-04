@@ -34,7 +34,7 @@ The input string length won't exceed 1000.
 #include <stdio.h>
 using namespace std;
 
-class Solution {
+class Solution1 {
 public:
     int countSubstrings(string s) {
         int len = s.size();
@@ -57,6 +57,34 @@ public:
                 result += 1;
                 left -= 1;
                 right += 1;
+            }
+        }
+        return result;
+    }
+};
+
+class Solution { // dp
+public:
+    int countSubstrings(string s) {
+        int n = s.size();
+        vector<vector<bool>> dp(n, vector<bool>(n, false));
+        int result = 0;
+        for (int i = 0; i < n; ++i) {
+            result += 1;
+            dp[i][i] = true;
+            if (i > 0 and s[i] == s[i - 1]) {
+                result += 1;
+                dp[i - 1][i] = true;
+            }
+        }
+
+        for (int len = 3; len <= n; ++len) {
+            for (int i = 0; i + len - 1 < n; ++i) {
+                int j = i + len - 1;
+                if (s[i] == s[j] and dp[i + 1][j - 1]) {
+                    dp[i][j] = true;
+                    result += 1;
+                }
             }
         }
         return result;

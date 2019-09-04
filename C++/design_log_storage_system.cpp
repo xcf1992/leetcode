@@ -7,12 +7,12 @@ All domains are zero-padded decimal numbers.
 
 Design a log storage system to implement the following functions:
 
-void Put(int id, string timestamp): Given a log's unique id and timestamp,
-store the log in your storage system.
-
+void Put(int id, string timestamp):
+Given a log's unique id and timestamp, store the log in your storage system.
 
 int[] Retrieve(String start, String end, String granularity):
 Return the id of logs whose timestamps are within the range from start to end.
+
 Start and end all have the same format as timestamp.
 However, granularity means the time level for consideration.
 For example, start = "2017:01:01:23:59:59", end = "2017:01:02:23:59:59", granularity = "Day",
@@ -72,10 +72,9 @@ public:
         return result;
     }
 };
-
 /**
- * Your LogSystem object will be instantiated and called as such:
- * LogSystem obj = new LogSystem();
- * obj.put(id,timestamp);
- * vector<int> param_2 = obj.retrieve(s,e,gra);
- */
+* Your LogSystem object will be instantiated and called as such:
+* LogSystem obj = new LogSystem();
+* obj.put(id,timestamp);
+* vector<int> param_2 = obj.retrieve(s,e,gra);
+*/

@@ -39,7 +39,6 @@ Note:
 #include <set>
 #include <numeric>
 using namespace std;
-
 /*
 Intuition:
 Maybe write a base2 function first?
