@@ -24,7 +24,7 @@
 
  1 <= text.length <= 1000
  text consists of lowercase English letters.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

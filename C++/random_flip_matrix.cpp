@@ -96,4 +96,4 @@ public:
  * Solution obj = new Solution(n_rows, n_cols);
  * vector<int> param_1 = obj.flip();
  * obj.reset();
- */
+*/

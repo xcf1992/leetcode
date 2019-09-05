@@ -25,7 +25,7 @@ Note:
 1 <= S.length <= 50
 There are no nested curly brackets.
 All characters inside a pair of consecutive opening and ending curly brackets are different.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

@@ -47,7 +47,7 @@ private:
             * when d == 0, when analyzing the remainder,
             * we need avoid taking numbers with "heading zero"
             * like 0xxxx into the total count.
-            */
+           */
             if (d == 0) {
                 result -= i;
             }

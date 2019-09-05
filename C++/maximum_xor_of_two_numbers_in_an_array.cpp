@@ -84,7 +84,7 @@ private:
     * we set that bit to 1 of return value
     * otherwise we set it to be 0
     * and we will move curNode accordingly
-    */
+   */
     int find(TrieNode* root, int num) {
         TrieNode* curNode = root;
         int curValue = 0;

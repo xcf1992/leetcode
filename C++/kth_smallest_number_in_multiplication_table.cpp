@@ -55,7 +55,7 @@ public:
                 * count of number <= mid
                 * each row is like 1*i, 2*i, 3*i...n*i
                 * so the count of number <= m would be mid / i
-                */
+               */
                 count += min(mid / i, n);
             }
 

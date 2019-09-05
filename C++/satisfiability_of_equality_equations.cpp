@@ -38,7 +38,7 @@
  equations[i][0] and equations[i][3] are lowercase letters
  equations[i][1] is either '=' or '!'
  equations[i][2] is '='
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -66,7 +66,7 @@ public:
         for (int i = 0; i < 26; i++) {
             parent[i] = i;
         }
-        
+
         for (string& equation : equations) {
             if (equation[1] == '=') {
                 parent[find(parent, equation[0] - 'a')] = find(parent, equation[3] - 'a');

@@ -54,7 +54,7 @@ Example 2:
 
 Input: s1 = "abcde", s2 = "caebd"
 Output: false
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -76,7 +76,7 @@ public:
         /*
         * dp[i][j][k] identify if s1(i, i + 1, ... , i + k - 1) is scrambled as
         *                         s2(j, j + 1, ... , j + k - 1)
-        */
+       */
         vector<vector<vector<bool>>> dp(len, vector<vector<bool>>(len, vector<bool>(len + 1, false)));
         for (int k = 1; k <= len; ++k) {
             for (int i = 0; i + k <= len; ++i) {

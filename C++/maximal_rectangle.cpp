@@ -47,7 +47,7 @@ public:
                      * Consider what causes changes to the left bound of our rectangle.
                      * Since all instances of zeros occurring in the row above the current one have already been factored into the current version of left,
                      * the only thing that affects our left is if we encounter a zero in our current row.
-                     * */
+                     **/
                     left[j] = max(left[j], curLeft);
                 }
                 else {
@@ -56,7 +56,7 @@ public:
                     * cur_left is one greater than rightmost occurrence of zero we have encountered.
                     * When we "expand" the rectangle to the left, we know it can't expand past that point,
                     * otherwise it'll run into the zero.
-                    */
+                   */
                     left[j] = 0;
                     curLeft = j + 1;
                 }

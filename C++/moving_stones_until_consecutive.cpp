@@ -31,7 +31,7 @@
  1 <= b <= 100
  1 <= c <= 100
  a != b, b != c, c != a
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

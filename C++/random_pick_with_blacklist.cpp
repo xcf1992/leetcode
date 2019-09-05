@@ -87,4 +87,4 @@ public:
  * Your Solution object will be instantiated and called as such:
  * Solution obj = new Solution(N, blacklist);
  * int param_1 = obj.pick();
- */
+*/

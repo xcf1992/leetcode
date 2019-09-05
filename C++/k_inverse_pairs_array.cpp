@@ -29,7 +29,7 @@
  Note:
 
  The integer n is in the range [1, 1000] and k is in the range [0, 1000].
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -65,7 +65,7 @@ using namespace std;
  so by deducting the first line from the second line, we have
 
  dp[n][k+1] = dp[n][k] + dp[n-1][k+1] - dp[n-1][k+1-n]
- */
+*/
 class Solution {
 private:
     int MOD = 1e9 + 7;

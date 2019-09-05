@@ -52,17 +52,17 @@ class HitCounter {
 private:
     queue<int> hits;
 public:
-    /** Initialize your data structure here. */
+    /** Initialize your data structure here.*/
     HitCounter() {}
 
     /** Record a hit.
-        @param timestamp - The current timestamp (in seconds granularity). */
+        @param timestamp - The current timestamp (in seconds granularity).*/
     void hit(int timestamp) {
         hits.push(timestamp);
     }
 
     /** Return the number of hits in the past 5 minutes.
-        @param timestamp - The current timestamp (in seconds granularity). */
+        @param timestamp - The current timestamp (in seconds granularity).*/
     int getHits(int timestamp) {
         while (!hits.empty() && timestamp - hits.front() >= 300) {
             hits.pop();
@@ -76,11 +76,11 @@ private:
     vector<int> times = vector<int>(300, 0);
     vector<int> hits = vector<int>(300, 0);
 public:
-    /** Initialize your data structure here. */
+    /** Initialize your data structure here.*/
     HitCounter1() {}
 
     /** Record a hit.
-        @param timestamp - The current timestamp (in seconds granularity). */
+        @param timestamp - The current timestamp (in seconds granularity).*/
     void hit(int timestamp) {
         int index = timestamp % 300;
         if (times[index] != timestamp) {
@@ -93,7 +93,7 @@ public:
     }
 
     /** Return the number of hits in the past 5 minutes.
-        @param timestamp - The current timestamp (in seconds granularity). */
+        @param timestamp - The current timestamp (in seconds granularity).*/
     int getHits(int timestamp) {
         int total = 0;
         for (int i = 0; i < 300; i++) {
@@ -110,4 +110,4 @@ public:
  * HitCounter obj = new HitCounter();
  * obj.hit(timestamp);
  * int param_2 = obj.getHits(timestamp);
- */
+*/

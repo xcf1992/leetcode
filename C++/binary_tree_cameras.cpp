@@ -24,7 +24,7 @@
 
  The number of nodes in the given tree will be in the range [1, 1000].
  Every node has value 0.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -77,7 +77,7 @@ using namespace std;
  If it needs camera, then res++ and we return 1.
  If it's covered, we return 2.
  Otherwise, we return 0.
- */
+*/
 class Solution {
 private:
     int identify(TreeNode* root, int& result) {

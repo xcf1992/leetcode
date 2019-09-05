@@ -13,7 +13,7 @@
  Note:
  Then length of the input array is in range [1, 10,000].
  The input array may contain duplicates, so ascending order here means <=.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -85,7 +85,7 @@ using namespace std;
  Note that we don’t really need arrays to hold values for min[r] and max[l],
  by taking advantage of the recurrence relation min[r] = Math.min(min[r + 1], nums[r]) and max[l] = Math.max(max[l - 1], nums[l]).
  Also we initialized the indices i and j such that correct results will be returned even if the input array is already sorted (which requires initially j - i + 1 = 0).
- */
+*/
 class Solution {
 public:
     int findUnsortedSubarray(vector<int>& nums) {

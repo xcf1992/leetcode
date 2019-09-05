@@ -18,7 +18,7 @@ using namespace std;
  *    "C" (an operation, which isn't a round's score): Represents the last valid round's points you get were invalid and should be removed.
  * Each round's operation is permanent and could have an impact on the round before and the round after.
  * You need to return the sum of the points you could get in all the rounds.
- */
+*/
 class Solution {
 public:
     int calPoints(vector<string>& ops) {

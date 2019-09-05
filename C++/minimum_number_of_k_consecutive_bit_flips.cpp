@@ -33,7 +33,7 @@
 
  1 <= A.length <= 30000
  1 <= K <= A.length
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -68,7 +68,7 @@ using namespace std;
  Complexity
  O(N) time for one pass
  O(N) extra space for isFlipped[n].
- */
+*/
 class Solution {
 public:
     int minKBitFlips(vector<int>& A, int K) {

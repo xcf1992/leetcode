@@ -6,7 +6,7 @@
 
  (For example, [1,2,3,1,2] has 3 different integers: 1, 2, and 3.)
  Return the number of good subarrays of A.
- 
+
  Example 1:
  Input: A = [1,2,1,2,3], K = 2
  Output: 7
@@ -23,7 +23,7 @@
  1 <= A.length <= 20000
  1 <= A[i] <= A.length
  1 <= K <= A.length
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -45,7 +45,7 @@ using namespace std;
  Then f(exactly K) = f(atMost K) - f(atMost K-1).
 
  Of course, you can merge 2 for loop into ones, if you like.
- */
+*/
 class Solution {
 private:
     int atMostK(vector<int>& A, int K) {
@@ -107,7 +107,7 @@ public:
             * thus number between left and end will be all the necessary number required
             * numbers between start and left will be all duplicated number with another half
             * so each subarray starts between start and left will be a valid subarray
-            */
+           */
             if (pos.size() == K) {
                 int left = end;
                 for (auto it : pos) {

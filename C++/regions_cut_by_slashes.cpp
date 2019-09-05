@@ -131,7 +131,7 @@ public:
                         0
                     3       1
                         2
-                */
+               */
                 if (i > 0) {
                     unin(index(i - 1, j, 2), index(i, j, 0), parent);
                 }

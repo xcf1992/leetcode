@@ -23,7 +23,7 @@
  1 <= words.length <= 20
  1 <= words[i].length <= 50
  Return the pairs [i,j] in sorted order (i.e. sort them by their first coordinate in case of ties sort them by their second coordinate).
- */
+*/
 
 #include <iostream>
 #include <string>

@@ -22,7 +22,7 @@ cache.put(4, 4);    // evicts key 1.
 cache.get(1);       // returns -1 (not found)
 cache.get(3);       // returns 3
 cache.get(4);       // returns 4
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -139,4 +139,4 @@ public:
  * LFUCache* obj = new LFUCache(capacity);
  * int param_1 = obj->get(key);
  * obj->put(key,value);
- */
+*/

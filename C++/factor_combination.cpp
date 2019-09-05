@@ -1,10 +1,10 @@
 /*
  Numbers can be regarded as product of its factors. For example,
- 
+
  8 = 2 x 2 x 2;
  = 2 x 4.
  Write a function that takes an integer n and return all possible combinations of its factors.
- 
+
  Note:
  You may assume that n is always positive.
  Factors should be greater than 1 and less than n.
@@ -32,7 +32,7 @@
  [2, 4, 4],
  [4, 8]
  ]
- */
+*/
 
 #include <iostream>
 #include <string>
@@ -82,7 +82,7 @@ public:
         getFHelp(n, 2, line);
         return res;
     }
-    
+
     void getFHelp(int n, int bottom, vector<int> line) {
         for(int i=bottom; i<=sqrt(n); i++){
             if(n%i == 0) {

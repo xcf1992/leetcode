@@ -71,7 +71,7 @@ using namespace std;
  we cannot do by getting shortest subsequence from each longest increasing subsequence
  cause it may happen the deleted columns are interleaved with each other
  so the acutal possible remain columns could be much shorter
- */
+*/
 class Solution {
 public:
     int minDeletionSize(vector<string>& A) {

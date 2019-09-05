@@ -32,25 +32,40 @@ Would allow duplicates affect the run-time complexity? How and why?
 #include <stack>
 #include <stdio.h>
 using namespace std;
+/*
+When num[mid] == num[hi],
+we couldn't sure the position of minimum in mid's left or right,
+so just let upper bound reduce one.
 
-// When num[mid] == num[hi], we couldn't sure the position of minimum in mid's left or right, so just let upper bound reduce one.
+This solution is great, but I'd like to point out one thing:
+this solution guarantees to find the min value, but not necessarily the correct pivot index!
+e.g. [1,1,1,1,2,1,1], in this case, lo = 0 in the end,
+which is not the correct pivot index.
+With this "bug", it may cause error if we use this directly in LC81 - Search in Rotated Sorted Array II
+To fix this:
+*/
 class Solution {
 public:
     int findMin(vector<int>& num) {
-        int lo = 0;
-        int hi = num.size() - 1;
-        while (lo < hi) {
-            int mid = lo + (hi - lo) / 2;
-            if (num[mid] > num[hi]) {
-                lo = mid + 1;
+        int left = 0;
+        int right = num.size() - 1;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (num[mid] > num[right]) {
+                left = mid + 1;
             }
-            else if (num[mid] < num[hi]) {
-                hi = mid;
+            else if (num[mid] < num[right]) {
+                right = mid;
             }
-            else { // when num[mid] and num[hi] are same
-                hi -= 1;
+            else { // when num[mid] and num[hi] are same, fixed
+                if (right != 0 and num[right] >= num[right - 1]) {
+                    right -= 1;
+                }
+                else {
+                    return num[right];
+                }
             }
         }
-        return num[lo];
+        return num[left];
     }
 };

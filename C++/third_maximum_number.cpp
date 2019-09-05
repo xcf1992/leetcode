@@ -24,7 +24,7 @@
 
  Explanation: Note that the third maximum here means the third maximum distinct number.
  Both numbers with value 2 are both considered as second maximum.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

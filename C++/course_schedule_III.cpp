@@ -25,7 +25,7 @@
 
  The integer 1 <= d, t, n <= 10,000.
  You can't take two courses simultaneously.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -91,7 +91,7 @@ using namespace std;
  We need to complete the 95 day course by the 100TH day which will never be possible
  So either we can take 10 day one or 95 day one. But it will be only one course possible
  (Better take smaller length course so the next courses get time. Thats why Priority queues are used)
- */
+*/
 class Solution {
 public:
     int scheduleCourse(vector<vector<int>>& courses) {

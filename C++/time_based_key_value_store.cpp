@@ -2,19 +2,19 @@
  981. Time Based Key-Value Store
 
  Create a timebased key-value store class TimeMap, that supports two operations.
- 
+
  1. set(string key, string value, int timestamp)
- 
+
  Stores the key and value, along with the given timestamp.
  2. get(string key, int timestamp)
- 
+
  Returns a value such that set(key, value, timestamp_prev) was called previously, with timestamp_prev <= timestamp.
  If there are multiple such values, it returns the one with the largest timestamp_prev.
  If there are no values, it returns the empty string ("").
- 
- 
+
+
  Example 1:
- 
+
  Input: inputs = ["TimeMap","set","get","get","set","get","get"], inputs = [[],["foo","bar",1],["foo",1],["foo",3],["foo","bar2",4],["foo",4],["foo",5]]
  Output: [null,null,"bar","bar",null,"bar2","bar2"]
  Explanation:
@@ -25,21 +25,21 @@
  kv.set("foo", "bar2", 4);
  kv.get("foo", 4); // output "bar2"
  kv.get("foo", 5); //output "bar2"
- 
+
  Example 2:
- 
+
  Input: inputs = ["TimeMap","set","set","get","get","get","get","get"], inputs = [[],["love","high",10],["love","low",20],["love",5],["love",10],["love",15],["love",20],["love",25]]
  Output: [null,null,null,"","high","high","low","low"]
- 
- 
+
+
  Note:
- 
+
  All key/value strings are lowercase.
  All key/value strings have length in the range [1, 100]
  The timestamps for all TimeMap.set operations are strictly increasing.
  1 <= timestamp <= 10^7
  TimeMap.set and TimeMap.get functions will be called a total of 120000 times (combined) per test case.
- */
+*/
 
 #include <iostream>
 #include <string>
@@ -59,20 +59,20 @@ class TimeMap {
 private:
     unordered_map<string, map<int, string>> timeBasedMap;
 public:
-    /** Initialize your data structure here. */
+    /** Initialize your data structure here.*/
     TimeMap() {
         timeBasedMap.clear();
     }
-    
+
     void set(string key, string value, int timestamp) {
         timeBasedMap[key][-timestamp] = value;
     }
-    
+
     string get(string key, int timestamp) {
         if (timeBasedMap.find(key) == timeBasedMap.end()) {
             return "";
         }
-        
+
         auto it = timeBasedMap[key].lower_bound(-timestamp);
         return it == timeBasedMap[key].end() ? "" : it -> second;
     }
@@ -83,32 +83,32 @@ public:
  * TimeMap* obj = new TimeMap();
  * obj->set(key,value,timestamp);
  * string param_2 = obj->get(key,timestamp);
- */
+*/
 
 // TLE
 class TimeMap1 {
 private:
     unordered_map<string, vector<pair<int, string>>> timeBasedMap;
 public:
-    /** Initialize your data structure here. */
+    /** Initialize your data structure here.*/
     TimeMap1() {
         timeBasedMap.clear();
     }
-    
+
     void set(string key, string value, int timestamp) {
         timeBasedMap[key].push_back({timestamp, value});
     }
-    
+
     string get(string key, int timestamp) {
         if (timeBasedMap.find(key) == timeBasedMap.end()) {
             return "";
         }
-        
+
         vector<pair<int, string>> timedValues = timeBasedMap[key];
         auto it = lower_bound(timedValues.begin(), timedValues.end(), timestamp, [](pair<int, string>& a, int t) {
             return a.first < t;
         });
-        
+
         if (it == timedValues.end()) {
             return timedValues.back().second;
         }

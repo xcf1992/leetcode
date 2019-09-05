@@ -51,7 +51,7 @@ Time complexity is O(n^2 * k) since in worse case we might need to compare every
 
 How to make sure the duplicated files you find are not false positive?
 We will use several filters to compare: File size, Hash and byte by byte comparisons.
- */
+*/
 
 class Solution {
 public:

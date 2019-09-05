@@ -29,7 +29,7 @@ The garden has at least one tree.
 All coordinates are distinct.
 Input points have NO order. No order required for output.
 input types have been changed on April 15, 2019. pointslease reset to default code definition to get new method signature.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -61,7 +61,7 @@ private:
     * Returns a positive value, if OAB makes a counter-clockwise turn,
     * negative for clockwise turn,
     * and zero if the points are collinear.
-    */
+   */
     coord2_t cross(const vector<int>& O, const vector<int>& A, const vector<int>& B) {
         return (A[0] - O[0]) * (coord2_t)(B[1] - O[1]) - (A[1] - O[1]) * (coord2_t)(B[0] - O[0]);
     }

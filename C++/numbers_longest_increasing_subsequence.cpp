@@ -1,6 +1,6 @@
 /*
  Given an unsorted array of integers, find the number of longest increasing subsequence.
- 
+
  Example 1:
  Input: [1,3,5,4,7]
  Output: 2
@@ -10,7 +10,7 @@
  Output: 5
  Explanation: The length of longest continuous increasing subsequence is 1, and there are 5 subsequences' length is 1, so output 5.
  Note: Length of the given array will be not exceed 2000 and the answer is guaranteed to be fit in 32-bit signed int.
- */
+*/
 
 #include <iostream>
 #include <sstream>
@@ -34,19 +34,19 @@ public:
         if (n == 0) {
             return 0;
         }
-        
+
         int result = 1;
         int curLength = 1;
         vector<int> length(n, 1);
         vector<int> count(n, 1);
-        
+
         for (int i = 1; i < n; i++) {
             length[i] = 1;
             count[i] = 1;
             if (curLength == 1) {
                 result += 1;
             }
-            
+
             for (int j = 0; j < i; j++) {
                 if (nums[i] > nums[j]) {
                     if (length[j] + 1 == length[i]) {
@@ -69,7 +69,7 @@ public:
                 }
             }
         }
-        
+
         return result;
     }
 };
@@ -81,11 +81,11 @@ public:
         if (n == 0) {
             return 0;
         }
-        
+
         int curLength = 1;
         vector<int> length(n, 1);
         vector<int> count(n, 1);
-        
+
         for (int i = 1; i < n; i++) {
             for (int j = 0; j < i; j++) {
                 if (nums[i] > nums[j]) {
@@ -100,7 +100,7 @@ public:
             }
             curLength = max(curLength, length[i]);
         }
-        
+
         int result = 0;
         for (int i = 0; i < n; i++) {
             result += length[i] == curLength ? count[i] : 0;

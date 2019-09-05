@@ -14,7 +14,7 @@ using namespace std;
  * 1. All letters in this word are capitals, like "USA".
  * 2. All letters in this word are not capitals, like "leetcode".
  * 3. Only the first letter in this word is capital if it has more than one letter, like "Google".
- */
+*/
 class Solution {
 public:
     bool detectCapitalUse(string word) {

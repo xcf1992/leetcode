@@ -64,7 +64,7 @@
  N is guaranteened to be a power of 2.
  If you want to know more about the quad tree, you can refer to its wiki.
  The logic OR operation is define as this: "A or B" is true if A is true, or if B is true, or if both A and B are true.
- */
+*/
 #include <iostream>
 #include <sstream>
 #include <string>

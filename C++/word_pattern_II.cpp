@@ -18,7 +18,7 @@ Input: pattern = "aabb", str = "xyzabcxzyabc"
 Output: false
 Notes:
 You may assume both pattern and str contains only lowercase letters.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

@@ -21,7 +21,7 @@
  Explanation: Print "aaa" first and then print "b" from the second place of the string,
  which will cover the existing character 'a'.
  Hint: Length of the given string will not exceed 100.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -55,12 +55,12 @@ using namespace std;
  As shown above, if we have s.charAt(start + k) == s.charAt(start + len),
  we can make it in one turn when we print this character (i.e. b here)
  This case we can reduce our turns to dp[start][start + k] + dp[start + k + 1][start + len] - 1
- */
+*/
 class Solution {
     /*
     * I suggest to do this treatment, before go directly DP.
     * Shorten the original string, like reduce aaabbb to ab.
-    */
+   */
     string polish(string s) {
         int pos = 0;
         string result = "";

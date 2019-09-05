@@ -30,7 +30,7 @@
  1 <= A.length <= 10000
  1 <= K <= 10000
  -100 <= A[i] <= 100
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

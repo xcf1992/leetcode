@@ -16,7 +16,6 @@ Example 2:
 
 Input: [4,5,6,7,0,1,2]
 Output: 0
-
 */
 #include <iostream>
 #include <string>

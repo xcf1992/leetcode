@@ -39,7 +39,7 @@
  [4,6,8,10]
  [2,4,6,8,10]
  [2,6,10]
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -80,7 +80,7 @@ public:
                     /*
                     * if there are subsequence end at j with gap, add together,
                     * which ensure there are at least three elements in this arithmetic sequence
-                    */
+                   */
                     dp[i][gap] += dp[j][gap];
                     result += dp[j][gap];
                 }

@@ -40,7 +40,7 @@
  1 <= stones.length <= 30
  2 <= K <= 30
  1 <= stones[i] <= 100
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -90,7 +90,7 @@ so,We have 1 = n -m(K-1) ----> so we have
  we can't merge K + 1 piles into one pile.
  We can merge K + K - 1 piles into one pile,
  We can merge K + (K - 1) * steps piles into one pile.
- */
+*/
 class Solution {
 public:
     int mergeStones(vector<int>& stones, int K) {
@@ -198,7 +198,7 @@ public:
  Init: dp[i][i] = 0 (Already a pile)
 
  Answer: dp[1][len] (len is the stones number)
- */
+*/
 class Solution2 { // solution when K == 2
 public:
     int mergeStones(vector<int>& stones, int K) {

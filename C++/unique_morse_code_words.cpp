@@ -32,7 +32,7 @@
  The length of words will be at most 100.
  Each words[i] will have length in range [1, 12].
  words[i] will only consist of lowercase letters.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

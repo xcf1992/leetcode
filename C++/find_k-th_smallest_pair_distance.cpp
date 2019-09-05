@@ -19,7 +19,7 @@
  2 <= len(nums) <= 10000.
  0 <= nums[i] < 1000000.
  1 <= k <= len(nums) * (len(nums) - 1) / 2.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -48,7 +48,7 @@ using namespace std;
  Eventually our algorithm will converge when we find a count = K for a given m
  and every count between [start,m) will be smaller than k,
  forcing start to be incremented to the point where start == m which is our result.
- */
+*/
 class Solution {
 private:
     // return number of pairs with distance <= mi

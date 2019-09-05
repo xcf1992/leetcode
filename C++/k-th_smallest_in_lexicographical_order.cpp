@@ -15,7 +15,7 @@
  Explanation:
  The lexicographical order is [1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9], so the second smallest number is 10.
  Seen this question in a real interview before?
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -73,13 +73,13 @@ using namespace std;
             1                           2
         /   |   \                   /   |   \
        10   11...19                20   21...29
- */
+*/
 class Solution {
 private:
     /*
     * we need to calculate how many elements are there between left and right
     * so for each level if left <= n, we need to check if all nodes in current level is smaller than n or only a part of them
-    */
+   */
     int calSteps(long n, long left, long right) {
         int steps = 0;
         while (left <= n) {
@@ -116,7 +116,7 @@ public:
  424238336
 
  Time limit exceed
- */
+*/
 class Solution1 {
 private:
     int find(int n, int k, long long number, int& rank) {

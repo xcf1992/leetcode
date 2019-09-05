@@ -24,7 +24,7 @@
 
  1 <= A.length <= 20000
  1 <= A[i] <= 20000
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -51,7 +51,7 @@ using namespace std;
 
  Q. why do we plus mod before return?
  A: in Cpp and Java, mod on negative number will still get a negative number.
- */
+*/
 class Solution {
 private:
     int mod = 1e9 + 7;
@@ -82,7 +82,7 @@ public:
  [5,69,89,92,31,16,25,45,63,40,16,56,24,40,75,82,40,12,50,62,92,44,67,38,92,22,91,24,26,21,100,42,23,56,64,43,95,76,84,79,89,4,16,94,16,77,92,9,30,13]
  my outcome is: 857876213
  the expected is: 857876214
- */
+*/
 class Solution1 {
 private:
     int mod = 1e9 + 7;

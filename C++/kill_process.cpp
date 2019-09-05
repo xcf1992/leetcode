@@ -10,12 +10,12 @@ We use two list of integers to represent a list of processes, where the first li
 Now given the two lists, and a PID representing a process you want to kill, return a list of PIDs of processes that will be killed in the end. You should assume that when a process is killed, all its children processes will be killed. No order is required for the final answer.
 
 Example 1:
-Input: 
+Input:
 pid =  [1, 3, 10, 5]
 ppid = [3, 0, 5, 3]
 kill = 5
 Output: [5,10]
-Explanation: 
+Explanation:
            3
          /   \
         1     5
@@ -25,7 +25,7 @@ Kill 5 will also kill 10.
 Note:
 The given kill id is guaranteed to be one of the given PIDs.
 n >= 1.
- * */
+ **/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -52,7 +52,7 @@ public:
         while (!bfs.empty()) {
             kill = bfs.front();
             bfs.pop();
-            
+
             result.push_back(kill);
             for (int p : child[kill]) {
                 bfs.push(p);

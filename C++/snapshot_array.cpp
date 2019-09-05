@@ -32,7 +32,7 @@ At most 50000 calls will be made to set, snap, and get.
 0 <= index < length
 0 <= snap_id < (the total number of times we call snap())
 0 <= val <= 10^9
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -81,4 +81,4 @@ public:
  * obj->set(index,val);
  * int param_2 = obj->snap();
  * int param_3 = obj->get(index,snap_id);
- */
+*/

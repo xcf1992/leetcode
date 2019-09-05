@@ -21,7 +21,7 @@
  A will have length between 2 and 2000.
  Each A[i] will be between 1 and 30000.
  K will be between 1 and A.length * (A.length - 1) / 2.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -110,7 +110,7 @@ public:
  1. we first put all the smallest elments, with A[0] / A[i]
  2. then for each poped item x, we put x.first + 1/ x.second,
     and we sure x.first / x.second or x.first / x.second + 1 already in or will be in the pq
- */
+*/
 class Solution1 { // 6.61%
 public:
     vector<int> kthSmallestPrimeFraction(vector<int>& A, int K) {

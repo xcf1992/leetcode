@@ -1,13 +1,13 @@
 /*
  Given a string which contains only lowercase letters, remove duplicate letters so that every letter appear once and only once. You must make sure your result is the smallest in lexicographical order among all possible results.
- 
+
  Example:
  Given "bcabc"
  Return "abc"
- 
+
  Given "cbacdcbc"
  Return "acdb"
- */
+*/
 
 #include <iostream>
 #include <string>
@@ -29,7 +29,7 @@ public:
         for (char c : s) {
             count[c - 'a'] += 1;
         }
-        
+
         vector<bool> visited(26, false);
         string result = "";
         for (char c : s) {
@@ -37,7 +37,7 @@ public:
             if (visited[c - 'a']) {
                 continue;
             }
-            
+
             while (!result.empty() && c < result.back() && count[result.back() - 'a'] > 0) {
                 visited[result.back() - 'a'] = false;
                 result.pop_back();

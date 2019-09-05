@@ -56,7 +56,7 @@ Explanation: A = [2,1,5,3], B = [2,1,5,3,4]
 Note:
 
 1 <= B.length <= 100
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

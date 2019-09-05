@@ -31,7 +31,7 @@
  // User 1's news feed should return a list with 1 tweet id -> [5],
  // since user 1 is no longer following user 2.
  twitter.getNewsFeed(1);
- */
+*/
 
 #include <iostream>
 #include <sstream>
@@ -61,10 +61,10 @@ private:
     unordered_map<int, vector<Tweet>> tweets;
     int curTime = 0;
 public:
-    /** Initialize your data structure here. */
+    /** Initialize your data structure here.*/
     Twitter() {}
 
-    /** Compose a new tweet. */
+    /** Compose a new tweet.*/
     void postTweet(int userId, int tweetId) {
         tweets[userId].push_back(Tweet(tweetId, curTime));
         curTime += 1;
@@ -74,7 +74,7 @@ public:
      * Retrieve the 10 most recent tweet ids in the user's news feed.
      * Each item in the news feed must be posted by users who the user followed or by the user herself.
      * Tweets must be ordered from most recent to least recent.
-     */
+    */
     vector<int> getNewsFeed(int userId) {
         auto comp = [](Tweet& a, Tweet& b) {
             return a.time < b.time;
@@ -97,12 +97,12 @@ public:
         return result;
     }
 
-    /** Follower follows a followee. If the operation is invalid, it should be a no-op. */
+    /** Follower follows a followee. If the operation is invalid, it should be a no-op.*/
     void follow(int followerId, int followeeId) {
         iFollow[followerId].insert(followeeId);
     }
 
-    /** Follower unfollows a followee. If the operation is invalid, it should be a no-op. */
+    /** Follower unfollows a followee. If the operation is invalid, it should be a no-op.*/
     void unfollow(int followerId, int followeeId) {
         if (iFollow[followerId].find(followeeId) == iFollow[followerId].end()) {
             return;
@@ -118,4 +118,4 @@ public:
  * vector<int> param_2 = obj.getNewsFeed(userId);
  * obj.follow(followerId,followeeId);
  * obj.unfollow(followerId,followeeId);
- */
+*/

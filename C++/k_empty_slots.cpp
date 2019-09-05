@@ -39,7 +39,7 @@ Note:
 1 <= bulbs[i] <= N
 bulbs is a permutation of numbers from 1 to N.
 0 <= K <= 20000
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

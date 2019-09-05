@@ -24,7 +24,7 @@
 
  Input: nums = [1,2,2], n = 5
  Output: 0
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -59,7 +59,7 @@ using namespace std;
  由于43比58小，根据规则1，可以把区间从[0,58)扩展到[0,101)，刚好覆盖了[1,100]内的所有数。
 
  最终结果是添加2个数，8和29，就可以组合出[1,100]内的所有整数。
- */
+*/
 class Solution {
 public:
     int minPatches(vector<int>& nums, int n) {

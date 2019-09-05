@@ -17,7 +17,7 @@ Example 3:
 
 Input: ")("
 Output: [""]
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

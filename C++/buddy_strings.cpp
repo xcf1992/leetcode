@@ -30,7 +30,7 @@
  0 <= A.length <= 20000
  0 <= B.length <= 20000
  A and B consist only of lowercase letters.
- */
+*/
 #include <iostream>
 #include <sstream>
 #include <string>

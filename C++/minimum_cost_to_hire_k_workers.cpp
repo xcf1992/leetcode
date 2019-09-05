@@ -28,7 +28,7 @@
  1 <= quality[i] <= 10000
  1 <= wage[i] <= 10000
  Answers within 10^-5 of the correct answer will be considered correct.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

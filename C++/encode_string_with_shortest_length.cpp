@@ -33,7 +33,7 @@
  Input: "abbbabbbcabbbabbbc"
  Output: "2[2[abbb]c]"
  Explanation: "abbbabbbc" occurs twice, but "abbbabbbc" can also be encoded to "2[abbb]c", so one answer can be "2[2[abbb]c]".
- */
+*/
 
 #include <iostream>
 #include <string>

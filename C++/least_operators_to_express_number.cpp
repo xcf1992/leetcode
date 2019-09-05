@@ -38,7 +38,7 @@ Note:
 
 2 <= x <= 100
 1 <= target <= 2 * 10^8
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -102,7 +102,7 @@ and we either subtract rr blocks or add (x-r) of them. The base cases are easily
 
 pos the number of operations needed to get y % (x ^ (k+1))
 neg the number of operations needed to get x ^ (k + 1) - y % (x ^ (k + 1))
- * */
+ **/
 class Solution {
 public:
     int leastOpsExpressTarget(int x, int target) {

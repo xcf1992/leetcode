@@ -21,7 +21,7 @@
  Only "AA" won't be regarded as rewardable owing to more than one absent times.
 
  Note: The value of n won't exceed 100,000.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -200,7 +200,7 @@ The time complexity is O(n).
 Since 3 arrays are used to save P(n), L(n), A(n), the total size is 3n.
 
 The space complexity is O(n).
- */
+*/
 class Solution {
 private:
     int MOD = 1e9 + 7;

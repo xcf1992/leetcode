@@ -1,6 +1,6 @@
 /*
  Given an n-ary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
- 
+
  For example, given a 3-ary tree:
         1
     /   |  \
@@ -10,7 +10,7 @@
 
  Return its postorder traversal as: [5,6,3,2,4,1].
  Note: Recursive solution is trivial, could you do it iteratively?
- */
+*/
 
 #include <iostream>
 #include <sstream>
@@ -33,9 +33,9 @@ class Node {
 public:
     int val = NULL;
     vector<Node*> children;
-    
+
     Node() {}
-    
+
     Node(int _val, vector<Node*> _children) {
         val = _val;
         children = _children;
@@ -67,7 +67,7 @@ private:
         if (root == nullptr) {
             return;
         }
-        
+
         for (Node* child : root -> children) {
             traversal(child, result);
         }

@@ -27,7 +27,7 @@
 
  1 <= N <= 1000.
  0 <= nums[i] <= 2^16.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -59,7 +59,7 @@ using namespace std;
  Those that are familiar with the Sprague-Grundy theorem may know that this game is a misère-form game,
  meaning the theorem does not apply,
  and giving a big hint that there may exist a simpler solution.
- */
+*/
 class Solution {
 public:
     bool xorGame(vector<int>& nums) {

@@ -31,7 +31,7 @@
 
  D is a subset of digits '1'-'9' in sorted order.
  1 <= N <= 10^9
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -79,7 +79,7 @@ public:
         /*
         * for any number length less than N,
         * the total count of each length is (D.size()) ^ i
-        */
+       */
         long result = 0;
         int n = D.size();
         for (int i = 1; i < length; i++) {

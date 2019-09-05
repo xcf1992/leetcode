@@ -16,7 +16,7 @@
  words[i] has length in range [1, 10].
  S has length in range [0, 500].
  All characters in words[i] and S are lowercase letters.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

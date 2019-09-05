@@ -17,7 +17,7 @@ e
 
 Explanation:
 'e' is the letter that was added.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

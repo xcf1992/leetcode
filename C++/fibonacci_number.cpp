@@ -27,7 +27,7 @@
  Note:
 
  0 ≤ N ≤ 30.
- */
+*/
 
 #include <iostream>
 #include <string>

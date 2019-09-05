@@ -17,7 +17,7 @@
   / \
  1   3
  In the example above, if we want to search the value 5, since there is no node with value 5, we should return NULL.
- */
+*/
 
 #include <iostream>
 #include <sstream>

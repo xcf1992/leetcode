@@ -32,7 +32,7 @@ Constraints:
 1 <= books.length <= 1000
 1 <= books[i][0] <= shelf_width <= 1000
 1 <= books[i][1] <= 1000
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

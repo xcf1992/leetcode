@@ -28,7 +28,7 @@
 
  3 <= A.length <= 10000
  1 <= A[i] <= 10^6
- */
+*/
 
 #include <iostream>
 #include <string>
@@ -60,7 +60,7 @@ using namespace std;
  as this triple gives maximum perimeter.
  Hence, if arr[i] < arr[i+1] + arr[i+2] (0 <= i <= n-3)in the sorted array then arr[i], arr[i+1] and arr[i+2] forms a triangle.
  Below is the simple implementation of this concept:
- */
+*/
 class Solution {
 public:
     int largestPerimeter(vector<int>& A) {

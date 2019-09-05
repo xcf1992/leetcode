@@ -21,7 +21,7 @@
  intervals will have length in range [1, 3000].
  intervals[i] will have length 2, representing some integer interval.
  intervals[i][j] will be an integer in [0, 10^8].
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -170,7 +170,7 @@ using namespace std;
  then its largest two elements are maximized.
  When all the intervals are processed,
  S_(n-1) will be a minimum intersection set of the whole input array and m_(n-1) is the minimum size we are looking for.
- */
+*/
 // cause we need to maximize the elements in the smallest intersection set, so we want to prcoess intervals with larger
 // start ponit when end point is the same. Thus we will pick larger element, since we use start point to value to detemine
 // if we need add new bigger element to the intersection set.

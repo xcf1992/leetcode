@@ -64,7 +64,7 @@
  1 <= positions.length <= 1000.
  1 <= positions[i][0] <= 10^8.
  1 <= positions[i][1] <= 10^6.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -90,7 +90,7 @@ using namespace std;
  The key point of this solution is we first get all sorted coordinates of droped squares,
  and map the coordinates to index.
  So we can easily update and query height.
- */
+*/
 class Solution {
 private:
     int query(int left, int right, vector<int>& heights) {

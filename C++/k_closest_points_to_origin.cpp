@@ -29,7 +29,7 @@
  1 <= K <= points.length <= 10000
  -10000 < points[i][0] < 10000
  -10000 < points[i][1] < 10000
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

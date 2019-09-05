@@ -21,7 +21,7 @@
 
  Return:
  2
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -86,7 +86,7 @@ using namespace std;
  the repetitive part
  the suffix part after repetitive pattern (incomplete repetitive pattern remnant)
  All you have to do is add up the repeat counts of the 3 parts.
- */
+*/
 class Solution {
 public:
     int getMaxRepetitions(string s1, int n1, string s2, int n2) {

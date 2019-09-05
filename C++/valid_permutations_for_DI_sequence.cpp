@@ -28,7 +28,7 @@
 
  1 <= S.length <= 200
  S consists only of characters from the set {'D', 'I'}.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -96,7 +96,7 @@ we can only choose those bigger than 2 because we need "increase".
 So we choose 3 and 4, noticing that 3 and 4 is the 2nd smallest and 3rd smallest in the rest non-select-yet digit [1,3,4].
 
 https://leetcode.com/problems/valid-permutations-for-di-sequence/discuss/168278/C%2B%2BJavaPython-DP-Solution-O(N2)
- */
+*/
 class Solution {
 private:
     int mod = 1e9 + 7;
@@ -151,7 +151,7 @@ public:
  It is relatively easy to deduce the recursion from this fact.
 
  time complexity is O(n^3)
- */
+*/
 class Solution1 {
 private:
     int MOD = 1e9 + 7;

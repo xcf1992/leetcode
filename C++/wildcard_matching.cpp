@@ -58,7 +58,7 @@ private:
      * 0: reach the end of s but unmatched
      * 1: unmatched without reaching the end of s
      * 2: matched
-     */
+    */
     int check(string& s, string& p, int si, int pi) {
         if (si == s.size() and pi == p.size()) {
             return 2;

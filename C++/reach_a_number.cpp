@@ -68,7 +68,7 @@ public:
         * So let's consider a candidate answer of k+1, which changes delta by k+1.
         * If this is odd, then delta will be even and we can have an answer of k+1.
         * Otherwise, delta will be odd, and we will have an answer of k+2.
-        */
+       */
         while ((cur - target) % 2 != 0) {
             cur += n;
             n += 1;

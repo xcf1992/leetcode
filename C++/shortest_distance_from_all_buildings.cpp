@@ -24,7 +24,7 @@
  travel distance of 3+3+1=7 is minimal. So return 7.
  Note:
  There will be at least one building. If it is not possible to build such house according to the above rules, return -1.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

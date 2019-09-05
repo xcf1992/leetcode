@@ -43,7 +43,7 @@
  0 <= lamps.length <= 20000
  0 <= queries.length <= 20000
  lamps[i].length == queries[i].length == 2
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

@@ -61,7 +61,7 @@
  ]
 
  Return false. Because two of the rectangles overlap with each other.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -123,7 +123,7 @@ The real question is whether it can also be true for some non-perfect rectangle.
  In either case (adding or removing rectangle),
  there is no way to keep the number of appearance of all points even,
  therefore condition 2 cannot be true for non-perfect rectangles.
- */
+*/
 class Solution {
 private:
     void update(unordered_set<string>& points, string p) {

@@ -47,7 +47,6 @@ If M[i][j] = 1, then M[j][i] = 1.
 #include <numeric>
 using namespace std;
 
-//https://leetcode.com/problems/friend-circles/discuss/101336/Java-solution-Union-Find
 class Solution {
 private:
     int find(int num, vector<int>& friends) {
@@ -67,11 +66,10 @@ private:
         if (count[f1] > count[f2]) {
             friends[f2] = f1;
             count[f1] += count[f2];
+            return;
         }
-        else {
-            friends[f1] = f2;
-            count[f2] += count[f1];
-        }
+        friends[f1] = f2;
+        count[f2] += count[f1];
     }
 public:
     int findCircleNum(vector<vector<int>>& M) {

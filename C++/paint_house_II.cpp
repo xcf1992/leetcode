@@ -20,7 +20,7 @@ Explanation: Paint house 0 into color 0, paint house 1 into color 2. Minimum cos
              Or paint house 0 into color 2, paint house 1 into color 0. Minimum cost: 3 + 2 = 5.
 Follow up:
 Could you solve it in O(nk) runtime?
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

@@ -17,7 +17,7 @@
 
  1 <= heights.length <= 100
  1 <= heights[i] <= 100
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

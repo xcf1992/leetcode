@@ -113,7 +113,7 @@ public:
  Your NestedIterator object will be instantiated and called as such:
  NestedIterator i(nestedList);
  while (i.hasNext()) cout << i.next();
- */
+*/
 
 int main() {
     Solution s;

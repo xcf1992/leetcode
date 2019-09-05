@@ -26,7 +26,7 @@ Example 2:
 Input: "LL"
 Output: false
 Explanation: The robot moves left twice. It ends up two "moves" to the left of the origin. We return false because it is not at the origin at the end of its moves.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

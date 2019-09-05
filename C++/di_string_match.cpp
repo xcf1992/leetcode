@@ -26,7 +26,7 @@
 
  1 <= S.length <= 1000
  S only contains characters "I" or "D".
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -54,7 +54,7 @@ using namespace std;
  Keep track of the smallest and largest element we haven't placed.
  If we see an 'I', place the small element;
  otherwise place the large element.
- */
+*/
 class Solution {
 public:
     vector<int> diStringMatch(string S) {

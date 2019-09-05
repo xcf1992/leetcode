@@ -56,12 +56,12 @@ public:
         }
     }
 
-    /** @return whether we have a next smallest number */
+    /** @return whether we have a next smallest number*/
     bool hasNext() {
         return !stk.empty();
     }
 
-    /** @return the next smallest number */
+    /** @return the next smallest number*/
     int next() {
         TreeNode* cur = stk.top();
         stk.pop();
@@ -81,4 +81,4 @@ public:
  * BSTIterator* obj = new BSTIterator(root);
  * int param_1 = obj->next();
  * bool param_2 = obj->hasNext();
- */
+*/

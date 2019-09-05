@@ -11,7 +11,7 @@
  Explanation: You could delete the character 'c'.
  Note:
  The string will only contain lowercase characters a-z. The maximum length of the string is 50000.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

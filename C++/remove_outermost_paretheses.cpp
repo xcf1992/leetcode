@@ -43,7 +43,7 @@
  S.length <= 10000
  S[i] is "(" or ")"
  S is a valid parentheses string
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

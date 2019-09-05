@@ -29,7 +29,7 @@
  11
  are considered different island shapes, because we do not consider reflection / rotation.
  Note: The length of each dimension in the given grid does not exceed 50.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

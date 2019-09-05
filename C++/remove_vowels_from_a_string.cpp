@@ -16,7 +16,7 @@ Note:
 
 S consists of lowercase English letters only.
 1 <= S.length <= 1000
- */
+*/
 #include <iostream>
 #include <sstream>
 #include <string>

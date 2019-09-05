@@ -44,7 +44,7 @@ using namespace std;
 
  因为j-i>=2，所以更新集合的时候应当推迟一步，即分析完sm[i]之后才将sm[i-1]%k加入集合之中
  注意k = 0的情况，因为模0操作是不被允许的，所以需要单独处理
- */
+*/
 class Solution {
 public:
     bool checkSubarraySum(vector<int>& nums, int k) {

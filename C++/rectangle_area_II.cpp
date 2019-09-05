@@ -23,7 +23,7 @@ Note:
 rectanges[i].length = 4
 0 <= rectangles[i][j] <= 10^9
 The total area covered by all rectangles will never exceed 2^63 - 1 and thus will fit in a 64-bit signed integer.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -86,7 +86,7 @@ using namespace std;
  We can use the fact that our remove(...) operation will always be on an interval that was previously added.
  Let's store all the (x1, x2) intervals in sorted order.
  Then, we can query() in linear time using a technique similar to a classic LeetCode problem, Merge Intervals.
- */
+*/
 class Solution {
 private:
     int mod = 1e9 + 7;
@@ -135,7 +135,7 @@ public:
             * then when check if a segment is covered or not,
             * we always check the start point : if (count[i] > 0) cur_x_sum += x[i + 1] - x[i];
             * This is how the magic happens :)
-            */
+           */
             cur_x_sum = 0;
             for (int i = 0; i < x.size(); i++) {
                 if (count[i] > 0) {

@@ -89,7 +89,7 @@ if p[j - 1] == '*' and the pattern repeats for at least 1 times.
  *      1) "x*" repeats 0 time and matches empty: f[i][j - 2]
  *      2) "x*" repeats >= 1 times and matches "x*x": s[i - 1] == x and f[i - 1][j]
  * '.' matches any single character
- */
+*/
 class Solution {
 public:
     bool isMatch(string s, string p) {

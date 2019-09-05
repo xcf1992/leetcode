@@ -23,7 +23,7 @@ Note:
 1 <= A.length <= 100
 1 <= A[i] <= 1000
 1 <= K <= 2000
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

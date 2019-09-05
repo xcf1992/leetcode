@@ -75,7 +75,7 @@ using namespace std;
  we use a map count to record for each line how many words cnt can be put when starting with word i.
  So when we scan each line of the screen, we first get the starting word should be put on this line.
  If this starting words is already in the map, then just read it; otherwise, create a new entry in this map.
- */
+*/
 class Solution {
 public:
     int wordsTyping(vector<string>& sentence, int rows, int cols) {

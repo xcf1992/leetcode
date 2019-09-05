@@ -40,7 +40,7 @@
 
  The tree will have between 1 and 1000 nodes.
  Each node's value will be between 0 and 1000.
- */
+*/
 
 #include <iostream>
 #include <string>

@@ -25,7 +25,7 @@
  Note:
  The length of the input string will fit in range [1, 105].
  The input string will only contain the character '*' and digits '0' - '9'.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -52,7 +52,7 @@ using namespace std;
  For example, * cannot be '0', so ** has 15 instead of 16 possibilities,
  because "20" is excluded.
  But the time complexity is still O(n).
- */
+*/
 class Solution {
 private:
     int MOD = 1e9 + 7;

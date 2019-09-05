@@ -42,7 +42,7 @@ Constraints:
 1 <= expression.length <= 50
 expression[pos] consists of '{', '}', ','or lowercase English letters.
 The given expression represents a set of words based on the grammar given in the description.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

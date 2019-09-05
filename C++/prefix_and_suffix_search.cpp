@@ -19,7 +19,7 @@
  words[i] has length in range [1, 10].
  prefix, suffix have lengths in range [0, 10].
  words[i] and prefix, suffix queries consist of lowercase letters only.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -38,7 +38,7 @@ using namespace std;
  For a word like "test", consider "#test", "t#test", "st#test", "est#test", "test#test".
  Then if we have a query like prefix = "te", suffix = "t",
  we can find it by searching for something we've inserted starting with "t#te".
- */
+*/
 struct Node {
     int weight;
     vector<Node*> next;
@@ -97,4 +97,4 @@ public:
  * Your WordFilter object will be instantiated and called as such:
  * WordFilter obj = new WordFilter(words);
  * int param_1 = obj.f(prefix,suffix);
- */
+*/

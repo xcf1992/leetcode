@@ -67,7 +67,7 @@
  Follow up:
 
  Could you solve it without looking up any of the node's values?
- */
+*/
 
 #include <iostream>
 #include <string>

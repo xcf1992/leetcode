@@ -33,7 +33,7 @@
  0 <= rods.length <= 20
  1 <= rods[i] <= 1000
  The sum of rods is at most 5000.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -132,7 +132,7 @@ public:
  Thus, dp[i][j] comes from dp[i-1][rods[i]-j], dp[i][j] = dp[i-1][rods[i]-j]+j
 
  After all, just output dp[n][0].
- */
+*/
 class Solution {
 private:
     int maxLength = 5000; // as the sum could be at most 5000

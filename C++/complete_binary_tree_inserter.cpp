@@ -107,7 +107,7 @@ public:
  * CBTInserter obj = new CBTInserter(root);
  * int param_1 = obj.insert(v);
  * TreeNode* param_2 = obj.get_root();
- */
+*/
 
 class CBTInserter {
 private:

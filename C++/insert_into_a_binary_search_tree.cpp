@@ -28,7 +28,7 @@
  1   3
       \
        4
- */
+*/
 
 #include <iostream>
 #include <sstream>

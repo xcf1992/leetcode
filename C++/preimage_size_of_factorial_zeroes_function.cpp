@@ -18,7 +18,7 @@
  Note:
 
  K will be an integer in the range [0, 10^9].
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -58,7 +58,7 @@ using namespace std;
  (this is a direct result of the fact that the number of factor 5 in x! will change whenever x is an integer multiple of 5).
  The step of the jump will be given by the number of factor 5 in x (no factorial).
  For example, K will jump by 1 step at x = 5, 10, 15, 20, but by 2 steps at 25, as demonstrated in the following plot:
- */
+*/
 class Solution {
 private:
     long trailingZeros(long x) {
@@ -103,7 +103,7 @@ public:
  Note that x! will always have at least x/5 trailing zeros,
  therefore, if y is the largest integer such that y! has no more than K trailing zeros,
  then we have y <= 5 * (K + 1), which can serve as the upper bound of our binary search.
- */
+*/
 class Solution1 {
 private:
     long trailingZeros(long x) {

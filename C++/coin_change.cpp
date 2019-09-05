@@ -34,7 +34,7 @@ using namespace std;
  dynamic problem
  dp[i] means minimum number coins used to make amount i
  dp[j] = min{dp[j - coins[x]]}, while x >= 0 && x < coins.size() && j >= coins[x]
- */
+*/
 class Solution {
 public:
     int coinChange(vector<int>& coins, int amount) {

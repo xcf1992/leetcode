@@ -10,7 +10,7 @@
  Note:
  The input n is a positive integer represented by string, whose length will not exceed 18.
  If there is a tie, return the smaller one as answer.
- */
+*/
 #include <iostream>
 #include <sstream>
 #include <string>

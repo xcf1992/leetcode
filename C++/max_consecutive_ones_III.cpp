@@ -25,7 +25,7 @@
  1 <= A.length <= 20000
  0 <= K <= A.length
  A[i] is 0 or 1
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

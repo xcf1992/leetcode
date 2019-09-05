@@ -29,7 +29,7 @@
 
  Note:
  You may assume k is always valid, ie: k is always smaller than input array's size for non-empty array.
- */
+*/
 
 #include <iostream>
 #include <string>

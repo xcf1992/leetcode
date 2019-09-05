@@ -37,7 +37,7 @@
  0 <= M <= 10^9
  1 <= N <= 3000
  A reachable node is a node that can be travelled to using at most M moves starting from node 0.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -90,7 +90,7 @@ public:
             if (seen.find(cur) != seen.end()) {
                 continue;
             }
-            
+
             seen[cur] = moves;
             for (auto& next : distance[cur]) {
                 int leftMoves = moves - next.second - 1;

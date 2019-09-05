@@ -241,4 +241,4 @@ public:
  * NumAray obj = new NumAray(nums);
  * obj.update(i,val);
  * int param_2 = obj.sumRange(i,j);
- */
+*/

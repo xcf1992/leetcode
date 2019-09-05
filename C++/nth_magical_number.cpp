@@ -28,7 +28,7 @@
  1 <= N <= 10^9
  2 <= A <= 40000
  2 <= B <= 40000
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -59,7 +59,7 @@ using namespace std;
  Upper bound is N * min(A, B), I just set right = 10 ^ 14.
 
  binary search, find the smallest x that x / A + x / B - x / lcm = N
- */
+*/
 class Solution {
 private:
     int mod = 1e9 + 7;

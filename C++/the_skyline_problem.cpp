@@ -32,7 +32,7 @@
  the three lines of height 5 should be merged into one in the final output as such: [...[2 3], [4 5], [12 7], ...]
  Credits:
  Special thanks to @stellari for adding this problem, creating these two awesome images and all test cases.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

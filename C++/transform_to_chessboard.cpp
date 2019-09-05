@@ -38,7 +38,7 @@
 
  board will have the same number of rows and columns, a number in the range [2, 30].
  board[i][j] will be only 0s or 1s.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -110,7 +110,7 @@ using namespace std;
  In case of N odd, I take the even swaps.
  Because when we make a swap, we move 2 columns or 2 rows at the same time.
  So col swaps and row swaps should be same here.
- */
+*/
 class Solution {
 private:
     int N = 0;
@@ -164,7 +164,7 @@ public:
         * row + col are the number we need to change.
         * By every swap, we can change 2 cols or 2 rows.
         * Does it make more sense?
-        */
+       */
         return (rowSwap + colSwap) / 2;
     }
 };

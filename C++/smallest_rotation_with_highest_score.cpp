@@ -34,7 +34,7 @@
 
  A will have length at most 20000.
  A[i] will be in the range [0, A.length].
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -102,7 +102,7 @@ So when it arrives at the turning point i + 1, it is actually moving from 0 to A
 which means we simultaneously subtract 1(in change[k]) and add 1 for totalChange[k].
 
 Hope this could help.
- */
+*/
 class Solution {
 public:
     int bestRotation(vector<int>& A) {

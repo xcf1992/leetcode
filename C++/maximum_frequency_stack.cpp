@@ -38,7 +38,7 @@
  The total number of FreqStack.push calls will not exceed 10000 in a single test case.
  The total number of FreqStack.pop calls will not exceed 10000 in a single test case.
  The total number of FreqStack.push and FreqStack.pop calls will not exceed 150000 across all test cases.
- */
+*/
 
 #include <iostream>
 #include <string>
@@ -87,4 +87,4 @@ public:
  * FreqStack obj = new FreqStack();
  * obj.push(x);
  * int param_2 = obj.pop();
- */
+*/

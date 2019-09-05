@@ -22,7 +22,7 @@
  points.length == 3
  points[i].length == 2
  0 <= points[i][j] <= 100
- */
+*/
 
 #include <iostream>
 #include <string>

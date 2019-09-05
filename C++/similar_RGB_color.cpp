@@ -22,7 +22,7 @@
  color is a valid RGB color: for i > 0, color[i] is a hexadecimal digit from 0 to f
  Any answer which has the same (highest) similarity as the best answer will be accepted.
  All inputs and outputs should use lowercase letters, and the output is 7 characters.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -38,7 +38,7 @@ using namespace std;
 
 /*
  Find corresponding index, i.e. value/17 or value/17+1. This is because “11” or “33” or “bb” are simply 1*17, 3*17, and 11*17.
- */
+*/
 class Solution {
 private:
     string colorDigit = "0123456789abcdef";

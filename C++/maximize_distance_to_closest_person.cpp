@@ -27,7 +27,7 @@
 
  1 <= seats.length <= 20000
  seats contains only 0s or 1s, at least one 0, and at least one 1.
- */
+*/
 #include <iostream>
 #include <sstream>
 #include <string>

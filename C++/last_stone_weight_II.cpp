@@ -155,7 +155,7 @@ public:
  1. Think of the final answer as a sum of weights with + or - sign symbols infront of each weight. Actually, all sums with 1 of each sign symbol are possible.
  2. Use dynamic programming: for every possible sum with N stones, those sums +x or -x is possible with N+1 stones, where x is the value of the newest stone. (This overcounts sums that are all positive or all negative, but those don't matter.)
  https://leetcode.com/problems/last-stone-weight-ii/discuss/295401/C%2B%2B-DP-inspired-by-the-hints-double-100-with-explanation
- */
+*/
 class Solution2 {
 public:
     int lastStoneWeightII(vector<int>& stones) {

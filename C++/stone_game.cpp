@@ -80,7 +80,7 @@ using namespace std;
  So we get:
  dp[i][j] = max(piles[i] - dp[i + 1][j], piles[j] - dp[i][j - 1])
  We start from smaller subarray and then we use that to calculate bigger subarray.
- */
+*/
 class Solution {
 public:
     bool stoneGame(vector<int>& piles) {

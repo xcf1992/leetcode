@@ -32,7 +32,7 @@ Explanation:
 = (0 + 17) + 5
 = 17 + 5
 = 22
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

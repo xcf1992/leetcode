@@ -1,7 +1,7 @@
 /*
 320. Generalized Abbreviation
 
-Write a function to generate the generalized abbreviations of a word. 
+Write a function to generate the generalized abbreviations of a word.
 
 Note: The order of the output does not matter.
 
@@ -53,13 +53,13 @@ public:
 
 /*
  Write a function to generate the generalized abbreviations of a word.
- 
+
  Example:
  Given word = "word", return the following list (order does not matter):
  ["word", "1ord", "w1rd", "wo1d", "wor1", "2rd", "w2d", "wo2", "1o1d", "1or1", "w1r1", "1o2", "2r1", "3d", "w3", "4"]
- 
+
  这道题让我们对一个单词进行部分简写，简写的规则是若干个字母可以用数字来表示，但是不能有两个相邻的数字
- */
+*/
 
 class Solution1 {
 public:
@@ -102,7 +102,7 @@ private:
             result.push_back(cur);
             return;
         }
-        
+
         dfs(result, word, pos + 1, cur, count + 1);
         cur = cur + (count > 0 ? to_string(count) : "") + word[pos];
         dfs(result, word, pos + 1, cur, 0);

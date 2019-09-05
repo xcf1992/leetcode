@@ -27,7 +27,7 @@ This is a follow up problem to H-Index, where citations is now guaranteed to be 
 Could you solve it in logarithmic time complexity?
 
 Follow up for H-Index: What if the citations array is sorted in ascending order? Could you optimize your algorithm?
- */
+*/
 
 #include <iostream>
 #include <string>
@@ -79,7 +79,7 @@ using namespace std;
  So now we just using binary search to find the number,
  a thing here we need to mind is the index0 here we are using,
  but we need to convert it to index1.
- */
+*/
 class Solution {
 public:
     int hIndex(vector<int>& citations) {

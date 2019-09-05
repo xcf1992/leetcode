@@ -33,7 +33,7 @@
  0 <= paths.size <= 20000
  No garden has 4 or more paths coming into or leaving it.
  It is guaranteed an answer exists.
- */
+*/
 
 #include <iostream>
 #include <string>

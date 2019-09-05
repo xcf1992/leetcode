@@ -70,7 +70,7 @@ private:
         return left;
     }
 public:
-    /** Initialize your data structure here. */
+    /** Initialize your data structure here.*/
     SummaryRanges() {}
 
     void addNum(int val) {
@@ -103,4 +103,4 @@ public:
  * SummaryRanges* obj = new SummaryRanges();
  * obj->addNum(val);
  * vector<vector<int>> param_2 = obj->getIntervals();
- */
+*/

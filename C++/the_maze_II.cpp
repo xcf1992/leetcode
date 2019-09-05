@@ -49,7 +49,7 @@
  Both the ball and the destination exist on an empty space, and they will not be at the same bfs initially.
  The given maze does not contain border (like the red rectangle in the example pictures), but you could assume the border of the maze are all walls.
  The maze contains at least 2 empty spaces, and both the width and height of the maze won't exceed 100.
- */
+*/
 
 #include <iostream>
 #include <string>

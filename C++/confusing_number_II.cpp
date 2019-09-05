@@ -35,7 +35,7 @@ The confusing numbers are [6,9,10,16,18,19,60,61,66,68,80,81,86,89,90,91,98,99,1
 Note:
 
 1 <= N <= 10^9
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

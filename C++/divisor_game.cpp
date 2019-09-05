@@ -26,7 +26,7 @@
  Note:
 
  1 <= N <= 1000
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

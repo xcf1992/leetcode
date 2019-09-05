@@ -1,6 +1,6 @@
 /*
  Design a max stack that supports push, pop, top, peekMax and popMax.
- 
+
  push(x) -- Push element x onto stack.
  pop() -- Remove the element on top of the stack and return it.
  top() -- Get the element on the top.
@@ -17,7 +17,7 @@
  stack.peekMax(); -> 5
  stack.pop(); -> 1
  stack.top(); -> 5
- */
+*/
 
 #include <iostream>
 #include <string>
@@ -36,11 +36,11 @@ class MaxStack {
     stack<int> elements;
     stack<int> maxElements;
 public:
-    /** initialize your data structure here. */
+    /** initialize your data structure here.*/
     MaxStack() {
-        
+
     }
-    
+
     void push(int x) {
         elements.push(x);
         if (maxElements.empty() || x >= maxElements.top()) {
@@ -50,26 +50,26 @@ public:
             maxElements.push(maxElements.top());
         }
     }
-    
+
     int pop() {
         int result = elements.top();
         elements.pop();
         maxElements.pop();
         return result;
     }
-    
+
     int top() {
         return elements.top();
     }
-    
+
     int peekMax() {
         return maxElements.top();
     }
-    
+
     int popMax() {
         int maxVal = maxElements.top();
         stack<int> temp;
-        
+
         while (elements.top() != maxVal) {
             temp.push(elements.top());
             elements.pop();
@@ -77,12 +77,12 @@ public:
         }
         elements.pop();
         maxElements.pop();
-        
+
         while (!temp.empty()) {
             push(temp.top());
             temp.pop();
         }
-        
+
         return maxVal;
     }
 };
@@ -95,4 +95,4 @@ public:
  * int param_3 = obj.top();
  * int param_4 = obj.peekMax();
  * int param_5 = obj.popMax();
- */
+*/

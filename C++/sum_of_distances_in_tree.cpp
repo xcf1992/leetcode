@@ -20,7 +20,7 @@ Here is a diagram of the given tree:
 We can see that dist(0,1) + dist(0,2) + dist(0,3) + dist(0,4) + dist(0,5)
 equals 1 + 1 + 2 + 2 + 2 = 8.  Hence, answer[0] = 8, and so on.
 Note: 1 <= N <= 10000
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -79,7 +79,7 @@ using namespace std;
  Time Complexity:
  dfs: O(N)
  dfs2: O(N)
- */
+*/
 class Solution {
 private:
     void getChildCount(int root, vector<vector<int>>& connected, vector<int>& count, vector<int>& result, vector<bool>& visited) {

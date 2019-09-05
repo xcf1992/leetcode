@@ -23,7 +23,7 @@ Note:
 4 <= A.length <= 10000
 0 <= A[i] < 10000
 A.length is even
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

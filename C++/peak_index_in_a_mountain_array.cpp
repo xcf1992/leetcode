@@ -20,7 +20,7 @@
  3 <= A.length <= 10000
  0 <= A[i] <= 10^6
  A is a mountain, as defined above.
- */
+*/
 #include <iostream>
 #include <sstream>
 #include <string>

@@ -40,7 +40,7 @@
  cells.length == 8
  cells[i] is in {0, 1}
  1 <= N <= 10^9
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

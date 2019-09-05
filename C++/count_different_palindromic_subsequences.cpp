@@ -26,7 +26,7 @@
 
  The length of S will be in the range [1, 1000].
  Each character S[i] will be in the set {'a', 'b', 'c', 'd'}.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -56,7 +56,7 @@ using namespace std;
  When s.charAt(i) == s.charAt(j):
  the situation get much more complex and I fix a lot the wrong answers.
  I have comment the branches where which kind of test cases are considered.
- */
+*/
 class Solution {
 private:
     int MOD = 1e9 + 7;
@@ -85,7 +85,7 @@ private:
             * the reason why dp[i + 1][j - 1] * 2 counted is that we count dp[i + 1][j - 1] one time as {"b"},
             * and additional time as {"aba"}. The reason why 2 counted is that we also count {"a", "aa"}.
             * So totally dp[i][j] record the palindrome: {"a", "b", "aa", "aba"}.
-            */
+           */
             dp[i][j] = dp[i + 1][j - 1] * 2 + 2;
         }
         else if (left == right) {
@@ -98,7 +98,7 @@ private:
             * and additional time as {"aaa"}. the reason why 1 counted is that
             * we also count {"aa"} that the first 'a' come from index i and the second come from index j.
             * So totally dp[i][j] records {"a", "aa", "aaa"}
-            */
+           */
             dp[i][j] = dp[i + 1][j - 1] * 2 + 1;
         }
         else {
@@ -112,7 +112,7 @@ private:
             * Now there is duplicate :  {"aca"},
             * which is removed by deduce dp[low + 1][high - 1].
             * So totally dp[i][j] record {"a",  "c", "aa", "aca", "aaa", "aaaa", "aacaa"}
-            */
+           */
             dp[i][j] = dp[i + 1][j - 1] * 2 - dp[left + 1][right - 1];
         }
     }

@@ -18,7 +18,7 @@ Input:
 and x = 0, y = 2
 
 Output: 6
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

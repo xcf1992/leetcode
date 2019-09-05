@@ -19,7 +19,7 @@
  1 <= A.length <= 10000
  -10000 <= A[i] <= 10000
  A is sorted in non-decreasing order.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

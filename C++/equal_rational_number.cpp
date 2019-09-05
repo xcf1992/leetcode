@@ -46,7 +46,7 @@
  1 <= <IntegerPart>.length <= 4
  0 <= <NonRepeatingPart>.length <= 4
  1 <= <RepeatingPart>.length <= 4
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

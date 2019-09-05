@@ -43,7 +43,7 @@
  0 <= workers[i][j], bikes[i][j] < 1000
  All worker and bike locations are distinct.
  1 <= workers.length <= bikes.length <= 1000
- */
+*/
 
 #include <iostream>
 #include <string>

@@ -30,7 +30,7 @@
 
  The new node should insert between node 1 and node 3.
  After the insertion, the list should look like this, and we should still return node 3.
- */
+*/
 #include <iostream>
 #include <sstream>
 #include <string>

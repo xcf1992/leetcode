@@ -21,7 +21,7 @@
 
  A.length == 4
  0 <= A[i] <= 9
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

@@ -155,4 +155,4 @@ public:
  * ExamRoom obj = new ExamRoom(N);
  * int param_1 = obj.seat();
  * obj.leave(p);
- */
+*/

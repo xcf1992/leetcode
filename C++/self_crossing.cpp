@@ -42,7 +42,7 @@
 
  Output: true
  Explanation: self crossing
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

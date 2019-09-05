@@ -40,7 +40,7 @@
  1 <= B[i] <= 100000
  It is guaranteed that Alice and Bob have different total amounts of candy.
  It is guaranteed there exists an answer.
- */
+*/
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -60,7 +60,7 @@ using namespace std;
  bSum - aSum = gap;
  bSum - y + x = aSum - x + y;
  x = (2y - gap) / 2;
- */
+*/
 class Solution {
 public:
     vector<int> fairCandySwap(vector<int>& A, vector<int>& B) {
@@ -70,7 +70,7 @@ public:
             aSum += a;
             candyA.insert(a);
         }
-        
+
         int bSum = accumulate(B.begin(), B.end(), 0);
         int gap = bSum - aSum;
         vector<int> result;

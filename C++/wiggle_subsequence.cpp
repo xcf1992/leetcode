@@ -67,13 +67,13 @@ public:
  positive difference between its last two numbers. This subsequence may or may not
  include nums[i] and there may be several such subsequences (of the same length).
  We call this a subsequence of type U.
- */
+*/
 
 /** down[i] is the length of a longest wiggle subsequence of {nums[0],...,nums[i]}, with a
  negative difference between its last two numbers. This subsequence may or may not
  include nums[i] and there may be several such subsequences (of the same length).
  We call this a subsequence of type D.
- */
+*/
 class Solution {
 public:
     int wiggleMaxLength(vector<int>& nums) {
@@ -109,7 +109,7 @@ public:
                  subsequence of type D.
                  So even if we can use nums[i], there is no gain in using it, so we keep the old value of
                  down (down[i] = down[i-1])
-                 */
+                */
                 newUp = down + 1;
                 newDown = down;
             }

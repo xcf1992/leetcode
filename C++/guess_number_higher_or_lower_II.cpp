@@ -53,7 +53,7 @@ using namespace std;
  so to guarantee you have enough money to find the target,
  you need to prepare the more,
  which is max(dp[i][x-1], dp[x+1][j]).
- */
+*/
 class Solution {
 private:
     int calculate(int start, int end, vector<vector<int>>& dp) {

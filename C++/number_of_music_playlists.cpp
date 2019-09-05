@@ -27,7 +27,7 @@
  Note:
 
  0 <= K < N <= L <= 100
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -46,7 +46,7 @@ using namespace std;
  Let dp[i][j] be the number of playlists of length i that have EXACTLY j UNIQUE songs.
  We want dp[L][N], and it seems likely we can develop a recurrence for dp.
  we can do this cause L >= N
- */
+*/
 class Solution {
 private:
     int MOD = 1e9 + 7;
@@ -62,7 +62,7 @@ public:
                 * at this point we have j differernt songs to choose,
                 * but since we can not pick songs picked in previous k songs
                 * so we only have j-K choices
-                */
+               */
                 dp[i][j] += dp[i - 1][j - 1] * (N - j + 1) + dp[i - 1][j] * max(0, j - K);
                 dp[i][j] %= MOD;
             }

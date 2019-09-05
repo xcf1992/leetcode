@@ -70,7 +70,7 @@ using namespace std;
  If all number are negative,
  return the maximum one,
  (which equals to the max subarray sum)
- */
+*/
 class Solution {
 public:
     int maxSubarraySumCircular(vector<int>& A) {

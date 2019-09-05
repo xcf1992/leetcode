@@ -29,7 +29,7 @@ Output: [0]
 Explanation: We define the gray code sequence to begin with 0.
              A gray code sequence of n has size = 2n, which for n = 0 the size is 20 = 1.
              Therefore, for n = 0 the gray code sequence is [0].
- */
+*/
 
 #include <iostream>
 #include <string>
@@ -49,7 +49,7 @@ public:
     vector<int> grayCode(int n) {
         vector<int> result;
         result.push_back(0);
-        
+
         for (int i = 0; i < n; i++) {
             int highest = 1 << i;
             for (int j = result.size() - 1; j >= 0; j--) {

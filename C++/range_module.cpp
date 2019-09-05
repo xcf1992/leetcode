@@ -26,7 +26,7 @@
  The total number of calls to addRange in a single test case is at most 1000.
  The total number of calls to queryRange in a single test case is at most 5000.
  The total number of calls to removeRange in a single test case is at most 1000.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -116,4 +116,4 @@ public:
  * obj.addRange(left,right);
  * bool param_2 = obj.queryRange(left,right);
  * obj.removeRange(left,right);
- */
+*/

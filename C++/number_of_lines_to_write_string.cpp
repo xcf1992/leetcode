@@ -40,7 +40,7 @@
  S will only contain lowercase letters.
  widths is an array of length 26.
  widths[i] will be in the range of [2, 10].
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

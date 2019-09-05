@@ -17,7 +17,7 @@
 
  1 <= S.length <= 1000
  1 <= N <= 10^9
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -83,7 +83,7 @@ using namespace std;
  if N is smaller, the nums will be less.
  so N = 1000, 10bit, can get the most nums.
  this is beyond my think. what i think is consider if i should be a programer...
- */
+*/
 class Solution {
 private:
     string toBinaryString(int num) {

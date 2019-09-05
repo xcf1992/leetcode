@@ -22,7 +22,7 @@ Note:
 
 If the given node has no in-order successor in the tree, return null.
 It's guaranteed that the values of the tree are unique.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

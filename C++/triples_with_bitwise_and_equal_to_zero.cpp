@@ -32,7 +32,7 @@
 
  1 <= A.length <= 1000
  0 <= A[i] < 2^16
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -59,7 +59,7 @@ using namespace std;
  For example:
  Assume A[k] is 0x11000 and X is 0x1000.
  Obviously, the next (0x1000 - 1) values (0x1001 to 0x1111) will not meet the requirement.
- */
+*/
 class Solution {
 public:
     int countTriplets(vector<int>& A) {

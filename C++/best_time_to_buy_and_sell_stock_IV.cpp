@@ -53,7 +53,7 @@ dp[i-1][7] - prices[7]
 
 Then localMax + prices[8] is the max profit if we sell the stock at day 8.
 Then we compare this result with the max profit of not selling the stock at day 8, take the max of the two.
- */
+*/
 class Solution {
 private:
     int getMaxProfit(vector<int>& prices) {

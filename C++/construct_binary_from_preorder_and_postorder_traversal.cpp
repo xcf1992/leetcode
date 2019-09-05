@@ -17,7 +17,7 @@
  1 <= pre.length == post.length <= 30
  pre[] and post[] are both permutations of 1, 2, ..., pre.length.
  It is guaranteed an answer exists. If there exists multiple answers, you can return any of them.
- */
+*/
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -42,7 +42,7 @@ using namespace std;
  [......left......][...right..][root]  ---post
  pre[a+1] is the root node of the left subtree.
  Find the index of pre[a+1] in post, then we know the left subtree should be constructed from pre[a+1, a+idx-c+1] and post[c, idx].
- */
+*/
 class Solution {
 private:
     unordered_map<int, int> m; // value->index

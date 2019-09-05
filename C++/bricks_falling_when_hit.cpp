@@ -35,7 +35,7 @@
  The number of erasures will not exceed the area of the grid.
  It is guaranteed that each erasure will be different from any other erasure, and located inside the grid.
  An erasure may refer to a location with no brick - if it does, no bricks drop.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -91,7 +91,7 @@ private:
     * and return count of increased brickes become attached to ceiling
     *
     * union4 == false means we are initializing
-    */
+   */
     int addBricks(vector<vector<int>>& grid, vector<int>& parent, vector<int>& count, int row, int col, bool union4) {
         int pos = row * n + col;
         parent[pos] = pos;
@@ -100,7 +100,7 @@ private:
         * if key is at ceiling, init count as 1, because this brick has already been fixed.
         * so we will not count this extra brick when we attached component to ceiling
         * which makes the later adjust -= 1 incorrect in this case if we initialize added as 0
-        */
+       */
         int added = pos < n ? 1 : 0;
         if (row > 0 and grid[row - 1][col] == 1) {
             added += unin(parent, count, pos - n, pos);

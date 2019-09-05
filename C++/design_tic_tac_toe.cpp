@@ -70,7 +70,7 @@ private:
     vector<int> antiDiagnal;
     int size;
 public:
-    /** Initialize your data structure here. */
+    /** Initialize your data structure here.*/
     TicTacToe(int n) {
         rowCount.resize(2, vector<int>(n, 0));
         colCount.resize(2, vector<int>(n, 0));
@@ -86,7 +86,7 @@ public:
      @return The current winning condition, can be either:
      0: No one wins.
      1: Player 1 wins.
-     2: Player 2 wins. */
+     2: Player 2 wins.*/
     int move(int row, int col, int player) {
         rowCount[player - 1][row] += 1;
         colCount[player - 1][col] += 1;
@@ -107,4 +107,4 @@ public:
  * Your TicTacToe object will be instantiated and called as such:
  * TicTacToe obj = new TicTacToe(n);
  * int param_1 = obj.move(row,col,player);
- */
+*/

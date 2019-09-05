@@ -24,7 +24,7 @@
 
  S contains only lowercase letters.
  1 <= S.length <= 2000
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -68,7 +68,7 @@ using namespace std;
  The number of distinct subsequences ending at S[k],
  is twice the distinct subsequences counted by dp[k-1] (all of them, plus all of them with S[k] appended),
  minus the amount we double counted, which is dp[last[S[k]] - 1].
- */
+*/
 class Solution {
 private:
     int mod = 1e9 + 7;

@@ -24,7 +24,7 @@
  1 <= A.length <= 50000
  -10 ^ 5 <= A[i] <= 10 ^ 5
  1 <= K <= 10 ^ 9
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -106,7 +106,7 @@ using namespace std;
  Q: Why keep the deque increase?
  A: If B[i] <= B[d.back()] and moreover we already know that i > d.back(), it means that compared with d.back(),
  B[i] can help us make the subarray length shorter and sum bigger. So no need to keep d.back() in our deque.
- */
+*/
 class Solution {
 public:
     int shortestSubarray(vector<int>& A, int K) {
@@ -126,7 +126,7 @@ public:
             /*
              * if with i >= monoQ.back() and preSum[i] <= preSum[monoQ.back()]
              * then it will always better to pick i to have a shorter subarray
-            */
+           */
             while (!monoQ.empty() and preSum[i] <= preSum[monoQ.back()]) {
                 monoQ.pop_back();
             }

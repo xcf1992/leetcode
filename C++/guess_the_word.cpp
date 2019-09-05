@@ -38,7 +38,7 @@
 
  We made 5 calls to master.guess and one of them was the secret, so we pass the test case.
  Note:  Any solutions that attempt to circumvent the judge will result in disqualification.
- */
+*/
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -58,7 +58,7 @@ using namespace std;
 /**
  * // This is the Master's API interface.
  * // You should not implement it, or speculate about its implementation
- */
+*/
 class Master {
    public:
      int guess(string word);

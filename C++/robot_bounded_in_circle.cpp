@@ -37,7 +37,7 @@
 
  1 <= instructions.length <= 100
  instructions[i] is in {'G', 'L', 'R'}
- */
+*/
 
 #include <iostream>
 #include <string>

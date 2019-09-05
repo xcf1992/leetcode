@@ -32,7 +32,7 @@
  0 <= len(words) <= 100.
  0 <= len(words[i]) <= 100.
  S and all words in words consist only of lowercase letters
- */
+*/
 #include <iostream>
 #include <sstream>
 #include <string>

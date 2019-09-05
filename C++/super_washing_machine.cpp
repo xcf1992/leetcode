@@ -39,7 +39,7 @@
  Note:
  The range of n is [1, 10000].
  The range of sum number in a super washing machine is [0, 1e5].
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

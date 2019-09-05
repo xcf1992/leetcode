@@ -26,7 +26,7 @@ Note:
 
 1 <= grid.length == grid[0].length <= 100
 grid[i][j] is 0 or 1
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

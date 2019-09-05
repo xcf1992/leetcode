@@ -35,7 +35,7 @@
  name.length <= 1000
  typed.length <= 1000
  The characters of name and typed are lowercase letters.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

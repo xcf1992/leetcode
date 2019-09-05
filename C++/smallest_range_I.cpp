@@ -28,7 +28,7 @@
  1 <= A.length <= 10000
  0 <= A[i] <= 10000
  0 <= K <= 10000
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

@@ -38,12 +38,12 @@ public:
         shuffled = nums;
     }
 
-    /** Resets the array to its original configuration and return it. */
+    /** Resets the array to its original configuration and return it.*/
     vector<int> reset() {
         return origin;
     }
 
-    /** Returns a random shuffling of the array. */
+    /** Returns a random shuffling of the array.*/
     vector<int> shuffle() {
         int size = origin.size();
         for (int i = 0; i < size; i++) {

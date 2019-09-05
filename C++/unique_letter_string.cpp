@@ -29,7 +29,7 @@
 
 
  Note: 0 <= S.length <= 10000.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -77,7 +77,7 @@ using namespace std;
  Complexity:
  One pass, time complexity O(N).
  Space complexity O(1).
- */
+*/
 class Solution {
 public:
     int MOD = 1e9 + 7;

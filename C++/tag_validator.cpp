@@ -70,7 +70,7 @@ Input: "<DIV>  unmatched start tag <B>  and unmatched end tag </C>  </DIV>"
 Output: False
 Note:
 For simplicity, you could assume the input code (including the any characters mentioned above) only contain letters, digits, '<','>','/','!','[',']' and ' '.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

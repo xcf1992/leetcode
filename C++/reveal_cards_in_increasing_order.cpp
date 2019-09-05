@@ -37,7 +37,7 @@
  1 <= A.length <= 1000
  1 <= A[i] <= 10^6
  A[i] != A[j] for all i != j
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -111,7 +111,7 @@ private:
              put a as the biggest card of the left half cards
              then we will pick from order b c a
              which should be the order we generated
-             */
+            */
             result[pos] = halfDeck.back();
             pos += 2;
         }

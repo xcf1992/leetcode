@@ -35,7 +35,7 @@
  1 <= group[i] <= 100
  0 <= profit[i] <= 100
  1 <= group.length = profit.length <= 100
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -111,7 +111,7 @@ public:
             * cause we reuse the same matrix while loop through differernt crime,
             * we will have to iterate from the back of the matrix,
             * so we do not update previous value, while we still needed
-            */
+           */
             for (int j = P; j >= 0; j--) {
                 for (int k = G; k >= g; k--) {
                     dp[j][k] += dp[max(0, j - p)][k - g];
@@ -170,7 +170,7 @@ public:
 
 /*
  dp[i][j] means the count of schemes with i profit and j members.
- */
+*/
 class Solution3 {
 private:
     int mod = 1e9 + 7;

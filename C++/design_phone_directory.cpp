@@ -50,7 +50,7 @@ private:
     int maxNum;
 public:
     /** Initialize your data structure here
-     @param maxNumbers - The maximum numbers that can be stored in the phone directory. */
+     @param maxNumbers - The maximum numbers that can be stored in the phone directory.*/
     PhoneDirectory(int maxNumbers) {
         maxNum = maxNumbers;
         for (int i = 0; i < maxNumbers; i++) {
@@ -59,7 +59,7 @@ public:
     }
 
     /** Provide a number which is not assigned to anyone.
-     @return - Return an available number. Return -1 if none is available. */
+     @return - Return an available number. Return -1 if none is available.*/
     int get() {
         if (available.empty()) {
             return -1;
@@ -70,7 +70,7 @@ public:
         return result;
     }
 
-    /** Check if a number is available or not. */
+    /** Check if a number is available or not.*/
     bool check(int number) {
         if (number < 0 || number > maxNum) {
             return false;
@@ -78,7 +78,7 @@ public:
         return used.find(number) == used.end();
     }
 
-    /** Recycle or release a number. */
+    /** Recycle or release a number.*/
     void release(int number) {
         if (used.find(number) == used.end()) {
             return;
@@ -93,4 +93,4 @@ public:
  * int param_1 = obj.get();
  * bool param_2 = obj.check(number);
  * obj.release(number);
- */
+*/

@@ -21,7 +21,7 @@
 
  Both of the given trees will have between 1 and 100 nodes.
 
- */
+*/
 
 #include <iostream>
 #include <sstream>

@@ -38,7 +38,7 @@
 
  1 <= deck.length <= 10000
  0 <= deck[i] < 10000
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

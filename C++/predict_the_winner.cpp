@@ -65,7 +65,7 @@ dp'(i, j) = dp(i, j) - ( sum(i, j) - dp(i, j) ) = 2dp(i, j) - sum(i, j)
 = max(nums[j] - dp'(i, j-1), nums[i] - dp'(i+1, j))
 
 Final formula: dp(i, j) = max(nums[j] - dp(i, j-1), nums[i] - dp(i+1, j))
- */
+*/
 class Solution {
 public:
     bool PredictTheWinner(vector<int>& nums) {

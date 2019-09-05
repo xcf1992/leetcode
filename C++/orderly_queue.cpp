@@ -28,7 +28,7 @@
 
  1 <= K <= S.length <= 1000
  S consists of lowercase letters only.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -73,7 +73,7 @@ acdbb // pop first b to the end
 dbbca // first pop S[2]=c, then pop S[1]=a
 bbcad // pop S[3] = d
 bcadb // pop S[4] = b, a and c are swapped!
- */
+*/
 class Solution {
 public:
     string orderlyQueue(string S, int K) {

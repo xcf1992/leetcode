@@ -31,7 +31,7 @@
  source.length == target.length == 2
  0 <= source[i][j], target[i][j] < 10^6
  source != target
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -70,7 +70,7 @@ https://leetcode.com/problems/escape-a-large-maze/discuss/282849/Python-Maximum-
         .        X
         .    X
  200    | X
- */
+*/
 /*
  The maximum area is not 10000. Even it's accepted with bound 10000, it's wrong.
  All cells are discrete, so there is nothing to do with pi.
@@ -87,7 +87,7 @@ https://leetcode.com/problems/escape-a-large-maze/discuss/282849/Python-Maximum-
  Two connected cells,
  no matter horizontally or vertically connected,
  will surround smaller area than the way of 45-degree connected.
- */
+*/
 class Solution {
 private:
     int length = 1e6;

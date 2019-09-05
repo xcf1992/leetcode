@@ -22,7 +22,7 @@
  Note:
 
  1 <= N <= 10^9
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -93,7 +93,7 @@ using namespace std;
  If we won't consider the 'prefix', we will calculate all the possible permutations for a 4-digit number,
  which includes numbers greater than 5235 as well. Hence to avoid counting such numbers,
  we are following the prefix logic. We 'fix' the initial digits and permute the next ones. Hope this clarifies your confusion :)
- */
+*/
 class Solution {
 private:
     int permutation(int m, int n) {

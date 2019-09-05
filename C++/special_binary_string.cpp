@@ -21,7 +21,7 @@
 
  S has length at most 50.
  S is guaranteed to be a special binary string as defined above.
- */
+*/
 #include <iostream>
 #include <sstream>
 #include <string>

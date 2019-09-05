@@ -15,7 +15,7 @@
 
  Follow Up:
  Can you do it in O(n) time and/or in-place with O(1) extra space?
- */
+*/
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -79,7 +79,7 @@ using namespace std;
  Accessing A(7) actually accesses nums[4].
  Accessing A(8) actually accesses nums[6].
  Accessing A(9) actually accesses nums[8].
- */
+*/
 
 /*
 This is to explain why mapped index formula is (1 + 2*index) % (n | 1)

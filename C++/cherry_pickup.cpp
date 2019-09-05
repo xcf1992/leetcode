@@ -31,7 +31,7 @@
  grid is an N by N 2D array, with 1 <= N <= 50.
  Each grid[i][j] is an integer in the set {-1, 0, 1}.
  It is guaranteed that grid[0][0] and grid[N-1][N-1] are not -1.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -328,7 +328,7 @@ using namespace std;
  So here is the final O(N^3) time and O(N^2) space solution,
  where we use -1 to indicate that a two-leg trip cannot be completed,
  and iterate in backward direction for indices i and p to get rid of the temporary matrix that is otherwise required for updating the dp matrix.
- */
+*/
 class Solution {
 public:
     int cherryPickup(vector<vector<int>>& grid) {
@@ -336,7 +336,7 @@ public:
         int M = (N << 1) - 1; // 2*N - 1
         vector<vector<int>> dp(N, vector<int>(N, 0));
         dp[0][0] = grid[0][0];
-        
+
         for (int n = 1; n < M; n++) {
             for (int i = N - 1; i >= 0; i--) {
                 for (int p = N - 1; p >= 0; p--) {

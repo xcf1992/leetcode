@@ -67,7 +67,7 @@
  Consider that you cannot manipulate the file directly, the file is only accesible for read4 but not for read.
  The read function will only be called once for each test case.
  You may assume the destination buffer array, buf, is guaranteed to have enough space for storing n characters.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -91,7 +91,7 @@ public:
      * @param buf Destination buffer
      * @param n   Number of characters to read
      * @return    The number of actual characters read
-     */
+    */
     int read(char *buf, int n) {
         char local[4];
         int curr = 0;

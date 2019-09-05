@@ -13,7 +13,7 @@
 
  Output: [3,2,1]
  Follow up: Recursive solution is trivial, could you do it iteratively?
- */
+*/
 #include <iostream>
 #include <sstream>
 #include <string>

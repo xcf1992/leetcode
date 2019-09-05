@@ -23,7 +23,7 @@
  The matrix is only modifiable by the update function.
  You may assume the number of calls to update and sumRegion function is distributed evenly.
  You may assume that row1 ≤ row2 and col1 ≤ col2.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -87,4 +87,4 @@ public:
  * NumMatrix* obj = new NumMatrix(matrix);
  * obj->update(row,col,val);
  * int param_2 = obj->sumRegion(row1,col1,row2,col2);
- */
+*/

@@ -85,7 +85,7 @@ public:
         * dp[i][j]
         * the max stones the first player can get
         * start with stone[i] (0-based), and with M = j
-        */
+       */
         vector<vector<int>> dp(n, vector<int>(2 * n, INT_MIN));
         return getMaxStone(dp, preSum, 0, 1);
     }

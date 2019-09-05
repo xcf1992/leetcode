@@ -31,7 +31,7 @@
  k = 3
  Output:
  [9, 8, 9]
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -92,7 +92,7 @@ it is easy to solve problem if nums1.size() + nums2.size() == k
  2. get max sub array from nums2 of length k - i
  3. get max merge arrary from maxsub1 and maxsub2
  4. get max merge array of length k
- */
+*/
 class Solution {
 private:
     vector<int> mergeArray(vector<int>& nums1, vector<int>& nums2, int k) {

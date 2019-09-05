@@ -16,7 +16,7 @@
  If s is already strong, return 0.
 
  Insertion, deletion or replace of any one character are all considered as one change.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -154,7 +154,7 @@ then we are free to turn the repeating sequence all the way into a sequence of l
  Both time and space complexity is O(n).
  Not sure if we can reduce the space down to O(1) by computing the arr array on the fly.
  A quick explanation is given at the end.
- */
+*/
 class Solution {
 public:
     int strongPasswordChecker(string s) {
@@ -243,4 +243,4 @@ public:
  Therefore we only need to take the larger number of changes needed for fixing the second problem
  (which is total_missing) and for the third one (which is left_over,
  since it is the number of changes still needed after fixing the first problem).
- */
+*/

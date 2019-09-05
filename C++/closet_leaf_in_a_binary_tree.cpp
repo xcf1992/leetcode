@@ -45,7 +45,7 @@
  root represents a binary tree with at least 1 node and at most 1000 nodes.
  Every node has a unique node.val in range [1, 1000].
  There exists some node in the given binary tree for which node.val == k.
- */
+*/
 
 #include <iostream>
 #include <sstream>

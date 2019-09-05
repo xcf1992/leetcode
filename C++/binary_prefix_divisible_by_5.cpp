@@ -32,7 +32,7 @@
 
  1 <= A.length <= 30000
  A[i] is 0 or 1
- */
+*/
 
 #include <iostream>
 #include <string>

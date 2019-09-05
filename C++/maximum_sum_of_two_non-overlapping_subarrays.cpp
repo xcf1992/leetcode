@@ -75,7 +75,7 @@ public:
  [8,20,6,2,20,17,6,3,20,8,12]
  5
  4
- */
+*/
 class Solution1 {
 private:
     vector<int> getMax(vector<int>& A, int start, int end, int length) {

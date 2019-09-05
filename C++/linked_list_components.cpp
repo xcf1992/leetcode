@@ -28,7 +28,7 @@
  The value of each node in the linked list will be in the range [0, N - 1].
  1 <= G.length <= 10000.
  G is a subset of all values in the linked list.
- */
+*/
 #include <iostream>
 #include <sstream>
 #include <string>

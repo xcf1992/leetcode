@@ -103,7 +103,7 @@ public:
  When r > 0, l must be zero. Reasons are similar.
 
  so left and right means extra L or R in the string start than end.
- */
+*/
 class Solution1 {
 public:
     bool canTransform(string start, string end) {

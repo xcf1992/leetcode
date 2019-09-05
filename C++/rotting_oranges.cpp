@@ -34,7 +34,7 @@
  1 <= grid.length <= 10
  1 <= grid[0].length <= 10
  grid[i][j] is only 0, 1, or 2.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

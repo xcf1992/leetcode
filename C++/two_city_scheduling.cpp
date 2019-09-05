@@ -24,7 +24,7 @@
  1 <= costs.length <= 100
  It is guaranteed that costs.length is even.
  1 <= costs[i][0], costs[i][1] <= 1000
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -46,7 +46,7 @@ public:
         sort(costs.begin(), costs.end(), [](vector<int>& a, vector<int>& b){
             return abs(a[0] - a[1]) > abs(b[0] - b[1]);
         });
-        
+
         int n = costs.size() / 2;
         int A = 0;
         int B = 0;

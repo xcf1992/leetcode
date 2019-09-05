@@ -24,7 +24,7 @@ Output: [1,2,6,10,26]
 Constraints:
 
 1 <= label <= 10^6
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

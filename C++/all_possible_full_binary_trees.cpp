@@ -21,7 +21,7 @@
  Note:
 
  1 <= N <= 20
- */
+*/
 
 #include <iostream>
 #include <sstream>

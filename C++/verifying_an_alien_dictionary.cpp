@@ -32,7 +32,7 @@
  1 <= words[i].length <= 20
  order.length == 26
  All characters in words[i] and order are english lowercase letters.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

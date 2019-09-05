@@ -12,7 +12,7 @@ Example 2:
 
 Input: "cbacdcbc"
 Output: "acdb"
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

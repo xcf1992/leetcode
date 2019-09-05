@@ -25,7 +25,7 @@ Example 2:
 
 Input: m = 7, n = 3
 Output: 28
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

@@ -48,7 +48,7 @@ A Sudoku board (partially filled) could be valid but is not necessarily solvable
 Only the filled cells need to be validated according to the mentioned rules.
 The given board contain only digits 1-9 and the character '.'.
 The given board size is always 9x9.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

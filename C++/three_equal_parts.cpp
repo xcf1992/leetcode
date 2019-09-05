@@ -29,7 +29,7 @@
 
  3 <= A.length <= 30000
  A[i] == 0 or A[i] == 1
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -51,7 +51,7 @@ using namespace std;
  Besides, we need to confirm that
  number of 0 after last 1 in each part should be bigger than or eauql to
  the tail 0 of the third part
- */
+*/
 class Solution {
 private:
     bool isEqual(vector<int>& A, int s1, int e1, int s2, int e2, int s3, int e3) {

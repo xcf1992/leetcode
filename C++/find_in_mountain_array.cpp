@@ -37,7 +37,7 @@ Constraints:
 3 <= mountain_arr.length() <= 10000
 0 <= target <= 10^9
 0 <= mountain_arr.get(index) <= 10^9
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

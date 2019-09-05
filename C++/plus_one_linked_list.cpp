@@ -12,7 +12,7 @@ Input:
 
 Output:
 1->2->4
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

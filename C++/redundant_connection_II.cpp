@@ -37,7 +37,7 @@
  Note:
  The size of the input 2D-array will be between 3 and 1000.
  Every integer represented in the 2D-array will be between 1 and N, where N is the size of the input array.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -73,7 +73,7 @@ So can1 is the answer in this case.
        we find a circle, return current edge;
     else
        return candidate A instead of B.
- */
+*/
 class Solution {
 private:
     int find(vector<int>& parent, int node) {

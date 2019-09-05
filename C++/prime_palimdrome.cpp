@@ -68,7 +68,7 @@ using namespace std;
  So among them, 11 is the only one prime
  if (8 <= N <= 11) return 11
  For other, we consider only palindrome with odd dights.
- */
+*/
 class Solution {
 private:
     bool isPrime(int num) {

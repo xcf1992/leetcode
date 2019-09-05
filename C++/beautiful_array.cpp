@@ -165,7 +165,7 @@ public:
  since an arithmetic sequence never starts and ends with elements of different parity.
 
  We memoize the result to arrive at the answer quicker.
- */
+*/
 class Solution {
 private:
     vector<int> getArray(int N, unordered_map<int, vector<int>>& memo) {

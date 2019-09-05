@@ -39,7 +39,7 @@
 
  1 <= stamp.length <= target.length <= 1000
  stamp and target only contain lowercase letters.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -71,7 +71,7 @@ using namespace std;
 
  the time complexity should be N^2 * M,
  where N is the length of target and M is the length of stamp
- */
+*/
 class Solution {
 private:
     int remove(string& target, string stamp) {

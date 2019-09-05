@@ -45,7 +45,7 @@
 
  Version strings are composed of numeric strings separated by dots . and this numeric strings may have leading zeroes.
  Version strings do not start or end with dots, and they will not be two consecutive dots.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

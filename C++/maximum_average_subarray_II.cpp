@@ -127,7 +127,7 @@ private:
         * if we can determine the minimum cumulative sum up to a position which is at least k away from our current position,
         * then checking if sum(upto current position) - minimum >= 0 is a sufficient condition to determine
         * whether it is possible to find a subarray whose average is mid.
-        */
+       */
         double minSum = 0.0;
         double prev = 0.0;
         for (int i = k; i < nums.size(); ++i) {

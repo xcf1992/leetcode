@@ -35,7 +35,7 @@
  1 <= queries[i].length <= 100
  1 <= pattern.length <= 100
  All strings consists only of lower and upper case English letters.
- */
+*/
 
 #include <iostream>
 #include <string>

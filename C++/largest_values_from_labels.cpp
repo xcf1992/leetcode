@@ -35,7 +35,7 @@ Note:
 1 <= values.length == labels.length <= 20000
 0 <= values[i], labels[i] <= 20000
 1 <= num_wanted, use_limit <= values.length
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

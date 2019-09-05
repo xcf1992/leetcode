@@ -22,7 +22,7 @@
 
  2 <= S.length <= 10^5
  S consists of lowercase English letters.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

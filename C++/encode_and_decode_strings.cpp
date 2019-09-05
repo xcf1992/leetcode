@@ -29,7 +29,7 @@
  Your algorithm should be generalized enough to work on any possible characters.
  Do not use class member/global/static variables to store states. Your encode and decode algorithms should be stateless.
  Do not rely on any library method such as eval or serialize methods. You should implement your own encode/decode algorithm.
- */
+*/
 #include <iostream>
 #include <sstream>
 #include <string>

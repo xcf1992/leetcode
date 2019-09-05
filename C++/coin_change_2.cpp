@@ -59,7 +59,7 @@ using namespace std;
 
  later we can find that dp[i][j] only relies on dp[i - 1][j] and dp[i][j - coins[i]]
  so we can actually only use one array to solve the problem
- */
+*/
 class Solution {
 public:
     int change(int amount, vector<int>& coins) {

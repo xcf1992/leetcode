@@ -97,7 +97,7 @@ public:
         * but when it comes to transform a -> b, we have letter a both front and back
         * so it would require we transform a -> x(some other letter not used yet)
         * and then transform x -> b
-        */
+       */
         return unordered_set(str2.begin(), str2.end()).size() < 26;
     }
 };

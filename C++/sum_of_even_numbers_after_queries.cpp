@@ -31,7 +31,7 @@
  1 <= queries.length <= 10000
  -10000 <= queries[i][0] <= 10000
  0 <= queries[i][1] < A.length
- */
+*/
 
 #include <iostream>
 #include <string>

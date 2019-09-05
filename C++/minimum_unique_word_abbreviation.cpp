@@ -17,7 +17,7 @@
  "apple", ["blade"] -> "a4" (because "5" or "4e" conflicts with "blade")
 
  "apple", ["plain", "amber", "blade"] -> "1p3" (other valid answers include "ap3", "a3e", "2p2", "3le", "3l1").
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -47,7 +47,7 @@ using namespace std;
  But which bits should be checked?
  We can perform "or" operation for all the bit sequences in the dictionary and do DFS for the "1" bits in the result.
  Ex: 00101 | 10001 = 10101, so we only need to take care of the 1st, 3rd, and 5th bit.
- */
+*/
 class Solution {
 private:
     int n = 0;

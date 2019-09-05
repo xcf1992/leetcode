@@ -53,7 +53,7 @@ public:
                 * we have i - j times of key press for copying and pasting,
                 * which can make original count[j] string to become length (i - j - 2) times longger
                 * so the total final length will be i - j - 1 times
-                */
+               */
                 count[i] = max(count[i], count[j] * (i - j - 1));
             }
         }
@@ -78,7 +78,7 @@ public:
  Also the space complexity can be reduced to O(1) since now we only need to maintain a constant number of variables
  (seven, I would say, dp[i], dp[i-1], dp[i-2], dp[i-3], dp[i-4], dp[i-5], dp[i-6]).
  The following is the modified code:
- */
+*/
 class Solution1 {
 public:
     int maxA(int N) {

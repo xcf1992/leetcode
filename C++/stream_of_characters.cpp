@@ -31,7 +31,7 @@
  Words will only consist of lowercase English letters.
  Queries will only consist of lowercase English letters.
  The number of queries is at most 40000.
- */
+*/
 
 #include <iostream>
 #include <string>
@@ -112,4 +112,4 @@ public:
  * Your StreamChecker object will be instantiated and called as such:
  * StreamChecker* obj = new StreamChecker(words);
  * bool param_1 = obj->query(letter);
- */
+*/

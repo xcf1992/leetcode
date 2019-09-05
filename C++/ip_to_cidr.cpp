@@ -41,7 +41,7 @@
  ip will be a valid IPv4 address.
  Every implied address ip + x (for x < n) will be a valid IPv4 address.
  n will be an integer in the range [1, 1000].
- */
+*/
 
 #include <iostream>
 #include <string>

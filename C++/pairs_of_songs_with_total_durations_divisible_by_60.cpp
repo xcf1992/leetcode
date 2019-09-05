@@ -25,7 +25,7 @@
 
  1 <= time.length <= 60000
  1 <= time[i] <= 500
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

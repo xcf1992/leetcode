@@ -19,7 +19,7 @@
 
  Each tree will have at most 100 nodes.
  Each value in each tree will be a unique integer in the range [0, 99].
- */
+*/
 
 #include <iostream>
 #include <string>

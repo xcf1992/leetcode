@@ -45,7 +45,7 @@
  111
  are considered same island shapes. Because if we flip the first array in the up/down direction, then they have the same shapes.
  Note: The length of each dimension in the given grid does not exceed 50.
- */
+*/
 
 #include <iostream>
 #include <string>

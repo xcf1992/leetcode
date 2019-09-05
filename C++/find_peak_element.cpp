@@ -22,7 +22,7 @@ Explanation: Your function can return either index number 1 where the peak eleme
 Note:
 
 Your solution should be in logarithmic complexity.
- */
+*/
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -45,6 +45,7 @@ public:
         if (n <= 1) {
             return 0;
         }
+        
         int left = 0;
         int right = n - 1;
         while (left < right) {

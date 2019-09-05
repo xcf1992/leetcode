@@ -69,7 +69,7 @@
  You could assume that there won't be any circular sum reference. For example, A1 = sum(B1) and B1 = sum(A1).
  The test cases are using double-quotes to represent a character.
  Please remember to RESET your class variables declared in class Excel, as static/class variables are persisted across multiple test cases. Please see here for more details.
- */
+*/
 
 #include <iostream>
 #include <string>
@@ -195,4 +195,4 @@ public:
  * obj->set(r,c,v);
  * int param_2 = obj->get(r,c);
  * int param_3 = obj->sum(r,c,strs);
- */
+*/

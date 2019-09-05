@@ -20,7 +20,7 @@
  2 <= A.length <= 20000
  A.length % 2 == 0
  0 <= A[i] <= 1000
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

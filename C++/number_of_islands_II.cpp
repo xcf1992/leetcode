@@ -39,7 +39,7 @@
  Challenge:
 
  Can you do it in time complerowity O(k log mn), where k is the length of the positions?
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

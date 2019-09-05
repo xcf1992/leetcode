@@ -15,7 +15,7 @@
  Input: [[5,4],[6,4],[6,7],[2,3]]
  Output: 3
  Explanation: The maximum number of envelopes you can Russian doll is 3 ([2,3] => [5,4] => [6,7]).
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -41,7 +41,7 @@ public:
         * Since the width is increasing, we only need to consider height.
         * [3, 4] cannot contains [3, 3], so we need to put [3, 4] before [3, 3]
         * when sorting otherwise it will be counted as an increasing number if the order is [3, 3], [3, 4]
-        */
+       */
         sort(envelopes.begin(), envelopes.end(), [](vector<int>& a, vector<int>& b) {
             return a[0] < b[0] or (a[0] == b[0] and a[1] > b[1]);
         });
@@ -50,7 +50,7 @@ public:
         * as we sort the envelopes to a increasing array based on width
         * but for the envelopes with the same width we put envelope with biggest height first
         * thus we need to find the length of longest increasing subsequnce from this array based on height
-        */
+       */
         vector<int> result;
         for (int i = 0; i < n; i++) {
             auto it = lower_bound(result.begin(), result.end(), envelopes[i][1]);

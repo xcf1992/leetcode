@@ -38,7 +38,7 @@
 
  1 <= K <= 100
  1 <= N <= 10000
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -109,7 +109,7 @@ public:
  when the egg not break we will search dp[m - 1][k] above current level.
  That's the reason why we will combine them together but not only pick the smaller one.
  Hope my explanation can help you understand Lee's solution better.
- */
+*/
 
 /*
 So I consider this problem in a different way:

@@ -10,7 +10,7 @@
 
  Note:
  The range of n is [1,8].
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

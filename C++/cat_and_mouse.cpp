@@ -38,7 +38,7 @@
  3 <= graph.length <= 50
  It is guaranteed that graph[1] is non-empty.
  It is guaranteed that graph[2] contains a non-zero element.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -118,7 +118,7 @@ using namespace std;
  Time Complexity: O(N^3) where NN is the number of nodes in the graph.
  There are O(N^2) states, and each state has an outdegree of NN, as there are at most NN different moves.
  Space Complexity: O(N^2)
- */
+*/
 class Solution {
 private:
     int DRAW = 0;

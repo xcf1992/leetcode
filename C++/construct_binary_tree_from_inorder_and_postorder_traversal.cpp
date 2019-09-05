@@ -17,7 +17,7 @@ Return the following binary tree:
   9  20
     /  \
    15   7
- */
+*/
 #include <iostream>
 #include <sstream>
 #include <string>

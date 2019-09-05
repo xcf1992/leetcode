@@ -24,7 +24,7 @@
  Note:
 
  sx, sy, tx, ty will all be integers in the range [1, 10^9].
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -66,7 +66,7 @@ Hence, (tx - sx) % ty == 0 is a necessary and sufficient condition for the probl
 
 The analysis above was for the case tx > ty, but the case ty > tx is similar.
 When tx == ty, no more moves can be made.
- */
+*/
 class Solution {
 public:
     bool reachingPoints(int sx, int sy, int tx, int ty) {

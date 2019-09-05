@@ -38,7 +38,7 @@
  The length of each domain name will not exceed 100.
  Each address will have either 1 or 2 "." characters.
  The input count in any count-paired domain will not exceed 10000.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

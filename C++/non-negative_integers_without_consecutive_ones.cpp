@@ -18,7 +18,7 @@
  5 : 101
  Among them, only integer 3 disobeys the rule (two consecutive ones) and the other 5 satisfy the rule.
  Note: 1 <= n <= 109
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -44,7 +44,7 @@ using namespace std;
  a[i] = a[i - 1] + b[i - 1]
  b[i] = a[i - 1]
  The base cases of above recurrence are a[1] = b[1] = 1. The total number of strings of length i is just a[i] + b[i].
- */
+*/
 class Solution {
 private:
     string toBinary(int num) { // change num to its binary string, so 6 will be 0011, the most significant bit will be right-most
@@ -80,7 +80,7 @@ public:
             if bit[i + 1] == 0, we know zero[i + 1] includes solutions of i-th == 0 (00***) and i-th bit == 1 (01***),
                we know the i-th bit of num is 0, so we need to subtract all the 01*** solutions
                because it is larger than num. Therefore, one[i] is subtracted from res.
-         */
+        */
         for (int i = n - 2; i >= 0; i--) {
             if (nStr[i] == '1' and nStr[i + 1] == '1') {
                 break;

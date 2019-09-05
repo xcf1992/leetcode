@@ -37,7 +37,7 @@ public:
         * find the last bit which is 1 in xorResult;
         * say xorResult is 1100
         * then the lastBit will be 100, which means a and b is different in this bit
-        */
+       */
         int lastBit = xorResult & ((xorResult - 1) ^ xorResult);
         int result = 0;
         for (auto num : nums) {

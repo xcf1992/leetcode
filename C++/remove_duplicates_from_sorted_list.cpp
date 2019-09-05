@@ -12,7 +12,7 @@ Example 2:
 Input: 1->1->2->3->3
 Output: 1->2->3
 
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -32,7 +32,7 @@ public:
         if (head == nullptr || head -> next == nullptr) {
             return head;
         }
-        
+
         ListNode * current = head;
         while (current -> next != nullptr) {
             ListNode * nextnode = current -> next;
@@ -44,7 +44,7 @@ public:
                 current = current->next;
             }
         }
-        
+
         return head;
     }
 };

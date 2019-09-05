@@ -38,7 +38,7 @@
 
  The number of nodes in the given tree will be between 1 and 100.
  Each node will have a unique integer value from 0 to 1000.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

@@ -57,7 +57,7 @@
  [8,2],
  [7]
  ]
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -78,7 +78,7 @@ public:
         if (root == nullptr) {
             return {};
         }
-        
+
         map<int, vector<int>> nodePos;
         queue<pair<int, TreeNode*>> bfs;
         bfs.push({0, root});

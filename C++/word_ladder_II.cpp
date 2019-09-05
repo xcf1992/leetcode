@@ -92,7 +92,7 @@ public:
                     * correct result is [["red","ted","tad","tax"],["red","ted","tex","tax"],["red","rex","tex","tax"]]
                     * the 2nd and 3rd both will have tex at the 3rd place
                     * and that's why we need to cleard the words in the beginning when we enter a new level
-                    */
+                   */
                     if (dict.find(nextWord) != dict.end()) {
                         visited.insert(nextWord);
                         vector<string> newLadder = ladder;

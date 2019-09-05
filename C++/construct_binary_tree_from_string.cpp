@@ -17,7 +17,7 @@
  Note:
  There will only be '(', ')', '-' and '0' ~ '9' in the input string.
  An empty tree is represented by "" instead of "()".
- */
+*/
 
 #include <iostream>
 #include <string>

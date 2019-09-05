@@ -86,7 +86,7 @@ we sort the indexes of each number.
  Time: O(n log n)
 
  Space: O(n)
- */
+*/
 class Solution {
 private:
     void mergeCount(vector<int>& indices, int first, int last, vector<int>& result, vector<int>& nums) {

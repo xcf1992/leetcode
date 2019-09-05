@@ -22,7 +22,7 @@
  Note:
 
  The number of nodes in the given list will be between 1 and 100.
- */
+*/
 
 #include <iostream>
 #include <sstream>

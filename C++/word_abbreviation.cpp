@@ -19,7 +19,7 @@
  The length of each word is greater than 1.
  The words consist of lowercase English letters only.
  The return answers should be in the same order as the original array.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>

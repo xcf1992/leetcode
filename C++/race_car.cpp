@@ -34,7 +34,7 @@
  Note:
 
  1 <= target <= 10000.
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -86,7 +86,7 @@ using namespace std;
  So we do dp by adding m A between the RR and add the # operations for remaining distance.
 
  If you have better explanation, please let me know. Thanks.
- */
+*/
 class Solution {
 public:
     int racecar(int target) {
@@ -110,7 +110,7 @@ public:
  BFS and pruning and memory states
  too slow beat 11.03%
  932 ms
- */
+*/
 class Solution1 {
 public:
     int racecar(int target) {

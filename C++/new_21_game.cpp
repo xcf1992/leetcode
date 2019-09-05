@@ -100,7 +100,7 @@ public:
  Furthermore, if we use dp[i] to directly represent the sum[i],
  we can get dp[i] = dp[i - 1] + (dp[i - 1] - dp[i - W - 1]) / W.
  This equation takes us to the final O(K + W) solution. Just take care with the beginning and the end of the array.
- */
+*/
 class Solution2 {
 public:
     double new21Game(int N, int K, int W) {
@@ -136,7 +136,7 @@ public:
  will stop when X - i >= K
  the final result is Sum(Probability(j)), j >= K, j<= N
  the naive implementation is below. But it exceeds time limit
- */
+*/
 class Solution1 {
 public:
     double new21Game(int N, int K, int W) {

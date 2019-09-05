@@ -17,7 +17,7 @@ Note:
 
 The length of A will be in the range [1, 30].
 A[i] will be in the range of [0, 10000].
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -50,7 +50,7 @@ using namespace std;
  which equivalently means ((sum(A) * i) % len(A) == 0.
 
  The second part is to call the recursive function find(parameters) to see if a subarray of length i will have equal average as A.
- */
+*/
 class Solution {
 private:
     bool find(int target, int count, int sum, int index, vector<int>& A) {

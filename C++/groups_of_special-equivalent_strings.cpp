@@ -39,7 +39,7 @@
  1 <= A[i].length <= 20
  All A[i] have the same length.
  All A[i] consist of only lowercase letters.
- */
+*/
 #include <iostream>
 #include <sstream>
 #include <string>

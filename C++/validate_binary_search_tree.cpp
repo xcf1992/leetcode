@@ -54,7 +54,7 @@ public:
             * If next element in inorder traversal
             * is smaller than the previous one
             * that's not BST.
-            */
+           */
             if (root -> val <= curMin) {
                 return false;
             }

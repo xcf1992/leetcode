@@ -9,14 +9,14 @@ Given a list of strings which contains only lowercase alphabets, group all strin
 Example:
 
 Input: ["abc", "bcd", "acef", "xyz", "az", "ba", "a", "z"],
-Output: 
+Output:
 [
   ["abc","bcd","xyz"],
   ["az","ba"],
   ["acef"],
   ["a","z"]
 ]
- */
+*/
 
 #include <iostream>
 #include <string>

@@ -19,7 +19,7 @@ Note:
 1. Each given array will have at least 1 number. There will be at least two non-empty arrays.
 2. The total number of the integers in all the m arrays will be in the range of [2, 10000].
 3. The integers in the m arrays will be in the range of [-10000, 10000].
- */
+*/
 #include <iostream>
 #include <string>
 #include <vector>
