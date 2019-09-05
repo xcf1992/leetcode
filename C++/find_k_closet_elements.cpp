@@ -8,6 +8,7 @@ If there is a tie, the smaller elements are always preferred.
 Example 1:
 Input: [1,2,3,4,5], k=4, x=3
 Output: [1,2,3,4]
+jj
 Example 2:
 Input: [1,2,3,4,5], k=4, x=-1
 Output: [1,2,3,4]
@@ -15,6 +16,7 @@ Note:
 The value k is positive and will always be smaller than the length of the sorted array.
 Length of the given array is positive and will not exceed 104
 Absolute value of elements in the array and x will not exceed 104
+
 UPDATE (2017/9/19):
 The arr parameter had been changed to an array of integers (instead of a list of integers).
 Please reload the code definition to get the latest changes.
@@ -31,7 +33,6 @@ Please reload the code definition to get the latest changes.
 #include <stdio.h>
 #include <map>
 using namespace std;
-
 /*
 Intuition
 The array is sorted.
@@ -42,9 +43,8 @@ it's straightforward to use binary research.
 Now we want the k closest,
 the logic should be similar.
 
-
 Explanation:
-Assume we are taking A[i] ~ A[i + k -1].
+Assume we are taking A[i] ~ A[i + k - 1].
 We can binary research i
 We compare the distance between x - A[mid] and A[mid - k] - x
 
@@ -57,7 +57,6 @@ Note that, you shouldn't compare the absolute value abs(x - A[mid]) and abs(A[mi
 It's wrong though it get accepetd.
 It fails at the case A = [1,1,2,2,2,2,2,3,3], x=3, k=2
 
-
 Time Complexity:
 O(log(N - K)) to binary research and find reseult
 O(K) to create the returned list.
@@ -65,13 +64,16 @@ O(K) to create the returned list.
 class Solution {
 public:
     vector<int> findClosestElements(vector<int>& A, int k, int x) {
-        int left = 0, right = A.size() - k;
+        int left = 0;
+        int right = A.size() - k;
         while (left < right) {
-            int mid = (left + right) / 2;
-            if (x - A[mid] > A[mid + k] - x)
+            int mid = left + (right - left) / 2;
+            if (x - A[mid] > A[mid + k] - x) {
                 left = mid + 1;
-            else
+            }
+            else {
                 right = mid;
+            }
         }
         return vector<int>(A.begin() + left, A.begin() + left + k);
     }

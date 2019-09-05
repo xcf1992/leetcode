@@ -46,7 +46,7 @@ public:
             if (target == matrix[i][j]) {
                 return true;
             }
-            else if (matrix[i][j] > target) {
+            else if (target < matrix[i][j]) {
                 j -= 1;
             }
             else {

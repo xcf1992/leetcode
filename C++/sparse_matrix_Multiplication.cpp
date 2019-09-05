@@ -34,7 +34,6 @@ AB = | -1 0 3 | x | 0 0 0 | = | -7 0 3 |
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 The idea is derived from a CMU lecture.
 http://www.cs.cmu.edu/~scandal/cacm/node9.html

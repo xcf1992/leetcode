@@ -39,7 +39,6 @@ Explanation: The array cannot be partitioned into equal sum subsets.
 #include <map>
 #include <numeric>
 using namespace std;
-
 /*
 This problem is essentially let us to find whether there are several numbers in a set which are able to sum to a specific value
  (in this problem, the value is sum/2).
