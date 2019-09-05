@@ -53,13 +53,13 @@ public:
         stack<int> stk;
         int lower_bound = INT_MIN;
         for (int i = 0; i < preorder.size(); i++) {
-            if (stk.empty() || preorder[i] < preorder[i - 1]) {
+            if (stk.empty() or preorder[i] < preorder[i - 1]) {
                 if (preorder[i] <= lower_bound) {
                     return false;
                 }
             }
             else {
-                while (!stk.empty() && stk.top() < preorder[i]) {
+                while (!stk.empty() and stk.top() < preorder[i]) {
                     lower_bound = stk.top();
                     stk.pop();
                 }
