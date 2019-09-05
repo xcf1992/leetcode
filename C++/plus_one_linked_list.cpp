@@ -70,7 +70,7 @@ public:
         while (cur != nullptr) {
             if (cur -> val == 9) {
                 start = cur;
-                while (cur -> next != nullptr && cur -> next -> val == 9) {
+                while (cur -> next != nullptr and cur -> next -> val == 9) {
                     cur = cur -> next;
                 }
             }

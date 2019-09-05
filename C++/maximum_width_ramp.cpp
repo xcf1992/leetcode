@@ -60,7 +60,7 @@ public:
         }
 
         sort(indexedA.begin(), indexedA.end(), [](pair<int, int>& a, pair<int, int>& b) {
-            return a.second < b.second || (a.second == b.second and a.first < b.first);
+            return a.second < b.second or (a.second == b.second and a.first < b.first);
         });
 
         int result = 0;

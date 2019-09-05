@@ -105,7 +105,7 @@ public:
 
                 int x = curPos.first - 1;
                 int y = curPos.second;
-                if (x < 0 || y < 0 || x >= m || y >= n) {
+                if (x < 0 or y < 0 or x >= m or y >= n) {
                     result += 1;
                 }
                 else {
@@ -114,7 +114,7 @@ public:
 
                 x = curPos.first + 1;
                 y = curPos.second;
-                if (x < 0 || y < 0 || x >= m || y >= n) {
+                if (x < 0 or y < 0 or x >= m or y >= n) {
                     result += 1;
                 }
                 else {
@@ -123,7 +123,7 @@ public:
 
                 x = curPos.first;
                 y = curPos.second - 1;
-                if (x < 0 || y < 0 || x >= m || y >= n) {
+                if (x < 0 or y < 0 or x >= m or y >= n) {
                     result += 1;
                 }
                 else {
@@ -132,7 +132,7 @@ public:
 
                 x = curPos.first;
                 y = curPos.second + 1;
-                if (x < 0 || y < 0 || x >= m || y >= n) {
+                if (x < 0 or y < 0 or x >= m or y >= n) {
                     result += 1;
                 }
                 else {

@@ -67,7 +67,7 @@ public:
             int newMin = A[i] - K;
             int newMax = A[i] + K;
             if (result == 0) {
-                if (newMin > curMax || newMax < curMin) {
+                if (newMin > curMax or newMax < curMin) {
                     if (curMin > newMax) {
                         curMax = curMin;
                         curMin = newMax;

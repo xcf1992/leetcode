@@ -98,7 +98,7 @@ public:
                 bfs.pop();
 
                 for (int pos = 0; pos < curBoard.size(); pos++) {
-                    if (curBoard[pos] == curBoard[pos + 1] || ballLeft[c2i[curBoard[pos]]] == 0) {
+                    if (curBoard[pos] == curBoard[pos + 1] or ballLeft[c2i[curBoard[pos]]] == 0) {
                         continue;
                     }
                     string newBoard = curBoard;

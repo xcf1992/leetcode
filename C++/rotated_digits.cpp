@@ -72,7 +72,7 @@ public:
 /*
  * http://www.frankmadrid.com/ALudicFallacy/2018/02/28/rotated-digits-leet-code-788/
  * The following four arrays were defined to avoid long compound boolean expressions:
- * 'if(digit == 2 || digit == 5 || digit == 6 || digit == 9) { ... }'
+ * 'if(digit == 2 or digit == 5 or digit == 6 or digit == 9) { ... }'
  * which instead keeps track of such information cumulatively. For example,
  * differentRotation[7] = 3 means 3 numbers in the range of [0,7] are new numbers, namely,
  * the new numbers post-rotation 2,5, and 6.

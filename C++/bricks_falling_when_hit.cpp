@@ -159,11 +159,11 @@ private:
     int n, m, id;
 
     bool valid(int r, int c){
-        return 0 <= r && r < n && 0 <= c && c < m;
+        return 0 <= r and r < n and 0 <= c and c < m;
     }
 
     bool falling(int r, int c, vector<vector<int>>& g, unordered_set<int>& connected){
-        if (!valid(r,c) || !g[r][c] || vst[r][c] == id) {
+        if (!valid(r,c) or !g[r][c] or vst[r][c] == id) {
             return true;
         }
 

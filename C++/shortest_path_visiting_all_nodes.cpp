@@ -99,7 +99,7 @@ struct PathHash {
 
 struct PathComp {
     bool operator()(const Path& a, const Path& b) const{
-        return (a.node == b.node) && (a.bitmask == b.bitmask);
+        return (a.node == b.node) and (a.bitmask == b.bitmask);
     }
 };
 

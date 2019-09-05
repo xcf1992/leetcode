@@ -78,7 +78,7 @@ public:
         if (nextNode != nullptr) {
             nextNode -> prev = prevNode;
         }
-        if (minFreq == cur -> freq && freq2node[minFreq] -> next == freq2node[minFreq]) {
+        if (minFreq == cur -> freq and freq2node[minFreq] -> next == freq2node[minFreq]) {
             freq2node.erase(minFreq);
             minFreq += 1;
         }

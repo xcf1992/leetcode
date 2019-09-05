@@ -72,7 +72,7 @@ public:
                 cur += 1;
             }
 
-            while (!pq.empty() && pq.top().first <= point) { // pops out building ends before current point
+            while (!pq.empty() and pq.top().first <= point) { // pops out building ends before current point
                 pq.pop();
             }
 

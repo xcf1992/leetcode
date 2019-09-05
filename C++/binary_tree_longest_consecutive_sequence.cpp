@@ -83,10 +83,10 @@ private:
         int l1 = traverse(root -> left, result);
         int l2 = traverse(root -> right, result);
 
-        if (root -> left != nullptr && root -> left -> val != root -> val + 1) {
+        if (root -> left != nullptr and root -> left -> val != root -> val + 1) {
             l1 = 0;
         }
-        if (root -> right != nullptr && root -> right -> val != root -> val + 1) {
+        if (root -> right != nullptr and root -> right -> val != root -> val + 1) {
             l2 = 0;
         }
         int l = max(l1, l2) + 1;

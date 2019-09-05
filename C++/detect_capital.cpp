@@ -20,7 +20,7 @@ public:
     bool detectCapitalUse(string word) {
         bool all_capital = false;
 
-        if (word[0] >= 'a' && word[0] <= 'z') {
+        if (word[0] >= 'a' and word[0] <= 'z') {
             all_capital = false;
         }
         else {
@@ -31,7 +31,7 @@ public:
             char letter = word[i];
 
             if (i == 1) {
-                if (letter <= 'z' && letter >= 'a') {
+                if (letter <= 'z' and letter >= 'a') {
                     all_capital = false;
                 }
                 else if (!all_capital) { // AA
@@ -39,7 +39,7 @@ public:
                 }
             }
             else {
-                if (letter <= 'z' && letter >= 'a') { // ..a
+                if (letter <= 'z' and letter >= 'a') { // ..a
                     if (all_capital) {
                         return false;
                     }

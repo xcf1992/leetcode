@@ -76,7 +76,7 @@ public:
 class Solution2 {
 public:
     vector<vector<int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k) {
-        if (nums1.empty() || nums2.empty()) {
+        if (nums1.empty() or nums2.empty()) {
             return {};
         }
 
@@ -91,7 +91,7 @@ public:
         });
 
         vector<vector<int>> result;
-        for (int i = 0; i < pairs.size() && result.size() < k; ++i) {
+        for (int i = 0; i < pairs.size() and result.size() < k; ++i) {
             result.push_back(pairs[i]);
         }
         return result;
@@ -102,7 +102,7 @@ class Solution1 {
 public:
     vector<vector<int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k) {
         vector<vector<int>> result;
-        if (nums1.empty() || nums2.empty()) {
+        if (nums1.empty() or nums2.empty()) {
             return result;
         }
 
@@ -117,7 +117,7 @@ public:
             }
         }
 
-        while (!minHeap.empty() && result.size() < k) {
+        while (!minHeap.empty() and result.size() < k) {
             result.push_back(minHeap.top());
             minHeap.pop();
         }

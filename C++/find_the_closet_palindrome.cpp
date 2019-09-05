@@ -69,7 +69,7 @@ public:
         string bigger = makePalindromic(to_string((orgVal / scale) * scale + scale));
 
         long long smallerVal = stoll(smaller);
-        if (diff == 0 || abs(orgVal - smallerVal) <= diff) {
+        if (diff == 0 or abs(orgVal - smallerVal) <= diff) {
             result = smaller;
             diff = abs(orgVal - smallerVal);
         }
@@ -150,7 +150,7 @@ public:
                 onlyNine = false;
             }
             else {
-                if (left != 0 && n[left] != '0') {
+                if (left != 0 and n[left] != '0') {
                     allZero = false;
                 }
                 if (n[left] != '9') {
@@ -169,7 +169,7 @@ public:
         }
         if (allZero) { // 10001 should be changed to 9999
             if (temp.front() == '1') {
-                if (temp.back() == '0' || temp.back() == '1') {
+                if (temp.back() == '0' or temp.back() == '1') {
                     return string(n.size() - 1, '9');
                 }
             }

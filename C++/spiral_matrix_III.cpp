@@ -61,7 +61,7 @@ public:
             for (int i = 0; i < step; i++) {
                 cur[0] += rDiff[direction];
                 cur[1] += cDiff[direction];
-                if (cur[0] >= 0 && cur[0] < R && cur[1] >= 0 && cur[1] < C) {
+                if (cur[0] >= 0 and cur[0] < R and cur[1] >= 0 and cur[1] < C) {
                     result.push_back(cur);
                 }
             }

@@ -14,7 +14,7 @@ class Solution {
 private:
     bool selfDivisable(int num) {
         for (int i = num; i > 0; i /= 10) {
-            if (i % 10 == 0 || num % (i % 10) != 0) {
+            if (i % 10 == 0 or num % (i % 10) != 0) {
                 return false;
             }
         }

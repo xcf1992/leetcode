@@ -19,13 +19,13 @@ public:
 };
 
 bool bigger(Box b1, Box b2) {
-	return b1.height > b2.height && b1.length > b2.length && b1.width > b2.width;
+	return b1.height > b2.height and b1.length > b2.length and b1.width > b2.width;
 }
 
 void calculate(vector<Box> &boxes, vector<int> &bStack, vector<int> &occupied, int &max_height) {
 	bool oneMore = false;
-	for (int i = 0; i < boxes.size() && !oneMore; i++) {
-		if (occupied[i] == 0 && bigger(boxes[i], boxes[bStack.back()])) {
+	for (int i = 0; i < boxes.size() and !oneMore; i++) {
+		if (occupied[i] == 0 and bigger(boxes[i], boxes[bStack.back()])) {
 			oneMore = true;
 			bStack.push_back(i);
 			occupied[i] = 1;
@@ -56,7 +56,7 @@ int boxStack(vector<Box> &boxes) {
 		occupied[i] = 1;
 		calculate(boxes, bStack, occupied, max_height);
 	}
-	
+
 	return max_height;
 }
 

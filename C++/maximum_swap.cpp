@@ -74,7 +74,7 @@ public:
         int leftIndex = -1;
         int rightIndex = -1;
         for (int i = 0; i < digits.size(); i++) {
-            if (maxIndex == -1 || digits[maxIndex] < digits[i]) {
+            if (maxIndex == -1 or digits[maxIndex] < digits[i]) {
                 maxIndex = i;
             }
             else {

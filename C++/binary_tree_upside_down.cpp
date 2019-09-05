@@ -48,7 +48,7 @@ using namespace std;
 class Solution {
 public:
     TreeNode *upsideDownBinaryTree(TreeNode *root) {
-        if (root == nullptr || root -> left == nullptr) {
+        if (root == nullptr or root -> left == nullptr) {
             return root;
         }
 

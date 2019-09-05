@@ -38,7 +38,7 @@ public:
                 continue;
             }
 
-            while (!result.empty() && c < result.back() && count[result.back() - 'a'] > 0) {
+            while (!result.empty() and c < result.back() and count[result.back() - 'a'] > 0) {
                 visited[result.back() - 'a'] = false;
                 result.pop_back();
             }

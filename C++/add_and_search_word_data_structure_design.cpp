@@ -57,7 +57,7 @@ private:
             }
             else {
                 for (int j = 0; j < 26; j++) {
-                    if (cur -> children[j] != nullptr && searchWord(cur -> children[j], s.substr(i + 1))) {
+                    if (cur -> children[j] != nullptr and searchWord(cur -> children[j], s.substr(i + 1))) {
                         return true;
                     }
                 }

@@ -29,7 +29,7 @@ using namespace std;
 class Solution {
 public:
     ListNode *deleteDuplicates(ListNode *head) {
-        if (head == nullptr || head -> next == nullptr) {
+        if (head == nullptr or head -> next == nullptr) {
             return head;
         }
 

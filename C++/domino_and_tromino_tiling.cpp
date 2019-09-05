@@ -41,8 +41,8 @@ using namespace std;
 Here is my understanding of why dp[n] = dp[n-1]  +  dp[n-2]  +  dp[n-3] * 2  +  ... dp[0] * 2:
 For all f(n-1), it can be transformed to f(n) by appending a domino |, hence f(n - 1) * 1.
 
-For all f(n - 2), though f(2) contains 2 cases: = and ||,
-the || case was covered by f(n - 1) plus |,
+For all f(n - 2), though f(2) contains 2 cases: = and or,
+the or case was covered by f(n - 1) plus |,
 
 so literally there is only one distinct way to transform f(n-2) to f(n), hence f(n - 2) * 1.
 

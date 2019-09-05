@@ -79,7 +79,7 @@ public:
         unsigned int IP = 0;
         string temp = "";
         for (int i = 0; i <= ip.size(); i++) {
-            if (ip[i] == '.' || i == ip.size()) {
+            if (ip[i] == '.' or i == ip.size()) {
                 IP |= stoi(temp);
                 if (i != ip.size()) {
                     IP <<= 8;

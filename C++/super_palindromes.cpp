@@ -44,7 +44,7 @@ We can iterate through these digits:
 let k be the first half of the digits in R.
 For example, if k = 1234, then R = 1234321 or R = 12344321.
 Each possibility has either an odd or an even number of digits in R.
-because P < 10 ^ 18, so R < 10^9, R = k||k'(concatenation),
+because P < 10 ^ 18, so R < 10^9, R = kork'(concatenation),
 where k and k' reversed(and also possibly truncated by one digit)
 and k < 10^5 = MAGIC
 

@@ -68,7 +68,7 @@ private:
 
         for (int i = start; i < bed.size(); i++) {
             if (bed[i] == 0) {
-                if ((i - 1 < 0 || bed[i - 1] == 0) && (i + 1 >= bed.size() || bed[i + 1] == 0)) {
+                if ((i - 1 < 0 or bed[i - 1] == 0) and (i + 1 >= bed.size() or bed[i + 1] == 0)) {
                     bed[i] = 1;
                     if (placeFlower(bed, flower - 1, i + 1)) {
                         return true;

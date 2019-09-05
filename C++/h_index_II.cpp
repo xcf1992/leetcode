@@ -95,7 +95,7 @@ public:
                 right = mid;
             }
         }
-        if (left < n && citations[left] >= n - left) {
+        if (left < n and citations[left] >= n - left) {
             return n - left;
         }
         return 0;

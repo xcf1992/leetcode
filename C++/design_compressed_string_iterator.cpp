@@ -51,7 +51,7 @@ private:
             c = s[pos];
             pos += 1;
             int start = pos;
-            while (pos < s.size() && isdigit(s[pos])) {
+            while (pos < s.size() and isdigit(s[pos])) {
                 pos += 1;
             }
             count = stoi(s.substr(start, pos - start));

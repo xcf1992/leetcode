@@ -31,6 +31,6 @@ public:
             }
         }
 
-        return vertical == 0 && horizontal == 0;
+        return vertical == 0 and horizontal == 0;
     }
 };

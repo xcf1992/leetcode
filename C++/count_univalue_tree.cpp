@@ -42,7 +42,7 @@ private:
             right = count(root -> right, result);
         }
 
-        if (root -> val == left && root -> val == right) {
+        if (root -> val == left and root -> val == right) {
             result += 1;
             return root -> val;
         }

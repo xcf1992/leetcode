@@ -61,6 +61,6 @@ public:
                 x += 1;
             }
         }
-        return y == 0 && x == 0;
+        return y == 0 and x == 0;
     }
 };

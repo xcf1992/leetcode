@@ -64,7 +64,7 @@ public:
     /** Return the number of hits in the past 5 minutes.
         @param timestamp - The current timestamp (in seconds granularity).*/
     int getHits(int timestamp) {
-        while (!hits.empty() && timestamp - hits.front() >= 300) {
+        while (!hits.empty() and timestamp - hits.front() >= 300) {
             hits.pop();
         }
         return hits.size();

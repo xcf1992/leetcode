@@ -42,7 +42,7 @@ public:
 
         int i = 0;
         int j = n - 1;
-        while (i < m && j >= 0) {
+        while (i < m and j >= 0) {
             if (target == matrix[i][j]) {
                 return true;
             }

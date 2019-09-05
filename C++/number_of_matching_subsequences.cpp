@@ -99,7 +99,7 @@ public:
 
         int result = 0;
         for (string word : words) {
-            if (word.size() == 1 && !position[word[0] - 'a'].empty()) {
+            if (word.size() == 1 and !position[word[0] - 'a'].empty()) {
                 result += 1;
                 continue;
             }

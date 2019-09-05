@@ -57,7 +57,7 @@ public:
 
             for (int j = i + 1; j < n; j++) {
                 double slope = 0.0;
-                if (points[i][0] == points[j][0] && points[i][1] == points[j][1]) {
+                if (points[i][0] == points[j][0] and points[i][1] == points[j][1]) {
                     same++;
 					continue;
                 }
@@ -99,7 +99,7 @@ public:
 
             for (int j = i + 1; j < n; j++) {
                 double slope = 0.0;
-                if (points[i][0] == points[j][0] && points[i][1] == points[j][1]) {
+                if (points[i][0] == points[j][0] and points[i][1] == points[j][1]) {
                     same++;
 					continue;
                 }

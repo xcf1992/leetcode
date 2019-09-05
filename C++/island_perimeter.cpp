@@ -16,18 +16,18 @@ private:
     int calculate(int x, int y, vector<vector<int> >& grid) {
         int result = 0;
 
-        if (x == 0 || grid[x - 1][y] == 0) {
+        if (x == 0 or grid[x - 1][y] == 0) {
             result += 1;
         }
-        if (x == grid.size() - 1 || grid[x + 1][y] == 0) {
+        if (x == grid.size() - 1 or grid[x + 1][y] == 0) {
             result += 1;
         }
 
 
-        if (y == 0 || grid[x][y - 1] == 0) {
+        if (y == 0 or grid[x][y - 1] == 0) {
             result += 1;
         }
-        if (y == grid[0].size() - 1 || grid[x][y + 1] == 0) {
+        if (y == grid[0].size() - 1 or grid[x][y + 1] == 0) {
             result += 1;
         }
 

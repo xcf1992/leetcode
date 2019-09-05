@@ -13,7 +13,6 @@ Input:
 
 Output:
 [2,3]
-
 */
 #include <iostream>
 #include <string>

@@ -79,7 +79,7 @@ public:
         }
         for (auto& it : topVote) {
             count[it.second] += 1;
-            if (lead == -1 || count[it.second] >= count[lead]) {
+            if (lead == -1 or count[it.second] >= count[lead]) {
                 lead = it.second;
             }
             topVote[it.first] = lead;

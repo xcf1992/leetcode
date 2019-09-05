@@ -35,7 +35,7 @@ public:
         int count = 0;
         int result = 0;
         while (end < s.size()) {
-            if (pos.find(s[end]) == pos.end() || pos[s[end]] < start) {
+            if (pos.find(s[end]) == pos.end() or pos[s[end]] < start) {
                 count += 1;
             }
             pos[s[end]] = end;

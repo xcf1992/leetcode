@@ -72,7 +72,7 @@ That means days[i] is the blooming day of the flower in position i+1.
 
 We just need to find a subarray days[left, left+1,..., left+k-1, right]
 which satisfies: for any i = left+1,..., left+k-1,
-we can have days[left] < days[i] && days[right] < days[i].
+we can have days[left] < days[i] and days[right] < days[i].
 Then, the result is max(days[left], days[right]).
 -=-=-=-=-=-
 It took me a while to figure out why we need to update left to i instead of (left+1),

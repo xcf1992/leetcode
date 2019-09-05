@@ -43,7 +43,7 @@ using namespace std;
 class Solution {
 public:
     ListNode *insertionSortList(ListNode *head) {
-        if (head == nullptr || head -> next == nullptr) {
+        if (head == nullptr or head -> next == nullptr) {
             return head;
         }
 

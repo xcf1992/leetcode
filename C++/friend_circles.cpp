@@ -97,7 +97,7 @@ private:
     void visit(vector<vector<int>>& M, vector<bool>& visited, int start) {
         visited[start] = true;
         for (int i = 0; i < M[0].size(); i++) {
-            if (!visited[i] && M[start][i]) {
+            if (!visited[i] and M[start][i]) {
                 visit(M, visited, i);
             }
         }
@@ -112,7 +112,7 @@ public:
                 visited[i] = true;
                 result += 1;
                 for (int j = 0; j < M[0].size(); j++) {
-                    if (!visited[j] && M[i][j]) {
+                    if (!visited[j] and M[i][j]) {
                         visit(M, visited, j);
                     }
                 }

@@ -47,7 +47,7 @@ and try to make we only use each letter once in each group
 */
 struct mycompare {
     bool operator () (pair<int, char>& a, pair<int, char>& b) {
-        return a.first < b.first || (a.first == b.first and a.second < b.second);
+        return a.first < b.first or (a.first == b.first and a.second < b.second);
     }
 };
 

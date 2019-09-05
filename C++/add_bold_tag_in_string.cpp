@@ -39,7 +39,7 @@ using namespace std;
 class Solution {
 public:
     string addBoldTag(string s, vector<string>& dict) {
-        if (s.empty() || dict.empty()) {
+        if (s.empty() or dict.empty()) {
             return s;
         }
 
@@ -51,12 +51,12 @@ public:
         }
 
         sort(pos.begin(), pos.end(), [](pair<int, int>& a, pair<int, int>& b) {
-            return a.first < b.first || (a.first == b.first && a.second < b.second);
+            return a.first < b.first or (a.first == b.first and a.second < b.second);
         });
 
         vector<pair<int, int>> merge;
         for (int i = 0, j = -1; i < pos.size(); i++) {
-            if (j < 0 || pos[i].first > merge[j].second) {
+            if (j < 0 or pos[i].first > merge[j].second) {
                 merge.push_back(pos[i]);
                 j += 1;
             }

@@ -28,7 +28,7 @@ using namespace std;
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode *head) {
-        if (head == nullptr || head->next == nullptr) {
+        if (head == nullptr or head->next == nullptr) {
             return head;
         }
 
@@ -37,7 +37,7 @@ public:
 
         ListNode* pre = dummy;
         ListNode* cur = head;
-        while (cur != nullptr && cur -> next != nullptr) {
+        while (cur != nullptr and cur -> next != nullptr) {
             ListNode* suc = cur -> next;
             if (suc -> val == cur -> val) {
                 while (suc != nullptr and suc -> val == cur -> val) {

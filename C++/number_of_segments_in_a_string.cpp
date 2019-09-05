@@ -29,9 +29,9 @@ public:
                 i++;
                 continue;
             }
-            
+
             result += 1;
-            while (i < s.size() && s[i] != ' ') {
+            while (i < s.size() and s[i] != ' ') {
                 i++;
             }
         }

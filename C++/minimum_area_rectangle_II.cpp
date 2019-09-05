@@ -113,7 +113,7 @@ public:
                     int p2 = pList[i].second;
                     int p3 = pList[j].first;
                     double area = getDistance(p1, p3, points) * getDistance(p2, p3, points);
-                    if (result == 0.0 || result > area) {
+                    if (result == 0.0 or result > area) {
                         result = area;
                     }
                 }

@@ -171,12 +171,12 @@ public:
             else if (IsOpt(s[i])) {
                 nums.push(num);
                 num = 0;
-                if (s[i] == '+' || s[i] == '-') {
+                if (s[i] == '+' or s[i] == '-') {
                     while (!opts.empty()) {
                         CalcTop(nums, opts);
                     }
                 }
-                else { // s[i] == '*' || s[i] == '/'
+                else { // s[i] == '*' or s[i] == '/'
                     while (!opts.empty() and (opts.top() == '*' or opts.top() == '/')) {
                         CalcTop(nums, opts);
                     }

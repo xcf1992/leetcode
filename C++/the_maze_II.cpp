@@ -92,7 +92,7 @@ public:
             int row = curPos.first;
             int col = curPos.second;
             int curDis = distance[row][col];
-            if (row == destination[0] && col == destination[1]) {
+            if (row == destination[0] and col == destination[1]) {
                 result = min(result, curDis);
                 continue;
             }

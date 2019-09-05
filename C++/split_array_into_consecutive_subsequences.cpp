@@ -78,7 +78,7 @@ public:
                 sub[num - 1] -= 1;
                 sub[num] += 1;
             }
-            else if (count[num + 1] > 0 && count[num + 2] > 0) {
+            else if (count[num + 1] > 0 and count[num + 2] > 0) {
                 count[num + 1] -= 1;
                 count[num + 2] -= 1;
                 sub[num + 2] += 1;

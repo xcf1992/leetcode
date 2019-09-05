@@ -129,14 +129,14 @@ private:
         if (isHeadTail.first) {
             head = n;
         }
-        else if (n == head && !isHeadTail.first) {
+        else if (n == head and !isHeadTail.first) {
             head = n->prev;
         }
 
         if (isHeadTail.second) {
             tail = n;
         }
-        else if (n == tail && !isHeadTail.second) {
+        else if (n == tail and !isHeadTail.second) {
             tail = n->next;
         }
     }

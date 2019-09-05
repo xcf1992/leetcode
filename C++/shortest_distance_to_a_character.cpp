@@ -40,7 +40,7 @@ public:
         int cur = 0;
         vector<int> result;
         for (int i = 0; i < S.size(); i++) {
-            while (cur < pos.size() - 1 && abs(i - pos[cur]) > abs(i - pos[cur + 1])) {
+            while (cur < pos.size() - 1 and abs(i - pos[cur]) > abs(i - pos[cur + 1])) {
                 cur += 1;
             }
             result.push_back(abs(i - pos[cur]));

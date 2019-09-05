@@ -85,10 +85,10 @@ private:
     void fill(vector<vector<int>>& image, int sr, int sc, int oldColor) {
         int m = image.size();
         int n = image[0].size();
-        if (sr < 0 || sr >= m) {
+        if (sr < 0 or sr >= m) {
             return;
         }
-        if (sc < 0 || sc >= n) {
+        if (sc < 0 or sc >= n) {
             return;
         }
         if (image[sr][sc] != oldColor) {

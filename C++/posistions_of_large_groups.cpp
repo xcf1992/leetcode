@@ -52,7 +52,7 @@ public:
         int start = 0;
         int end = 1;
         while (end < S.size()) {
-            while (end < S.size() && S[end] == S[start]) {
+            while (end < S.size() and S[end] == S[start]) {
                 end += 1;
             }
 

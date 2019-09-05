@@ -24,7 +24,7 @@ public:
     bool repeatedSubstringPattern(string s) {
         int length = s.size();
         for (int i = 1; i <= s.size() / 2; i++) {
-            if (s[i] == s[0] && length % i == 0) {
+            if (s[i] == s[0] and length % i == 0) {
                 string pattern = s.substr(0, i);
                 bool match = true;
                 for (int j = 1; j < length / i; j++) {

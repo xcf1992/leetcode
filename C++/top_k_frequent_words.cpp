@@ -36,7 +36,7 @@ using namespace std;
 
 struct Comp {
     bool operator()(const pair<string, int>& a, const pair<string, int>& b) {
-        return b.second > a.second || (a.second == b.second && b.first < a.first);
+        return b.second > a.second or (a.second == b.second and b.first < a.first);
     }
 };
 
@@ -54,7 +54,7 @@ public:
             sortWords.push(freq);
         }
 
-        while (result.size() < k && !sortWords.empty()) {
+        while (result.size() < k and !sortWords.empty()) {
             result.push_back(sortWords.top().first);
             sortWords.pop();
         }

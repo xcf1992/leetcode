@@ -80,7 +80,7 @@ private:
             }
         }
         else {
-            while (end < s.size() && s[end] != ' ')
+            while (end < s.size() and s[end] != ' ')
                 end++;
         }
         start = end + 1;
@@ -88,7 +88,7 @@ private:
     }
 
     int calculate(string expression, unordered_map<string, int> myMap) {
-        if (expression[0] == '-' || isdigit(expression[0])) {
+        if (expression[0] == '-' or isdigit(expression[0])) {
             return stoi(expression);
         }
         if (expression[0] != '(') {

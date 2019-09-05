@@ -72,7 +72,7 @@ public:
 
     /** Check if a number is available or not.*/
     bool check(int number) {
-        if (number < 0 || number > maxNum) {
+        if (number < 0 or number > maxNum) {
             return false;
         }
         return used.find(number) == used.end();

@@ -103,7 +103,7 @@ public:
                 int newPos = i;
                 int newDigit = 9;
                 for (int j = i - 1; j >=0; j--) {
-                    if (digit[j] > digit[i] && digit[j] < newDigit) {
+                    if (digit[j] > digit[i] and digit[j] < newDigit) {
                         newPos = j;
                         newDigit = digit[j];
                     }
@@ -116,7 +116,7 @@ public:
             }
 
             long result = getNum(digit);
-            if (result > INT_MAX || result == n) {
+            if (result > INT_MAX or result == n) {
                 return -1;
             }
             return result;
@@ -126,7 +126,7 @@ public:
             int newPos = i;
             int newDigit = 0;
             for (int j = i - 1; j >=0; j--) {
-                if (digit[j] < digit[i] && digit[j] > newDigit) {
+                if (digit[j] < digit[i] and digit[j] > newDigit) {
                     newPos = j;
                     newDigit = digit[j];
                 }
@@ -139,7 +139,7 @@ public:
         }
 
         long result = getNum(digit);
-        if (result > INT_MAX || result == n) {
+        if (result > INT_MAX or result == n) {
             return -1;
         }
         return 0 - result;

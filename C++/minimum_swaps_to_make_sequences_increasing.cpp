@@ -42,7 +42,7 @@ using namespace std;
 swap[n] means the minimum swaps to make the A[i] and B[i] sequences increasing for 0 <= i <= n in condition that we swap A[n] and B[n]
 not_swap[n] is the same with A[n] and B[n] not swapped.
 
-In case that (A[i - 1] < B[i] && B[i - 1] < A[i]).
+In case that (A[i - 1] < B[i] and B[i - 1] < A[i]).
 If A[i-1] and B[i-1] are swapped, we don't need to swap A[i] and B[i].
 Otherwise, we need to swap A[i] and B[i].
 
@@ -56,11 +56,11 @@ public:
         vector<int> swap(N, 1);
         for (int i = 1; i < N; ++i) {
             not_swap[i] = swap[i] = N;
-            if (A[i - 1] < A[i] && B[i - 1] < B[i]) {
+            if (A[i - 1] < A[i] and B[i - 1] < B[i]) {
                 not_swap[i] = not_swap[i - 1];
                 swap[i] = swap[i - 1] + 1;
             }
-            if (A[i - 1] < B[i] && B[i - 1] < A[i]) {
+            if (A[i - 1] < B[i] and B[i - 1] < A[i]) {
                 not_swap[i] = min(not_swap[i], swap[i - 1]);
                 swap[i] = min(swap[i], not_swap[i - 1] + 1);
             }

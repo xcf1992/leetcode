@@ -64,7 +64,7 @@ public:
         int result = W;
         priority_queue<pair<int, int>, vector<pair<int, int>>, myComp> maxProfit;
         for (int i = 0; i < k; i++) {
-            while (!minCapital.empty() && minCapital.top().first <= result) {
+            while (!minCapital.empty() and minCapital.top().first <= result) {
                 maxProfit.push({minCapital.top().second, minCapital.top().first});
                 minCapital.pop();
             }

@@ -37,7 +37,7 @@ public:
         int left = 0;
         int right = num.size() - 1;
         while (left <= right) {
-            if (strobogrammatic.find(num[left]) == strobogrammatic.end() || strobogrammatic[num[left]] != num[right]) {
+            if (strobogrammatic.find(num[left]) == strobogrammatic.end() or strobogrammatic[num[left]] != num[right]) {
                 return false;
             }
             left += 1;

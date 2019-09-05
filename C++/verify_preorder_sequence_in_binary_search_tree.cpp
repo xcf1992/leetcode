@@ -77,7 +77,7 @@ private:
             return true;
         }
 
-        if (preorder[start] <= minVal || preorder[start] >= maxVal) {
+        if (preorder[start] <= minVal or preorder[start] >= maxVal) {
             return false;
         }
 

@@ -58,11 +58,11 @@ using namespace std;
 class Solution {
 public:
     bool isNumber(string& s) {
-        return s.back() >= '0' && s.back() <= '9';
+        return s.back() >= '0' and s.back() <= '9';
     }
 
     bool isVariable(string& s) {
-        return s[0] >= 'a' && s[0] <= 'z';
+        return s[0] >= 'a' and s[0] <= 'z';
     }
 
     int priority(string& s) {
@@ -124,7 +124,7 @@ public:
         // 3. merge the "*" expressions
         vector<vector<string>> result;
         for (auto& s : c) {
-            if (!result.empty() && equal(result.back(), s)) {
+            if (!result.empty() and equal(result.back(), s)) {
                 result.back()[0] = to_string(stoi(result.back()[0]) + stoi(s[0]));
             } else {
                 result.push_back(s);
@@ -138,7 +138,7 @@ public:
         // split into symbols, each symbol is "(" or ")" or a number or a variable or a operator.
         vector<string> v(1);
         for (char c : expression) {
-            if (c == '(' || c == ')') {
+            if (c == '(' or c == ')') {
                 if (!v.back().empty()) v.push_back(string());
                 v.back() += c;
                 v.push_back(string());
@@ -171,7 +171,7 @@ public:
         st.push("(");
         vector<string> u;
         for (auto& s : v) {
-            if (isNumber(s) || isVariable(s)) {
+            if (isNumber(s) or isVariable(s)) {
                 u.push_back(s);
             } else if (s == "(") {
                 st.push(s);

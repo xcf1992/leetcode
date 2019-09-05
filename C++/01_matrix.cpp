@@ -46,22 +46,22 @@ using namespace std;
 class Solution {
 private:
     bool isValid(int m, int n, int x, int y) {
-        return x >= 0 && y >= 0 && x < m && y < n;
+        return x >= 0 and y >= 0 and x < m and y < n;
     }
 
     int getShortestDistance(int m, int n, int x, int y, vector<vector<int>>& distance) {
         int result = distance[x][y];
 
-        if (isValid(m, n, x, y + 1) && distance[x][y + 1] != INT_MAX) {
+        if (isValid(m, n, x, y + 1) and distance[x][y + 1] != INT_MAX) {
             result = min(result, 1 + distance[x][y + 1]);
         }
-        if (isValid(m, n, x, y - 1) && distance[x][y - 1] != INT_MAX) {
+        if (isValid(m, n, x, y - 1) and distance[x][y - 1] != INT_MAX) {
             result = min(result, 1 + distance[x][y - 1]);
         }
-        if (isValid(m, n, x + 1, y) && distance[x + 1][y] != INT_MAX) {
+        if (isValid(m, n, x + 1, y) and distance[x + 1][y] != INT_MAX) {
             result = min(result, 1 + distance[x + 1][y]);
         }
-        if (isValid(m, n, x - 1, y) && distance[x - 1][y] != INT_MAX) {
+        if (isValid(m, n, x - 1, y) and distance[x - 1][y] != INT_MAX) {
             result = min(result, 1 + distance[x - 1][y]);
         }
         return result;

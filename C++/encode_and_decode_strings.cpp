@@ -138,7 +138,7 @@ public:
         for (int i = 0; i < s.size(); i++) {
             char letter = s[i];
             if (letter == '#') {
-                if (i + 1 < s.size() && s[i + 1] == '#') {
+                if (i + 1 < s.size() and s[i + 1] == '#') {
                     cur += letter;
                     i++;
                 }
@@ -147,7 +147,7 @@ public:
                 }
             }
             else if (letter == '$') {
-                if (i + 1 < s.size() && s[i + 1] == '$') {
+                if (i + 1 < s.size() and s[i + 1] == '$') {
                     cur += letter;
                     i++;
                 }

@@ -75,9 +75,9 @@ private:
         Node* botLeft = buildNode(grid, x + newLength, y, newLength);
         Node* botRight = buildNode(grid, x + newLength, y + newLength, newLength);
 
-        if (topLeft -> isLeaf && topRight -> isLeaf && botRight -> isLeaf && botLeft -> isLeaf &&
-            ((topLeft -> val && topRight -> val && botLeft -> val && botRight -> val) ||
-            !(topLeft -> val || topRight -> val || botLeft -> val || botRight -> val))) {
+        if (topLeft -> isLeaf and topRight -> isLeaf and botRight -> isLeaf and botLeft -> isLeaf and
+            ((topLeft -> val and topRight -> val and botLeft -> val and botRight -> val) or
+            !(topLeft -> val or topRight -> val or botLeft -> val or botRight -> val))) {
             bool val = topLeft -> val;
             delete topLeft;
             topLeft = nullptr;

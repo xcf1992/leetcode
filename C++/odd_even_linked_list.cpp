@@ -57,7 +57,7 @@ public:
 class Solution1 {
 public:
     ListNode* oddEvenList(ListNode* head) {
-        if (head == nullptr || head -> next == nullptr || head -> next -> next == nullptr) {
+        if (head == nullptr or head -> next == nullptr or head -> next -> next == nullptr) {
             return head;
         }
 

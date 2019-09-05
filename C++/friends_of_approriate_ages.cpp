@@ -6,7 +6,7 @@ Person A will NOT friend request person B (B != A) if any of the following condi
 
 age[B] <= 0.5 * age[A] + 7
 age[B] > age[A]
-age[B] > 100 && age[A] < 100
+age[B] > 100 and age[A] < 100
 Otherwise, A will friend request B.
 
 Note that if A requests B, B does not necessarily request A.  Also, people will not friend request themselves.

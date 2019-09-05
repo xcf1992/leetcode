@@ -56,7 +56,7 @@ public:
         while (iss >> word) {
             if (ban.find(word) == ban.end()) {
                 count[word] += 1;
-                if (result == "" || count[result] < count[word]) {
+                if (result == "" or count[result] < count[word]) {
                     result = word;
                 }
             }

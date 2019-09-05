@@ -36,7 +36,7 @@ class Solution {
 public:
     bool containsNearbyAlmostDuplicate(vector<int>& nums, int k, int t) {
         int n = nums.size();
-        if (n < 2 || k == 0) {
+        if (n < 2 or k == 0) {
             return false;
         }
 

@@ -78,7 +78,7 @@ public:
         pair<int, int> direction = {0, 1};
         int result = 0;
         for (int cmd : commands) {
-            if (cmd == -2 || cmd == -1) {
+            if (cmd == -2 or cmd == -1) {
                 direction = getNewDirection(direction, cmd);
                 continue;
             }

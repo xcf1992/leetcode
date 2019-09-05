@@ -78,7 +78,7 @@ public:
             if (num < 10) {
                 dp[i] = dp[i - 1];
             }
-            else if (num == 10 || num == 20) {
+            else if (num == 10 or num == 20) {
                 dp[i] = dp[i - 2];
             }
             else if (num <= 26) {

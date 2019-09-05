@@ -72,7 +72,7 @@ public:
         vector<bool> used(n, false);
         for (int i = 0; i < n; i++) {
             if (B[i] > A[n - 1]) {
-                while (left < n && used[left]) {
+                while (left < n and used[left]) {
                     left += 1;
                 }
                 result[i] = A[left];
@@ -80,7 +80,7 @@ public:
             }
             else {
                 int index = upper_bound(A.begin(), A.end(), B[i]) - A.begin();
-                while (index < n && used[index]) {
+                while (index < n and used[index]) {
                     index += 1;
                 }
                 if (index < n) {
@@ -88,7 +88,7 @@ public:
                     used[index] = true;
                 }
                 else {
-                    while (left < n && used[left]) {
+                    while (left < n and used[left]) {
                         left += 1;
                     }
                     result[i] = A[left];

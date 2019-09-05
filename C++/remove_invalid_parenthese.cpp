@@ -97,7 +97,7 @@ public:
             }
 
             for (int i = 0; i < curS.size(); i++) {
-                if (curS[i] != '(' && curS[i] != ')') {
+                if (curS[i] != '(' and curS[i] != ')') {
                     continue;
                 }
 

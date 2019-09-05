@@ -35,7 +35,7 @@ public:
         sort(nums.begin(), nums.end());
         int sum = accumulate(nums.begin(), nums.end(), 0);
         int target = sum / k;
-        if (sum % k > 0 || nums[N - 1] > target) {
+        if (sum % k > 0 or nums[N - 1] > target) {
             return false;
         }
 
@@ -73,7 +73,7 @@ private:
             return partition(nums, used, 0, k - 1, 0, target);
         }
         for (int i = start; i < nums.size(); i++) {
-            if (!used[i] && curSum + nums[i] <= target) {
+            if (!used[i] and curSum + nums[i] <= target) {
                 used[i] = true;
                 if (partition(nums, used, i + 1, k, curSum + nums[i], target)) {
                     return true;

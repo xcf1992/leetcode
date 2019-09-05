@@ -66,7 +66,7 @@ public:
         int result = 0;
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j <n; ++j) {
-                if (picture[i][j] == 'B' && rowCnt[i] == N && colCnt[j] == N) {
+                if (picture[i][j] == 'B' and rowCnt[i] == N and colCnt[j] == N) {
                     bool lonely = true;
                     for (int row : colBlack[j]) {
                         if (rowVal[row] != rowVal[i]) {

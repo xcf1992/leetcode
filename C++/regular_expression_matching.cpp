@@ -100,7 +100,7 @@ public:
         dp[0][0] = true;
         for (int j = 1; j <= n; j++) {
             if (p[j - 1] == '*') {
-                if (dp[0][j - 1] || (j > 1 && dp[0][j - 2])) {
+                if (dp[0][j - 1] or (j > 1 and dp[0][j - 2])) {
                     dp[0][j] = true;
                 }
             }

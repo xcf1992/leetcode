@@ -103,19 +103,19 @@ private:
         int j = 0;
         int n = word.size();
         int m = S.size();
-        while (i < n && j < m) {
-            while (i < n && j < m && word[i] == S[j]) {
+        while (i < n and j < m) {
+            while (i < n and j < m and word[i] == S[j]) {
                 i++;
                 j++;
             }
-            while (j > 0 && S[j] == S[j - 1]) {
+            while (j > 0 and S[j] == S[j - 1]) {
                 j++;
             }
-            if (j < 3 || S[j - 1] != S[j - 2] || S[j - 2] != S[j - 3]) {
+            if (j < 3 or S[j - 1] != S[j - 2] or S[j - 2] != S[j - 3]) {
                 break;
             }
         }
-        return i == n && j == m;
+        return i == n and j == m;
     }
 public:
     int expressiveWords(string S, vector<string>& words) {

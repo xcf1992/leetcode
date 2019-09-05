@@ -117,7 +117,7 @@ public:
         for (int k = 0; k < points.size(); k++) {
             for (int i = 0; i < points.size(); i++) {
                 for (int j = 0; j < points.size(); j++) {
-                    if (graph[i][k] != INT_MAX && graph[k][j] != INT_MAX) {
+                    if (graph[i][k] != INT_MAX and graph[k][j] != INT_MAX) {
                         graph[i][j] = min(graph[i][j], graph[i][k] * graph[k][j]);
                     }
                 }
@@ -126,7 +126,7 @@ public:
 
         vector<double> result;
         for (auto q : queries) {
-            if (points.find(q.first) == points.end() || points.find(q.second) == points.end()) {
+            if (points.find(q.first) == points.end() or points.find(q.second) == points.end()) {
                 result.push_back(-1.0);
             }
             else {

@@ -45,7 +45,7 @@ private:
     bool complete(string word, unordered_map<char, int> letters, int plateSize) {
         for (int i = 0; i < word.size(); i++) {
             char letter = tolower(word[i]);
-            if (letters.find(letter) != letters.end() && letters[letter] > 0) {
+            if (letters.find(letter) != letters.end() and letters[letter] > 0) {
                 plateSize -= 1;
                 letters[letter] -= 1;
             }

@@ -69,9 +69,9 @@ private:
             return check(s, pos + 1, left, right + 1);
         }
         if (right == left) {
-            return check(s, pos + 1, left + 1, right) || check(s, pos + 1, left, right);
+            return check(s, pos + 1, left + 1, right) or check(s, pos + 1, left, right);
         }
-        return check(s, pos + 1, left + 1, right) || check(s, pos + 1, left, right + 1) || check(s, pos + 1, left, right);
+        return check(s, pos + 1, left + 1, right) or check(s, pos + 1, left, right + 1) or check(s, pos + 1, left, right);
     }
 public:
     bool checkValidString(string s) {

@@ -54,7 +54,7 @@ using namespace std;
 class Solution {
 public:
     vector<int> distanceK(TreeNode* root, TreeNode* target, int K) {
-        if (root == nullptr || target == nullptr) {
+        if (root == nullptr or target == nullptr) {
             return {};
         }
 

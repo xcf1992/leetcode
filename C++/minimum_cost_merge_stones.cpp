@@ -74,7 +74,7 @@ so,We have 1 = n -m(K-1) ----> so we have
  State: Minimum cost merging piles from i to j to k pile.
 
  Function: dp[i][j][k] = min(sum[i][j] + dp[i][t][k - 1] + dp[t + 1][j][1])
- (i <= t < j && dp[i][t][k - 1] != max && dp[t+1][j][1] != max)
+ (i <= t < j and dp[i][t][k - 1] != max and dp[t+1][j][1] != max)
 
  Init: dp[i][i][1] = 0 (Already a pile) others = max
 

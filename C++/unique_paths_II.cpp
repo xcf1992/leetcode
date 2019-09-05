@@ -51,12 +51,12 @@ public:
             dp[0][0] = 1;
         }
         for (int i = 1; i < m; ++i) {
-            if (obstacleGrid[i][0] != 1 && dp[i - 1][0] != 0) {
+            if (obstacleGrid[i][0] != 1 and dp[i - 1][0] != 0) {
                 dp[i][0] = 1;
             }
         }
         for (int j = 1; j < n; ++j) {
-            if (obstacleGrid[0][j] != 1 && dp[0][j - 1] != 0) {
+            if (obstacleGrid[0][j] != 1 and dp[0][j - 1] != 0) {
                 dp[0][j] = 1;
             }
         }

@@ -69,7 +69,7 @@ public:
                 pre = cur;
                 cur = cur -> next;
             }
-            if (cur != nullptr && extra != 0) {
+            if (cur != nullptr and extra != 0) {
                 pre = cur;
                 cur = cur -> next;
                 extra -= 1;

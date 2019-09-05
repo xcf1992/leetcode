@@ -96,15 +96,15 @@ private:
                 }
                 start = end;
             }
-            else if (letter >= 'A' && letter <= 'Z') {
+            else if (letter >= 'A' and letter <= 'Z') {
                 int end = start + 1;
-                while (end < formula.size() && formula[end] >= 'a' && formula[end] <= 'z') {
+                while (end < formula.size() and formula[end] >= 'a' and formula[end] <= 'z') {
                     end += 1;
                 }
                 string atom = formula.substr(start, end - start);
 
                 start = end;
-                while (end < formula.size() && formula[end] >= '0' && formula[end] <= '9') {
+                while (end < formula.size() and formula[end] >= '0' and formula[end] <= '9') {
                     end += 1;
                 }
                 atoms[atom] += end == start ? 1 : stoi(formula.substr(start, end - start));

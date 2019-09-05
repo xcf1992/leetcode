@@ -77,13 +77,13 @@ private:
         }
 
         int tmp = atan(abs(y1 - y2) / abs(x1 - x2)) * 180 / PI;
-        if (x1 < x2 && y1 > y2){
+        if (x1 < x2 and y1 > y2){
             return 180 - tmp;
         }
-        if (x1 < x2 && y1 < y2) {
+        if (x1 < x2 and y1 < y2) {
             return 180 + tmp;
         }
-        if (x1 > x2 && y1 < y2) {
+        if (x1 > x2 and y1 < y2) {
             return 360 - tmp;
         }
         return tmp;
@@ -122,7 +122,7 @@ public:
             else if (diff > 180) {
                 more++;
             }
-            if (less && more) {
+            if (less and more) {
                 return false;
             }
         }

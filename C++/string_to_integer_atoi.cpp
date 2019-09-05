@@ -32,7 +32,7 @@ Example 4:
 
 Input: "words and 987"
 Output: 0
-Explanation: The first non-whitespace character is 'w', which is not a numerical 
+Explanation: The first non-whitespace character is 'w', which is not a numerical
              digit or a +/- sign. Therefore no valid conversion could be performed.
 Example 5:
 
@@ -63,17 +63,17 @@ public:
         if (str[ptr] == str.size()) {
             return 0;
         }
-        
+
         bool negative = false;
-        if (str[ptr] == '+' || str[ptr] == '-') {
+        if (str[ptr] == '+' or str[ptr] == '-') {
             if (str[ptr] == '-') {
                 negative = true;
             }
             ptr++;
         }
-        
+
         long long result = 0;
-        while (str[ptr] <= '9' && str[ptr] >= '0') {
+        while (str[ptr] <= '9' and str[ptr] >= '0') {
             int digit = str[ptr] - '0';
             result = result * 10 + digit;
             if (result > INT_MAX) {

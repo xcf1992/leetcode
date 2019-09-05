@@ -60,7 +60,7 @@ public:
         stack<char> stk;
         for (int i = expression.size() - 1; i >= 0; i--) {
             char c = expression[i];
-            if (!stk.empty() && stk.top() == '?') {
+            if (!stk.empty() and stk.top() == '?') {
                 stk.pop(); // pop ?
                 char left = stk.top(); // get left val
                 stk.pop(); // pop left val

@@ -141,7 +141,7 @@ class Solution1 {
 private:
     int MOD = 1e9 + 7;
     void count(string& S, int start, int end, int curUnique, int& result, vector<int>& letter) {
-        if (start >= S.size() || end >= S.size()) {
+        if (start >= S.size() or end >= S.size()) {
             return;
         }
 

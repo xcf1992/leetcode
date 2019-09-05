@@ -37,7 +37,7 @@ class Solution {
 private:
     TreeNode* build(string& s, int& cur) {
         int pos = cur;
-        while (isdigit(s[cur]) || s[cur] == '-') {
+        while (isdigit(s[cur]) or s[cur] == '-') {
             cur += 1;
         }
 

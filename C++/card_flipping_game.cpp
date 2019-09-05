@@ -87,12 +87,12 @@ public:
         int result = INT_MAX;
         for (int i = 0; i < n; i++) {
             int num = fronts[i];
-            if (back.find(num) == back.end() || canFlip(back[num], fronts, backs)) {
+            if (back.find(num) == back.end() or canFlip(back[num], fronts, backs)) {
                 result = min(result, num);
             }
 
             num = backs[i];
-            if (front.find(num) == front.end() || canFlip(front[num], backs, fronts)) {
+            if (front.find(num) == front.end() or canFlip(front[num], backs, fronts)) {
                 result = min(result, num);
             }
         }

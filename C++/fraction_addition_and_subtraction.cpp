@@ -60,7 +60,7 @@ private:
     }
 
     int getLCM(int a, int b) {
-        return a == 0 || b == 0 ? 0 : a * b / getGCD(a, b);
+        return a == 0 or b == 0 ? 0 : a * b / getGCD(a, b);
     }
 public:
     string fractionAddition(string expression) {

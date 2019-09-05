@@ -44,7 +44,7 @@ public:
                     start = mid;
                 }
             }
-            else if (mid > start && num == nums[mid - 1]) {
+            else if (mid > start and num == nums[mid - 1]) {
                 if ((end - mid) % 2 == 0) {
                     end = mid;
                 }

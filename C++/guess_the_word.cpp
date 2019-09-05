@@ -115,7 +115,7 @@ minimax: 因为你会保留其中一个group（和自己share 0,1,2,3,4,5,6这7�
 https://leetcode.com/problems/guess-the-word/discuss/134087/C++-elimination-histogram-beats-Minimax
 */
     void findSecretWord(vector<string>& wordlist, Master& master) {
-        for (int i = 0, x = 0; i < 10 && x < 6; ++i) {
+        for (int i = 0, x = 0; i < 10 and x < 6; ++i) {
             unordered_map<string, int> count;
             for (string w1 : wordlist)
                 for (string w2 : wordlist)
@@ -157,7 +157,7 @@ public:
             //candidates =  neighbors with match x intersect candidates
             vector<string> intersect;
             for (auto w: wordlist) {
-                if (match(w, s) == x && find(candidates.begin(), candidates.end(), w) != candidates.end()) {
+                if (match(w, s) == x and find(candidates.begin(), candidates.end(), w) != candidates.end()) {
                     intersect.push_back(w);
                 }
             }

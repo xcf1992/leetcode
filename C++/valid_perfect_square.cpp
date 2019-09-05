@@ -52,7 +52,7 @@ public:
     bool isPerfectSquare(int num) {
         int diff = 1;
         int cur = 0;
-        while (cur <= num && cur >= 0) {
+        while (cur <= num and cur >= 0) {
             if (cur == num) {
                 return true;
             }

@@ -52,7 +52,7 @@ public:
             }
             else if (distinct == 2) {
                 result = max(result, end - begin);
-                while (begin < end && distinct == 2) {
+                while (begin < end and distinct == 2) {
                     count[s[begin]] -= 1;
                     if (count[s[begin]] == 0) {
                         distinct = 1;

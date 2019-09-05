@@ -24,7 +24,7 @@ public:
         int result;
 
         for (int i = 0, cnt = 1; i < nums.size(); i++) {
-            if (nums[i] == target && ((rand() % cnt++) == 0)) {
+            if (nums[i] == target and ((rand() % cnt++) == 0)) {
                 result = i;
             }
         }

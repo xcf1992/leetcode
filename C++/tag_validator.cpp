@@ -96,7 +96,7 @@ public:
             if( c == '>'){
                 return endTag.size() <= 9 ? endTag:"";
             }
-            else if( c <'A' || c >'Z')
+            else if( c <'A' or c >'Z')
                 return "";
             endTag.push_back(c);
         }
@@ -121,7 +121,7 @@ public:
         stack<string> stk;
         for( int i = 0; i < code.size(); ){
             char c = code[i];
-            if( c == '<' && code[i+1] !='/' ){  //tag start
+            if( c == '<' and code[i+1] !='/' ){  //tag start
                 int res = seekEndData(code, i);  //try to find data content and skip it.
                 if( res == FIND_DATA_END){  //skip data tag.
 
@@ -135,18 +135,18 @@ public:
                     else
                         return false;
                 }
-            }else if( c=='<' && code[i+1] =='/'){  // try to find end tag.
+            }else if( c=='<' and code[i+1] =='/'){  // try to find end tag.
                 i+=2;
                 string endTag = seekTag(code, i);
                 if( endTag.size() > 0 ){
-                    if( stk.size() == 0 || endTag != stk.top() )
+                    if( stk.size() == 0 or endTag != stk.top() )
                         return false;
                     stk.pop();
                 }else
                     return false;
             }else
                 i++;
-            if( i < code.size() && stk.size() == 0 )  //it is not closed by a tag.
+            if( i < code.size() and stk.size() == 0 )  //it is not closed by a tag.
                 return false;
         }
         return stk.size() > 0 ? false : true;

@@ -52,7 +52,7 @@ public:
         ListNode* prev = head;
         ListNode* cur = prev -> next;
         while (cur != NULL) {
-            if (values.find(prev -> val) != values.end() && values.find(cur -> val) != values.end()) {
+            if (values.find(prev -> val) != values.end() and values.find(cur -> val) != values.end()) {
                 result -= 1;
             }
             prev = cur;

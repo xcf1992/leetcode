@@ -81,7 +81,7 @@ private:
     }
 
     void print(TreeNode* root, vector<vector<string>>& result, int begin, int end, int row) {
-        if (root == nullptr || begin > end) {
+        if (root == nullptr or begin > end) {
             return;
         }
 

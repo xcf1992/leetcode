@@ -61,7 +61,7 @@ public:
         time[3] = digits[0];
 
         for (int i = 0; i < 4; i++) {
-            if (time[0] == '2' && digits[i] > '3') {
+            if (time[0] == '2' and digits[i] > '3') {
                 break;
             }
             if (digits[i] > time[1]) {

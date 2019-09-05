@@ -55,7 +55,7 @@ Search, insertion, and removal operations have logarithmic complexity.
 
 Everywhere the standard library uses the Compare requirements,
 equivalence is determined by using the equivalence relation as described on Compare.
-In imprecise terms, two objects a and b are considered equivalent if neither compares less than the other: !comp(a, b) && !comp(b, a).
+In imprecise terms, two objects a and b are considered equivalent if neither compares less than the other: !comp(a, b) and !comp(b, a).
 
 The order of the elements that compare equivalent is the order of insertion and does not change. (since C++11)
 

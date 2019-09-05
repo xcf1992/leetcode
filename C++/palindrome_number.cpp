@@ -40,7 +40,7 @@ public:
         if (x < 10) {
             return true;
         }
-        
+
         vector<int> digits;
         while (x != 0) {
             digits.push_back(x % 10);
@@ -66,7 +66,7 @@ public:
         if ( x < 0) {
             return false;
         }
-        
+
         int hehe = 1;
         int times = 1;
         int y = x;
@@ -75,12 +75,12 @@ public:
             hehe *= 10;
             times += 1;
         }
-        
+
         int temp = x;
-        while ( times != 0 && times != 1) {
+        while ( times != 0 and times != 1) {
             int a = x % 10;
             int b = temp / hehe;
-            
+
             if ( a != b) {
                 return false;
             }
@@ -89,10 +89,10 @@ public:
                 temp = temp % hehe;
                 hehe = hehe / 10;
             }
-            
+
             times -= 2;
         }
-        
+
         return true;
     }
 };

@@ -151,7 +151,7 @@ using namespace std;
  where the status of the grid matrix may be represented by a string with cell values joined row by row.
  Our original problem will be T(0, 0, grid.initial_status) and the recurrence relations are something like:
 
- T(i, j, grid.status) = -1, if grid[i][j] == -1 || T(i + d, j, grid.status1) == -1 && T(i + d, j, grid.status2) == -1;
+ T(i, j, grid.status) = -1, if grid[i][j] == -1 or T(i + d, j, grid.status1) == -1 and T(i + d, j, grid.status2) == -1;
 
  T(i, j, grid.status) = grid[i][j] + max(T(i + d, j, grid.status1), T(i, j + d, grid.status2)), otherwise.
 
@@ -265,9 +265,9 @@ using namespace std;
  (again except for the special case) in order to avoid duplicate counting.
  So in summary, one of the following three conditions should be true:
 
- i < p && j > q
- i == p && j == q
- i > p && j < q
+ i < p and j > q
+ i == p and j == q
+ i > p and j < q
  This indicates that our definition of the two-leg trip T(i, j, p, q) is not valid for all values of the four indices,
  but instead, they will be subjected to the above three conditions.
  This is problematic, as it would break the self-consistency of the original definition of T(i, j, p, q)
@@ -342,7 +342,7 @@ public:
                 for (int p = N - 1; p >= 0; p--) {
                     int j = n - i;
                     int q = n - p;
-                    if (j < 0 || j >= N || q < 0 || q >= N || grid[i][j] < 0 || grid[p][q] < 0) {
+                    if (j < 0 or j >= N or q < 0 or q >= N or grid[i][j] < 0 or grid[p][q] < 0) {
                         dp[i][p] = -1;
                         continue;
                     }
@@ -352,7 +352,7 @@ public:
                     if (p > 0) {
                         dp[i][p] = max(dp[i][p], dp[i][p - 1]);
                     }
-                    if (i > 0 && p > 0) {
+                    if (i > 0 and p > 0) {
                         dp[i][p] = max(dp[i][p], dp[i - 1][p - 1]);
                     }
                     if (dp[i][p] >= 0) {

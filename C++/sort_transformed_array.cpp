@@ -49,10 +49,10 @@ public:
         double mid = 0 - (double)b / (2 * a);
         int left = 0;
         int right = n - 1;
-        while (left + 1 < n && ((double)nums[left + 1]) < mid) {
+        while (left + 1 < n and ((double)nums[left + 1]) < mid) {
             left += 1;
         }
-        while (right > 0 && ((double)nums[right - 1]) >= mid) {
+        while (right > 0 and ((double)nums[right - 1]) >= mid) {
             right -= 1;
         }
 

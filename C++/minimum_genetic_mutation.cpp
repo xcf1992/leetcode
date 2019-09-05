@@ -84,7 +84,7 @@ private:
         }
 
         for (string gene : bank) {
-            if (visited.find(gene) == visited.end() && mutatedFrom(cur, gene)) {
+            if (visited.find(gene) == visited.end() and mutatedFrom(cur, gene)) {
                 visited.insert(gene);
                 dfs(gene, end, bank, visited, count + 1, result);
                 visited.erase(gene);
@@ -133,7 +133,7 @@ public:
                 }
 
                 for (string gene : bank) {
-                    if (visited.find(gene) == visited.end() && mutatedFrom(cur, gene)) {
+                    if (visited.find(gene) == visited.end() and mutatedFrom(cur, gene)) {
                         bfs.push(gene);
                         visited.insert(gene);
                     }

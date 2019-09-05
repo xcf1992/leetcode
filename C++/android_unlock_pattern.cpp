@@ -56,7 +56,7 @@ private:
         int result = 0;
         visited[curDigit] = true;
         for (int i = 1; i <= 9; i++) {
-            if (!visited[i] and (skip[curDigit][i] == 0 || visited[skip[curDigit][i]])) {
+            if (!visited[i] and (skip[curDigit][i] == 0 or visited[skip[curDigit][i]])) {
                 result += dfs(visited, skip, i, remain - 1);
             }
         }

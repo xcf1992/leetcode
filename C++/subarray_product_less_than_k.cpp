@@ -68,7 +68,7 @@ public:
         int product = 1;
         for (int end = 0; end < nums.size(); end++) {
             product *= nums[end];
-            while (start <= end && product >= k) {
+            while (start <= end and product >= k) {
                 product /= nums[start++];
             }
             result += end - start + 1;

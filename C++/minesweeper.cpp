@@ -84,7 +84,7 @@ using namespace std;
 class Solution {
 private:
     bool validClick(vector<vector<char>>& board, int r, int c) {
-        return r >= 0 && c >= 0 && r < board.size() && c < board[0].size();
+        return r >= 0 and c >= 0 and r < board.size() and c < board[0].size();
     }
 
     void dfs(vector<vector<char>>& board, int r, int c) {
@@ -94,7 +94,7 @@ private:
 
         int count = 0;
         for (int i = r - 1; i <= r + 1; ++i) {
-            for (int j = c - 1; j <= c + 1; ++j) if (validClick(board, i, j) && board[i][j] == 'M') {
+            for (int j = c - 1; j <= c + 1; ++j) if (validClick(board, i, j) and board[i][j] == 'M') {
                 count += 1;
             }
         }

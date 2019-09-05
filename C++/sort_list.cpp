@@ -40,7 +40,7 @@ private:
     }
 public:
     ListNode* sortList(ListNode *head) {
-        if (head == nullptr || head -> next == nullptr) {
+        if (head == nullptr or head -> next == nullptr) {
             return head;
         }
 

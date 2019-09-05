@@ -46,7 +46,7 @@ private:
             return;
         }
 
-        if (root -> left == nullptr && root -> right == nullptr) {
+        if (root -> left == nullptr and root -> right == nullptr) {
             leaves.push_back(root -> val);
             root = nullptr;
             return;

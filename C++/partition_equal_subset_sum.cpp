@@ -57,7 +57,7 @@ dp[i][j] would also make it to j (we can just ignore nums[i]).
 
 If we pick nums[i]. dp[i][j] = dp[i-1][j-nums[i]],
 which represents that j is composed of the current value nums[i] and the remaining composed of other previous numbers.
-Thus, the transition function is dp[i][j] = dp[i-1][j] || dp[i-1][j-nums[i]]
+Thus, the transition function is dp[i][j] = dp[i-1][j] or dp[i-1][j-nums[i]]
 
 talking is cheap:
 */

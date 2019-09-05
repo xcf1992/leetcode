@@ -67,7 +67,7 @@ private:
     }
 
     static bool cmp(vector<int>& p1, vector<int>& p2) { // from left to right, from bot to top
-        return p1[0] < p2[0] || (p1[0] == p2[0] and p1[1] < p2[1]);
+        return p1[0] < p2[0] or (p1[0] == p2[0] and p1[1] < p2[1]);
     }
 
     static bool equ(vector<int>& p1, vector<int>& p2) {

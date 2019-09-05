@@ -54,7 +54,7 @@ class Solution1 {
 private:
     bool canFlip(string s) {
         for (int i = 1; i < s.size(); i++) {
-            if (s[i] == '+' && s[i - 1] == '+') {
+            if (s[i] == '+' and s[i - 1] == '+') {
                 return true;
             }
         }
@@ -63,7 +63,7 @@ private:
 public:
     bool canWin(string s) {
         for (int i = 1; i < s.size(); i++) {
-            if (s[i] == '+' && s[i - 1] == '+') {
+            if (s[i] == '+' and s[i - 1] == '+') {
                 s[i] = s[i - 1] = '-';
                 if (!canFlip(s)) {
                     return true;

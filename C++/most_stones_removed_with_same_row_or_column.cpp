@@ -66,7 +66,7 @@ public:
             vector<int>& stoneI = stones[i];
             for (int j = i + 1; j < stones.size(); j++) {
                 vector<int>& stoneJ = stones[j];
-                if (stoneI[0] == stoneJ[0] || stoneI[1] == stoneJ[1]) {
+                if (stoneI[0] == stoneJ[0] or stoneI[1] == stoneJ[1]) {
                     uni(i, j, parent);
                 }
             }

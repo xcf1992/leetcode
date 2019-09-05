@@ -48,7 +48,7 @@ public:
         stack<Node*> stk;
         stk.push(root);
         vector<int> result;
-        while (!stk.empty() && root != nullptr) {
+        while (!stk.empty() and root != nullptr) {
             Node* cur = stk.top();
             stk.pop();
             result.push_back(cur -> val);

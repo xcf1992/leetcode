@@ -95,7 +95,7 @@ public:
             if (backward == 0) {
                 i--;
                 j++;
-                if (i < 0 && j <= n - 1) {
+                if (i < 0 and j <= n - 1) {
                     backward = 1;
                     i += 1;
                 }
@@ -108,7 +108,7 @@ public:
             else {
                 i++;
                 j--;
-                if (j < 0 && i <= m - 1) {
+                if (j < 0 and i <= m - 1) {
                     backward = 0;
                     j += 1;
                 }

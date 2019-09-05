@@ -61,7 +61,7 @@ public:
         for (int asteroid : asteroids) {
             if (asteroid < 0) {
                 bool exploded = false;
-                while (!result.empty() && result.back() > 0) {
+                while (!result.empty() and result.back() > 0) {
                     if (result.back() > abs(asteroid)) {
                         exploded = true;
                         break;

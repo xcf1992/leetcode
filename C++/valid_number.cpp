@@ -69,8 +69,8 @@ public:
                     state = (state <= 5) ? 5 : 7;
                 }
             }
-            else if ('+' == str[i] || '-' == str[i]) {
-                if (state == 0 || state == 3) {
+            else if ('+' == str[i] or '-' == str[i]) {
+                if (state == 0 or state == 3) {
                     state++;
                 }
                 else {
@@ -86,7 +86,7 @@ public:
                 }
             }
             else if('e' == str[i]){
-                if (flag && (state == 2 || state == 6 || state == 7)) {
+                if (flag and (state == 2 or state == 6 or state == 7)) {
                     state = 3;
                 }
                 else {
@@ -97,6 +97,6 @@ public:
                 return false;
             }
         }
-        return state == 2 || state == 5 || (flag && state == 6) || state == 7;
+        return state == 2 or state == 5 or (flag and state == 6) or state == 7;
     }
 };

@@ -83,7 +83,7 @@ private:
     int update(vector<vector<int>>& matrix, int x, int y, int val, vector<vector<int>>& dp) {
         int m = matrix.size();
         int n = matrix[0].size();
-        if (x < 0 || y < 0 || x >= m || y >= n || matrix[x][y] <= val) {
+        if (x < 0 or y < 0 or x >= m or y >= n or matrix[x][y] <= val) {
             return 0;
         }
 

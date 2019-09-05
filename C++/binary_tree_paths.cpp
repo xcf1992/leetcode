@@ -19,7 +19,7 @@ private:
         }
 
         result += to_string(root -> val);
-        if (root -> left == nullptr && root -> right == nullptr) {
+        if (root -> left == nullptr and root -> right == nullptr) {
             results.push_back(result);
         }
         result += "->";

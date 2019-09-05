@@ -26,7 +26,7 @@ public:
         int end = 0;
 
         while (end < s.size()) {
-            while (s[end] != ' ' && end < s.size()) {
+            while (s[end] != ' ' and end < s.size()) {
                 end++;
             }
 

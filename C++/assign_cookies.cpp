@@ -18,7 +18,7 @@ public:
         int j = 0;
         sort(g.begin(), g.end());
         sort(s.begin(), s.end());
-        while (i < g.size() && j < s.size()) {
+        while (i < g.size() and j < s.size()) {
             if (s[j] >= g[i]) {
                 result += 1;
                 i += 1;

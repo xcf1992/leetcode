@@ -75,7 +75,7 @@ private:
         int i = pos;
         bool found = false;
         for (; i < n; i++) {
-            if (data[i] == ',' || data[i] == ']') {
+            if (data[i] == ',' or data[i] == ']') {
                 break;
             }
             if (data[i] == '[') {

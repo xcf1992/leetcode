@@ -120,7 +120,7 @@ public:
                 else if (next == -1) {
                     next = i;
                     int newSeat = pre + (next - pre) / 2;
-                    if (pos == -1 || distance < min(newSeat - pre, next - newSeat)) {
+                    if (pos == -1 or distance < min(newSeat - pre, next - newSeat)) {
                         pos = newSeat;
                         distance = min(newSeat - pre, next - newSeat);
                     }

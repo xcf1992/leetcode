@@ -66,7 +66,7 @@ public:
         unordered_set<string> visited;
         queue<string> bfs;
         string init = "0000";
-        
+
         if (des.find(init) != des.end()) {
             return -1;
         }
@@ -84,7 +84,7 @@ public:
 
                 vector<string> nextStrings = open(curStr);
                 for (string nextStr : nextStrings) {
-                    if (des.find(nextStr) == des.end() && visited.find(nextStr) == visited.end()) {
+                    if (des.find(nextStr) == des.end() and visited.find(nextStr) == visited.end()) {
                         visited.insert(nextStr);
                         bfs.push(nextStr);
                     }

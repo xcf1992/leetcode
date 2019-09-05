@@ -61,7 +61,7 @@ private:
 
         for (int i = 0; i < num.size(); i++) {
             if (visit[i] == 0) {
-                if (i > 0 && num[i - 1] == num[i] && visit[i - 1] == 0) {
+                if (i > 0 and num[i - 1] == num[i] and visit[i - 1] == 0) {
                     continue;
                 }
 

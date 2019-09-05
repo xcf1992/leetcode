@@ -43,7 +43,7 @@ public:
 
     void push(int x) {
         elements.push(x);
-        if (maxElements.empty() || x >= maxElements.top()) {
+        if (maxElements.empty() or x >= maxElements.top()) {
             maxElements.push(x);
         }
         else {

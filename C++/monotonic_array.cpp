@@ -57,11 +57,11 @@ public:
         }
 
         int i = 0;
-        while (i + 1 < A.size() && A[i] == A[i + 1]) {
+        while (i + 1 < A.size() and A[i] == A[i + 1]) {
             i += 1;
         }
         bool increase = true;
-        if (i + 1 < A.size() && A[i] > A[i + 1]) {
+        if (i + 1 < A.size() and A[i] > A[i + 1]) {
             increase = false;
             i += 1;
         }

@@ -74,7 +74,7 @@ private:
 
         for (int j = y; j < y + 3; j++) {
             for (int i = x; i < x + 3; i++) {
-                if (grid[i][j] < 1 || grid[i][j] > 9) {
+                if (grid[i][j] < 1 or grid[i][j] > 9) {
                     return 0;
                 }
                 sum += grid[i][j];

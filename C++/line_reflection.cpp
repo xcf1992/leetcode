@@ -65,7 +65,7 @@ public:
         int xXor = 0;
         int yXor = 0;
         for (int i = 0; i < points.size(); i++) {
-            if (i != 0 && points[i].first == points[i - 1].first) {
+            if (i != 0 and points[i].first == points[i - 1].first) {
                 continue;
             }
 
@@ -74,6 +74,6 @@ public:
                 xXor ^= (abs(mid - 2 * points[i].first));
             }
         }
-        return xXor == 0 && yXor == 0;
+        return xXor == 0 and yXor == 0;
     }
 };

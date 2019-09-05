@@ -36,7 +36,7 @@ public:
         int i = pos;
         bool found = false;
 
-        while (data[i] != '(' && data[i] != ')' && i < n) {
+        while (data[i] != '(' and data[i] != ')' and i < n) {
             i++;
         }
 

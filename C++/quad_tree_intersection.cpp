@@ -109,14 +109,14 @@ private:
         Node* botLeft = node -> bottomLeft;
         Node* botRight = node -> bottomRight;
 
-        if (topLeft == nullptr && topRight == nullptr
-            && botLeft == nullptr && botRight == nullptr) {
+        if (topLeft == nullptr and topRight == nullptr
+            and botLeft == nullptr and botRight == nullptr) {
             return true;
         }
 
-        if (topLeft -> isLeaf && topRight -> isLeaf && botRight -> isLeaf && botLeft -> isLeaf && (
-            (topLeft -> val && topRight -> val && botLeft -> val && botRight -> val) ||
-             !(topLeft -> val || topRight -> val || botLeft -> val || botRight -> val))) {
+        if (topLeft -> isLeaf and topRight -> isLeaf and botRight -> isLeaf and botLeft -> isLeaf and (
+            (topLeft -> val and topRight -> val and botLeft -> val and botRight -> val) or
+             !(topLeft -> val or topRight -> val or botLeft -> val or botRight -> val))) {
                 return true;
         }
         return false;

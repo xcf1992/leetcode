@@ -117,7 +117,7 @@ private:
             return;
         }
 
-        while (preorder[pos] >= '0' && preorder[pos] <= '9') {
+        while (preorder[pos] >= '0' and preorder[pos] <= '9') {
             pos++;
         }
         pos++;

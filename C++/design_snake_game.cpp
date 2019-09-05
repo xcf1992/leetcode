@@ -112,7 +112,7 @@ public:
             curW += 1;
         }
 
-        if (curW < 0 || curH < 0 || curW >= W || curH >= H) {
+        if (curW < 0 or curH < 0 or curW >= W or curH >= H) {
             return -1;
         }
 
@@ -126,7 +126,7 @@ public:
 
         snake.insert(snake.begin(), next);
         visited.insert(next);
-        if (score < f.size() && curH == f[score][0] && curW == f[score][1]) {
+        if (score < f.size() and curH == f[score][0] and curW == f[score][1]) {
             score += 1;
             snake.push_back(tail);
             visited.insert(tail);

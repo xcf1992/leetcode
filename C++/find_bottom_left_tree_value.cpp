@@ -44,7 +44,7 @@ public:
 
         row1.push(root);
 
-        while (!row1.empty() || !row2.empty()) {
+        while (!row1.empty() or !row2.empty()) {
             if (row2.empty()) {
                 result = row1.front() -> val;
                 while (!row1.empty()) {

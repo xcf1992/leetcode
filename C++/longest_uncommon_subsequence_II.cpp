@@ -37,7 +37,7 @@ private:
     bool isSub(const string a, const string b) {
         int i = 0;
         int j = 0;
-        while (i < a.size() && j < b.size()) {
+        while (i < a.size() and j < b.size()) {
             if (a[i] == b[j]) {
                 i++;
             }

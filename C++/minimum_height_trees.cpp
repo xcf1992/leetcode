@@ -194,7 +194,7 @@ private:
         }
 
         for (int next : graph[cur]) {
-            if (path.size() <= 1 || next != path[path.size() - 2]) {
+            if (path.size() <= 1 or next != path[path.size() - 2]) {
                 path.push_back(next);
                 dfs(graph, visited, path, result, maxLength);
                 path.pop_back();

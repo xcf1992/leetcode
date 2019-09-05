@@ -54,7 +54,7 @@ public:
         for (int i = 1; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 for (int c = -1; c <= 1; c++) {
-                    if (j + c >= 0 && j + c < n) {
+                    if (j + c >= 0 and j + c < n) {
                         dp[i][j] = min(dp[i][j], dp[i - 1][j + c] + A[i][j]);
                     }
                 }

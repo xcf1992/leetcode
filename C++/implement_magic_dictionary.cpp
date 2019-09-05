@@ -90,7 +90,7 @@ public:
 
     bool find(string word, int start, int modification) {
         if (start == word.size()) {
-            return isRoot && modification == 1;
+            return isRoot and modification == 1;
         }
 
         if (modification > 1) {
@@ -99,7 +99,7 @@ public:
 
         for (int i = 0; i < 26; i++) {
             TrieNode* node = nodes[i];
-            if (node && node -> find(word, start + 1, modification + (i == word[start] - 'a' ? 0 : 1))) {
+            if (node and node -> find(word, start + 1, modification + (i == word[start] - 'a' ? 0 : 1))) {
                 return true;
             }
         }

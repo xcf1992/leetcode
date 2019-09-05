@@ -95,7 +95,7 @@ public:
             return N;
         }
 
-        while (i >= 1 && num[i - 1] == num[i]) {
+        while (i >= 1 and num[i - 1] == num[i]) {
             i--;
         }
 

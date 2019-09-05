@@ -48,11 +48,11 @@ public:
 
         string result = "";
         for (int i = 0; i < S.size(); i++) {
-            if (marked[i] && (i == 0 || !marked[i - 1])) {
+            if (marked[i] and (i == 0 or !marked[i - 1])) {
                 result += "<b>";
             }
             result.push_back(S[i]);
-            if (marked[i] && (i == S.size() - 1 || !marked[i + 1])) {
+            if (marked[i] and (i == S.size() - 1 or !marked[i + 1])) {
                 result += "</b>";
             }
         }

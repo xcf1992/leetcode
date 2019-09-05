@@ -132,7 +132,7 @@ public:
 /*
  The maximum result one can get is K + W - 1, since if one get K points already he will gain any point anymore
  and if N >= K + W - 1 then it will always succeed
- so to caculate Probability(X) = Sum(Probability(X - i)), while i >= 1, i <= W && X - i >= 0 && X - i < K, since we
+ so to caculate Probability(X) = Sum(Probability(X - i)), while i >= 1, i <= W and X - i >= 0 and X - i < K, since we
  will stop when X - i >= K
  the final result is Sum(Probability(j)), j >= K, j<= N
  the naive implementation is below. But it exceeds time limit
@@ -148,7 +148,7 @@ public:
         dp[0] = 1.0;
         for (int i = 1; i < K + W; i++) {
             for (int j = 1; j <= W; j++) {
-                if (i - j >= 0 && i - j < K) {
+                if (i - j >= 0 and i - j < K) {
                     dp[i] += probability * dp[i - j];
                 }
             }

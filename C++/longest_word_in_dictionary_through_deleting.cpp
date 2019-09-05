@@ -15,7 +15,7 @@ private:
     bool isSubsequence(string s, string t) {
         int sPtr = 0;
         int tPtr = 0;
-        while (sPtr < s.size() && tPtr < t.size()) {
+        while (sPtr < s.size() and tPtr < t.size()) {
             if (s[sPtr] == t[tPtr]) {
                 sPtr++;
             }
@@ -31,7 +31,7 @@ public:
                 if (word.size() > result.size()) {
                     result = word;
                 }
-                else if (word.size() == result.size() && word < result) {
+                else if (word.size() == result.size() and word < result) {
                     result = word;
                 }
             }

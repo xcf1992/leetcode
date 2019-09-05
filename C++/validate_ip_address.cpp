@@ -77,7 +77,7 @@ private:
     }
 
     bool validIPv4Segment(string segment) {
-        if (segment == "" || (segment.size() > 1 && segment[0] == '0')) {
+        if (segment == "" or (segment.size() > 1 and segment[0] == '0')) {
             return false;
         }
 
@@ -110,7 +110,7 @@ private:
 
     bool validIPv6Segment(string segment) {
         int length = segment.size();
-        if (length == 0 || length > 4) {
+        if (length == 0 or length > 4) {
             return false;
         }
 
@@ -118,10 +118,10 @@ private:
             if (isdigit(c)) {
                 continue;
             }
-            if (c >= 'a' && c <= 'f') {
+            if (c >= 'a' and c <= 'f') {
                 continue;
             }
-            if (c >= 'A' && c <= 'F') {
+            if (c >= 'A' and c <= 'F') {
                 continue;
             }
             return false;

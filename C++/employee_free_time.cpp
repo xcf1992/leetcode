@@ -71,7 +71,7 @@ public:
             if (workers == 0) {
                 result.push_back(new Interval(busy.first, 0));
             }
-            else if (!result.empty() && result.back() -> end == 0) {
+            else if (!result.empty() and result.back() -> end == 0) {
                 result.back() -> end = busy.first;
             }
         }

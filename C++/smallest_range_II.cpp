@@ -107,10 +107,10 @@ public:
         }
         int result = curMax - curMin;
         for (int num : A) {
-            if (num + K <= curMax && num + K >= curMin) {
+            if (num + K <= curMax and num + K >= curMin) {
                 continue;
             }
-            if (num - K <= curMax && num - K >= curMin) {
+            if (num - K <= curMax and num - K >= curMin) {
                 continue;
             }
             int newMin = num - K;
@@ -121,7 +121,7 @@ public:
             else if (newMin > curMax) {
                 curMax = newMin;
             }
-            else if (newMin < curMin && newMax > curMax) {
+            else if (newMin < curMin and newMax > curMax) {
                 if (newMax - curMin > curMax - newMin) {
                     curMin = newMin;
                 }

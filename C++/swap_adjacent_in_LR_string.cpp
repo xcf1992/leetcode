@@ -123,10 +123,10 @@ public:
                 right -= 1;
             }
 
-            if (left > 0 || right < 0 || (right > 0 && left != 0) || (left > 0 && right != 0)) {
+            if (left > 0 or right < 0 or (right > 0 and left != 0) or (left > 0 and right != 0)) {
                 return false;
             }
         }
-        return left == 0 && right == 0;
+        return left == 0 and right == 0;
     }
 };

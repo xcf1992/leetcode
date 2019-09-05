@@ -126,7 +126,7 @@ private:
             return memo[l][r][k];
         }
 
-        while (r > l && boxes[r - 1] == boxes[r]) {
+        while (r > l and boxes[r - 1] == boxes[r]) {
             r -= 1;
             k += 1;
         }

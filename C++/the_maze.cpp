@@ -81,7 +81,7 @@ public:
                 return true;
             }
             // move down
-            while (row + 1 < m && maze[row + 1][col] != 1) {
+            while (row + 1 < m and maze[row + 1][col] != 1) {
                 row += 1;
             }
             if (!visited[row][col]) {
@@ -89,7 +89,7 @@ public:
             }
             //move up
             row = curPos.first;
-            while (row - 1 >= 0 && maze[row - 1][col] != 1) {
+            while (row - 1 >= 0 and maze[row - 1][col] != 1) {
                 row -= 1;
             }
             if (!visited[row][col]) {
@@ -97,7 +97,7 @@ public:
             }
             // move left
             row = curPos.first;
-            while (col + 1 < n && maze[row][col + 1] != 1) {
+            while (col + 1 < n and maze[row][col + 1] != 1) {
                 col += 1;
             }
             if (!visited[row][col]) {
@@ -106,7 +106,7 @@ public:
 
             //move right
             col = curPos.second;
-            while (col - 1 >= 0 && maze[row][col - 1] != 1) {
+            while (col - 1 >= 0 and maze[row][col - 1] != 1) {
                 col -= 1;
             }
             if (!visited[row][col]) {

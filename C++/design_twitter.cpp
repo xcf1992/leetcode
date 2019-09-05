@@ -90,7 +90,7 @@ public:
         }
 
         vector<int> result;
-        while (!maxHeap.empty() && result.size() < 10) {
+        while (!maxHeap.empty() and result.size() < 10) {
             result.push_back(maxHeap.top().id);
             maxHeap.pop();
         }

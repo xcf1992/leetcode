@@ -79,7 +79,7 @@ public:
                 changes[1] += 1;
             }
             else if (bill == 20) {
-                if (changes[1] >= 1 && changes[0] >= 1) {
+                if (changes[1] >= 1 and changes[0] >= 1) {
                     changes[0] -= 1;
                     changes[1] -= 1;
                     continue;
