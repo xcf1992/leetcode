@@ -61,15 +61,17 @@ public:
             vector<string> ladder = bfs.front();
             bfs.pop();
 
-            //"visited" records all the visited nodes on this level
-            //these words will never be visited again after this level
-            //and should be removed from wordList. This is guaranteed
-            // by the shortest path.
+            /*
+            * "visited" records all the visited nodes on this level,
+            * these words will never be visited again after this level and should be removed from wordList.
+            * This is guaranteed by the shortest path.
+            */
             if (ladder.size() > len) { //reach a new level
                 for (string word : visited) {
                     dict.erase(word);
                 }
                 visited.clear();
+
                 if (ladder.size() > minLen) {
                     break;
                 }
@@ -87,12 +89,13 @@ public:
                     }
                     nextWord[i] = c;
                     /*
-                    * we do not check if visited here for current level, because it may happen different paths come to the same word at this level
+                    * we do not check if visited here for current level,
+                    * because it may happen different paths come to the same word at this level
                     * for example "red" -> "tax", with ["ted","tex","red","tax","tad","den","rex","pee"]
                     * correct result is [["red","ted","tad","tax"],["red","ted","tex","tax"],["red","rex","tex","tax"]]
                     * the 2nd and 3rd both will have tex at the 3rd place
                     * and that's why we need to cleard the words in the beginning when we enter a new level
-                   */
+                    */
                     if (dict.find(nextWord) != dict.end()) {
                         visited.insert(nextWord);
                         vector<string> newLadder = ladder;

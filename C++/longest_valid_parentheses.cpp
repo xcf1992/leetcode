@@ -1,6 +1,7 @@
 /*
 32. Longest Valid Parentheses
-Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring.
+Given a string containing just the characters '(' and ')',
+find the length of the longest valid (well-formed) parentheses substring.
 
 Example 1:
 
@@ -20,6 +21,31 @@ Explanation: The longest valid parentheses substring is "()()"
 #include <algorithm>
 #include <stack>
 using namespace std;
+
+class Solution {
+public:
+    int longestValidParentheses(string s) {
+        int n = s.size();
+        int result = 0;
+        stack<int> stk;
+        stk.push(-1);
+        for (int i = 0; i < n; i++) {
+            if (s[i] == '(') {
+                stk.push(i);
+            }
+            else {
+                stk.pop();
+                if (stk.empty()) {
+                    stk.push(i);
+                }
+                else {
+                    result = max(result, i - stk.top());
+                }
+            }
+        }
+        return result;
+    }
+};
 
 class Solution1 { // two pass
 public:
@@ -56,31 +82,6 @@ public:
             }
             else if (left >= right) {
                 left = right = 0;
-            }
-        }
-        return result;
-    }
-};
-
-class Solution {
-public:
-    int longestValidParentheses(string s) {
-        int n = s.size();
-        int result = 0;
-        stack<int> stk;
-        stk.push(-1);
-        for (int i = 0; i < n; i++) {
-            if (s[i] == '(') {
-                stk.push(i);
-            }
-            else {
-                stk.pop();
-                if (stk.empty()) {
-                    stk.push(i);
-                }
-                else {
-                    result = max(result, i - stk.top());
-                }
             }
         }
         return result;

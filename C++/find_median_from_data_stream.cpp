@@ -49,9 +49,7 @@ private:
     priority_queue<int, vector<int>, greater<int>> right;
 public:
     /** initialize your data structure here.*/
-    MedianFinder() {
-
-    }
+    MedianFinder() {}
 
     void addNum(int num) {
         if (left.empty() or left.top() > num) {

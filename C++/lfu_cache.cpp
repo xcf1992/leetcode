@@ -1,9 +1,18 @@
 /*
 460. LFU Cache
-Design and implement a data structure for Least Frequently Used (LFU) cache. It should support the following operations: get and put.
+Design and implement a data structure for Least Frequently Used (LFU) cache.
+It should support the following operations: get and put.
 
-get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
-put(key, value) - Set or insert the value if the key is not already present. When the cache reaches its capacity, it should invalidate the least frequently used item before inserting a new item. For the purpose of this problem, when there is a tie (i.e., two or more keys that have the same frequency), the least recently used key would be evicted.
+get(key)
+Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
+
+put(key, value)
+Set or insert the value if the key is not already present.
+When the cache reaches its capacity,
+it should invalidate the least frequently used item before inserting a new item.
+For the purpose of this problem,
+when there is a tie (i.e., two or more keys that have the same frequency),
+the least recently used key would be evicted.
 
 Follow up:
 Could you do both operations in O(1) time complexity?
@@ -90,12 +99,11 @@ public:
             newHead -> prev = newHead;
             freq2node[cur -> freq] = newHead;
         }
-
         cur -> next = freq2node[cur -> freq] -> next;
         cur -> next -> prev = cur;
         freq2node[cur -> freq] -> next = cur;
         cur -> prev = freq2node[cur -> freq];
-        return key2node[key] -> value;
+        return cur -> value;
     }
 
     void put(int key, int value) {
@@ -110,6 +118,7 @@ public:
             if (listHead == nullptr) { // it will only happen when the capacity is 0
                 return;
             }
+
             LFUNode* last = listHead -> prev;
             listHead -> prev = last -> prev;
             last -> prev -> next = listHead;
@@ -135,8 +144,8 @@ public:
     }
 };
 /**
- * Your LFUCache object will be instantiated and called as such:
- * LFUCache* obj = new LFUCache(capacity);
- * int param_1 = obj->get(key);
- * obj->put(key,value);
+* Your LFUCache object will be instantiated and called as such:
+* LFUCache* obj = new LFUCache(capacity);
+* int param_1 = obj->get(key);
+* obj->put(key,value);
 */
