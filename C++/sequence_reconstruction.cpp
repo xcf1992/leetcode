@@ -111,16 +111,15 @@ public:
                 if (i == 0) {
                     continue;
                 }
-
                 if (pos[seq[i - 1]] >= pos[seq[i]]) {
                     return false;
                 }
 
+                /*
+                * we only need to count each pair in org once, but they may appear in multiple seq more than once
+                * we we make order[seq[i - 1]] as 1 when have counted pair {org[seq[i - 1]], org[seq[i]]}
+                */
                 if (pos[seq[i - 1]] == pos[seq[i]] - 1 and order[seq[i - 1]] == -1) {
-                   /* we only need to count each pair in org once, but they may appear in multiple seq more than once
-                    * we we make order[seq[i - 1]] as 1 when have counted pair {org[seq[i - 1]], org[seq[i]]}
-                   */
-                    matched -= 1;
                     order[seq[i - 1]] = 1;
                 }
             }

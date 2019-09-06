@@ -41,7 +41,7 @@ It seems like a decent strategy is to take a monotone increasing prefix of N,
 then decrease the number before the "cliff" (the index where adjacent digits decrease for the first time)
 if it exists, and replace the rest of the characters with 9s.
 
-When does that strategy fail? If N = 333222, then our strategy would give us the candidate answer of 332999 -
+When does that strategy fail? If N = 333222, then our strategy would give us the candidate answer of 332999,
 but this isn't monotone increasing.
 However, since we are looking at all indexes before the original first occurrence of a cliff,
 the only place where a cliff could exist, is next to where we just decremented a digit.

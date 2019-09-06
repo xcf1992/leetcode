@@ -49,7 +49,6 @@ public:
         sort(nums.begin(), nums.end());
         int start = 0;
         int end = nums.size() - 1;
-
         int result = 0;
         while (end > start) {
             result += (nums[end] - nums[start]);

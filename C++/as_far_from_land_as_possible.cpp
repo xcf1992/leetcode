@@ -11,7 +11,7 @@ If no land or water exists in the grid, return -1.
 
 Example 1:
 1   0   1
-0   0   1
+0   0   0
 1   0   1
 Input: [[1,0,1],[0,0,0],[1,0,1]]
 Output: 2
