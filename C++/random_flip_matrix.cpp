@@ -92,8 +92,8 @@ public:
     }
 };
 /**
- * Your Solution object will be instantiated and called as such:
- * Solution obj = new Solution(n_rows, n_cols);
- * vector<int> param_1 = obj.flip();
- * obj.reset();
+* Your Solution object will be instantiated and called as such:
+* Solution obj = new Solution(n_rows, n_cols);
+* vector<int> param_1 = obj.flip();
+* obj.reset();
 */

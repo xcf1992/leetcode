@@ -5,9 +5,10 @@ The line could be horizontal, vertical, diagonal or anti-diagonal.
 
 Example:
 Input:
-[[0,1,1,0],
- [0,1,1,0],
- [0,0,0,1]]
+[
+[0,1,1,0],
+[0,1,1,0],
+[0,0,0,1]]
 Output: 3
 Hint: The number of elements in the given matrix will not exceed 10,000.
 */
@@ -32,7 +33,7 @@ public:
             return 0;
         }
         int n = M[0].size();
-        
+
         vector<int> col(n, 0);
         vector<int> diag(m + n, 0);
         vector<int> antiDiag(m + n, 0);
