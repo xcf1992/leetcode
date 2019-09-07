@@ -14,57 +14,74 @@
 #include "extra_data_types.hpp"
 using namespace std;
 
-class Codec {
+class Solution {
+private:
+    vector<string> splitPhrase(string& phrase) { // return {first, middle, last}
+        int n = phrase.size();
+        vector<string> result(3, "");
+        
+        int left = 0;
+        for (; left < n; ++left) {
+            if (phrase[left] == ' ') {
+                break;
+            }
+            result[0].push_back(phrase[left]);
+        }
+        left += 1;
+        
+        int right = n - 1;
+        for (; right >= 0; --right) {
+            if (phrase[right] == ' ') {
+                break;
+            }
+            result[2].push_back(phrase[right]);
+        }
+        reverse(result[2].begin(), result[2].end());
+        
+        if (left < right) {
+            result[1] = phrase.substr(left, right - left);
+        }
+        return result;
+    }
 public:
-
-    // Encodes a tree to a single string.
-    string serialize(TreeNode* root) {
-        return root == nullptr ? "" : to_string(root -> val) +
-        "(" + serialize(root -> left) + ")" +
-        "(" + serialize(root -> right) + ")";
-    }
-
-    // Decodes your encoded data to tree.
-    TreeNode* deserialize(string data) {
-        cout << data;
-        int pos = 0;
-        return myDeserialize(data, pos);
-    }
-
-    TreeNode* myDeserialize(string& data, int& pos) {
-        int n = data.size();
-        int i = pos;
-        bool found = false;
-
-        while (data[i] != '(' and data[i] != ')' and i < n) {
-            i++;
+    vector<string> beforeAndAfterPuzzles(vector<string> phrases) {
+        unordered_map<string, vector<pair<int, vector<string>>>> beginWtih;
+        unordered_map<string, vector<pair<int, vector<string>>>> endWith;
+        for (int i = 0; i < phrases.size(); ++i) {
+            vector<string> tokens = splitPhrase(phrases[i]);
+            beginWtih[tokens[0]].push_back({i, tokens});
+            endWith[tokens[2]].push_back({i, tokens});
         }
-
-        if (i == pos) {
-            return nullptr;
+        
+        vector<string> result;
+        for (auto& eIt: endWith) {
+            string last = eIt.first;
+            if (beginWtih.find(last) == beginWtih.end()) {
+                continue;
+            }
+            
+            vector<pair<int, vector<string>>>& endPhrases = eIt.second;
+            vector<pair<int, vector<string>>>& beginPhrases = beginWtih[last];
+            for (int i = 0; i < endPhrases.size(); ++i) {
+                for (int j = 0; j < beginPhrases.size(); ++j) {
+                    if (endPhrases[i].first == beginPhrases[j].first) {
+                        continue;
+                    }
+                    
+                    string part1 = endPhrases[i].second[0] + (endPhrases[i].second[1] == "" ? "" : " " + endPhrases[i].second[1]);
+                    string part2 = beginPhrases[j].second[1] + (beginPhrases[j].second[1] == "" ? beginPhrases[j].second[2] : " " + beginPhrases[j].second[2]);
+                    result.push_back(part1 + " " + last + " " + part2);
+                }
+            }
         }
-
-        int val = stoi(data.substr(pos, i - pos));
-        TreeNode* node = new TreeNode(val);
-
-        pos = i;
-        pos++;
-        node -> left = myDeserialize(data, pos);
-        pos++;
-        pos++;
-        node -> right = myDeserialize(data, pos);
-        pos++;
-        return node;
+        sort(result.begin(), result.end());
+        return result;
     }
 };
 
 int main() {
-    TreeNode* r = new TreeNode(2);
-    r -> left = new TreeNode(1);
-    r -> right = new TreeNode(3);
-    Codec co;
-    string x = co.serialize(r);
-    co.deserialize(x);
+    Solution s;
+    s.beforeAndAfterPuzzles({"a", "b", "a"});
 
     vector<int> temp1({1,3,3,3,2});
     vector<vector<int>> matrix({
