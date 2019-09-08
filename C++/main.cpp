@@ -15,73 +15,41 @@
 using namespace std;
 
 class Solution {
-private:
-    vector<string> splitPhrase(string& phrase) { // return {first, middle, last}
-        int n = phrase.size();
-        vector<string> result(3, "");
-        
-        int left = 0;
-        for (; left < n; ++left) {
-            if (phrase[left] == ' ') {
-                break;
-            }
-            result[0].push_back(phrase[left]);
-        }
-        left += 1;
-        
-        int right = n - 1;
-        for (; right >= 0; --right) {
-            if (phrase[right] == ' ') {
-                break;
-            }
-            result[2].push_back(phrase[right]);
-        }
-        reverse(result[2].begin(), result[2].end());
-        
-        if (left < right) {
-            result[1] = phrase.substr(left, right - left);
-        }
-        return result;
-    }
 public:
-    vector<string> beforeAndAfterPuzzles(vector<string> phrases) {
-        unordered_map<string, vector<pair<int, vector<string>>>> beginWtih;
-        unordered_map<string, vector<pair<int, vector<string>>>> endWith;
-        for (int i = 0; i < phrases.size(); ++i) {
-            vector<string> tokens = splitPhrase(phrases[i]);
-            beginWtih[tokens[0]].push_back({i, tokens});
-            endWith[tokens[2]].push_back({i, tokens});
+    vector<int> shortestDistanceColor(vector<int> colors, vector<vector<int>> queries) {
+        int n = colors.size();
+        vector<vector<int>> left(4, vector<int>(n, INT_MAX));
+        vector<vector<int>> right(4, vector<int>(n, INT_MAX));
+        
+        left[colors[0]][0] = 0;
+        right[colors[n - 1]][n - 1] = 0;
+        for (int i = 1; i < n; ++i) {
+            int clr = colors[i];
+            left[1][i] = clr == 1 ? 0 : (left[1][i - 1] == INT_MAX ? INT_MAX : left[1][i - 1] + 1);
+            left[2][i] = clr == 2 ? 0 : (left[2][i - 1] == INT_MAX ? INT_MAX : left[2][i - 1] + 1);
+            left[3][i] = clr == 3 ? 0 : (left[3][i - 1] == INT_MAX ? INT_MAX : left[3][i - 1] + 1);
+            
+            int j = n - 1 - i;
+            clr = colors[j];
+            right[1][i] = clr == 1 ? 0 : (right[1][i + 1] == INT_MAX ? INT_MAX : right[1][i + 1] + 1);
+            right[2][i] = clr == 2 ? 0 : (right[2][i + 1] == INT_MAX ? INT_MAX : right[2][i + 1] + 1);
+            right[3][i] = clr == 3 ? 0 : (right[3][i + 1] == INT_MAX ? INT_MAX : right[3][i + 1] + 1);
         }
         
-        vector<string> result;
-        for (auto& eIt: endWith) {
-            string last = eIt.first;
-            if (beginWtih.find(last) == beginWtih.end()) {
-                continue;
-            }
-            
-            vector<pair<int, vector<string>>>& endPhrases = eIt.second;
-            vector<pair<int, vector<string>>>& beginPhrases = beginWtih[last];
-            for (int i = 0; i < endPhrases.size(); ++i) {
-                for (int j = 0; j < beginPhrases.size(); ++j) {
-                    if (endPhrases[i].first == beginPhrases[j].first) {
-                        continue;
-                    }
-                    
-                    string part1 = endPhrases[i].second[0] + (endPhrases[i].second[1] == "" ? "" : " " + endPhrases[i].second[1]);
-                    string part2 = beginPhrases[j].second[1] + (beginPhrases[j].second[1] == "" ? beginPhrases[j].second[2] : " " + beginPhrases[j].second[2]);
-                    result.push_back(part1 + " " + last + " " + part2);
-                }
-            }
+        int len = queries.size();
+        vector<int> result(len, -1);
+        for (int i = 0; i < len; ++i) {
+            int idx = queries[i][0];
+            int clr = queries[i][1];
+            result[i] = min(left[clr][idx], right[clr][idx]);
         }
-        sort(result.begin(), result.end());
         return result;
     }
 };
 
 int main() {
     Solution s;
-    s.beforeAndAfterPuzzles({"a", "b", "a"});
+    s.shortestDistanceColor({1,1,2,1,3,2,2,3,3}, {{1,3}});
 
     vector<int> temp1({1,3,3,3,2});
     vector<vector<int>> matrix({
