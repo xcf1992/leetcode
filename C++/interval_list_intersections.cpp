@@ -1,5 +1,6 @@
 /*
-986. vector<int> List Intersections
+986. Interval List Intersections
+https://leetcode.com/problems/interval-list-intersections/
 
 Given two lists of closed intervals, each list of intervals is pairwise disjoint and in sorted order.
 

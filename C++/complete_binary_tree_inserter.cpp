@@ -50,67 +50,6 @@ using namespace std;
 
 class CBTInserter {
 private:
-    int treeSize;
-    TreeNode* _root;
-
-    int getTreeSize(TreeNode* root) {
-        if (root == nullptr) {
-            return 0;
-        }
-        return 1 + getTreeSize(root -> left) + getTreeSize(root -> right);
-    }
-public:
-    CBTInserter(TreeNode* root) {
-        _root = root;
-        treeSize = getTreeSize(root);
-    }
-
-    int insert(int v) {
-        treeSize += 1;
-        int temp = treeSize;
-        stack<int> stk;
-        while (temp != 1) {
-            if (temp % 2 == 0) {
-                stk.push(0);
-            }
-            else {
-                stk.push(1);
-            }
-            temp /= 2;
-        }
-
-        TreeNode* parent = _root;
-        while (stk.size() > 1) {
-            if (stk.top() == 0) {
-                parent = parent -> left;
-            }
-            else {
-                parent = parent -> right;
-            }
-            stk.pop();
-        }
-        if (stk.top() == 0) {
-            parent -> left = new TreeNode(v);
-        }
-        else {
-            parent -> right = new TreeNode(v);
-        }
-        return parent -> val;
-    }
-
-    TreeNode* get_root() {
-        return _root;
-    }
-};
-/**
- * Your CBTInserter object will be instantiated and called as such:
- * CBTInserter obj = new CBTInserter(root);
- * int param_1 = obj.insert(v);
- * TreeNode* param_2 = obj.get_root();
-*/
-
-class CBTInserter {
-private:
     TreeNode* r = nullptr;
     queue<TreeNode*> row;
 public:
@@ -147,3 +86,9 @@ public:
         return r;
     }
 };
+/**
+* Your CBTInserter object will be instantiated and called as such:
+* CBTInserter* obj = new CBTInserter(root);
+* int param_1 = obj->insert(v);
+* TreeNode* param_2 = obj->get_root();
+*/
