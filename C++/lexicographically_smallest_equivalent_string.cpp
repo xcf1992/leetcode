@@ -57,6 +57,13 @@ String A and B are of the same length.
 using namespace std;
 
 class Solution {
+private:
+    char find(char c, vector<char>& parent) {
+        if (c != parent[c - 'a']) {
+            parent[c - 'a'] = find(parent[c - 'a'], parent);
+        }
+        return parent[c - 'a'];
+    }
 public:
     string smallestEquivalentString(string A, string B, string S) {
         int n = A.size();
@@ -70,18 +77,20 @@ public:
         }
 
         for (int i = 0; i < n; ++i) {
-            char pa = parent[A[i] - 'a'];
-            char pb = parent[B[i] - 'a'];
-            if (pa == pb) {
-                continue;
-            }
-            for (int j = 0; j < 26; ++j) if (parent[j] == pa or parent[j] == pb) {
-                parent[j] = min(pa, pb);
+            char pa = find(A[i], parent);
+            char pb = find(B[i], parent);
+            if (pa != pb) {
+                if (pa < pb) {
+                    parent[pb - 'a'] = pa;
+                }
+                else {
+                    parent[pa - 'a'] = pb;
+                }
             }
         }
 
         for (int i = 0; i < S.size(); i++) {
-            S[i] = parent[S[i] - 'a'];
+            S[i] = find(S[i], parent);
         }
         return S;
     }
