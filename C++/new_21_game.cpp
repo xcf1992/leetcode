@@ -90,16 +90,16 @@ public:
 };
 
 /*
- the transition equation dp[i] = (dp[i - W] + dp[i - W + 1] + ... + dp[i - 1]) / W
- could be simplified to dp[i] = (sum[i - 1] - sum[i - W - 1]) / W.
+the transition equation dp[i] = (dp[i - W] + dp[i - W + 1] + ... + dp[i - 1]) / W
+could be simplified to dp[i] = (sum[i - 1] - sum[i - W - 1]) / W.
 
- dp[i] = (sum[i - 1] - sum[i - W - 1]) / W
- sum[i] = sum[i - 1] + dp[i]
- => sum[i] = sum[i - 1] + (sum[i - 1] - sum[i - W - 1]) / W
+dp[i] = (sum[i - 1] - sum[i - W - 1]) / W
+sum[i] = sum[i - 1] + dp[i]
+=> sum[i] = sum[i - 1] + (sum[i - 1] - sum[i - W - 1]) / W
 
- Furthermore, if we use dp[i] to directly represent the sum[i],
- we can get dp[i] = dp[i - 1] + (dp[i - 1] - dp[i - W - 1]) / W.
- This equation takes us to the final O(K + W) solution. Just take care with the beginning and the end of the array.
+Furthermore, if we use dp[i] to directly represent the sum[i],
+we can get dp[i] = dp[i - 1] + (dp[i - 1] - dp[i - W - 1]) / W.
+This equation takes us to the final O(K + W) solution. Just take care with the beginning and the end of the array.
 */
 class Solution2 {
 public:

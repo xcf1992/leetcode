@@ -49,37 +49,37 @@ sum(piles) is odd.
 #include <set>
 using namespace std;
 /*
- Approach 1: Just return true
- Alex is first to pick pile.
- piles.length is even, and this lead to an interesting fact:
- Alex can always pick odd piles or always pick even piles!
+Approach 1: Just return true
+Alex is first to pick pile.
+piles.length is even, and this lead to an interesting fact:
+Alex can always pick odd piles or always pick even piles!
 
- For example,
- If Alex wants to pick even indexed piles piles[0], piles[2], ....., piles[n-2],
- he picks first piles[0], then Lee can pick either piles[1] or piles[n - 1].
- Every turn, Alex can always pick even indexed piles and Lee can only pick odd indexed piles.
+For example,
+If Alex wants to pick even indexed piles piles[0], piles[2], ....., piles[n-2],
+he picks first piles[0], then Lee can pick either piles[1] or piles[n - 1].
+Every turn, Alex can always pick even indexed piles and Lee can only pick odd indexed piles.
 
- In the description, we know that sum(piles) is odd.
- If sum(piles[even]) > sum(piles[odd]), Alex just picks all evens and wins.
- If sum(piles[even]) < sum(piles[odd]), Alex just picks all odds and wins.
+In the description, we know that sum(piles) is odd.
+If sum(piles[even]) > sum(piles[odd]), Alex just picks all evens and wins.
+If sum(piles[even]) < sum(piles[odd]), Alex just picks all odds and wins.
 
- So, Alex always defeats Lee in this game.
+So, Alex always defeats Lee in this game.
 
- Approach 2: 2D DP
- Follow-up:
+Approach 2: 2D DP
+Follow-up:
 
- What if piles.length can be odd?
- What if we want to know exactly the diffenerce of score?
- Then we need to solve it with DP.
+What if piles.length can be odd?
+What if we want to know exactly the diffenerce of score?
+Then we need to solve it with DP.
 
- dp[i][j] means the biggest number of stones you can get more than opponent picking piles in piles[i] ~ piles[j].
- You can first pick piles[i] or piles[j].
+dp[i][j] means the biggest number of stones you can get more than opponent picking piles in piles[i] ~ piles[j].
+You can first pick piles[i] or piles[j].
 
- If you pick piles[i], your result will be piles[i] - dp[i + 1][j]
- If you pick piles[j], your result will be piles[j] - dp[i][j - 1]
- So we get:
- dp[i][j] = max(piles[i] - dp[i + 1][j], piles[j] - dp[i][j - 1])
- We start from smaller subarray and then we use that to calculate bigger subarray.
+If you pick piles[i], your result will be piles[i] - dp[i + 1][j]
+If you pick piles[j], your result will be piles[j] - dp[i][j - 1]
+So we get:
+dp[i][j] = max(piles[i] - dp[i + 1][j], piles[j] - dp[i][j - 1])
+We start from smaller subarray and then we use that to calculate bigger subarray.
 */
 class Solution {
 public:

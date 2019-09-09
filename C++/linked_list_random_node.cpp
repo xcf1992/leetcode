@@ -59,7 +59,7 @@ public:
 };
 
 /**
- * Your Solution object will be instantiated and called as such:
- * Solution obj = new Solution(head);
- * int param_1 = obj.getRandom();
+* Your Solution object will be instantiated and called as such:
+* Solution obj = new Solution(head);
+* int param_1 = obj.getRandom();
 */

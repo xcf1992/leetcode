@@ -41,7 +41,7 @@ Explanation: The array cannot be partitioned into equal sum subsets.
 using namespace std;
 /*
 This problem is essentially let us to find whether there are several numbers in a set which are able to sum to a specific value
- (in this problem, the value is sum/2).
+(in this problem, the value is sum/2).
 
 Actually, this is a 0/1 knapsack problem, for each number, we can pick it or not.
 Let us assume dp[i][j] means whether the specific sum j can be gotten from the first i numbers.

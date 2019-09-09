@@ -1,7 +1,8 @@
 /*
 90. Subsets II
 
-Given a collection of integers that might contain duplicates, nums, return all possible subsets (the power set).
+Given a collection of integers that might contain duplicates, nums,
+return all possible subsets (the power set).
 
 Note: The solution set must not contain duplicate subsets.
 
@@ -39,7 +40,7 @@ private:
         }
 
         construct(count, result, sub, level + 1);
-        
+
         auto it = count.begin();
         for (int i = 0; i < level; ++i) {
             it++;
