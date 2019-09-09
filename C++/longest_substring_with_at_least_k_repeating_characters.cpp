@@ -36,7 +36,6 @@ The longest substring is "ababb", as 'a' is repeated 2 times and 'b' is repeated
 #include <stdio.h>
 #include <map>
 using namespace std;
-
 /*
 in the first pass I record counts of every character in a hashmap
 in the second pass I locate the first character that appear less than k times in the string.

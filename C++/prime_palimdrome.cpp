@@ -43,31 +43,30 @@ The answer is guaranteed to exist and be less than 2 * 10^8.
 #include <stdio.h>
 #include <set>
 using namespace std;
-
 /*
- All palindrome with even digits is multiple of 11.
+All palindrome with even digits is multiple of 11.
 
- We can prove as follow:
+We can prove as follow:
 
- 11 % 11 = 0
- 1111 % 11 = 0
- 111111 % 11 = 0
- 11111111 % 11 = 0
+11 % 11 = 0
+1111 % 11 = 0
+111111 % 11 = 0
+11111111 % 11 = 0
 
- So:
- 1001 % 11 = (1111 - 11 * 10) % 11 = 0
- 100001 % 11 = (111111 - 1111 * 10) % 11 = 0
- 10000001 % 11 = (11111111 - 111111 * 10) % 11 = 0
+So:
+1001 % 11 = (1111 - 11 * 10) % 11 = 0
+100001 % 11 = (111111 - 1111 * 10) % 11 = 0
+10000001 % 11 = (11111111 - 111111 * 10) % 11 = 0
 
- For any palindrome with even digits:
- abcddcba % 11
- = (a * 10000001 + b * 100001 * 10 + c * 1001 * 100 + d * 11 * 1000) % 11
- = 0
+For any palindrome with even digits:
+abcddcba % 11
+= (a * 10000001 + b * 100001 * 10 + c * 1001 * 100 + d * 11 * 1000) % 11
+= 0
 
- All palindrome with even digits is multiple of 11.
- So among them, 11 is the only one prime
- if (8 <= N <= 11) return 11
- For other, we consider only palindrome with odd dights.
+All palindrome with even digits is multiple of 11.
+So among them, 11 is the only one prime
+if (8 <= N <= 11) return 11
+For other, we consider only palindrome with odd dights.
 */
 class Solution {
 private:
