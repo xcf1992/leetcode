@@ -112,7 +112,7 @@ private:
     TrieNode* root;
 public:
     /** Initialize your data structure here.*/
-    MagicDictionary() {
+    MagicDictionary1() {
         root = new TrieNode();
     }
 
@@ -128,10 +128,9 @@ public:
         return root -> find(word, 0, 0);
     }
 };
-
 /**
- * Your MagicDictionary object will be instantiated and called as such:
- * MagicDictionary obj = new MagicDictionary();
- * obj.buildDict(dict);
- * bool param_2 = obj.search(word);
+* Your MagicDictionary object will be instantiated and called as such:
+* MagicDictionary obj = new MagicDictionary();
+* obj.buildDict(dict);
+* bool param_2 = obj.search(word);
 */
