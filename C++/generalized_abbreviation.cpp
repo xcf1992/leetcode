@@ -10,7 +10,6 @@ Example:
 Input: "word"
 Output:
 ["word", "1ord", "w1rd", "wo1d", "wor1", "2rd", "w2d", "wo2", "1o1d", "1or1", "w1r1", "1o2", "2r1", "3d", "w3", "4"]
-
 */
 #include <iostream>
 #include <string>
@@ -27,8 +26,8 @@ using namespace std;
 
 class Solution {
 private:
-    void generate(vector<string>& result, int start, int preNum, string abbreviation, string& word) {
-        if (start >= word.size()) {
+    void generate(vector<string>& result, int cur, int preNum, string abbreviation, string& word) {
+        if (cur >= word.size()) {
             if (preNum != 0) {
                 abbreviation += to_string(preNum);
             }
@@ -36,12 +35,12 @@ private:
             return;
         }
 
-        generate(result, start + 1, preNum + 1, abbreviation, word);
+        generate(result, cur + 1, preNum + 1, abbreviation, word);
         if (preNum != 0) {
             abbreviation += to_string(preNum);
         }
-        abbreviation.push_back(word[start]);
-        generate(result, start + 1, 0, abbreviation, word);
+        abbreviation.push_back(word[cur]);
+        generate(result, cur + 1, 0, abbreviation, word);
     }
 public:
     vector<string> generateAbbreviations(string word) {
@@ -52,15 +51,14 @@ public:
 };
 
 /*
- Write a function to generate the generalized abbreviations of a word.
+Write a function to generate the generalized abbreviations of a word.
 
- Example:
- Given word = "word", return the following list (order does not matter):
- ["word", "1ord", "w1rd", "wo1d", "wor1", "2rd", "w2d", "wo2", "1o1d", "1or1", "w1r1", "1o2", "2r1", "3d", "w3", "4"]
+Example:
+Given word = "word", return the following list (order does not matter):
+["word", "1ord", "w1rd", "wo1d", "wor1", "2rd", "w2d", "wo2", "1o1d", "1or1", "w1r1", "1o2", "2r1", "3d", "w3", "4"]
 
- 这道题让我们对一个单词进行部分简写，简写的规则是若干个字母可以用数字来表示，但是不能有两个相邻的数字
+这道题让我们对一个单词进行部分简写，简写的规则是若干个字母可以用数字来表示，但是不能有两个相邻的数字
 */
-
 class Solution1 {
 public:
     vector<string> generateAbbreviations(string word) {

@@ -9,7 +9,6 @@ Note:
 You may assume the interval's end point is always bigger than its start point.
 Intervals like [1,2] and [2,3] have borders "touching" but they don't overlap each other.
 
-
 Example 1:
 
 Input: [ [1,2], [2,3], [3,4], [1,3] ]

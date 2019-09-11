@@ -26,7 +26,6 @@ The length of words[i] will be in the range of [1, 50].
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 Since the length of S is large, let's think about ways to iterate through S only once,
 instead of many times as in the brute force solution.

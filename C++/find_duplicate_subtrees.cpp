@@ -21,7 +21,6 @@ The following are two duplicate subtrees:
      /
     4
 and
-
     4
 Therefore, you need to return above trees' root in the form of a list.
 */

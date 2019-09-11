@@ -37,9 +37,10 @@ A[i], B[i] are integer values in the range [0, 2000].
 #include <stdio.h>
 #include <set>
 using namespace std;
-
 /*
-swap[n] means the minimum swaps to make the A[i] and B[i] sequences increasing for 0 <= i <= n in condition that we swap A[n] and B[n]
+swap[n] means the minimum swaps to make the A[i] and B[i] sequences increasing
+for 0 <= i <= n in condition that we swap A[n] and B[n]
+
 not_swap[n] is the same with A[n] and B[n] not swapped.
 
 In case that (A[i - 1] < B[i] and B[i - 1] < A[i]).

@@ -62,7 +62,42 @@ Note:
 #include "extra_data_types.hpp"
 using namespace std;
 
-class Solution {
+class Solution { // iterative with stace
+public:
+    vector<int> flipMatchVoyage(TreeNode* root, vector<int>& voyage) {
+        vector<int> result;
+        stack<TreeNode*> stk;
+        stk.push(root);
+        int pos = 0;
+        while (!stk.empty()) {
+            TreeNode* cur = stk.top();
+            stk.pop();
+            if (cur == nullptr) {
+                continue;
+            }
+
+            if (cur -> val != voyage[pos]) {
+                return vector<int>{-1};
+            }
+
+            pos += 1;
+            if (cur -> right != nullptr and cur -> right -> val == voyage[pos]) {
+                if (cur -> left != nullptr) {
+                    result.push_back(cur -> val);
+                }
+                stk.push(cur -> left);
+                stk.push(cur -> right);
+            }
+            else {
+                stk.push(cur -> right);
+                stk.push(cur -> left);
+            }
+        }
+        return result;
+    }
+};
+
+class Solution1 { // recursive
 private:
     bool traversal(TreeNode* root, vector<int>& voyage, vector<int>& result, int& cur) {
         if (root == nullptr) {
@@ -88,7 +123,7 @@ public:
     }
 };
 
-class Solution1 {
+class Solution2 {
 private:
     bool traversal(TreeNode* root, vector<int>& voyage, vector<int>& result, int& cur) {
         if (root == nullptr) {
