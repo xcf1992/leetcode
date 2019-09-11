@@ -27,7 +27,6 @@ Please reset to default code definition to get new method signature.
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 First, run lower_bound let it point to interval (8,9) because 8 is the first element that is >= 7
 
@@ -97,7 +96,6 @@ public:
         return intervals;
     }
 };
-
 /**
  * Your SummaryRanges object will be instantiated and called as such:
  * SummaryRanges* obj = new SummaryRanges();
