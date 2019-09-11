@@ -15,41 +15,43 @@
 using namespace std;
 
 class Solution {
+private:
+    unordered_map<int, unordered_map<int, int>> memo;
+
+    int dfs(int cur, int prev, vector<int>& arr1, vector<int>& arr2) {
+        if (cur >= arr1.size()) {
+            return 0;
+        }
+
+        if (memo.find(cur) != memo.end() and memo[cur].find(prev) != memo[cur].end()) {
+            return memo[cur][prev];
+        }
+
+        memo[cur][prev] = INT_MAX;
+        if (arr1[cur] > prev) {
+            memo[cur][prev] = min(memo[cur][prev], dfs(cur + 1, arr1[cur], arr1, arr2));
+        }
+
+        auto it = upper_bound(arr2.begin(), arr2.end(), prev);
+        if (it != arr2.end() and *it < arr1[cur]) {
+            int move = dfs(cur + 1, *it, arr1, arr2);
+            if (move != INT_MAX) {
+                memo[cur][prev] = min(memo[cur][prev], 1 + move);
+            }
+        }
+        return memo[cur][prev];
+    }
 public:
-    vector<int> shortestDistanceColor(vector<int> colors, vector<vector<int>> queries) {
-        int n = colors.size();
-        vector<vector<int>> left(4, vector<int>(n, INT_MAX));
-        vector<vector<int>> right(4, vector<int>(n, INT_MAX));
-        
-        left[colors[0]][0] = 0;
-        right[colors[n - 1]][n - 1] = 0;
-        for (int i = 1; i < n; ++i) {
-            int clr = colors[i];
-            left[1][i] = clr == 1 ? 0 : (left[1][i - 1] == INT_MAX ? INT_MAX : left[1][i - 1] + 1);
-            left[2][i] = clr == 2 ? 0 : (left[2][i - 1] == INT_MAX ? INT_MAX : left[2][i - 1] + 1);
-            left[3][i] = clr == 3 ? 0 : (left[3][i - 1] == INT_MAX ? INT_MAX : left[3][i - 1] + 1);
-            
-            int j = n - 1 - i;
-            clr = colors[j];
-            right[1][i] = clr == 1 ? 0 : (right[1][i + 1] == INT_MAX ? INT_MAX : right[1][i + 1] + 1);
-            right[2][i] = clr == 2 ? 0 : (right[2][i + 1] == INT_MAX ? INT_MAX : right[2][i + 1] + 1);
-            right[3][i] = clr == 3 ? 0 : (right[3][i + 1] == INT_MAX ? INT_MAX : right[3][i + 1] + 1);
-        }
-        
-        int len = queries.size();
-        vector<int> result(len, -1);
-        for (int i = 0; i < len; ++i) {
-            int idx = queries[i][0];
-            int clr = queries[i][1];
-            result[i] = min(left[clr][idx], right[clr][idx]);
-        }
-        return result;
+    int makeArrayIncreasing(vector<int> arr1, vector<int> arr2) { // dfs with memo
+        sort(arr2.begin(), arr2.end());
+        int result = dfs(0, INT_MIN, arr1, arr2);
+        return result == INT_MAX ? -1 : result;
     }
 };
 
 int main() {
     Solution s;
-    s.shortestDistanceColor({1,1,2,1,3,2,2,3,3}, {{1,3}});
+    s.makeArrayIncreasing({1,5,3,6,7}, {1,3,4});
 
     vector<int> temp1({1,3,3,3,2});
     vector<vector<int>> matrix({
