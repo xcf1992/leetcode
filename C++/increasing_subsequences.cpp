@@ -61,3 +61,37 @@ public:
         return result;
     }
 };
+
+/*
+this is to generate increasing arrays using numbers from nums
+class Solution {
+private:
+    void dfs(vector<vector<int>>& result, vector<int>& cur, map<int, int> count) {
+        if (cur.size() > 1) {
+            result.push_back(cur);
+        }
+
+        for (auto& it : count) {
+            if (cur.empty() or it.first > cur.back()) {
+                vector<int> temp = cur;
+                for (int i = 0; i < it.second; ++i) {
+                    temp.push_back(it.first);
+                    dfs(result, temp, count);
+                }
+            }
+        }
+    }
+public:
+    vector<vector<int>> findSubsequences(vector<int>& nums) {
+        map<int, int> count;
+        for (int num : nums) {
+            count[num] += 1;
+        }
+
+        vector<vector<int>> result;
+        vector<int> cur;
+        dfs(result, cur, count);
+        return result;
+    }
+};
+*/

@@ -67,14 +67,15 @@ public:
 
         if (n % 2 == 0) {
             cache[n] = 1 + integerReplacement(n / 2);
-            return cache[n];
         }
-        cache[n] = 1 + min(integerReplacement(n - 1), 1 + integerReplacement(((long)n + 1) / 2));
+        else {
+            cache[n] = 1 + min(integerReplacement(n - 1), 1 + integerReplacement(((long)n + 1) / 2));
+        }
         return cache[n];
     }
 };
 
-class Solution {
+class Solution1 {
 public:
     int integerReplacement(int n) {
         int result = 0;
