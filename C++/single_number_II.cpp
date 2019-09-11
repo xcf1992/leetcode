@@ -1,7 +1,11 @@
 /*
 137. Single Number II
-Given a non-empty array of integers, every element appears three times except for one,
-which appears exactly once. Find that single one.
+https://leetcode.com/problems/single-number-ii/
+
+Given a non-empty array of integers,
+every element appears three times except for one,
+which appears exactly once.
+Find that single one.
 
 Note:
 
@@ -15,7 +19,6 @@ Example 2:
 
 Input: [0,1,0,1,0,1,99]
 Output: 99
-
 */
 #include <iostream>
 #include <string>
@@ -27,8 +30,35 @@ Output: 99
 #include <stack>
 #include <stdio.h>
 using namespace std;
+/*
+https://cloud.tencent.com/developer/article/1131945
 
+first appearence:
+add num to seen_once
+don't add to seen_twice because of presence in seen_once
+
+second appearance:
+remove num from seen_once
+add num to seen_twice
+
+third appearance:
+don't add to seen_once because of presence in seen_twice
+remove num from seen_twice
+*/
 class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int seenOnce = 0, seenTwice = 0;
+
+        for (int num : nums) {
+            seenOnce = ~seenTwice & (seenOnce ^ num);
+            seenTwice = ~seenOnce & (seenTwice ^ num);
+        }
+        return seenOnce;
+    }
+};
+
+class Solution1 {
 public:
     int singleNumber(vector<int>& nums) {
         int n = nums.size();

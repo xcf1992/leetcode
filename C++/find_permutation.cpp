@@ -40,7 +40,6 @@ but since we want to find the one with the smallest lexicographical permutation,
 #include <map>
 #include <numeric>
 using namespace std;
-
 /*
 Let's revisit the important points of the given problem statement.
 For a given n, we need to use all the integers in the range (1,n)

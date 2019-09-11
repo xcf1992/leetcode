@@ -64,7 +64,9 @@ Longest Path
 It is easy to see that the root of an MHT has to be the middle point (or two middle points) of the longest path of the tree.
 Though multiple longest paths can appear in an unrooted tree, they must share the same middle point(s).
 
-Computing the longest path of a unrooted tree can be done, in O(n) time, by tree dp, or simply 2 tree traversals (dfs or bfs).
+Computing the longest path of a unrooted tree can be done, in O(n) time,
+by tree dp, or simply 2 tree traversals (dfs or bfs).
+
 The following is some thought of the latter.
 
 Randomly select a node x as the root, do a dfs/bfs to find the node y that has the longest distance from x.
@@ -170,7 +172,7 @@ public:
     }
 };
 
-class Solution1 { // time limit exceeded
+class Solution2 { // time limit exceeded
 private:
     void dfs(unordered_map<int, vector<int>>& graph, vector<bool>& visited, vector<int>& path,
              unordered_set<int>& result, int& maxLength) {

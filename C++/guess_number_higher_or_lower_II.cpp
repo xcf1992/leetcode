@@ -34,25 +34,24 @@ Given a particular n ≥ 1, find out how much money you need to have to guarante
 #include <stdio.h>
 #include <set>
 using namespace std;
-
 /*
- For each number x in range[i~j]
- we do: result_when_pick_x = x + max{DP([i~x-1]), DP([x+1, j])}
- –> // the max means whenever you choose a number, the feedback is always bad and therefore leads you to a worse branch.
- then we get DP([i~j]) = min{xi, … ,xj}
- –> // this min makes sure that you are minimizing your cost.
+For each number x in range[i~j]
+we do: result_when_pick_x = x + max{DP([i~x-1]), DP([x+1, j])}
+–> // the max means whenever you choose a number, the feedback is always bad and therefore leads you to a worse branch.
+then we get DP([i~j]) = min{xi, … ,xj}
+–> // this min makes sure that you are minimizing your cost.
 
- It takes me some time to understand the simple question “why it’s using max(dp[i][x-1], dp[x+1][j])”,
- so I want to share my understanding here to help people like me.
+It takes me some time to understand the simple question “why it’s using max(dp[i][x-1], dp[x+1][j])”,
+so I want to share my understanding here to help people like me.
 
- dp[i][j] is the minimal cost to guess from range(i…j).
- When you choose an x where i <= x <= j,
- you may find the target number from left i…x-1,
- or you may find the target number from the x+1…j,
- because you don’t know which way should go,
- so to guarantee you have enough money to find the target,
- you need to prepare the more,
- which is max(dp[i][x-1], dp[x+1][j]).
+dp[i][j] is the minimal cost to guess from range(i…j).
+When you choose an x where i <= x <= j,
+you may find the target number from left i…x-1,
+or you may find the target number from the x+1…j,
+because you don’t know which way should go,
+so to guarantee you have enough money to find the target,
+you need to prepare the more,
+which is max(dp[i][x-1], dp[x+1][j]).
 */
 class Solution {
 private:
