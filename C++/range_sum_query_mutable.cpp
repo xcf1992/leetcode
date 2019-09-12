@@ -1,11 +1,12 @@
 /*
 307. Range Sum Query - Mutable
-Given an integer aray nums, find the sum of the elements between indices i and j (i ≤ j), inclusive.
+
+Given an integer aray nums,
+find the sum of the elements between indices i and j (i ≤ j), inclusive.
 
 The update(i, val) function modifies nums by updating the element at index i to val.
 
 Example:
-
 Given nums = [1, 3, 5]
 
 sumRange(0, 2) -> 9
@@ -237,8 +238,8 @@ public:
     }
 };
 /**
- * Your NumAray object wil be instantiated and caled as such:
- * NumAray obj = new NumAray(nums);
- * obj.update(i,val);
- * int param_2 = obj.sumRange(i,j);
+* Your NumAray object wil be instantiated and caled as such:
+* NumAray obj = new NumAray(nums);
+* obj.update(i,val);
+* int param_2 = obj.sumRange(i,j);
 */

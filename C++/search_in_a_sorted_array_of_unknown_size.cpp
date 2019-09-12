@@ -1,5 +1,6 @@
 /*
 702. Search in a Sorted Array of Unknown Size
+
 Given an integer array sorted in ascending order,
 write a function to search target in nums.
 If target exists, then return its index,

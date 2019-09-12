@@ -3,7 +3,6 @@
 In an array A of 0s and 1s, how many non-empty subarrays have sum S?
 
 Example 1:
-
 Input: A = [1,0,1,0,1], S = 2
 Output: 4
 Explanation:
@@ -57,7 +56,8 @@ public:
     int numSubarraysWithSum(vector<int>& A, int S) {
         int curSum = 0;
         int result = 0;
-        unordered_map<int, int> count({{0, 1}});
+        unordered_map<int, int> count;
+        count[0] = 1;
         for (int num : A) {
             curSum += num;
             result += count[curSum - S];

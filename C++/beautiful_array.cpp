@@ -34,7 +34,6 @@ Note:
 #include <map>
 #include <numeric>
 using namespace std;
-
 /*
 Intuition:
 Try to divide and conquer,
