@@ -1,5 +1,7 @@
 /*
 294. Flip Game II
+https://leetcode.com/problems/flip-game-ii/
+
 You are playing the following Flip Game with your friend:
 Given a string that contains only these two characters: + and -,
 you and your friend take turns to flip two consecutive "++" into "--".
@@ -32,6 +34,10 @@ private:
     unordered_map<string, bool> firstWin;
 public:
     bool canWin(string s) {
+        if (firstWin.find(s) != firstWin.end()) {
+            return firstWin[s];
+        }
+        
         for (int i = 1; i < s.size(); i++) {
             if (s[i] == '+' and s[i - 1] == '+') {
                 s[i] = s[i - 1] = '-';

@@ -1,25 +1,26 @@
 /*
- 212. Word Search II
- Given a 2D board and a list of words from the dictionary, find all words in the board.
+212. Word Search II
+Given a 2D board and a list of words from the dictionary, find all words in the board.
 
- Each word must be constructed from letters of sequentially adjacent cell,
- where "adjacent" cells are those horizontally or vertically neighboring.
- The same letter cell may not be used more than once in a word.
+Each word must be constructed from letters of sequentially adjacent cell,
+where "adjacent" cells are those horizontally or vertically neighboring.
+The same letter cell may not be used more than once in a word.
 
- Example:
+Example:
 
- Input:
- words = ["oath","pea","eat","rain"] and board =
- [
- ['o','a','a','n'],
- ['e','t','a','e'],
- ['i','h','k','r'],
- ['i','f','l','v']
- ]
+Input:
+words = ["oath","pea","eat","rain"] and board =
+[
+['o','a','a','n'],
+['e','t','a','e'],
+['i','h','k','r'],
+['i','f','l','v']
+]
 
- Output: ["eat","oath"]
- Note:
- You may assume that all inputs are consist of lowercase letters a-z.
+Output: ["eat","oath"]
+
+Note:
+You may assume that all inputs are consist of lowercase letters a-z.
 */
 #include <iostream>
 #include <string>
@@ -50,6 +51,7 @@ struct TrieNode {
 class Solution {
 private:
     TrieNode* root = new TrieNode;
+    vector<int> diff = {0, 1, 0, -1, 0};
 
     void addWord(string word) {
         TrieNode* cur = root;
@@ -75,7 +77,6 @@ private:
         }
 
         visited[r][c] = true;
-        vector<int> diff = {0, 1, 0, -1, 0};
         for (int k = 1; k < diff.size(); ++k) {
             findWord(result, visited, board, next, r + diff[k], c + diff[k - 1]);
         }
@@ -92,6 +93,7 @@ public:
         for (string word : words) {
             addWord(word);
         }
+        
         vector<string> result;
         vector<vector<bool>> visited(m, vector<bool>(n, false));
         for (int i = 0; i < m; i++) {

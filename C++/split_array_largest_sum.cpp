@@ -51,7 +51,7 @@ public:
         }
 
         for (int i = 2; i <= m; i++) {
-            for (int j = 2; j <= n; j++) {
+            for (int j = i; j <= n; j++) {
                 for (int k = 0; k < j; k++) {
                     dp[i][j] = min(dp[i][j], max(dp[i - 1][k], dp[1][j] - dp[1][k]));
                 }

@@ -50,7 +50,7 @@ public:
         }
 
         int result = 0;
-        for (int i = 0; i != n; i++) {
+        for (int i = 0; i < n; ++i) {
             int same = 1;
             int vertical = 0;
             unordered_map<string, int> count;
@@ -59,7 +59,7 @@ public:
                 double slope = 0.0;
                 if (points[i][0] == points[j][0] and points[i][1] == points[j][1]) {
                     same++;
-					continue;
+                    continue;
                 }
                 if (points[i][0] == points[j][0]) {
                     vertical++;
@@ -70,6 +70,7 @@ public:
                 int g = gcd(dx, dy);
                 count[to_string(dx / g) + "_" + to_string(dy / g)] += 1;
             }
+
             result = max(result, vertical + same);
             for (auto it = count.begin(); it != count.end(); it++) {
                 result = max(result, it -> second + same);
@@ -83,7 +84,7 @@ public:
 wrong answer [[0,0],[94911151,94911150],[94911152,94911151]]
 cause two points are too close, thus the slope cannot be differentiated under c++ double
 */
-class Solution {
+class Solution1 {
 public:
     int maxPoints(vector<vector<int>>& points) {
         int n = points.size();
@@ -101,7 +102,7 @@ public:
                 double slope = 0.0;
                 if (points[i][0] == points[j][0] and points[i][1] == points[j][1]) {
                     same++;
-					continue;
+                    continue;
                 }
                 if (points[i][0] == points[j][0]) {
                     vertical++;

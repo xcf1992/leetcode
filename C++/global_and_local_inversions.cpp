@@ -1,5 +1,7 @@
 /*
 775. Global and Local Inversions
+https://leetcode.com/problems/global-and-local-inversions/
+
 We have some permutation A of [0, 1, ..., N - 1], where N is the length of A.
 
 The number of (global) inversions is the number of i < j with 0 <= i < j < N and A[i] > A[j].
@@ -51,10 +53,13 @@ Then I check the condition cmax < A[i+2]
 class Solution {
 public:
     bool isIdealPermutation(vector<int>& A) {
-        int cmax = 0, n = A.size();
+        int cmax = 0;
+        int n = A.size();
         for (int i = 0; i < n - 2; ++i) {
             cmax = max(cmax, A[i]);
-            if (cmax > A[i + 2]) return false;
+            if (cmax > A[i + 2]) {
+                return false;
+            }
         }
         return true;
     }

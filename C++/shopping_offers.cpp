@@ -68,13 +68,13 @@ private:
     }
 public:
     int shoppingOffers(vector<int>& price, vector<vector<int>>& special, vector<int>& needs) {
+        if (accumulate(needs.begin(), needs.end(), 0) == 0) {
+            return 0;
+        }
+
         string key = generateKey(needs);
         if (memo.find(key) != memo.end()) {
             return memo[key];
-        }
-
-        if (accumulate(needs.begin(), needs.end(), 0) == 0) {
-            return 0;
         }
 
         memo[key] = INT_MAX;

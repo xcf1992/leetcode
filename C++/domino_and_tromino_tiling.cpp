@@ -1,12 +1,17 @@
 /*
 790. Domino and Tromino Tiling
-We have two types of tiles: a 2x1 domino shape, and an "L" tromino shape. These shapes may be rotated.
+https://leetcode.com/problems/domino-and-tromino-tiling/
+
+We have two types of tiles: a 2x1 domino shape, and an "L" tromino shape.
+These shapes may be rotated.
 
 XX  <- domino
 
 XX  <- "L" tromino
 X
-Given N, how many ways are there to tile a 2 x N board? Return your answer modulo 10^9  +  7.
+
+Given N, how many ways are there to tile a 2 x N board?
+Return your answer modulo 10^9  +  7.
 
 (In a tiling, every square must be covered by a tile.
 Two tilings are different if and only if there are two 4-directionally adjacent cells on the board
@@ -58,6 +63,7 @@ dp[n] = dp[n-1] + dp[n-2] +  2*(dp[n-3] + ... + d[0])
 = dp[n-1] + dp[n-3] + dp[n-1]
 = 2 * dp[n-1] + dp[n-3]
 
+https://leetcode.com/problems/domino-and-tromino-tiling/discuss/116581/Detail-and-explanation-of-O(n)-solution-why-dpn2*dn-1%2Bdpn-3
 https://leetcode.com/problems/domino-and-tromino-tiling/discuss/116664/Schematic-explanation-of-two-equivalent-DP-recurrence-formula
 */
 class Solution {
@@ -73,6 +79,7 @@ public:
         if (N == 3) {
             return 5;
         }
+
         vector<int> dp({1, 2, 5});
         for (int i = 4; i <= N; i++) {
             int num = (dp[2] * 2 % mod + dp[0] % mod) % mod;

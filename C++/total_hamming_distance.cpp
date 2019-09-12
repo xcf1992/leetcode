@@ -1,5 +1,7 @@
 /*
 477. Total Hamming Distance
+https://leetcode.com/problems/total-hamming-distance/
+
 The Hamming distance between two integers is the number of positions at which the corresponding bits are different.
 
 Now your job is to find the total Hamming distance between all pairs of the given numbers.
@@ -32,7 +34,7 @@ class Solution {
 public:
     int totalHammingDistance(vector<int>& nums) {
         int result = 0;
-        int count = nums.size();
+        int n = nums.size();
         for (int i = 0; i < 32; i++) {
             int zeroCount = 0;
             for (int& num : nums) {
@@ -41,7 +43,7 @@ public:
                 }
                 num >>= 1;
             }
-            result += zeroCount * (count - zeroCount);
+            result += zeroCount * (n - zeroCount);
         }
         return result;
     }
