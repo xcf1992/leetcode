@@ -1,5 +1,7 @@
 /*
 777. Swap Adjacent in LR String
+https://leetcode.com/problems/swap-adjacent-in-lr-string/
+
 In a string composed of 'L', 'R', and 'X' characters, like "RXXLRXRXL",
 a move consists of either replacing one occurrence of "XL" with "LX",
 or replacing one occurrence of "RX" with "XR".
@@ -36,7 +38,6 @@ Both start and end will only consist of characters in {'L', 'R', 'X'}.
 #include <stdio.h>
 #include <set>
 using namespace std;
-
 /*
 Following the explanation in Approach #1, the target string must be solid and accessible.
 

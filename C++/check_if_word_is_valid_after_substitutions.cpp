@@ -1,5 +1,6 @@
 /*
 1003. Check If Word Is Valid After Substitutions
+https://leetcode.com/problems/check-if-word-is-valid-after-substitutions/
 
 We are given that the string "abc" is valid.
 

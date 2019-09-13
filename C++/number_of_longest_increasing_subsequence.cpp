@@ -1,12 +1,15 @@
 /*
 673. Number of Longest Increasing Subsequence
+https://leetcode.com/problems/number-of-longest-increasing-subsequence/
 
-Given an unsorted array of integers, find the number of longest increasing subsequence.
+Given an unsorted array of integers,
+find the number of longest increasing subsequence.
 
 Example 1:
 Input: [1,3,5,4,7]
 Output: 2
 Explanation: The two longest increasing subsequence are [1, 3, 4, 7] and [1, 3, 5, 7].
+
 Example 2:
 Input: [2,2,2,2,2]
 Output: 5

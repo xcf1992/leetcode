@@ -1,5 +1,7 @@
 /*
 1152. Analyze User Website Visit Pattern
+https://leetcode.com/problems/analyze-user-website-visit-pattern/
+
 You are given three arrays username,
 timestamp and website of the same length N
 where the ith tuple means that the user with name username[i] visited the website website[i] at time timestamp[i].
