@@ -26,7 +26,6 @@ Explanation: The maximum result is 5 ^ 25 = 28.
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/discuss/130427/()-92
 因为二进制元素只有0,1。考虑使用二叉树来构建前缀树。
@@ -84,7 +83,7 @@ private:
     * we set that bit to 1 of return value
     * otherwise we set it to be 0
     * and we will move curNode accordingly
-   */
+    */
     int find(TrieNode* root, int num) {
         TrieNode* curNode = root;
         int curValue = 0;
