@@ -14,7 +14,6 @@ Return the smallest possible weight of this stone
 (the weight is 0 if there are no stones left.)
 
 Example 1:
-
 Input: [2,7,4,1,8,1]
 Output: 1
 Explanation:
@@ -23,9 +22,7 @@ we can combine 7 and 8 to get 1 so the array converts to [2,1,1,1] then,
 we can combine 2 and 1 to get 1 so the array converts to [1,1,1] then,
 we can combine 1 and 1 to get 0 so the array converts to [1] then that's the optimal value.
 
-
 Note:
-
 1 <= stones.length <= 30
 1 <= stones[i] <= 100
 */
@@ -63,7 +60,7 @@ w[i] = 1
 v[i] = stones[i]
 W = sum(stones) / 2
 
-=*=*=*=*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*=*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*=
+=*=*=*=*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==
 Question: Why the minimum result of cancellation is equal to minimum knapsack partition?
 Answer:
 
@@ -80,10 +77,12 @@ The dp[i] present if the sum of one group can be i.
 So we can only record the smaller one for less space cost,
 which less than half of the upper bound of total sum 3000.
 
-=*=*=*=*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*=*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*=
+=*=*=*=*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*==*=*=*=
 Proof that the minimum can be achieved, inspired by @sizfeetunder 's post (which looks like an incomplete proof to me):
 Given stones {x_1, ..., x_k}, let
-a(x_1, ..., x_k) be the minimum among all expressions of the form (y_1+...+y_m) - (z_1+...+z_n) that are >= 0 such that {x_1,...x_k} is the disjoint union of {y_1,...,y_m} and {z_1,...z_n} (i.e. a solution of the corresponding knapsack problem), and let
+a(x_1, ..., x_k) be the minimum among all expressions of the form (y_1+...+y_m) - (z_1+...+z_n) that are >= 0
+such that {x_1,...x_k} is the disjoint union of {y_1,...,y_m} and {z_1,...z_n}
+(i.e. a solution of the corresponding knapsack problem), and let
 b(x_1, ..., x_k) be the minimum final stone starting from {x_1,...,x_k}.
 Since any final stone can be written in the form (y_1+...+y_m) - (z_1+...+z_n), we have b >= a (Ineq 0).
 We show a(x_1,...,x_k) = b(x_1,...,x_k) by induction:

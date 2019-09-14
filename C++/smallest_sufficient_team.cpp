@@ -16,17 +16,14 @@ You may return the answer in any order.
 It is guaranteed an answer exists.
 
 Example 1:
-
 Input: req_skills = ["java","nodejs","reactjs"], people = [["java"],["nodejs"],["nodejs","reactjs"]]
 Output: [0,2]
-Example 2:
 
+Example 2:
 Input: req_skills = ["algorithms","math","java","reactjs","csharp","aws"], people = [["algorithms","math","java"],["algorithms","math","reactjs"],["java","csharp","aws"],["reactjs","csharp"],["csharp","math"],["aws","java"]]
 Output: [1,2]
 
-
 Constraints:
-
 1 <= req_skills.length <= 16
 1 <= people.length <= 60
 1 <= people[i].length, req_skills[i].length, people[i][j].length <= 16

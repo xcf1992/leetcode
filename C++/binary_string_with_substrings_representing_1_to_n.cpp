@@ -106,7 +106,7 @@ private:
     }
 public:
     bool queryString(string S, int N) {
-        for (int i = N; i > N / 2;  --i) {
+        for (int i = N; i > N / 2; --i) {
             string bits = toBinaryString(i);
             if (S.find(bits) == string::npos) {
                 return false;

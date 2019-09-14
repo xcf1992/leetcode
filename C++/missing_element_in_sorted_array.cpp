@@ -1,5 +1,6 @@
 /*
 1060. Missing Element in Sorted Array
+
 Given a sorted array A of unique numbers,
 find the K-th missing number starting from the leftmost number of the array.
 
@@ -22,7 +23,6 @@ Explanation:
 The missing numbers are [3,5,6,7,...], hence the third missing number is 6.
 
 Note:
-
 1 <= A.length <= 50000
 1 <= A[i] <= 1e7
 1 <= K <= 1e8
@@ -42,7 +42,8 @@ Note:
 #include <numeric>
 using namespace std;
 /*
-Let missingNum be amount of missing number in the array. Two cases that need to be handled:
+Let missingNum be amount of missing number in the array.
+Two cases that need to be handled:
 
 missingNum < k, then return nums[n - 1] + k - missingNum
 missingNum >= k, then use binary search(during the search k will be updated) to find the index in the array,
