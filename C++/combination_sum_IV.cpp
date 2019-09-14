@@ -1,13 +1,13 @@
 /*
 377. Combination Sum IV
+https://leetcode.com/problems/combination-sum-iv/
+
 Given an integer array with all positive numbers and no duplicates,
 find the number of possible combinations that add up to a positive integer target.
 
 Example:
-
 nums = [1, 2, 3]
 target = 4
-
 The possible combination ways are:
 (1, 1, 1, 1)
 (1, 1, 2)
@@ -20,7 +20,6 @@ The possible combination ways are:
 Note that different sequences are counted as different combinations.
 
 Therefore the output is 7.
-
 
 Follow up:
 What if negative numbers are allowed in the given array?
@@ -41,7 +40,6 @@ Special thanks to @pbrother for adding this problem and creating all test cases.
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 https://leetcode.com/problems/combination-sum-iv/discuss/85074/6-lines-C%2B%2B-DP-solution
 some interesting discussions around test case

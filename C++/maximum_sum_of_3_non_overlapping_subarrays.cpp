@@ -1,5 +1,7 @@
 /*
 689. Maximum Sum of 3 Non-Overlapping Subarrays
+https://leetcode.com/problems/maximum-sum-of-3-non-overlapping-subarrays/submissions/
+
 In a given array nums of positive integers, find three non-overlapping subarrays with maximum sum.
 
 Each subarray will be of size k, and we want to maximize the sum of all 3*k entries.
@@ -13,7 +15,6 @@ Input: [1,2,1,2,6,7,5,1], 2
 Output: [0, 3, 5]
 Explanation: Subarrays [1, 2], [2, 6], [7, 5] correspond to the starting indices [0, 3, 5].
 We could have also taken [2, 1], but an answer of [1, 3, 5] would be lexicographically larger.
-
 
 Note:
 
@@ -32,7 +33,6 @@ k will be between 1 and floor(nums.length / 3).
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 The question asks for three non-overlapping intervals with maximum sum of all 3 intervals.
 If the middle interval is [i, i+k-1], where k <= i <= n-2k,
@@ -54,22 +54,21 @@ public:
         }
 
         vector<int> posLeft(n, 0);
-        int curMax = preSum[k] - preSum[0];
+        int leftMax = preSum[k] - preSum[0];
+        vector<int> posRight(n, n - k);
+        int rightMax = preSum[n] - preSum[n - k];
         for (int i = k; i < n; i++) {
             posLeft[i] = posLeft[i - 1];
-            if (preSum[i + 1] - preSum[i + 1 - k] > curMax) {
+            if (preSum[i + 1] - preSum[i + 1 - k] > leftMax) {
                 posLeft[i] = i - k + 1;
-                curMax = preSum[i + 1] - preSum[i + 1 - k];
+                leftMax = preSum[i + 1] - preSum[i + 1 - k];
             }
-        }
 
-        vector<int> posRight(n, n - k);
-        curMax = preSum[n] - preSum[n - k];
-        for (int i = n - k - 1; i >= 0; i--) {
-            posRight[i] = posRight[i + 1];
-            if (preSum[i + k] - preSum[i] >= curMax) {
-                posRight[i] = i;
-                curMax = preSum[i + k] - preSum[i];
+            int j = n - i - 1;;
+            posRight[j] = posRight[j + 1];
+            if (preSum[j + k] - preSum[j] >= rightMax) {
+                rightMax = preSum[j + k] - preSum[j];
+                posRight[j] = j;
             }
         }
 
@@ -78,7 +77,7 @@ public:
         for (int i = k; i <= n - 2 * k; i++) {
             int left = posLeft[i - 1];
             int right = posRight[i + k];
-            curMax = preSum[left + k] - preSum[left] +
+            int curMax = preSum[left + k] - preSum[left] +
                    preSum[i + k] - preSum[i] +
                    preSum[right + k] - preSum[right];
             if (curMax > maxSum) {

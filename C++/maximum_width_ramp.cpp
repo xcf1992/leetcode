@@ -8,18 +8,16 @@ Find the maximum width of a ramp in A.
 If one doesn't exist, return 0.
 
 Example 1:
-
 Input: [6,0,8,2,1,5]
 Output: 4
 Explanation:
 The maximum width ramp is achieved at (i, j) = (1, 5): A[1] = 0 and A[5] = 5.
-Example 2:
 
+Example 2:
 Input: [9,8,1,0,1,9,4,0,4,1]
 Output: 7
 Explanation:
 The maximum width ramp is achieved at (i, j) = (2, 9): A[2] = 1 and A[9] = 1.
-
 
 Note:
 

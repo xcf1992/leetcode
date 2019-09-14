@@ -1,5 +1,7 @@
 /*
 875. Koko Eating Bananas
+https://leetcode.com/problems/koko-eating-bananas/
+
 Koko loves to eat bananas.
 There are N piles of bananas,
 the i-th pile has piles[i] bananas.
@@ -52,7 +54,8 @@ piles.length <= H <= 10^9
 #include <set>
 using namespace std;
 /*
-If Koko can finish eating all the bananas (within H hours) with an eating speed of K, she can finish with a larger speed too.
+If Koko can finish eating all the bananas (within H hours) with an eating speed of K,
+she can finish with a larger speed too.
 
 If we let possible(K) be true if and only if Koko can finish with an eating speed of K,
 then there is some X such that possible(K) = True if and only if K >= X.

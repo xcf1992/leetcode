@@ -1,6 +1,7 @@
 /*
 356. Line Reflection
-Given n points on a 2D plane, find if there is such a line parallel to y-axis that reflect the given points.
+Given n points on a 2D plane,
+find if there is such a line parallel to y-axis that reflect the given points.
 
 Example 1:
 
@@ -52,7 +53,7 @@ public:
     }
 };
 
-class Solution {
+class Solution1 {
 public:
     bool isReflected(vector<pair<int, int>>& points) {
         if (points.size() <= 1) {

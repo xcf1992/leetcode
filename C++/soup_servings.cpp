@@ -8,6 +8,7 @@ Serve 100 ml of soup A and 0 ml of soup B
 Serve 75 ml of soup A and 25 ml of soup B
 Serve 50 ml of soup A and 50 ml of soup B
 Serve 25 ml of soup A and 75 ml of soup B
+
 When we serve some soup, we give it to someone and we no longer have it.
 Each turn, we will choose from the four operations with equal probability 0.25.
 If the remaining volume of soup is not enough to complete the operation,

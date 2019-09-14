@@ -1,5 +1,7 @@
 /*
 1140. Stone Game II
+https://leetcode.com/problems/stone-game-ii/
+
 Alex and Lee continue their games with piles of stones.
 There are a number of piles arranged in a row,
 and each pile has a positive integer number of stones piles[i].
@@ -19,14 +21,18 @@ Assuming Alex and Lee play optimally,
 return the maximum number of stones Alex can get.
 
 Example 1:
-
 Input: piles = [2,7,9,4,4]
 Output: 10
-Explanation:  If Alex takes one pile at the beginning, Lee takes two piles, then Alex takes 2 piles again. Alex can get 2 + 4 + 4 = 10 piles in total. If Alex takes two piles at the beginning, then Lee can take all three piles left. In this case, Alex get 2 + 7 = 9 piles in total. So we return 10 since it's larger.
-
+Explanation:
+If Alex takes one pile at the beginning,
+Lee takes two piles, then Alex takes 2 piles again.
+Alex can get 2 + 4 + 4 = 10 piles in total.
+If Alex takes two piles at the beginning,
+then Lee can take all three piles left.
+In this case, Alex get 2 + 7 = 9 piles in total.
+So we return 10 since it's larger.
 
 Constraints:
-
 1 <= piles.length <= 100
 1 <= piles[i] <= 10 ^ 4
 */
@@ -48,6 +54,7 @@ using namespace std;
 class Solution {
 private:
     int n = 0;
+    
     int getMaxStone(vector<vector<int>>& dp, vector<int>& preSum, int start, int M) {
         if (start >= n) {
             return 0;
@@ -85,7 +92,7 @@ public:
         * dp[i][j]
         * the max stones the first player can get
         * start with stone[i] (0-based), and with M = j
-       */
+        */
         vector<vector<int>> dp(n, vector<int>(2 * n, INT_MIN));
         return getMaxStone(dp, preSum, 0, 1);
     }

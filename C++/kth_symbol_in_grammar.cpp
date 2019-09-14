@@ -1,5 +1,7 @@
 /*
 779. K-th Symbol in Grammar
+https://leetcode.com/problems/k-th-symbol-in-grammar/
+
 On the first row, we write a 0.
 Now in every subsequent row, we look at the previous row and replace each occurrence of 0 with 01,
 and each occurrence of 1 with 10.
@@ -63,7 +65,7 @@ public:
     }
 };
 
-class Solution {
+class Solution1 {
 private:
     int countDigit1(int num) {
         int result = 0;
