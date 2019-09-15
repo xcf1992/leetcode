@@ -1,5 +1,6 @@
 /*
 424. Longest Repeating Character Replacement
+https://leetcode.com/problems/longest-repeating-character-replacement/
 
 Given a string that consists of only uppercase English letters,
 you can replace any letter in the string with another letter at most k times.
@@ -65,6 +66,11 @@ The window becomes "xxyz".
 as we only care about the max count of a letter in a window,
 within k swap if we can find m occurance of letter x, then current longest result will be m + k
 we only need to update the result if can find a letter repeat more than m times within k swap
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+It became invalid. But at this time, do we have to shrink the window?
+——No, we shift the whole window rightwards by one unit. So that the length is unchanged.
+The reason for that is , any index smaller than original "start",
+will never have the chance to lead a longer valid substring than current length of our window.
 */
 class Solution {
 public:

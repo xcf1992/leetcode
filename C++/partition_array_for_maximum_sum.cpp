@@ -1,9 +1,12 @@
 /*
 1043. Partition Array for Maximum Sum
+https://leetcode.com/problems/partition-array-for-maximum-sum/
 
-Given an integer array A, you partition the array into (contiguous) subarrays of length at most K.
-After partitioning, each subarray has their values changed to become the maximum value of that subarray.
+Given an integer array A,
+you partition the array into (contiguous) subarrays of length at most K.
 
+After partitioning,
+each subarray has their values changed to become the maximum value of that subarray.
 Return the largest sum of the given array after partitioning.
 
 Example 1:
