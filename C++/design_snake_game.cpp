@@ -77,7 +77,7 @@ private:
     int score;
     vector<vector<int>> f;
 public:
-    /** Initialize your data structure here.
+    /* Initialize your data structure here.
      @param width - screen width
      @param height - screen height
      @param food - A list of food positions
@@ -91,7 +91,7 @@ public:
         f = food;
     }
 
-    /** Moves the snake.
+    /* Moves the snake.
      @param direction - 'U' = Up, 'L' = Left, 'R' = Right, 'D' = Down
      @return The game's score after the move. Return -1 if game over.
      Game over when snake crosses the screen boundary or bites its body.*/
@@ -134,7 +134,7 @@ public:
         return score;
     }
 };
-/**
+/*
  * Your SnakeGame object will be instantiated and called as such:
  * SnakeGame obj = new SnakeGame(width, height, food);
  * int param_1 = obj.move(direction);

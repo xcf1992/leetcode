@@ -75,7 +75,7 @@ public:
         return {rand() % (r[2] - r[0] + 1) + r[0], rand() % (r[3] - r[1] + 1) + r[1]};
     }
 };
-/**
+/*
 * Your Solution object will be instantiated and called as such:
 * Solution obj = new Solution(rects);
 * vector<int> param_1 = obj.pick();

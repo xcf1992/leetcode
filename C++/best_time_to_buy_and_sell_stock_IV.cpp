@@ -26,7 +26,7 @@ Explanation: Buy on day 2 (price = 2) and sell on day 3 (price = 6), profit = 6-
 #include <algorithm>
 using namespace std;
 
-/**
+/*
  * dp[i, j] represents the max profit up until prices[j] using at most i transactions.
  * dp[i, j] = max(dp[i, j-1], prices[j] - prices[jj] + dp[i-1, jj]) { jj in range of [0, j-1] }
  *          = max(dp[i, j-1], prices[j] + max(dp[i-1, jj] - prices[jj]))

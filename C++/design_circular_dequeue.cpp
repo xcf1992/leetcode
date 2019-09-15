@@ -54,14 +54,14 @@ private:
     int start;
     int count;
 public:
-    /** Initialize your data structure here. Set the size of the deque to be k.*/
+    /* Initialize your data structure here. Set the size of the deque to be k.*/
     MyCircularDeque(int k) {
         array.resize(k, 0);
         start = 0;
         count = 0;
     }
 
-    /** Adds an item at the front of Deque. Return true if the operation is successful.*/
+    /* Adds an item at the front of Deque. Return true if the operation is successful.*/
     bool insertFront(int value) {
         if (count == array.size()) {
             return false;
@@ -77,7 +77,7 @@ public:
         return true;
     }
 
-    /** Adds an item at the rear of Deque. Return true if the operation is successful.*/
+    /* Adds an item at the rear of Deque. Return true if the operation is successful.*/
     bool insertLast(int value) {
         if (count == array.size()) {
             return false;
@@ -87,7 +87,7 @@ public:
         return true;
     }
 
-    /** Deletes an item from the front of Deque. Return true if the operation is successful.*/
+    /* Deletes an item from the front of Deque. Return true if the operation is successful.*/
     bool deleteFront() {
         if (count == 0) {
             return false;
@@ -97,7 +97,7 @@ public:
         return true;
     }
 
-    /** Deletes an item from the rear of Deque. Return true if the operation is successful.*/
+    /* Deletes an item from the rear of Deque. Return true if the operation is successful.*/
     bool deleteLast() {
         if (count == 0) {
             return false;
@@ -106,28 +106,28 @@ public:
         return true;
     }
 
-    /** Get the front item from the deque.*/
+    /* Get the front item from the deque.*/
     int getFront() {
         return count == 0 ? -1 : array[start];
     }
 
-    /** Get the last item from the deque.*/
+    /* Get the last item from the deque.*/
     int getRear() {
         return count == 0 ? -1 : array[(start + count - 1) % array.size()];
     }
 
-    /** Checks whether the circular deque is empty or not.*/
+    /* Checks whether the circular deque is empty or not.*/
     bool isEmpty() {
         return count == 0;
     }
 
-    /** Checks whether the circular deque is full or not.*/
+    /* Checks whether the circular deque is full or not.*/
     bool isFull() {
         return count == array.size();
     }
 };
 
-/**
+/*
  * Your MyCircularDeque object will be instantiated and called as such:
  * MyCircularDeque obj = new MyCircularDeque(k);
  * bool param_1 = obj.insertFront(value);

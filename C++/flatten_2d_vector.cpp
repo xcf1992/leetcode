@@ -68,7 +68,7 @@ public:
         return rowIt != rowEnd;
     }
 };
-/**
+/*
 * Your Vector2D object will be instantiated and called as such:
 * Vector2D i(vec2d);
 * while (i.hasNext()) cout << i.next();

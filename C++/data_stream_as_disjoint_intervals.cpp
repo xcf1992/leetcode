@@ -69,7 +69,7 @@ private:
         return left;
     }
 public:
-    /** Initialize your data structure here.*/
+    /* Initialize your data structure here.*/
     SummaryRanges() {}
 
     void addNum(int val) {
@@ -96,7 +96,7 @@ public:
         return intervals;
     }
 };
-/**
+/*
  * Your SummaryRanges object will be instantiated and called as such:
  * SummaryRanges* obj = new SummaryRanges();
  * obj->addNum(val);

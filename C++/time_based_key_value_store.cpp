@@ -58,7 +58,7 @@ class TimeMap {
 private:
     unordered_map<string, map<int, string>> timeBasedMap;
 public:
-    /** Initialize your data structure here.*/
+    /* Initialize your data structure here.*/
     TimeMap() {
         timeBasedMap.clear();
     }
@@ -75,7 +75,7 @@ public:
         return it == timeBasedMap[key].end() ? "" : it -> second;
     }
 };
-/**
+/*
 * Your TimeMap object will be instantiated and called as such:
 * TimeMap* obj = new TimeMap();
 * obj->set(key,value,timestamp);
@@ -87,7 +87,7 @@ class TimeMap1 {
 private:
     unordered_map<string, vector<pair<int, string>>> timeBasedMap;
 public:
-    /** Initialize your data structure here.*/
+    /* Initialize your data structure here.*/
     TimeMap1() {
         timeBasedMap.clear();
     }

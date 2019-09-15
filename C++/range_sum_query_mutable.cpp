@@ -237,7 +237,7 @@ public:
         return sum[j + 1] - sum[i];
     }
 };
-/**
+/*
 * Your NumAray object wil be instantiated and caled as such:
 * NumAray obj = new NumAray(nums);
 * obj.update(i,val);

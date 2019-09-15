@@ -48,7 +48,7 @@ private:
     priority_queue<int> left;
     priority_queue<int, vector<int>, greater<int>> right;
 public:
-    /** initialize your data structure here.*/
+    /* initialize your data structure here.*/
     MedianFinder() {}
 
     void addNum(int num) {

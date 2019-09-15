@@ -52,16 +52,16 @@ class HitCounter {
 private:
     queue<int> hits;
 public:
-    /** Initialize your data structure here.*/
+    /* Initialize your data structure here.*/
     HitCounter() {}
 
-    /** Record a hit.
+    /* Record a hit.
         @param timestamp - The current timestamp (in seconds granularity).*/
     void hit(int timestamp) {
         hits.push(timestamp);
     }
 
-    /** Return the number of hits in the past 5 minutes.
+    /* Return the number of hits in the past 5 minutes.
         @param timestamp - The current timestamp (in seconds granularity).*/
     int getHits(int timestamp) {
         while (!hits.empty() and timestamp - hits.front() >= 300) {
@@ -76,10 +76,10 @@ private:
     vector<int> times = vector<int>(300, 0);
     vector<int> hits = vector<int>(300, 0);
 public:
-    /** Initialize your data structure here.*/
+    /* Initialize your data structure here.*/
     HitCounter1() {}
 
-    /** Record a hit.
+    /* Record a hit.
         @param timestamp - The current timestamp (in seconds granularity).*/
     void hit(int timestamp) {
         int index = timestamp % 300;
@@ -92,7 +92,7 @@ public:
         }
     }
 
-    /** Return the number of hits in the past 5 minutes.
+    /* Return the number of hits in the past 5 minutes.
         @param timestamp - The current timestamp (in seconds granularity).*/
     int getHits(int timestamp) {
         int total = 0;
@@ -105,7 +105,7 @@ public:
     }
 };
 
-/**
+/*
  * Your HitCounter object will be instantiated and called as such:
  * HitCounter obj = new HitCounter();
  * obj.hit(timestamp);

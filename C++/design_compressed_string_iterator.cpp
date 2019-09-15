@@ -87,7 +87,7 @@ public:
     }
 };
 
-/**
+/*
  * Your StringIterator object will be instantiated and called as such:
  * StringIterator obj = new StringIterator(compressedString);
  * char param_1 = obj.next();

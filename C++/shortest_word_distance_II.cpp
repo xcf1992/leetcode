@@ -57,7 +57,7 @@ public:
         return result;
     }
 };
-/**
+/*
 * Your WordDistance object will be instantiated and called as such:
 * WordDistance obj = new WordDistance(words);
 * int param_1 = obj.shortest(word1,word2);

@@ -194,7 +194,7 @@ public:
         return result;
     }
 };
-/**
+/*
 * Your DinnerPlates object will be instantiated and called as such:
 * DinnerPlates* obj = new DinnerPlates(capacity);
 * obj->push(val);

@@ -57,7 +57,7 @@ For all f(n - i) where i > 2, all the ways complementing them to f(n) by dominos
 hence the only distinct way to transform them is appending trimino or combination of trimino and domino.
 And there are always only 2 ways to do this (as demonstrated in the picture).
 
-dp[n] = dp[n-1] + dp[n-2] +  2*(dp[n-3] + ... + d[0])
+dp[n] = dp[n-1] + dp[n-2] + 2*(dp[n-3] + ... + d[0])
 = dp[n-1] + dp[n-2] + dp[n-3] + dp[n-3] + 2*(dp[n-4] + ... + d[0])
 = dp[n-1] + dp[n-3] + (dp[n-2] + dp[n-3] + 2*(dp[n-4] + ... + d[0]))
 = dp[n-1] + dp[n-3] + dp[n-1]

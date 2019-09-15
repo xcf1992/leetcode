@@ -54,7 +54,7 @@ Note:  Any solutions that attempt to circumvent the judge will result in disqual
 #include <set>
 #include <numeric>
 using namespace std;
-/**
+/*
  * This is the Master's API interface.
  * You should not implement it, or speculate about its implementation
 */

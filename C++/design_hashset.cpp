@@ -45,7 +45,7 @@ class MyHashSet {
 private:
     vector<int> array;
 public:
-    /** Initialize your data structure here.*/
+    /* Initialize your data structure here.*/
     MyHashSet() {
         array.resize(1000000, -1);
     }
@@ -58,13 +58,13 @@ public:
         array[key] = -1;
     }
 
-    /** Returns true if this set did not already contain the specified element*/
+    /* Returns true if this set did not already contain the specified element*/
     bool contains(int key) {
         return array[key] != -1;
     }
 };
 
-/**
+/*
  * Your MyHashSet object will be instantiated and called as such:
  * MyHashSet obj = new MyHashSet();
  * obj.add(key);

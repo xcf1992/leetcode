@@ -72,7 +72,7 @@ public:
         return result;
     }
 };
-/**
+/*
 * Your LogSystem object will be instantiated and called as such:
 * LogSystem obj = new LogSystem();
 * obj.put(id,timestamp);

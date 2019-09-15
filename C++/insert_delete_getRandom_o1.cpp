@@ -49,12 +49,12 @@ private:
     unordered_map<int, int> indices;
     vector<int> nums;
 public:
-    /** Initialize your data structure here.*/
+    /* Initialize your data structure here.*/
     RandomizedSet() {
         srand((int) time(0));
     }
 
-    /** Inserts a value to the set. Returns true if the set did not already contain the specified element.*/
+    /* Inserts a value to the set. Returns true if the set did not already contain the specified element.*/
     bool insert(int val) {
         if (indices.find(val) == indices.end()) {
             indices[val] = indices.size();
@@ -64,7 +64,7 @@ public:
         return false;
     }
 
-    /** Removes a value from the set. Returns true if the set contained the specified element.*/
+    /* Removes a value from the set. Returns true if the set contained the specified element.*/
     bool remove(int val) {
         auto it = indices.find(val);
         if (it == indices.end()) {
@@ -79,13 +79,13 @@ public:
         return true;
     }
 
-    /** Get a random element from the set.*/
+    /* Get a random element from the set.*/
     int getRandom() {
         int pos = rand() % nums.size();
         return nums[pos];
     }
 };
-/**
+/*
  * Your RandomizedSet object will be instantiated and called as such:
  * RandomizedSet obj = new RandomizedSet();
  * bool param_1 = obj.insert(val);

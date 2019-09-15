@@ -149,7 +149,7 @@ public:
         return find(p);
     }
 };
-/**
+/*
  * Your FileSystem object will be instantiated and called as such:
  * FileSystem* obj = new FileSystem();
  * bool param_1 = obj->create(path,value);

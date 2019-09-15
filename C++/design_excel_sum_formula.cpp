@@ -189,7 +189,7 @@ public:
     }
 };
 
-/**
+/*
  * Your Excel object will be instantiated and called as such:
  * Excel* obj = new Excel(H, W);
  * obj->set(r,c,v);

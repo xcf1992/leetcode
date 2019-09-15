@@ -124,7 +124,7 @@ public:
         return cur -> content;
     }
 };
-/**
+/*
  * Your FileSystem object will be instantiated and called as such:
  * FileSystem* obj = new FileSystem();
  * vector<string> param_1 = obj->ls(path);

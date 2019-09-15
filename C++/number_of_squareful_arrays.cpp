@@ -177,7 +177,7 @@ public:
             result += dp[(1 << n) - 1][i];
         }
 
-        /** Divide out permutations of equal elements.*/
+        /* Divide out permutations of equal elements.*/
         for (int i = 0; i < n; i++) {
             int k = 1;
             for (int j = i + 1; j < n; j++) {

@@ -49,7 +49,7 @@ private:
     unordered_set<int> used;
     int maxNum;
 public:
-    /** Initialize your data structure here
+    /* Initialize your data structure here
      @param maxNumbers - The maximum numbers that can be stored in the phone directory.*/
     PhoneDirectory(int maxNumbers) {
         maxNum = maxNumbers;
@@ -58,7 +58,7 @@ public:
         }
     }
 
-    /** Provide a number which is not assigned to anyone.
+    /* Provide a number which is not assigned to anyone.
      @return - Return an available number. Return -1 if none is available.*/
     int get() {
         if (available.empty()) {
@@ -70,7 +70,7 @@ public:
         return result;
     }
 
-    /** Check if a number is available or not.*/
+    /* Check if a number is available or not.*/
     bool check(int number) {
         if (number < 0 or number > maxNum) {
             return false;
@@ -78,7 +78,7 @@ public:
         return used.find(number) == used.end();
     }
 
-    /** Recycle or release a number.*/
+    /* Recycle or release a number.*/
     void release(int number) {
         if (used.find(number) == used.end()) {
             return;
@@ -87,7 +87,7 @@ public:
         available.push(number);
     }
 };
-/**
+/*
  * Your PhoneDirectory object will be instantiated and called as such:
  * PhoneDirectory obj = new PhoneDirectory(maxNumbers);
  * int param_1 = obj.get();

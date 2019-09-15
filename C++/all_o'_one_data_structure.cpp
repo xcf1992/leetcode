@@ -155,12 +155,12 @@ private:
         }
     }
 public:
-    /** Initialize your data structure here.*/
+    /* Initialize your data structure here.*/
     AllOne() {
 
     }
 
-    /** Inserts a new key <Key> with value 1. Or increments an existing key by 1.*/
+    /* Inserts a new key <Key> with value 1. Or increments an existing key by 1.*/
     void inc(string key) {
         if (allOneMap.find(key) == allOneMap.end()) {
             Node* n = new Node(key, 1, head, nullptr);
@@ -181,7 +181,7 @@ public:
         }
     }
 
-    /** Decrements an existing key by 1. If Key's value is 1, remove it from the data structure.*/
+    /* Decrements an existing key by 1. If Key's value is 1, remove it from the data structure.*/
     void dec(string key) {
         if (allOneMap.find(key) == allOneMap.end()) {
             return;
@@ -205,18 +205,18 @@ public:
         return;
     }
 
-    /** Returns one of the keys with maximal value.*/
+    /* Returns one of the keys with maximal value.*/
     string getMaxKey() {
         return tail == nullptr ? "" : tail -> key;
     }
 
-    /** Returns one of the keys with Minimal value.*/
+    /* Returns one of the keys with Minimal value.*/
     string getMinKey() {
         return head == nullptr ? "" : head -> key;
     }
 };
 
-/**
+/*
  * Your AllOne object will be instantiated and called as such:
  * AllOne obj = new AllOne();
  * obj.inc(key);

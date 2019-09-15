@@ -38,7 +38,7 @@ private:
     TrieNode* root;
     unordered_map<string, int> pairs;
 public:
-    /** Initialize your data structure here.*/
+    /* Initialize your data structure here.*/
     MapSum() {
         root = new TrieNode();
     }
@@ -66,7 +66,7 @@ public:
         return cur == nullptr ? 0 : cur -> sum;
     }
 };
-/**
+/*
 * Your MapSum object will be instantiated and called as such:
 * MapSum obj = new MapSum();
 * obj.insert(key,val);

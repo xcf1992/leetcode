@@ -75,7 +75,7 @@ public:
         return it == snapArray[index].begin() ? 0 : prev(it) -> second;
     }
 };
-/**
+/*
  * Your SnapshotArray object will be instantiated and called as such:
  * SnapshotArray* obj = new SnapshotArray(length);
  * obj->set(index,val);

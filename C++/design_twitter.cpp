@@ -75,10 +75,10 @@ private:
     unordered_map<int, vector<Tweet>> tweets;
     int curTime = 0;
 public:
-    /** Initialize your data structure here.*/
+    /* Initialize your data structure here.*/
     Twitter() {}
 
-    /** Compose a new tweet.*/
+    /* Compose a new tweet.*/
     void postTweet(int userId, int tweetId) {
         tweets[userId].push_back(Tweet(tweetId, curTime));
         curTime += 1;
@@ -111,12 +111,12 @@ public:
         return result;
     }
 
-    /** Follower follows a followee. If the operation is invalid, it should be a no-op.*/
+    /* Follower follows a followee. If the operation is invalid, it should be a no-op.*/
     void follow(int followerId, int followeeId) {
         iFollow[followerId].insert(followeeId);
     }
 
-    /** Follower unfollows a followee. If the operation is invalid, it should be a no-op.*/
+    /* Follower unfollows a followee. If the operation is invalid, it should be a no-op.*/
     void unfollow(int followerId, int followeeId) {
         if (iFollow[followerId].find(followeeId) == iFollow[followerId].end()) {
             return;
@@ -124,7 +124,7 @@ public:
         iFollow[followerId].erase(iFollow[followerId].find(followeeId));
     }
 };
-/**
+/*
  * Your Twitter object will be instantiated and called as such:
  * Twitter obj = new Twitter();
  * obj.postTweet(userId,tweetId);

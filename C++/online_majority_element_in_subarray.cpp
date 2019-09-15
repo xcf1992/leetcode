@@ -114,7 +114,7 @@ public:
         return -1;
     }
 };
-/**
+/*
  * Your MajorityChecker object will be instantiated and called as such:
  * MajorityChecker* obj = new MajorityChecker(arr);
  * int param_1 = obj->query(left,right,threshold);

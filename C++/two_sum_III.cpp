@@ -27,15 +27,15 @@ using namespace std;
 class TwoSum {
     unordered_map<int,int> count;
 public:
-    /** Initialize your data structure here.*/
+    /* Initialize your data structure here.*/
     TwoSum() {}
 
-    /** Add the number to an internal data structure..*/
+    /* Add the number to an internal data structure..*/
     void add(int number) {
         count[number] += 1;
     }
 
-    /** Find if there exists any pair of numbers which sum is equal to the value.*/
+    /* Find if there exists any pair of numbers which sum is equal to the value.*/
     bool find(int value) {
         for(auto& el : count) if (count.find(value - el.first) != end(count) and (value - el.first != el.first or el.second > 1)) {
             return true;

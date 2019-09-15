@@ -33,7 +33,36 @@ You can print different paths in any order, but you should keep the order of nod
 #include <stdio.h>
 using namespace std;
 
-class Solution {
+class Solution { // dfs with memo, it is actually slower than pure dfs, I believe the cause is we have to insert at the begin of each path
+private:
+    int N = 0;
+    unordered_map<int, vector<vector<int>>> memo;
+
+    vector<vector<int>> dfs(int cur, vector<vector<int>>& graph) {
+        if (memo.find(cur) != memo.end()) {
+            return memo[cur];
+        }
+
+        if (cur == N - 1) {
+            return {{cur}};
+        }
+
+        for (int next : graph[cur]) {
+            for (vector<int>& path : dfs(next, graph)) {
+                path.insert(path.begin(), cur);
+                memo[cur].push_back(path);
+            }
+        }
+        return memo[cur];
+    }
+public:
+    vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
+        N = graph.size();
+        return dfs(0, graph);
+    }
+};
+
+class Solution1 {
 private:
     int N = 0;
 

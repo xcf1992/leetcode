@@ -21,7 +21,6 @@ In step 2, we use Paste operation to get 'AA'.
 In step 3, we use Paste operation to get 'AAA'.
 
 Note:
-
 The n will be in the range [1, 1000].
 */
 #include <iostream>

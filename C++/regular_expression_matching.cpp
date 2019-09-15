@@ -80,7 +80,7 @@ if p[j - 1] == '*' and the pattern repeats for at least 1 times.
                  or dp[i][j-1]   // in this case, a* counts as single a
                  or dp[i][j-2]   // in this case, a* counts as empty
 */
-/**
+/*
  * f[i][j]: if s[0..i-1] matches p[0..j-1]
  * if p[j - 1] != '*'
  *      f[i][j] = f[i - 1][j - 1] and s[i - 1] == p[j - 1]

@@ -36,7 +36,7 @@ class MaxStack {
     stack<int> elements;
     stack<int> maxElements;
 public:
-    /** initialize your data structure here.*/
+    /* initialize your data structure here.*/
     MaxStack() {
 
     }
@@ -87,7 +87,7 @@ public:
     }
 };
 
-/**
+/*
  * Your MaxStack object will be instantiated and called as such:
  * MaxStack obj = new MaxStack();
  * obj.push(x);

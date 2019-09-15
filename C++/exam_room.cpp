@@ -150,7 +150,7 @@ public:
     }
 };
 
-/**
+/*
  * Your ExamRoom object will be instantiated and called as such:
  * ExamRoom obj = new ExamRoom(N);
  * int param_1 = obj.seat();

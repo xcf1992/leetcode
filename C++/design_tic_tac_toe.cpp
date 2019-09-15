@@ -70,7 +70,7 @@ private:
     vector<int> antiDiagnal;
     int size;
 public:
-    /** Initialize your data structure here.*/
+    /* Initialize your data structure here.*/
     TicTacToe(int n) {
         rowCount.resize(2, vector<int>(n, 0));
         colCount.resize(2, vector<int>(n, 0));
@@ -79,7 +79,7 @@ public:
         size = n;
     }
 
-    /** Player {player} makes a move at ({row}, {col}).
+    /* Player {player} makes a move at ({row}, {col}).
      @param row The row of the board.
      @param col The column of the board.
      @param player The player, can be either 1 or 2.
@@ -103,7 +103,7 @@ public:
         return 0;
     }
 };
-/**
+/*
  * Your TicTacToe object will be instantiated and called as such:
  * TicTacToe obj = new TicTacToe(n);
  * int param_1 = obj.move(row,col,player);
