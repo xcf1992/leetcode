@@ -1,5 +1,7 @@
 /*
 310. Minimum Height Trees
+https://leetcode.com/problems/minimum-height-trees/
+
 For a undirected graph with tree characteristics,
 we can choose any node as the root.
 The result graph is then a rooted tree.
@@ -15,18 +17,15 @@ You can assume that no duplicate edges will appear in edges.
 Since all edges are undirected, [0, 1] is the same as [1, 0] and thus will not appear together in edges.
 
 Example 1 :
-
 Input: n = 4, edges = [[1, 0], [1, 2], [1, 3]]
-
   0
   |
   1
  /  \
 2   3
-
 Output: [1]
-Example 2 :
 
+Example 2 :
 Input: n = 6, edges = [[0, 3], [1, 3], [2, 3], [4, 3], [5, 4]]
   0  1  2
   \ | /
@@ -109,13 +108,11 @@ public:
                 int cur = leaves.front();
                 leaves.pop();
                 for (int node : graph[cur]) {
-                    if (degree[node] == 0) {
-                        continue;
-                    }
-                    if (degree[node] == 2) {
+                    degree[node] -= 1;
+                    if (degree[node] == 1) {
                         leaves.push(node);
                     }
-                    degree[node] -= 1;
+
                 }
             }
         }

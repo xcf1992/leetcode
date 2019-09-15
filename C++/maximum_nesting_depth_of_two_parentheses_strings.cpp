@@ -1,6 +1,9 @@
 /*
 1111. Maximum Nesting Depth of Two Valid Parentheses Strings
-A string is a valid parentheses string (denoted VPS) if and only if it consists of "(" and ")" characters only, and:
+https://leetcode.com/problems/maximum-nesting-depth-of-two-valid-parentheses-strings/
+
+A string is a valid parentheses string (denoted VPS)
+if and only if it consists of "(" and ")" characters only, and:
 
 It is the empty string, or
 It can be written as AB (A concatenated with B), where A and B are VPS's, or
@@ -24,17 +27,14 @@ answer[i] = 0 if seq[i] is part of A, else answer[i] = 1.
 Note that even though multiple answers may exist, you may return any of them.
 
 Example 1:
-
 Input: seq = "(()())"
 Output: [0,1,1,1,1,0]
-Example 2:
 
+Example 2:
 Input: seq = "()(())()"
 Output: [0,0,0,1,1,0,1,1]
 
-
 Constraints:
-
 1 <= seq.size <= 10000
 */
 #include <iostream>
