@@ -1,17 +1,15 @@
 /*
 698. Partition to K Equal Sum Subsets
+
 Given an array of integers nums and a positive integer k,
 find whether it's possible to divide this array into k non-empty subsets whose sums are all equal.
 
 Example 1:
-
 Input: nums = [4, 3, 2, 3, 5, 2, 1], k = 4
 Output: True
 Explanation: It's possible to divide it into 4 subsets (5), (1, 4), (2,3), (2,3) with equal sums.
 
-
 Note:
-
 1 <= k <= len(nums) <= 16.
 0 < nums[i] < 10000.
 */
@@ -27,7 +25,16 @@ Note:
 #include <numeric>
 #include <map>
 using namespace std;
+/*
+because, we need to consider all sum subsets.
+dp[i] indicates whether an array of length i can partitioned into k subsets of equal sum.
+Using this technique, the last index of this dp array
+will tell whether the whole array can be partitioned into k subsets of equal sum.
 
+total[i] stores the sum of subset with sum less than equal to target sum (total sum/k why? because we need to split array into k subset).
+
+https://leetcode.com/problems/partition-to-k-equal-sum-subsets/discuss/335668/Dynamic-Programming-with-Bit-Masking-Solution-%3A-Best-for-Interviews
+*/
 class Solution { // dp O(N * 2 ^ N)
 public:
     bool canPartitionKSubsets(vector<int>& nums, int k) {
@@ -52,7 +59,8 @@ public:
                     if (nums[i] <= target - (total[state] % target)) {
                         dp[future] = true;
                         total[future] = total[state] + nums[i];
-                    } else {
+                    }
+                    else {
                         break;
                     }
                 }

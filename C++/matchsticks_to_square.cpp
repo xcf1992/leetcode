@@ -1,5 +1,6 @@
 /*
 473. Matchsticks to Square
+
 Remember the story of Little Match Girl?
 By now, you know exactly what matchsticks the little match girl has,
 please find out a way you can make one square by using up all those matchsticks.
@@ -84,7 +85,7 @@ public:
     }
 };
 
-class Solution1 { // dfs but slow
+class Solution1 { // simple dfs but slow
 private:
     bool valid(vector<int>& nums, int index, vector<int>& side, int length) {
         if (index >= nums.size()) {

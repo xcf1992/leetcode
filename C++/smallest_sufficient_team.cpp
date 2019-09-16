@@ -1,5 +1,6 @@
 /*
 1125. Smallest Sufficient Team
+
 In a project, you have a list of required skills req_skills, and a list of people.
 The i-th person people[i] contains a list of skills that person has.
 

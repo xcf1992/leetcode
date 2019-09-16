@@ -1,7 +1,8 @@
 /*
 625. Minimum Factorization
-Given a positive integer a, find the smallest positive integer b whose multiplication of each digit equals to a.
 
+Given a positive integer a,
+find the smallest positive integer b whose multiplication of each digit equals to a.
 If there is no answer or the answer is not fit in 32-bit signed integer, then return 0.
 
 Example 1
@@ -47,7 +48,7 @@ public:
         if (a <= 1) {
             return a;
         }
-        
+
         vector<int> digit(10, 0);
         while (a > 1) {
             int d = getDivisor(a); // get all possible factors from 9 to 2

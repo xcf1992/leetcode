@@ -10,10 +10,10 @@ The game ends when a person can no longer make a move and therefore the other pe
 Write a function to determine if the starting player can guarantee a win.
 
 Example:
-
 Input: s = "++++"
 Output: true
 Explanation: The starting player can guarantee a win by flipping the middle "++" to become "+--+".
+
 Follow up:
 Derive your algorithm's runtime complexity.
 */
@@ -37,7 +37,7 @@ public:
         if (firstWin.find(s) != firstWin.end()) {
             return firstWin[s];
         }
-        
+
         for (int i = 1; i < s.size(); i++) {
             if (s[i] == '+' and s[i - 1] == '+') {
                 s[i] = s[i - 1] = '-';

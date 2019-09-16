@@ -1,5 +1,6 @@
 /*
 555. Split Concatenated Strings
+
 Given a list of strings,
 you could concatenate these strings together into a loop,
 where for each string you could choose to reverse it or not.
@@ -22,6 +23,7 @@ Explanation: You can get the looped string "-abcxyz-", "-abczyx-", "-cbaxyz-", "
 where '-' represents the looped status.
 The answer string came from the fourth looped one,
 where you could cut from the middle character 'a' and get "zyxcba".
+
 Note:
 The input strings will only contain lowercase letters.
 The total length of all the strings will not over 1,000.

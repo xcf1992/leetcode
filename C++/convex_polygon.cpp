@@ -1,27 +1,23 @@
 /*
- 469. Convex Polygon
- Given a list of points that form a polygon when joined sequentially,
- find if this polygon is convex (Convex polygon definition).
+469. Convex Polygon
 
- Note:
+Given a list of points that form a polygon when joined sequentially,
+find if this polygon is convex (Convex polygon definition).
 
- There are at least 3 and at most 10,000 points.
- Coordinates are in the range -10,000 to 10,000.
- You may assume the polygon formed by given points is always a simple polygon (Simple polygon definition). In other words, we ensure that exactly two edges intersect at each vertex, and that edges otherwise don't intersect each other.
- Example 1:
+Note:
+There are at least 3 and at most 10,000 points.
+Coordinates are in the range -10,000 to 10,000.
+You may assume the polygon formed by given points is always a simple polygon (Simple polygon definition). In other words, we ensure that exactly two edges intersect at each vertex, and that edges otherwise don't intersect each other.
 
- [[0,0],[0,1],[1,1],[1,0]]
+Example 1:
+[[0,0],[0,1],[1,1],[1,0]]
+Answer: True
+Explanation:
 
- Answer: True
-
- Explanation:
- Example 2:
-
- [[0,0],[0,10],[10,10],[10,0],[5,5]]
-
- Answer: False
-
- Explanation:
+Example 2:
+[[0,0],[0,10],[10,10],[10,0],[5,5]]
+Answer: False
+Explanation:
 */
 #include <iostream>
 #include <sstream>
@@ -38,16 +34,19 @@
 #include <set>
 #include <numeric>
 using namespace std;
-
 /*
 Great solution inspired by @Ipeq1! Here is a C++ version with extracted determinant calculation.
 
-The key observation for convexity is that vector pi+1-pi always turns to the same direction to pi+2-pi formed by any 3 sequentially adjacent vertices, i.e., cross product (pi+1-pi) x (pi+2-pi) does not change sign when traversing sequentially along polygon vertices.
+The key observation for convexity
+is that vector pi+1-pi always turns to the same direction to pi+2-pi formed by any 3 sequentially adjacent vertices,
+i.e., cross product (pi+1-pi) x (pi+2-pi) does not change sign when traversing sequentially along polygon vertices.
 
 Note that for any 2D vectors v1, v2,
 
 v1 x v2 = det([v1, v2])
-which is the determinant of 2x2 matrix [v1, v2]. And the sign of det([v1, v2]) represents the positive z-direction of right-hand system from v1 to v2. So det([v1, v2]) ≥ 0 if and only if v1 turns at most 180 degrees counterclockwise to v2.
+which is the determinant of 2x2 matrix [v1, v2].
+And the sign of det([v1, v2]) represents the positive z-direction of right-hand system from v1 to v2.
+So det([v1, v2]) ≥ 0 if and only if v1 turns at most 180 degrees counterclockwise to v2.
 */
 class Solution {
 private:

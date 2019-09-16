@@ -1,5 +1,6 @@
 /*
 649. Dota2 Senate
+
 In the world of Dota2, there are two parties: the Radiant and the Dire.
 
 The Dota2 senate consists of senators coming from two parties.
@@ -30,6 +31,7 @@ Output: "Radiant"
 Explanation: The first senator comes from Radiant and he can just ban the next senator's right in the round 1.
 And the second senator can't exercise any rights any more since his right has been banned.
 And in the round 2, the first senator can just announce the victory since he is the only guy in the senate who can vote.
+
 Example 2:
 Input: "RDD"
 Output: "Dire"
@@ -38,6 +40,7 @@ The first senator comes from Radiant and he can just ban the next senator's righ
 And the second senator can't exercise any rights anymore since his right has been banned.
 And the third senator comes from Dire and he can ban the first senator's right in the round 1.
 And in the round 2, the third senator can just announce the victory since he is the only guy in the senate who can vote.
+
 Note:
 The length of the given string will in the range [1, 10,000].
 */
@@ -56,25 +59,26 @@ using namespace std;
 class Solution {
 public:
     string predictPartyVictory(string senate) {
-        vector<queue<int>> senators(2, queue<int>());
+        queue<int> radiant;
+        queue<int> dire;
         for (int i = 0; i < senate.size(); i++) {
             if (senate[i] == 'R') {
-                senators[0].push(i);
+                radiant.push(i);
             }
             else {
-                senators[1].push(i);
+                dire.push(i);
             }
         }
 
         int n = senate.size();
-        while (senators[0].empty() or senators[1].empty()) {
-            int pos0 = senators[0].front();
-            int pos1 = senators[1].front();
-            senators[0].pop();
-            senators[1].pop();
+        while (radiant.empty() or dire.empty()) {
+            int pos0 = radiant.front();
+            radiant.pop();
+            int pos1 = dire.front();
+            dire.pop();
 
-            pos0 < pos1 ? senators[0].push(pos0 + n) : senators[1].push(pos1 + n);
+            pos0 < pos1 ? radiant.push(pos0 + n) : dire.push(pos1 + n);
         }
-        return senators[0].empty() ? "Dire" : "Radiant";
+        return radiant.empty() ? "Dire" : "Radiant";
     }
 };
