@@ -1,14 +1,15 @@
 /*
 186. Reverse Words in a String II
+https://leetcode.com/problems/reverse-words-in-a-string-ii/
 
-Given an input string , reverse the string word by word.
+Given an input string,
+reverse the string word by word.
 
 Example:
-
 Input:  ["t","h","e"," ","s","k","y"," ","i","s"," ","b","l","u","e"]
 Output: ["b","l","u","e"," ","i","s"," ","s","k","y"," ","t","h","e"]
-Note:
 
+Note:
 A word is defined as a sequence of non-space characters.
 The input string does not contain leading or trailing spaces.
 The words are always separated by a single space.
@@ -40,12 +41,12 @@ private:
     }
 public:
     void reverseWords(vector<char>& str) {
-        if (str.empty()) {
+        int n = str.size();
+        if (n <= 1) {
             return;
         }
-        int n = str.size();
-        flip(str, 0, n - 1);
 
+        flip(str, 0, n - 1);
         int start = 0;
         int end = 0;
         while (start < n) {

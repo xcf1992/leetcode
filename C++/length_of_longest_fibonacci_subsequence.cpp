@@ -1,7 +1,8 @@
 /*
 873. Length of Longest Fibonacci Subsequence
-A sequence X_1, X_2, ..., X_n is fibonacci-like if:
+https://leetcode.com/problems/length-of-longest-fibonacci-subsequence/
 
+A sequence X_1, X_2, ..., X_n is fibonacci-like if:
 n >= 3
 X_i + X_{i+1} = X_{i+2} for all i + 2 <= n
 Given a strictly increasing array A of positive integers forming a sequence,
@@ -25,7 +26,6 @@ The longest subsequence that is fibonacci-like:
 [1,11,12], [3,11,14] or [7,11,18].
 
 Note:
-
 3 <= A.length <= 1000
 1 <= A[0] < A[1] < ... < A[A.length - 1] <= 10^9
 (The time limit has been reduced by 50% for submissions in Java, C, and C++.)

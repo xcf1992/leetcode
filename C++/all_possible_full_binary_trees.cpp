@@ -1,28 +1,23 @@
 /*
 894. All Possible Full Binary Trees
- A full binary tree is a binary tree where each node has exactly 0 or 2 children.
+https://leetcode.com/problems/all-possible-full-binary-trees/
 
- Return a list of all possible full binary trees with N nodes.  Each element of the answer is the root node of one possible tree.
+A full binary tree is a binary tree where each node has exactly 0 or 2 children.
 
- Each node of each tree in the answer must have node.val = 0.
+Return a list of all possible full binary trees with N nodes.
+Each element of the answer is the root node of one possible tree.
 
- You may return the final list of trees in any order.
+Each node of each tree in the answer must have node.val = 0.
+You may return the final list of trees in any order.
 
+Example 1:
+Input: 7
+Output: [[0,0,0,null,null,0,0,null,null,0,0],[0,0,0,null,null,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,null,null,null,null,0,0],[0,0,0,0,0,null,null,0,0]]
+Explanation:
 
-
- Example 1:
-
- Input: 7
- Output: [[0,0,0,null,null,0,0,null,null,0,0],[0,0,0,null,null,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,null,null,null,null,0,0],[0,0,0,0,0,null,null,0,0]]
- Explanation:
-
-
-
- Note:
-
- 1 <= N <= 20
+Note:
+1 <= N <= 20
 */
-
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -42,7 +37,7 @@ using namespace std;
 
 class Solution {
 private:
-    unordered_map<int, vector<TreeNode*>> cache;
+    unordered_map<int, vector<TreeNode*>> memo;
 public:
     vector<TreeNode*> allPossibleFBT(int N) {
         if (N % 2 == 0) {
@@ -53,12 +48,11 @@ public:
             return {new TreeNode(0)};
         }
 
-        if (cache.find(N) != cache.end()) {
-            return cache[N];
+        if (memo.find(N) != memo.end()) {
+            return memo[N];
         }
 
-        vector<TreeNode*> result;
-        for (int i = 1; i <= N - 1; i += 2) {
+        for (int i = 1; i <= N - 2; i += 2) {
             vector<TreeNode*> leftChildren = allPossibleFBT(i);
             vector<TreeNode*> rightChildren = allPossibleFBT(N - 1 - i);
             for (TreeNode* lc : leftChildren) {
@@ -66,12 +60,11 @@ public:
                     TreeNode* root = new TreeNode(0);
                     root -> left = lc;
                     root -> right = rc;
-                    result.push_back(root);
+                    memo[N].push_back(root);
                 }
             }
         }
-        cache[N] = result;
-        return result;
+        return memo[N];
     }
 };
 
