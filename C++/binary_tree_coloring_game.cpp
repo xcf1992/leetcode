@@ -36,9 +36,7 @@ Input: root = [1,2,3,4,5,6,7,8,9,10,11], n = 11, x = 3
 Output: true
 Explanation: The second player can choose the node with value 2.
 
-
 Constraints:
-
 root is the root of a binary tree with n nodes and distinct node values from 1 to n.
 n is odd.
 1 <= x <= n <= 100

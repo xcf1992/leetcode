@@ -1,31 +1,27 @@
 /*
 470. Implement Rand10() Using Rand7()
+
 Given a function rand7 which generates a uniform random integer in the range 1 to 7,
 write a function rand10 which generates a uniform random integer in the range 1 to 10.
-
 Do NOT use system's Math.random().
-Example 1:
 
+Example 1:
 Input: 1
 Output: [7]
-Example 2:
 
+Example 2:
 Input: 2
 Output: [8,4]
-Example 3:
 
+Example 3:
 Input: 3
 Output: [8,1,10]
 
-
 Note:
-
 rand7 is predefined.
 Each testcase has one argument: n, the number of times that rand10 is called.
 
-
 Follow up:
-
 What is the expected value for the number of calls to rand7() function?
 Could you minimize the number of calls to rand7()?
 */
@@ -43,7 +39,6 @@ Could you minimize the number of calls to rand7()?
 #include <stdio.h>
 #include <set>
 using namespace std;
-
 /*Approach 1: Rejection Sampling
 Intuition
 
@@ -103,7 +98,6 @@ public:
         }
     }
 };
-
 /*
 Idea: rand7() -> rand49() -> rand40() -> rand10()
 
@@ -112,22 +106,23 @@ public int rand10() {
     while (result >= 40) {result = 7 * (rand7() - 1) + (rand7() - 1);}
     return result % 10 + 1;
 }
+
 Time Complexity
 The total number of iterations follows geometric distribution.
- For each iteration in the while loop, the probabilty of exiting the loop is p = 40/49.
- So the average time complexity T(n) = O(1/p) = O(49/40) = O(1).
+For each iteration in the while loop, the probabilty of exiting the loop is p = 40/49.
+So the average time complexity T(n) = O(1/p) = O(49/40) = O(1).
 
 Correctness
 Note that rand49() generates a uniform random integer in [1, 49],
 so any number in this range has the same probability to be generated.
 Suppose k is an integer in range [1, 40], P(rand49() = k) = 1/49.
 
-   P(result = k)
+P(result = k)
 = P(rand49() = k in the 1st iteration) +
-   P(rand49() > 40 in the 1st iteration) * P(rand49() = k in the 2nd iteration) +
-   P(rand49() > 40 in the 1st iteration) * P(rand49() > 40 in the 2nd iteration) * P(rand49() = k in the 3rd iteration) +
-   P(rand49() > 40 in the 1st iteration) * P(rand49() > 40 in the 2nd iteration) * P(rand49() > 40 in the 3rd iteration) * P(rand49() = k in the 4th iteration) +
-   ...
+P(rand49() > 40 in the 1st iteration) * P(rand49() = k in the 2nd iteration) +
+P(rand49() > 40 in the 1st iteration) * P(rand49() > 40 in the 2nd iteration) * P(rand49() = k in the 3rd iteration) +
+P(rand49() > 40 in the 1st iteration) * P(rand49() > 40 in the 2nd iteration) * P(rand49() > 40 in the 3rd iteration) * P(rand49() = k in the 4th iteration) +
+...
 = (1/49) + (9/49) * (1/49) + (9/49)^2 * (1/49) + (9/49)^3 * (1/49) + ...
 = (1/49) * [1 + (9/49) + (9/49)^2 + (9/49)^3 + ... ]
 = (1/49) * [1/(1-9/49)]

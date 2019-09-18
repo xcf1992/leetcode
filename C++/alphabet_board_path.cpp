@@ -1,15 +1,17 @@
 /*
 1138. Alphabet Board Path
+
 On an alphabet board, we start at position (0, 0),
 corresponding to character board[0][0].
-
 Here, board = ["abcde", "fghij", "klmno", "pqrst", "uvwxy", "z"],
 as shown in the diagram below.
-
-
-
+a b c d e
+f g h i j
+k l m n o
+p q r s t
+u v w x y
+z
 We may make the following moves:
-
 'U' moves our position up one row, if the position exists on the board;
 'D' moves our position down one row, if the position exists on the board;
 'L' moves our position left one column, if the position exists on the board;
@@ -21,17 +23,14 @@ Return a sequence of moves that makes our answer equal to target in the minimum 
 You may return any path that does so.
 
 Example 1:
-
 Input: target = "leet"
 Output: "DDR!UURRR!!DDD!"
-Example 2:
 
+Example 2:
 Input: target = "code"
 Output: "RR!DDRR!UUL!R!"
 
-
 Constraints:
-
 1 <= target.length <= 100
 target consists only of English lowercase letters.
 */
