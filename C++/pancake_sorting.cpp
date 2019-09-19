@@ -30,7 +30,6 @@ Explanation: The input is already sorted, so there is no need to flip anything.
 Note that other answers, such as [3, 3], would also be accepted.
 
 Note:
-
 1 <= A.length <= 100
 A[i] is a permutation of [1, 2, ..., A.length]
 */

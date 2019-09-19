@@ -24,7 +24,6 @@ Output: [-1]
 Explanation: There is no 3 in the array.
 
 Constraints:
-
 1 <= colors.length <= 5*10^4
 1 <= colors[i] <= 3
 1 <= queries.length <= 5*10^4

@@ -1,19 +1,17 @@
 /*
 360. Sort Transformed Array
+
 Given a sorted array of integers nums and integer values a, b and c.
 Apply a quadratic function of the form f(x) = ax2 + bx + c to each element x in the array.
 
 The returned array must be in sorted order.
-
 Expected time complexity: O(n)
 
 Example:
 nums = [-4, -2, 2, 4], a = 1, b = 3, c = 5,
-
 Result: [3, 9, 15, 33]
 
 nums = [-4, -2, 2, 4], a = -1, b = 3, c = 5
-
 Result: [-23, -5, 1, 7]
 */
 #include <iostream>
@@ -27,7 +25,6 @@ Result: [-23, -5, 1, 7]
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
 /*
 the problem seems to have many cases a>0, a=0,a<0, (when a=0, b>0, b<0).
 However, they can be combined into just 2 cases: a>0 or a<0
@@ -52,15 +49,15 @@ public:
     vector<int> sortTransformedArray(vector<int>& nums, int a, int b, int c) {
         int n = nums.size();
         vector<int> sorted(n, 0);
-        int i = 0;
-        int j = n - 1;
+        int left = 0;
+        int right = n - 1;
         int index = a >= 0 ? n - 1 : 0;
-        while (i <= j) {
+        while (left <= right) {
             if (a >= 0) {
-                sorted[index--] = quad(nums[i], a, b, c) >= quad(nums[j], a, b, c) ? quad(nums[i++], a, b, c) : quad(nums[j--], a, b, c);
+                sorted[index--] = quad(nums[left], a, b, c) >= quad(nums[right], a, b, c) ? quad(nums[left++], a, b, c) : quad(nums[right--], a, b, c);
             }
             else {
-                sorted[index++] = quad(nums[i], a, b, c) >= quad(nums[j], a, b, c) ? quad(nums[j--], a, b, c) : quad(nums[i++], a, b, c);
+                sorted[index++] = quad(nums[left], a, b, c) >= quad(nums[right], a, b, c) ? quad(nums[right--], a, b, c) : quad(nums[left++], a, b, c);
             }
         }
         return sorted;

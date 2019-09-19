@@ -114,6 +114,7 @@ public:
                 * we we make order[seq[i - 1]] as 1 when have counted pair {org[seq[i - 1]], org[seq[i]]}
                 */
                 if (pos[seq[i - 1]] == pos[seq[i]] - 1 and order[seq[i - 1]] == -1) {
+                    matched -= 1;
                     order[seq[i - 1]] = 1;
                 }
             }
