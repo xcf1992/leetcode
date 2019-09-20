@@ -56,16 +56,11 @@ public:
         int sufMax = arr[n - 1];
         int maxSum = arr[0];
         int curMax = arr[0];
-        int curMin = arr[0];
-        int minSum = arr[0];
         for (int i = 1; i < arr.size(); ++i) {
             curMax = max(curMax + arr[i], arr[i]) % mod;
             maxSum = max(maxSum, curMax);
             total = (total + arr[i]) % mod;
             preMax = max(preMax, (int)total);
-
-            curMin = min(curMin + arr[i], arr[i]) % mod;
-            minSum = min(minSum, curMin);
 
             int j = n - 1 - i;
             sufSum = (sufSum + arr[j]) % mod;
