@@ -1,5 +1,6 @@
 /*
 245. Shortest Word Distance III
+https://leetcode.com/problems/shortest-word-distance-iii/
 
 This is a follow up of Shortest Word Distance.
 The only difference is now word1 could be the same as word2.

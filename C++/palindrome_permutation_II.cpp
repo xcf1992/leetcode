@@ -1,16 +1,19 @@
 /*
- Given a string s, return all the palindromic permutations (without duplicates) of it. Return an empty list if no palindromic permutation could be form.
+267. Palindrome Permutation II
+https://leetcode.com/problems/palindrome-permutation-ii/
 
- Example 1:
+Given a string s,
+return all the palindromic permutations (without duplicates) of it.
+Return an empty list if no palindromic permutation could be form.
 
- Input: "aabb"
- Output: ["abba", "baab"]
- Example 2:
+Example 1:
+Input: "aabb"
+Output: ["abba", "baab"]
 
- Input: "abc"
- Output: []
+Example 2:
+Input: "abc"
+Output: []
 */
-
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -41,7 +44,6 @@ private:
                 it.second += 2;
             }
         }
-        return;
     }
 public:
     vector<string> generatePalindromes(string s) {
