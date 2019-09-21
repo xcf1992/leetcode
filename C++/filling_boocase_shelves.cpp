@@ -1,8 +1,9 @@
 /*
 1105. Filling Bookcase Shelves
+https://leetcode.com/problems/filling-bookcase-shelves/
+
 We have a sequence of books:
 the i-th book has thickness books[i][0] and height books[i][1].
-
 We want to place these books in order onto bookcase shelves that have total width shelf_width.
 
 We choose some of the books to place on this shelf
@@ -26,7 +27,6 @@ Output: 6
 Explanation:
 The sum of the heights of the 3 shelves are 1 + 3 + 2 = 6.
 Notice that book number 2 does not have to be on the first shelf.
-
 
 Constraints:
 1 <= books.length <= 1000

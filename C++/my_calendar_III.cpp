@@ -18,7 +18,6 @@ MyCalendarThree cal = new MyCalendarThree();
 MyCalendarThree.book(start, end)
 
 Example 1:
-
 MyCalendarThree();
 MyCalendarThree.book(10, 20); // returns 1
 MyCalendarThree.book(50, 60); // returns 1
@@ -33,9 +32,7 @@ The remaining events cause the maximum K-booking to be only a 3-booking.
 Note that the last event locally causes a 2-booking, but the answer is still 3 because
 eg. [10, 20), [10, 40), and [5, 15) are still triple booked.
 
-
 Note:
-
 The number of calls to MyCalendarThree.book per test case will be at most 400.
 In calls to MyCalendarThree.book(start, end), start and end are integers in the range [0, 10^9].
 */
@@ -63,16 +60,15 @@ public:
         events[end] -= 1;
         int booked = 0;
         int result = 0;
-        for (auto &event : events) {
+        for (auto& event : events) {
             booked += event.second;
             result = max(result, booked);
         }
         return result;
     }
 };
-
 /*
- * Your MyCalendarThree object will be instantiated and called as such:
- * MyCalendarThree obj = new MyCalendarThree();
- * int param_1 = obj.book(start,end);
+* Your MyCalendarThree object will be instantiated and called as such:
+* MyCalendarThree obj = new MyCalendarThree();
+* int param_1 = obj.book(start,end);
 */

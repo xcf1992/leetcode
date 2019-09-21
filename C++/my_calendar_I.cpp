@@ -1,5 +1,7 @@
 /*
 729. My Calendar I
+https://leetcode.com/problems/my-calendar-i/
+
 Implement a MyCalendar class to store your events.
 A new event can be added if adding the event will not cause a double booking.
 
@@ -15,8 +17,8 @@ return true if the event can be added to the calendar successfully without causi
 Otherwise, return false and do not add the event to the calendar.
 
 Your class will be called like this: MyCalendar cal = new MyCalendar(); MyCalendar.book(start, end)
-Example 1:
 
+Example 1:
 MyCalendar();
 MyCalendar.book(10, 20); // returns true
 MyCalendar.book(15, 25); // returns false
@@ -25,9 +27,7 @@ Explanation:
 The first event can be booked.  The second can't because time 15 is already booked by another event.
 The third event can be booked, as the first event takes every time less than 20, but not including 20.
 
-
 Note:
-
 The number of calls to MyCalendar.book per test case will be at most 1000.
 In calls to MyCalendar.book(start, end), start and end are integers in the range [0, 10^9].
 */
@@ -66,7 +66,7 @@ public:
     }
 };
 /*
- * Your MyCalendar object will be instantiated and called as such:
- * MyCalendar obj = new MyCalendar();
- * bool param_1 = obj.book(start,end);
+* Your MyCalendar object will be instantiated and called as such:
+* MyCalendar obj = new MyCalendar();
+* bool param_1 = obj.book(start,end);
 */
