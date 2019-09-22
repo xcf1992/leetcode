@@ -1,5 +1,6 @@
 /*
 654. Maximum Binary Tree
+https://leetcode.com/problems/maximum-binary-tree/
 
 Given an integer array with no duplicates.
 A maximum tree building on this array is defined as follow:
@@ -12,7 +13,6 @@ Construct the maximum tree by the given array and output the root node of this t
 Example 1:
 Input: [3,2,1,6,0,5]
 Output: return the tree root node representing the following tree:
-
        6
     /     \
    3       5
@@ -20,6 +20,7 @@ Output: return the tree root node representing the following tree:
      2   0
       \
        1
+
 Note:
 The size of the given array will be in the range [1,1000].
 */
@@ -62,7 +63,7 @@ public:
 };
 
 // We scan numbers from left to right, build the tree one node by one step;
-class Solution {
+class Solution1 {
 private:
     TreeNode* insert(TreeNode* root, int num) {
         if (root == nullptr) {
