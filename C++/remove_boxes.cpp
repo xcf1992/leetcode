@@ -1,24 +1,26 @@
 /*
- 546. Remove Boxes
- Given several boxes with different colors represented by different positive numbers.
- You may experience several rounds to remove boxes until there is no box left.
- Each time you can choose some continuous boxes with the same color (composed of k boxes, k >= 1),
- remove them and get k*k points.
- Find the maximum points you can get.
+546. Remove Boxes
 
- Example 1:
- Input:
+Given several boxes with different colors represented by different positive numbers.
+You may experience several rounds to remove boxes until there is no box left.
+Each time you can choose some continuous boxes with the same color (composed of k boxes, k >= 1),
+remove them and get k*k points.
+Find the maximum points you can get.
 
- [1, 3, 2, 2, 2, 3, 4, 3, 1]
- Output:
- 23
- Explanation:
- [1, 3, 2, 2, 2, 3, 4, 3, 1]
- ----> [1, 3, 3, 4, 3, 1] (3*3=9 points)
- ----> [1, 3, 3, 3, 1] (1*1=1 points)
- ----> [1, 1] (3*3=9 points)
- ----> [] (2*2=4 points)
- Note: The number of boxes n would not exceed 100.
+Example 1:
+Input:
+[1, 3, 2, 2, 2, 3, 4, 3, 1]
+Output:
+23
+Explanation:
+[1, 3, 2, 2, 2, 3, 4, 3, 1]
+----> [1, 3, 3, 4, 3, 1] (3*3=9 points)
+----> [1, 3, 3, 3, 1] (1*1=1 points)
+----> [1, 1] (3*3=9 points)
+----> [] (2*2=4 points)
+
+Note:
+The number of boxes n would not exceed 100.
 */
 #include <iostream>
 #include <string>
@@ -33,63 +35,62 @@
 #include <map>
 #include <numeric>
 using namespace std;
-
 /*
- The initial thought is straightforward,
- try every possible removal and recursively search the rest.
- No doubt it will be a TLE answer.
- Obviously there are a lot of recomputations involved here.
- Memoization is the key then.
+The initial thought is straightforward,
+try every possible removal and recursively search the rest.
+No doubt it will be a TLE answer.
+Obviously there are a lot of recomputations involved here.
+Memoization is the key then.
 
- But how to design the memory is tricky.
- I tried to use a string of 0s and 1s to indicate whether the box is removed or not, but still getting TLE.
+But how to design the memory is tricky.
+I tried to use a string of 0s and 1s to indicate whether the box is removed or not, but still getting TLE.
 
- I think the problem of the approach above is that there are a lot of unnecessary computations (not recomputations).
- For example, if there is a formation of ABCDAA, we know the optimal way is B->C->D->AAA.
- On the other hand, if the formation is BCDAA, meaning that we couldn't find an A before D,
- we will simply remove AA,
- which will be the optimal solution for removing them.
- Note this is true only if AA is at the end of the array.
- With naive memoization approach,
- the program will search a lot of unnecessary paths,
- such as C->B->D->AA, D->B->C->AA.
+I think the problem of the approach above is that there are a lot of unnecessary computations (not recomputations).
+For example, if there is a formation of ABCDAA, we know the optimal way is B->C->D->AAA.
+On the other hand, if the formation is BCDAA, meaning that we couldn't find an A before D,
+we will simply remove AA,
+which will be the optimal solution for removing them.
+Note this is true only if AA is at the end of the array.
+With naive memoization approach,
+the program will search a lot of unnecessary paths,
+such as C->B->D->AA, D->B->C->AA.
 
- Therefore, I designed the memoization matrix to be memo[l][r][k],
- the largest number we can get using lth to rth (inclusive) boxes with k same colored boxes as rth box appended at the end.
- Example, memo[l][r][3] represents the solution for this setting: [b_l, ..., b_r, A,A,A] with b_r==A.
+Therefore, I designed the memoization matrix to be memo[l][r][k],
+the largest number we can get using lth to rth (inclusive) boxes with k same colored boxes as rth box appended at the end.
+Example, memo[l][r][3] represents the solution for this setting: [b_l, ..., b_r, A,A,A] with b_r==A.
 
- The transition function is to find the maximum among all b_i == b_r for i=l,...,r-1:
+The transition function is to find the maximum among all b_i == b_r for i=l,...,r-1:
 
- memo[l][r][k] = max(memo[l][r][k], memo[l][i][k+1] + memo[i+1][r-1][0])
+memo[l][r][k] = max(memo[l][r][k], memo[l][i][k+1] + memo[i+1][r-1][0])
 
- Basically, if there is one i such that b_i == b_r,
- we partition the array into two: [b_l, ..., b_i, b_r, A, ..., A],
- and [b_{i+1}, ..., b_{r-1}].
- The solution for first one will be memo[l][i][k+1],
- and the second will be memo[i+1][r-1][0].
+Basically, if there is one i such that b_i == b_r,
+we partition the array into two: [b_l, ..., b_i, b_r, A, ..., A],
+and [b_{i+1}, ..., b_{r-1}].
+The solution for first one will be memo[l][i][k+1],
+and the second will be memo[i+1][r-1][0].
 
- Otherwise, we just remove the last k+1 boxes (including b_r) and
- search the best solution for lth to r-1th boxes.
- (One optimization here: make r as left as possible,
- this improved the running time from 250ms to 35ms)
+Otherwise, we just remove the last k+1 boxes (including b_r) and
+search the best solution for lth to r-1th boxes.
+(One optimization here: make r as left as possible,
+this improved the running time from 250ms to 35ms)
 
- The final solution is stored in memo[0][n-1][0] for sure.
+The final solution is stored in memo[0][n-1][0] for sure.
 
- This can be better understood with the following example. Consider a subarray [x_l, x_{l+1},.., x_i,.., x_r, 6, 6, 6]
- For this subarray, if x_r=6, the entry at dp[l][r][3] represents the maximum points that can be obtained
- using the subarray boxes[l:r] if three 6's are appended with the trailing x_r
+This can be better understood with the following example. Consider a subarray [x_l, x_{l+1},.., x_i,.., x_r, 6, 6, 6]
+For this subarray, if x_r=6, the entry at dp[l][r][3] represents the maximum points that can be obtained
+using the subarray boxes[l:r] if three 6's are appended with the trailing x_r
 
- Now, let us look at how to fill in the dpdp.
- Consider the same suabrray as mentioned above.
- For filling in the entry, dp[l][r][k], we firstly make an initial entry in dp[l][r][k],
- which considers the assumption that we will firstly combine the last k+1 similar elements
- and then proceed with the remaining subarray. Thus, the initial entry becomes:
+Now, let us look at how to fill in the dpdp.
+Consider the same suabrray as mentioned above.
+For filling in the entry, dp[l][r][k], we firstly make an initial entry in dp[l][r][k],
+which considers the assumption that we will firstly combine the last k+1 similar elements
+and then proceed with the remaining subarray. Thus, the initial entry becomes:
 
- dp[l][r][k] = dp[l][r-1][0] + (k+1)*(k+1).
+dp[l][r][k] = dp[l][r-1][0] + (k+1)*(k+1).
 
- Here, we combined all the trailing similar elements,
- so the value 0 is passed as the k value for the recursive function,
- since no similar elements to the (r−1)th element exist at its end.
+Here, we combined all the trailing similar elements,
+so the value 0 is passed as the k value for the recursive function,
+since no similar elements to the (r−1)th element exist at its end.
 
 But, the above situation isn't the only possible solution.
 We could obtain a better solution for the same subarray boxes[l:r] for making the entry into dp[l][r][k],
@@ -126,7 +127,7 @@ private:
             return memo[l][r][k];
         }
 
-        while (r > l and boxes[r - 1] == boxes[r]) {
+        while (l < r and boxes[r - 1] == boxes[r]) {
             r -= 1;
             k += 1;
         }

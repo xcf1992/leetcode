@@ -26,9 +26,7 @@ Explanation:
 [1,0,1]
 [1,0,1]
 
-
 Constraints:
-
 1 <= width, height <= 100
 1 <= sideLength <= width, height
 0 <= maxOnes <= sideLength * sideLength

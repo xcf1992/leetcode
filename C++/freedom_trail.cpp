@@ -1,5 +1,6 @@
 /*
 514. Freedom Trail
+
 In the video game Fallout 4, the quest "Road to Freedom" requires players to reach a metal dial called the "Freedom Trail Ring",
 and use the dial to spell a specific keyword in order to open the door.
 
@@ -31,6 +32,7 @@ Explanation:
  For the second key character 'd', we need to rotate the ring "godding" anticlockwise by two dp to make it become "ddinggo".
  Also, we need 1 more step for spelling.
  So the final output is 4.
+
 Note:
 Length of both ring and key will be in range 1 to 100.
 There are only lowercase letters in both strings and might be some duplcate characters in both strings.

@@ -1,44 +1,40 @@
 /*
- 517. Super Washing Machines
- You have n super washing machines on a line. Initially, each washing machine has some sum or is empty.
+517. Super Washing Machines
 
- For each move, you could choose any m (1 ≤ m ≤ n) washing machines,
- and pass one dress of each washing machine to one of its adjacent washing machines at the same time .
+You have n super washing machines on a line.
+Initially, each washing machine has some sum or is empty.
 
- Given an integer array representing the number of sum in each washing machine from left to right on the line,
- you should find the minimum number of moves to make all the washing machines have the same number of sum.
- If it is not possible to do it, return -1.
+For each move, you could choose any m (1 ≤ m ≤ n) washing machines,
+and pass one dress of each washing machine to one of its adjacent washing machines at the same time .
 
- Example1
+Given an integer array representing the number of sum in each washing machine from left to right on the line,
+you should find the minimum number of moves to make all the washing machines have the same number of sum.
+If it is not possible to do it, return -1.
 
- Input: [1,0,5]
+Example1
+Input: [1,0,5]
+Output: 3
+Explanation:
+1st move:    1     0 <-- 5    =>    1     1     4
+2nd move:    1 <-- 1 <-- 4    =>    2     1     3
+3rd move:    2     1 <-- 3    =>    2     2     2
 
- Output: 3
+Example2
+Input: [0,3,0]
+Output: 2
+Explanation:
+1st move:    0 <-- 3     0    =>    1     2     0
+2nd move:    1     2 --> 0    =>    1     1     1
 
- Explanation:
- 1st move:    1     0 <-- 5    =>    1     1     4
- 2nd move:    1 <-- 1 <-- 4    =>    2     1     3
- 3rd move:    2     1 <-- 3    =>    2     2     2
- Example2
+Example3
+Input: [0,2,0]
+Output: -1
+Explanation:
+It's impossible to make all the three washing machines have the same number of sum.
 
- Input: [0,3,0]
-
- Output: 2
-
- Explanation:
- 1st move:    0 <-- 3     0    =>    1     2     0
- 2nd move:    1     2 --> 0    =>    1     1     1
- Example3
-
- Input: [0,2,0]
-
- Output: -1
-
- Explanation:
- It's impossible to make all the three washing machines have the same number of sum.
- Note:
- The range of n is [1, 10000].
- The range of sum number in a super washing machine is [0, 1e5].
+Note:
+The range of n is [1, 10000].
+The range of sum number in a super washing machine is [0, 1e5].
 */
 #include <iostream>
 #include <string>
