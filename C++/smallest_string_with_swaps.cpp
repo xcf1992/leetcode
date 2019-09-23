@@ -1,3 +1,42 @@
+/*
+1202. Smallest String With Swaps
+https://leetcode.com/problems/smallest-string-with-swaps/
+
+You are given a string s,
+and an array of pairs of indices in the string pairs where pairs[i] = [a, b] indicates 2 indices(0-indexed) of the string.
+
+You can swap the characters at any pair of indices in the given pairs any number of times.
+Return the lexicographically smallest string that s can be changed to after using the swaps.
+
+Example 1:
+Input: s = "dcab", pairs = [[0,3],[1,2]]
+Output: "bacd"
+Explaination:
+Swap s[0] and s[3], s = "bcad"
+Swap s[1] and s[2], s = "bacd"
+
+Example 2:
+Input: s = "dcab", pairs = [[0,3],[1,2],[0,2]]
+Output: "abcd"
+Explaination:
+Swap s[0] and s[3], s = "bcad"
+Swap s[0] and s[2], s = "acbd"
+Swap s[1] and s[2], s = "abcd"
+
+Example 3:
+Input: s = "cba", pairs = [[0,1],[1,2]]
+Output: "abc"
+Explaination:
+Swap s[0] and s[1], s = "bca"
+Swap s[1] and s[2], s = "bac"
+Swap s[0] and s[1], s = "abc"
+
+Constraints:
+1 <= s.length <= 10^5
+0 <= pairs.length <= 10^5
+0 <= pairs[i][0], pairs[i][1] < s.length
+s only contains lower case English letters.
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -7,11 +46,9 @@
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
-#include <map>
 #include <set>
+#include <map>
 #include <numeric>
-#include "extra_data_types.hpp"
 using namespace std;
 
 class Solution {
@@ -23,7 +60,7 @@ private:
         return parent[num];
     }
 public:
-    string smallestStringWithSwaps(string s, vector<vector<int>> pairs) {
+    string smallestStringWithSwaps(string s, vector<vector<int>>& pairs) {
         int n = s.size();
         vector<int> parent(n);
         vector<string> component(n, "");
@@ -50,36 +87,8 @@ public:
         for (int i = 0; i < n; ++i) {
             int pi = find(i, parent);
             s[i] = component[pi].back();
-            component[pi].pop_back();
+            component[pi].pop
         }
         return s;
     }
 };
-
-int main() {
-    Solution s;
-    s.smallestStringWithSwaps("dcab", {{0,3}, {1,2}});
-
-    vector<int> temp1({1,3,3,3,2});
-    vector<vector<int>> matrix({
-        {0,1},
-        {1,2},
-        {2,1},
-        {1,0},
-        {0,2},
-        {0,0},
-        {1,1}
-    });
-    vector<vector<int>> matrix2({
-        {1,2,2,3,5},
-        {3,2,3,4,4},
-        {2,4,5,3,1},
-        {6,7,1,4,5},
-        {5,1,1,2,4}
-    });
-    vector<string> words({"hot","dot","dog","lot","log","cog"});
-    TreeNode* r1 = new TreeNode(0);
-    TreeNode* r2 = new TreeNode(1);
-    TreeNode* r3 = new TreeNode(3);
-    r1 -> left = r2;
-}
