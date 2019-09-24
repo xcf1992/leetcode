@@ -1,18 +1,20 @@
 /*
 144. Binary Tree Preorder Traversal
+https://leetcode.com/problems/binary-tree-preorder-traversal/
+
 Given a binary tree, return the postorder traversal of its nodes' values.
 
 Example:
-
 Input: [1,null,2,3]
  1
   \
   2
  /
 3
-
 Output: [3,2,1]
-Follow up: Recursive solution is trivial, could you do it iteratively?
+
+Follow up:
+Recursive solution is trivial, could you do it iteratively?
 */
 #include <iostream>
 #include <sstream>
@@ -43,7 +45,7 @@ public:
         while (!stk.empty()) {
             TreeNode* cur = stk.top();
             stk.pop();
-            
+
             result.push_back(cur -> val);
             if (cur -> right) {
                 stk.push(cur -> right);

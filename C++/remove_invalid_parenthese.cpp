@@ -1,20 +1,21 @@
 /*
 301. Remove Invalid Parentheses
+
 Remove the minimum number of invalid parentheses in order to make the input string valid.
 Return all possible results.
 
-Note: The input string may contain letters other than the parentheses ( and ).
+Note:
+The input string may contain letters other than the parentheses ( and ).
 
 Example 1:
-
 Input: "()())()"
 Output: ["()()()", "(())()"]
-Example 2:
 
+Example 2:
 Input: "(a)())()"
 Output: ["(a)()()", "(a())()"]
-Example 3:
 
+Example 3:
 Input: ")("
 Output: [""]
 */
@@ -32,10 +33,10 @@ Output: [""]
 using namespace std;
 /*
 Key Points:
-
 Generate unique answer once and only once, do not rely on Set.
 Do not need preprocess.
 Runtime 3 ms.
+
 Explanation:
 We all know how to check a string of parentheses is valid using a stack.
 Or even simpler use a counter.
@@ -87,9 +88,11 @@ public:
         while (!bfs.empty()) {
             string curS = bfs.front();
             bfs.pop();
+
             if (curS.size() < length) {
                 continue; // we should skip if we have to remove more parenthese than minimum
             }
+
             if (isValid(curS)) {
                 length = curS.size();
                 result.push_back(curS);

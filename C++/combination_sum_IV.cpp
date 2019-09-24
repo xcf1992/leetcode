@@ -16,9 +16,7 @@ The possible combination ways are:
 (2, 1, 1)
 (2, 2)
 (3, 1)
-
 Note that different sequences are counted as different combinations.
-
 Therefore the output is 7.
 
 Follow up:
