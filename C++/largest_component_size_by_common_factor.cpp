@@ -1,29 +1,26 @@
 /*
- 952. Largest Component Size by Common Factor
- Given a non-empty array of unique positive integers A, consider the following graph:
-    There are A.length nodes, labelled A[0] to A[A.length - 1];
-    There is an edge between A[i] and A[j] if and only if A[i] and A[j] share a common factor greater than 1.
- Return the size of the largest connected component in the graph.
+952. Largest Component Size by Common Factor
 
- Example 1:
+Given a non-empty array of unique positive integers A, consider the following graph:
+There are A.length nodes, labelled A[0] to A[A.length - 1];
+There is an edge between A[i] and A[j] if and only if A[i] and A[j] share a common factor greater than 1.
+Return the size of the largest connected component in the graph.
 
- Input: [4,6,15,35]
- Output: 4
+Example 1:
+Input: [4,6,15,35]
+Output: 4
 
- Example 2:
+Example 2:
+Input: [20,50,9,63]
+Output: 2
 
- Input: [20,50,9,63]
- Output: 2
+Example 3:
+Input: [2,3,6,7,4,12,21,39]
+Output: 8
 
- Example 3:
-
- Input: [2,3,6,7,4,12,21,39]
- Output: 8
-
- Note:
-
- 1 <= A.length <= 20000
- 1 <= A[i] <= 100000
+Note:
+1 <= A.length <= 20000
+1 <= A[i] <= 100000
 */
 #include <iostream>
 #include <string>
@@ -48,6 +45,7 @@ private:
                 number /= i;
             }
         }
+
         if (number > 1) {
             factorToIndex[number].push_back(index);
         }
@@ -76,8 +74,8 @@ public:
 
         vector<int> parent(n, -1);
         vector<int> count(n, 1);
-        for (auto it = factorToIndex.begin(); it != factorToIndex.end(); it++) {
-            vector<int> connectedIndex = it -> second;
+        for (auto& it : factorToIndex) {
+            vector<int> connectedIndex = it.second;
             int p = connectedIndex[0];
             for (int i = 1; i < connectedIndex.size(); i++) {
                 unin(p, connectedIndex[i], parent, count);

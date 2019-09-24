@@ -44,7 +44,7 @@ public:
     }
 };
 
-class Solution {
+class Solution1 {
 public:
     vector<int> findErrorNums(vector<int>& nums) {
         int n = nums.size();
