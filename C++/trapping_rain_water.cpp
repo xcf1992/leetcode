@@ -1,16 +1,15 @@
 /*
 42. Trapping Rain Water
+https://leetcode.com/problems/trapping-rain-water/
 
 Given n non-negative integers representing an elevation map where the width of each bar is 1,
 compute how much water it is able to trap after raining.
-
 
 The above elevation map is represented by array [0,1,0,2,1,0,1,3,2,1,2,1].
 In this case, 6 units of rain water (blue section) are being trapped.
 Thanks Marcos for contributing this image!
 
 Example:
-
 Input: [0,1,0,2,1,0,1,3,2,1,2,1]
 Output: 6
 */
@@ -26,8 +25,54 @@ Output: 6
 #include <stdio.h>
 #include <map>
 using namespace std;
-
+/*
+As in Approach 2,
+instead of computing the left and right parts seperately,
+we may think of some way to do it in one iteration.
+From the figure in dynamic programming approach,
+notice that as long as right_max[i]>\text{left\_max}[i]right_max[i]>left_max[i] (from element 0 to 6),
+the water trapped depends upon the left_max,
+and similar is the case when \text{left\_max}[i]>right_max[i]left_max[i]>right_max[i] (from element 8 to 11).
+So, we can say that if there is a larger bar at one end (say right),
+we are assured that the water trapped would be dependant on height of bar in current direction (from left to right).
+As soon as we find the bar at other end (right) is smaller, we start iterating in opposite direction (from right to left).
+We must maintain \text{left\_max}left_max and right_maxright_max during the iteration,
+but now we can do it in one iteration using 2 pointers, switching between the two.
+*/
 class Solution {
+public:
+    int trap(vector<int>& height) {
+        int n = height.size();
+        int result = 0;
+        int left = 0;
+        int right = n - 1;
+        int leftMax = 0;
+        int rightMax = 0;
+        while (left < right) {
+            if (height[left] < height[right]) {
+                if (height[left] >= leftMax) {
+                    leftMax = height[left];
+                }
+                else {
+                    result += leftMax - height[left];
+                }
+                left += 1;
+            }
+            else {
+                if (height[right] > rightMax) {
+                    rightMax = height[right];
+                }
+                else {
+                    result += rightMax - height[right];
+                }
+                right -= 1;
+            }
+        }
+        return result;
+    }
+};
+
+class Solution { // O(n) tiem and space
 public:
     int trap(vector<int>& height) {
         int n = height.size();
