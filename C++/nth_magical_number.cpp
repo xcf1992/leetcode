@@ -1,33 +1,32 @@
 /*
- 878. Nth Magical Number
- A positive integer is magical if it is divisible by either A or B.
+878. Nth Magical Number
 
- Return the N-th magical number.
- Since the answer may be very large, return it modulo 10^9 + 7.
+A positive integer is magical if it is divisible by either A or B.
+Return the N-th magical number.
+Since the answer may be very large,
+return it modulo 10^9 + 7.
 
- Example 1:
+Example 1:
+Input: N = 1, A = 2, B = 3
+Output: 2
 
- Input: N = 1, A = 2, B = 3
- Output: 2
- Example 2:
+Example 2:
+Input: N = 4, A = 2, B = 3
+Output: 6
 
- Input: N = 4, A = 2, B = 3
- Output: 6
- Example 3:
+Example 3:
+Input: N = 5, A = 2, B = 4
+Output: 10
 
- Input: N = 5, A = 2, B = 4
- Output: 10
- Example 4:
-
- Input: N = 3, A = 6, B = 4
- Output: 8
+Example 4:
+Input: N = 3, A = 6, B = 4
+Output: 8
 
 
- Note:
-
- 1 <= N <= 10^9
- 2 <= A <= 40000
- 2 <= B <= 40000
+Note:
+1 <= N <= 10^9
+2 <= A <= 40000
+2 <= B <= 40000
 */
 #include <iostream>
 #include <string>
@@ -42,23 +41,22 @@
 #include <map>
 #include <numeric>
 using namespace std;
-
 /*
- 4 points to figure out:
+4 points to figure out:
 
- Get gcd (greatest common divisor) and lcm (least common multiple) of (A, B).
- (a, b) = (A, B) while b > 0: (a, b) = (b, a % b)
- then, gcd = a and lcm = A * B / a
+Get gcd (greatest common divisor) and lcm (least common multiple) of (A, B).
+(a, b) = (A, B) while b > 0: (a, b) = (b, a % b)
+then, gcd = a and lcm = A * B / a
 
- How many magic numbers <= x ?
- By inclusion exclusion principle, we have:
- x / A + x / B - x / lcm
+How many magic numbers <= x ?
+By inclusion exclusion principle, we have:
+x / A + x / B - x / lcm
 
- Set our binary search range
- Lower bound is min(A, B), I just set left = 2.
- Upper bound is N * min(A, B), I just set right = 10 ^ 14.
+Set our binary search range
+Lower bound is min(A, B), I just set left = 2.
+Upper bound is N * min(A, B), I just set right = 10 ^ 14.
 
- binary search, find the smallest x that x / A + x / B - x / lcm = N
+binary search, find the smallest x that x / A + x / B - x / lcm = N
 */
 class Solution {
 private:

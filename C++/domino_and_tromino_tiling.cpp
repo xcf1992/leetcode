@@ -24,9 +24,9 @@ Explanation:
 The five different ways are listed below, different letters indicates different tiles:
 XYZ XXZ XYY XXY XYY
 XYZ YYZ XZZ XYY XXY
-Note:
 
-N  will be in range [1, 1000].
+Note:
+N will be in range [1, 1000].
 */
 #include <iostream>
 #include <sstream>

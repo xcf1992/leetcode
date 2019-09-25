@@ -1,5 +1,6 @@
 /*
 1096. Brace Expresultion II
+
 Under a grammar given below, strings can represent a set of lowercase words.
 Let's use R(expr) to denote the set of words the expression represents.
 
@@ -11,6 +12,7 @@ Single letters represent a singleton set containing that word.
 When we take a comma delimited list of 2 or more expressions, we take the union of possibilities.
     R("{a,b,c}") = {"a","b","c"}
     R("{{a,b},{b,c}}") = {"a","b","c"} (notice the final set only contains each word at most once)
+
 When we concatenate two expressions,
 we take the set of possible concatenations between two words where the first word comes from the first expression
 and the second word comes from the second expression.
@@ -27,18 +29,15 @@ Given an expression representing a set of words under the given grammar,
 return the sorted list of words that the expression represents.
 
 Example 1:
-
 Input: "{a,b}{c,{d,e}}"
 Output: ["ac","ad","ae","bc","bd","be"]
-Example 2:
 
+Example 2:
 Input: "{{a,z},a{b,c},{ab,z}}"
 Output: ["a","ab","ac","z"]
 Explanation: Each distinct word is written only once in the final resultwer.
 
-
 Constraints:
-
 1 <= expression.length <= 50
 expression[pos] consists of '{', '}', ','or lowercase English letters.
 The given expression represents a set of words based on the grammar given in the description.
