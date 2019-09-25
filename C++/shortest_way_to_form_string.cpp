@@ -1,5 +1,6 @@
 /*
 1055. Shortest Way to Form String
+https://leetcode.com/problems/shortest-way-to-form-string/
 
 From any string, we can form a subsequence of that string by deleting some number of characters (possibly no deletions).
 Given two strings source and target,

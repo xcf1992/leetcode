@@ -1,5 +1,7 @@
 /*
 694. Number of Distinct Islands
+https://leetcode.com/problems/number-of-distinct-islands/
+
 Given a non-empty 2D array grid of 0's and 1's,
 an island is a group of 1's (representing land) connected 4-directionally (horizontal or vertical.)
 You may assume all four edges of the grid are surrounded by water.
@@ -52,7 +54,6 @@ private:
         for (auto it = direction.begin(); it != direction.end(); ++it) {
             char dir = it -> first;
             pair<int, int> diff = it -> second;
-
             int row = x + diff.first;
             int col = y + diff.second;
             if (row >= m or row < 0 or col >= n or col < 0 or grid[row][col] == 0 or visited[row][col]) {

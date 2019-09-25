@@ -1,5 +1,6 @@
 /*
 382. Linked List Random Node
+https://leetcode.com/problems/linked-list-random-node/
 
 Given a singly linked list,
 return a random node's value from the linked list.
@@ -57,7 +58,6 @@ public:
         return result;
     }
 };
-
 /*
 * Your Solution object will be instantiated and called as such:
 * Solution obj = new Solution(head);

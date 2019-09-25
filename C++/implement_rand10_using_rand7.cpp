@@ -1,5 +1,6 @@
 /*
 470. Implement Rand10() Using Rand7()
+https://leetcode.com/problems/implement-rand10-using-rand7/
 
 Given a function rand7 which generates a uniform random integer in the range 1 to 7,
 write a function rand10 which generates a uniform random integer in the range 1 to 10.
@@ -39,7 +40,8 @@ Could you minimize the number of calls to rand7()?
 #include <stdio.h>
 #include <set>
 using namespace std;
-/*Approach 1: Rejection Sampling
+/*
+Approach 1: Rejection Sampling
 Intuition
 
 What if you could generate a random integer in the range 1 to 49?

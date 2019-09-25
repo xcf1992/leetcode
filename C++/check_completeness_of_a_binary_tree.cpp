@@ -5,9 +5,9 @@ https://leetcode.com/problems/check-completeness-of-a-binary-tree/
 Given a binary tree, determine if it is a complete binary tree.
 
 Definition of a complete binary tree from Wikipedia:
-In a complete binary tree every level, except possibly the last, is completely filled, and all nodes in the last level are as far left as possible. It can have between 1 and 2h nodes inclusive at the last level h.
-
-
+In a complete binary tree every level, except possibly the last,
+is completely filled, and all nodes in the last level are as far left as possible.
+It can have between 1 and 2h nodes inclusive at the last level h.
 
 Example 1:
                 1
@@ -26,7 +26,6 @@ Output: false
 Explanation: The node with value 7 isn't as far left as possible.
 
 Note:
-
 The tree will have between 1 and 100 nodes.
 */
 #include <iostream>
@@ -43,8 +42,37 @@ The tree will have between 1 and 100 nodes.
 #include <numeric>
 #include "extra_data_types.hpp"
 using namespace std;
+/*
+Use BFS to do a level order traversal,
+add childrens to the bfs queue,
+until we met the first empty node.
 
+For a complete binary tree,
+there should not be any node after we met an empty one.
+*/
 class Solution {
+public:
+    bool isCompleteTree(TreeNode* root) {
+        if (root == nullptr) {
+            return true;
+        }
+
+        vector<TreeNode*> bfs;
+        bfs.push_back(root);
+        int count = 0;
+        while (count < bfs.size() and bfs[count] != nullptr) {
+            bfs.push_back(bfs[count] -> left);
+            bfs.push_back(bfs[count] -> right);
+            count += 1;
+        }
+        while (count < bfs.size() and bfs[count] == nullptr) {
+            count += 1;
+        }
+        return count == bfs.size();
+    }
+};
+
+class Solution1 {
 public:
     bool isCompleteTree(TreeNode* root) {
         if (root == nullptr) {
