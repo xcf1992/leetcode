@@ -1,5 +1,6 @@
 /*
 1062. Longest Repeating Substring
+https://leetcode.com/problems/longest-repeating-substring/
 
 Given a string S, find out the length of the longest repeating substring(s).
 Return 0 if no repeating substring exists.

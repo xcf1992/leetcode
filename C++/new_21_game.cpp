@@ -1,5 +1,7 @@
 /*
 837. New 21 Game
+https://leetcode.com/problems/new-21-game/
+
 Alice plays the following game, loosely based on the card game "21".
 
 Alice starts with 0 points, and draws numbers while she has less than K points.
@@ -10,22 +12,21 @@ Alice stops drawing numbers when she gets K or more points.
 What is the probability that she has N or less points?
 
 Example 1:
-
 Input: N = 10, K = 1, W = 10
 Output: 1.00000
 Explanation:  Alice gets a single card, then stops.
-Example 2:
 
+Example 2:
 Input: N = 6, K = 1, W = 10
 Output: 0.60000
 Explanation:  Alice gets a single card, then stops.
 In 6 out of W = 10 possibilities, she is at or below N = 6 points.
-Example 3:
 
+Example 3:
 Input: N = 21, K = 17, W = 10
 Output: 0.73278
-Note:
 
+Note:
 0 <= K <= N <= 10000
 1 <= W <= 10000
 Answers will be accepted as correct if they are within 10^-5 of the correct answer.
@@ -130,12 +131,12 @@ public:
 };
 
 /*
- The maximum result one can get is K + W - 1, since if one get K points already he will gain any point anymore
- and if N >= K + W - 1 then it will always succeed
- so to caculate Probability(X) = Sum(Probability(X - i)), while i >= 1, i <= W and X - i >= 0 and X - i < K, since we
- will stop when X - i >= K
- the final result is Sum(Probability(j)), j >= K, j<= N
- the naive implementation is below. But it exceeds time limit
+The maximum result one can get is K + W - 1, since if one get K points already he will gain any point anymore
+and if N >= K + W - 1 then it will always succeed
+so to caculate Probability(X) = Sum(Probability(X - i)), while i >= 1, i <= W and X - i >= 0 and X - i < K, since we
+will stop when X - i >= K
+the final result is Sum(Probability(j)), j >= K, j<= N
+the naive implementation is below. But it exceeds time limit
 */
 class Solution1 {
 public:

@@ -87,7 +87,6 @@ we decompose a hard problem into reasonable easy one:
 Just find the next greater element in the array, on the left and one right.
 Refer to 1019. Next Greater Node In Linked List
 
-
 Complexity
 Time O(N) for one pass
 Space O(N) for stack in the worst cases

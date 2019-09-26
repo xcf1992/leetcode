@@ -1,17 +1,23 @@
 /*
- Given an Iterator class interface with methods: next() and hasNext(), design and implement a PeekingIterator that support the peek() operation -- it essentially peek() at the element that will be returned by the next call to next().
+284. Peeking Iterator
+https://leetcode.com/problems/peeking-iterator/
 
- Here is an example. Assume that the iterator is initialized to the beginning of the list: [1, 2, 3].
+Given an Iterator class interface with methods:
+next() and hasNext(),
+design and implement a PeekingIterator that support the peek() operation --
+it essentially peek() at the element that will be returned by the next call to next().
 
- Call next() gets you 1, the first element in the list.
+Here is an example.
+Assume that the iterator is initialized to the beginning of the list: [1, 2, 3].
 
- Now you call peek() and it returns 2, the next element. Calling next() after that still return 2.
+Call next() gets you 1, the first element in the list.
+Now you call peek() and it returns 2, the next element. Calling next() after that still return 2.
+You call next() the final time and it returns 3, the last element.
+Calling hasNext() after that should return false.
 
- You call next() the final time and it returns 3, the last element. Calling hasNext() after that should return false.
-
- Follow up: How would you extend your design to be generic and work with all types, not just integer?
+Follow up:
+How would you extend your design to be generic and work with all types, not just integer?
 */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -45,7 +51,9 @@ private:
 public:
     PeekingIterator(const vector<int>& nums) : Iterator(nums) {
         m_hasnext = Iterator::hasNext();
-        if (m_hasnext) m_next = Iterator::next();
+        if (m_hasnext) {
+            m_next = Iterator::next();
+        }
     }
 
     int peek() {
@@ -55,7 +63,9 @@ public:
     int next() {
         int t = m_next;
         m_hasnext = Iterator::hasNext();
-        if (m_hasnext) m_next = Iterator::next();
+        if (m_hasnext) {
+            m_next = Iterator::next();
+        }
         return t;
     }
 
