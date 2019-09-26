@@ -1,5 +1,6 @@
 /*
 1049. Last Stone Weight II
+https://leetcode.com/problems/last-stone-weight-ii/
 
 We have a collection of rocks, each rock has a positive integer weight.
 
@@ -41,6 +42,9 @@ Note:
 #include <numeric>
 using namespace std;
 /*
+dp to record the achievable sum of the smaller group.
+dp[x] = 1 means the sum x is possible.
+
 DP of backpack problem
 Divide all numbers into two groups,
 what is the minimum difference between the sum of two groups.
