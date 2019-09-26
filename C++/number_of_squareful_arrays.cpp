@@ -1,29 +1,26 @@
 /*
- 996. Number of Squareful Arrays
+996. Number of Squareful Arrays
 
- Given an array A of non-negative integers,
- the array is squareful if for every pair of adjacent elements,
- their sum is a perfect square.
+Given an array A of non-negative integers,
+the array is squareful if for every pair of adjacent elements,
+their sum is a perfect square.
 
- Return the number of permutations of A that are squareful.
- Two permutations A1 and A2 differ if and only if there is some index i such that A1[i] != A2[i].
+Return the number of permutations of A that are squareful.
+Two permutations A1 and A2 differ if and only if there is some index i such that A1[i] != A2[i].
 
- Example 1:
+Example 1:
+Input: [1,17,8]
+Output: 2
+Explanation:
+[1,8,17] and [17,8,1] are the valid permutations.
 
- Input: [1,17,8]
- Output: 2
- Explanation:
- [1,8,17] and [17,8,1] are the valid permutations.
- Example 2:
+Example 2:
+Input: [2,2,2]
+Output: 1
 
- Input: [2,2,2]
- Output: 1
-
-
- Note:
-
- 1 <= A.length <= 12
- 0 <= A[i] <= 1e9
+Note:
+1 <= A.length <= 12
+0 <= A[i] <= 1e9
 */
 #include <iostream>
 #include <string>
@@ -133,8 +130,9 @@ public:
 
         vector<long> factorial(20);
         factorial[0] = 1;
-        for (int i = 1; i < 20; ++i)
+        for (int i = 1; i < 20; ++i) {
             factorial[i] = i * factorial[i-1];
+        }
         for (auto& it : count) if (it.second > 1) {
             result /= factorial[it.second];
         }

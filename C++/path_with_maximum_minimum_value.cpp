@@ -1,5 +1,6 @@
 /*
 1102. Path With Maximum Minimum Value
+https://leetcode.com/problems/path-with-maximum-minimum-value/
 
 Given a matrix of integers A with R rows and C columns,
 find the maximum score of a path starting at [0,0] and ending at [R-1,C-1].
@@ -43,15 +44,9 @@ Note:
 #include <numeric>
 using namespace std;
 
-struct Move { // {height, row, col}
-    int v;
-    int r;
-    int c;
-
-    Move(int a, int b, int c) : v (a), r (b), c (c) {}
-
-    bool operator< (const Move& m) const {
-        return v < m.v;
+struct myComp {
+    bool operator()(vector<int>& a, vector<int>& b) {
+        return a[2] < b[2];
     }
 };
 
@@ -64,28 +59,30 @@ public:
         }
         int n = A[0].size();
 
-        priority_queue<Move> pq;
-        pq.push(Move(A[0][0], 0, 0));
+        priority_queue<vector<int>, vector<vector<int>>, myComp> pq;
+        pq.push({0, 0, A[0][0]});
         vector<vector<bool>> visited(m, vector<bool>(n, false));
         visited[0][0] = true;
 
         int result = INT_MAX;
         vector<int> diff({0, 1, 0, -1, 0});
         while (!pq.empty()) {
-            Move move = pq.top();
+            int row = pq.top()[0];
+            int col = pq.top()[1];
+            int val = pq.top()[2];
             pq.pop();
 
-            result = min(result, move.v);
-            if (move.r == m - 1 and move.c == n - 1) {
+            result = min(result, val);
+            if (row == m - 1 and col == n - 1) {
                 return result;
             }
 
             for (int i = 1; i < diff.size(); ++i) {
-                int row = move.r + diff[i];
-                int col = move.c + diff[i - 1];
-                if (row >= 0 and row < m and col >= 0 and col < n and !visited[row][col]) {
-                    visited[row][col] = true;
-                    pq.push(Move(A[row][col], row, col));
+                int nr = row + diff[i];
+                int nc = col + diff[i - 1];
+                if (nr >= 0 and nr < m and nc >= 0 and nc < n and !visited[nr][nc]) {
+                    visited[nr][nc] = true;
+                    pq.push({nr, nc, A[nr][nc]});
                 }
             }
         }

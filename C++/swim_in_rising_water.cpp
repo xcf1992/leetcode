@@ -55,15 +55,9 @@ We always walk in the smallest one that is 4-directionally adjacent to ones we'v
 
 When we reach the target, the largest number we've visited so far is the answer.
 */
-struct T { // {height, row, col}
-    int t;
-    int x;
-    int y;
-
-    T (int a, int b, int c) : t (a), x (b), y (c){}
-
-    bool operator< (const T& d) const {
-        return t > d.t;
+struct myComp {
+    bool operator()(vector<int>& a, vector<int>& b) {
+        return a[2] > b[2];
     }
 };
 
@@ -75,28 +69,31 @@ public:
         int N = grid.size();
         int result = 0;
 
-        priority_queue<T> pq;
-        pq.push(T(grid[0][0], 0, 0));
-        vector<vector<int>> seen(N, vector<int>(N, 0));
-        seen[0][0] = 1;
-        while (true) {
-            auto p = pq.top();
+        priority_queue<vector<int>, vector<vector<int>>, myComp> pq;
+        pq.push({0, 0, grid[0][0]}); // {row, col, height}
+        vector<vector<int>> visited(N, vector<int>(N, 0));
+        visited[0][0] = 1;
+        while (!pq.empty()) {
+            int row = pq.top()[0];
+            int col = pq.top()[1];
+            int height = pq.top()[2];
             pq.pop ();
 
-            result = max(result, p.t);
-            if (p.x == N - 1 and p.y == N - 1) {
+            result = max(result, height);
+            if (row == N - 1 and col == N - 1) {
                 return result;
             }
 
             for (auto& d : dir) {
-                int i = p.x + d[0];
-                int j = p.y + d[1];
-                if (i >= 0 and i < N and j >= 0 and j < N and !seen[i][j]) {
-                    seen[i][j] = 1;
-                    pq.push(T(grid[i][j], i, j));
+                int nr = row + d[0];
+                int nc = col + d[1];
+                if (nr >= 0 and nr < N and nc >= 0 and nc < N and !visited[nr][nc]) {
+                    visited[nr][nc] = 1;
+                    pq.push({nr, nc, grid[nr][nc]});
                 }
             }
         }
+        return -1;
     }
 };
 
@@ -118,7 +115,7 @@ private:
     int n = 0;
     vector<int> diff = {0, 1, 0, -1, 0};
 
-    // so dp[i][j] stores the best elevation path we have seen so far from start to current spot
+    // so dp[i][j] stores the best elevation path we have visited so far from start to current spot
     void dfs(vector<vector<int>>& grid, int row, int col, int elevation, vector<vector<int>> &dp) {
         if (row < 0 or col < 0 or row >= n or col >= n) {
             return;
@@ -126,8 +123,8 @@ private:
         if (elevation >= dp[row][col]) {
             /*
             * if the new elevation is larger than current dp value
-            * which means the path is worse than previous one we have seen before
-           */
+            * which means the path is worse than previous one we have visited before
+            */
             return;
         }
 

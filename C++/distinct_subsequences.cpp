@@ -45,7 +45,29 @@ babgbag
 #include <algorithm>
 using namespace std;
 
-class Solution {
+class Solution { // as the dp only relies one previous row, we can reduce the dp matrix to one dimension
+public:
+    int numDistinct(string s, string t) {
+        int lenS = s.size();
+        int lenT = t.size();
+        if (lenS <= 0 or lenT <= 0 or lenS < lenT) {
+            return 0;
+        }
+
+        vector<long> dp(lenT + 1, 0);
+        dp[0] = 1;
+        for (int i = 1; i <= lenS; ++i) {
+            for (int j = lenT; j>= 1; --j) {
+                if (s[i - 1] == t[j - 1]) {
+                    dp[j] += dp[j - 1];
+                }
+            }
+        }
+        return dp[lenT];
+    }
+};
+
+class Solution1 {
 public:
     int numDistinct(string s, string t) {
         int lenS = s.size();

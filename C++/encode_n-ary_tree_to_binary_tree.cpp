@@ -14,7 +14,7 @@ and this binary tree can be decoded to the original N-nary tree structure.
 For example, you may encode the following 3-ary tree to a binary tree in this way:
                 1                                   1
         /       |       \                         /    \
-       3        2        4  ==>                 3       2
+       3        2        4          ==>         3       2
      /   \                                     /         \
     5    6                                    5           4
                                                \
@@ -24,7 +24,6 @@ You do not necessarily need to follow this format,
 so please be creative and come up with different approaches yourself.
 
 Note:
-
 N is in the range of [1, 1000]
 Do not use class member/global/static variables to store states. Your encode and decode algorithms should be stateless.
 */
