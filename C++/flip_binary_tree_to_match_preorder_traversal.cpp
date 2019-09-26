@@ -27,14 +27,12 @@ Example 1:
 Input: root = [1,2], voyage = [2,1]
 Output: [-1]
 
-
 Example 2:
     1
   /   \
 2     3
 Input: root = [1,2,3], voyage = [1,3,2]
 Output: [1]
-
 
 Example 3:
     1
