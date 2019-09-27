@@ -1,27 +1,24 @@
 /*
- 1044. Longest Duplicate Substring
+1044. Longest Duplicate Substring
 
- Given a string S, consider all duplicated substrings:
- (contiguous) substrings of S that occur 2 or more times.
- (The occurrences may overlap.)
+Given a string S, consider all duplicated substrings:
+(contiguous) substrings of S that occur 2 or more times.
+(The occurrences may overlap.)
 
- Return any duplicated substring that has the longest possible length.
- (If S does not have a duplicated substring, the answer is "".)
+Return any duplicated substring that has the longest possible length.
+(If S does not have a duplicated substring, the answer is "".)
 
- Example 1:
+Example 1:
+Input: "banana"
+Output: "ana"
 
- Input: "banana"
- Output: "ana"
- Example 2:
+Example 2:
+Input: "abcd"
+Output: ""
 
- Input: "abcd"
- Output: ""
-
-
- Note:
-
- 2 <= S.length <= 10^5
- S consists of lowercase English letters.
+Note:
+2 <= S.length <= 10^5
+S consists of lowercase English letters.
 */
 #include <iostream>
 #include <string>
@@ -59,7 +56,7 @@ private:
             hash = (hash - power * s[i - k] % q + q) % q;
             hash = (hash * b % q + s[i]) % q;
             if (seen.find(hash) != seen.end()) {
-                for (int& index : seen[hash]) {
+                for (int index : seen[hash]) {
                     if (s.substr(index, k) == s.substr(i - k + 1, k)) {
                         return index;
                     }

@@ -1,24 +1,25 @@
 /*
- 719. Find K-th Smallest Pair Distance
- Given an integer array, return the k-th smallest distance among all the pairs.
- The distance of a pair (A, B) is defined as the absolute difference between A and B.
+719. Find K-th Smallest Pair Distance
 
- Example 1:
- Input:
- nums = [1,3,1]
- k = 1
- Output: 0
- Explanation:
- Here are all the pairs:
- (1,3) -> 2
- (1,1) -> 0
- (3,1) -> 2
- Then the 1st smallest distance pair is (1,1), and its distance is 0.
+Given an integer array, return the k-th smallest distance among all the pairs.
+The distance of a pair (A, B) is defined as the absolute difference between A and B.
 
- Note:
- 2 <= len(nums) <= 10000.
- 0 <= nums[i] < 1000000.
- 1 <= k <= len(nums) * (len(nums) - 1) / 2.
+Example 1:
+Input:
+nums = [1,3,1]
+k = 1
+Output: 0
+Explanation:
+Here are all the pairs:
+(1,3) -> 2
+(1,1) -> 0
+(3,1) -> 2
+Then the 1st smallest distance pair is (1,1), and its distance is 0.
+
+Note:
+2 <= len(nums) <= 10000.
+0 <= nums[i] < 1000000.
+1 <= k <= len(nums) * (len(nums) - 1) / 2.
 */
 #include <iostream>
 #include <string>
@@ -33,21 +34,20 @@
 #include <map>
 #include <numeric>
 using namespace std;
-
 /*
- We will perform binary search on the range - [0, max element - min element + 1)
- Within each search we will examine the middle element med and we will figure out
- how many pairs have a distance less than or equal to m.
+We will perform binary search on the range - [0, max element - min element + 1)
+Within each search we will examine the middle element med and we will figure out
+how many pairs have a distance less than or equal to m.
 
- When we are done counting, we compare the count to k.
- If it is less than k, then our med value is too small
- and we need to adjust the "start" of our search.
+When we are done counting, we compare the count to k.
+If it is less than k, then our med value is too small
+and we need to adjust the "start" of our search.
 
- Otherwise, we need to reduce the range of our search from above.
- It is important to note that even if our count is exactly k, we continue the search.
- Eventually our algorithm will converge when we find a count = K for a given m
- and every count between [start,m) will be smaller than k,
- forcing start to be incremented to the point where start == m which is our result.
+Otherwise, we need to reduce the range of our search from above.
+It is important to note that even if our count is exactly k, we continue the search.
+Eventually our algorithm will converge when we find a count = K for a given m
+and every count between [start,m) will be smaller than k,
+forcing start to be incremented to the point where start == m which is our result.
 */
 class Solution {
 private:

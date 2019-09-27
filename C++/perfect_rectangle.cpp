@@ -1,66 +1,49 @@
 /*
- 391. Perfect Rectangle
+391. Perfect Rectangle
 
- Given N axis-aligned rectangles where N > 0,
- determine if they all together form an exact cover of a rectangular region.
+Given N axis-aligned rectangles where N > 0,
+determine if they all together form an exact cover of a rectangular region.
 
- Each rectangle is represented as a bottom-left point and a top-right point.
- For example, a unit square is represented as [1,1,2,2].
- (coordinate of bottom-left point is (1, 1) and top-right point is (2, 2)).
+Each rectangle is represented as a bottom-left point and a top-right point.
+For example, a unit square is represented as [1,1,2,2].
+(coordinate of bottom-left point is (1, 1) and top-right point is (2, 2)).
 
- Example 1:
+Example 1:
+rectangles = [
+[1,1,3,3],
+[3,1,4,2],
+[3,2,4,4],
+[1,3,2,4],
+[2,3,3,4]
+]
+Return true. All 5 rectangles together form an exact cover of a rectangular region.
 
- rectangles = [
- [1,1,3,3],
- [3,1,4,2],
- [3,2,4,4],
- [1,3,2,4],
- [2,3,3,4]
- ]
+Example 2:
+rectangles = [
+[1,1,2,3],
+[1,3,2,4],
+[3,1,4,2],
+[3,2,4,4]
+]
+Return false. Because there is a gap between the two rectangular regions.
 
- Return true. All 5 rectangles together form an exact cover of a rectangular region.
+Example 3:
+rectangles = [
+[1,1,3,3],
+[3,1,4,2],
+[1,3,2,4],
+[3,2,4,4]
+]
+Return false. Because there is a gap in the top center.
 
-
-
-
- Example 2:
-
- rectangles = [
- [1,1,2,3],
- [1,3,2,4],
- [3,1,4,2],
- [3,2,4,4]
- ]
-
- Return false. Because there is a gap between the two rectangular regions.
-
-
-
-
- Example 3:
-
- rectangles = [
- [1,1,3,3],
- [3,1,4,2],
- [1,3,2,4],
- [3,2,4,4]
- ]
-
- Return false. Because there is a gap in the top center.
-
-
-
-
- Example 4:
-
- rectangles = [
- [1,1,3,3],
- [3,1,4,2],
- [1,3,2,4],
- [2,2,4,4]
- ]
-
- Return false. Because two of the rectangles overlap with each other.
+Example 4:
+rectangles = [
+[1,1,3,3],
+[3,1,4,2],
+[1,3,2,4],
+[2,2,4,4]
+]
+Return false. Because two of the rectangles overlap with each other.
 */
 #include <iostream>
 #include <string>
@@ -75,54 +58,53 @@
 #include <map>
 #include <numeric>
 using namespace std;
-
 /*
- The right answer must satisfy two conditions:
+The right answer must satisfy two conditions:
 
- the large rectangle area should be equal to the sum of small rectangles
- count of all the points should be even, and that of all the four corner points should be one
+the large rectangle area should be equal to the sum of small rectangles
+count of all the points should be even, and that of all the four corner points should be one
 
- Proof to condition 1 is straightforward so I will focus on condition 2.
- First by observation we know it holds true for a perfect rectangle
- (consider how many small rectangles can overlap at a particular point:
-  the number has to be even except for the four corner points of the prefect rectangle).
+Proof to condition 1 is straightforward so I will focus on condition 2.
+First by observation we know it holds true for a perfect rectangle
+(consider how many small rectangles can overlap at a particular point:
+the number has to be even except for the four corner points of the prefect rectangle).
 
 The real question is whether it can also be true for some non-perfect rectangle.
- Let's begin with the question: what will a non-perfect rectangle look like?
- Of course it can look rather complicated but here is a simple way to define it:
- any non-perfect rectangle can be obtained by a sequence of adding or removing rectangular parts from its perfect counterpart
- (the order for adding or removing does not matter here).
- If condition 1 is held true, the non-perfect rectangle must be built by both adding
- and removing small rectangles such that the total area of added rectangles compensates for those of removed.
+Let's begin with the question: what will a non-perfect rectangle look like?
+Of course it can look rather complicated but here is a simple way to define it:
+any non-perfect rectangle can be obtained by a sequence of adding or removing rectangular parts from its perfect counterpart
+(the order for adding or removing does not matter here).
+If condition 1 is held true, the non-perfect rectangle must be built by both adding
+and removing small rectangles such that the total area of added rectangles compensates for those of removed.
 
- Without loss of generality,
- let's focus on the first rectangle (denoted as FR) that is being removed
- (i.e., we have perfect rectangle before removing it).
- FR has four corner points.
- Before removing it, each corner points will appear even times
- (here I assume FR does not contain any corner points of the perfect rectangle.
- See my comment below for more details).
- After it's gone, all the four corner points will appear odd times.
- To make condition 2 valid again, for each of these four points,
- we have to either add or remove a rectangle such that each of them will once again appear even times.
- The key here is that the total number of rectangles added or removed is at least two,
- since the added or removed rectangles cannot overlap with FR,
- therefore each added or removed rectangle can contain at most two of the four corner points of FR.
+Without loss of generality,
+let's focus on the first rectangle (denoted as FR) that is being removed
+(i.e., we have perfect rectangle before removing it).
+FR has four corner points.
+Before removing it, each corner points will appear even times
+(here I assume FR does not contain any corner points of the perfect rectangle.
+See my comment below for more details).
+After it's gone, all the four corner points will appear odd times.
+To make condition 2 valid again, for each of these four points,
+we have to either add or remove a rectangle such that each of them will once again appear even times.
+The key here is that the total number of rectangles added or removed is at least two,
+since the added or removed rectangles cannot overlap with FR,
+therefore each added or removed rectangle can contain at most two of the four corner points of FR.
 
- So we end up with at least two extra rectangles (either added or removed),
- with a total of eight corner points.
- Four of those points coincide with the four corner points of FR.
- What about the other four points?
- For each of these points, if it belongs to a rectangle that is being removed,
- then before removing, it must appear even times and after removing,
- it will appear odd times.
- If it belongs to a rectangle that is being added,
- no matter it coincides with any point in the perfect rectangle or not,
- its number of appearance will always be odd (appear once if does not coincide with any point,
- odd if it does since the original number of appearance before adding is even).
- In either case (adding or removing rectangle),
- there is no way to keep the number of appearance of all points even,
- therefore condition 2 cannot be true for non-perfect rectangles.
+So we end up with at least two extra rectangles (either added or removed),
+with a total of eight corner points.
+Four of those points coincide with the four corner points of FR.
+What about the other four points?
+For each of these points, if it belongs to a rectangle that is being removed,
+then before removing, it must appear even times and after removing,
+it will appear odd times.
+If it belongs to a rectangle that is being added,
+no matter it coincides with any point in the perfect rectangle or not,
+its number of appearance will always be odd (appear once if does not coincide with any point,
+odd if it does since the original number of appearance before adding is even).
+In either case (adding or removing rectangle),
+there is no way to keep the number of appearance of all points even,
+therefore condition 2 cannot be true for non-perfect rectangles.
 */
 class Solution {
 private:
@@ -137,8 +119,8 @@ private:
     void updatePoints(unordered_set<string>& points, vector<int>& rect) {
         update(points, to_string(rect[0]) + "_" + to_string(rect[1]));
         update(points, to_string(rect[0]) + "_" + to_string(rect[3]));
-        update(points, to_string(rect[2]) + "_" + to_string(rect[3]));
         update(points, to_string(rect[2]) + "_" + to_string(rect[1]));
+        update(points, to_string(rect[2]) + "_" + to_string(rect[3]));
     }
 
     bool isValid(unordered_set<string>& points, int leftX, int leftY, int rightX, int rightY) {
