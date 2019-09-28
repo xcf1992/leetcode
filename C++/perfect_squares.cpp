@@ -1,11 +1,20 @@
-//
-//  perfect_squares.cpp
-//  C++
-//
-//  Created by Chenfu Xie on 1/31/18.
-//  Copyright © 2018 Chenfu Xie. All rights reserved.
-//
+/*
+279. Perfect Squares
+https://leetcode.com/problems/perfect-squares/
 
+Given a positive integer n,
+find the least number of perfect square numbers (for example, 1, 4, 9, 16, ...) which sum to n.
+
+Example 1:
+Input: n = 12
+Output: 3
+Explanation: 12 = 4 + 4 + 4.
+
+Example 2:
+Input: n = 13
+Output: 2
+Explanation: 13 = 4 + 9.
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -25,7 +34,7 @@ private:
         if (curSum == target) {
             result = min(result, count);
         }
-        
+
         for (int i = start; i > 0; i--) {
             curSum += i * i;
             if (curSum <= target) {

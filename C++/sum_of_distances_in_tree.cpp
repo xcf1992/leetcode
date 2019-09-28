@@ -35,50 +35,50 @@ Note: 1 <= N <= 10000
 #include <numeric>
 using namespace std;
 /*
- Let ans be the returned answer, so that in particular ans[x] be the answer for node x.
+Let ans be the returned answer, so that in particular ans[x] be the answer for node x.
 
- Naively, finding each ans[x] would take O(N) time (where N is the number of nodes in the graph), which is too slow.
- This is the motivation to find out how ans[x] and ans[y] are related, so that we cut down on repeated work.
+Naively, finding each ans[x] would take O(N) time (where N is the number of nodes in the graph), which is too slow.
+This is the motivation to find out how ans[x] and ans[y] are related, so that we cut down on repeated work.
 
- Let's investigate the answers of neighboring nodes x and y.
- In particular, say xy is an edge of the graph,
- that if cut would form two trees XX(containing x) and Y (containing y).
+Let's investigate the answers of neighboring nodes x and y.
+In particular, say xy is an edge of the graph,
+that if cut would form two trees XX(containing x) and Y (containing y).
 
- Then, as illustrated in the diagram,
- the answer for x in the entire tree, is the answer of x on X "x@X",
- plus the answer of y on Y "y@Y",
- plus the number of nodes in Y "#(Y)".
- The last part "#(Y)" is specifically because for any node z in Y, dist(x, z) = dist(y, z) + 1.
+Then, as illustrated in the diagram,
+the answer for x in the entire tree, is the answer of x on X "x@X",
+plus the answer of y on Y "y@Y",
+plus the number of nodes in Y "#(Y)".
+The last part "#(Y)" is specifically because for any node z in Y, dist(x, z) = dist(y, z) + 1.
 
- By similar reasoning,
- the answer for y in the entire tree is ans[y] = x@X + y@Y + #(X).
- Hence, for neighboring nodes x and y, ans[x] - ans[y] = #(Y) - #(X).
+By similar reasoning,
+the answer for y in the entire tree is ans[y] = x@X + y@Y + #(X).
+Hence, for neighboring nodes x and y, ans[x] - ans[y] = #(Y) - #(X).
 
- When we move our root from one node to its connected node, one part of nodes get closer, one the other part get further.
- If we know exactly hom many nodes in both parts, we can solve this problem.
+When we move our root from one node to its connected node, one part of nodes get closer, one the other part get further.
+If we know exactly hom many nodes in both parts, we can solve this problem.
 
- With one single traversal in tree, we should get enough information for it and don't need to do it again and again.
+With one single traversal in tree, we should get enough information for it and don't need to do it again and again.
 
- Explanation:
- 0. Let's solve it with node 0 as root.
+Explanation:
+0. Let's solve it with node 0 as root.
 
- Initial an array of hashset tree, tree[i] contains all connected nodes to i.
- Initial an array count, count[i] counts all nodes in the subtree i.
- Initial an array of res, res[i] counts sum of distance in subtree i.
+Initial an array of hashset tree, tree[i] contains all connected nodes to i.
+Initial an array count, count[i] counts all nodes in the subtree i.
+Initial an array of res, res[i] counts sum of distance in subtree i.
 
- Post order dfs traversal, update count and res:
- count[root] = sum(count[i]) + 1
- res[root] = sum(res[i]) + sum(count[i])
+Post order dfs traversal, update count and res:
+count[root] = sum(count[i]) + 1
+res[root] = sum(res[i]) + sum(count[i])
 
- Pre order dfs traversal, update res:
- When we move our root from parent to its child i, count[i] points get 1 closer to root, n - count[i] nodes get 1 futhur to root.
- res[i] = res[root] - count[i] + N - count[i]
+Pre order dfs traversal, update res:
+When we move our root from parent to its child i, count[i] points get 1 closer to root, n - count[i] nodes get 1 futhur to root.
+res[i] = res[root] - count[i] + N - count[i]
 
- return res, done.
+return res, done.
 
- Time Complexity:
- dfs: O(N)
- dfs2: O(N)
+Time Complexity:
+dfs: O(N)
+dfs2: O(N)
 */
 class Solution {
 private:

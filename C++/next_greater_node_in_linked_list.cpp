@@ -1,5 +1,7 @@
 /*
 1019. Next Greater Node In Linked List
+https://leetcode.com/problems/next-greater-node-in-linked-list/
+
 We are given a linked list with head as the first node.
 Let's number the nodes in the list: node_1, node_2, node_3, ... etc.
 
@@ -15,23 +17,19 @@ Note that in the example inputs (not outputs) below,
 arrays such as [2,1,5] represent the serialization of a linked list with a head node value of 2,
 second node value of 1, and third node value of 5.
 
-
 Example 1:
-
 Input: [2,1,5]
 Output: [5,5,0]
-Example 2:
 
+Example 2:
 Input: [2,7,4,3,5]
 Output: [7,0,5,5,0]
-Example 3:
 
+Example 3:
 Input: [1,7,5,1,9,2,5,1]
 Output: [7,9,9,9,0,5,0,0]
 
-
 Note:
-
 1 <= node.val <= 10^9 for each node in the linked list.
 The given list has length in the range [0, 10000].
 */
@@ -72,49 +70,6 @@ public:
             cur = cur -> next;
             index += 1;
         }
-        return result;
-    }
-};
-
-class Solution1 {
-private:
-    ListNode* reverseList(ListNode* head) {
-        if (head == nullptr or head -> next == nullptr) {
-            return head;
-        }
-
-        ListNode* nxt = head -> next;
-        ListNode* newHead = reverseList(nxt);
-        head -> next = nullptr;
-        nxt -> next = head;
-        return newHead;
-    }
-public:
-    vector<int> nextLargerNodes(ListNode* head) {
-        if (head == nullptr) {
-            return {};
-        }
-
-        head = reverseList(head);
-        stack<int> stk;
-        stk.push(head -> val);
-        vector<int> result;
-        result.push_back(0);
-        ListNode* cur = head -> next;
-        while (cur != nullptr) {
-            while (!stk.empty() and cur -> val > stk.top()) {
-                stk.pop();
-            }
-            if (stk.empty()) {
-                result.push_back(0);
-            }
-            else {
-                result.push_back(stk.top());
-            }
-            stk.push(cur -> val);
-            cur = cur -> next;
-        }
-        reverse(result.begin(), result.end());
         return result;
     }
 };
