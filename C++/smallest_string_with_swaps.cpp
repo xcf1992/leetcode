@@ -87,7 +87,7 @@ public:
         for (int i = 0; i < n; ++i) {
             int pi = find(i, parent);
             s[i] = component[pi].back();
-            component[pi].pop
+            component[pi].pop_back();
         }
         return s;
     }
