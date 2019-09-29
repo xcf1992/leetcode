@@ -48,6 +48,37 @@ s only contains lower case English letters.
 using namespace std;
 
 class Solution {
+public:
+    string removeDuplicates(string s, int k) {
+        int n = s.size();
+        if (n < k) {
+            return s;
+        }
+
+        vector<pair<int, char>> stk;
+        for (int i = 0; i < n; ++i) {
+            if (stk.empty() or s[i] != stk.back().second) {
+                stk.push_back({1, s[i]});
+                continue;
+            }
+
+            if (stk.back().first + 1 == k) {
+                stk.pop_back();
+            }
+            else {
+                stk.back().first += 1;
+            }
+        }
+
+        string result = "";
+        for (pair<int, char>& p : stk) {
+            result += string(p.first, p.second);
+        }
+        return result;
+    }
+};
+
+class Solution1 { // 20%
 private:
     bool findDuplicate(string& result, char c, int k) {
         if (result.size() < k - 1) {
@@ -55,7 +86,7 @@ private:
         }
 
         int n = result.size();
-        if (result.substr(n - k + 1) == string(n - 1, c)) {
+        if (result.substr(n - k + 1) == string(k - 1, c)) {
             result = result.substr(0, n - k + 1);
             return true;
         }

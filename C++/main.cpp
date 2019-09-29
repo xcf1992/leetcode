@@ -16,49 +16,39 @@ using namespace std;
 
 class Solution {
 private:
-    int find(int num, vector<int>& parent) {
-        if (parent[num] != num) {
-            parent[num] = find(parent[num], parent);
+    bool findDuplicate(string& result, char c, int k) {
+        if (result.size() < k - 1) {
+            return false;
         }
-        return parent[num];
+
+        int n = result.size();
+        if (result.substr(n - k + 1) == string(n - 1, c)) {
+            result = result.substr(0, n - k + 1);
+            return true;
+        }
+        return false;
     }
 public:
-    string smallestStringWithSwaps(string s, vector<vector<int>> pairs) {
+    string removeDuplicates(string s, int k) {
         int n = s.size();
-        vector<int> parent(n);
-        vector<string> component(n, "");
-        for (int i = 0; i < n; ++i) {
-            parent[i] = i;
-            component[i].push_back(s[i]);
+        if (n < k) {
+            return s;
         }
 
-        for (vector<int>& pair : pairs) {
-            int pu = find(pair[0], parent);
-            int pv = find(pair[1], parent);
-            if (pu != pv) {
-                parent[pu] = pv;
-                for (int c : component[pu]) {
-                    component[pv] += component[pu];
-                }
+        string result = "";
+        result.push_back(s[0]);
+        for (int i = 1; i < n; ++i) {
+            if (!findDuplicate(result, s[i], k)) {
+                result.push_back(s[i]);
             }
         }
-
-        for (int i = 0; i < n; ++i) if (parent[i] == i) {
-            sort(component[i].rbegin(), component[i].rend());
-        }
-
-        for (int i = 0; i < n; ++i) {
-            int pi = find(i, parent);
-            s[i] = component[pi].back();
-            component[pi].pop_back();
-        }
-        return s;
+        return result;
     }
 };
 
 int main() {
     Solution s;
-    s.smallestStringWithSwaps("dcab", {{0,3}, {1,2}});
+    s.removeDuplicates("deeedbbcccbdaa", 3);
 
     vector<int> temp1({1,3,3,3,2});
     vector<vector<int>> matrix({
