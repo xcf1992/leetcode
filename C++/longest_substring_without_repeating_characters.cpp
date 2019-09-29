@@ -1,18 +1,20 @@
 /*
+3. Longest Substring Without Repeating Characters
+https://leetcode.com/problems/longest-substring-without-repeating-characters/
+
 Given a string, find the length of the longest substring without repeating characters.
 
 Example 1:
-
 Input: "abcabcbb"
 Output: 3
 Explanation: The answer is "abc", with the length of 3.
-Example 2:
 
+Example 2:
 Input: "bbbbb"
 Output: 1
 Explanation: The answer is "b", with the length of 1.
-Example 3:
 
+Example 3:
 Input: "pwwkew"
 Output: 3
 Explanation: The answer is "wke", with the length of 3.
@@ -38,18 +40,13 @@ public:
         unordered_map<char, int>table;
         table[s[begin]] = 0;
         while (end < s.size()) {
-            if (table.find(s[end]) == table.end()) {
+            if (table.find(s[end]) == table.end() or table[s[end]] < begin) {
                 table[s[end]] = end;
             }
             else {
-                if (table[s[end]] < begin) {
-                    table[s[end]] = end;
-                }
-                else {
-                    result = max(result, end - begin);
-                    begin = table[s[end]] + 1;
-                    table[s[end]] = end;
-                }
+                result = max(result, end - begin);
+                begin = table[s[end]] + 1;
+                table[s[end]] = end;
             }
             end++;
         }

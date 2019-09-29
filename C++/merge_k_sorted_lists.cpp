@@ -1,10 +1,10 @@
 /*
 23. Merge k Sorted Lists
+https://leetcode.com/problems/encode-and-decode-strings/
 
 Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
 
 Example:
-
 Input:
 [
   1->4->5,
@@ -56,6 +56,6 @@ public:
                 minHeap.push(cur -> next);
             }
         }
-        return dummy->next;
+        return dummy -> next;
     }
 };

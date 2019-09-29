@@ -1,11 +1,12 @@
 /*
 329. Longest Increasing Path in a Matrix
-Given an integer matrix, find the length of the longest increasing path.
+https://leetcode.com/problems/longest-increasing-path-in-a-matrix/
 
-From each cell, you can either move to four directions: left, right, up or down. You may NOT move diagonally or move outside of the boundary (i.e. wrap-around is not allowed).
+Given an integer matrix, find the length of the longest increasing path.
+From each cell, you can either move to four directions: left, right, up or down.
+You may NOT move diagonally or move outside of the boundary (i.e. wrap-around is not allowed).
 
 Example 1:
-
 Input: nums =
 [
   [9,9,4],
@@ -14,8 +15,8 @@ Input: nums =
 ]
 Output: 4
 Explanation: The longest increasing path is [1, 2, 6, 9].
-Example 2:
 
+Example 2:
 Input: nums =
 [
   [3,4,5],
@@ -42,6 +43,7 @@ class Solution {
 private:
     int m = 0;
     int n = 0;
+
     int dfs(vector<vector<int>>& matrix, vector<vector<int>>& memo, int row, int col) {
         if (memo[row][col] != 0) {
             return memo[row][col];
@@ -66,8 +68,8 @@ public:
             return 0;
         }
         n = matrix[0].size();
-        vector<vector<int>> memo(m, vector<int>(n, 0));
 
+        vector<vector<int>> memo(m, vector<int>(n, 0));
         int result = 1;
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {

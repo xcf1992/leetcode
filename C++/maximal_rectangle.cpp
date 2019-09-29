@@ -1,9 +1,11 @@
 /*
 85. Maximal Rectangle
-Given a 2D binary matrix filled with 0's and 1's, find the largest rectangle containing only 1's and return its area.
+https://leetcode.com/problems/maximal-rectangle/
+
+Given a 2D binary matrix filled with 0's and 1's,
+find the largest rectangle containing only 1's and return its area.
 
 Example:
-
 Input:
 [
   ["1","0","1","0","0"],
@@ -80,7 +82,7 @@ public:
     }
 };
 
-class Solution { // 50% O(M * N * N)
+class Solution1 { // 50% O(M * N * N)
 public:
     int maximalRectangle(vector<vector<char>>& matrix) {
         int m = matrix.size();
@@ -92,15 +94,14 @@ public:
         vector<vector<int>> consecutiveOne(m, vector<int>(n, 0)); // consecutiveOne[i][j] means number of consecutive ones from matrix[i][j] to its left
         int result = 0;
         for (int i = 0; i < m; ++i) {
-            int ones = 0;
             for (int j = 0; j < n; ++j) {
                 if (matrix[i][j] == '0') {
-                    ones = 0;
-                    continue;
+                    consecutiveOne[i][j] = 0;
                 }
-                ones += 1;
-                consecutiveOne[i][j] = ones;
-                int len = ones;
+                else {
+                    consecutiveOne[i][j] = j == 0 ? 1 : consecutiveOne[i][j - 1] + 1;
+                }
+                int len = consecutiveOne[i][j];
                 for (int k = i; k >= 0; --k) {
                     if (consecutiveOne[k][j] == 0) {
                         break;

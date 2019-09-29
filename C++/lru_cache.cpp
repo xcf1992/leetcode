@@ -1,5 +1,7 @@
 /*
 146. LRU Cache
+https://leetcode.com/problems/lru-cache/
+
 Design and implement a data structure for Least Recently Used (LRU) cache.
 It should support the following operations: get and put.
 
@@ -14,9 +16,7 @@ Follow up:
 Could you do both operations in O(1) time complexity?
 
 Example:
-
 LRUCache cache = new LRUCache( 2  capacity  );
-
 cache.put(1, 1);
 cache.put(2, 2);
 cache.get(1);       // returns 1
