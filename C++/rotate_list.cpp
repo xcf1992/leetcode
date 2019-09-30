@@ -1,3 +1,27 @@
+/*
+61. Rotate List
+https://leetcode.com/problems/rotate-list/
+
+Given a linked list,
+rotate the list to the right by k places,
+where k is non-negative.
+
+Example 1:
+Input: 1->2->3->4->5->NULL, k = 2
+Output: 4->5->1->2->3->NULL
+Explanation:
+rotate 1 steps to the right: 5->1->2->3->4->NULL
+rotate 2 steps to the right: 4->5->1->2->3->NULL
+
+Example 2:
+Input: 0->1->2->NULL, k = 4
+Output: 2->0->1->NULL
+Explanation:
+rotate 1 steps to the right: 2->0->1->NULL
+rotate 2 steps to the right: 1->2->0->NULL
+rotate 3 steps to the right: 0->1->2->NULL
+rotate 4 steps to the right: 2->0->1->NULL
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -9,16 +33,17 @@ using namespace std;
 class Solution {
 public:
     ListNode *rotateRight(ListNode *head, int k) {
-        if (head == nullptr or head->next == nullptr or k == 0) {
+        if (head == nullptr or head -> next == nullptr or k == 0) {
             return head;
         }
-        ListNode *dummy = new ListNode(-1);
-        dummy->next = head;
+
+        ListNode* dummy = new ListNode(-1);
+        dummy -> next = head;
+        ListNode* pre = dummy;
         int length = 0;
-        ListNode *pre = dummy;
         while (pre -> next != nullptr) {
             length++;
-            pre = pre->next;
+            pre = pre -> next;
         }
 
         k = k % length;
@@ -27,28 +52,19 @@ public:
         }
 
         pre = dummy;
-        ListNode *first = dummy->next;
-        ListNode *second = first;
+        ListNode* first = dummy -> next;
+        ListNode* last = first;
         for (int i = 1; i < k; i++) {
-            second = second->next;
+            last = last -> next;
         }
 
-        while (second->next != nullptr) {
-            second = second->next;
-            first = first->next;
-            pre = pre->next;
+        while (last -> next != nullptr) {
+            last = last -> next;
+            first = first -> next;
+            pre = pre -> next;
         }
-
-        pre->next = nullptr;
-        second->next = head;
+        pre -> next = nullptr;
+        last -> next = head;
         return first;
     }
 };
-
-int main() {
-	ListNode *head = new ListNode(1);
-	head->next = new ListNode(2);
-	Solution s;
-	s.rotateRight(head, 2);
-	return 0;
-}

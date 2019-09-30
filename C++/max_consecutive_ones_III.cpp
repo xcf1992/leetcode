@@ -1,11 +1,11 @@
 /*
 1004. Max Consecutive Ones III
-Given an array A of 0s and 1s, we may change up to K values from 0 to 1.
+https://leetcode.com/problems/max-consecutive-ones-iii/
 
+Given an array A of 0s and 1s, we may change up to K values from 0 to 1.
 Return the length of the longest (contiguous) subarray that contains only 1s.
 
 Example 1:
-
 Input: A = [1,1,1,0,0,0,1,1,1,1,0], K = 2
 Output: 6
 Explanation:
@@ -14,7 +14,6 @@ Bolded numbers were flipped from 0 to 1.
 The longest subarray is underlined.
 
 Example 2:
-
 Input: A = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], K = 3
 Output: 10
 Explanation:
@@ -22,7 +21,6 @@ Explanation:
 Bolded numbers were flipped from 0 to 1.  The longest subarray is underlined.
 
 Note:
-
 1 <= A.length <= 20000
 0 <= K <= A.length
 A[i] is 0 or 1
@@ -48,10 +46,9 @@ public:
         int result = 0;
         int start = 0;
         int used = 0;
-        int cur = 0;
+        int end = 0;
         int n = A.size();
-        for (int end = 0; end < n; ++end) {
-            cur += 1;
+        for (end = 0; end < n; ++end) {
             if (A[end] == 0) {
                 used += 1;
             }
@@ -60,10 +57,9 @@ public:
                     used -= 1;
                 }
                 start += 1;
-                cur -= 1;
             }
-            result = max(result, cur);
+            result = max(result, end - start + 1);
         }
-        return max(result, cur);
+        return max(result, end - start); // cause right now end will be at position n
     }
 };

@@ -1,5 +1,7 @@
 /*
 722. Remove Comments
+https://leetcode.com/problems/remove-comments/
+
 Given a C++ program, remove comments from it.
 The program source is an array where source[i] is the i-th line of the source code.
 This represents the result of splitting the original source code string by the newline character \n.
@@ -38,7 +40,6 @@ After removing the comments from the source code, return the source code in the 
 Example 1:
 Input:
 source = ["/ *Test program * /", "int main()", "{ ", "  // variable declaration ", "int a, b, c;", "/ * This is a test", "   multiline  ", "   comment for ", "   testing * /", "a = b + c;", "}"]
-
 The line by line code is visualized as below:
 / *Test program * /
 int main()
@@ -61,16 +62,16 @@ int main()
 int a, b, c;
 a = b + c;
 }
-
 Explanation:
 The string / * denotes a block comment, including line 1 and lines 6-9. The string // denotes line 4 as comments.
+
 Example 2:
 Input:
 source = ["a/ *comment", "line", "more_comment* /b"]
 Output: ["ab"]
 Explanation: The original source string is "a/ *comment\nline\nmore_comment* /b", where we have bolded the newline characters.  After deletion, the implicit newline characters are deleted, leaving the string "ab", which when delimited by newline characters becomes ["ab"].
-Note:
 
+Note:
 The length of source is in the range [1, 100].
 The length of source[i] is in the range [0, 80].
 Every open block comment is eventually closed.

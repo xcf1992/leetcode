@@ -1,5 +1,7 @@
 /*
 251. Flatten 2D Vector
+https://leetcode.com/problems/flatten-2d-vector/
+
 Design and implement an iterator to flatten a 2d vector.
 It should support the following operations: next and hasNext.
 
@@ -14,7 +16,6 @@ iterator.next(); // return 4
 iterator.hasNext(); // return false
 
 Notes:
-
 Please remember to RESET your class variables declared in Vector2D,
 as static/class variables are persisted across multiple test cases.
 Please see here for more details.

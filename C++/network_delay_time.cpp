@@ -1,17 +1,23 @@
 /*
- There are N network nodes, labelled 1 to N.
+743. Network Delay Time
+https://leetcode.com/problems/network-delay-time/
 
- Given times, a list of travel times as directed edges times[i] = (u, v, w), where u is the source node, v is the target node, and w is the time it takes for a signal to travel from source to target.
+There are N network nodes, labelled 1 to N.
 
- Now, we send a signal from a certain node K. How long will it take for all nodes to receive the signal? If it is impossible, return -1.
+Given times, a list of travel times as directed edges times[i] = (u, v, w),
+where u is the source node, v is the target node,
+and w is the time it takes for a signal to travel from source to target.
 
- Note:
- N will be in the range [1, 100].
- K will be in the range [1, N].
- The length of times will be in the range [1, 6000].
- All edges times[i] = (u, v, w) will have 1 <= u, v <= N and 1 <= w <= 100.
+Now, we send a signal from a certain node K.
+How long will it take for all nodes to receive the signal?
+If it is impossible, return -1.
+
+Note:
+N will be in the range [1, 100].
+K will be in the range [1, N].
+The length of times will be in the range [1, 6000].
+All edges times[i] = (u, v, w) will have 1 <= u, v <= N and 1 <= w <= 100.
 */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -34,7 +40,6 @@ public:
 
         vector<int> delay(N + 1, INT_MAX);
         queue<pair<int, int>> nodes;
-
         nodes.push(make_pair(K, 0));
         while (!nodes.empty()) {
             int curNode = nodes.front().first;
