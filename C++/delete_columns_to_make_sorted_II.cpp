@@ -1,5 +1,6 @@
 /*
 955. Delete Columns to Make Sorted II
+
 We are given an array A of N lowercase letter strings, all of the same length.
 
 Now, we may choose any set of deletion indices,

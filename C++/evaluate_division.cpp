@@ -1,5 +1,7 @@
 /*
 399. Evaluate Division
+https://leetcode.com/problems/evaluate-division/
+
 Equations are given in the format A / B = k,
 where A and B are variables represented as strings,
 and k is a real number (floating point number).
@@ -12,15 +14,13 @@ queries are: a / c = ?, b / a = ?, a / e = ?, a / a = ?, x / x = ? .
 return [6.0, 0.5, -1.0, 1.0, -1.0 ].
 
 The input is: vector<pair<string, string>> equations, vector<double>& values, vector<pair<string, string>> queries , where equations.size() == values.size(), and the values are positive. This represents the equations. Return vector<double>.
-
 According to the example above:
-
 equations = [ ["a", "b"], ["b", "c"] ],
 values = [2.0, 3.0],
 queries = [ ["a", "c"], ["b", "a"], ["a", "e"], ["a", "a"], ["x", "x"] ].
 
-
-The input is always valid. You may assume that evaluating the queries will result in no division by zero and there is no contradiction.
+The input is always valid.
+You may assume that evaluating the queries will result in no division by zero and there is no contradiction.
 */
 #include <iostream>
 #include <string>
@@ -47,13 +47,13 @@ private:
         }
 
         visited.insert(first);
-        for (auto it = next.begin(); it != next.end(); ++it) {
-            if (visited.find(it -> first) != visited.end()) {
+        for (auto& it : next) {
+            if (visited.find(it.first) != visited.end()) {
                 continue;
             }
-            double result = calculate(it -> first, second, connect, visited);
+            double result = calculate(it.first, second, connect, visited);
             if (result != -1.0) {
-                return (it -> second) * result;
+                return it.second * result;
             }
         }
         return -1.0;

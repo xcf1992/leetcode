@@ -37,17 +37,14 @@ public:
         int begin = 0;
         int end = 1;
         int result = 1;
-        unordered_map<char, int>table;
-        table[s[begin]] = 0;
+        unordered_map<char, int> pos;
+        pos[s[begin]] = 0;
         while (end < s.size()) {
-            if (table.find(s[end]) == table.end() or table[s[end]] < begin) {
-                table[s[end]] = end;
-            }
-            else {
+            if (pos.find(s[end]) != pos.end() and pos[s[end]] >= begin) {
                 result = max(result, end - begin);
-                begin = table[s[end]] + 1;
-                table[s[end]] = end;
+                begin = pos[s[end]] + 1;
             }
+            pos[s[end]] = end;
             end++;
         }
         return max(result, end - begin);

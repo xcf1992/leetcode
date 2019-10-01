@@ -40,7 +40,7 @@ public:
     int minDistance(string word1, string word2) {
         int m = word1.size();
         int n = word2.size();
-        if (m == 0 or n == 0) {
+        if (m == 0 || n == 0) {
             return abs(m - n);
         }
 
@@ -54,7 +54,7 @@ public:
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
                 if (word1[i - 1] == word2[j - 1]) {
-                    dp[i][j] = min(dp[i - 1][j - 1], min(1 + dp[i - 1][j], 1 + dp[i][j - 1]));
+                    dp[i][j] = dp[i - 1][j - 1];
                 }
                 else {
                     dp[i][j] = 1 + min(dp[i - 1][j - 1], min(dp[i][j - 1], dp[i - 1][j]));
