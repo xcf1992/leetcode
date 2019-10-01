@@ -64,7 +64,7 @@ public:
     int shortestDistance(vector<vector<int>>& grid) {
         m = grid.size();
         n = grid[0].size();
-        unordered_map<int, unordered_set<int>> visited; // pos hae been visited by house x
+        unordered_map<int, unordered_set<int>> visited; // pos has been visited by house x
         queue<vector<int>> bfs; // insert pair <house, distance, pos> the distance house x reach pos
         int house = 0;
         for (int i = 0; i < m; i++) {

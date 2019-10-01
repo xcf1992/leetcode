@@ -44,8 +44,7 @@ public:
                 result = max(result, end - begin);
                 begin = pos[s[end]] + 1;
             }
-            pos[s[end]] = end;
-            end++;
+            end += 1;
         }
         return max(result, end - begin);
     }

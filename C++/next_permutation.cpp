@@ -53,7 +53,6 @@ public:
         while (end >= pos and num[end] <= num[pos - 1]) {
             end -= 1;
         }
-
         swap(num[pos - 1], num[end]);
         reverse(num.begin() + pos, num.end());
     }

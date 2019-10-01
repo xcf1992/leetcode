@@ -1,25 +1,22 @@
 /*
 407. Trapping Rain Water II
+
 Given an m x n matrix of positive integers representing the height of each unit cell in a 2D elevation map,
 compute the volume of water it is able to trap after raining.
 
 Note:
+Both m and n are less than 110.
+The height of each unit cell is greater than 0 and is less than 20,000.
 
-Both m and n are less than 110. The height of each unit cell is greater than 0 and is less than 20,000.
 Example:
-
 Given the following 3x6 height map:
 [
   [1,4,3,1,3,2],
   [3,2,1,3,2,4],
   [2,3,3,2,3,1]
 ]
-
 Return 4.
-
-
 The above image represents the elevation map [[1,4,3,1,3,2],[3,2,1,3,2,4],[2,3,3,2,3,1]] before the rain.
-
 After the rain, water is trapped between the blocks. The total volume of water trapped is 4.
 */
 #include <iostream>
@@ -34,18 +31,22 @@ After the rain, water is trapped between the blocks. The total volume of water t
 #include <stdio.h>
 #include <map>
 using namespace std;
-
 /*
-It takes me a long time to figure it out, but actually the idea is quite straightforward. Imagine the pool is surrounded by many bars. The water can only go out from the lowest bar. So we always start from the lowest boundary and keep pushing the bar from boundary towards inside. It works as if we are replacing the old bars with a bar higher than it.
+It takes me a long time to figure it out,
+but actually the idea is quite straightforward.
+Imagine the pool is surrounded by many bars.
+The water can only go out from the lowest bar.
+So we always start from the lowest boundary and keep pushing the bar from boundary towards inside.
+It works as if we are replacing the old bars with a bar higher than it.
 See the following simple example:
 4 4 4 4
 4 0 1 2
 4 4 4 4
-it looks like we push the bar of 2 towards left and record the difference. Then you can use the same procedure with the following figure
+it looks like we push the bar of 2 towards left and record the difference.
+Then you can use the same procedure with the following figure
 4 4 4 4
 4 0 2 2
 4 4 4 4
-
 cause we use priority_queue, so we make sure we always move the bounary with lowest height first
 */
 struct myComp {
