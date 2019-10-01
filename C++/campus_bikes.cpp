@@ -69,11 +69,11 @@ public:
         });
 
         vector<int> result(n, -1);
-        unordered_set<int> assigned;
+        vector<bool> assigned(m, false);
         for (vector<int>& dis : distance) {
-            if (result[dis[0]] == -1 and assigned.find(dis[1]) == assigned.end()) {
+            if (result[dis[0]] == -1 and !assigned[dis[1]]) {
                 result[dis[0]] = dis[1];
-                assigned.insert(dis[1]);
+                assigned[dis[1]] = true;
             }
         }
         return result;

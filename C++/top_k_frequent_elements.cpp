@@ -44,7 +44,7 @@ public:
             frequency[nums[i]] += 1;
         }
 
-        priority_queue<pair<int, int>, vector<pair<int, int> >, myCmp> pq;
+        priority_queue<pair<int, int>, vector<pair<int, int>>, myCmp> pq;
         for (auto& it : frequency) {
             pq.push({it.second, it.first});
         }
