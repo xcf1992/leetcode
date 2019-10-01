@@ -1,5 +1,6 @@
 /*
 241. Different Ways to Add Parentheses
+https://leetcode.com/problems/different-ways-to-add-parentheses/
 
 Given a string of numbers and operators,
 return all possible result from computing all the different possible ways to group numbers and operators.
@@ -35,8 +36,14 @@ Explanation:
 using namespace std;
 
 class Solution {
+private:
+    unordered_map<string, vector<int>> memo;
 public:
     vector<int> diffWaysToCompute(string input) {
+        if (memo.find(input) != memo.end()) {
+            return memo[input];
+        }
+
         vector<int> result;
         for (int i = 0; i < input.size(); i++) {
             char c = input[i];
@@ -62,6 +69,7 @@ public:
         if (result.empty()) {
             result.push_back(stoi(input));
         }
+        memo[input] = result;
         return result;
     }
 };

@@ -1,28 +1,26 @@
 /*
 947. Most Stones Removed with Same Row or Column
+https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/
+
 On a 2D plane, we place stones at some integer coordinate points.
 Each coordinate point may have at most one stone.
 
 Now, a move consists of removing a stone that shares a column or row with another stone on the grid.
-
 What is the largest possible number of moves we can make?
 
 Example 1:
-
 Input: stones = [[0,0],[0,1],[1,0],[1,2],[2,1],[2,2]]
 Output: 5
-Example 2:
 
+Example 2:
 Input: stones = [[0,0],[0,2],[1,1],[2,0],[2,2]]
 Output: 5
-Example 3:
 
+Example 3:
 Input: stones = [[0,0]]
 Output: 0
 
-
 Note:
-
 1 <= stones.length <= 1000
 0 <= stones[i][j] < 10000
 */
@@ -51,23 +49,18 @@ private:
         parent[i] = find(parent[i], parent);
         return parent[i];
     }
-
-    void uni(int i, int j, vector<int>& parent) {
-        int pi = find(i, parent);
-        int pj = find(j, parent);
-        if (pi != pj) {
-            parent[pi] = pj;
-        }
-    }
 public:
     int removeStones(vector<vector<int>>& stones) {
-        vector<int> parent(stones.size(), -1);
-        for (int i = 0; i < stones.size(); i++) {
-            vector<int>& stoneI = stones[i];
+        int n = stones.size();
+        vector<int> parent(n, -1);
+        for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < stones.size(); j++) {
-                vector<int>& stoneJ = stones[j];
-                if (stoneI[0] == stoneJ[0] or stoneI[1] == stoneJ[1]) {
-                    uni(i, j, parent);
+                if (stones[i][0] == stones[j][0] or stones[i][1] == stones[j][1]) {
+                    int pi = find(i, parent);
+                    int pj = find(j, parent);
+                    if (pi != pj) {
+                        parent[pi] = pj;
+                    }
                 }
             }
         }

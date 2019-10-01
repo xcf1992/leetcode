@@ -63,6 +63,6 @@ public:
         if (n == 0) {
             return {};
         }
-        return generate(1,n);
+        return generate(1, n);
     }
 };

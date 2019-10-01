@@ -1,5 +1,6 @@
 /*
 853. Car Fleet
+https://leetcode.com/problems/car-fleet/
 
 N cars are going to the same destination along a one lane road.
 The destination is target miles away.
@@ -20,10 +21,7 @@ it will still be considered as one car fleet.
 
 How many car fleets will arrive at the destination?
 
-
-
 Example 1:
-
 Input: target = 12, position = [10,8,0,5,3], speed = [2,4,1,1,3]
 Output: 3
 Explanation:
@@ -33,7 +31,6 @@ The cars starting at 5 and 3 become a fleet, meeting each other at 6.
 Note that no other cars meet these fleets before the destination, so the answer is 3.
 
 Note:
-
 0 <= N <= 10 ^ 4
 0 < target <= 10 ^ 6
 0 < speed[i] <= 10 ^ 6
@@ -65,7 +62,7 @@ public:
 
         vector<pair<double, double>> car;
         for (int i = 0; i < n; i++) {
-            car.push_back(make_pair(position[i], speed[i]));
+            car.push_back({position[i], speed[i]});
         }
         sort(car.begin(), car.end(), [](pair<double, double>& a, pair<double, double>& b) {
             return a.first < b.first;
