@@ -32,25 +32,24 @@ A[i] will be in the range of [0, 10000].
 #include <map>
 #include <numeric>
 using namespace std;
-
 /*
- we can know that AV_a == AV_b == AV_c
- if s1/n1 == s2/n2 then s1/n1 = s2/n2 = (s1+s2)/(n1+n2).
+we can know that AV_a == AV_b == AV_c
+if s1/n1 == s2/n2 then s1/n1 = s2/n2 = (s1+s2)/(n1+n2).
 
- To find if
- 1 element with sum = 1 * avg or
- 2 elements with sum = 2 * avg or
- i elements with sum = i * avg
+To find if
+1 element with sum = 1 * avg or
+2 elements with sum = 2 * avg or
+i elements with sum = i * avg
 
- The size of smaller list between B and C will be less than N/2+1, so 0 < i < N/2+1
+The size of smaller list between B and C will be less than N/2+1, so 0 < i < N/2+1
 
- The part if ((sum * i) % len == 0 is a screening to avoid unnecessary calculations because A is an array of integers,
- for a subarray of length i to have equal average as A,
- the sum of this subarray is sum(A)/len(A) * i,
- and this needs to be an integer number,
- which equivalently means ((sum(A) * i) % len(A) == 0.
+The part if ((sum * i) % len == 0 is a screening to avoid unnecessary calculations because A is an array of integers,
+for a subarray of length i to have equal average as A,
+the sum of this subarray is sum(A)/len(A) * i,
+and this needs to be an integer number,
+which equivalently means ((sum(A) * i) % len(A) == 0.
 
- The second part is to call the recursive function find(parameters) to see if a subarray of length i will have equal average as A.
+The second part is to call the recursive function find(parameters) to see if a subarray of length i will have equal average as A.
 */
 class Solution {
 private:
