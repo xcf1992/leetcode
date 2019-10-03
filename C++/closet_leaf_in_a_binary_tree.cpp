@@ -72,6 +72,7 @@ private:
     void traverse(vector<TreeNode*>& parent, TreeNode*& target, int k, TreeNode* root) {
         if (root -> val == k) {
             target = root;
+            return;
         }
 
         if (root -> left != nullptr) {

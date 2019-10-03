@@ -62,11 +62,8 @@ public:
                 continue;
             }
 
-            if (stk.back().first + 1 == k) {
+            if (++stk.back().first == k) {
                 stk.pop_back();
-            }
-            else {
-                stk.back().first += 1;
             }
         }
 

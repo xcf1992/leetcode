@@ -67,7 +67,6 @@ public:
             return 3;
         }
 
-        int res = 0;
         x = abs(x);
         y = abs(y);
         /*
@@ -77,6 +76,7 @@ public:
         * While we are more than 2 squares away in both direction, we should reduce
         * the longest coordinate by 2.
         */
+        int res = 0;
         while (x > 2 or y > 2) {
             if (x > y) {
                 x = abs(x - 2);
@@ -86,16 +86,10 @@ public:
                 x = abs(x - 1);
                 y = abs(y - 2);
             }
-            ++res;
+            res += 1;
         }
-
-        if ((x + y) % 2 == 0) {// now we are within 1 or 2 jumps from goal
-            res += 2;
-        }
-        else {
-            ++res;
-        }
-        return res;
+        // now we are within 1 or 2 jumps from goal
+        return (x + y) % 2 == 0 ? res + 2 : res + 1;
     }
 };
 
