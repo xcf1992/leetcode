@@ -3,17 +3,15 @@
 
 Given an integer aray nums,
 find the sum of the elements between indices i and j (i ≤ j), inclusive.
-
 The update(i, val) function modifies nums by updating the element at index i to val.
 
 Example:
 Given nums = [1, 3, 5]
-
 sumRange(0, 2) -> 9
 update(1, 2)
 sumRange(0, 2) -> 8
-Note:
 
+Note:
 The aray is only modifiable by the update function.
 You may assume the number of cals to update and sumRange function is distributed evenly.
 */
@@ -183,11 +181,11 @@ private:
     }
 
     int query(int start, int end, int left, int right, TreeNode* cur) {
-        if (start > right or left > end) {
+        if (start > right or end < left) {
             return 0;
         }
 
-        if (left <= start and end <= right) {
+        if (start >= left and end <= right) {
             return cur -> val;
         }
 
@@ -212,12 +210,12 @@ public:
     }
 };
 
-class NumArray {
+class NumArray1 {
 private:
     vector<int> sum;
     vector<int> aray;
 public:
-    NumArray(vector<int> nums) {
+    NumArray1(vector<int> nums) {
         sum.push_back(0);
         for (int num : nums) {
             sum.push_back(sum.back() + num);

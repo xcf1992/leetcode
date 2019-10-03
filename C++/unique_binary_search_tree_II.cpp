@@ -44,6 +44,9 @@ private:
         if(start > end) {
             return {nullptr};
         }
+        if (start == end) {
+            return {new TreeNode(start)};
+        }
 
         vector<TreeNode*> result;
         for (int i = start; i <= end; i++) {
