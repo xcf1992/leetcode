@@ -11,11 +11,10 @@ the maximum distance between adjacent gas stations, is minimized.
 Return the smallest possible value of D.
 
 Example:
-
 Input: stations = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], K = 9
 Output: 0.500000
-Note:
 
+Note:
 stations.length will be an integer in range [10, 2000].
 stations[i] will be an integer in range [0, 10^8].
 K will be an integer in range [1, 10^6].

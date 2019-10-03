@@ -1,31 +1,31 @@
 /*
- 730. Count Different Palindromic Subsequences
- Given a string S, find the number of different non-empty palindromic subsequences in S,
- and return that number modulo 10^9 + 7.
+730. Count Different Palindromic Subsequences
 
- A subsequence of a string S is obtained by deleting 0 or more characters from S.
+Given a string S, find the number of different non-empty palindromic subsequences in S,
+and return that number modulo 10^9 + 7.
 
- A sequence is palindromic if it is equal to the sequence reversed.
+A subsequence of a string S is obtained by deleting 0 or more characters from S.
+A sequence is palindromic if it is equal to the sequence reversed.
+Two sequences A_1, A_2, ... and B_1, B_2, ... are different if there is some i for which A_i != B_i.
 
- Two sequences A_1, A_2, ... and B_1, B_2, ... are different if there is some i for which A_i != B_i.
+Example 1:
+Input:
+S = 'bccb'
+Output: 6
+Explanation:
+The 6 different non-empty palindromic subsequences are 'b', 'c', 'bb', 'cc', 'bcb', 'bccb'.
+Note that 'bcb' is counted only once, even though it occurs twice.
 
- Example 1:
- Input:
- S = 'bccb'
- Output: 6
- Explanation:
- The 6 different non-empty palindromic subsequences are 'b', 'c', 'bb', 'cc', 'bcb', 'bccb'.
- Note that 'bcb' is counted only once, even though it occurs twice.
- Example 2:
- Input:
- S = 'abcdabcdabcdabcdabcdabcdabcdabcddcbadcbadcbadcbadcbadcbadcbadcba'
- Output: 104860361
- Explanation:
- There are 3104860382 different non-empty palindromic subsequences, which is 104860361 modulo 10^9 + 7.
- Note:
+Example 2:
+Input:
+S = 'abcdabcdabcdabcdabcdabcdabcdabcddcbadcbadcbadcbadcbadcbadcbadcba'
+Output: 104860361
+Explanation:
+There are 3104860382 different non-empty palindromic subsequences, which is 104860361 modulo 10^9 + 7.
 
- The length of S will be in the range [1, 1000].
- Each character S[i] will be in the set {'a', 'b', 'c', 'd'}.
+Note:
+The length of S will be in the range [1, 1000].
+Each character S[i] will be in the set {'a', 'b', 'c', 'd'}.
 */
 #include <iostream>
 #include <string>
@@ -41,21 +41,20 @@
 #include <set>
 #include <numeric>
 using namespace std;
-
 /*
- I am not able to pass this question one time but struggle a lot in the basic test cases like "a", "aa", "aaa", "aba", "aabb".
- Those test cases help my early rough idea to be flawless.
- The basic idea of DP is easy to understand,
- I maintain DP[i][j] to record in substring from i to j(included),
- the number of palindrome without duplicate.
+I am not able to pass this question one time but struggle a lot in the basic test cases like "a", "aa", "aaa", "aba", "aabb".
+Those test cases help my early rough idea to be flawless.
+The basic idea of DP is easy to understand,
+I maintain DP[i][j] to record in substring from i to j(included),
+the number of palindrome without duplicate.
 
- Then we consider two cases of the DP equation:
- when s.charAt(i) != s.charAt(j):
- dp[i][j] = dp[i][j - 1] + dp[i + 1][j] - dp[i + 1][j - 1];
+Then we consider two cases of the DP equation:
+when s.charAt(i) != s.charAt(j):
+dp[i][j] = dp[i][j - 1] + dp[i + 1][j] - dp[i + 1][j - 1];
 
- When s.charAt(i) == s.charAt(j):
- the situation get much more complex and I fix a lot the wrong answers.
- I have comment the branches where which kind of test cases are considered.
+When s.charAt(i) == s.charAt(j):
+the situation get much more complex and I fix a lot the wrong answers.
+I have comment the branches where which kind of test cases are considered.
 */
 class Solution {
 private:
@@ -85,7 +84,7 @@ private:
             * the reason why dp[i + 1][j - 1] * 2 counted is that we count dp[i + 1][j - 1] one time as {"b"},
             * and additional time as {"aba"}. The reason why 2 counted is that we also count {"a", "aa"}.
             * So totally dp[i][j] record the palindrome: {"a", "b", "aa", "aba"}.
-           */
+            */
             dp[i][j] = dp[i + 1][j - 1] * 2 + 2;
         }
         else if (left == right) {
@@ -98,7 +97,7 @@ private:
             * and additional time as {"aaa"}. the reason why 1 counted is that
             * we also count {"aa"} that the first 'a' come from index i and the second come from index j.
             * So totally dp[i][j] records {"a", "aa", "aaa"}
-           */
+            */
             dp[i][j] = dp[i + 1][j - 1] * 2 + 1;
         }
         else {
@@ -112,7 +111,7 @@ private:
             * Now there is duplicate :  {"aca"},
             * which is removed by deduce dp[low + 1][high - 1].
             * So totally dp[i][j] record {"a",  "c", "aa", "aca", "aaa", "aaaa", "aacaa"}
-           */
+            */
             dp[i][j] = dp[i + 1][j - 1] * 2 - dp[left + 1][right - 1];
         }
     }
