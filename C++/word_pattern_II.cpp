@@ -1,21 +1,23 @@
 /*
 291. Word Pattern II
-Given a pattern and a string str, find if str follows the same pattern.
 
-Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty substring in str.
+Given a pattern and a string str,
+find if str follows the same pattern.
+Here follow means a full match,
+such that there is a bijection between a letter in pattern and a non-empty substring in str.
 
 Example 1:
-
 Input: pattern = "abab", str = "redblueredblue"
 Output: true
-Example 2:
 
+Example 2:
 Input: pattern = pattern = "aaaa", str = "asdasdasdasd"
 Output: true
-Example 3:
 
+Example 3:
 Input: pattern = "aabb", str = "xyzabcxzyabc"
 Output: false
+
 Notes:
 You may assume both pattern and str contains only lowercase letters.
 */
@@ -36,7 +38,7 @@ private:
     unordered_map<char, string> pat2Str;
     unordered_map<string, char> str2Pat;
 
-    bool match(string &pattern, int i, string &str, int j) {
+    bool match(string& pattern, int i, string& str, int j) {
         int m = pattern.size();
         int n = str.size();
         if (i == m and j == n) {
