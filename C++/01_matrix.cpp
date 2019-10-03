@@ -1,33 +1,35 @@
 /*
- Given a matrix consists of 0 and 1, find the distance of the nearest 0 for each cell.
+542. 01 Matrix
+https://leetcode.com/problems/01-matrix/
 
- The distance between two adjacent cells is 1.
- Example 1:
- Input:
+Given a matrix consists of 0 and 1, find the distance of the nearest 0 for each cell.
+The distance between two adjacent cells is 1.
 
- 0 0 0
- 0 1 0
- 0 0 0
- Output:
- 0 0 0
- 0 1 0
- 0 0 0
- Example 2:
- Input:
+Example 1:
+Input:
+0 0 0
+0 1 0
+0 0 0
+Output:
+0 0 0
+0 1 0
+0 0 0
 
- 0 0 0
- 0 1 0
- 1 1 1
- Output:
- 0 0 0
- 0 1 0
- 1 2 1
- Note:
- The number of elements of the given matrix will not exceed 10,000.
- There are at least one 0 in the given matrix.
- The cells are adjacent in only four directions: up, down, left and right.
+Example 2:
+Input:
+0 0 0
+0 1 0
+1 1 1
+Output:
+0 0 0
+0 1 0
+1 2 1
+
+Note:
+The number of elements of the given matrix will not exceed 10,000.
+There are at least one 0 in the given matrix.
+The cells are adjacent in only four directions: up, down, left and right.
 */
-
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -44,63 +46,41 @@
 using namespace std;
 
 class Solution {
-private:
-    bool isValid(int m, int n, int x, int y) {
-        return x >= 0 and y >= 0 and x < m and y < n;
-    }
-
-    int getShortestDistance(int m, int n, int x, int y, vector<vector<int>>& distance) {
-        int result = distance[x][y];
-
-        if (isValid(m, n, x, y + 1) and distance[x][y + 1] != INT_MAX) {
-            result = min(result, 1 + distance[x][y + 1]);
-        }
-        if (isValid(m, n, x, y - 1) and distance[x][y - 1] != INT_MAX) {
-            result = min(result, 1 + distance[x][y - 1]);
-        }
-        if (isValid(m, n, x + 1, y) and distance[x + 1][y] != INT_MAX) {
-            result = min(result, 1 + distance[x + 1][y]);
-        }
-        if (isValid(m, n, x - 1, y) and distance[x - 1][y] != INT_MAX) {
-            result = min(result, 1 + distance[x - 1][y]);
-        }
-        return result;
-    }
 public:
     vector<vector<int>> updateMatrix(vector<vector<int>>& matrix) {
         int m = matrix.size();
         int n = matrix[0].size();
-        vector<vector<int>> distance(m, vector<int>(n, INT_MAX));
-        queue<pair<int, int>> visit;
 
+        vector<vector<int>> distance(m, vector<int>(n, INT_MAX));
+        queue<pair<int, int>> bfs;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (matrix[i][j] == 0) {
                     distance[i][j] = 0;
-                    visit.push(make_pair(i, j + 1));
-                    visit.push(make_pair(i, j - 1));
-                    visit.push(make_pair(i + 1, j));
-                    visit.push(make_pair(i - 1, j));
+                    bfs.push({i, j});
                 }
             }
         }
 
-        while (!visit.empty()) {
-            pair<int, int> cur = visit.front();
-            visit.pop();
-            int x = cur.first;
-            int y = cur.second;
+        int curDis = 0;
+        vector<int> diff({0, 1, 0, -1, 0});
+        while (!bfs.empty()) {
+            int curSize = bfs.size();
+            for (int i = 0; i < curSize; ++i) {
+                int row = bfs.front().first;
+                int col = bfs.front().second;
+                bfs.pop();
 
-            if (isValid(m, n, x, y)) {
-                int shortestD = getShortestDistance(m, n, x, y, distance);
-                if (shortestD < distance[x][y]) {
-                    distance[x][y] = shortestD;
-                    visit.push(make_pair(x, y + 1));
-                    visit.push(make_pair(x, y - 1));
-                    visit.push(make_pair(x + 1, y));
-                    visit.push(make_pair(x - 1, y));
+                for (int i = 1; i < diff.size(); ++i) {
+                    int nr = row + diff[i];
+                    int nc = col + diff[i - 1];
+                    if (nr >= 0 and nc >= 0 and nr < m and nc < n and distance[nr][nc] == INT_MAX) {
+                        distance[nr][nc] = curDis + 1;
+                        bfs.push({nr, nc});
+                    }
                 }
             }
+            curDis += 1;
         }
         return distance;
     }
