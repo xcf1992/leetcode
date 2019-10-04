@@ -1,23 +1,22 @@
 /*
 1100. Find K-Length Substrings With No Repeated Characters
+https://leetcode.com/problems/find-k-length-substrings-with-no-repeated-characters/
+
 Given a string S, return the number of substrings of length K with no repeated characters.
 
 Example 1:
-
 Input: S = "havefunonleetcode", K = 5
 Output: 6
 Explanation:
 There are 6 substrings they are : 'havef','avefu','vefun','efuno','etcod','tcode'.
-Example 2:
 
+Example 2:
 Input: S = "home", K = 5
 Output: 0
 Explanation:
 Notice K can be larger than the length of S. In this case is not possible to find any substring.
 
-
 Note:
-
 1 <= S.length <= 10^4
 All characters of S are lowercase English letters.
 1 <= K <= 10^4
@@ -36,7 +35,6 @@ All characters of S are lowercase English letters.
 #include <set>
 #include <numeric>
 using namespace std;
-
 /*
 O(N) Brute Force
 The brute force would check all substring and we have O(KS) substrings.
@@ -87,45 +85,18 @@ Complexity
 Time O(N) for sliding windows
 Space O(1), as set.size <= 26
 
-
-Java:
-
-    public int numSubstrNoRepeats(String S, int K) {
-        HashSet<Character> cur = new HashSet<>();
-        int res = 0, i = 0;
-        for (int j = 0; j < S.length(); ++j) {
-            while (cur.contains(S.charAt(j)))
-                cur.remove(S.charAt(i++));
-            cur.add(S.charAt(j));
-            res += j - i + 1;
-        }
-        return res;
+int numSubstrNoRepeats(string S, int K) {
+    unordered_set<int> cur;
+    int res = 0, i = 0;
+    for (int j = 0; j < S.size(); ++j) {
+        while (cur.count(S[j]))
+            cur.erase(S[i++]);
+        cur.insert(S[j]);
+        res += j - i + 1;
     }
-C++:
+    return res;
+}
 
-    int numSubstrNoRepeats(string S, int K) {
-        unordered_set<int> cur;
-        int res = 0, i = 0;
-        for (int j = 0; j < S.size(); ++j) {
-            while (cur.count(S[j]))
-                cur.erase(S[i++]);
-            cur.insert(S[j]);
-            res += j - i + 1;
-        }
-        return res;
-    }
-Python
-
-    def numSubstrNoRepeats(self, S, K):
-        res, i = 0, 0
-        cur = set()
-        for j in xrange(len(S)):
-            while S[j] in cur:
-                cur.remove(S[i])
-                i += 1
-            cur.add(S[j])
-            res += j - i + 1
-        return res
 Follow-Down
 And If j - i + 1 >= K, among all these strings,
 there one and only one no repeated substring,
