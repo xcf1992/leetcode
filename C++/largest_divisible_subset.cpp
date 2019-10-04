@@ -44,6 +44,7 @@ public:
                 dp[i] = dp[j] + 1;
                 pre[i] = j;
             }
+            
             if (dp[i] > maxCount) {
                 maxCount = dp[i];
                 index = i;

@@ -41,7 +41,6 @@ Input: [1,0,0,null,3]
 Output: 4
 
 Note:
-
 1<= N <= 100
 0 <= node.val <= N
 */

@@ -56,10 +56,11 @@ public:
             while (A[index] != cur) {
                 index += 1;
             }
-            reverse(A.begin(), A.begin() + index + 1);
+
             result.push_back(index + 1);
-            reverse(A.begin(), A.begin() + cur);
+            reverse(A.begin(), A.begin() + index + 1);
             result.push_back(cur);
+            reverse(A.begin(), A.begin() + cur);
         }
         return result;
     }
