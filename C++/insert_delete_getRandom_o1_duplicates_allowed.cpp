@@ -1,14 +1,18 @@
 /*
 381. Insert Delete GetRandom O(1) - Duplicates allowed
+https://leetcode.com/problems/insert-delete-getrandom-o1-duplicates-allowed/
+
 Design a data structure that supports all following operations in average O(1) time.
 
-Note: Duplicate elements are allowed.
+Note:
+Duplicate elements are allowed.
+
 insert(val): Inserts an item val to the collection.
 remove(val): Removes an item val from the collection if present.
 getRandom: Returns a random element from current collection of elements.
 The probability of each element being returned is linearly related to the number of same value the collection contains.
-Example:
 
+Example:
 // Init an empty collection.
 RandomizedCollection collection = new RandomizedCollection();
 
@@ -68,12 +72,12 @@ public:
         pair<int, int> last = nums.back();
         indices[last.first][last.second] = indices[val].back();
         nums[indices[val].back()] = last;
+        nums.pop_back();
 
         indices[val].pop_back();
         if (indices[val].empty()) {
             indices.erase(val);
         }
-        nums.pop_back();
         return true;
     }
 

@@ -1,5 +1,6 @@
 /*
 964. Least Operators to Express Number
+
 Given a single positive integer x,
 we will write an expression of the form x (op1) x (op2) x (op3) x ...
 where each operator op1, op2, etc. is either addition, subtraction, multiplication, or division (+, -, *, or /).
@@ -18,24 +19,21 @@ We would like to write an expression with the least number of operators such tha
 Return the least number of expressions used.
 
 Example 1:
-
 Input: x = 3, target = 19
 Output: 5
 Explanation: 3 * 3 + 3 * 3 + 3 / 3.  The expression contains 5 operations.
-Example 2:
 
+Example 2:
 Input: x = 5, target = 501
 Output: 8
 Explanation: 5 * 5 * 5 * 5 - 5 * 5 * 5 + 5 / 5.  The expression contains 8 operations.
-Example 3:
 
+Example 3:
 Input: x = 100, target = 100000000
 Output: 3
 Explanation: 100 * 100 * 100 * 100.  The expression contains 3 operations.
 
-
 Note:
-
 2 <= x <= 100
 1 <= target <= 2 * 10^8
 */
@@ -52,10 +50,8 @@ Note:
 #include <map>
 #include <numeric>
 using namespace std;
-
 /*
- * Intuition
-
+Intuition
 First, we notice that we can consider blocks of multiplication and division separately.
 Each block is a power of x: either x / x, x, x * x, x * x * x, x * x * x * x and so on.
 (There is no point to write expressions like x * x / x because it uses strictly more operators.)
@@ -92,17 +88,15 @@ leaving us with a target of 125 or 0.
 If the target is 125, we subtract 125.
 
 Algorithm
-
 Let's calculate dp(i, target) using a top down dp. Here, i will be the exponent of the block x^i being considered,
 and target will be the remaining target, already divided by x^i
 
 From here, the recursion is straightforward: r = target(mod x),
 and we either subtract rr blocks or add (x-r) of them. The base cases are easily deduced - see the code for more details.
 
-
 pos the number of operations needed to get y % (x ^ (k+1))
 neg the number of operations needed to get x ^ (k + 1) - y % (x ^ (k + 1))
- **/
+*/
 class Solution {
 public:
     int leastOpsExpressTarget(int x, int target) {
@@ -133,33 +127,34 @@ public:
         if (memo.find(target) != memo.end()) {
             return memo[target];
         }
+        if (x == target) {  // just push x at the end
+            return 0;
+        }
+
         // At this time, you can get target either by add target times x/x or subtract (x - target) times x/x to x
         // For example, x = 3, target = 2. Then, 3/3 + 3/3 or 3 - 3/3 is possible result
         if (x > target) {
             return min(target * 2 - 1, (x - target) * 2);
         }
-        if (x == target) {  // just push x at the end
-            return 0;
-        }
 
         long long sums = x;
         int times = 0;
-        while (sums < target) {  // this is gready, put as much as possible 'x'
-            times++;
+        while (sums < target) { // this is gready, put as much as possible 'x'
+            times += 1;
             sums *= x;
         }
-
-        if (sums == target) {  // one more 'x' you put, one more operator
-            return times;
+        if (sums == target) { // one more 'x' you put, one more operator
+            memo[target] = times;
+            return memo[target];
         }
-
         // when you have remainder, you have two choices, one is add, the other is subtract
         // for example, x = 3, target = 5. Then, 5 = 3 + 2 or 5 = 9 - 4
-        int l = INT_MAX, r = INT_MAX;
+        int l = INT_MAX;
+        int r = INT_MAX;
         if (sums - target < target) {
-            l = leastOpsExpressTarget(x, sums - target) + times;  // using subtract
+            l = leastOpsExpressTarget(x, sums - target) + times; // using subtract
         }
-        r = leastOpsExpressTarget(x, target - (sums / x)) + times - 1;  // using add, cause we only need sum/x, so times - 1
+        r = leastOpsExpressTarget(x, target - (sums / x)) + times - 1; // using add, cause we only need sum/x, so times - 1
         memo[target] = min(l, r) + 1;  // No matter +/- used, one more operator is add
         return memo[target];
     }

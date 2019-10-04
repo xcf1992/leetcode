@@ -1,19 +1,18 @@
 /*
- 363. Max Sum of Rectangle No Larger Than K
+363. Max Sum of Rectangle No Larger Than K
 
- Given a non-empty 2D matrix matrix and an integer k,
- find the max sum of a rectangle in the matrix such that its sum is no larger than k.
+Given a non-empty 2D matrix matrix and an integer k,
+find the max sum of a rectangle in the matrix such that its sum is no larger than k.
 
- Example:
+Example:
+Input: matrix = [[1,0,1],[0,-2,3]], k = 2
+Output: 2
+Explanation: Because the sum of rectangle [[0, 1], [-2, 3]] is 2,
+and 2 is the max number no larger than k (k = 2).
 
- Input: matrix = [[1,0,1],[0,-2,3]], k = 2
- Output: 2
- Explanation: Because the sum of rectangle [[0, 1], [-2, 3]] is 2,
- and 2 is the max number no larger than k (k = 2).
- Note:
-
- The rectangle inside the matrix must have an area > 0.
- What if the number of rows is much larger than the number of columns?
+Note:
+The rectangle inside the matrix must have an area > 0.
+What if the number of rows is much larger than the number of columns?
 */
 #include <iostream>
 #include <string>
@@ -29,13 +28,12 @@
 #include <set>
 #include <numeric>
 using namespace std;
-
 /*
- Logic : loop for l and col range for column. Now iterate through the rows and add cur_sum to the set.
- and as we need sum<=k or cur_sum[j]-cur_sum[i]<=k or cur_sum[j]-k<=cur_sum[i].
- For this we can use set and keep updating the ans if we get any better ans not greater than k.
- Complexity - Time - O(mmlog(n))
- Space - O(n)
+Logic : loop for l and col range for column. Now iterate through the rows and add cur_sum to the set.
+and as we need sum<=k or cur_sum[j]-cur_sum[i]<=k or cur_sum[j]-k<=cur_sum[i].
+For this we can use set and keep updating the ans if we get any better ans not greater than k.
+Complexity - Time - O(mmlog(n))
+Space - O(n)
 */
 class Solution {
 public:

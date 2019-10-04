@@ -22,7 +22,7 @@ using namespace std;
 
 class Solution {
 private:
-    void dfs(vector<vector<string>> &results, vector<string> cur, string& s, int start, vector<vector<bool>>& dp) {
+    void dfs(vector<vector<string>>& results, vector<string> cur, string& s, int start, vector<vector<bool>>& dp) {
         if (start >= s.size()) {
             results.push_back(cur);
             return;

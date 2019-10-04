@@ -29,38 +29,26 @@ using namespace std;
 class Solution {
 public:
     int lengthOfLongestSubstringTwoDistinct(string s) {
-        int n = s.size();
-        if (n <= 2) {
-            return n;
-        }
-
+        unordered_map<char, int> pos;
+        int start = 0;
+        int end = 0;
+        int count = 0;
         int result = 0;
-        int begin = 0;
-        int end = 1;
-        int distinct = 1;
-        unordered_map<char, int> count;
-        count[s[begin]] = 1;
-        while (end < n) {
-            if (count[s[end]] != 0) {
-                count[s[end]] += 1;
-                end += 1;
+        while (end < s.size()) {
+            if (pos.find(s[end]) == pos.end() or pos[s[end]] < start) {
+                count += 1;
             }
-            else if (distinct == 1) {
-                count[s[end]] = 1;
-                end += 1;
-                distinct += 1;
-            }
-            else if (distinct == 2) {
-                result = max(result, end - begin);
-                while (begin < end and distinct == 2) {
-                    count[s[begin]] -= 1;
-                    if (count[s[begin]] == 0) {
-                        distinct = 1;
-                    }
-                    begin += 1;
+            pos[s[end]] = end;
+
+            while (count > 2) {
+                if (start == pos[s[start]]) {
+                    count -= 1;
                 }
+                start += 1;
             }
+            result = max(result, end - start + 1);
+            end += 1;
         }
-        return max(result, end - begin);
+        return result;
     }
 };

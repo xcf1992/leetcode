@@ -1,5 +1,6 @@
 /*
 726. Number of Atoms
+
 Given a chemical formula (given as a string),
 return the count of each atom.
 
@@ -32,23 +33,27 @@ formula = "H2O"
 Output: "H2O"
 Explanation:
 The count of elements are {'H': 2, 'O': 1}.
+
 Example 2:
 Input:
 formula = "Mg(OH)2"
 Output: "H2MgO2"
 Explanation:
 The count of elements are {'H': 2, 'Mg': 1, 'O': 2}.
+
 Example 3:
 Input:
 formula = "K4(ON(SO3)2)2"
 Output: "K4N2O14S4"
 Explanation:
 The count of elements are {'K': 4, 'N': 2, 'O': 14, 'S': 4}.
-Note:
 
-All atom names consist of lowercase letters, except for the first character which is uppercase.
+Note:
+All atom names consist of lowercase letters,
+except for the first character which is uppercase.
 The length of formula will be in the range [1, 1000].
-formula will only consist of letters, digits, and round parentheses, and is a valid formula as defined in the problem.
+formula will only consist of letters, digits, and round parentheses,
+and is a valid formula as defined in the problem.
 */
 #include <iostream>
 #include <string>
@@ -119,10 +124,10 @@ public:
         string result = "";
         int start = 0;
         map<string, int> atomNum = count(formula, start);
-        for (pair<string, int> p : atomNum) {
-            result += p.first;
-            if (p.second > 1) {
-                result += to_string(p.second);
+        for (auto& it : atomNum) {
+            result += it.first;
+            if (it.second > 1) {
+                result += to_string(it.second);
             }
         }
         return result;
