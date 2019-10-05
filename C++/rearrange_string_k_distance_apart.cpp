@@ -46,7 +46,7 @@ in each group we always try to put the most frequent letter first
 and try to make we only use each letter once in each group
 */
 struct mycompare {
-    bool operator () (pair<int, char>& a, pair<int, char>& b) {
+    bool operator()(pair<int, char>& a, pair<int, char>& b) {
         return a.first < b.first or (a.first == b.first and a.second < b.second);
     }
 };
