@@ -16,37 +16,21 @@ using namespace std;
 
 class Solution {
 public:
-    int minimumDeleteToMakeUnique(string s) {
+    string smallestString(string s) {
         int n = s.size();
-        if (n <= 1) {
-            return 0;
-        }
-
-        vector<int> occurence(26, 0);
-        for (char c : s) {
-            occurence[c - 'a'] += 1;
-        }
-        vector<int> count(n + 1, 0);
-        for (int i = 0; i < 26; ++i) {
-            if (occurence[i] != 0) {
-                count[occurence[i]] += 1;
+        for (int i = 0; i < n - 1; ++i) {
+            if (s[i] <= s[i + 1]) {
+                continue;
             }
+            return s.substr(0, i) + s.substr(i + 1);
         }
-
-        int result = 0;
-        for (int i = n; i > 0; --i) {
-            if (count[i] > 1) {
-                result += count[i] - 1;
-                count[i - 1] += count[i] - 1;
-            }
-        }
-        return result;
+        return s.substr(0, n - 1);
     }
 };
 
 int main() {
     Solution s;
-    s.minimumDeleteToMakeUnique("abcdefg");
+    cout << s.smallestString("aaa");
 
     vector<int> temp1({1,3,3,3,2});
     vector<vector<int>> matrix({
