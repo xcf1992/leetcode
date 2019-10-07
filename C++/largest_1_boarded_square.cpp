@@ -55,6 +55,7 @@ public:
                 while (len > maxLen) {
                     if (row[i - len + 1][j] >= len and col[i][j - len + 1] >= len) {
                         maxLen = len;
+                        break;
                     }
                     len -= 1;
                 }

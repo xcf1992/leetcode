@@ -149,15 +149,20 @@ public:
     int numKLenSubstrNoRepeats(string S, int K) {
         unordered_map<char, int> count;
         int result = 0;
+        int curLen = 0;
         for (int i = 0; i < S.size(); ++i) {
+            if (count[S[i]] == 0) {
+                curLen += 1;
+            }
             count[S[i]] += 1;
+
             if (i >= K) {
                 count[S[i - K]] -= 1;
                 if (count[S[i - K]] == 0) {
-                    count.erase(S[i - K]);
+                    curLen -= 1;
                 }
             }
-            if (i >= K - 1 and count.size() == K) {
+            if (i >= K - 1 and curLen == K) {
                 result += 1;
             }
         }

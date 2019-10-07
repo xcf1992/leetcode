@@ -47,6 +47,7 @@ public:
         int n = matrix[0].size();
 
         unordered_map<string, int> count;
+        int result = 0;
         for (int i = 0; i < m; ++i) {
             string key1 = "";
             string key2 = "";
@@ -56,11 +57,7 @@ public:
             }
             count[key1] += 1;
             count[key2] += 1;
-        }
-
-        int result = 0;
-        for (auto& it: count) {
-            result = max(result, it.second);
+            result = max(result, max(count[key1], count[key2]));
         }
         return result;
     }

@@ -50,7 +50,6 @@ public:
         ListNode* dummy = new ListNode(0);
         dummy -> next = head;
         unordered_map<int, ListNode*> preSum;
-
         int curSum = 0;
         ListNode* curNode = dummy;
         while (curNode != nullptr) {

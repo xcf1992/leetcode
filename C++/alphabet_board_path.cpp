@@ -46,7 +46,6 @@ target consists only of English lowercase letters.
 #include <stdio.h>
 #include <map>
 using namespace std;
-
 /*
 * special case of letter z
 * special case of zz

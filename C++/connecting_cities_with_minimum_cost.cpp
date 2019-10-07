@@ -23,7 +23,6 @@ Output: -1
 Explanation:
 There is no way to connect all cities even if all edges are used.
 
-
 Note:
 1 <= N <= 10000
 1 <= connections.length <= 10000
