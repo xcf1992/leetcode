@@ -32,9 +32,9 @@ You may assume that you have an infinite number of each kind of coin.
 #include <set>
 using namespace std;
 /*
- dynamic problem
- dp[i] means minimum number coins used to make amount i
- dp[j] = min{dp[j - coins[x]]}, while x >= 0 and x < coins.size() and j >= coins[x]
+dynamic problem
+dp[i] means minimum number coins used to make amount i
+dp[j] = min{dp[j - coins[x]]}, while x >= 0 and x < coins.size() and j >= coins[x]
 */
 class Solution {
 public:

@@ -132,6 +132,10 @@ Then we have:
 5 => (1 + 2 x 5) % 7 = 11 % 7 = 4
 */
 class Solution {
+private:
+    int getPos(int i, int n) {
+        return (1 + 2 * i) % (n | 1);
+    }
 public:
     void wiggleSort(vector<int>& nums) {
         int n = nums.size();
@@ -139,23 +143,21 @@ public:
         nth_element(nums.begin(), midPtr, nums.end());
         int midNum = *midPtr;
 
-        #define A(i) nums[(1 + 2 * i) % (n | 1)]
-
         int left = 0;
-        int cur = 0;
         int right = n - 1;
+        int cur = 0;
         while (cur <= right) {
-            if (A(cur) > midNum) { // the part before virtual index left will always be <= midNum, so we can move cur forward
-                swap(A(left), A(cur));
+            if (nums[getPos(cur, n)] > midNum) { // the part before virtual index left will always be <= midNum, so we can move cur forward
+                swap(nums[getPos(left, n)], nums[getPos(cur, n)]);
                 left += 1;
                 cur += 1;
             }
-            else if (A(cur) < midNum) { // we do no konw the value at virtual index right, we need to check again after swap
-                swap(A(cur), A(right));
+            else if (nums[getPos(cur, n)] < midNum) { // we do no konw the value at virtual index right, we need to check again after swap
+                swap(nums[getPos(cur, n)], nums[getPos(right, n)]);
                 right -= 1;
             }
             else {
-                cur++;
+                cur += 1;
             }
         }
     }

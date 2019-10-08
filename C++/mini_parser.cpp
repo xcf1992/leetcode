@@ -81,13 +81,12 @@ private:
             }
             else {
                 string num = "";
-                // cannot use isdigit, cause we may have negative number here
-                while (pos < n and s[pos] != ']' and s[pos] != ',') {
+                while (pos < n and s[pos] != ']' and s[pos] != ',') { // cannot use isdigit, cause we may have negative number here
                     num.push_back(s[pos]);
                     pos += 1;
                 }
-
                 result.add(NestedInteger(stoi(num)));
+
                 if (s[pos] == ']') {
                     return result;
                 }
