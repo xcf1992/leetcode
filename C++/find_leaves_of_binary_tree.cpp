@@ -1,18 +1,9 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <unordered_map>
-#include <unordered_set>
-#include <algorithm>
-#include <cmath>
-#include <queue>
-#include <stack>
-#include <stdio.h>
-#include "extra_data_types.hpp"
-using namespace std;
-
 /*
-Given a binary tree, collect a tree's nodes as if you were doing this: Collect and remove all leaves, repeat until the tree is empty.
+366. Find Leaves of Binary Tree
+https://leetcode.com/problems/find-leaves-of-binary-tree/
+
+Given a binary tree, collect a tree's nodes as if you were doing this:
+Collect and remove all leaves, repeat until the tree is empty.
 
 Example:
 Given binary tree
@@ -22,7 +13,6 @@ Given binary tree
        / \
       4   5
 Returns [4, 5, 3], [2], [1].
-
 Explanation:
 1. Removing the leaves [4, 5, 3] would result in this tree:
 
@@ -37,7 +27,45 @@ Explanation:
           []
 Returns [4, 5, 3], [2], [1].
 */
+#include <iostream>
+#include <string>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+#include <algorithm>
+#include <cmath>
+#include <queue>
+#include <stack>
+#include <stdio.h>
+#include "extra_data_types.hpp"
+using namespace std;
+
 class Solution {
+private:
+    int getHeight(TreeNode* root, unordered_map<int, vector<int>>& memo) {
+        if (root == nullptr) {
+            return -1;
+        }
+
+        int lh = getHeight(root -> left, memo);
+        int rh = getHeight(root -> right, memo);
+        int height = max(lh, rh) + 1;
+        memo[height].push_back(root -> val);
+        return height;
+    }
+public:
+    vector<vector<int>> findLeaves(TreeNode* root) {
+        unordered_map<int, vector<int>> memo;
+        int maxHeight = getHeight(root, memo);
+        vector<vector<int>> result(maxHeight + 1);
+        for (auto& it : memo) {
+            result[it.first] = it.second;
+        }
+        return result;
+    }
+};
+
+class Solution1 {
 private:
     vector<int> leaves;
 

@@ -1,5 +1,7 @@
 /*
 797. All Paths From Source to Target
+https://leetcode.com/problems/all-paths-from-source-to-target/
+
 Given a directed, acyclic graph of N nodes.
 Find all possible paths from node 0 to node N-1, and return them in any order.
 
@@ -16,8 +18,8 @@ Explanation: The graph looks like this:
 v    v
 2--->3
 There are two paths: 0 -> 1 -> 3 and 0 -> 2 -> 3.
-Note:
 
+Note:
 The number of nodes in the graph will be in the range [2, 15].
 You can print different paths in any order, but you should keep the order of nodes inside one path.
 */
@@ -39,17 +41,17 @@ private:
     unordered_map<int, vector<vector<int>>> memo;
 
     vector<vector<int>> dfs(int cur, vector<vector<int>>& graph) {
-        if (memo.find(cur) != memo.end()) {
-            return memo[cur];
-        }
-
         if (cur == N - 1) {
             return {{cur}};
         }
 
+        if (memo.find(cur) != memo.end()) {
+            return memo[cur];
+        }
+
         for (int next : graph[cur]) {
             for (vector<int>& path : dfs(next, graph)) {
-                path.insert(path.begin(), cur);
+                path.push_back(cur);
                 memo[cur].push_back(path);
             }
         }
@@ -58,7 +60,11 @@ private:
 public:
     vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
         N = graph.size();
-        return dfs(0, graph);
+        vector<vector<int>> result = dfs(0, graph);
+        for (vector<int>& path : result) {
+            reverse(path.begin(), path.end());
+        }
+        return result;
     }
 };
 

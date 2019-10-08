@@ -1,11 +1,11 @@
 /*
 165. Compare Version Numbers
+https://leetcode.com/problems/compare-version-numbers/
 
 Compare two version numbers version1 and version2.
 If version1 > version2 return 1; if version1 < version2 return -1;otherwise return 0.
 
 You may assume that the version strings are non-empty and contain only digits and the . character.
-
 The . character does not represent a decimal point and is used to separate number sequences.
 
 For instance, 2.5 is not "two and a half" or "half way to version three",
@@ -36,7 +36,6 @@ Example 5:
 Input: version1 = "1.0", version2 = "1.0.0"
 Output: 0
 Explanation: The first version number does not have a third level revision number, which means its third level revision number is default to "0"
-
 
 Note:
 Version strings are composed of numeric strings separated by dots . and this numeric strings may have leading zeroes.
