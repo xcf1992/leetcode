@@ -1,5 +1,6 @@
 /*
 754. Reach a Number
+
 You are standing at position 0 on an infinite number line.
 There is a goal at position target.
 
@@ -14,6 +15,7 @@ Output: 2
 Explanation:
 On the first move we step from 0 to 1.
 On the second step we step from 1 to 3.
+
 Example 2:
 Input: target = 2
 Output: 3
@@ -21,6 +23,7 @@ Explanation:
 On the first move we step from 0 to 1.
 On the second move we step  from 1 to -1.
 On the third move we step from -1 to 2.
+
 Note:
 target will be a non-zero integer in the range [-10^9, 10^9].
 */
@@ -62,13 +65,13 @@ public:
         * [The proof is simple: either T <= k and we choose it,
         * or we choose k in our subset and try to solve the same instance of the problem for T -= k
         * and the set {1, 2, ..., k-1}.]
-        *
+        
         * Otherwise, if delta is odd, we can't do it,
         * as every sign change from positive to negative changes the sum by an even number.
         * So let's consider a candidate answer of k+1, which changes delta by k+1.
         * If this is odd, then delta will be even and we can have an answer of k+1.
         * Otherwise, delta will be odd, and we will have an answer of k+2.
-       */
+        */
         while ((cur - target) % 2 != 0) {
             cur += n;
             n += 1;

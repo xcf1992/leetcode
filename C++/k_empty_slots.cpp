@@ -1,5 +1,6 @@
 /*
 683. K Empty Slots
+
 You have N bulbs in a row numbered from 1 to N.
 Initially, all the bulbs are turned off.
 We turn on exactly one bulb everyday until all bulbs are on after N days.
@@ -15,7 +16,6 @@ that have exactly K bulbs between them that are all turned off.
 If there isn't such day, return -1.
 
 Example 1:
-
 Input:
 bulbs: [1,3,2]
 K: 1
@@ -25,16 +25,14 @@ On the first day: bulbs[0] = 1, first bulb is turned on: [1,0,0]
 On the second day: bulbs[1] = 3, third bulb is turned on: [1,0,1]
 On the third day: bulbs[2] = 2, second bulb is turned on: [1,1,1]
 We return 2 because on the second day, there were two on bulbs with one off bulb between them.
-Example 2:
 
+Example 2:
 Input:
 bulbs: [1,2,3]
 K: 1
 Output: -1
 
-
 Note:
-
 1 <= N <= 20000
 1 <= bulbs[i] <= N
 bulbs is a permutation of numbers from 1 to N.
@@ -53,7 +51,6 @@ bulbs is a permutation of numbers from 1 to N.
 #include <map>
 #include <set>
 using namespace std;
-
 /*
 We wanted to find candidate intervals [left, right] where days[left],
 days[right] are the two smallest values in [days[left], days[left+1], ..., days[right]],

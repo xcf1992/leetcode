@@ -1,5 +1,6 @@
 /*
 632. Smallest Range
+
 You have k lists of sorted integers in ascending order.
 Find the smallest range that includes at least one number from each of the k lists.
 
@@ -17,7 +18,6 @@ Note:
 The given list may contain duplicates, so ascending order means >= here.
 1 <= k <= 3500
 -105 <= value of elements <= 105.
-
 For Java users, please note that the input type has been changed to List<List<Integer>>.
 And after you reset the code template, you'll see this point.
 */
@@ -63,6 +63,7 @@ public:
                 result[0] = num;
                 result[1] = large;
             }
+            
             if (index + 1 < nums[row].size()) {
                 index += 1;
                 pq.push({row, index, nums[row][index]});

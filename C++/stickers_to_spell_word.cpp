@@ -1,5 +1,6 @@
 /*
 691. Stickers to Spell Word
+
 We are given N different types of stickers.
 Each sticker has a lowercase English word on it.
 
@@ -13,31 +14,24 @@ What is the minimum number of stickers that you need to spell out the target?
 If the task is impossible, return -1.
 
 Example 1:
-
 Input:
-
 ["with", "example", "science"], "thehat"
 Output:
-
 3
 Explanation:
-
 We can use 2 "with" stickers, and 1 "example" sticker.
 After cutting and rearrange the letters of those stickers, we can form the target "thehat".
 Also, this is the minimum number of stickers necessary to form the target string.
+
 Example 2:
-
 Input:
-
 ["notice", "possible"], "basicbasic"
 Output:
-
 -1
 Explanation:
-
 We can't form the target "basicbasic" from cutting letters from the given stickers.
-Note:
 
+Note:
 stickers has length in the range [1, 50].
 stickers consists of lowercase English words (without apostrophes).
 target has length in the range [1, 15], and consists of lowercase English letters.
