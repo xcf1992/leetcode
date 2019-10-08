@@ -16,25 +16,21 @@ and won't eat any more bananas during this hour.
 
 Koko likes to eat slowly,
 but still wants to finish eating all the bananas before the guards come back.
-
 Return the minimum integer K such that she can eat all the bananas within H hours.
 
 Example 1:
-
 Input: piles = [3,6,7,11], H = 8
 Output: 4
-Example 2:
 
+Example 2:
 Input: piles = [30,11,23,4,20], H = 5
 Output: 30
-Example 3:
 
+Example 3:
 Input: piles = [30,11,23,4,20], H = 6
 Output: 23
 
-
 Note:
-
 1 <= piles.length <= 10^4
 piles.length <= H <= 10^9
 1 <= piles[i] <= 10^9
@@ -70,7 +66,7 @@ Our loop invariant will be that possible(hi) is always True, and lo is always le
 For more information on binary search, please visit [LeetCode Explore - Binary Search].
 
 To find the value of possible(K), (ie. whether Koko with an eating speed of K can eat all bananas in H hours), we simulate it.
-For each pile of size p > 0, we can deduce that Koko finishes it in Math.ceil(p / K) = ((p-1) // K) + 1 hours,
+For each pile of size p > 0, we can deduce that Koko finishes it in Math.ceil(p / K) = ((p-1) / K) + 1 hours,
 and we add these times across all piles and compare it to H.
 */
 class Solution {
@@ -78,7 +74,7 @@ private:
     int eatingHours(vector<int>& piles, int eat) {
         int total = 0;
         for (int p : piles) {
-            total += (p + eat - 1) / eat;
+            total += (p - 1) / eat + 1;
         }
         return total;
     }

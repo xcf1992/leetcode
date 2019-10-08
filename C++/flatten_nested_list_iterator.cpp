@@ -1,17 +1,17 @@
 /*
 341. Flatten Nested List Iterator
-Given a nested list of integers, implement an iterator to flatten it.
+https://leetcode.com/problems/flatten-nested-list-iterator/
 
+Given a nested list of integers, implement an iterator to flatten it.
 Each element is either an integer, or a list -- whose elements may also be integers or other lists.
 
 Example 1:
-
 Input: [[1,1],2,[1,1]]
 Output: [1,1,2,1,1]
 Explanation: By calling next repeatedly until hasNext returns false,
              the order of elements returned by next should be: [1,1,2,1,1].
-Example 2:
 
+Example 2:
 Input: [1,[4,[6]]]
 Output: [1,4,6]
 Explanation: By calling next repeatedly until hasNext returns false,
@@ -57,20 +57,24 @@ public:
 
     int next() {
         hasNext();
-        return (begins.top()++) -> getInteger();
+        int result = begins.top() -> getInteger();
+        begins.top() += 1;
+        return result;
     }
 
     bool hasNext() {
-        while (begins.size()) {
+        while (!begins.empty()) {
             if (begins.top() == ends.top()) {
                 begins.pop();
                 ends.pop();
-            } else {
+            }
+            else {
                 auto x = begins.top();
                 if (x -> isInteger()) {
                     return true;
                 }
-                begins.top()++;
+
+                begins.top() += 1;
                 begins.push(x -> getList().begin());
                 ends.push(x -> getList().end());
             }
