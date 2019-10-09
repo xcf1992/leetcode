@@ -43,24 +43,18 @@ private:
         vector<int> num;
         char digit = say[0];
         int count = 1;
+        string result = "";
         for (int i = 1; i < say.size(); ++i) {
             if (say[i] == digit) {
                 count += 1;
             }
             else {
-                num.push_back(count);
-                num.push_back(digit - '0');
+                result += to_string(count) + digit;
                 count = 1;
                 digit = say[i];
             }
         }
-        num.push_back(count);
-        num.push_back(digit - '0');
-
-        string result = "";
-        for (int i = 0; i < num.size(); ++i) {
-            result.push_back(num[i] + '0');
-        }
+        result += to_string(count) + digit;
         return result;
     }
 public:
