@@ -1,5 +1,7 @@
 /*
 545. Boundary of Binary Tree
+https://leetcode.com/problems/boundary-of-binary-tree/
+
 Given a binary tree, return the values of its boundary in anti-clockwise direction starting from root.
 Boundary includes left boundary, leaves, and right boundary in order without duplicate nodes.
 
@@ -22,15 +24,14 @@ Input:
     2
    / \
   3   4
-
 Ouput:
 [1, 3, 4, 2]
-
 Explanation:
 The root doesn't have left subtree, so the root itself is left boundary.
 The leaves are node 3 and 4.
 The right boundary are node 1,2,4. Note the anti-clockwise direction means you should output reversed right boundary.
 So order them in anti-clockwise without duplicates and we have [1,3,4,2].
+
 Example 2
 Input:
     ____1_____
@@ -40,10 +41,8 @@ Input:
 4   5        6
    / \      / \
   7   8    9  10
-
 Ouput:
 [1,2,4,7,8,9,10,6,3]
-
 Explanation:
 The left boundary are node 1,2,4. (4 is the left-most node according to definition)
 The leaves are node 4,7,8,9,10.
@@ -82,12 +81,8 @@ private:
         if (boundary) {
             leftPath.push_back(root -> val);
         }
-
         getLeftPath(root -> left, leftPath, boundary);
-        if (boundary and root -> left != nullptr) {
-            boundary = false;
-        }
-        getLeftPath(root -> right, leftPath, boundary);
+        getLeftPath(root -> right, leftPath, boundary and root -> left == nullptr);
     }
 
     void getRightPath(TreeNode* root, vector<int>& rightPath, bool boundary) {
@@ -103,12 +98,8 @@ private:
         if (boundary) {
             rightPath.push_back(root -> val);
         }
-
         getRightPath(root -> right, rightPath, boundary);
-        if (boundary and root -> right != nullptr) {
-            boundary = false;
-        }
-        getRightPath(root -> left, rightPath, boundary);
+        getRightPath(root -> left, rightPath, boundary and root -> right == nullptr);
     }
 public:
     vector<int> boundaryOfBinaryTree(TreeNode* root) {
@@ -118,7 +109,6 @@ public:
 
         vector<int> leftPath;
         getLeftPath(root -> left, leftPath, true);
-
         vector<int> rightPath;
         getRightPath(root -> right, rightPath, true);
         reverse(rightPath.begin(), rightPath.end());

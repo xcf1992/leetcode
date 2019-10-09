@@ -1,5 +1,7 @@
 /*
 767. Reorganize String
+https://leetcode.com/problems/reorganize-string/
+
 Given a string S, check if the letters can be rearranged
 so that two characters that are adjacent to each other are not the same.
 
@@ -7,15 +9,14 @@ If possible, output any possible result.
 If not possible, return the empty string.
 
 Example 1:
-
 Input: S = "aab"
 Output: "aba"
-Example 2:
 
+Example 2:
 Input: S = "aaab"
 Output: ""
-Note:
 
+Note:
 S will consist of lowercase letters and have length in range [1, 500].
 */
 #include <iostream>
@@ -43,6 +44,7 @@ public:
         if (n <= 1) {
             return S;
         }
+
         vector<int> letter(26, 0);
         for (char c : S) {
             letter[c - 'a'] += 1;
@@ -64,8 +66,8 @@ public:
             pq.pop();
 
             result.push_back(l1.first);
-            result.push_back(l2.first);
             l1.second -= 1;
+            result.push_back(l2.first);
             l2.second -= 1;
             if (l1.second > 0) {
                 pq.push(l1);

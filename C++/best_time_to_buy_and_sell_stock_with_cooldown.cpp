@@ -1,15 +1,16 @@
 /*
 309. Best Time to Buy and Sell Stock with Cooldown
-Say you have an array for which the ith element is the price of a given stock on day i.
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/
 
+Say you have an array for which the ith element is the price of a given stock on day i.
 Design an algorithm to find the maximum profit.
 You may complete as many transactions as you like
 (ie, buy one and sell one share of the stock multiple times) with the following restrictions:
 
 You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).
 After you sell your stock, you cannot buy stock on next day. (ie, cooldown 1 day)
-Example:
 
+Example:
 Input: [1,2,3,0,2]
 Output: 3
 Explanation: transactions = [buy, sell, cooldown, buy, sell]
@@ -48,7 +49,6 @@ since they will be the maximum profit we need
 (No one can buy stock and left with more profit that sell right :) )
 
 Define base case:
-
 s0[0] = 0; // At the start, you don't have any stock if you just rest
 s1[0] = -prices[0]; // After buy, you should have -prices[0] profit. Be positive!
 s2[0] = INT_MIN; // Lower base case
@@ -60,10 +60,10 @@ public:
         if (n <= 1) {
             return 0;
         }
+
         vector<int> s0(n, 0);
         vector<int> s1(n, 0);
         vector<int> s2(n, 0);
-
         s0[0] = 0;
         s1[0] = -prices[0];
         s2[0] = INT_MIN;

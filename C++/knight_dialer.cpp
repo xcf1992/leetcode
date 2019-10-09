@@ -1,35 +1,33 @@
 /*
- 935. Knight Dialer
- A chess knight can move as indicated in the chess diagram below:
+935. Knight Dialer
+https://leetcode.com/problems/knight-dialer/
 
- This time, we place our chess knight on any numbered key of a phone pad (indicated above),
- and the knight makes N-1 hops.
- Each hop must be from one key to another numbered key.
+A chess knight can move as indicated in the chess diagram below:
 
- Each time it lands on a key (including the initial placement of the knight),
- it presses the number of that key, pressing N digits total.
+This time, we place our chess knight on any numbered key of a phone pad (indicated above),
+and the knight makes N-1 hops.
+Each hop must be from one key to another numbered key.
 
- How many distinct numbers can you dial in this manner?
+Each time it lands on a key (including the initial placement of the knight),
+it presses the number of that key, pressing N digits total.
 
- Since the answer may be large, output the answer modulo 10^9 + 7.
+How many distinct numbers can you dial in this manner?
+Since the answer may be large, output the answer modulo 10^9 + 7.
 
- Example 1:
+Example 1:
+Input: 1
+Output: 10
 
- Input: 1
- Output: 10
- Example 2:
+Example 2:
+Input: 2
+Output: 20
 
- Input: 2
- Output: 20
- Example 3:
+Example 3:
+Input: 3
+Output: 46
 
- Input: 3
- Output: 46
-
-
- Note:
-
- 1 <= N <= 5000
+Note:
+1 <= N <= 5000
 */
 #include <iostream>
 #include <string>
@@ -48,20 +46,20 @@ using namespace std;
 class Solution {
 private:
     long MOD = 1e9 + 7;
-    vector<vector<int>> next = {
-        {4, 6},
-        {8, 6},
-        {7, 9},
-        {4, 8},
-        {0, 3, 9},
-        {},
-        {0, 1, 7},
-        {2, 6},
-        {1, 3},
-        {2, 4}
-    };
 public:
     int knightDialer(int N) {
+        vector<vector<int>> next({
+            {4, 6},
+            {8, 6},
+            {7, 9},
+            {4, 8},
+            {0, 3, 9},
+            {},
+            {0, 1, 7},
+            {2, 6},
+            {1, 3},
+            {2, 4}
+        });
         vector<vector<int>> dp(N + 1, vector<int>(10, 0));
         for (int i = 0; i < 10; i++) {
             dp[1][i] = 1;
