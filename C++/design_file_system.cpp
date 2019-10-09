@@ -1,7 +1,8 @@
 /*
 1166. Design File System
-You are asked to design a file system which provides two functions:
+https://leetcode.com/problems/design-file-system/
 
+You are asked to design a file system which provides two functions:
 create(path, value):
 Creates a new path and associates a value to it if possible and returns True.
 Returns False if the path already exists or its parent path doesn't exist.
@@ -13,9 +14,7 @@ The format of a path is one or more concatenated strings of the form:
 / followed by one or more lowercase English letters.
 
 For example, /leetcode and /leetcode/problems are valid paths while an empty string and / are not.
-
 Implement the two functions.
-
 Please refer to the examples for clarifications.
 
 Example 1:
@@ -46,9 +45,7 @@ fileSystem.get("/leet/code"); // return 2
 fileSystem.create("/c/d", 1); // return false because the parent path "/c" doesn't exist.
 fileSystem.get("/c"); // return -1 because this path doesn't exist.
 
-
 Constraints:
-
 The number of calls to the two functions is less than or equal to 10^4 in total.
 2 <= path.length <= 100
 1 <= value <= 10^9
@@ -88,13 +85,12 @@ private:
         vector<string> result;
         string cur = "";
         for (int i = 1; i < path.size(); ++i) {
-            char c = path[i];
-            if (c == '/') {
+            if (path[i] == '/') {
                 result.push_back(cur);
                 cur = "";
             }
             else {
-                cur.push_back(c);
+                cur.push_back(path[i]);
             }
         }
         result.push_back(cur);
@@ -150,8 +146,8 @@ public:
     }
 };
 /*
- * Your FileSystem object will be instantiated and called as such:
- * FileSystem* obj = new FileSystem();
- * bool param_1 = obj->create(path,value);
- * int param_2 = obj->get(path);
+* Your FileSystem object will be instantiated and called as such:
+* FileSystem* obj = new FileSystem();
+* bool param_1 = obj->create(path,value);
+* int param_2 = obj->get(path);
 */
