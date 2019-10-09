@@ -1,12 +1,13 @@
 /*
 379. Design Phone Directory
-Design a Phone Directory which supports the following operations:
+https://leetcode.com/problems/design-phone-directory/
 
+Design a Phone Directory which supports the following operations:
 get: Provide a number which is not assigned to anyone.
 check: Check if a number is available or not.
 release: Recycle or release a number.
-Example:
 
+Example:
 // Init a phone directory containing a total of 3 numbers: 0, 1, and 2.
 PhoneDirectory directory = new PhoneDirectory(3);
 

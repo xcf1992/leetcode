@@ -1,5 +1,6 @@
 /*
 698. Partition to K Equal Sum Subsets
+https://leetcode.com/problems/partition-to-k-equal-sum-subsets/
 
 Given an array of integers nums and a positive integer k,
 find whether it's possible to divide this array into k non-empty subsets whose sums are all equal.
@@ -31,7 +32,8 @@ dp[i] indicates whether an array of length i can partitioned into k subsets of e
 Using this technique, the last index of this dp array
 will tell whether the whole array can be partitioned into k subsets of equal sum.
 
-total[i] stores the sum of subset with sum less than equal to target sum (total sum/k why? because we need to split array into k subset).
+total[i] stores the sum of subset with sum less than equal to target sum
+(total sum/k why? because we need to split array into k subset).
 
 https://leetcode.com/problems/partition-to-k-equal-sum-subsets/discuss/335668/Dynamic-Programming-with-Bit-Masking-Solution-%3A-Best-for-Interviews
 */
