@@ -94,3 +94,46 @@ public:
         return cheapest[dst] == INT_MAX ? -1 : cheapest[dst];
     }
 };
+
+// follow up print flight path
+class Solution {
+public:
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int K) {
+        unordered_map<int, unordered_map<int, int>> prices;
+        for (vector<int>& flight : flights) {
+            prices[flight[0]][flight[1]] = flight[2];
+        }
+
+        queue<vector<int>> bfs;
+        bfs.push({0, src, 0}); // {stops, cur, cost}
+        vector<int> cheapest(n, INT_MAX);
+        cheapest[src] = 0;
+        vector<int> pre(n, -1);
+        while (!bfs.empty()) {
+            int stops = bfs.front()[0];
+            int city = bfs.front()[1];
+            int cost = bfs.front()[2];
+            bfs.pop();
+
+            if (stops > K or city == dst) {
+                continue;
+            }
+
+            for (auto nxt : prices[city]) {
+                int nxtCost = cost + nxt.second;
+                if (nxtCost < cheapest[nxt.first]) {
+                    cheapest[nxt.first] = nxtCost;
+                    pre[nxt.first] = city;
+                    bfs.push({stops + 1, nxt.first, nxtCost});
+                }
+            }
+        }
+
+        vector<int> path;
+        for (int i = dst; i != -1; i = pre[i]) {
+            path.push_back(i);
+            cout << i << endl;
+        }
+        return cheapest[dst] == INT_MAX ? -1 : cheapest[dst];
+    }
+};
