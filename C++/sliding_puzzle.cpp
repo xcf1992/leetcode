@@ -1,11 +1,11 @@
 /*
 773. Sliding Puzzle
+https://leetcode.com/problems/sliding-puzzle/
 
 On a 2x3 board, there are 5 tiles represented by the integers 1 through 5,
 and an empty square represented by 0.
 
 A move consists of choosing 0 and a 4-directionally adjacent number and swapping it.
-
 The state of the board is solved if and only if the board is [[1, 2, 3], [4, 5, 0]].
 
 Given a puzzle board,
@@ -14,7 +14,6 @@ If it is impossible for the state of the board to be solved,
 return -1.
 
 Examples:
-
 Input: board = [[1, 2, 3], [4, 0, 5]]
 Output: 1
 Explanation: Swap the 0 and the 5 in one move.
@@ -33,8 +32,8 @@ After move 4: [[1, 2, 0], [4, 5, 3]]
 After move 5: [[1, 2, 3], [4, 5, 0]]
 Input: board = [[3, 2, 4], [1, 5, 0]]
 Output: 14
-Note:
 
+Note:
 board will be a 2 x 3 array as described above.
 board[i][j] will be a permutation of [0,  1,  2,  3,  4,  5].
 */
@@ -56,31 +55,35 @@ public:
     int slidingPuzzle(vector<vector<int>>& board) {
         unordered_map<int, vector<int>> moves{{0, {1, 3}}, {1, {0, 2, 4}}, {2, {1, 5}}, {3, {0, 4}}, {4, {3, 5, 1}}, {5, {4, 2}}};
         string puzzle = "";
+        int zeroPos = 0;
         for (int i = 0; i < board.size(); i++) {
             for (int j = 0; j < board[0].size(); j++) {
                 puzzle.push_back(board[i][j] + '0');
+                if (board[i][j] == 0) {
+                    zeroPos = i * 3 + j;
+                }
             }
         }
         string target = "123450";
 
         unordered_set<string> visited;
         queue<pair<string, int>> bfs;
-        bfs.push({puzzle, puzzle.find('0')});
+        bfs.push({puzzle, zeroPos});
         int step = 0;
         while (!bfs.empty()) {
             int curSize = bfs.size();
             for (int i = 0; i < curSize; ++i) {
                 puzzle = bfs.front().first;
-                int pos = bfs.front().second;
+                zeroPos = bfs.front().second;
                 bfs.pop();
 
                 if (puzzle == target) {
                     return step;
                 }
 
-                for (int next : moves[pos]) {
+                for (int next : moves[zeroPos]) {
                     string nextPuzzle = puzzle;
-                    swap(nextPuzzle[pos], nextPuzzle[next]);
+                    swap(nextPuzzle[zeroPos], nextPuzzle[next]);
                     if (visited.find(nextPuzzle) == visited.end()) {
                         visited.insert(nextPuzzle);
                         bfs.push({nextPuzzle, next});

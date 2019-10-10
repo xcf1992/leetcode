@@ -1,5 +1,6 @@
 /*
 76. Minimum Window Substring
+https://leetcode.com/problems/minimum-window-substring/
 
 Given a string S and a string T,
 find the minimum window in S which will contain all the characters in T in complexity O(n).
@@ -33,27 +34,29 @@ public:
             count[c] += 1;
         }
 
-        int result = m + 1;
+        int minLen = m + 1;
         int left = 0;
         int start = 0;
-        int i = 0;
+        int end = 0;
         int required = n;
-        while (i <= m and start <= m) {
+        while (end <= m and start <= m) {
             if (required > 0) {
-                if (i == m) {
+                if (end == m) {
                     break;
                 }
-                count[s[i]] -= 1; // should not use count.find(s[i]) != count.end() to check, cause for cases like bba
-                if (count[s[i]] >= 0) {
+
+                count[s[end]] -= 1; // should not use count.find(s[i]) != count.end() to check, cause for cases like bba
+                if (count[s[end]] >= 0) {
                     required -= 1;
                 }
-                i += 1;
+                end += 1;
             }
             else {
-                if (i - start < result) {
-                    result = i - start;
+                if (end - start < minLen) {
+                    minLen = end - start;
                     left = start;
                 }
+
                 count[s[start]] += 1;
                 if (count[s[start]] > 0) {
                     required += 1;
@@ -61,6 +64,6 @@ public:
                 start += 1;
             }
         }
-        return result == m + 1 ? "" : s.substr(left, result);
+        return minLen == m + 1 ? "" : s.substr(left, minLen);
     }
 };

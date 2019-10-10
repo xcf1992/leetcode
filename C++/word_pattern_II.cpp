@@ -1,5 +1,6 @@
 /*
 291. Word Pattern II
+https://leetcode.com/problems/word-pattern-ii/
 
 Given a pattern and a string str,
 find if str follows the same pattern.
@@ -56,15 +57,15 @@ private:
             return false;
         }
 
-        for (int k = j; k < n; k++) {
-            string word = str.substr(j, k - j + 1);
+        for (int len = 1; j + len - 1 < n; len++) {
+            string word = str.substr(j, len);
             if (str2Pat.find(word) != str2Pat.end()) {
                 continue;
             }
 
             pat2Str[pattern[i]] = word;
             str2Pat[word] = pattern[i];
-            if (match(pattern, i + 1, str, k + 1)) {
+            if (match(pattern, i + 1, str, j + len)) {
                 return true;
             }
             pat2Str.erase(pattern[i]);

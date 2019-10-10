@@ -1,5 +1,7 @@
 /*
 843. Guess the Word
+https://leetcode.com/problems/guess-the-word/
+
 This problem is an interactive problem new to the LeetCode platform.
 
 We are given a word list of unique words,
@@ -27,17 +29,16 @@ such that every word in the given word lists is unique.
 
 Example 1:
 Input: secret = "acckzz", wordlist = ["acckzz","ccbazz","eiowzz","abcczz"]
-
 Explanation:
-
 master.guess("aaaaaa") returns -1, because "aaaaaa" is not in wordlist.
 master.guess("acckzz") returns 6, because "acckzz" is secret and has all 6 matches.
 master.guess("ccbazz") returns 3, because "ccbazz" has 3 matches.
 master.guess("eiowzz") returns 2, because "eiowzz" has 2 matches.
 master.guess("abcczz") returns 4, because "abcczz" has 4 matches.
-
 We made 5 calls to master.guess and one of them was the secret, so we pass the test case.
-Note:  Any solutions that attempt to circumvent the judge will result in disqualification.
+
+Note:
+Any solutions that attempt to circumvent the judge will result in disqualification.
 */
 #include <iostream>
 #include <sstream>
