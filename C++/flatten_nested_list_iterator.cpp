@@ -50,7 +50,7 @@ class NestedIterator {
 private:
     stack<vector<NestedInteger>::iterator> begins, ends;
 public:
-    NestedIterator(vector<NestedInteger> &nestedList) {
+    NestedIterator(vector<NestedInteger>& nestedList) {
         begins.push(nestedList.begin());
         ends.push(nestedList.end());
     }

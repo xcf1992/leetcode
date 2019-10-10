@@ -1,17 +1,21 @@
+/*
+http://storypku.com/2017/10/leetcode-question-15-find-median-from-large-file-of-integers/
+https://rextester.com/discussion/VSCU77544/Find-Median-in-Large-File-of-Integers
+*/
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <map>
 #include <unordered_set>
 #include <algorithm>
 #include <cmath>
 #include <queue>
 #include <stack>
 #include <stdio.h>
-#include <map>
 #include <set>
 #include <numeric>
-#include "extra_data_types.hpp"
 using namespace std;
 
 class Solution {
@@ -25,7 +29,7 @@ private:
         int count = 0;
         int median = left;
         for (int num : nums) {
-            if (num <= guess) {
+            if (num <= left) {
                 count += 1;
                 median = max(median, num);
             }
@@ -57,31 +61,3 @@ public:
         return sum / 2.0;
     }
 };
-
-int main() {
-    vector<int> temp1({1,2,3,5,6,6,6,6,6,8});
-    Solution s;
-    cout << s.findMedian(temp1);
-
-    vector<vector<int>> matrix({
-        {0,1},
-        {1,2},
-        {2,1},
-        {1,0},
-        {0,2},
-        {0,0},
-        {1,1}
-    });
-    vector<vector<int>> matrix2({
-        {1,2,2,3,5},
-        {3,2,3,4,4},
-        {2,4,5,3,1},
-        {6,7,1,4,5},
-        {5,1,1,2,4}
-    });
-    vector<string> words({"hot","dot","dog","lot","log","cog"});
-    TreeNode* r1 = new TreeNode(0);
-    TreeNode* r2 = new TreeNode(1);
-    TreeNode* r3 = new TreeNode(3);
-    r1 -> left = r2;
-}
