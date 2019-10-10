@@ -1,5 +1,7 @@
 /*
 353. Design Snake Game
+https://leetcode.com/problems/design-snake-game/
+
 Design a Snake game that is played on a device with screen size = width x height.
 Play the game online if you are not familiar with the game.
 
@@ -15,38 +17,29 @@ When a food does appear on the screen,
 it is guaranteed that it will not appear on a block occupied by the snake.
 
 Example:
-
 Given width = 3, height = 2, and food = [[1,2],[0,1]].
-
 Snake snake = new Snake(width, height, food);
-
 Initially the snake appears at position (0,0) and the food at (1,2).
-
 |S| | |
 | | |F|
 
 snake.move("R"); -> Returns 0
-
 | |S| |
 | | |F|
 
 snake.move("D"); -> Returns 0
-
 | | | |
 | |S|F|
 
 snake.move("R"); -> Returns 1 (Snake eats the first food and right after that, the second food appears at (0,1) )
-
 | |F| |
 | |S|S|
 
 snake.move("U"); -> Returns 1
-
 | |F|S|
 | | |S|
 
 snake.move("L"); -> Returns 2 (Snake eats the second food)
-
 | |S|S|
 | | |S|
 
@@ -135,7 +128,7 @@ public:
     }
 };
 /*
- * Your SnakeGame object will be instantiated and called as such:
- * SnakeGame obj = new SnakeGame(width, height, food);
- * int param_1 = obj.move(direction);
+* Your SnakeGame object will be instantiated and called as such:
+* SnakeGame obj = new SnakeGame(width, height, food);
+* int param_1 = obj.move(direction);
 */
