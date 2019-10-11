@@ -1,3 +1,23 @@
+/*
+Assumption
+1. Given an API we can call, API takes a String from "1111" ~ "6666".
+returns how many number is a match, correct position and value
+2. Use this api to guess a number with as fewer API calls as possible
+
+Approach:
+1. So, we can first wrap the socket connection to a Connection class, then we will
+use it to call the server.
+2. We can first guess "1111", this way, we know how many 1 in the result.
+we guess "2222" and we can know how many 2 in the result. and
+so on. After this, for example, we know 1,2,2,4 are in the result, but we do not
+know the order yet.
+3. To get the order, we first fill an char array with the not exist
+number, let's say 3. [3,3,3,3]. Then replace with [1,3,3,3], [3,1,3,3], [3,3,1,3] and
+call api again ,we will know the position of 1. We do the same for the rest.
+
+Time: at most 12 times of API calls
+6+3+2+1 = 12
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -9,9 +29,6 @@
 #include <stack>
 #include <stdio.h>
 #include <map>
-#include <set>
-#include <numeric>
-#include "extra_data_types.hpp"
 using namespace std;
 
 class Solution {
@@ -56,31 +73,3 @@ public:
         return result;
     }
 };
-
-int main() {
-    vector<int> temp1({1,2,3,5,6,6,6,6,6,8});
-    Solution s;
-    s.guestNumber("1223");
-
-    vector<vector<int>> matrix({
-        {0,1},
-        {1,2},
-        {2,1},
-        {1,0},
-        {0,2},
-        {0,0},
-        {1,1}
-    });
-    vector<vector<int>> matrix2({
-        {1,2,2,3,5},
-        {3,2,3,4,4},
-        {2,4,5,3,1},
-        {6,7,1,4,5},
-        {5,1,1,2,4}
-    });
-    vector<string> words({"hot","dot","dog","lot","log","cog"});
-    TreeNode* r1 = new TreeNode(0);
-    TreeNode* r2 = new TreeNode(1);
-    TreeNode* r3 = new TreeNode(3);
-    r1 -> left = r2;
-}
