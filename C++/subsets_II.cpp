@@ -34,23 +34,20 @@ using namespace std;
 
 class Solution {
 private:
-    void construct(map<int, int>& count, vector<vector<int>>& result, vector<int> sub, int level) {
-        if (level >= count.size()) {
+    void construct(map<int, int>& count, vector<vector<int>>& result, vector<int> sub, map<int, int>::iterator it) {
+        if (it == count.end()) {
             result.push_back(sub);
             return;
         }
+        auto next = it;
+        next++;
+        construct(count, result, sub, next);
 
-        construct(count, result, sub, level + 1);
-
-        auto it = count.begin();
-        for (int i = 0; i < level; ++i) {
-            it++;
-        }
         int num = it -> first;
         int cnt = it -> second;
         for (int i = 0; i < cnt; ++i) {
             sub.push_back(num);
-            construct(count, result, sub, level + 1);
+            construct(count, result, sub, next);
         }
     }
 public:
@@ -62,7 +59,7 @@ public:
 
         vector<vector<int>> result;
         vector<int> sub;
-        construct(count, result, sub, 0);
+        construct(count, result, sub, count.begin());
         return result;
     }
 };
