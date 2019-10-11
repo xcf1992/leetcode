@@ -25,14 +25,14 @@ Explanation:
 #       #
 ##  # ###
 #########
-0123456    <- index
+ 0123456    <- index
 
 The first drop of water lands at index K = 3:
 #       #
 #   w   #
 ##  # ###
 #########
-0123456
+ 0123456
 
 When moving left or right, the water can only move to the same level or a lower level.
 (By level, we mean the total height of the terrain plus any water in that column.)
@@ -129,6 +129,29 @@ using namespace std;
 
 class Solution {
 public:
+    void printResult(vector<int>& originalH, vector<int>& finalH) {
+        int maxHeight = finalH[0];
+        for (int height : finalH) {
+            maxHeight = max(maxHeight, height);
+        }
+
+        int n = originalH.size();
+        for (int cur = maxHeight; cur > 0; --cur) {
+            for (int i = 0; i < n; ++i) {
+                if (cur <= originalH[i]) {
+                    cout << "#";
+                }
+                else if (cur <= finalH[i]) {
+                    cout << "w";
+                }
+                else {
+                    cout << " ";
+                }
+            }
+            cout << endl;
+        }
+    }
+
     vector<int> pourWater(vector<int>& heights, int V, int K) {
         int n = heights.size();
         for (int i = 0; i < V; i++) {
