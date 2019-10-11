@@ -76,7 +76,11 @@ class FileSystem {
                     return false;
                 }
             }
+
             cur = cur.child.get(nodes[i]);
+            if (cur.isWatched) {
+                cur.trigger.run();
+            }
         }
         cur.isFile = true;
         cur.value = value;
@@ -100,15 +104,35 @@ class FileSystem {
         return cur.value;
     }
 
+    public boolean watch(String path, String message) {
+        String[] nodes = path.split("/");
+        int len = nodes.length;
+        TrieNode cur = this.root;
+        for (int i = 1; i < len; ++i) {
+            if (!cur.child.containsKey(nodes[i])) {
+                return false;
+            }
+
+            cur = cur.child.get(nodes[i]);
+        }
+        cur.isWatched = true;
+        cur.trigger = () -> System.out.println(message);
+        return true;
+    }
+
     public class TrieNode {
         Map<String, TrieNode> child;
         boolean isFile;
         int value;
+        boolean isWatched;
+        Runnable trigger;
 
         TrieNode(int val) {
             this.child = new HashMap<>();
             this.isFile = false;
             this.value = val;
+            this.isWatched = false;
+            trigger = null;
         }
     }
 }
