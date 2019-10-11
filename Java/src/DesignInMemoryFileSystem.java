@@ -1,9 +1,9 @@
 import java.util.*;
 
-class FileSystem {
+class MemoryFileSystem {
     private TrieNode root;
 
-    public FileSystem() {
+    public MemoryFileSystem() {
         this.root = new TrieNode();
     }
 

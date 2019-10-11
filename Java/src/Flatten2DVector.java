@@ -28,16 +28,36 @@ As an added challenge, try to code it using only iterators in C++ or iterators i
 import java.util.*;
 
 class Vector2D {
+    private Iterator<List<Integer>> listIterator;
+    private Iterator<Integer> subIterator;
 
-    public Vector2D(int[][] v) {
-        v.it
+    private void advanceListIterator() {
+        while (listIterator.hasNext()) {
+            subIterator = listIterator.next().iterator();
+            if (subIterator.hasNext()) {
+                break;
+            }
+        }
+    }
+
+    public Vector2D(List<List<Integer>> vec2d) {
+        this.listIterator = vec2d.iterator();
+        advanceListIterator();
     }
 
     public int next() {
+        if (!hasNext()) {
+            throw new NoSuchElementException();
+        }
 
+        int result = subIterator.next();
+        if (!subIterator.hasNext()) {
+            advanceListIterator();
+        }
+        return result;
     }
 
     public boolean hasNext() {
-
+        return subIterator != null && subIterator.hasNext();
     }
 }
