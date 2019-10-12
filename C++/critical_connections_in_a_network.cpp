@@ -60,15 +60,15 @@ private:
     }
 public:
     vector<vector<int>> criticalConnections(int n, vector<vector<int>>& connections) {
-        vector<bool> visited(n, false);
-        vector<int> disc(n, 0), low(n, 0), parent(n, -1);
         vector<vector<int>> graph(n, vector<int>());
-        vector<vector<int>> result;
-
         for (vector<int>& con : connections) {
             graph[con[0]].push_back(con[1]);
             graph[con[1]].push_back(con[0]);
         }
+
+        vector<bool> visited(n, false);
+        vector<int> disc(n, 0), low(n, 0), parent(n, -1);
+        vector<vector<int>> result;
         for (int i = 0; i < n; ++i) if (!visited[i]) {
             dfs(i, visited, disc, low, parent, graph, result);
         }

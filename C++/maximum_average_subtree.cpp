@@ -21,9 +21,7 @@ For the node with value = 6 we have and average of 6 / 1 = 6.
 For the node with value = 1 we have and average of 1 / 1 = 1.
 So the answer is 6 which is the maximum.
 
-
 Note:
-
 The number of nodes in the tree is between 1 and 5000.
 Each node will have a value between 0 and 100000.
 Answers will be accepted as correct if they are within 10^-5 of the correct answer.
