@@ -16,51 +16,46 @@ using namespace std;
 
 class Solution {
 private:
-    int getMatchedCount(string target, string guess) {
-        int result = 0;
-        for (int i = 0; i < target.size(); ++i) {
-            result += target[i] == guess[i] ? 1 : 0;
-        }
-        return result;
-    }
-public:
-    string guestNumber(string target) {
-        int n = target.size();
-        vector<int> count(10, 0);
-        string noMatched = "";
-        for (int i = 0; i <= 9; ++i) {
-            int matched = getMatchedCount(target, string(4, '0' + i));
-            count[i] = matched;
-            if (count[i] == 0 and noMatched == "") {
-                noMatched = string(4, '0' + i);
-            }
+    int dfs(int workers, int bCount, vector<int>& blocks, int split, vector<vector<int>>& dp) {
+        if (bCount <= 0) {
+            return 0;
         }
 
-        string result = noMatched;
-        for (int i = 0; i <= 9; ++i) if (count[i] != 0) {
-            string temp = result;
-            int curMatched = getMatchedCount(target, temp);
-            for (int k = 0; k < temp.size() and count[i] > 0; ++k) {
-                temp[k] = '0' + i;
-                int cur = getMatchedCount(target, temp);
-                if (cur == curMatched + 1) {
-                    count[i] -= 1;
-                    curMatched = cur;
-                }
-                else {
-                    temp[k] = result[k];
-                }
-            }
-            result = temp;
+        if (workers <= 0) {
+            return INT_MAX;
         }
-        return result;
+
+        if (workers >= bCount) {
+            return blocks[bCount - 1];
+        }
+
+        if (dp[bCount][workers] != INT_MAX) {
+            return dp[bCount][workers];
+        }
+
+        int option1 = max(split, blocks[bCount - 1]);
+        int rest = INT_MAX;
+        for (int i = 1; i <= workers - 1; ++i) {
+            rest = min(rest, dfs(workers - i, bCount - i, blocks, split, dp));
+        }
+        option1 = rest == INT_MAX ? INT_MAX : rest + option1;
+        int option2 = split + dfs(workers * 2, bCount, blocks, split, dp);
+        dp[bCount][workers] = min(option1, option2);
+        return dp[bCount][workers];
+    }
+public:
+    int minBuildTime(vector<int>& blocks, int split) {
+        int n = blocks.size();
+        vector<vector<int>> dp(n + 1, vector<int>(n + 1, INT_MAX));
+        sort(blocks.begin(), blocks.end());
+        return dfs(1, n, blocks, split, dp);
     }
 };
 
 int main() {
-    vector<int> temp1({1,2,3,5,6,6,6,6,6,8});
+    vector<int> temp1({1,2,3});
     Solution s;
-    s.guestNumber("1223");
+    s.minBuildTime(temp1, 1);
 
     vector<vector<int>> matrix({
         {0,1},
