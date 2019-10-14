@@ -141,8 +141,8 @@ public:
         int n = nums.size();
         auto midPtr = nums.begin() + n / 2;
         nth_element(nums.begin(), midPtr, nums.end());
-        int midNum = *midPtr;
 
+        int midNum = *midPtr;
         int left = 0;
         int right = n - 1;
         int cur = 0;
