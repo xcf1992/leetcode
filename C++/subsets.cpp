@@ -37,9 +37,8 @@ class Solution { // bit manipulation
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
         int n = nums.size();
-        int count = 1 << n;
-        vector<vector<int>> result(count);
-        for (int i = 0; i < count; i++) {
+        vector<vector<int>> result(1 << n);
+        for (int i = 0; i < (1 << n); i++) {
             for (int j = 0; j < n; j++) {
                 if ((i >> j) & 1) {
                     result[i].push_back(nums[j]);

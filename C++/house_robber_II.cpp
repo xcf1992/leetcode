@@ -50,10 +50,10 @@ public:
             return max(nums[0], nums[1]);
         }
 
-        int twoBefore = nums[0];
         int oneBefore = nums[0];
+        int twoBefore = 0;
         int result = max(oneBefore, twoBefore);
-        for (int i = 2; i < n - 1; i++) {
+        for (int i = 1; i < n - 1; i++) {
             int cur = max(twoBefore + nums[i], oneBefore);
             result = max(result, cur);
             twoBefore = oneBefore;

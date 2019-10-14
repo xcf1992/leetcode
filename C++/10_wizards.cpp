@@ -26,8 +26,7 @@ using namespace std;
 class Solution {
 public:
     int minCostWizards(vector<vector<int>> wizards) {
-        int n = wizards.size();
-        vector<int> distance(n, INT_MAX);
+        vector<int> distance(10, INT_MAX);
         distance[0] = 0;
         queue<pair<int, int>> bfs;
         bfs.push({0, 0});
@@ -37,7 +36,7 @@ public:
             bfs.pop();
 
             if (cur == 9) {
-                return dis;
+                continue;
             }
 
             for (int nex : wizards[cur]) {
@@ -48,6 +47,6 @@ public:
                 }
             }
         }
-        return INT_MAX;
+        return distance[9];
     }
 }

@@ -31,18 +31,9 @@ class Vector2D {
     private Iterator<List<Integer>> listIterator;
     private Iterator<Integer> subIterator;
 
-    private void advanceListIterator() {
-        while (listIterator.hasNext()) {
-            subIterator = listIterator.next().iterator();
-            if (subIterator.hasNext()) {
-                break;
-            }
-        }
-    }
-
     public Vector2D(List<List<Integer>> vec2d) {
         this.listIterator = vec2d.iterator();
-        advanceListIterator();
+        this.subIterator = null;
     }
 
     public int next() {
@@ -50,14 +41,22 @@ class Vector2D {
             throw new NoSuchElementException();
         }
 
-        int result = subIterator.next();
-        if (!subIterator.hasNext()) {
-            advanceListIterator();
+        return subIterator.next();
+    }
+
+    public void remove() {
+        while (subIterator == null && listIterator.hasNext()) {
+            subIterator = listIterator.next().iterator();
         }
-        return result;
+        if (subIterator != null) {
+            subIterator.remove();
+        }
     }
 
     public boolean hasNext() {
+        while ((subIterator == null || !subIterator.hasNext()) && listIterator.hasNext()) {
+            subIterator = listIterator.next().iterator();
+        }
         return subIterator != null && subIterator.hasNext();
     }
 }

@@ -29,7 +29,7 @@ private:
         int count = 0;
         int median = left;
         for (int num : nums) {
-            if (num <= left) {
+            if (num <= guess) {
                 count += 1;
                 median = max(median, num);
             }
