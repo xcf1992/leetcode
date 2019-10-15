@@ -156,17 +156,17 @@ public:
         int n = heights.size();
         for (int i = 0; i < V; i++) {
             int pos = K;
-            while (pos > 0 and heights[pos - 1] <= heights[pos]) {
+            while (pos - 1 >= 0 and heights[pos - 1] <= heights[pos]) {
                 pos -= 1;
             }
-            while (pos < K and heights[pos + 1] == heights[pos]) {
+            while (pos + 1 <= K and heights[pos + 1] == heights[pos]) {
                 pos += 1;
             }
             if (pos == K) {
-                while (pos < n - 1 and heights[pos + 1] <= heights[pos]) {
+                while (pos + 1 <= n - 1 and heights[pos + 1] <= heights[pos]) {
                     pos += 1;
                 }
-                while (pos > K and heights[pos - 1] == heights[pos]) {
+                while (pos - 1 >= K and heights[pos - 1] == heights[pos]) {
                     pos -= 1;
                 }
             }

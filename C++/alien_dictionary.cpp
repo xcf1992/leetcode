@@ -87,18 +87,19 @@ public:
             }
         }
 
-        string result = "";
         queue<char> bfs;
         for (auto& it : indegree) {
             if (it.second == 0) {
                 bfs.push(it.first);
             }
         }
+
+        string result = "";
         while (!bfs.empty()) {
             char cur = bfs.front();
             bfs.pop();
-            result.push_back(cur);
 
+            result.push_back(cur);
             if (graph[cur].size() != 0) {
                 for (char c : graph[cur]) {
                     indegree[c] -= 1;

@@ -27,7 +27,7 @@ As an added challenge, try to code it using only iterators in C++ or iterators i
 */
 import java.util.*;
 
-class Vector2D {
+class Vector2D implements Iterator<Integer> {
     private Iterator<List<Integer>> listIterator;
     private Iterator<Integer> subIterator;
 
@@ -36,7 +36,7 @@ class Vector2D {
         this.subIterator = null;
     }
 
-    public int next() {
+    public Integer next() {
         if (!hasNext()) {
             throw new NoSuchElementException();
         }

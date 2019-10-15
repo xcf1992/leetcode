@@ -50,7 +50,7 @@ public:
     }
 };
 
-class Solution {
+class Solution1 {
 private:
     string expand(string s, int left, int right) {
         while (left >= 0 and right < s.size() and s[left] == s[right]) {
