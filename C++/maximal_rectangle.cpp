@@ -90,8 +90,8 @@ public:
             return 0;
         }
         int n = matrix[0].size();
-
-        vector<vector<int>> consecutiveOne(m, vector<int>(n, 0)); // consecutiveOne[i][j] means number of consecutive ones from matrix[i][j] to its left
+        // consecutiveOne[i][j] means number of consecutive ones from matrix[i][j] to its left
+        vector<vector<int>> consecutiveOne(m, vector<int>(n, 0));
         int result = 0;
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {

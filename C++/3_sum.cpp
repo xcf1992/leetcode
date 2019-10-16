@@ -57,7 +57,7 @@ public:
                     while (left < right and num[left] == front) {
                         left += 1;
                     }
-                    while (left < back and num[right] == back) {
+                    while (left < right and num[right] == back) {
                         right -= 1;
                     }
                 }

@@ -1,9 +1,9 @@
 /*
 222. Count Complete Tree Nodes
+
 Given a complete binary tree, count the number of nodes.
 
 Note:
-
 Definition of a complete binary tree from Wikipedia:
 In a complete binary tree every level,
 except possibly the last, is completely filled,
@@ -11,14 +11,12 @@ and all nodes in the last level are as far left as possible.
 It can have between 1 and 2h nodes inclusive at the last level h.
 
 Example:
-
 Input:
     1
    / \
   2   3
  / \  /
 4  5 6
-
 Output: 6
 */
 #include <iostream>
@@ -48,16 +46,18 @@ meaning left and right subtree have the same height.
 If yes,
 then the last node on the last tree row is in the right subtree
 and the left subtree is a full tree of height h-1.
-So we take the 2^h-1 nodes of the left subtree plus the 1 root node
+So we take the 2^h - 1 nodes of the left subtree plus the 1 root node
 plus recursively the number of nodes in the right subtree.
 
 If no,
 then the last node on the last tree row is in the left subtree
-and the right subtree is a full tree of height h-2.
-So we take the 2^(h-1)-1 nodes of the right subtree plus the 1 root node
+and the right subtree is a full tree of height h - 2.
+So we take the 2^(h-1) - 1 nodes of the right subtree plus the 1 root node
 plus recursively the number of nodes in the left subtree.
 
-Since I halve the tree in every recursive step, I have O(log(n)) steps. Finding a height costs O(log(n)). So overall O(log(n)^2).
+Since I halve the tree in every recursive step, I have O(log(n)) steps.
+Finding a height costs O(log(n)).
+So overall O(log(n)^2).
 */
 class Solution {
 private:
@@ -70,7 +70,8 @@ public:
         if (h < 0) {
             return 0;
         }
-        if (getHeight(root -> right) == h - 1) {
+
+        if (getHeight(root -> right) == h - 1) { // the last node is in the right subtree of root
             return (1 << h) + countNodes(root -> right);
         }
         return (1 << (h - 1)) + countNodes(root -> left);

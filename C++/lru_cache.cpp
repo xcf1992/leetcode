@@ -36,8 +36,8 @@ cache.get(4);       // returns 4
 using namespace std;
 
 struct CacheNode {
-    CacheNode *pre;
-    CacheNode *next;
+    CacheNode* pre;
+    CacheNode* next;
     int key;
     int val;
     CacheNode(int k, int v) : key(k), val(v), pre(nullptr), next(nullptr){};
@@ -58,6 +58,7 @@ public:
         size = 0;
         head = new CacheNode(-1, -1);
         head -> next = head;
+        head -> pre = head;
     }
 
     int get(int key) {
@@ -89,13 +90,13 @@ public:
         }
 
         CacheNode* newNode = new CacheNode(key, value);
+        memo[key] = newNode;
         size += 1;
+
         newNode -> next = head -> next;
         head -> next -> pre = newNode;
         newNode -> pre = head;
         head -> next = newNode;
-        memo[key] = newNode;
-
         if (size > cap) {
             size -= 1;
             CacheNode* removed = head -> pre;

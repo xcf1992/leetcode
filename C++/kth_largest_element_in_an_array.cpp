@@ -39,3 +39,14 @@ public:
         return pq.top();
     }
 };
+
+class Solution1 {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        int n = nums.size();
+        k = n - k;
+        auto it = nums.begin() + k;
+        nth_element(nums.begin(), it, nums.end());
+        return *it;
+    }
+};

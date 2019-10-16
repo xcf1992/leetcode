@@ -52,17 +52,16 @@ public:
 
         vector<int> move({0, 1, 0, -1, 0});
         while (!bfs.empty()) {
-            int pos = bfs.front();
+            int row = bfs.front() / n;
+            int col = bfs.front() % n;
             bfs.pop();
 
-            int i = pos / n;
-            int j = pos % n;
             for (int k = 0; k < 4; k++) {
-                int p = i + move[k];
-                int q = j + move[k + 1];
-                if (p >= 0 and q >= 0 and p < m and q < n and rooms[p][q] > rooms[i][j] + 1) {
-                    rooms[p][q] = rooms[i][j] + 1;
-                    bfs.push(p * n + q);
+                int nr = row + move[k];
+                int nc = col + move[k + 1];
+                if (nr >= 0 and nc >= 0 and nr < m and nc < n and rooms[nr][nc] > rooms[row][col] + 1) {
+                    rooms[nr][nc] = rooms[row][col] + 1;
+                    bfs.push(nr * n + nc);
                 }
             }
         }
