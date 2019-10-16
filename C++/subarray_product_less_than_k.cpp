@@ -29,7 +29,28 @@ Note:
 #include <stdio.h>
 using namespace std;
 
-class Solution {
+class Solution { // O(n)
+public:
+    int numSubarrayProductLessThanK(vector<int>& nums, int k) {
+        if (nums.empty()) {
+            return 0;
+        }
+
+        int start = 0;
+        int result = 0;
+        int product = 1;
+        for (int end = 0; end < nums.size(); end++) {
+            product *= nums[end];
+            while (start <= end and product >= k) {
+                product /= nums[start++];
+            }
+            result += end - start + 1;
+        }
+        return result;
+    }
+};
+
+class Solution1 { // O(nlogn)
 public:
     int numSubarrayProductLessThanK(vector<int>& nums, int k) {
         int n = nums.size();
@@ -52,27 +73,6 @@ public:
             if (index >= i) {
                 result += index - i;
             }
-        }
-        return result;
-    }
-};
-
-class Solution1 {
-public:
-    int numSubarrayProductLessThanK(vector<int>& nums, int k) {
-        if (nums.empty()) {
-            return 0;
-        }
-
-        int start = 0;
-        int result = 0;
-        int product = 1;
-        for (int end = 0; end < nums.size(); end++) {
-            product *= nums[end];
-            while (start <= end and product >= k) {
-                product /= nums[start++];
-            }
-            result += end - start + 1;
         }
         return result;
     }

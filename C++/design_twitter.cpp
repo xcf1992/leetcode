@@ -21,7 +21,6 @@ unfollow(followerId, followeeId):
 Follower unfollows a followee.
 
 Example:
-
 Twitter twitter = new Twitter();
 
 // User 1 posts a new tweet (id = 5).

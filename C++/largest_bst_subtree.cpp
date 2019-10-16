@@ -1,5 +1,6 @@
 /*
 333. Largest BST Subtree
+https://leetcode.com/problems/largest-bst-subtree/
 
 Given a binary tree, find the largest subtree which is a Binary Search Tree (BST),
 where largest means subtree with largest number of nodes in it.
@@ -8,18 +9,16 @@ Note:
 A subtree must include all of its descendants.
 
 Example:
-
 Input: [10,5,15,1,8,null,7]
-
    10
    / \
   5  15
  / \   \
 1   8   7
-
 Output: 3
 Explanation: The Largest BST Subtree in this case is the highlighted one.
              The return value is the subtree's size, which is 3.
+
 Follow up:
 Can you figure out ways to solve it with O(n) time complexity?
 */
@@ -52,6 +51,7 @@ private:
         vector<int> leftSub = count(root -> left);
         vector<int> rightSub = count(root -> right);
         if (root -> val > leftSub[1] and root -> val < rightSub[0]) {
+            // we cannot return {leftSub[0], rightSub[1], ...} here, because the leaf node case, we need return the actual root val as return values
             return {min(root -> val, leftSub[0]), max(root -> val, rightSub[1]), leftSub[2] + 1 + rightSub[2]};
         }
         // current and further tree should be invalid BST
