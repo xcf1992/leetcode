@@ -34,9 +34,14 @@ using namespace std;
 class Solution {
 public:
     int longestPalindromeSubseq(string s) {
-        vector<vector<int>> dp(s.size(), vector<int>(s.size()));
-        for (int len = 1; len <= s.size(); len++) {
-            for (int left = 0; left + len <= s.size(); left++) {
+        int n = s.size();
+        if (n <= 1) {
+            return n;
+        }
+
+        vector<vector<int>> dp(n, vector<int>(n));
+        for (int len = 1; len <= n; len++) {
+            for (int left = 0; left + len - 1 < n; left++) {
                 int right = left + len - 1;
                 if (left == right) {
                     dp[left][right] = 1;
@@ -50,6 +55,6 @@ public:
                 }
             }
         }
-        return dp[0].back();
+        return dp[0][n - 1];
     }
 };
