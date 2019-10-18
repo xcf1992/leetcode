@@ -84,22 +84,18 @@ class Solution {
 private:
     void getChildCount(int root, vector<vector<int>>& connected, vector<int>& count, vector<int>& result, vector<bool>& visited) {
         visited[root] = true;
-        for (int child : connected[root]) {
-            if (!visited[child]) {
-                getChildCount(child, connected, count, result, visited);
-                count[root] += count[child];
-                result[root] += result[child] + count[child];
-            }
+        for (int child : connected[root]) if (!visited[child]) {
+            getChildCount(child, connected, count, result, visited);
+            count[root] += count[child];
+            result[root] += result[child] + count[child];
         }
     }
 
     void updateDistance(int root, vector<vector<int>>& connected, vector<int>& count, vector<int>& result, vector<bool>& visited, int N) {
         visited[root] = true;
-        for (int child : connected[root]) {
-            if (!visited[child]) {
-                result[child] = result[root] - count[child] + N - count[child];
-                updateDistance(child, connected, count, result, visited, N);
-            }
+        for (int child : connected[root]) if (!visited[child]) {
+            result[child] = result[root] - count[child] + N - count[child];
+            updateDistance(child, connected, count, result, visited, N);
         }
     }
 public:
