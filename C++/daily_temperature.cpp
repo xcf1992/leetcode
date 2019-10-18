@@ -1,5 +1,7 @@
 /*
 739. Daily Temperatures
+https://leetcode.com/problems/daily-temperatures/
+
 Given a list of daily temperatures T,
 return a list such that,
 for each day in the input,
@@ -10,7 +12,8 @@ For example, given the list of temperatures
 T = [73, 74, 75, 71, 69, 72, 76, 73],
 your output should be [1, 1, 4, 2, 1, 1, 0, 0].
 
-Note: The length of temperatures will be in the range [1, 30000].
+Note:
+The length of temperatures will be in the range [1, 30000].
 Each temperature will be an integer in the range [30, 100].
 */
 #include <iostream>
@@ -28,9 +31,10 @@ using namespace std;
 class Solution {
 public:
     vector<int> dailyTemperatures(vector<int>& temperatures) {
+        int n = temperatures.size();
         stack<int> tempDate;
-        vector<int> result(temperatures.size(), 0);
-        for (int i = temperatures.size() - 1; i >= 0; i--) {
+        vector<int> result(n, 0);
+        for (int i = n - 1; i >= 0; i--) {
             while (!tempDate.empty() and temperatures[i] >= temperatures[tempDate.top()]) {
                 tempDate.pop();
             }

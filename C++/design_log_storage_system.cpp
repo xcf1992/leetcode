@@ -1,5 +1,7 @@
 /*
 635. Design Log Storage System
+https://leetcode.com/problems/design-log-storage-system/
+
 You are given several logs that each log contains a unique id and timestamp.
 Timestamp is a string that has the following format: Year:Month:Day:Hour:Minute:Second,
 for example, 2017:01:01:23:59:59.

@@ -40,8 +40,8 @@ using namespace std;
 Sort the courses by the ascending order of deadline.
 
 At each deadline:
-
 we try to take as many as courses possible, (say take k courses)
+
 # rule1 *
 the courses take in total cur days,
 if there are multiple ways of taking k courses, we keep the way which has least cur.
@@ -65,7 +65,6 @@ If t < the max duration of any courses currently taken:
         that means by replacing max_t with t, we guarantee the total days (new_cur) is less than the deadline.
 Running Time: O(N log N)
 Space: O(N)
-
 
 1. Why we just pop out the last longest course that is screwing total day time?
 Because all the courses that we have saw till now all complete before the d day.
