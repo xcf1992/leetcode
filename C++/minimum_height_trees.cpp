@@ -74,10 +74,11 @@ Let y the new root, and do another dfs/bfs. Find the node z that has the longest
 Now, the path from y to z is the longest one, and thus its middle point(s) is the answer.
 https://github.com/lydxlx1/LeetCode/blob/master/src/_310.java
 */
-
-// delete the nodes layer by layer from all the leaf nodes
-// until there are only 2 or less nodes left
-class Solution { // 76.63%
+/*
+delete the nodes layer by layer from all the leaf nodes
+until there are only 2 or less nodes left
+*/
+class Solution {
 public:
     vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
         if (n == 1) {
@@ -111,7 +112,6 @@ public:
                     if (degree[node] == 1) {
                         leaves.push(node);
                     }
-
                 }
             }
         }
