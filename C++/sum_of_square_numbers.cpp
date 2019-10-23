@@ -1,15 +1,19 @@
 /*
- Given a non-negative integer c, your task is to decide whether there're two integers a and b such that a2 + b2 = c.
+633. Sum of Square Numbers
+https://leetcode.com/problems/sum-of-square-numbers/
 
- Example 1:
- Input: 5
- Output: True
- Explanation: 1 * 1 + 2 * 2 = 5
- Example 2:
- Input: 3
- Output: False
+Given a non-negative integer c,
+your task is to decide whether there're two integers a and b such that a^2 + b^2 = c.
+
+Example 1:
+Input: 5
+Output: True
+Explanation: 1 * 1 + 2 * 2 = 5
+
+Example 2:
+Input: 3
+Output: False
 */
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -26,10 +30,10 @@ using namespace std;
 class Solution {
 public:
     bool judgeSquareSum(int c) {
-        int left = 0;
-        int right = sqrt(c);
+        long left = 0;
+        long right = sqrt(c);
         while (left <= right) {
-            int val = left * left + right * right;
+            long val = left * left + right * right;
             if (val == c) {
                 return true;
             }

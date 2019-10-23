@@ -68,15 +68,13 @@ public:
         for (char c : s) {
             if (c == '(' or c == '{' or c == '[') {
                 stk.push(c);
+                continue;
             }
-            else {
-                if (isPaired(stk, c)) {
-                    stk.pop();
-                }
-                else {
-                    return false;
-                }
+
+            if (!isPaired(stk, c)) {
+                return false;
             }
+            stk.pop();
         }
         return stk.empty();
     }
