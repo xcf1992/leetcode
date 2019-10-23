@@ -42,6 +42,7 @@ public:
     bool canPartitionKSubsets(vector<int>& nums, int k) {
         int N = nums.size();
         sort(nums.begin(), nums.end());
+
         int sum = accumulate(nums.begin(), nums.end(), 0);
         int target = sum / k;
         if (sum % k > 0 or nums[N - 1] > target) {
@@ -82,6 +83,7 @@ private:
         if (curSum == target) {
             return partition(nums, used, 0, k - 1, 0, target);
         }
+
         for (int i = start; i < nums.size(); i++) {
             if (!used[i] and curSum + nums[i] <= target) {
                 used[i] = true;
@@ -99,6 +101,7 @@ public:
         if (sum % k != 0) {
             return false;
         }
+        
         vector<int> used(nums.size(), false);
         return partition(nums, used, 0, k, 0, sum / k);
     }

@@ -50,8 +50,8 @@ public:
             return root;
         }
 
-        TreeNode *lc = root -> left;
-        TreeNode *rc = root -> right;
+        TreeNode* lc = root -> left;
+        TreeNode* rc = root -> right;
         root -> right = nullptr;
         root -> left = nullptr;
 

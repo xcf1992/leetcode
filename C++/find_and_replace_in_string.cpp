@@ -1,5 +1,6 @@
 /*
 833. Find And Replace in String
+https://leetcode.com/problems/find-and-replace-in-string/
 
 To some string S, we will perform some replacement operations that replace groups of letters with new ones
 (not necessarily the same size).
@@ -58,7 +59,7 @@ public:
     string findReplaceString(string S, vector<int>& indexes, vector<string>& sources, vector<string>& targets) {
         vector<pair<int, int>> sortedIndex;
         for (int i = 0; i < indexes.size(); i++) {
-            sortedIndex.push_back(make_pair(i, indexes[i]));
+            sortedIndex.push_back({i, indexes[i]});
         }
         sort(sortedIndex.begin(), sortedIndex.end(), [](pair<int, int>& a, pair<int, int>& b) {
             return a.second > b.second;

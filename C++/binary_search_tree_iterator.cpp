@@ -67,6 +67,7 @@ public:
     int next() {
         TreeNode* cur = stk.top();
         stk.pop();
+        
         int result = cur -> val;
         if (cur -> right != nullptr) {
             cur = cur -> right;

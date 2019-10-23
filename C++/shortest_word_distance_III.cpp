@@ -25,8 +25,10 @@ Given word1 = "makes", word2 = "makes", return 3.
 #include <stack>
 #include <stdio.h>
 using namespace std;
-
-// i1 and i2 are the indexes where word1 and word2 were last seen. Except if they're the same word, then i1 is the previous index.
+/*
+i1 and i2 are the indexes where word1 and word2 were last seen.
+Except if they're the same word, then i1 is the previous index.
+*/
 class Solution {
 public:
     int shortestWordDistance(vector<string>& words, string word1, string word2) {

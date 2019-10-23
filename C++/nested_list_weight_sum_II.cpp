@@ -1,5 +1,7 @@
 /*
 364. Nested List Weight Sum II
+https://leetcode.com/problems/nested-list-weight-sum-ii/
+
 Given a nested list of integers,
 return the sum of all integers in the list weighted by their depth.
 
@@ -10,12 +12,11 @@ now the weight is defined from bottom up. i.e., the leaf level integers have wei
 and the root level integers have the largest weight.
 
 Example 1:
-
 Input: [[1,1],2,[1,1]]
 Output: 8
 Explanation: Four 1's at depth 1, one 2 at depth 2.
-Example 2:
 
+Example 2:
 Input: [1,[4,[6]]]
 Output: 17
 Explanation: One 1 at depth 3, one 4 at depth 2, and one 6 at depth 1; 13 + 42 + 61 = 17.

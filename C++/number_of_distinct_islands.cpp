@@ -16,6 +16,7 @@ Example 1:
 00011
 00011
 Given the above grid map, return 1.
+
 Example 2:
 11011
 10000
@@ -30,7 +31,9 @@ and
 1
 11
 are considered different island shapes, because we do not consider reflection / rotation.
-Note: The length of each dimension in the given grid does not exceed 50.
+
+Note:
+The length of each dimension in the given grid does not exceed 50.
 */
 #include <iostream>
 #include <string>

@@ -1,5 +1,6 @@
 /*
 127. Word Ladder
+https://leetcode.com/problems/word-ladder/
 
 Given two words (beginWord and endWord),
 and a dictionary's word list,
@@ -67,6 +68,7 @@ public:
             for (int i = 0; i < curSize; ++i) {
                 string curWord = bfs.front();
                 bfs.pop();
+                
                 if (curWord == endWord) {
                     return step;
                 }

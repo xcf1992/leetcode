@@ -48,7 +48,7 @@ private:
     unordered_map<int, CacheNode*> memo;
     int cap;
     int size;
-    CacheNode *head;
+    CacheNode* head;
 public:
     LRUCache(int capacity) {
         if (capacity < 0) {

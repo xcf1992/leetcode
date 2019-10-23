@@ -72,6 +72,7 @@ public:
         if (maxChoosableInteger >= desiredTotal) {
             return true;
         }
+        
         if (maxChoosableInteger * (maxChoosableInteger + 1) < desiredTotal * 2) {
             return false;
         }

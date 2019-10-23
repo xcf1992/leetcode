@@ -1,5 +1,7 @@
 /*
 362. Design Hit Counter
+https://leetcode.com/problems/design-hit-counter/
+
 Design a hit counter which counts the number of hits received in the past 5 minutes.
 
 Each function accepts a timestamp parameter (in seconds granularity)
@@ -32,9 +34,10 @@ counter.getHits(300);
 
 // get hits at timestamp 301, should return 3.
 counter.getHits(301);
-Follow up:
-What if the number of hits per second could be very large? Does your design scale?
 
+Follow up:
+What if the number of hits per second could be very large?
+Does your design scale?
 */
 #include <iostream>
 #include <string>

@@ -1,11 +1,11 @@
 /*
 238. Product of Array Except Self
+https://leetcode.com/problems/product-of-array-except-self/
 
 Given an array nums of n integers where n > 1,
 return an array output such that output[i] is equal to the product of all the elements of nums except nums[i].
 
 Example:
-
 Input:  [1,2,3,4]
 Output: [24,12,8,6]
 Note: Please solve it without division and in O(n).
@@ -28,8 +28,13 @@ using namespace std;
 class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
-        vector<int> result(nums.size(), 1);
-        for (int i = nums.size() - 2; i >= 0; i--) {
+        int n = nums.size();
+        if (n == 0) {
+            return {};
+        }
+
+        vector<int> result(n, 1);
+        for (int i = n - 2; i >= 0; i--) {
             result[i] = result[i + 1] * nums[i + 1];
         }
 
