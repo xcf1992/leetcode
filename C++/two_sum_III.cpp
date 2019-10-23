@@ -1,5 +1,6 @@
 /*
 170. Two Sum III - Data structure design
+https://leetcode.com/problems/two-sum-iii-data-structure-design/
 
 Design and implement a TwoSum class.
 It should support the following operations: add and find.
