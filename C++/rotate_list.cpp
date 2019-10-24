@@ -51,13 +51,13 @@ public:
             return head;
         }
 
-        pre = dummy;
-        ListNode* first = dummy -> next;
-        ListNode* last = first;
+        ListNode* last = dummy -> next;
         for (int i = 1; i < k; i++) {
             last = last -> next;
         }
 
+        pre = dummy;
+        ListNode* first = dummy -> next;
         while (last -> next != nullptr) {
             last = last -> next;
             first = first -> next;

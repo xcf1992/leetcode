@@ -47,7 +47,7 @@ public:
                 return mid;
             }
 
-            if (nums[mid] >= nums[left]) {
+            if (nums[mid] > nums[right]) {
                 if (target >= nums[left] and target < nums[mid]) {
                     right = mid - 1;
                 }
