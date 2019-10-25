@@ -45,7 +45,7 @@ using namespace std;
 
 class Solution {
 public:
-    TreeNode *upsideDownBinaryTree(TreeNode *root) {
+    TreeNode* upsideDownBinaryTree(TreeNode *root) {
         if (root == nullptr or root -> left == nullptr) {
             return root;
         }
