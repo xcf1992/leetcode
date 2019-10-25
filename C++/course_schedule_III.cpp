@@ -97,8 +97,8 @@ public:
         priority_queue<int> maxHeap;
         int current = 0;
         for (vector<int>& c : courses) {
-            maxHeap.push(c[0]);
             current += c[0];
+            maxHeap.push(c[0]);
             if (current > c[1]) {
                 current -= maxHeap.top();
                 maxHeap.pop();

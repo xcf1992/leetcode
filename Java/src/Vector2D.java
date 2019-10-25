@@ -49,7 +49,7 @@ class Vector2D implements Iterator<Integer> {
             subIterator = listIterator.next().iterator();
         }
         if (subIterator != null) {
-            subIterator.remove();
+            subIterator.remove() ;
         }
     }
 
