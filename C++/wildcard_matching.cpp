@@ -1,45 +1,46 @@
 /*
 44. Wildcard Matching
-Given an input string (s) and a pattern (p), implement wildcard pattern matching with support for '?' and '*'.
+
+Given an input string (s) and a pattern (p),
+implement wildcard pattern matching with support for '?' and '*'.
 
 '?' Matches any single character.
 '*' Matches any sequence of characters (including the empty sequence).
 The matching should cover the entire input string (not partial).
 
 Note:
-
 s could be empty and contains only lowercase letters a-z.
 p could be empty and contains only lowercase letters a-z, and characters like ? or *.
-Example 1:
 
+Example 1:
 Input:
 s = "aa"
 p = "a"
 Output: false
 Explanation: "a" does not match the entire string "aa".
-Example 2:
 
+Example 2:
 Input:
 s = "aa"
 p = "*"
 Output: true
 Explanation: '*' matches any sequence.
-Example 3:
 
+Example 3:
 Input:
 s = "cb"
 p = "?a"
 Output: false
 Explanation: '?' matches 'c', but the second letter is 'a', which does not match 'b'.
-Example 4:
 
+Example 4:
 Input:
 s = "adceb"
 p = "*a*b"
 Output: true
 Explanation: The first '*' matches the empty sequence, while the second '*' matches the substring "dce".
-Example 5:
 
+Example 5:
 Input:
 s = "acdcb"
 p = "a*c?b"
@@ -55,9 +56,9 @@ using namespace std;
 class Solution1 {
 private:
     /*
-     * 0: reach the end of s but unmatched
-     * 1: unmatched without reaching the end of s
-     * 2: matched
+    * 0: reach the end of s but unmatched
+    * 1: unmatched without reaching the end of s
+    * 2: matched
     */
     int check(string& s, string& p, int si, int pi) {
         if (si == s.size() and pi == p.size()) {
@@ -103,10 +104,6 @@ public:
         vector<vector<bool>> dp(m + 1, vector<bool>(n + 1, false));
 
         dp[0][0] = true;
-        for (int i = 1; i <= m; i++) {
-            dp[i][0] = false;
-        }
-
         for (int j = 1; j <= n; j++) {
             if (p[j - 1] == '*'){
                 dp[0][j] = true;

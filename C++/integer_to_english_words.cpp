@@ -59,7 +59,7 @@ private:
             return " " + below100[num / 10 - 2] + int2string(num % 10);
         }
 
-        if (num >= 1){
+        if (num >= 1) {
             return " " + below20[num - 1];
         }
         return ""; // this cannot be removed, otherwis test case 20 will fail

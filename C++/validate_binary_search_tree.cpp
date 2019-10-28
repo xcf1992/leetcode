@@ -62,8 +62,8 @@ public:
 
 class Solution1 { // use lower bound and upper bound
 private:
-    bool validate(TreeNode *root, long long minVal, long long maxVal) {
-        if (root == NULL) {
+    bool validate(TreeNode* root, long long minVal, long long maxVal) {
+        if (root == nullptr) {
             return true;
         }
 
@@ -73,7 +73,7 @@ private:
         return validate(root -> right, root -> val, maxVal) and validate(root -> left, minVal, root -> val);
     }
 public:
-    bool isValidBST(TreeNode *root) {
+    bool isValidBST(TreeNode* root) {
         long long minVal = (long long)INT_MIN - 1;
         long long maxVal = (long long)INT_MAX + 1;
         return validate(root, minVal, maxVal);

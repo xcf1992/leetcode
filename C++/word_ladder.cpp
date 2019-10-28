@@ -68,7 +68,7 @@ public:
             for (int i = 0; i < curSize; ++i) {
                 string curWord = bfs.front();
                 bfs.pop();
-                
+
                 if (curWord == endWord) {
                     return step;
                 }

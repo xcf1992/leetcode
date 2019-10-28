@@ -65,6 +65,7 @@ public:
                 fast = fast -> next;
             }
         } while (slow != fast and fast != nullptr);
+
         if (fast == nullptr) {
             return nullptr;
         }

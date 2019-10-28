@@ -42,9 +42,9 @@ public:
         int n = matrix[0].size();
 
         vector<int> steps{n, m - 1}; // steps we can take during current move
-        int direction = 0;   // index of direction.
+        int direction = 0; // index of direction.
         int curR = 0;
-        int curC = -1;    // initial position
+        int curC = -1; // initial position
         vector<int> result;
         while (steps[direction % 2] > 0) {
             for (int i = 0; i < steps[direction % 2]; ++i) {

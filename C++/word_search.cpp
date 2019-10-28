@@ -41,7 +41,7 @@ private:
         if (index >= word.size()) {
             return true;
         }
-        
+
         if (row < 0 or col < 0 or row >= m or col >= n or visited[row][col] or word[index] != board[row][col]) {
             return false;
         }

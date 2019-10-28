@@ -62,7 +62,8 @@ public:
                 continue;
             }
 
-            nums[cur++] = nums[i];
+            nums[cur] = nums[i];
+            cur += 1;
         }
         return cur;
     }

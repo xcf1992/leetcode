@@ -54,6 +54,46 @@ public:
             return root;
         }
 
+        Node* parent = root;
+        while (parent != nullptr) {
+            Node* child = nullptr;
+            Node* cur = nullptr;
+            while (parent != nullptr) {
+                if (parent -> left != nullptr) {
+                    if (child == nullptr) {
+                        child = parent -> left;
+                        cur = child;
+                    }
+                    else {
+                        cur -> next = parent -> left;
+                        cur = cur -> next;
+                    }
+                }
+                if (parent -> right != nullptr) {
+                    if (child == nullptr) {
+                        child = parent -> right;
+                        cur = child;
+                    }
+                    else {
+                        cur -> next = parent -> right;
+                        cur = cur -> next;
+                    }
+                }
+                parent = parent -> next;
+            }
+            parent = child;
+        }
+        return root;
+    }
+};
+
+class Solution1 { // O(n) space
+public:
+    Node* connect(Node* root) {
+        if (root == nullptr or (root -> left == nullptr and root -> right == nullptr)) {
+            return root;
+        }
+
         queue<Node*> bfs;
         bfs.push(root);
         while (!bfs.empty()) {

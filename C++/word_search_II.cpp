@@ -59,7 +59,7 @@ private:
         TrieNode* cur = root;
         for (char c : word) {
             if (cur -> next[c - 'a'] == nullptr) {
-                cur -> next[c - 'a'] = new TrieNode;
+                cur -> next[c - 'a'] = new TrieNode();
             }
             cur = cur -> next[c - 'a'];
         }

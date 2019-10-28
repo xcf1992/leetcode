@@ -65,7 +65,7 @@ private:
         * Second case is 1,4,3,2
         * Then when we first time find prev > root, we identify 4 as first 3 as second
         * and second time we find 3 > 2, we do no change first which is 4 but only update second to be 2
-       */
+        */
         if (prev != nullptr and prev -> val >= root -> val) {
             if (first == nullptr) {
                 first = prev;
