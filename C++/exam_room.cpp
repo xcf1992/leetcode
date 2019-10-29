@@ -1,5 +1,6 @@
 /*
 855. Exam Room
+
 In an exam room, there are N seats in a single row, numbered 0, 1, 2, ..., N-1.
 
 When a student enters the room,
@@ -13,7 +14,6 @@ and ExamRoom.leave(int p) representing that the student in seat number p now lea
 It is guaranteed that any calls to ExamRoom.leave(p) have a student sitting in seat p.
 
 Example 1:
-
 Input: ["ExamRoom","seat","seat","seat","seat","leave","seat"], [[10],[],[],[],[],[4],[]]
 Output: [null,0,9,4,2,null,5]
 Explanation:
@@ -26,7 +26,6 @@ leave(4) -> null
 seat() -> 5, the student​​​​​​​ sits at the last seat number 5.
 ​​​​​​​
 Note:
-
 1 <= N <= 10^9
 ExamRoom.seat() and ExamRoom.leave() will be called at most 10^4 times across all test cases.
 Calls to ExamRoom.leave(p) are guaranteed to have a student currently sitting in seat number p.
