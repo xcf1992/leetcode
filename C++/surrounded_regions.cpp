@@ -11,7 +11,6 @@ X X X X
 X O O X
 X X O X
 X O X X
-
 After running your function, the board should be:
 X X X X
 X X X X

@@ -35,7 +35,7 @@ public:
     int networkDelayTime(vector<vector<int>>& times, int N, int K) {
         vector<vector<pair<int, int>>> distance(N + 1, vector<pair<int, int>>());
         for (vector<int>& time : times) {
-            distance[time[0]].push_back(make_pair(time[1], time[2]));
+            distance[time[0]].push_back({time[1], time[2]});
         }
 
         vector<int> delay(N + 1, INT_MAX);
