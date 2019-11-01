@@ -51,11 +51,8 @@ public:
         int result = G.size();
         ListNode* prev = head;
         ListNode* cur = prev -> next;
-<<<<<<< HEAD
-        while (cur != NULL) {
-=======
+
         while (cur != nullptr) {
->>>>>>> sep 4 evenging
             if (values.find(prev -> val) != values.end() and values.find(cur -> val) != values.end()) {
                 result -= 1;
             }
