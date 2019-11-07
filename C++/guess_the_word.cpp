@@ -101,7 +101,8 @@ public:
     * The probability of two words with 0 match is (25/26)^6 = 80%.
     * That is to say, for a candidate word, we have 80% chance to see 0 match with the secret word.
     * In this case, we had 80% chance to eliminate the candidate word and its "family" words which have at least 1 match.
-    * Additionally, in order to delete a max part of words, we select a candidate who has a big "family" (fewest 0 match with other words).
+    * Additionally, in order to delete a max part of words, we select a candidate who has a big "family"
+    * (fewest 0 match with other words).
 
     * Since the words are generated randomly.
     * So a word most probably has 0 matches with the secret word(80% possibility).

@@ -49,7 +49,7 @@ the logic should be similar.
 Explanation:
 Assume we are taking A[i] ~ A[i + k - 1].
 We can binary research i
-We compare the distance between x - A[mid] and A[mid - k] - x
+We compare the distance between x - A[mid] and A[mid + k] - x
 
 If x - A[mid] > A[mid + k] - x,
 it means A[mid + 1] ~ A[mid + k] is better than A[mid] ~ A[mid + k - 1],
