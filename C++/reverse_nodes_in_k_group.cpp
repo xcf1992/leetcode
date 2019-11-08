@@ -49,26 +49,26 @@ public:
             return head;
         }
 
-        ListNode* preHead = new ListNode(-1);
-        preHead -> next = head;
+        ListNode* dummy = new ListNode(-1);
+        dummy -> next = head;
         ListNode* tail = head;
-        ListNode* pre = preHead;
+        ListNode* pre = dummy;
         int len = 1;
         while (tail != nullptr) {
             tail = tail -> next;
             len += 1;
             if (len == k and tail != nullptr) {
                 ListNode* curHead = pre -> next;
-                ListNode* cur = tail -> next;
+                ListNode* suc = tail -> next;
                 reverse(curHead, tail);
-                curHead -> next = cur;
+                curHead -> next = suc;
                 pre -> next = tail;
 
                 pre = curHead;
-                tail = cur;
+                tail = suc;
                 len = 1;
             }
         }
-        return preHead -> next;
+        return dummy -> next;
     }
 };

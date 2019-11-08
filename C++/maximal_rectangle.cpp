@@ -46,10 +46,10 @@ public:
                 if (matrix[i][j] == '1') {
                     height[j] += 1;
                     /*
-                     * Consider what causes changes to the left bound of our rectangle.
-                     * Since all instances of zeros occurring in the row above the current one have already been factored into the current version of left,
-                     * the only thing that affects our left is if we encounter a zero in our current row.
-                     **/
+                    * Consider what causes changes to the left bound of our rectangle.
+                    * Since all instances of zeros occurring in the row above the current one have already been factored into the current version of left,
+                    * the only thing that affects our left is if we encounter a zero in our current row.
+                    */
                     left[j] = max(left[j], curLeft);
                 }
                 else {
@@ -58,7 +58,7 @@ public:
                     * cur_left is one greater than rightmost occurrence of zero we have encountered.
                     * When we "expand" the rectangle to the left, we know it can't expand past that point,
                     * otherwise it'll run into the zero.
-                   */
+                    */
                     left[j] = 0;
                     curLeft = j + 1;
                 }
@@ -101,6 +101,7 @@ public:
                 else {
                     consecutiveOne[i][j] = j == 0 ? 1 : consecutiveOne[i][j - 1] + 1;
                 }
+                
                 int len = consecutiveOne[i][j];
                 for (int k = i; k >= 0; --k) {
                     if (consecutiveOne[k][j] == 0) {

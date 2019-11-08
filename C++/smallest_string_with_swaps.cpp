@@ -63,10 +63,8 @@ public:
     string smallestStringWithSwaps(string s, vector<vector<int>>& pairs) {
         int n = s.size();
         vector<int> parent(n);
-        vector<string> component(n, "");
         for (int i = 0; i < n; ++i) {
             parent[i] = i;
-            component[i].push_back(s[i]);
         }
 
         for (vector<int>& pair : pairs) {
@@ -74,20 +72,24 @@ public:
             int pv = find(pair[1], parent);
             if (pu != pv) {
                 parent[pu] = pv;
-                for (int c : component[pu]) {
-                    component[pv] += component[pu];
-                }
             }
         }
 
-        for (int i = 0; i < n; ++i) if (parent[i] == i) {
-            sort(component[i].rbegin(), component[i].rend());
+        vector<vector<int>> component(n);
+        for (int i = 0; i < n; ++i) {
+            component[find(i, parent)].push_back(i); // the sequence of id in each component will be in increasing order
         }
 
-        for (int i = 0; i < n; ++i) {
-            int pi = find(i, parent);
-            s[i] = component[pi].back();
-            component[pi].pop_back();
+        for (vector<int>& c : component) if (!c.empty()) {
+            string temp = "";
+            for (int id : c) {
+                temp += s[id];
+            }
+            sort(temp.begin(), temp.end());
+            
+            for (int j = 0; j < c.size(); ++j) {
+                s[c[j]] = temp[j];
+            }
         }
         return s;
     }

@@ -62,6 +62,5 @@ public:
             cur1 = suc;
         }
         cur1 -> next = cur2;
-        return;
     }
 };

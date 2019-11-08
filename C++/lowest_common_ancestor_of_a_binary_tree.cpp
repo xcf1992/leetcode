@@ -61,6 +61,6 @@ public:
         if (left_lca and right_lca) {
             return root;
         }
-        return left_lca != nullptr? left_lca: right_lca;
+        return left_lca != nullptr? left_lca : right_lca;
     }
 };
