@@ -29,7 +29,7 @@ using namespace std;
 
 class Solution {
 public:
-    ListNode *deleteDuplicates(ListNode* head) {
+    ListNode* deleteDuplicates(ListNode* head) {
         if (head == nullptr or head -> next == nullptr) {
             return head;
         }
@@ -40,6 +40,7 @@ public:
             if (current -> val == suc -> val) {
                 current -> next = suc -> next;
                 delete suc;
+                suc = nullptr;
             }
             else {
                 current = current -> next;

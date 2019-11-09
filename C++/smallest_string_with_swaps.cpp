@@ -86,7 +86,7 @@ public:
                 temp += s[id];
             }
             sort(temp.begin(), temp.end());
-            
+
             for (int j = 0; j < c.size(); ++j) {
                 s[c[j]] = temp[j];
             }

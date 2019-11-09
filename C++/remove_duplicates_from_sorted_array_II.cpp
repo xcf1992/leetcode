@@ -56,23 +56,23 @@ public:
             return n;
         }
 
-        int cur = 0;
+        int len = 0;
         int i = 0;
         while (i < n) {
             if (i < n - 1 and nums[i] == nums[i + 1]) {
-                nums[cur++] = nums[i];
+                nums[len++] = nums[i];
                 i += 1;
-                nums[cur++] = nums[i];
+                nums[len++] = nums[i];
                 i += 1;
-                while (i < n and nums[i] == nums[cur - 1]) {
+                while (i < n and nums[i] == nums[len - 1]) {
                     i += 1;
                 }
             }
             else {
-                nums[cur++] = nums[i];
+                nums[len++] = nums[i];
                 i += 1;
             }
         }
-        return cur;
+        return len;
     }
 };
