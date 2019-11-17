@@ -61,7 +61,44 @@ There will not be any duplicated flights or self cycles.
 #include <set>
 using namespace std;
 
-class Solution {
+struct myComp {
+    bool operator()(vector<int>& a, vector<int>& b) {
+        return a[0] > b[0];
+    }
+};
+
+class Solution2 { // dijkstra
+public:
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int K) {
+        vector<vector<pair<int, int>>> prices(n);
+        for (vector<int>& flight : flights) {
+            prices[flight[0]].push_back({flight[1], flight[2]});
+        }
+
+        priority_queue<vector<int>, vector<vector<int>>, myComp> pq;
+        pq.push({0, 0, src});
+        while (!pq.empty()) {
+            int curCost = pq.top()[0];
+            int curStops = pq.top()[1];
+            int curPos = pq.top()[2];
+            pq.pop();
+
+            if (curPos == dst) {
+                return curCost;
+            }
+            if (curStops > K) {
+                continue;
+            }
+
+            for (pair<int, int>& price : prices[curPos]) {
+                pq.push({curCost + price.second, curStops + 1, price.first});
+            }
+        }
+        return -1;
+    }
+};
+
+class Solution { // bfs
 public:
     int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int K) {
         vector<vector<int>> prices(n, vector<int>(n, INT_MAX));
@@ -96,7 +133,7 @@ public:
 };
 
 // follow up print flight path
-class Solution {
+class Solution1 {
 public:
     int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int K) {
         unordered_map<int, unordered_map<int, int>> prices;
