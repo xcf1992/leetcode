@@ -81,3 +81,32 @@ public:
         return closet;
     }
 };
+
+class Solution1 { // O(n) solution, easier to understand
+private:
+    void find(TreeNode* root, double target, int k, deque<int>& result) {
+        if (root == nullptr) {
+            return;
+        }
+
+        find(root -> left, target, k, result);
+
+        result.push_back(root -> val);
+        if (result.size() > k) {
+            if (abs(result.front() - target) > abs(result.back() - target)) {
+                result.pop_front();
+            }
+            else {
+                result.pop_back();
+            }
+        }
+
+        find(root -> right, target, k, result);
+    }
+public:
+    vector<int> closestKValues(TreeNode* root, double target, int k) {
+        deque<int> result;
+        find(root, target, k, result);
+        return vector<int>(result.begin(), result.end());
+    }
+};
