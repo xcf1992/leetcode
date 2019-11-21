@@ -101,7 +101,7 @@ public:
         if (sum % k != 0) {
             return false;
         }
-        
+
         vector<int> used(nums.size(), false);
         return partition(nums, used, 0, k, 0, sum / k);
     }
