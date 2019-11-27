@@ -44,7 +44,7 @@ public:
                 if (!dp[j]) {
                     continue;
                 }
-                
+
                 string word = s.substr(j, i - j);
                 if (dict.find(word) != dict.end()) {
                     dp[i] = true;

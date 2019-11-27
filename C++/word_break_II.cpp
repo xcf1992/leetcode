@@ -63,7 +63,7 @@ private:
             if (dict.find(word) == dict.end()) {
                 continue;
             }
-            
+
             vector<string> breakWords = generate(dict, s.substr(0, i));
             for (string& bw : breakWords) {
                 memo[s].push_back(bw + (bw == "" ? "" : " ") + word);

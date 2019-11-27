@@ -101,7 +101,7 @@ public:
                 else {
                     consecutiveOne[i][j] = j == 0 ? 1 : consecutiveOne[i][j - 1] + 1;
                 }
-                
+
                 int len = consecutiveOne[i][j];
                 for (int k = i; k >= 0; --k) {
                     if (consecutiveOne[k][j] == 0) {

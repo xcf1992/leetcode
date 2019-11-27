@@ -51,9 +51,11 @@ private:
             if (visited.find(it.first) != visited.end()) {
                 continue;
             }
+
             double result = calculate(it.first, second, connect, visited);
             if (result != -1.0) {
-                return it.second * result;
+                connect[first][second] = it.second * result;
+                return connect[first][second];
             }
         }
         return -1.0;
@@ -64,7 +66,7 @@ public:
         for (int i = 0; i < equations.size(); ++i) {
             vector<string> equation = equations[i];
             connect[equation[0]][equation[1]] = values[i];
-            connect[equation[1]][equation[0]] = 1 / values[i];
+            connect[equation[1]][equation[0]] = 1.0 / values[i];
         }
 
         vector<double> result;

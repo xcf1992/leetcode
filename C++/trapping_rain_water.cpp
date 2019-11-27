@@ -72,7 +72,7 @@ public:
     }
 };
 
-class Solution { // O(n) tiem and space
+class Solution1 { // O(n) tiem and space
 public:
     int trap(vector<int>& height) {
         int n = height.size();

@@ -24,7 +24,7 @@ using namespace std;
 
 class Solution {
 private:
-    void dfs(string s, vector<string> &result, int start, int step, string ip) {
+    void dfs(string s, vector<string>& result, int start, int step, string ip) {
         if (s.size() < start or step > 4) {
             return;
         }

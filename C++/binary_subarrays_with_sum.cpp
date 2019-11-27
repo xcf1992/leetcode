@@ -13,7 +13,6 @@ The 4 subarrays are bolded below:
 [1,0,1,0,1]
 
 Note:
-
 A.length <= 30000
 0 <= S <= A.length
 A[i] is either 0 or 1.

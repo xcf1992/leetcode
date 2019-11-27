@@ -50,8 +50,8 @@ private:
             return {nullptr, 0}; // return the lca node and its height
         }
 
-        pair<TreeNode*, int> left = traverse(root->left);
-        pair<TreeNode*, int> right = traverse(root->right);
+        pair<TreeNode*, int> left = traverse(root -> left);
+        pair<TreeNode*, int> right = traverse(root -> right);
         if (left.second > right.second) {
             return {left.first, left.second + 1};
         }

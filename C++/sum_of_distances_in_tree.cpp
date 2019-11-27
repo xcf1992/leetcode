@@ -1,5 +1,6 @@
 /*
-Sum of Distances in Tree
+834. Sum of Distances in Tree
+https://leetcode.com/problems/sum-of-distances-in-tree/
 
 An undirected, connected tree with N nodes labelled 0...N-1 and N-1 edges are given.
 The ith edge connects nodes edges[i][0] and edges[i][1] together.
@@ -110,15 +111,14 @@ public:
             connected[edge[0]].push_back(edge[1]);
             connected[edge[1]].push_back(edge[0]);
         }
+
         vector<bool> visited(N, false);
         vector<int> count(N, 1); // the count of child nodes include itself
         vector<int> result(N, 0);
-        // we set 0 as root, count of child for each node, update distance accourdingly
-        getChildCount(0, connected, count, result, visited);
-        // after this step only the result of root 0 is correct,
-        // we will update result for other nodes from root to leaves, according its distance to its parent
-        visited.clear();
-        visited.resize(N, false);
+        getChildCount(0, connected, count, result, visited); // we set 0 as root, count of child for each node, update distance accourdingly
+
+        visited.clear(); // after this step only the result of root 0 is correct,
+        visited.resize(N, false); // we will update result for other nodes from root to leaves, according its distance to its parent
         updateDistance(0, connected, count, result, visited, N);
         return result;
     }

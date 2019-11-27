@@ -63,8 +63,9 @@ private:
         }
 
         for (int i = 0; i < M; ++i) if ((occupied & (1 << i)) == 0) { // this bike is not taken by anyone
-            int temp = getDistance(workers[curWorker], bikes[i]) + dfs(workers, bikes, memo, curWorker + 1, (occupied | (1 << i)));
-            memo[occupied][curWorker] = min(memo[occupied][curWorker], temp);
+            int distance = getDistance(workers[curWorker], bikes[i])
+                + dfs(workers, bikes, memo, curWorker + 1, (occupied | (1 << i)));
+            memo[occupied][curWorker] = min(memo[occupied][curWorker], distance);
         }
         return memo[occupied][curWorker];
     }

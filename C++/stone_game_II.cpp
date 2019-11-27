@@ -54,7 +54,7 @@ using namespace std;
 class Solution {
 private:
     int n = 0;
-    
+
     int getMaxStone(vector<vector<int>>& dp, vector<int>& preSum, int start, int M) {
         if (start >= n) {
             return 0;
