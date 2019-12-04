@@ -37,32 +37,80 @@ Constraints:
 #include <set>
 #include <numeric>
 using namespace std;
+/*
+The basic idea is to fill the entire block bottom up.
+In every step, find the lowest left unfilled square first,
+and select a square with different possible sizes to fill it.
+We maintain a height array (skyline) with length n while dfs.
+This skyline is the identity of the state.
+The final result we ask for is the minimum number of squares for the state [m, m, m, m, m, m, m] (The length of this array is n).
+Of course, backtrack without optimization will have a huge time complexity,
+but it can be pruned or optimized by the following three methods.
 
-// wrong answer 11, 13
+When the current cnt (that is, the number of squares) of this skyline has exceeded the value of the current global optimal solution,
+then return directly.
+
+When the current skyline has been traversed,
+and the previous cnt is smaller than the current cnt, then return directly.
+
+When we find the empty square in the lowest left corner,
+we pick larger size for the next square first.
+This can make the program converge quickly. (It is a very important optimization)
+*/
+typedef long long Key;
+
 class Solution {
 private:
-    int dfs(int n, int m, vector<vector<int>>& memo) {
-        if (m == 0 or n == 0) {
-            return 0;
+    unordered_map<Key, int> memo;
+    int maxDepth;
+
+    Key getKey(vector<int>& nums) {
+        Key key = 0;
+        for (int num : nums) {
+            key = (key << 4LL) + num;
+        }
+        return key;
+    }
+
+    void dfs(vector<int>& height, int curDepth) {
+        Key hkey = getKey(height);
+        if (hkey == 0) {
+            maxDepth = min(maxDepth, curDepth);
+            return;
         }
 
-        if (m == n) {
-            return 1;
+        if (curDepth >= maxDepth or memo.find(hkey) != memo.end()) {
+            return;
         }
 
-        if (memo[n][m] != INT_MAX) {
-            return memo[n][m];
+        auto topLeft = max_element(height.begin(), height.end());
+        int width = 1;
+        for (auto top = topLeft + 1; top != height.end() and *top == *topLeft; ++top) {
+            width += 1;
         }
 
-        memo[n][m] = n * m;
-        for (int len = 1; len < min(n, m); ++len) {
-            memo[n][m] = min(memo[n][m], 1 + dfs(len, m - len, memo) + dfs(n - len, m, memo));
+        for (int w = min(width, *topLeft); w > 0; --w) {
+            for (int i = 0; i < w; ++i) {
+                *(topLeft + i) -= w;
+            }
+            dfs(height, curDepth + 1);
+            for (int i = 0; i < w; ++i) {
+                *(topLeft + i) += w;
+            }
         }
-        return memo[n][m];
     }
 public:
     int tilingRectangle(int n, int m) {
-        vector<vector<int>> memo(n + 1, vector<int>(m + 1, INT_MAX));
-        return dfs(n, m, memo);
+        if (n > m) {
+            swap(n, m);
+        }
+        vector<int> height;
+        for (int i = 0; i < n; ++i) {
+            height.push_back(m);
+        }
+
+        maxDepth = m;
+        dfs(height, 0);
+        return maxDepth;
     }
 };
