@@ -45,16 +45,108 @@ beforeItems[i] does not contain duplicates elements.
 #include <stdio.h>
 #include <numeric>
 using namespace std;
+/*
+We do a two-level topological sort according to beforeItems.
+
+Group level. Decide which group should go first.
+Inner-group level. Decide which item should go first.
+Isolated items (-1) can be put into separate groups to make the solution simpler.
+*/
+class Graph {
+    unordered_map<int, vector<int>> adj;
+    unordered_map<int, int> indegree;
+public:
+    Graph() {}
+
+    Graph(int n) {
+        for (int i = 0; i < n; ++i) {
+            indegree[i] = 0;
+        }
+    }
+
+    Graph(vector<int>& vec) {
+        for (const int& i : vec) {
+            indegree[i] = 0;
+        }
+    }
+
+    void addEdge(int from, int to) {
+        adj[from].push_back(to);
+        indegree[to] += 1;
+    }
+
+    vector<int> sort() {
+        queue<int> q;
+        for (const auto& p : indegree) if (p.second == 0) {
+            q.push(p.first);
+        }
+
+        vector<int> result;
+        while (!q.empty()) {
+            int cur = q.front();
+            q.pop();
+
+            result.push_back(cur);
+            for (const auto & next : adj[cur]) {
+                indegree[next] -= 1;
+                if (indegree[next] == 0) {
+                    q.push(next);
+                }
+            }
+        }
+        return result;
+    }
+};
 
 class Solution {
-private:
-    unordered_map<int, unordered_set<int>> group2item; //组织架构，没有小组的项目会分配一个唯一的小组
-    unordered_map<int, int> groupInNum;       //每个小组的入度
-    unordered_map<int, unordered_set<int>> groupDir;   //小组的依赖图
-    unordered_map<int, int> itemInNum;       //组内每个成员的入度
-    unordered_map<int, unordered_set<int>> itemDir;    //组内的依赖图
 public:
     vector<int> sortItems(int n, int m, vector<int>& group, vector<vector<int>>& beforeItems) {
+        vector<vector<int>> groupItems(m + 1);
+        for (int i = 0; i < n; ++i) {
+            if (group[i] >= 0) {
+                groupItems[group[i]].push_back(i);
+            }
+            else { // Isolated items are put into separate groups.
+                group[i] = m;
+                groupItems[m].push_back(i);
+            }
+        }
 
+        vector<Graph> groupItemGraphs(groupItems.size());
+        for (int i = 0; i < groupItems.size(); ++i) {
+            groupItemGraphs[i] = Graph(groupItems[i]);
+        }
+
+        Graph groupGraph = Graph(groupItems.size());
+        for (int i = 0; i < n; ++i) {
+            int curGroup = group[i];
+            for (const int& item : beforeItems[i]) {
+                int beforeGroup = group[item];
+                if (curGroup == beforeGroup) { // BeforeItem is in the same group, add edge in the graph of that group.
+                    groupItemGraphs[curGroup].addEdge(item, i);
+                }
+                else { // BeforeItem is in a different group, add edge in the graph of groups.
+                    groupGraph.addEdge(beforeGroup, curGroup);
+                }
+            }
+        }
+
+        vector<int> groupOrder = groupGraph.sort();
+        if (groupOrder.size() < groupItems.size()) {
+            return {};
+        }
+
+        vector<int> result;
+        for (const int& i : groupOrder) {
+            vector<int> order = groupItemGraphs[i].sort();
+            if (order.size() < groupItems[i].size()) {
+                return {};
+            }
+
+            for (const int& j : order) {
+                result.push_back(j);
+            }
+        }
+        return result;
     }
 };
