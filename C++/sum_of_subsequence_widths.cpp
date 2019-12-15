@@ -59,9 +59,11 @@ public:
         long result = 0;
         long count = 1;
         for (int i = 0; i < n; i++) {
-            // here we write in a simplified way
-            // as for the count for A[i] is maximum is the same as the number A[n - i - 1] is the minimum
-            // so we can use only one count to loop through the array
+            /*
+            here we write in a simplified way
+            as for the count for A[i] is maximum is the same as the number A[n - i - 1] is the minimum
+            so we can use only one count to loop through the array
+            */
             result = (result + A[i] * count - A[n - i - 1] * count) % mod;
             count = (count << 1) % mod;
         }
@@ -70,14 +72,14 @@ public:
 };
 
 /*
- 1. We sort the array.
- 2. We loop from smallest to largest number.
- 3. For each number we calculate in how many subsequences we can have when we pick minimum and maximum, A[i] and A[j] in the code, the number will be pow(2, j - i - 1)
+1. We sort the array.
+2. We loop from smallest to largest number.
+3. For each number we calculate in how many subsequences we can have when we pick minimum and maximum, A[i] and A[j] in the code, the number will be pow(2, j - i - 1)
 
- It seems I have passed other cases, but failed at:
- [5,69,89,92,31,16,25,45,63,40,16,56,24,40,75,82,40,12,50,62,92,44,67,38,92,22,91,24,26,21,100,42,23,56,64,43,95,76,84,79,89,4,16,94,16,77,92,9,30,13]
- my outcome is: 857876213
- the expected is: 857876214
+It seems I have passed other cases, but failed at:
+[5,69,89,92,31,16,25,45,63,40,16,56,24,40,75,82,40,12,50,62,92,44,67,38,92,22,91,24,26,21,100,42,23,56,64,43,95,76,84,79,89,4,16,94,16,77,92,9,30,13]
+my outcome is: 857876213
+the expected is: 857876214
 */
 class Solution1 {
 private:
