@@ -16,57 +16,39 @@ using namespace std;
 
 class Solution {
 public:
-    int minFallingPathSum(vector<vector<int>> arr) {
-        int m = arr.size();
-        if (m == 0) {
+    int maxFreq(string s, int maxLetters, int minSize, int maxSize) {
+        int n = s.size();
+        if (n < minSize) {
             return 0;
         }
-        int n = arr[0].size();
 
-        int leastVal = INT_MAX;
-        int leastCol = -1;
-        int lessVal = INT_MAX;
-        int lessCol = -1;
-        for (int j = 0; j < n; ++j) {
-            if (arr[0][j] < leastVal) {
-                leastVal = arr[0][j];
-                leastCol = j;
+        unordered_map<string, int> occurrence;
+        vector<int> letter(26, 0);
+        int count = 0;
+        int left = 0;
+        int result = 0;
+        for (int right = 0; right < n; ++right) {
+            letter[s[right]] += 1;
+            if (letter[s[right]] == 1) {
+                count += 1;
             }
-            else if (arr[0][j] < lessVal) {
-                lessVal = arr[0][j];
-                leastCol = j;
+
+            if (right - left + 1 > minSize) {
+                letter[s[left]] -= 1;
+                if (letter[s[left]] == 0) {
+                    count -= 1;
+                }
+                left += 1;
+            }
+
+            int len = right - left + 1;
+            if (len == minSize and count <= maxLetters) {
+                string sub = s.substr(left, len);
+                occurrence[sub] += 1;
+                result = max(result, occurrence[sub]);
             }
         }
-
-        for (int i = 1; i < m; ++i) {
-            int newLeastVal = INT_MAX;
-            int newLeastCol = -1;
-            int newLessVal = INT_MAX;
-            int newLessCol = -1;
-            for (int j = 0; j < n; ++j) {
-                int sum = arr[i][j];
-                if (j != leastCol) {
-                    sum += leastVal;
-                }
-                else {
-                    sum += lessVal;
-                }
-
-                if (sum < newLeastVal) {
-                    newLeastVal = sum;
-                    newLeastCol = j;
-                }
-                else if (sum < newLessVal) {
-                    newLessVal = sum;
-                    newLessCol = j;
-                }
-            }
-            leastVal = newLeastVal;
-            leastCol = newLeastCol;
-            lessVal = newLessVal;
-            lessCol = newLessCol;
-        }
-        return leastVal;
+        return result;
     }
 };
 
@@ -74,5 +56,5 @@ int main() {
     vector<vector<int>> matrix({{-73,61,43,-48,-36},{3,30,27,57,10},{96,-76,84,59,-15},{5,-49,76,31,-7},{97,91,61,-46,67}});
     
     Solution s;
-    s.minFallingPathSum(matrix);
+    s.maxFreq("aababcaab", 2, 3, 4);
 }
