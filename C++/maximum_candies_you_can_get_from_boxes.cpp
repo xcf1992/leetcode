@@ -78,29 +78,26 @@ public:
         }
 
         int result = 0;
-        while (!bfs.empty()) {
+        bool allClosed = false;
+        while (!bfs.empty() and !allClosed) {
+            allClosed = true;
             int curSize = bfs.size();
-            bool allClosed = true;
             for (int i = 0; i < curSize; ++i) {
                 int curBox = bfs.front();
                 bfs.pop();
-
-                if (status[curBox] == 1) {
-                    allClosed = false;
-                    result += candies[curBox];
-                    for (int box : containedBoxes[curBox]) {
-                        bfs.push(box);
-                    }
-                    for (int key : keys[curBox]) {
-                        status[key] = 1;
-                    }
-                }
-                else {
+                if (status[curBox] == 0) {
                     bfs.push(curBox);
+                    continue;
                 }
-            }
-            if (allClosed) {
-                break;
+
+                allClosed = false;
+                result += candies[curBox];
+                for (int box : containedBoxes[curBox]) {
+                    bfs.push(box);
+                }
+                for (int key : keys[curBox]) {
+                    status[key] = 1;
+                }
             }
         }
         return result;
