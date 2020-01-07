@@ -70,6 +70,9 @@ private:
 
         if (widx == words.size()) {
             if (c2i.find(result[digit]) == c2i.end() and i2c.find(sum % 10) == i2c.end()) {
+                if (sum % 10 == 0 and digit + 1 == limit) {
+                    return false; // avoid leading zero in result
+                }
                 c2i[result[digit]] = sum % 10;
                 i2c[sum % 10] = result[digit];
                 bool valid = check(words, result, digit + 1, 0, sum / 10);
