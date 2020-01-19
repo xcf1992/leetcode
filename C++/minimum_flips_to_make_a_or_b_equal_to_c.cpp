@@ -38,6 +38,7 @@ Constraints:
 #include <stdio.h>
 #include "extra_data_types.hpp"
 using namespace std;
+
 // put | and & bit operation into () before compare
 class Solution {
 public:
