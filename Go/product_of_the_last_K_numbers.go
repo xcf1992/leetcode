@@ -39,7 +39,7 @@ There will be at most 40000 operations considering both add and getProduct.
 package main
 
 import (
-    "fmt"
+	"fmt"
 )
 
 type ProductOfNumbers struct {
