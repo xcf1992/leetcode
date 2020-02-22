@@ -51,7 +51,7 @@ func getBitOneCount(num int) int {
 	var count int = 0
 	for num > 0 {
 		if (num & 1) != 0 {
-			count += 1
+			count++
 		}
 		num >>= 1
 	}
