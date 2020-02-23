@@ -31,8 +31,9 @@ n == grid[i].length
 package main
 
 import (
-    "fmt"
+	"fmt"
 )
+
 /*
 This solution uses the fact that the negative regions of the matrix will form a "staircase" shape, e.g.:
 
@@ -47,19 +48,19 @@ What this solution then does is to "trace" the outline of the staircase.
 Start from bottom-left corner of the matrix, count in the negative numers in each row.
 */
 func countNegatives(grid [][]int) int {
-    var m int = len(grid)
-    var n int = len(grid[0])
-    var result int = 0
+	var m int = len(grid)
+	var n int = len(grid[0])
+	var result int = 0
 
-    var row int = m - 1
-    var col int = 0
-    for row >= 0 && col < n {
-        if grid[row][col] < 0 {
-            row -= 1;
-            result += n - col
-        } else {
-            col += 1
-        }
-    }
-    return result
+	var row int = m - 1
+	var col int = 0
+	for row >= 0 && col < n {
+		if grid[row][col] < 0 {
+			row -= 1
+			result += n - col
+		} else {
+			col += 1
+		}
+	}
+	return result
 }

@@ -64,9 +64,9 @@ import (
 
 // Cashier haha
 type Cashier struct {
-	n int
-	cur int
-	discount float64
+	n            int
+	cur          int
+	discount     float64
 	productPrice map[int]int
 }
 
@@ -77,10 +77,10 @@ func Constructor(n int, discount int, products []int, prices []int) Cashier {
 		pp[id] = prices[i]
 	}
 
-	return Cashier {
-		n: n,
-		cur: 0,
-		discount: float64(discount),
+	return Cashier{
+		n:            n,
+		cur:          0,
+		discount:     float64(discount),
 		productPrice: pp,
 	}
 }
@@ -93,12 +93,13 @@ func (cashier *Cashier) GetBill(product []int, amount []int) float64 {
 		total += float64(amount[i] * cashier.productPrice[id])
 	}
 
-	if cashier.cur % cashier.n == 0 {
-		cashier.cur = 0;
-		total = total - (total * cashier.discount) / 100.0
+	if cashier.cur%cashier.n == 0 {
+		cashier.cur = 0
+		total = total - (total*cashier.discount)/100.0
 	}
 	return total
 }
+
 /**
  * Your Cashier object will be instantiated and called as such:
  * obj := Constructor(n, discount, products, prices);

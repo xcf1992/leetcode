@@ -46,32 +46,30 @@ type ProductOfNumbers struct {
 	preProduct []int
 }
 
-
 func Constructor() ProductOfNumbers {
-	return ProductOfNumbers {preProduct: []int{1}}
+	return ProductOfNumbers{preProduct: []int{1}}
 }
 
-
-func (this*ProductOfNumbers) Add(num int)  {
+func (this *ProductOfNumbers) Add(num int) {
 	var n int = len(this.preProduct)
 	if num != 0 {
-		this.preProduct = append(this.preProduct, num * this.preProduct[n - 1])
+		this.preProduct = append(this.preProduct, num*this.preProduct[n-1])
 	} else {
 		this.preProduct = []int{1}
 	}
 }
 
-
-func (this*ProductOfNumbers) GetProduct(k int) int {
+func (this *ProductOfNumbers) GetProduct(k int) int {
 	var n int = len(this.preProduct)
 	if k < n {
-		return this.preProduct[n - 1] / this.preProduct[n - k - 1]
+		return this.preProduct[n-1] / this.preProduct[n-k-1]
 	}
 	return 0
 }
+
 /**
 * Your ProductOfNumbers object will be instantiated and called as such:
 * obj := Constructor();
 * obj.Add(num);
 * param_2 := obj.GetProduct(k);
-*/
+ */

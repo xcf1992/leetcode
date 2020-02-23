@@ -30,13 +30,13 @@ import (
 )
 
 func minOf(vars ...int) int {
-    min := vars[0]
-    for _, i := range vars {
-        if min > i {
-            min = i
-        }
-    }
-    return min
+	min := vars[0]
+	for _, i := range vars {
+		if min > i {
+			min = i
+		}
+	}
+	return min
 }
 
 /*
@@ -52,7 +52,7 @@ func numberOfSubstrings(s string) int {
 	var lastIndex = []int{-1, -1, -1}
 	var n int = len(s)
 	for i := 0; i < n; i++ {
-		lastIndex[s[i] - 'a'] = i
+		lastIndex[s[i]-'a'] = i
 		result += minOf(lastIndex[0], lastIndex[1], lastIndex[2]) + 1
 	}
 	return result
