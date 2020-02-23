@@ -56,11 +56,11 @@ func find(parent []int, cur int) int {
 
 func validateBinaryTreeNodes(n int, leftChild []int, rightChild []int) bool {
 	var parent []int = make([]int, n, n)
-    for i := range parent {
+	for i := range parent {
 		parent[i] = i
 	}
 
-    for i := range parent {
+	for i := range parent {
 		var p int = find(parent, i)
 		if leftChild[i] != -1 {
 			var lp int = find(parent, leftChild[i])
@@ -81,7 +81,7 @@ func validateBinaryTreeNodes(n int, leftChild []int, rightChild []int) bool {
 	}
 
 	var count int = 0
-    for i, root := range parent {
+	for i, root := range parent {
 		if i == root {
 			count++
 		}
