@@ -50,10 +50,39 @@ All characters in s are lower-case English letters.
 #include <stdio.h>
 #include <map>
 using namespace std;
+/*
+Condition 1. odd characters <= k
+Count the occurrences of all characters.
+If one character has odd times occurrences,
+there must be at least one palindrome,
+with odd length and this character in the middle.
+So we count the characters that appear odd times,
+the number of odd character should not be bigger than k.
 
+Condition 2. k <= s.length()
+Also, if we have one character in each palindrome,
+we will have at most s.length() palindromes,
+so we need k <= s.length().
+
+The above two condition are necessary and sufficient conditions for this problem.
+So we return odd <= k <= n
+
+Complexity
+Time O(N)
+Space O(1)
+*/
 class Solution {
 public:
     bool canConstruct(string s, int k) {
+        vector<int> count(26, 0);
+        for (char& c : s) {
+            count[c - 'a'] += 1;
+        }
 
+        int odd = 0;
+        for (int n : count) {
+            odd += n % 2 == 1;
+        }
+        return odd <= k && k <= s.size();
     }
 };
