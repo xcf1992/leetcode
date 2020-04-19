@@ -55,6 +55,33 @@ using namespace std;
 class Solution {
 public:
     string getHappyString(int n, int k) {
+        if (k > 3 * pow(2, n - 1)) {
+            return "";
+        }
 
+        queue<string> bfs;
+        bfs.push("a");
+        bfs.push("b");
+        bfs.push("c");
+        string result = "";
+        for (int i = 1; i <= n; ++i) {
+            int curSize = bfs.size();
+            for (int j = 0; j < curSize; ++j) {
+                string cur = bfs.front();
+                bfs.pop();
+
+                if (i == n and j == k - 1) {
+                    result = cur;
+                    break;
+                }
+
+                for (int c = 'a'; c <= 'c'; ++c) if (c != cur.back()) {
+                    string temp = cur;
+                    temp.push_back(c);
+                    bfs.push(temp);
+                }
+            }
+        }
+        return result;
     }
 };
