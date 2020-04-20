@@ -59,12 +59,32 @@ tableNumberi is a valid integer between 1 and 500.
 #include <stack>
 #include <stdio.h>
 #include <map>
+#include <set>
 #include <numeric>
 using namespace std;
 
 class Solution {
 public:
     vector<vector<string>> displayTable(vector<vector<string>>& orders) {
+        set<string> food;
+        map<int, unordered_map<string, int>> tableFoodCount;
+        for (vector<string>& order : orders) {
+            food.insert(order[2]);
+            tableFoodCount[stoi(order[1])][order[2]] += 1;
+        }
 
+        vector<vector<string>> result;
+        vector<string> row(food.begin(), food.end());
+        row.insert(row.begin(), "Table");
+        result.push_back(row);
+        for (auto& it : tableFoodCount) {
+            vector<string> temp;
+            temp.push_back(to_string(it.first));
+            for (int i = 1; i < row.size(); ++i) {
+                temp.push_back(to_string(it.second[row[i]]));
+            }
+            result.push_back(temp);
+        }
+        return result;
     }
 };
