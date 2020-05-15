@@ -52,8 +52,27 @@ hasApple.length == n
 using namespace std;
 
 class Solution {
+private:
+    vector<vector<int>> adjList;
+    int dfs(vector<bool>& hasApple, int root, int prev) {
+        int result = 0;
+        for (int child : adjList[root]) {
+            if (child != prev) {
+                int temp = dfs(hasApple, child, root);
+                if (temp != 0 or hasApple[child]) {
+                    result += temp + 2;
+                }
+            }
+        }
+        return (result != 0 or hasApple[root]) ? result : 0;
+    }
 public:
     int minTime(int n, vector<vector<int>>& edges, vector<bool>& hasApple) {
-
+        adjList.resize(n);
+        for (vector<int>& e : edges) {
+            adjList[e[0]].push_back(e[1]);
+            adjList[e[1]].push_back(e[0]);
+        }
+        return dfs(hasApple, 0, -1);
     }
 };
