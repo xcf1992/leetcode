@@ -57,6 +57,29 @@ using namespace std;
 class Solution {
 public:
     int minSumOfLengths(vector<int>& arr, int target) {
+        unordered_map<int, int> hmap;
+        int sum = 0;
+        int lsize = INT_MAX;
+        int result = INT_MAX;
+        hmap[0] = -1;
+        for (int i = 0; i < arr.size(); i++){
+            sum += arr[i];
+            hmap[sum] = i; // stores key as sum upto index i, and value as i.
+        }
 
+        sum = 0;
+        for (int i = 0; i < arr.size(); i++){
+            sum += arr[i];
+            if (hmap.find(sum - target) != hmap.end()) {
+                lsize = min(lsize, i - hmap[sum-target]);
+                // stores minimum length of sub-array starting with index<= i with sum target. This ensures non- overlapping property.
+            }
+
+            //hmap.get(sum+target) searches for any sub-array starting with index i+1 with sum target.
+            if (hmap.find(sum + target) != hmap.end() and lsize < INT_MAX) {
+                result = min(result, hmap[sum + target] - i + lsize); // updates the result only if both left and right sub-array exists.
+            }
+        }
+        return result == INT_MAX ? -1 : result;
     }
 };
