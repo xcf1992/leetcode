@@ -53,10 +53,33 @@ Constraints:
 #include <stdio.h>
 #include <set>
 using namespace std;
-
+// https://leetcode.com/problems/find-a-value-of-a-mysterious-function-closest-to-target/discuss/743267/C%2B%2B-O(N)-Algorithm-with-detailed-explanation-improved-from-O(N(log(N))
 class Solution {
 public:
-    int closestToTarget(vector<int>& arr, int target) {
+    int closestToTarget(vector<int>& arr, int target)
+    {
+        int len = (int)arr.size();
+        vector<vector<int> > tab(30);
+        for(int i = 0; i < len; i++)
+            for(int j = 0; j < 30; j++) if((arr[i] >> j) & 1)
+                tab[j].push_back(i);
 
+        vector<int> dp(len + 1); dp[len] = arr[0]; //dummy value to avoid "index out of range"
+        int ans = abs(arr[0] - target);
+        int l = len - 1;
+        for(int i = len - 1; i >= 0; i--)
+        {
+            for(int j = 0; j < 30; j++) if(!((arr[i] >> j) & 1))
+                while(!tab[j].empty() && tab[j].back() > i)
+                {
+                    dp[tab[j].back()] -= 1 << j;
+                    tab[j].pop_back();
+                }
+            dp[i] = arr[i];
+
+            while(l > i && dp[l] < target) l--; //After this line, we have dp[l] >= target, dp[l + 1] < target, or l == i and all elements in this new sequence is smaller than target
+            ans = min(ans, min(abs(target - dp[l]), abs(target - dp[l + 1])));
+        }
+        return ans;
     }
 };
