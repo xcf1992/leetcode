@@ -45,11 +45,30 @@ Constraints:
 #include <map>
 using namespace std;
 /*
-
+Have you ever heard the problem:
+Find out the longest common sequence.
+Similar problem: 1035. Uncrossed Lines
 */
 class Solution {
 public:
-    int maxDotProduct(vector<int>& nums1, vector<int>& nums2) {
-
+    int maxDotProduct(vector<int>& A, vector<int>& B) {
+        int n = A.size();
+        int m = B.size();
+        vector<vector<int>> dp(n, vector<int>(m, 0));
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < m; ++j) {
+                dp[i][j] = A[i] * B[j];
+                if (i && j) {
+                    dp[i][j] += max(dp[i - 1][j - 1], 0);
+                }
+                if (i) {
+                    dp[i][j] = max(dp[i][j], dp[i - 1][j]);
+                }
+                if (j) {
+                    dp[i][j] = max(dp[i][j], dp[i][j - 1]);
+                }
+            }
+        }
+        return dp[n - 1][m - 1];
     }
 };
