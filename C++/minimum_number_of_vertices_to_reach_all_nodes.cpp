@@ -40,10 +40,35 @@ All pairs (fromi, toi) are distinct.
 #include <stdio.h>
 #include <map>
 using namespace std;
+/*
+Intuition
+Just return the nodes with no in-degres.
 
+
+Explanation
+Quick prove:
+
+All nodes with no in-degree must in the final result,
+because they can not be reached from
+All other nodes can be reached from any other nodes.
+All other nodes can be reached from some other nodes.
+
+Complexity
+Time O(E)
+Space O(N)
+*/
 class Solution {
 public:
     vector<int> findSmallestSetOfVertices(int n, vector<vector<int>>& edges) {
-
+        vector<int> res, seen(n);
+        for (auto& e: edges) {
+            seen[e[1]] = 1;
+        }
+        for (int i = 0; i < n; ++i) {
+            if (seen[i] == 0) {
+                res.push_back(i);
+            }
+        }
+        return res;
     }
 };
