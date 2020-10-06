@@ -76,10 +76,47 @@ arrival is strictly increasing.
 #include <map>
 #include "extra_data_types.hpp"
 using namespace std;
+/*
+Intuition
+We need to avoid scanning through k servers for every request. So, instead looping through requests, we will loop through servers and take all requests that are available (not picked up by previous servers) and can be handled.
 
+Solution
+For each server, we track when it becomes available (avail), and also the count cnt of executed requests. We will use that count in the end to determine the busiest server.
+
+For a current server i % k, we add request i to the list of available requests. If we can process that request, we remove it from the queue. If not - that request will become available for the next server to pick up. We will pick an earlier request first - to ensure that a request is processed by the first available server.
+
+Here, we are using ordered map to 'queue' available requests, so it's efficient to find requests that the current server can process. We can further optimize by removing 'dropped' requests.
+*/
 class Solution {
 public:
     vector<int> busiestServers(int k, vector<int>& arrival, vector<int>& load) {
+        vector<int> cnt(k), avail(k);
+        map<int, int> m;
+        for (int i = 0, last_i = 0; ; ++i) {
+            if (i < arrival.size()) {
+                m[arrival[i]] = load[i];
+            }
+            else if (i - last_i > k) {
+                break;
+            }
 
+            auto it = m.lower_bound(avail[i % k]);
+            while (it != end(m)) {
+                last_i = i;
+                ++cnt[i % k];
+                avail[i % k] = it->first + it->second;
+                m.erase(it);
+                it = m.lower_bound(avail[i % k]);
+            }
+        }
+
+        vector<int> res;
+        int max_req = *max_element(begin(cnt), end(cnt));
+        for (int i = 0; i < k; ++i) {
+            if (cnt[i] == max_req) {
+                res.push_back(i);
+            }
+        }
+        return res;
     }
 };
