@@ -68,10 +68,66 @@ Constraints:
 #include <vector>
 #include "extra_data_types.hpp"
 using namespace std;
+/*
+Intuition
+Need to sort by minimum - actual
 
+
+Explanation
+We have n investor,
+each investor can invest actual energy,
+and he think your company have minimum value.
+
+If you already have at least minimum - actual energy,
+the investory will invest you actual energy.
+
+Assuming you get all investment,
+how many energy you have at least in the end?
+
+We sort by the energy required minimum - actual.
+res is our current energy.
+Each round we will get energy a and reach max(res + a, m).
+Return directly res in the end.
+
+
+Continue the story
+The following explanation is from @kaiwensun, vote for him.
+
+minimum - actual is the "bar" of an investor.
+if your company doesn't already have at least minimum - actual energy/value
+when the investor is assessing your company,
+you don't meet the investor's bar.
+They don't want to invest to you.
+
+But don't worry, you can pay some extra energy/money
+from your own pocket to reach minimum - actual and meet the bar,
+then the investor will invest actual energy.
+
+Eventually, every investor will invest actual to you.
+You want to pay as little out-of-pocket energy/money as possible.
+
+So you want your company's energy/value to be as high as possible
+before visiting an investor to let it asses your company.
+
+In other words, you want to first visit those investors whose bar is lower.
+
+So we sort by investors by their "bar",
+i.e. by their minimum - actual.
+
+
+Complexity
+Time O(sort)
+Space O(sort)
+*/
 class Solution {
 public:
-    int minimumEffort(vector<vector<int>>& tasks) {
-
+    int minimumEffort(vector<vector<int>>& A) {
+        int res = 0;
+        for (auto &a : A)
+            a[0] = a[1] - a[0];
+        sort(A.begin(), A.end());
+        for (auto &a : A)
+            res = max(res + a[1] - a[0], a[1]);
+        return res;
     }
 };
