@@ -44,6 +44,21 @@ using namespace std;
 class Solution {
 public:
     vector<int> decode(vector<int>& encoded) {
+        int n = encoded.size() + 1;
+        int sum = 0;
+        for (int i = 1; i <= n; ++i) {
+            sum ^= i;
+        }
 
+        for (int i = 1; i < n - 1; i += 2) {
+            sum ^= encoded[i];
+        }
+
+        vector<int> result;
+        result.push_back(sum);
+        for (int i = 0; i < n - 1; ++i) {
+            result.push_back(result.back() ^ encoded[i]);
+        }
+        return result;
     }
 };
