@@ -46,4 +46,6 @@ int main() {
     root -> left = n1;
     root -> right = n2;
     TreeNode* result = s.removeLeafNodes(root, 1);
+    cout << "succeed" << endl;
+    return 0;
 }

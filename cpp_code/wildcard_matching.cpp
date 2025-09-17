@@ -53,7 +53,7 @@ Output: false
 #include <algorithm>
 using namespace std;
 
-class Solution1 {
+class Solution {
 private:
     /*
     * 0: reach the end of s but unmatched
