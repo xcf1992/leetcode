@@ -22,20 +22,21 @@ using namespace std;
 
 class Solution {
 private:
-    void generate(vector<string>& result, string& parenthesis, int size, int left, int right) {
-        if (parenthesis.size() == size * 2) {
+    void generate(vector<string>& result, string& parenthesis, int cnt, int left, int right) {
+        if (parenthesis.size() == cnt * 2) {
             result.push_back(parenthesis);
             return;
         }
 
-        if (left < size) {
+        if (left < cnt) {
             parenthesis += '(';
-            generate(result, parenthesis, size, left + 1, right);
+            generate(result, parenthesis, cnt, left + 1, right);
             parenthesis.pop_back();
         }
+
         if (left > right) {
             parenthesis += ')';
-            generate(result, parenthesis, size, left, right + 1);
+            generate(result, parenthesis, cnt, left, right + 1);
             parenthesis.pop_back();
         }
     }

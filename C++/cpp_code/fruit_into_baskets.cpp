@@ -70,12 +70,12 @@ public:
         int idx1 = -1;
         int idx2 = -1;
         for (int pos = 0; pos < tree.size(); pos++) {
-            if (typ1 == -1 or typ1 == tree[pos]) {
+            if (typ1 == -1 || typ1 == tree[pos]) {
                 typ1 = tree[pos];
                 count += 1;
                 idx1 = pos;
             }
-            else if (typ2 == -1 or typ2 == tree[pos]) {
+            else if (typ2 == -1 || typ2 == tree[pos]) {
                 typ2 = tree[pos];
                 count += 1;
                 idx2 = pos;
@@ -86,6 +86,7 @@ public:
                     swap(idx1, idx2);
                     swap(typ1, typ2);
                 }
+
                 count = pos - idx1;
                 typ1 = tree[pos];
                 idx1 = pos;

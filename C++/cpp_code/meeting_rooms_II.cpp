@@ -48,3 +48,30 @@ public:
         return result;
     }
 };
+
+class Solution1 {
+public:
+    int minMeetingRooms(vector<vector<int>>& intervals) {
+        size_t n = intervals.size();
+        if (n <= 1) {
+            return n;
+        }
+
+        vector<int> i_start;
+        vector<int> i_end;
+        for (vector<int>& in : intervals) {
+            i_start.push_back(in[0]);
+            i_end.push_back(in[1]);
+        }
+        sort(i_start.begin(), i_start.end());
+        sort(i_end.begin(), i_end.end());
+
+        int result = 0;
+        for (int cur : i_start) {
+            int start_cnt = upper_bound(i_start.begin(), i_start.end(), cur) - i_start.begin();
+            int end_cnt = upper_bound(i_end.begin(), i_end.end(), cur) - i_end.begin();
+            result = max(result, start_cnt - end_cnt);
+        }
+        return result;
+    }
+};

@@ -35,45 +35,41 @@ using namespace std;
 
 class Solution {
 private:
-    int m = 0;
-    int n = 0;
-    bool find(vector<vector<char>>& board, int index, int row, int col, string& word, vector<vector<bool>>& visited) {
+    vector<vector<char>> board;
+    int row_cnt = 0;
+    int col_cnt = 0;
+    int rowOffsets[4] = {0, 1, 0, -1};
+    int colOffsets[4] = {1, 0, -1, 0};
+
+    bool backtrack(int row, int col, const string& word, int index) {
         if (index >= word.size()) {
             return true;
         }
 
-        if (row < 0 or col < 0 or row >= m or col >= n or visited[row][col] or word[index] != board[row][col]) {
+        if (row < 0 || row == row_cnt || col < 0 || col == col_cnt || board[row][col] != word[index]) {
             return false;
         }
 
-        visited[row][col] = true;
-        vector<int> rDiff({0, 0, 1, -1});
-        vector<int> cDiff({1, -1, 0, 0});
-        for (int i = 0; i < 4; ++i) {
-            int r = row + rDiff[i];
-            int c = col + cDiff[i];
-            if (find(board, index + 1, r, c, word, visited)) {
+        char temp = board[row][col];
+        board[row][col] = '#';
+        for (int d = 0; d < 4; ++d) {
+            if (backtrack(row + rowOffsets[d], col + colOffsets[d], word, index + 1)) {
                 return true;
             }
         }
-        visited[row][col] = false;
+
+        board[row][col] = temp;
         return false;
     }
 public:
     bool exist(vector<vector<char>>& board, string word) {
-        if (word.empty()) {
-            return true;
-        }
+        this->board = board;
+        row_cnt = board.size();
+        col_cnt = board[0].size();
 
-        m = board.size();
-        if (m == 0) {
-            return false;
-        }
-        n = board[0].size();
-        vector<vector<bool>> visited(m, vector<bool>(n, false));
-        for (int i = 0; i < m; ++i) {
-            for (int j = 0; j < n; ++j) {
-                if (find(board, 0, i, j, word, visited)) {
+        for (int i = 0; i < row_cnt; ++i) {
+            for (int j = 0; j < col_cnt; ++j) {
+                if (backtrack(i, j, word, 0)) {
                     return true;
                 }
             }

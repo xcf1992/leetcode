@@ -2,22 +2,32 @@
 220. Contains Duplicate III
 https://leetcode.com/problems/contains-duplicate-iii/
 
-Given an array of integers,
-find out whether there are two distinct indices i and j in the array
-such that the absolute difference between nums[i] and nums[j] is at most t
-and the absolute difference between i and j is at most k.
+You are given an integer array nums and two integers indexDiff and valueDiff.
+Find a pair of indices (i, j) such that:
+i != j,
+abs(i - j) <= indexDiff.
+abs(nums[i] - nums[j]) <= valueDiff, and
+Return true if such pair exists or false otherwise.
 
 Example 1:
-Input: nums = [1,2,3,1], k = 3, t = 0
+Input: nums = [1,2,3,1], indexDiff = 3, valueDiff = 0
 Output: true
+Explanation: We can choose (i, j) = (0, 3).
+We satisfy the three conditions:
+i != j --> 0 != 3
+abs(i - j) <= indexDiff --> abs(0 - 3) <= 3
+abs(nums[i] - nums[j]) <= valueDiff --> abs(1 - 1) <= 0
 
 Example 2:
-Input: nums = [1,0,1,1], k = 1, t = 2
-Output: true
-
-Example 3:
-Input: nums = [1,5,9,1,5,9], k = 2, t = 3
+Input: nums = [1,5,9,1,5,9], indexDiff = 2, valueDiff = 3
 Output: false
+Explanation: After trying all the possible pairs (i, j), we cannot satisfy the three conditions, so we return false.
+
+Constraints:
+2 <= nums.length <= 105
+-109 <= nums[i] <= 109
+1 <= indexDiff <= nums.length
+0 <= valueDiff <= 109
 */
 #include <iostream>
 #include <string>
@@ -37,21 +47,21 @@ https://leetcode.com/problems/contains-duplicate-iii/discuss/61645/AC-O(N)-solut
 */
 class Solution {
 public:
-    bool containsNearbyAlmostDuplicate(vector<int>& nums, int k, int t) {
-        int n = nums.size();
-        if (n < 2 or k == 0) {
+    bool containsNearbyAlmostDuplicate(vector<int>& nums, int indexDiff, int valueDiff) {
+        size_t n = nums.size();
+        if (n <= 1 or indexDiff == 0) {
             return false;
         }
 
         set<long> windows;
         int left = 0;
         for (int i = 0; i < n; i++) {
-            auto it = windows.lower_bound((long)nums[i] - (long)t);
-            if (it != windows.end() and *it <= ((long)nums[i] + (long)t)) {
+            auto it = windows.lower_bound(nums[i] - valueDiff);
+            if (it != windows.end() && *it <= (nums[i] + valueDiff)) {
                 return true;
             }
 
-            if (i - left == k) {
+            if (i - left == indexDiff) {
                 windows.erase(nums[left]);
                 left++;
             }

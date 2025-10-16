@@ -52,23 +52,31 @@ using namespace std;
 
 class TimeMap {
 private:
-    unordered_map<string, map<int, string>> timeBasedMap;
+    unordered_map<string, map<int, string>> keyTimeMap;
 public:
     /* Initialize your data structure here.*/
     TimeMap() {
-        timeBasedMap.clear();
+        keyTimeMap.clear();
     }
 
     void set(string key, string value, int timestamp) {
-        timeBasedMap[key][-timestamp] = value;
+        keyTimeMap[key][timestamp] = value;
     }
 
     string get(string key, int timestamp) {
-        if (timeBasedMap.find(key) == timeBasedMap.end()) {
+        // If the 'key' does not exist in map we will return empty string.
+        if (keyTimeMap.find(key) == keyTimeMap.end()) {
             return "";
         }
-        auto it = timeBasedMap[key].lower_bound(-timestamp);
-        return it == timeBasedMap[key].end() ? "" : it -> second;
+
+        auto it = keyTimeMap[key].upper_bound(timestamp);
+        // If iterator points to first element it means, no time <= timestamp exists.
+        if (it == keyTimeMap[key].begin()) {
+            return "";
+        }
+
+        // Return value stored at previous position of current iterator.
+        return prev(it)->second;
     }
 };
 /*

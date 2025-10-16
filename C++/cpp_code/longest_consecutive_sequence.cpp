@@ -37,17 +37,18 @@ public:
                 continue;
             }
 
-            int len = 1;
             int left = k;
             while (count.find(left - 1) != count.end()) {
                 count.erase(left - 1);
                 left -= 1;
             }
+
             int right = k;
             while (count.find(right + 1) != count.end()) {
                 count.erase(right + 1);
                 right += 1;
             }
+
             result = max(result, right - left + 1);
             count.erase(k);
         }

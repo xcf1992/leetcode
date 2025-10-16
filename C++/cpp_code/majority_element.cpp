@@ -38,6 +38,7 @@ public:
                 count = 1;
                 continue;
             }
+
             if (num[i] == cur) {
                 count += 1;
             }

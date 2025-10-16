@@ -45,7 +45,7 @@ using namespace std;
 
 class Logger {
 private:
-    unordered_map<string, int> printTimetamp;
+    unordered_map<string, int> msg_timestamp;
 
 public:
     /* Initialize your data structure here.*/
@@ -57,8 +57,8 @@ public:
     The timestamp is in seconds granularity.
     */
     bool shouldPrintMessage(int timestamp, string message) {
-        if (printTimetamp.find(message) == printTimetamp.end() or timestamp - printTimetamp[message] >= 10) {
-            printTimetamp[message] = timestamp;
+        if (msg_timestamp.find(message) == msg_timestamp.end() || timestamp - msg_timestamp[message] >= 10) {
+            msg_timestamp[message] = timestamp;
             return true;
         }
         return false;

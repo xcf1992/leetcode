@@ -35,9 +35,10 @@ public:
         stack<int> tempDate;
         vector<int> result(n, 0);
         for (int i = n - 1; i >= 0; i--) {
-            while (!tempDate.empty() and temperatures[i] >= temperatures[tempDate.top()]) {
+            while (!tempDate.empty() && temperatures[i] >= temperatures[tempDate.top()]) {
                 tempDate.pop();
             }
+
             result[i] = tempDate.empty() ? 0 : tempDate.top() - i;
             tempDate.push(i);
         }

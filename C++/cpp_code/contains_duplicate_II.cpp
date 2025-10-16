@@ -36,7 +36,7 @@ public:
     bool containsNearbyDuplicate(vector<int>& nums, int k) {
         unordered_map<int, int> duplicate;
         for (int i = 0; i < nums.size(); i++) {
-            if (duplicate.find(nums[i]) != duplicate.end() and i - duplicate[nums[i]] <= k) {
+            if (duplicate.find(nums[i]) != duplicate.end() && i - duplicate[nums[i]] <= k) {
                 return true;
             }
             duplicate[nums[i]] = i;

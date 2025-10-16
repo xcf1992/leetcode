@@ -38,35 +38,24 @@ using namespace std;
 
 class Solution {
 private:
-    bool dfs(vector<string>& result, unordered_map<string, map<string, int>>& graph, int count, string start) {
-        if (count == 0) {
-            return true;
+    void dfs(map<string, multiset<string>>& flights, vector<string>& result, string cur) {
+        while (flights.find(cur) != flights.end() && flights[cur].size() > 0) {
+            string next = *flights[cur].begin();
+            flights[cur].erase(flights[cur].begin());
+            dfs(flights, result, next);
         }
-
-        for (auto it = graph[start].begin(); it != graph[start].end(); it++) {
-            if (it -> second <= 0) {
-                continue;
-            }
-
-            result.push_back(it -> first);
-            it -> second -= 1;
-            if (dfs(result, graph, count - 1, it -> first)) {
-                return true;
-            }
-            it -> second += 1;
-            result.pop_back();
-        }
-        return false;
+        result.push_back(cur);
     }
 public:
     vector<string> findItinerary(vector<vector<string>> tickets) {
-        vector<string> result;
-        unordered_map<string, map<string, int>> graph;
-        for (vector<string>& ticket : tickets) {
-            graph[ticket[0]][ticket[1]] += 1;
+        map<string, multiset<string>> flights;
+        for (vector<string>& t : tickets) {
+            flights[t[0]].insert(t[1]);
         }
-        result.push_back("JFK");
-        dfs(result, graph, tickets.size(), "JFK");
+
+        vector<string> result;
+        dfs(flights, result, "JFK");
+        reverse(result.begin(), result.end());
         return result;
     }
 };

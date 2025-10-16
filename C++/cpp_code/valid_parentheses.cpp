@@ -74,6 +74,7 @@ public:
             if (!isPaired(stk, c)) {
                 return false;
             }
+
             stk.pop();
         }
         return stk.empty();

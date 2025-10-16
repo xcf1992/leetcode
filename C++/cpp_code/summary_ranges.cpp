@@ -34,22 +34,22 @@ public:
             return {};
         }
 
-        vector<string> ranges;
+        vector<string> result;
         int start = 0;
         while (start < n) {
             int end = start;
-            while (end + 1 < n and nums[end + 1] == nums[end] + 1) {
+            while (end + 1 < n && nums[end + 1] == nums[end] + 1) {
                 end += 1;
             }
 
             if (end == start) {
-                ranges.push_back(to_string(nums[start]));
+                result.push_back(to_string(nums[start]));
             }
             else {
-                ranges.push_back(to_string(nums[start]) + "->" + to_string(nums[end]));
+                result.push_back(to_string(nums[start]) + "->" + to_string(nums[end]));
             }
             start = end + 1;
         }
-        return ranges;
+        return result;
     }
 };

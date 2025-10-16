@@ -61,22 +61,17 @@ This approach takes lots of space : O(N) here N equals sum of w, but pickIndex t
 */
 class Solution {
 private:
-    vector<int> preSum;
-public:
+    vector<int> pre_sum;
 
+public:
     Solution(vector<int> w) {
-        partial_sum(w.begin(), w.end(), back_inserter(preSum));
+        partial_sum(w.begin(), w.end(), back_inserter(pre_sum));
         srand(time(nullptr));
     }
 
     int pickIndex() {
-        int val = rand() % preSum.back();
-        auto it = upper_bound(preSum.begin(), preSum.end(), val);
-        return it - preSum.begin();
+        int val = rand() % pre_sum.back();
+        auto it = upper_bound(pre_sum.begin(), pre_sum.end(), val);
+        return it - pre_sum.begin();
     }
 };
-/*
-* Your Solution object will be instantiated and called as such:
-* Solution obj = new Solution(w);
-* int param_1 = obj.pickIndex();
-*/
