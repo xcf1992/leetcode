@@ -27,51 +27,88 @@ Explanation: transactions = [buy, sell, cooldown, buy, sell]
 #include <stdio.h>
 using namespace std;
 /*
-I just come across this problem, and it's very frustating since I'm bad at DP.
+Definition
 
-So I just draw all the actions that can be done.
+Let us define a state machine to model our agent. The state machine consists of three states, which we define as follows:
 
-Here is the drawing (Feel like an elementary ...)
+state held: in this state, the agent holds a stock that it bought at some point before.
 
-image
 
-Original image
+state sold: in this state, the agent has just sold a stock right before entering this state. And the agent holds no stock at hand.
 
-There are three states, according to the action that you can take.
 
-Hence, from there, you can now the profit at a state at time i as:
+state reset: first of all, one can consider this state as the starting point, where the agent holds no stock and did not sell a stock before.
+More importantly, it is also the transient state before the held and sold.
+Due to the cooldown rule, after the sold state, the agent can not immediately acquire any stock, but is forced into the reset state.
+One can consider this state as a "reset" button for the cycles of buy and sell transactions.
 
-s0[i] = max(s0[i - 1], s2[i - 1]); // Stay at s0, or rest from s2
-s1[i] = max(s1[i - 1], s0[i - 1] - prices[i]); // Stay at s1, or buy from s0
-s2[i] = s1[i - 1] + prices[i]; // Only one way from s1
-Then, you just find the maximum of s0[n] and s2[n],
-since they will be the maximum profit we need
-(No one can buy stock and left with more profit that sell right :) )
+At any moment, the agent can only be in one state. The agent would transition to another state by performing some actions, namely:
 
-Define base case:
-s0[0] = 0; // At the start, you don't have any stock if you just rest
-s1[0] = -prices[0]; // After buy, you should have -prices[0] profit. Be positive!
-s2[0] = INT_MIN; // Lower base case
+action sell: the agent sells a stock at the current moment. After this action, the agent would transition to the sold state.
+
+action buy: the agent acquires a stock at the current moment. After this action, the agent would transition to the held state.
+
+action rest: this is the action that the agent does no transaction, neither buy or sell. For instance, while holding a stock at the held state, the agent might simply do nothing, and at the next moment the agent would remain in the held state.
+
+Now, we can assemble the above states and actions into a state machine, which we show in the following graph where each node represents a state, and each edge represents a transition between two states. On top of each edge, we indicate the action that triggers the transition.
+Algorithm
+
+In order to implement the above state machine, we could define three arrays (i.e. held[i], sold[i] and reset[i]) which correspond to the three states that we defined before.
+
+Each element in each array represents the maximal profits that we could gain at the specific price point i with the specific state.
+For instance, the element sold[2] represents the maximal profits we gain if we sell the stock at the price point price[2].
+
+According to the state machine we defined before, we can then deduce the formulas to calculate the values for the state arrays, as follows:
+
+sold[i]=hold[i−1]+price[i]
+held[i]=max(held[i−1],reset[i−1]−price[i])
+reset[i]=max(reset[i−1],sold[i−1])
+
+Here is how we interpret each formulas:
+
+sold[i]: the previous state of sold can only be held.
+Therefore, the maximal profits of this state is the maximal profits of the previous state plus the revenue by selling the stock at the current price.
+
+
+held[i]:
+the previous state of held could also be held, i.e. one does no transaction.
+Or its previous state could be reset, from which state, one can acquire a stock at the current price point.
+
+
+reset[i]:
+the previous state of reset could either be reset or sold.
+Both transitions do not involve any transaction with the stock.
+
+Finally, the maximal profits that we can gain from this game would be max(sold[n],reset[n]), i.e. at the last price point, either we sell the stock or we simply do no transaction, to have the maximal profits.
+It makes no sense to acquire the stock at the last price point, which only leads to the reduction of profits.
+
+In particular, as a base case, the game should be kicked off from the state reset, since initially we don't hold any stock and we don't have any stock to sell neither.
+Therefore, we assign the initial values of sold[-1] and held[-1] to be Integer.MIN_VALUE, which are intended to render the paths that start from these two states impossible.
+
+As one might notice in the above formulas, in order to calculate the value for each array, we reuse the intermediate values, and this is where the paradigm of dynamic programming comes into play.
+
+More specifically, we only need the intermediate values at exactly one step before the current step. As a result, rather than keeping all the values in the three arrays, we could use a sliding window of size 1 to calculate the value for max(sold[n],reset[n]).
 */
+
 class Solution {
 public:
     int maxProfit(vector<int>& prices){
-        int n = n;
+        size_t n = prices.size();
         if (n <= 1) {
             return 0;
         }
 
-        vector<int> s0(n, 0);
-        vector<int> s1(n, 0);
-        vector<int> s2(n, 0);
-        s0[0] = 0;
-        s1[0] = -prices[0];
-        s2[0] = INT_MIN;
-        for (int i = 1; i < n; i++) {
-            s0[i] = max(s0[i - 1], s2[i - 1]);
-            s1[i] = max(s1[i - 1], s0[i - 1] - prices[i]);
-            s2[i] = s1[i - 1] + prices[i];
+        vector<int> sold(n, 0);
+        sold[0] = INT_MIN;
+        vector<int> held(n, 0);
+        held[0] = -prices[0];
+        vector<int> reset(n, 0);
+        reset[0] = 0;
+        for (size_t i = 1; i < n; ++i) {
+            sold[i] = held[i - 1] + prices[i];
+            held[i] = max(held[i - 1], reset[i - 1] - prices[i]);
+            reset[i] = max(reset[i - 1], sold[i - 1]);
         }
-        return max(s0[n - 1], s2[n - 1]);
+        return max(sold[n - 1], reset[n - 1]);
     }
 };

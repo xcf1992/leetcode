@@ -59,12 +59,12 @@ public:
             right[j] = maxProfit;
         }
 
-        int result = 0;
+        // compare between if we only make 1 transaction
+        int result = max(right[0], left[n - 1]);
         for (int i = 0; i < n - 1; ++i) {
             result = max(result, left[i] + right[i + 1]);
         }
-        // compare between if we only make 1 transaction
-        return max(result, max(right[0], left[n - 1]));
+        return result;
     }
 };
 

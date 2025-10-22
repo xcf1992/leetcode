@@ -73,7 +73,7 @@ public:
 
     /** Returns whether the queue is empty. */
     bool empty() {
-        return input.empty() and output.empty();
+        return input.empty() && output.empty();
     }
 };
 

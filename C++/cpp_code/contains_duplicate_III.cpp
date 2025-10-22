@@ -49,7 +49,7 @@ class Solution {
 public:
     bool containsNearbyAlmostDuplicate(vector<int>& nums, int indexDiff, int valueDiff) {
         size_t n = nums.size();
-        if (n <= 1 or indexDiff == 0) {
+        if (n <= 1 || indexDiff == 0) {
             return false;
         }
 
