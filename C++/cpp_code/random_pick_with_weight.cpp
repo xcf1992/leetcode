@@ -1,6 +1,6 @@
 /*
-528. Random Pick with Weight
 https://leetcode.com/problems/random-pick-with-weight/
+528. Random Pick with Weight
 
 Given an array w of positive integers,
 where w[i] describes the weight of index i,
