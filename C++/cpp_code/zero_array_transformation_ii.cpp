@@ -1,11 +1,7 @@
 /*
 https://leetcode.com/problems/zero-array-transformation-ii/description/
 3356. Zero Array Transformation II
-Medium
-Topics
-conpanies icon
-Companies
-Hint
+
 You are given an integer array nums of length n and a 2D array queries where queries[i] = [li, ri, vali].
 
 Each queries[i] represents the following action on nums:
