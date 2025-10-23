@@ -7,7 +7,8 @@ You are given a 2D array points of size n x 2 representing integer coordinates o
 Count the number of pairs of points (A, B), where
 
 A is on the upper left side of B, and
-there are no other points in the rectangle (or line) they make (including the border), except for the points A and B.
+there are no other points in the rectangle (or line) they make (including the border),
+except for the points A and B.
 Return the count.
 
 

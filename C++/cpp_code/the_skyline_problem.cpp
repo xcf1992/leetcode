@@ -5,7 +5,7 @@ A city's result is the outer contour of the silhouette formed by all the buildin
 Now suppose you are given the locations and height of all the buildings as shown on a cityscape photo (Figure A),
 write a program to output the result formed by these buildings collectively (Figure B).
 
-Buildings  Skyline Contour
+Buildings Skyline Contour
 The geometric information of each building is represented by a triplet of integers [Li, Ri, Hi],
 where Li and Ri are the x coordinates of the left and right edge of the ith building, respectively,
 and Hi is its height. It is guaranteed that 0 ≤ Li, Ri ≤ INT_MAX, 0 < Hi ≤ INT_MAX, and Ri - Li > 0.
@@ -68,12 +68,14 @@ public:
         int cur = 0;
         int lastHeight = 0;
         for (int point : points) {
-            while (cur < buildings.size() and buildings[cur][0] <= point) { // push in all buildings starts before point
+            // push in all buildings starts before point
+            while (cur < buildings.size() && buildings[cur][0] <= point) {
                 pq.push({buildings[cur][1], buildings[cur][2]});
                 cur += 1;
             }
 
-            while (!pq.empty() and pq.top().first <= point) { // pops out building ends before current point
+            // pops out building ends before current point
+            while (!pq.empty() and pq.top().first <= point) {
                 pq.pop();
             }
 
