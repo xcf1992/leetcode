@@ -1,5 +1,5 @@
 /*
-721. Accounts Merget
+721. Accounts Merge
 https://leetcode.com/problems/accounts-merge/
 
 Given a list accounts, each element accounts[i] is a list of strings,
@@ -51,7 +51,7 @@ using namespace std;
 class Solution {
 private:
     string find(string s, unordered_map<string, string>& parents) {
-        if (parents.find(s) == parents.end() or parents[s] == s) {
+        if (parents.find(s) == parents.end() || parents[s] == s) {
             return s;
         }
         return find(parents[s], parents);
@@ -62,10 +62,10 @@ public:
         unordered_map<string, string> owner;
         unordered_map<string, string> parents;
         for (int i = 0; i < n; ++i) {
-            string parent = find(accounts[i][1], parents);
-            owner[parent] = accounts[i][0];
+            string root_email = find(accounts[i][1], parents);
+            owner[root_email] = accounts[i][0];
             for (int j = 1; j < accounts[i].size(); ++j) {
-                parents[find(accounts[i][j], parents)] = parent;
+                parents[find(accounts[i][j], parents)] = root_email;
             }
         }
 

@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/number-of-islands-ii/
 305. Number of Islands II
 
 A 2d grid map of m rows and n columns is initially filled with water.
@@ -47,7 +48,7 @@ Can you do it in time complerowity O(k log mn), where k is the length of the pos
 #include <set>
 using namespace std;
 /*
-some thing to take in mind during the code
+something to take in mind during the code
 1. if the spot is already an island, continue without merge
 2. find should return root[island] rather than island with path merge, otherwise we will always return the island itself as parent
 */
@@ -60,7 +61,7 @@ private:
     vector<int> diff = {0, 1, 0, -1, 0};
 
     int find(int island) {
-        if (island != root[island]) {
+        if (root[island] != island) {
             root[island] = find(root[island]);
         }
         return root[island];
@@ -93,7 +94,7 @@ public:
             int island = row * n + col;
             if (root[island] != -1) {
                 result.push_back(count);
-                continue; // this one has become island before already
+                continue; // this one has become island before
             }
 
             count += 1;

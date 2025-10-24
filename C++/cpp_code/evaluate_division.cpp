@@ -73,7 +73,7 @@ public:
         for (vector<string>& query : queries) {
             string first = query[0];
             string second = query[1];
-            if (connect.find(first) == connect.end() or connect.find(second) == connect.end()) {
+            if (connect.find(first) == connect.end() || connect.find(second) == connect.end()) {
                 result.push_back(-1.0);
                 continue;
             }
@@ -139,8 +139,3 @@ public:
         return result;
     }
 };
-
-int main() {
-    Solution s;
-    return 0;
-}
