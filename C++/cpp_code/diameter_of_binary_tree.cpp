@@ -45,9 +45,6 @@ private:
     }
 public:
     int diameterOfBinaryTree(TreeNode* root) {
-        if (root == nullptr) {
-            return 0;
-        }
         int result = 0;
         find(root, result);
         return result - 1;
