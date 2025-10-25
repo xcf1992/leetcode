@@ -63,16 +63,15 @@ struct myComp {
 
 class Solution {
 private:
-    vector<vector<int>> dir = {{0, 1}, {0, -1}, {1, 0}, { -1, 0}};
+    vector<int> diff = {0, 1, 0, -1, 0};
 public:
     int swimInWater(vector<vector<int>>& grid) {
-        int N = grid.size();
-        int result = 0;
-
+        int n = grid.size();
         priority_queue<vector<int>, vector<vector<int>>, myComp> pq;
         pq.push({0, 0, grid[0][0]}); // {row, col, height}
-        vector<vector<int>> visited(N, vector<int>(N, 0));
+        vector<vector<int>> visited(n, vector<int>(n, 0));
         visited[0][0] = 1;
+        int result = 0;
         while (!pq.empty()) {
             int row = pq.top()[0];
             int col = pq.top()[1];
@@ -80,14 +79,14 @@ public:
             pq.pop ();
 
             result = max(result, height);
-            if (row == N - 1 and col == N - 1) {
+            if (row == n - 1 && col == n - 1) {
                 return result;
             }
 
-            for (auto& d : dir) {
-                int nr = row + d[0];
-                int nc = col + d[1];
-                if (nr >= 0 and nr < N and nc >= 0 and nc < N and !visited[nr][nc]) {
+            for (int i = 0; i < 4; ++i) {
+                int nr = row + diff[i];
+                int nc = col + diff[i + 1];
+                if (nr >= 0 && nr < n && nc >= 0 && nc < n && !visited[nr][nc]) {
                     visited[nr][nc] = 1;
                     pq.push({nr, nc, grid[nr][nc]});
                 }

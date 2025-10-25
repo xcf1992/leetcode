@@ -54,19 +54,16 @@ using namespace std;
 class Solution {
 private:
     int find(int num, vector<int>& parent) {
-        if (parent[num] != num) {
-            parent[num] = find(parent[num], parent);
+        if (parent[num] == -1) {
+            return num;
         }
+        parent[num] = find(parent[num], parent);
         return parent[num];
     }
 public:
     string smallestStringWithSwaps(string s, vector<vector<int>>& pairs) {
         int n = s.size();
-        vector<int> parent(n);
-        for (int i = 0; i < n; ++i) {
-            parent[i] = i;
-        }
-
+        vector<int> parent(n, -1);
         for (vector<int>& pair : pairs) {
             int pu = find(pair[0], parent);
             int pv = find(pair[1], parent);
