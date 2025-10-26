@@ -66,43 +66,8 @@ s[i] is either '0' or '1'.
 using namespace std;
 
 class Solution {
-private:
-    int find_parent(int cur, vector<int>& parent) {
-        if (parent[cur] == -1) {
-            return cur;
-        }
-        parent[cur] = find_parent(parent[cur], parent);
-        return parent[cur];
-    }
-
 public:
-    long long countPairs(int n, vector<vector<int>>& edges) {
-        vector<int> parent(n, -1);
-        unordered_map<int, int> group;
-        for (const vector<int>& edge : edges) {
-            int u = find_parent(edge[0], parent);
-            int v = find_parent(edge[1], parent);
-            if (u == v) {
-                continue;
-            }
-            parent[u] = v;
-        }
-
-        for (int i = 0; i < n; i++) {
-            int cur_parent = find_parent(i, parent);
-            if (group.find(cur_parent) == group.end()) {
-                group[cur_parent] = 0;
-            }
-            group[cur_parent] += 1;
-        }
-
-        long long result = 0;
-        int other_cnt = n;
-        for (auto it = group.begin(); it != group.end(); it++) {
-            int cur_cnt = it->second;
-            other_cnt -= cur_cnt;
-            result += cur_cnt * other_cnt;
-        }
-        return result;
+    int minOperations(string s, int k) {
+        int n = s.size();
     }
 };
