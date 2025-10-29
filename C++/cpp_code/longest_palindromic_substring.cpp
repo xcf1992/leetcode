@@ -35,14 +35,22 @@ public:
         for (int length = 0; length < n; length++) {
             for (int i = 0; i < n; i++) {
                 int j = i + length;
-                if (j < n) {
-                    if (s[i] == s[j] and (j - i < 3 or dp[i + 1][j - 1])) {
-                        dp[i][j] = true;
-                    }
-                    if (dp[i][j] and j - i + 1 > maxLen) {
-                        maxLen = j - i + 1;
-                        start = i;
-                    }
+
+                if (j >= n) {
+                    break;
+                }
+
+                if (s[i] != s[j]) {
+                    continue;
+                }
+
+                if (j - i < 3 || dp[i + 1][j - 1]) {
+                    dp[i][j] = true;
+                }
+
+                if (dp[i][j] && j - i + 1 > maxLen) {
+                    maxLen = j - i + 1;
+                    start = i;
                 }
             }
         }

@@ -46,7 +46,6 @@ public:
         // 3 ^ 5 = 243
         const int MOD = 1e9 + 7;
         int dp[1005][250] = {0};
-        int row_valid[250][250] = {0};
         vector<int> good;
         vector<int> pattern[250];
         int total = pow(3, m);
@@ -65,6 +64,7 @@ public:
                     break;
                 }
             }
+
             if (valid) {
                 good.push_back(i);
             }
@@ -72,6 +72,7 @@ public:
 
         // check if two cols could be next to each other
         size_t col_cnt = good.size();
+        int row_valid[250][250] = {0};
         for (size_t i = 0; i < col_cnt; i++) {
             int col1 = good[i];
             dp[1][col1] = 1;

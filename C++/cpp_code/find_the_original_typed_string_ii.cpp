@@ -87,7 +87,7 @@ public:
                 if (i > 0) {
                     sum = (sum + dp[i - 1]) % MOD;
                 }
-                if (i > num) {
+                if (i >= num - 1) {
                     sum = (sum - dp[i - num - 1] + MOD) % MOD;
                 }
                 temp[i] = sum;

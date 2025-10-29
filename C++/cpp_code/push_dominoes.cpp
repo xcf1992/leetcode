@@ -1,5 +1,6 @@
 /*
 838. Push Dominoes
+https://leetcode.com/problems/push-dominoes/
 There are N dominoes in a line, and we place each domino vertically upright.
 
 In the beginning, we simultaneously push some of the dominoes either to the left or to the right.
@@ -61,7 +62,7 @@ public:
             if (dominoes[i] == 'R') {
                 distance[i] = 0;
             }
-            else if (i != 0 and dominoes[i - 1] == 'R' and dominoes[i] == '.') {
+            else if (i != 0 && dominoes[i - 1] == 'R' && dominoes[i] == '.') {
                 dominoes[i] = 'R';
                 distance[i] = distance[i - 1] + 1;
             }

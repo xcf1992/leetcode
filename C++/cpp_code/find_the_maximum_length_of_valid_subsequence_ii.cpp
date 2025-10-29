@@ -1,6 +1,5 @@
 /*
-https://leetcode.com/problems/maximum-frequency-after-subarray-operation/description/?envType=problem-list-v2&envId=prefix-sum
-3434. Maximum Frequency After Subarray Operation
+https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-ii/ Maximum Frequency After Subarray Operation
 
 You are given an array nums of length n. You are also given an integer k.
 
