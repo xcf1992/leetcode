@@ -50,6 +50,21 @@ Constraints:
 #include <numeric>
 using namespace std;
 
+/*
+According to the definition of a valid subsequence,
+all elements at odd indices in the subsequence must be congruent modulo k,
+and all elements at even indices must also be congruent modulo k.
+This means that, considering the remainders modulo k of the last two elements of the subsequence,
+there are a total of k^2 possible combinations.
+We use a two-dimensional array dp to represent the maximum length of such subsequences,
+where dp[i][j] denotes the maximum length of a valid subsequence whose last two elements have remainders i and j modulo k, respectively.
+
+We traverse through nums to update dp.
+For each number num, we try to append it to existing subsequences.
+Specifically, we calculate curr=num mod k and then iterate over all possible values of prev modulo k,
+updating dp[prev][curr] to dp[curr][prev]+1.
+Finally, we return the maximum value found in the dp array.
+ */
 class Solution {
 public:
     int maximumLength(vector<int>& nums, int k) {
