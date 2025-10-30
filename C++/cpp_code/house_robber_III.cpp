@@ -47,6 +47,21 @@ Explanation: Maximum amount of money the thief can rob = 4 + 5 = 9.
 #include "extra_data_types.hpp"
 using namespace std;
 
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+
+    TreeNode() : val(0), left(nullptr), right(nullptr) {
+    }
+
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {
+    }
+
+    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {
+    }
+};
+
 class Solution {
 private:
     unordered_map<TreeNode*, int> cache;
@@ -67,6 +82,7 @@ public:
         if (root -> right != nullptr) {
             maxMoney += rob(root -> right -> left) + rob(root -> right -> right);
         }
+
         cache[root] = max(maxMoney, rob(root -> left) + rob(root -> right));
         return cache[root];
     }
