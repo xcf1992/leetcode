@@ -20,7 +20,7 @@ Explanation: s cannot be split into 3 palindromes.
 
 Constraints:
 3 <= s.length <= 2000
-s​​​​​​ consists only of lowercase English letters.
+s consists only of lowercase English letters.
 */
 #include <iostream>
 #include <sstream>
@@ -65,9 +65,17 @@ public:
             }
         }
 
-        for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) {
-                if (dp[0][i] && dp[i + 1][j] && dp[j + 1][n - 1]) {
+        for (int i = 0; i <= n - 3; i++) {
+            if (!dp[0][i]) {
+                continue;
+            }
+
+            for (int j = i + 1; j <= n - 2; j++) {
+                if (!dp[i + 1][j]) {
+                    continue;
+                }
+
+                if (dp[j + 1][n - 1]) {
                     return true;
                 }
             }

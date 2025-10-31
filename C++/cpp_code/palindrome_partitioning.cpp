@@ -48,6 +48,7 @@ public:
                 dp[i][i + 1] = true;
             }
         }
+
         for (int len = 3; len <= n; ++len) {
             for (int i = 0; i + len - 1 < n; ++i) {
                 int j = i + len - 1;
