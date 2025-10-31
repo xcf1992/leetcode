@@ -1,14 +1,12 @@
 /*
 898. Bitwise ORs of Subarrays
 
-We have an array A of non-negative integers.
+Given an integer array arr, return the number of distinct bitwise ORs of all the non-empty subarrays of arr.
 
-For every (contiguous) subarray B = [A[i], A[i+1], ..., A[j]] (with i <= j),
-we take the bitwise OR of all the elements in B,
-obtaining a result A[i] | A[i+1] | ... | A[j].
+The bitwise OR of a subarray is the bitwise OR of each integer in the subarray.
+The bitwise OR of a subarray of one integer is that integer.
 
-Return the number of possible results.
-(Results that occur more than once are only counted once in the final answer.)
+A subarray is a contiguous non-empty sequence of elements within an array.
 
 Example 1:
 Input: [0]
@@ -48,15 +46,23 @@ Note:
 #include <numeric>
 using namespace std;
 
-class Solution { // a better way to write the same solution
+class Solution {
+    // a better way to write the same solution
 public:
-    int subarrayBitwiseORs(vector<int> A) {
-        unordered_set<int> res, cur, cur2;
-        for (int i : A) {
-            cur2 = {i};
-            for (int j: cur) cur2.insert(i|j);
+    int subarrayBitwiseORs(vector<int> arr) {
+        unordered_set<int> res;
+        unordered_set<int> cur;
+        for (int i: arr) {
+            unordered_set<int> cur2;
+            cur2.insert(i);
+            for (int j: cur) {
+                cur2.insert(i | j);
+            }
+
             cur = cur2;
-            for (int j: cur) res.insert(j);
+            for (int j: cur) {
+                res.insert(j);
+            }
         }
         return res.size();
     }
@@ -64,7 +70,7 @@ public:
 
 class Solution1 {
 public:
-    int subarrayBitwiseORs(vector<int>& A) {
+    int subarrayBitwiseORs(vector<int> &A) {
         unordered_set<int> cur, result;
         cur.insert(A[0]);
         result.insert(A[0]);
@@ -72,7 +78,7 @@ public:
             unordered_set<int> cur2;
             cur2.insert(A[i]);
             result.insert(A[i]);
-            for (int num : cur) {
+            for (int num: cur) {
                 cur2.insert(num | A[i]);
                 result.insert(num | A[i]);
             }
