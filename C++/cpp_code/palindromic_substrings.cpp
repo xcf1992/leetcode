@@ -34,7 +34,6 @@ class Solution1 {
 public:
     int countSubstrings(string s) {
         int len = s.size();
-
         int result = len;
         for (int mid = 0; mid < len; mid++) {
             int left = mid - 1;
