@@ -44,7 +44,7 @@ using namespace std;
 
 class Solution {
 private:
-    int dfs(int currentNode, vector<vector<int>>& children, string& s, int& result) {
+    int dfs(int currentNode, vector<vector<int>>& children, string& str, int& result) {
         // Longest and second-longest chains starting from currentNode
         // (does not count the currentNode itself).
         int longest = 0;
@@ -52,9 +52,9 @@ private:
         for (int child : children[currentNode]) {
             // Get the number of nodes in the longest path in the subtree of child,
             // including the child.
-            int child_len = dfs(child, children, s, result);
+            int child_len = dfs(child, children, str, result);
             // We won't move to the child if it has the same character as the currentNode.
-            if (s[currentNode] == s[child]) {
+            if (str[currentNode] == str[child]) {
                 continue;
             }
             // Modify the longestChain and secondLongestChain if longestChainStartingFromChild
