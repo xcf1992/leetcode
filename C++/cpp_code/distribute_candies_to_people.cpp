@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/distribute-candies-to-people/description/
 1103. Distribute Candies to People
 We distribute some number of candies, to a row of n = num_people people in the following way:
 

@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/distribute-candies/
 575. Distribute Candies
 Given an integer array with even length,
 where different numbers in this array represent different kinds of candies.
