@@ -75,9 +75,11 @@ private:
                 }
             }
         }
+
         if (candy.empty()) {
             return false;
         }
+
         for (auto p : candy) {
             board[p.first][p.second] = 0;
         }

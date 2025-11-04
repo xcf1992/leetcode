@@ -85,6 +85,7 @@ public:
             for (int i = 0; i < curSize; ++i) {
                 int curBox = bfs.front();
                 bfs.pop();
+
                 if (status[curBox] == 0) {
                     bfs.push(curBox);
                     continue;
@@ -95,6 +96,7 @@ public:
                 for (int box : containedBoxes[curBox]) {
                     bfs.push(box);
                 }
+
                 for (int key : keys[curBox]) {
                     status[key] = 1;
                 }
