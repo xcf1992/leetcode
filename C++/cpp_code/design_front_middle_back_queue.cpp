@@ -84,6 +84,7 @@ private:
             second.pop_front();
         }
     }
+
 public:
     FrontMiddleBackQueue() {
         first.clear();

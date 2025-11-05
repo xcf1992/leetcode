@@ -38,13 +38,13 @@ using namespace std;
 
 class Solution {
 public:
-    int minimumMoves(vector<int>& arr) {
+    int minimumMoves(vector<int> &arr) {
         int n = arr.size();
         if (n <= 1) {
             return n;
         }
 
-        vector<vector<int>> dp(n + 1, vector<int>(n + 1, 0));
+        vector<vector<int> > dp(n + 1, vector<int>(n + 1, 0));
         for (int len = 1; len <= n; ++len) {
             for (int i = 0, j = len - 1; j < n; ++i, ++j) {
                 if (len == 1) {

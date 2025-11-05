@@ -44,6 +44,7 @@ using namespace std;
 class MyHashSet {
 private:
     vector<int> array;
+
 public:
     /* Initialize your data structure here.*/
     MyHashSet() {

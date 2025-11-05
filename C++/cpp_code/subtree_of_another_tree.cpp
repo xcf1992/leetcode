@@ -50,27 +50,38 @@ using namespace std;
 
 class Solution {
 private:
-    bool sameTree(TreeNode* s, TreeNode* t) {
-        if (s == nullptr and t == nullptr) {
+    bool sameTree(TreeNode *s, TreeNode *t) {
+        if (s == nullptr and t
+        ==
+        nullptr
+        )
+        {
             return true;
         }
-        if (s == nullptr or t == nullptr) {
+        if (s == nullptr or t
+        ==
+        nullptr
+        )
+        {
             return false;
         }
 
-        if (s -> val != t -> val) {
+        if (s->val != t->val) {
             return false;
         }
-        return sameTree(s -> left, t -> left) and sameTree(s -> right, t -> right);
+        return sameTree(s->left, t->left)
+        and sameTree(s->right, t->right);
     }
+
 public:
-    bool isSubtree(TreeNode* s, TreeNode* t) {
+    bool isSubtree(TreeNode *s, TreeNode *t) {
         if (t == nullptr) {
             return true;
         }
         if (s == nullptr) {
             return false;
         }
-        return sameTree(s, t) or isSubtree(s -> left, t) or isSubtree(s -> right, t);
+        return sameTree(s, t)
+        or isSubtree(s->left, t) or isSubtree(s->right, t);
     }
 };

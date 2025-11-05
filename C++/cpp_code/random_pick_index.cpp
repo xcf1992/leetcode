@@ -32,6 +32,7 @@ using namespace std;
 class Solution {
 private:
     vector<int> nums;
+
 public:
     Solution(vector<int> numbers) {
         nums = numbers;
@@ -54,4 +55,3 @@ public:
         return result;
     }
 };
-

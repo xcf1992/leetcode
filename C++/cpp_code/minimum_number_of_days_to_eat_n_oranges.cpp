@@ -57,6 +57,7 @@ using namespace std;
 class Solution {
 private:
     unordered_map<int, int> dp;
+
     int dfs(int n) {
         if (n <= 2) {
             return n;
@@ -67,24 +68,25 @@ private:
         }
 
         dp[n] = n;
-        if (n % 2 == 0 and n % 3 == 0) {
+        if (n % 2 == 0 and n
+        %3 == 0
+        )
+        {
             dp[n] = min(dp[n], 1 + dfs(n / 2));
             dp[n] = min(dp[n], 1 + dfs(n / 3));
         }
-        else if (n % 3 == 0) {
+        else
+        if (n % 3 == 0) {
             dp[n] = min(dp[n], 1 + dfs(n / 3));
             dp[n] = min(dp[n], 1 + dfs(n - 1));
-        }
-        else if (n % 2 == 0) {
+        } else if (n % 2 == 0) {
             dp[n] = min(dp[n], 1 + dfs(n / 2));
             if ((n - 1) % 3 == 0) {
                 dp[n] = min(dp[n], 1 + dfs(n - 1));
-            }
-            else {
+            } else {
                 dp[n] = min(dp[n], 2 + dfs(n - 2));
             }
-        }
-        else {
+        } else {
             /*
             Not divisible by 3 and 2. Which means an odd number.
             n-1) must be even, which will try n/2 route.
@@ -98,6 +100,7 @@ private:
         }
         return dp[n];
     }
+
 public:
     int minDays(int n) {
         return dfs(n);

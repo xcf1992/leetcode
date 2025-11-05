@@ -66,28 +66,31 @@ public:
 class Solution {
 public:
     bool isPalindrome(int x) {
-        if ( x < 0) {
+        if (x < 0) {
             return false;
         }
 
         int hehe = 1;
         int times = 1;
         int y = x;
-        while ( y / 10 != 0) {
+        while (y / 10 != 0) {
             y = y / 10;
             hehe *= 10;
             times += 1;
         }
 
         int temp = x;
-        while ( times != 0 and times != 1) {
+        while (times != 0 and times
+        !=
+        1
+        )
+        {
             int a = x % 10;
             int b = temp / hehe;
 
-            if ( a != b) {
+            if (a != b) {
                 return false;
-            }
-            else {
+            } else {
                 x = x / 10;
                 temp = temp % hehe;
                 hehe = hehe / 10;

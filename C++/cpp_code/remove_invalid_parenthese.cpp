@@ -59,11 +59,12 @@ Now one may ask. What about ‘(‘? What if s = ‘(()(()’ in which we need r
 The answer is: do the same from right to left.
 However a cleverer idea is: reverse the string and reuse the code!
 */
-class Solution { // 25.08%
+class Solution {
+    // 25.08%
 private:
     bool isValid(string s) {
         int count = 0;
-        for (char c : s) {
+        for (char c: s) {
             if (c == '(') {
                 count += 1;
             }
@@ -76,6 +77,7 @@ private:
         }
         return count == 0;
     }
+
 public:
     vector<string> removeInvalidParentheses(string s) {
         queue<string> bfs;
@@ -100,7 +102,11 @@ public:
             }
 
             for (int i = 0; i < curS.size(); i++) {
-                if (curS[i] != '(' and curS[i] != ')') {
+                if (curS[i] != '(' and curS[i]
+                !=
+                ')'
+                )
+                {
                     continue;
                 }
 

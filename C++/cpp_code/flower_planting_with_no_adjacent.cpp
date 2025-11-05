@@ -51,9 +51,9 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> gardenNoAdj(int N, vector<vector<int>>& paths) {
-        vector<vector<int>> connected(N);
-        for (vector<int>& path : paths) {
+    vector<int> gardenNoAdj(int N, vector<vector<int> > &paths) {
+        vector<vector<int> > connected(N);
+        for (vector<int> &path: paths) {
             connected[path[0] - 1].push_back(path[1] - 1);
             connected[path[1] - 1].push_back(path[0] - 1);
         }
@@ -61,7 +61,7 @@ public:
         vector<int> result(N, 0);
         for (int i = 0; i < N; ++i) {
             unordered_set<int> used;
-            for (int j : connected[i]) {
+            for (int j: connected[i]) {
                 if (result[j] != 0) {
                     used.insert(result[j]);
                 }

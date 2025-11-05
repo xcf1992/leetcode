@@ -48,12 +48,17 @@ private:
         words.push_back(text.substr(cur));
         return words;
     }
+
 public:
     vector<string> findOcurrences(string text, string first, string second) {
         vector<string> tokens = splitText(text);
         vector<string> result;
         for (int i = 2; i < tokens.size(); ++i) {
-            if (tokens[i - 2] == first and tokens[i - 1] == second) {
+            if (tokens[i - 2] == first and tokens[i - 1]
+            ==
+            second
+            )
+            {
                 result.push_back(tokens[i]);
             }
         }

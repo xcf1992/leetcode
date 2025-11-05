@@ -75,13 +75,16 @@ so the acutal possible remain columns could be much shorter
 */
 class Solution {
 public:
-    int minDeletionSize(vector<string>& A) {
+    int minDeletionSize(vector<string> &A) {
         int m = A.size();
         int n = A[0].size();
         int result = n - 1;
-        vector<int> dp(n, 1); // the longest increasing subsequence ended with ith element, it will be at least 1 for itself
-        for (int col = 0; col < n; col++) { // loop through each element to find the longest subsequence for each word end with col-th element
-            for (int i = 0; i < col; i++) { // loop the element before last from 0 ~ col
+        vector<int> dp(n, 1);
+        // the longest increasing subsequence ended with ith element, it will be at least 1 for itself
+        for (int col = 0; col < n; col++) {
+            // loop through each element to find the longest subsequence for each word end with col-th element
+            for (int i = 0; i < col; i++) {
+                // loop the element before last from 0 ~ col
                 int row = 0;
                 while (row < m) {
                     // loop through each words to find its longest increasing subsequence ended with ith element
@@ -92,7 +95,10 @@ public:
                     }
                     row += 1;
                 }
-                if (row == m and dp[i] + 1 > dp[col]) {
+                if (row == m and dp[i]
+                +1 > dp[col]
+                )
+                {
                     dp[col] = dp[i] + 1;
                 }
             }

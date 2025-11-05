@@ -113,33 +113,34 @@ If K = M + K1 - K2, we have J - K = J - (M + K1 - K2). Now consider M - (J + K1 
 */
 class Solution {
 public:
-    int lastStoneWeightII(vector<int>& stones) {
+    int lastStoneWeightII(vector<int> &stones) {
         int sum = accumulate(stones.begin(), stones.end(), 0);
         vector<int> dp(sum + 1, false);
         dp[0] = true;
 
         int cur = 0;
-        for (int stone : stones) {
+        for (int stone: stones) {
             cur += stone;
             for (int i = cur; i >= stone; --i) {
                 dp[i] |= dp[i - stone];
             }
         }
 
-        for (int i = sum / 2; i > 0; --i) if (dp[i]) {
-            return sum - i - i;
-        }
+        for (int i = sum / 2; i > 0; --i)
+            if (dp[i]) {
+                return sum - i - i;
+            }
         return 0;
     }
 };
 
 class Solution1 {
 public:
-    int lastStoneWeightII(vector<int>& stones) {
+    int lastStoneWeightII(vector<int> &stones) {
         int sum = accumulate(stones.begin(), stones.end(), 0);
         vector<int> dp(sum / 2 + 1, false);
         dp[0] = true;
-        for (int stone : stones) {
+        for (int stone: stones) {
             for (int i = sum / 2; i >= stone; --i) {
                 dp[i] |= dp[i - stone];
             }
@@ -161,16 +162,15 @@ public:
 */
 class Solution2 {
 public:
-    int lastStoneWeightII(vector<int>& stones) {
+    int lastStoneWeightII(vector<int> &stones) {
         unordered_set<int> stoneLeft;
-        for (int& stone : stones) {
+        for (int &stone: stones) {
             if (stoneLeft.empty()) {
                 stoneLeft.insert(stone);
                 stoneLeft.insert(-stone);
-            }
-            else {
+            } else {
                 unordered_set<int> temp;
-                for (int left : stoneLeft) {
+                for (int left: stoneLeft) {
                     temp.insert(left + stone);
                     temp.insert(left - stone);
                 }
@@ -179,7 +179,7 @@ public:
         }
 
         int result = INT_MAX;
-        for (int left : stoneLeft) {
+        for (int left: stoneLeft) {
             if (left >= 0) {
                 result = min(left, result);
             }

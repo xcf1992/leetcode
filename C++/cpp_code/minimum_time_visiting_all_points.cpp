@@ -51,7 +51,7 @@ then we would walk 3 diagonally and remaining two have to be walked horizontally
 */
 class Solution {
 public:
-    int minTimeToVisitAllPoints(vector<vector<int>>& points) {
+    int minTimeToVisitAllPoints(vector<vector<int> > &points) {
         int n = points.size();
         if (n <= 1) {
             return 0;

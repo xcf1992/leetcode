@@ -48,7 +48,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> findBuildings(vector<int>& heights) {
+    vector<int> findBuildings(vector<int> &heights) {
         int n = heights.size();
         vector<int> res;
         int cur_high = 0;

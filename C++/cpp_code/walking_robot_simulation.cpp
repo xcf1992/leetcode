@@ -51,29 +51,46 @@ private:
     pair<int, int> getNewDirection(pair<int, int> curDirection, int command) {
         int x = curDirection.first;
         int y = curDirection.second;
-        if (x == 0 and y == 1) {
+        if (x == 0 and y
+        ==
+        1
+        )
+        {
             return command == -1 ? make_pair(1, 0) : make_pair(-1, 0);
         }
-        if (x == 0 and y == -1) {
+        if (x == 0 and y
+        ==
+        -1
+        )
+        {
             return command == -1 ? make_pair(-1, 0) : make_pair(1, 0);
         }
-        if (x == -1 and y == 0) {
+        if (x == -1 and y
+        ==
+        0
+        )
+        {
             return command == -1 ? make_pair(0, 1) : make_pair(0, -1);
         }
         return command == -1 ? make_pair(0, -1) : make_pair(0, 1);
     }
+
 public:
-    int robotSim(vector<int>& commands, vector<vector<int>>& obstacles) {
-        unordered_map<int, unordered_set<int>> obstacle;
-        for (vector<int>& ob : obstacles) {
+    int robotSim(vector<int> &commands, vector<vector<int> > &obstacles) {
+        unordered_map<int, unordered_set<int> > obstacle;
+        for (vector<int> &ob: obstacles) {
             obstacle[ob[0]].insert(ob[1]);
         }
 
         pair<int, int> curPos = {0, 0};
         pair<int, int> direction = {0, 1};
         int result = 0;
-        for (int cmd : commands) {
-            if (cmd == -2 or cmd == -1) {
+        for (int cmd: commands) {
+            if (cmd == -2 or cmd
+            ==
+            -1
+            )
+            {
                 direction = getNewDirection(direction, cmd);
                 continue;
             }
@@ -81,7 +98,11 @@ public:
             int x = curPos.first + direction.first;
             int y = curPos.second + direction.second;
             int move = 1;
-            while (move < cmd and obstacle[x].find(y) == obstacle[x].end()) {
+            while (move < cmd and obstacle[x]
+            .
+            find(y) == obstacle[x].end()
+            )
+            {
                 move += 1;
                 x += direction.first;
                 y += direction.second;

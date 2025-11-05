@@ -61,7 +61,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> findBall(vector<vector<int>>& grid) {
+    vector<int> findBall(vector<vector<int> > &grid) {
         int m = grid.size();
         int n = grid[0].size();
         vector<int> res;

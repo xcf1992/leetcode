@@ -39,9 +39,9 @@ Catch: if d == n / d, the number has 3 divisors, not four.
 */
 class Solution {
 public:
-    int sumFourDivisors(vector<int>& nums) {
+    int sumFourDivisors(vector<int> &nums) {
         int sum = 0;
-        for (int n : nums) {
+        for (int n: nums) {
             int last_d = 0;
             for (int d = 2; d * d <= n; ++d) {
                 if (n % d == 0) {

@@ -120,19 +120,19 @@ private:
     int MOUSE = 1;
     int CAT = 2;
 
-    vector<vector<int>> getParent(vector<vector<int>>& graph, int mouse, int cat, int turn) {
-        vector<vector<int>> pre;
+    vector<vector<int> > getParent(vector<vector<int> > &graph, int mouse, int cat, int turn) {
+        vector<vector<int> > pre;
         // current turn is 2 which is cat, previouse is a mouse move lead to current node
         if (turn == 2) {
             // get all pos that a mouse can move to current position
-            for (int m : graph[mouse]) {
+            for (int m: graph[mouse]) {
                 pre.push_back({m, cat, 1});
             }
             return pre;
         }
 
         // previous is a cat move
-        for (int c : graph[cat]) {
+        for (int c: graph[cat]) {
             // cat cannot from hole 0
             if (c > 0) {
                 pre.push_back({mouse, c, 2});
@@ -140,19 +140,22 @@ private:
         }
         return pre;
     }
+
 public:
-    int catMouseGame(vector<vector<int>>& graph) {
+    int catMouseGame(vector<vector<int> > &graph) {
         int N = graph.size();
         // color: {mouse pos, cat pos, move} move = 1 means is now mosue move; 2 means is now cat move
-        vector<vector<vector<int>>> color = vector<vector<vector<int>>>(50, vector<vector<int>>(50, vector<int>(3, 0)));
+        vector<vector<vector<int> > > color = vector<vector<vector<int> > >(
+            50, vector<vector<int> >(50, vector<int>(3, 0)));
         // degree the number of neutral children of this current node
-        vector<vector<vector<int>>> degree = vector<vector<vector<int>>>(50, vector<vector<int>>(50, vector<int>(3, 0)));
+        vector<vector<vector<int> > > degree = vector<vector<vector<int> > >(
+            50, vector<vector<int> >(50, vector<int>(3, 0)));
 
         for (int m = 0; m < N; m++) {
             for (int c = 0; c < N; c++) {
                 degree[m][c][1] = graph[m].size();
                 degree[m][c][2] = graph[c].size();
-                for (int x : graph[c]) {
+                for (int x: graph[c]) {
                     if (x == 0) {
                         // cat cannot move to hole 0, so 0 is not its child when it is cat's move
                         degree[m][c][2] -= 1;
@@ -162,7 +165,7 @@ public:
             }
         }
 
-        queue<vector<int>> q;
+        queue<vector<int> > q;
         for (int i = 0; i < N; i++) {
             for (int t = 1; t <= 2; t++) {
                 // when mouse is at hole 0 is a mouse win
@@ -184,7 +187,7 @@ public:
             int c = cur[3]; // who wins 1 mouse 2 cat
             q.pop();
 
-            for (vector<int>& parent : getParent(graph, i, j, t)) {
+            for (vector<int> &parent: getParent(graph, i, j, t)) {
                 int i2 = parent[0]; // mouse
                 int j2 = parent[1]; // cat
                 int t2 = parent[2]; // turn

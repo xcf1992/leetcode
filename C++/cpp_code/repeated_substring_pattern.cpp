@@ -37,7 +37,10 @@ public:
     bool repeatedSubstringPattern(string s) {
         int length = s.size();
         for (int i = 1; i <= s.size() / 2; i++) {
-            if (s[i] != s[0] or length % i != 0) {
+            if (s[i] != s[0] or length
+            %i != 0
+            )
+            {
                 continue;
             }
 

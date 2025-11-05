@@ -36,15 +36,14 @@ using namespace std;
 
 class Solution {
 public:
-    bool canDivideIntoSubsequences(vector<int>& nums, int K) {
+    bool canDivideIntoSubsequences(vector<int> &nums, int K) {
         int n = nums.size();
         int maxCount = 1;
         int cur = 1;
         for (int i = 1; i < n; ++i) {
             if (nums[i] == nums[i - 1]) {
                 cur += 1;
-            }
-            else {
+            } else {
                 cur = 1;
             }
             maxCount = max(cur, maxCount);

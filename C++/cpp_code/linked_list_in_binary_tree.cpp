@@ -50,23 +50,26 @@ using namespace std;
 
 class Solution {
 private:
-    bool dfs(ListNode* head, TreeNode* root) {
+    bool dfs(ListNode *head, TreeNode *root) {
         if (head == nullptr) {
             return true;
         }
         if (root == nullptr) {
             return false;
         }
-        return root -> val == head -> val and (dfs(head -> next, root -> left) or dfs(head -> next, root -> right));
+        return root->val == head->val
+        and(dfs(head->next, root->left) or dfs(head->next, root->right));
     }
+
 public:
-    bool isSubPath(ListNode* head, TreeNode* root) {
+    bool isSubPath(ListNode *head, TreeNode *root) {
         if (head == nullptr) {
             return true;
         }
         if (root == nullptr) {
             return false;
         }
-        return dfs(head, root) or isSubPath(head, root -> left) or isSubPath(head, root -> right);
+        return dfs(head, root)
+        or isSubPath(head, root->left) or isSubPath(head, root->right);
     }
 };

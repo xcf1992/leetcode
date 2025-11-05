@@ -51,10 +51,11 @@ private:
         }
         return count;
     }
+
 public:
-    int findNumbers(vector<int>& nums) {
+    int findNumbers(vector<int> &nums) {
         int result = 0;
-        for (int num : nums) {
+        for (int num: nums) {
             int count = getDigitCount(num);
             if (count % 2 == 0) {
                 result += 1;

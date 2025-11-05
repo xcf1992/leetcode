@@ -89,7 +89,7 @@ Also we initialized the indices i and j such that correct results will be return
 */
 class Solution {
 public:
-    int findUnsortedSubarray(vector<int>& nums) {
+    int findUnsortedSubarray(vector<int> &nums) {
         int n = nums.size();
         if (n <= 1) {
             return 0;
@@ -102,14 +102,12 @@ public:
         for (int i = 1; i < n; i++) {
             if (nums[i] < curMax) {
                 right = i;
-            }
-            else {
+            } else {
                 curMax = nums[i];
             }
             if (nums[n - i - 1] > curMin) {
                 left = n - i - 1;
-            }
-            else {
+            } else {
                 curMin = nums[n - i - 1];
             }
         }
@@ -119,7 +117,7 @@ public:
 
 class Solution1 {
 public:
-    int findUnsortedSubarray(vector<int>& nums) {
+    int findUnsortedSubarray(vector<int> &nums) {
         if (nums.size() <= 1) {
             return 0;
         }
@@ -132,8 +130,7 @@ public:
             if (nums[i] != temp[i]) {
                 if (start == -1) {
                     start = i;
-                }
-                else {
+                } else {
                     end = i;
                 }
             }

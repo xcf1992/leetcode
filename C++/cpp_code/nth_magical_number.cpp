@@ -72,6 +72,7 @@ private:
     int lcm(int a, int b) {
         return a * b / gcd(a, b);
     }
+
 public:
     int nthMagicalNumber(int N, int A, int B) {
         long left = 2;
@@ -80,8 +81,7 @@ public:
             long mid = left + (right - left) / 2;
             if (mid / A + mid / B - mid / lcm(A, B) < N) {
                 left = mid + 1;
-            }
-            else {
+            } else {
                 right = mid;
             }
         }

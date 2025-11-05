@@ -36,15 +36,14 @@ using namespace std;
 
 class Solution {
 public:
-    int peakIndexInMountainArray(vector<int>& A) {
+    int peakIndexInMountainArray(vector<int> &A) {
         int lo = 0;
         int hi = A.size() - 1;
         while (lo < hi) {
             int mi = lo + (hi - lo) / 2;
             if (A[mi] < A[mi + 1]) {
                 lo = mi + 1;
-            }
-            else {
+            } else {
                 hi = mi;
             }
         }
@@ -54,20 +53,34 @@ public:
 
 class Solution1 {
 public:
-    int peakIndexInMountainArray(vector<int>& A) {
+    int peakIndexInMountainArray(vector<int> &A) {
         int n = A.size();
         int left = 0;
         int right = n - 1;
         while (left < right) {
             int mid = left + (right - left) / 2;
-            if (mid - 1 >= 0 and A[mid] > A[mid - 1] and mid + 1 <= n - 1 and A[mid] > A[mid + 1]) {
+            if (mid - 1 >= 0 and A[mid]
+            >
+            A[mid - 1]
+            and mid
+            +1 <= n - 1
+            and A[mid]
+            >
+            A[mid + 1]
+            )
+            {
                 return mid;
             }
 
-            if (mid - 1 >= 0 and A[mid] > A[mid - 1]) {
+            if (mid - 1 >= 0 and A[mid]
+            >
+            A[mid - 1]
+            )
+            {
                 left = mid;
             }
-            else {
+            else
+            {
                 right = mid;
             }
         }

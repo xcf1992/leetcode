@@ -106,7 +106,7 @@ private:
     unsigned long long check(unsigned long long num, int len) {
         double n = (double) num;
         unsigned long long left = 1;
-        unsigned long long right  = (unsigned long long) (pow(n, 1.0 / len) + 1);
+        unsigned long long right = (unsigned long long) (pow(n, 1.0 / len) + 1);
         while (left <= right) {
             unsigned long long mid = left + (right - left) / 2;
             unsigned long long sum = 1, cur = 1;
@@ -120,13 +120,13 @@ private:
             }
             if (sum > num) {
                 right = mid - 1;
-            }
-            else {
+            } else {
                 left = mid + 1;
             }
         }
         return 0;
     }
+
 public:
     string smallestGoodBase(string n) {
         unsigned long long num = (unsigned long long) stoll(n);

@@ -176,15 +176,16 @@ using namespace std;
 // if we need add new bigger element to the intersection set.
 class Solution {
 public:
-    int intersectionSizeTwo(vector<vector<int>>& intervals) {
-        sort(intervals.begin(), intervals.end(), [](vector<int>& itvl1, vector<int>& itvl2) {
-            return itvl1[1] < itvl2[1] or (itvl1[1] == itvl2[1] and itvl1[0] > itvl2[0]);
+    int intersectionSizeTwo(vector<vector<int> > &intervals) {
+        sort(intervals.begin(), intervals.end(), [](vector<int> &itvl1, vector<int> &itvl2) {
+            return itvl1[1] < itvl2[1]
+            or(itvl1[1] == itvl2[1] and itvl1[0] > itvl2[0]);
         });
 
         int result = 0;
         int larger = -1;
         int largest = -1;
-        for (vector<int>& itvl : intervals) {
+        for (vector<int> &itvl: intervals) {
             int start = itvl[0];
             int end = itvl[1];
             bool largestIn = (largest >= start);
@@ -193,8 +194,7 @@ public:
                 result += 2;
                 largest = end;
                 larger = end - 1;
-            }
-            else if (!largerIn) {
+            } else if (!largerIn) {
                 result += 1;
                 larger = largest;
                 largest = end;

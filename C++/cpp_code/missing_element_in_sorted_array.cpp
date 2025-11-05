@@ -52,7 +52,7 @@ where the kth missing number will be located in (nums[index], nums[index + 1]), 
 */
 class Solution {
 public:
-    int missingElement(vector<int>& nums, int k) {
+    int missingElement(vector<int> &nums, int k) {
         int n = nums.size();
         int left = 0;
         int right = n - 1;
@@ -61,14 +61,14 @@ public:
             return nums[right] + k - count;
         }
 
-        while (left < right - 1) { // this is important to find fit interval that, right - left == 1 and there at leatst k missing number
+        while (left < right - 1) {
+            // this is important to find fit interval that, right - left == 1 and there at leatst k missing number
             int mid = left + (right - left) / 2;
             count = nums[mid] - nums[left] - (mid - left);
 
             if (count >= k) {
                 right = mid;
-            }
-            else {
+            } else {
                 left = mid;
                 k -= count;
             }

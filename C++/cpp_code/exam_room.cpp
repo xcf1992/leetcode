@@ -49,6 +49,7 @@ class ExamRoom {
 private:
     int num;
     vector<int> seats;
+
 public:
     ExamRoom(int N) {
         num = N;
@@ -70,7 +71,10 @@ public:
         }
 
         for (int i = 0; i < seats.size() - 1; i++) {
-            if ((seats[i + 1] - seats[i]) / 2 > distance or ((seats[i + 1] - seats[i]) / 2 == distance and (seats[i + 1] + seats[i]) / 2 < pos)) {
+            if ((seats[i + 1] - seats[i]) / 2 > distance or(
+                (seats[i + 1] - seats[i]) / 2 == distance and(seats[i + 1] + seats[i]) / 2 < pos)
+            )
+            {
                 distance = (seats[i + 1] - seats[i]) / 2;
                 pos = seats[i] + distance;
                 index = i + 1;
@@ -81,10 +85,11 @@ public:
     }
 
     void leave(int p) {
-        for (auto it = seats.begin(); it != seats.end(); it++) if (*it == p) {
-            seats.erase(it);
-            return;
-        }
+        for (auto it = seats.begin(); it != seats.end(); it++)
+            if (*it == p) {
+                seats.erase(it);
+                return;
+            }
     }
 };
 
@@ -93,6 +98,7 @@ private:
     int num;
     int taken;
     vector<int> seats;
+
 public:
     ExamRoom1(int N) {
         num = N;
@@ -115,11 +121,12 @@ public:
             if (seats[i] == 1) {
                 if (pre == -1) {
                     pre = i;
-                }
-                else if (next == -1) {
+                } else if (next == -1) {
                     next = i;
                     int newSeat = pre + (next - pre) / 2;
-                    if (pos == -1 or distance < min(newSeat - pre, next - newSeat)) {
+                    if (pos == -1 or distance<min(newSeat - pre, next - newSeat)
+                    )
+                    {
                         pos = newSeat;
                         distance = min(newSeat - pre, next - newSeat);
                     }

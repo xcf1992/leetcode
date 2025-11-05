@@ -54,14 +54,14 @@ using namespace std;
 
 class Solution {
 public:
-    string destCity(vector<vector<string>>& paths) {
+    string destCity(vector<vector<string> > &paths) {
         unordered_set<string> out;
-        for (vector<string>& path : paths) {
+        for (vector<string> &path: paths) {
             out.insert(path[0]);
         }
 
         string result = "";
-        for (vector<string>& path : paths) {
+        for (vector<string> &path: paths) {
             if (out.count(path[1]) == 0) {
                 result = path[1];
                 break;

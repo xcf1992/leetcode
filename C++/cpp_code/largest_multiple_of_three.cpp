@@ -59,28 +59,32 @@ Submit
 */
 class Solution {
 public:
-    string largestMultipleOfThree(vector<int>& digits) {
+    string largestMultipleOfThree(vector<int> &digits) {
         vector<int> cnt(10);
         int s = 0;
-        for(int i : digits) {
+        for (int i: digits) {
             cnt[i]++;
             s += i;
         }
 
-        if (s % 3 == 2 and cnt[2]) {
-            cnt[2]--, s-=2;
+        if (s % 3 == 2 and cnt[2]
+        )
+        {
+            cnt[2]--, s -= 2;
         }
-        if (s % 3 == 2 and cnt[5]) {
-            cnt[5]--, s-=5;
+        if (s % 3 == 2 and cnt[5]
+        )
+        {
+            cnt[5]--, s -= 5;
         }
         if (s % 3 == 2 && cnt[8]) {
-            cnt[8]--, s-=8;
+            cnt[8]--, s -= 8;
         }
 
-        vector<int> nums = {1,4,7,2,5,8}; // trying to lose as small values as possible
-        for (int i : nums) {
+        vector<int> nums = {1, 4, 7, 2, 5, 8}; // trying to lose as small values as possible
+        for (int i: nums) {
             while (s % 3 > 0 && cnt[i]) {
-                cnt[i]--, s-=i;
+                cnt[i]--, s -= i;
             }
         }
 
@@ -91,7 +95,7 @@ public:
         string res;
         for (int i = 9; i >= 0; i--) {
             while (cnt[i]) {
-                cnt[i]--, res+='0'+i;
+                cnt[i]--, res += '0' + i;
             }
         }
         return res;

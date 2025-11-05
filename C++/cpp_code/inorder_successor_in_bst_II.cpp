@@ -89,27 +89,32 @@ struct Node {
     int val;
     Node *left;
     Node *right;
-    Node* parent;
-    Node(int x) : val(x), left(NULL), right(NULL), parent(NULL) {}
+    Node *parent;
+
+    Node(int x) : val(x), left(NULL), right(NULL), parent(NULL) {
+    }
 };
 
 class Solution {
 public:
-    Node* inorderSuccessor(Node* node) {
+    Node *inorderSuccessor(Node *node) {
         if (node == nullptr) {
             return nullptr;
         }
 
-        Node* cur = nullptr;
-        if (node -> right != nullptr) {
-            cur = node -> right;
-            while (cur != nullptr and cur -> left != nullptr) {
-                cur = cur -> left;
+        Node *cur = nullptr;
+        if (node->right != nullptr) {
+            cur = node->right;
+            while (cur != nullptr and
+            cur->left != nullptr
+            )
+            {
+                cur = cur->left;
             }
             return cur;
         }
 
-        cur = node -> parent;
+        cur = node->parent;
         /*
         * to answer follow up question:
         while (cur and cur -> right == node) {
@@ -117,8 +122,12 @@ public:
             cur = cur -> parent;
         }
         */
-        while (cur and cur -> val < node -> val) {
-            cur = cur -> parent;
+        while (cur and cur
+        ->
+        val < node->val
+        )
+        {
+            cur = cur->parent;
         }
         return cur;
     }

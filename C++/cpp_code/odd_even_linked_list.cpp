@@ -33,48 +33,58 @@ using namespace std;
 
 class Solution {
 public:
-    ListNode* oddEvenList(ListNode* head) {
-        if (head == nullptr or head -> next == nullptr) {
+    ListNode *oddEvenList(ListNode *head) {
+        if (head == nullptr or
+        head->next == nullptr
+        )
+        {
             return head;
         }
 
-        ListNode* odd = head;
-        ListNode* even = head -> next;
-        ListNode* evenHead = even;
-        while (even != nullptr and even -> next != nullptr) {
-            odd -> next = even -> next;
-            odd = odd -> next;
+        ListNode *odd = head;
+        ListNode *even = head->next;
+        ListNode *evenHead = even;
+        while (even != nullptr and
+        even->next != nullptr
+        )
+        {
+            odd->next = even->next;
+            odd = odd->next;
 
-            even -> next = odd -> next;
-            even = even -> next;
+            even->next = odd->next;
+            even = even->next;
         }
-        odd -> next = evenHead;
+        odd->next = evenHead;
         return head;
     }
 };
 
 class Solution1 {
 public:
-    ListNode* oddEvenList(ListNode* head) {
-        if (head == nullptr or head -> next == nullptr or head -> next -> next == nullptr) {
+    ListNode *oddEvenList(ListNode *head) {
+        if (head == nullptr or
+        head->next == nullptr
+        or
+        head->next->next == nullptr
+        )
+        {
             return head;
         }
 
-        ListNode* oddCur = head;
-        ListNode* evenCur = head -> next;
-        ListNode* cur = evenCur -> next;
+        ListNode *oddCur = head;
+        ListNode *evenCur = head->next;
+        ListNode *cur = evenCur->next;
         int num = 3;
         while (cur != nullptr) {
-            ListNode* nextNode = cur -> next;
+            ListNode *nextNode = cur->next;
 
             if (num % 2) {
-                evenCur -> next = nextNode;
-                cur -> next = oddCur -> next;
-                oddCur -> next = cur;
-                oddCur = oddCur -> next;
-            }
-            else {
-                evenCur = evenCur -> next;
+                evenCur->next = nextNode;
+                cur->next = oddCur->next;
+                oddCur->next = cur;
+                oddCur = oddCur->next;
+            } else {
+                evenCur = evenCur->next;
             }
 
             cur = nextNode;

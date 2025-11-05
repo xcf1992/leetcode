@@ -44,22 +44,30 @@ rollMax.length == 6
 #include <numeric>
 using namespace std;
 
-class Solution { // dfs with memo
+class Solution {
+    // dfs with memo
 private:
     int mod = 1e9 + 7;
 
-    int dfs(int n, int preNum, int preCount, vector<vector<vector<int>>>& memo, vector<int>& rollMax) {
+    int dfs(int n, int preNum, int preCount, vector<vector<vector<int> > > &memo, vector<int> &rollMax) {
         if (n == 0) {
             return 1;
         }
 
-        if (preNum != -1 and memo[n][preCount][preNum] != 0) {
+        if (preNum != -1 and memo[n][preCount][preNum]
+        !=
+        0
+        )
+        {
             return memo[n][preCount][preNum];
         }
 
         int count = 0;
         for (int cur = 0; cur < 6; ++cur) {
-            if (cur == preNum and preCount + 1 > rollMax[preNum]) {
+            if (cur == preNum and preCount
+            +1 > rollMax[preNum]
+            )
+            {
                 continue;
             }
             count = (count + dfs(n - 1, cur, cur == preNum ? preCount + 1 : 1, memo, rollMax)) % mod;
@@ -70,9 +78,10 @@ private:
         }
         return count;
     }
+
 public:
-    int dieSimulator(int n, vector<int>& rollMax) {
-        vector<vector<vector<int>>> memo(n + 1, vector<vector<int>>(16, vector<int>(6, 0)));
+    int dieSimulator(int n, vector<int> &rollMax) {
+        vector<vector<vector<int> > > memo(n + 1, vector<vector<int> >(16, vector<int>(6, 0)));
         return dfs(n, -1, 0, memo, rollMax);
     }
 };

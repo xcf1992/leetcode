@@ -62,7 +62,7 @@ using namespace std;
 
 class Solution {
 public:
-    int totalFruit(vector<int>& tree) {
+    int totalFruit(vector<int> &tree) {
         int result = 0;
         int typ1 = -1;
         int typ2 = -1;
@@ -74,13 +74,11 @@ public:
                 typ1 = tree[pos];
                 count += 1;
                 idx1 = pos;
-            }
-            else if (typ2 == -1 || typ2 == tree[pos]) {
+            } else if (typ2 == -1 || typ2 == tree[pos]) {
                 typ2 = tree[pos];
                 count += 1;
                 idx2 = pos;
-            }
-            else {
+            } else {
                 result = max(result, count);
                 if (idx2 < idx1) {
                     swap(idx1, idx2);

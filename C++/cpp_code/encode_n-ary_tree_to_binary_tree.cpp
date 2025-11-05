@@ -46,11 +46,12 @@ using namespace std;
 class Node {
 public:
     int val = NULL;
-    vector<Node*> children;
+    vector<Node *> children;
 
-    Node() {}
+    Node() {
+    }
 
-    Node(int _val, vector<Node*> _children) {
+    Node(int _val, vector<Node *> _children) {
         val = _val;
         children = _children;
     }
@@ -59,48 +60,48 @@ public:
 class Codec {
 public:
     // Encodes an n-ary tree to a binary tree.
-    TreeNode* encode(Node* root) {
+    TreeNode *encode(Node *root) {
         if (root == nullptr) {
             return nullptr;
         }
 
-        TreeNode* bRoot = new TreeNode(root -> val);
-        TreeNode* cur = bRoot;
-        vector<Node*> children = root -> children;
+        TreeNode *bRoot = new TreeNode(root->val);
+        TreeNode *cur = bRoot;
+        vector<Node *> children = root->children;
         for (int i = 0; i < children.size(); ++i) {
-            Node* child = children[i];
+            Node *child = children[i];
             if (i == 0) {
-                cur -> left = encode(child);
-                cur = cur -> left;
-            }
-            else {
-                cur -> right = encode(child);
-                cur = cur -> right;
+                cur->left = encode(child);
+                cur = cur->left;
+            } else {
+                cur->right = encode(child);
+                cur = cur->right;
             }
         }
         return bRoot;
     }
 
     // Decodes your binary tree to an n-ary tree.
-    Node* decode(TreeNode* root) {
+    Node *decode(TreeNode *root) {
         if (root == nullptr) {
             return nullptr;
         }
 
-        Node* nRoot = new Node();
-        nRoot -> val = root -> val;
-        TreeNode* cur = root;
-        if (cur -> left != nullptr) {
-            nRoot -> children.push_back(decode(cur -> left));
-            cur = cur -> left;
-            while (cur -> right != nullptr) {
-                nRoot -> children.push_back(decode(cur -> right));
-                cur = cur -> right;
+        Node *nRoot = new Node();
+        nRoot->val = root->val;
+        TreeNode *cur = root;
+        if (cur->left != nullptr) {
+            nRoot->children.push_back(decode(cur->left));
+            cur = cur->left;
+            while (cur->right != nullptr) {
+                nRoot->children.push_back(decode(cur->right));
+                cur = cur->right;
             }
         }
         return nRoot;
     }
 };
+
 // Your Codec object will be instantiated and called as such:
 // Codec codec;
 // codec.decode(codec.encode(root));

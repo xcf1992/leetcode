@@ -75,28 +75,33 @@ using namespace std;
 
 class Solution {
 private:
-    int getDepth(TreeNode* root) {
+    int getDepth(TreeNode *root) {
         if (root == nullptr) {
             return 0;
         }
-        return max(getDepth(root -> left), getDepth(root -> right)) + 1;
+        return max(getDepth(root->left), getDepth(root->right)) + 1;
     }
 
-    void print(TreeNode* root, vector<vector<string>>& result, int begin, int end, int row) {
-        if (root == nullptr or begin > end) {
+    void print(TreeNode *root, vector<vector<string> > &result, int begin, int end, int row) {
+        if (root == nullptr or begin
+        >
+        end
+        )
+        {
             return;
         }
 
         int mid = begin + (end - begin) / 2;
-        result[row][mid] = to_string(root -> val);
-        print(root -> left, result, begin, mid - 1, row + 1);
-        print(root -> right, result, mid + 1, end, row + 1);
+        result[row][mid] = to_string(root->val);
+        print(root->left, result, begin, mid - 1, row + 1);
+        print(root->right, result, mid + 1, end, row + 1);
     }
+
 public:
-    vector<vector<string>> printTree(TreeNode* root) {
+    vector<vector<string> > printTree(TreeNode *root) {
         int depth = getDepth(root);
         int width = pow(2, depth) - 1;
-        vector<vector<string>> result(depth, vector<string>(width, ""));
+        vector<vector<string> > result(depth, vector<string>(width, ""));
         print(root, result, 0, width, 0);
         return result;
     }

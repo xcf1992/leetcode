@@ -67,7 +67,7 @@ The number of calls to the two functions is less than or equal to 10^4 in total.
 using namespace std;
 
 struct TrieNode {
-    unordered_map<string, TrieNode*> child;
+    unordered_map<string, TrieNode *> child;
     bool isFile;
     int content;
 
@@ -79,17 +79,16 @@ struct TrieNode {
 
 class FileSystem {
 private:
-    TrieNode* root = nullptr;
+    TrieNode *root = nullptr;
 
-    vector<string> split(string& path) {
+    vector<string> split(string &path) {
         vector<string> result;
         string cur = "";
         for (int i = 1; i < path.size(); ++i) {
             if (path[i] == '/') {
                 result.push_back(cur);
                 cur = "";
-            }
-            else {
+            } else {
                 cur.push_back(path[i]);
             }
         }
@@ -97,39 +96,39 @@ private:
         return result;
     }
 
-    bool insert(vector<string>& path, int value) {
+    bool insert(vector<string> &path, int value) {
         int n = path.size();
-        TrieNode* cur = root;
+        TrieNode *cur = root;
         for (int i = 0; i < n; ++i) {
-            if (cur -> child.find(path[i]) == cur -> child.end()) {
+            if (cur->child.find(path[i]) == cur->child.end()) {
                 if (i != n - 1) {
                     return false;
                 }
-                cur -> child[path[i]] = new TrieNode();
-            }
-            else {
+                cur->child[path[i]] = new TrieNode();
+            } else {
                 if (i == n - 1) {
                     return false; // the path already exist
                 }
             }
-            cur = cur -> child[path[i]];
+            cur = cur->child[path[i]];
         }
-        cur -> isFile = true;
-        cur -> content = value;
+        cur->isFile = true;
+        cur->content = value;
         return true;
     }
 
-    int find(vector<string>& path) {
+    int find(vector<string> &path) {
         int n = path.size();
-        TrieNode* cur = root;
+        TrieNode *cur = root;
         for (int i = 0; i < n; ++i) {
-            if (cur -> child.find(path[i]) == cur -> child.end()) {
+            if (cur->child.find(path[i]) == cur->child.end()) {
                 return -1;
             }
-            cur = cur -> child[path[i]];
+            cur = cur->child[path[i]];
         }
-        return cur -> content;
+        return cur->content;
     }
+
 public:
     FileSystem() {
         root = new TrieNode();
@@ -145,6 +144,7 @@ public:
         return find(p);
     }
 };
+
 /*
 * Your FileSystem object will be instantiated and called as such:
 * FileSystem* obj = new FileSystem();

@@ -32,12 +32,17 @@ using namespace std;
 class Solution {
 private:
     unordered_map<char, char> strobogrammatic{{'9', '6'}, {'1', '1'}, {'8', '8'}, {'6', '9'}, {'0', '0'}};
+
 public:
     bool isStrobogrammatic(string num) {
         int left = 0;
         int right = num.size() - 1;
         while (left <= right) {
-            if (strobogrammatic.find(num[left]) == strobogrammatic.end() or strobogrammatic[num[left]] != num[right]) {
+            if (strobogrammatic.find(num[left]) == strobogrammatic.end() or strobogrammatic[num[left]]
+            !=
+            num[right]
+            )
+            {
                 return false;
             }
             left += 1;

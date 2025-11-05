@@ -48,18 +48,19 @@ using namespace std;
 
 class Solution {
 private:
-    vector<int> dfs(TreeNode* root) {
+    vector<int> dfs(TreeNode *root) {
         if (root == nullptr) {
             return {-1, -1, -1}; // {goleft, goright, longest}
         }
 
-        vector<int> lPath = dfs(root -> left);
-        vector<int> rPath = dfs(root -> right);
+        vector<int> lPath = dfs(root->left);
+        vector<int> rPath = dfs(root->right);
         int result = max(max(lPath[2], rPath[2]), 1 + max(lPath[1], rPath[0]));
         return {lPath[1] + 1, rPath[0] + 1, result};
     }
+
 public:
-    int longestZigZag(TreeNode* root) {
+    int longestZigZag(TreeNode *root) {
         return dfs(root)[2];
     }
 };

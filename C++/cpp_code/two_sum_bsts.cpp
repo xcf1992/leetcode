@@ -43,44 +43,57 @@ Time O(n2 * log(n1))
 */
 class Solution {
 private:
-    bool binarySearch(TreeNode* root, int target) {
+    bool binarySearch(TreeNode *root, int target) {
         if (root == nullptr) {
             return false;
         }
-        if (root -> val == target) {
+        if (root->val == target) {
             return true;
         }
-        return root -> val > target ? binarySearch(root -> left, target) : binarySearch(root -> right, target);
+        return root->val > target ? binarySearch(root->left, target) : binarySearch(root->right, target);
     }
+
 public:
-    bool twoSumBSTs(TreeNode* root1, TreeNode* root2, int target) {
-        if (root1 == nullptr or root2 == nullptr) {
+    bool twoSumBSTs(TreeNode *root1, TreeNode *root2, int target) {
+        if (root1 == nullptr or root2
+        ==
+        nullptr
+        )
+        {
             return false;
         }
 
-        if (binarySearch(root1, target - root2 -> val)) {
+        if (binarySearch(root1, target - root2->val)) {
             return true;
         }
 
-        return twoSumBSTs(root1, root2 -> left, target) or twoSumBSTs(root1, root2 -> right, target);
+        return twoSumBSTs(root1, root2->left, target)
+        or twoSumBSTs(root1, root2->right, target);
     }
 };
 
-class Solution1 { // 25%
+class Solution1 {
+    // 25%
 public:
-    bool twoSumBSTs(TreeNode* root1, TreeNode* root2, int target) {
-        if (root1 == nullptr or root2 == nullptr) {
+    bool twoSumBSTs(TreeNode *root1, TreeNode *root2, int target) {
+        if (root1 == nullptr or root2
+        ==
+        nullptr
+        )
+        {
             return false;
         }
 
-        int sum = root1 -> val + root2 -> val;
+        int sum = root1->val + root2->val;
         if (sum == target) {
             return true;
         }
 
         if (sum > target) {
-            return twoSumBSTs(root1 -> left, root2, target) or twoSumBSTs(root1, root2 -> left, target);
+            return twoSumBSTs(root1->left, root2, target)
+            or twoSumBSTs(root1, root2->left, target);
         }
-        return twoSumBSTs(root1 -> right, root2, target) or twoSumBSTs(root1, root2 -> right, target);
+        return twoSumBSTs(root1->right, root2, target)
+        or twoSumBSTs(root1, root2->right, target);
     }
 };

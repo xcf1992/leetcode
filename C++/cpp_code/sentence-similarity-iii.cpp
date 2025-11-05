@@ -52,15 +52,12 @@ The words in sentence1 and sentence2 are separated by a single space.
 #include <numeric>
 using namespace std;
 
-class Solution
-{
+class Solution {
 public:
-    bool areSentencesSimilar(string s1, string s2)
-    {
+    bool areSentencesSimilar(string s1, string s2) {
         string temp = "";
         deque<string> a, b;
-        for (char c : s1)
-        {
+        for (char c: s1) {
             if (c == ' ')
                 a.push_back(temp), temp = "";
             else
@@ -68,8 +65,7 @@ public:
         }
         a.push_back(temp), temp = "";
 
-        for (char c : s2)
-        {
+        for (char c: s2) {
             if (c == ' ')
                 b.push_back(temp), temp = "";
             else
@@ -83,7 +79,7 @@ public:
         //removing common from back
         while (a.size() != 0 && b.size() != 0 && (a.back() == b.back()))
             a.pop_back(), b.pop_back();
-            
+
         if (a.size() == 0 || b.size() == 0)
             return true;
         return false;

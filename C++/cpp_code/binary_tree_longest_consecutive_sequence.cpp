@@ -47,21 +47,25 @@ using namespace std;
 
 class Solution {
 private:
-    void traverse(TreeNode* root, TreeNode* pre, int& result, int length) {
+    void traverse(TreeNode *root, TreeNode *pre, int &result, int length) {
         if (root == nullptr) {
             return;
         }
-        if (pre != nullptr and root -> val != 1 + pre -> val) {
+        if (pre != nullptr and
+        root->val != 1 + pre->val
+        )
+        {
             length = 0;
         }
 
         length += 1;
         result = max(result, length);
-        traverse(root -> left, root, result, length);
-        traverse(root -> right, root, result, length);
+        traverse(root->left, root, result, length);
+        traverse(root->right, root, result, length);
     }
+
 public:
-    int longestConsecutive(TreeNode* root) {
+    int longestConsecutive(TreeNode *root) {
         int result = 0;
         traverse(root, nullptr, result, 0);
         return result;
@@ -70,26 +74,33 @@ public:
 
 class Solution2 {
 private:
-    int traverse(TreeNode* root, int& result) {
+    int traverse(TreeNode *root, int &result) {
         if (root == nullptr) {
-           return 0;
+            return 0;
         }
 
-        int l1 = traverse(root -> left, result);
-        int l2 = traverse(root -> right, result);
+        int l1 = traverse(root->left, result);
+        int l2 = traverse(root->right, result);
 
-        if (root -> left != nullptr and root -> left -> val != root -> val + 1) {
+        if (root->left != nullptr and
+        root->left->val != root->val + 1
+        )
+        {
             l1 = 0;
         }
-        if (root -> right != nullptr and root -> right -> val != root -> val + 1) {
+        if (root->right != nullptr and
+        root->right->val != root->val + 1
+        )
+        {
             l2 = 0;
         }
         int l = max(l1, l2) + 1;
         result = max(result, l);
         return l;
     }
+
 public:
-    int longestConsecutive(TreeNode* root) {
+    int longestConsecutive(TreeNode *root) {
         int result = 0;
         traverse(root, result);
         return result;
@@ -98,25 +109,26 @@ public:
 
 class Solution1 {
 private:
-    int getLength(TreeNode* root, int preVal) {
+    int getLength(TreeNode *root, int preVal) {
         if (root == nullptr) {
             return 0;
         }
 
-        if (root -> val == preVal + 1) {
-            return max(getLength(root -> left, root -> val), getLength(root -> right, root -> val)) + 1;
+        if (root->val == preVal + 1) {
+            return max(getLength(root->left, root->val), getLength(root->right, root->val)) + 1;
         }
         return 0;
     }
+
 public:
-    int longestConsecutive(TreeNode* root) {
+    int longestConsecutive(TreeNode *root) {
         if (root == nullptr) {
             return 0;
         }
 
-        int l1 = getLength(root -> left, root -> val) + 1;
-        int l2 = getLength(root -> right, root -> val) + 1;
-        int l = max(longestConsecutive(root -> left), longestConsecutive(root -> right));
+        int l1 = getLength(root->left, root->val) + 1;
+        int l2 = getLength(root->right, root->val) + 1;
+        int l = max(longestConsecutive(root->left), longestConsecutive(root->right));
         return max(l, max(l1, l2));
     }
 };

@@ -91,13 +91,16 @@ public:
             cnt1[c - 'a'] += 1;
             s1.insert(c);
         }
-        for (char c : word2) {
+        for (char c: word2) {
             cnt2[c - 'a'] += 1;
             s2.insert(c);
         }
 
         sort(cnt1.begin(), cnt1.end());
         sort(cnt2.begin(), cnt2.end());
-        return cnt1 == cnt2 and s1 == s2;
+        return cnt1 == cnt2
+        and s1
+        ==
+        s2;
     }
 };

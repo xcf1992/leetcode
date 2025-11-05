@@ -41,7 +41,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> luckyNumbers (vector<vector<int>>& matrix) {
+    vector<int> luckyNumbers(vector<vector<int> > &matrix) {
         int m = matrix.size();
         int n = matrix[0].size();
         vector<int> colMax(n, INT_MIN);

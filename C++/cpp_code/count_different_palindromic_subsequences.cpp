@@ -60,7 +60,7 @@ class Solution {
 private:
     int MOD = 1e9 + 7;
 
-    void update(int i, int j, vector<vector<int>>& dp, string& S) {
+    void update(int i, int j, vector<vector<int> > &dp, string &S) {
         if (S[i] != S[j]) {
             dp[i][j] = dp[i][j - 1] + dp[i + 1][j] - dp[i + 1][j - 1];
             return;
@@ -68,10 +68,18 @@ private:
 
         int left = i + 1;
         int right = j - 1;
-        while (left <= right and S[left] != S[i]) {
+        while (left <= right and S[left]
+        !=
+        S[i]
+        )
+        {
             left += 1;
         }
-        while (right >= left and S[right] != S[j]) {
+        while (right >= left and S[right]
+        !=
+        S[j]
+        )
+        {
             right -= 1;
         }
 
@@ -86,8 +94,7 @@ private:
             * So totally dp[i][j] record the palindrome: {"a", "b", "aa", "aba"}.
             */
             dp[i][j] = dp[i + 1][j - 1] * 2 + 2;
-        }
-        else if (left == right) {
+        } else if (left == right) {
             /*
             * consider the string from i to j is "a...a...a"
             * where there is only one character 'a' inside the leftmost and rightmost 'a'
@@ -99,8 +106,7 @@ private:
             * So totally dp[i][j] records {"a", "aa", "aaa"}
             */
             dp[i][j] = dp[i + 1][j - 1] * 2 + 1;
-        }
-        else {
+        } else {
             /*
             * consider the string from i to j is "a...a...a... a"
             * where there are at least two character 'a' close to leftmost and rightmost 'a'
@@ -115,10 +121,11 @@ private:
             dp[i][j] = dp[i + 1][j - 1] * 2 - dp[left + 1][right - 1];
         }
     }
+
 public:
     int countPalindromicSubsequences(string S) {
         int n = S.size();
-        vector<vector<int>> dp(n, vector<int>(n, 0));
+        vector<vector<int> > dp(n, vector<int>(n, 0));
         for (int i = 0; i < n; i++) {
             dp[i][i] = 1;
         }

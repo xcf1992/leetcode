@@ -49,6 +49,7 @@ private:
     queue<int> available;
     unordered_set<int> used;
     int maxNum;
+
 public:
     /* Initialize your data structure here
      @param maxNumbers - The maximum numbers that can be stored in the phone directory.*/
@@ -73,7 +74,11 @@ public:
 
     /* Check if a number is available or not.*/
     bool check(int number) {
-        if (number < 0 or number > maxNum) {
+        if (number < 0 or number
+        >
+        maxNum
+        )
+        {
             return false;
         }
         return used.find(number) == used.end();
@@ -88,6 +93,7 @@ public:
         available.push(number);
     }
 };
+
 /*
  * Your PhoneDirectory object will be instantiated and called as such:
  * PhoneDirectory obj = new PhoneDirectory(maxNumbers);

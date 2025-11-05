@@ -31,7 +31,7 @@ Except if they're the same word, then i1 is the previous index.
 */
 class Solution {
 public:
-    int shortestWordDistance(vector<string>& words, string word1, string word2) {
+    int shortestWordDistance(vector<string> &words, string word1, string word2) {
         int n = words.size();
         int dist = INT_MAX;
         int i1 = n;

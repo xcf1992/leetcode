@@ -30,10 +30,11 @@ Constraints:
 #include <numeric>
 #include "extra_data_types.hpp"
 using namespace std;
+
 // maybe is better to bfs to solve this question, then we do not need to do sort at last
 class Solution {
 private:
-    void dfs(vector<int>& result, int low, int high, int cur, int num) {
+    void dfs(vector<int> &result, int low, int high, int cur, int num) {
         if (num >= high) {
             return;
         }
@@ -49,6 +50,7 @@ private:
         num = num * 10 + cur;
         dfs(result, low, high, cur + 1, num);
     }
+
 public:
     vector<int> sequentialDigits(int low, int high) {
         vector<int> result;

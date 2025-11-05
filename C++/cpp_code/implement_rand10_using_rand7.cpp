@@ -87,6 +87,7 @@ we reject it and repeat the whole process again.
 
 // The rand7() API is already defined for you.
 int rand7();
+
 // @return a random integer in the range 1 to 7
 class Solution {
 public:
@@ -100,6 +101,7 @@ public:
         }
     }
 };
+
 /*
 Idea: rand7() -> rand49() -> rand40() -> rand10()
 

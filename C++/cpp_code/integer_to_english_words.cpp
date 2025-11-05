@@ -35,8 +35,13 @@ using namespace std;
 
 class Solution {
 private:
-    vector<string> below20 = vector<string>({"One", "Two", "Three", "Four","Five","Six","Seven","Eight","Nine","Ten", "Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen"});
-    vector<string> below100 = vector<string>({"Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"});
+    vector<string> below20 = vector<string>({
+        "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen",
+        "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"
+    });
+    vector<string> below100 = vector<string>({
+        "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"
+    });
 
     string int2string(int num) {
         if (num >= 1000000000) {
@@ -64,6 +69,7 @@ private:
         }
         return ""; // this cannot be removed, otherwis test case 20 will fail
     }
+
 public:
     string numberToWords(int num) {
         if (num == 0) {

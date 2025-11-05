@@ -56,12 +56,14 @@ using namespace std;
 class Solution {
 private:
     int n;
-    int getNext(vector<int>& nums, int i) {
+
+    int getNext(vector<int> &nums, int i) {
         int next = i + nums[i];
         return next >= 0 ? next % n : n + (next % n);
     }
+
 public:
-    bool circularArrayLoop(vector<int>& nums) {
+    bool circularArrayLoop(vector<int> &nums) {
         n = nums.size();
         if (n < 2) {
             return false;
@@ -83,19 +85,42 @@ public:
             bool wrong = false;
             do {
                 fast = getNext(nums, fast);
-                if ((moveForward and nums[fast] < 0) or (!moveForward and nums[fast] > 0)) {
+                if ((moveForward and nums[fast]
+                <
+                0
+                )
+                or(!moveForward and nums[fast] > 0)
+                )
+                {
                     wrong = true;
                     break;
                 }
                 fast = getNext(nums, fast);
                 slow = getNext(nums, slow);
-                if ((moveForward and nums[fast] < 0) or (!moveForward and nums[fast] > 0)) {
+                if ((moveForward and nums[fast]
+                <
+                0
+                )
+                or(!moveForward and nums[fast] > 0)
+                )
+                {
                     wrong = true;
                     break;
                 }
-            } while (nums[slow] != 0 and slow != fast and !wrong);
+            } while (nums[slow] != 0
+            and slow
+            !=
+            fast and
+            !wrong
+            )
+            ;
 
-            if (nums[slow] != 0 and slow == fast and !wrong) {
+            if (nums[slow] != 0 and slow
+            ==
+            fast and
+            !wrong
+            )
+            {
                 return true;
             }
             nums[i] = 0;

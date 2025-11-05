@@ -30,14 +30,14 @@ using namespace std;
 // dp(i,j) represents the side length of the maximum square whose bottom right corner is the cell with index (i,j)
 class Solution {
 public:
-    int maximalSquare(vector<vector<char>>& matrix) {
+    int maximalSquare(vector<vector<char> > &matrix) {
         int m = matrix.size();
         if (m == 0) {
             return 0;
         }
         int n = matrix[0].size();
 
-        vector<vector<int>> dp(m, vector<int>(n , 0));
+        vector<vector<int> > dp(m, vector<int>(n, 0));
         int length = 0;
         for (int j = 0; j < n; j++) {
             dp[0][j] = matrix[0][j] - '0';
@@ -48,10 +48,11 @@ public:
             length = max(length, dp[i][0]);
         }
         for (int i = 1; i < m; i++) {
-            for (int j = 1; j < n; j++) if (matrix[i][j] == '1') {
-                dp[i][j] = 1 + min(dp[i - 1][j - 1], min(dp[i - 1][j], dp[i][j - 1]));
-                length = max(length, dp[i][j]);
-            }
+            for (int j = 1; j < n; j++)
+                if (matrix[i][j] == '1') {
+                    dp[i][j] = 1 + min(dp[i - 1][j - 1], min(dp[i - 1][j], dp[i][j - 1]));
+                    length = max(length, dp[i][j]);
+                }
         }
         return length * length;
     }
@@ -59,13 +60,25 @@ public:
 
 class Solution1 {
 private:
-    int square(int x, int y, int length, vector<vector<char>>& matrix) {
+    int square(int x, int y, int length, vector<vector<char> > &matrix) {
         int result = 1;
         int bot = x + 1;
         int maxLength = length;
-        while (bot < matrix.size() and matrix[bot][y] == '1' and bot - x < length) {
+        while (bot < matrix.size() and matrix[bot][y]
+        ==
+        '1'
+        and bot
+        -x < length
+        )
+        {
             int right = y + 1;
-            while (right < matrix[0].size() and right - y < length and matrix[bot][right] == '1') {
+            while (right < matrix[0].size() and right
+            -y < length
+            and matrix[bot][right]
+            ==
+            '1'
+            )
+            {
                 right += 1;
             }
             maxLength = min(maxLength, right - y);
@@ -75,8 +88,9 @@ private:
         }
         return result;
     }
+
 public:
-    int maximalSquare(vector<vector<char>>& matrix) {
+    int maximalSquare(vector<vector<char> > &matrix) {
         int m = matrix.size();
         if (m == 0) {
             return 0;
@@ -87,7 +101,11 @@ public:
             for (int j = 0; j < n; j++) {
                 if (matrix[i][j] == '1') {
                     int right = j;
-                    while (right < n and matrix[i][right] == '1') {
+                    while (right < n and matrix[i][right]
+                    ==
+                    '1'
+                    )
+                    {
                         right += 1;
                     }
                     result = max(result, square(i, j, right - j, matrix));

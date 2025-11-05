@@ -62,7 +62,7 @@ class Solution1 {
 public:
     int newInteger(int n) {
         string base9 = "";
-        while (n > 0){
+        while (n > 0) {
             base9.push_back('0' + n % 9);
             n /= 9;
         }

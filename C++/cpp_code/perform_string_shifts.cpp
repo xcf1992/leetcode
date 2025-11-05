@@ -52,13 +52,12 @@ using namespace std;
 
 class Solution {
 public:
-    string stringShift(string s, vector<vector<int>>& shift) {
+    string stringShift(string s, vector<vector<int> > &shift) {
         int move = 0;
-        for (auto& op : shift) {
+        for (auto &op: shift) {
             if (op[0] == 1) {
                 move += op[1];
-            }
-            else {
+            } else {
                 move -= op[1];
             }
         }

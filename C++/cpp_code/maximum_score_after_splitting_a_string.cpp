@@ -51,14 +51,14 @@ class Solution {
 public:
     int maxScore(string s) {
         int ones = 0;
-        for (const char& c: s) {
+        for (const char &c: s) {
             ones += c - '0';
         }
 
         s.pop_back();
         int zeros = 0;
         int result = 0;
-        for (const char& c: s) {
+        for (const char &c: s) {
             c == '0' ? zeros++ : ones--;
             result = max(result, zeros + ones);
         }

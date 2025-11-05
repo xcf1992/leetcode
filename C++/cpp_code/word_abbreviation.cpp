@@ -46,9 +46,11 @@ For example, prefix[i] = 2 means to take a prefix of word[0], word[1], word[2].
 */
 class Solution {
 private:
-    string abbreviate(string s, int k) { // k is the length of prefix of the abbreviation, before number
+    string abbreviate(string s, int k) {
+        // k is the length of prefix of the abbreviation, before number
         int length = s.size();
-        if (k >= length - 2) { // k + 2 will be the length after abbreviation
+        if (k >= length - 2) {
+            // k + 2 will be the length after abbreviation
             return s;
         }
 
@@ -57,12 +59,13 @@ private:
         result.push_back(s.back());
         return result;
     }
+
 public:
-    vector<string> wordsAbbreviation(vector<string>& dict) {
+    vector<string> wordsAbbreviation(vector<string> &dict) {
         int n = dict.size();
         vector<string> result;
         vector<int> prefix(n, 1);
-        for (string& word : dict) {
+        for (string &word: dict) {
             result.push_back(abbreviate(word, 1));
         }
 
@@ -79,7 +82,7 @@ public:
                 }
 
                 mem.push_back(i);
-                for (int k : mem) {
+                for (int k: mem) {
                     prefix[k] += 1;
                     result[k] = abbreviate(dict[k], prefix[k]);
                 }

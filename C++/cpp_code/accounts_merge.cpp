@@ -50,14 +50,15 @@ using namespace std;
 
 class Solution {
 private:
-    string find(string s, unordered_map<string, string>& parents) {
+    string find(string s, unordered_map<string, string> &parents) {
         if (parents.find(s) == parents.end() || parents[s] == s) {
             return s;
         }
         return find(parents[s], parents);
     }
+
 public:
-    vector<vector<string>> accountsMerge(vector<vector<string>>& accounts) {
+    vector<vector<string> > accountsMerge(vector<vector<string> > &accounts) {
         int n = accounts.size();
         unordered_map<string, string> owner;
         unordered_map<string, string> parents;
@@ -69,15 +70,15 @@ public:
             }
         }
 
-        unordered_map<string, set<string>> unions;
+        unordered_map<string, set<string> > unions;
         for (int i = 0; i < n; ++i) {
             for (int j = 1; j < accounts[i].size(); ++j) {
                 unions[find(accounts[i][j], parents)].insert(accounts[i][j]);
             }
         }
 
-        vector<vector<string>> result;
-        for (pair<string, set<string>> u : unions) {
+        vector<vector<string> > result;
+        for (pair<string, set<string> > u: unions) {
             vector<string> emails(u.second.begin(), u.second.end());
             emails.insert(emails.begin(), owner[u.first]);
             result.push_back(emails);

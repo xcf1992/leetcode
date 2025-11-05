@@ -70,12 +70,11 @@ m == toppingCosts.length
 #include <numeric>
 using namespace std;
 
-class Solution
-{
+class Solution {
 private:
     int target;
-    int closest(int a, int b)
-    {
+
+    int closest(int a, int b) {
         if (a == 0)
             return b;
         if (b == 0)
@@ -85,8 +84,7 @@ private:
         return abs(target - a) < abs(target - b) ? a : b;
     }
 
-    int dfs(vector<int> &top, int i, int sum)
-    {
+    int dfs(vector<int> &top, int i, int sum) {
         if (i >= top.size())
             return sum;
 
@@ -98,12 +96,10 @@ private:
     }
 
 public:
-    int closestCost(vector<int> &base, vector<int> &top, int t)
-    {
+    int closestCost(vector<int> &base, vector<int> &top, int t) {
         target = t; //i made target global so that i don't need to pass it in any function
         int ans = 0;
-        for (int i = 0; i < base.size(); i++)
-        {
+        for (int i = 0; i < base.size(); i++) {
             ans = closest(dfs(top, 0, base[i]), ans);
         }
         return ans;

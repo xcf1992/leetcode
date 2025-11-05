@@ -43,25 +43,38 @@ class Solution {
 private:
     int n = 0;
 
-    bool isValid(int r, int c, vector<vector<int>>& grid) {
-        return r >= 0 and c >= 0 and r < n and c < n and grid[r][c] == 0;
+    bool isValid(int r, int c, vector<vector<int> > &grid) {
+        return r >= 0
+        and c
+        >=
+        0
+        and r<n and c < n and grid[r][c] == 0;
     }
+
 public:
-    int shortestPathBinaryMatrix(vector<vector<int>>& grid) {
+    int shortestPathBinaryMatrix(vector<vector<int> > &grid) {
         n = grid.size();
-        if (grid[0][0] == 1 or grid[n - 1][n - 1] == 1) {
+        if (grid[0][0] == 1 or grid[n - 1][n - 1]
+        ==
+        1
+        )
+        {
             return -1;
         }
 
-        queue<pair<int, int>> bfs;
+        queue<pair<int, int> > bfs;
         bfs.push({0, 0});
-        vector<vector<int>> diff({{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {-1, -1}, {1, -1}, {1, 1}, {-1, 1}});
+        vector<vector<int> > diff({{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {-1, -1}, {1, -1}, {1, 1}, {-1, 1}});
         while (!bfs.empty()) {
             int r = bfs.front().first;
             int c = bfs.front().second;
             bfs.pop();
-            
-            if (r == n - 1 and c == n - 1) {
+
+            if (r == n - 1 and c
+            ==
+            n - 1
+            )
+            {
                 return grid[r][c] + 1;
             }
 

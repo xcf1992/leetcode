@@ -41,61 +41,64 @@ using namespace std;
 
 class Solution {
 private:
-    TreeNode* deleteNodes(TreeNode* root, bool isRoot, unordered_set<int>& to_delete, vector<TreeNode*>& result) {
+    TreeNode *deleteNodes(TreeNode *root, bool isRoot, unordered_set<int> &to_delete, vector<TreeNode *> &result) {
         if (root == nullptr) {
             return root;
         }
 
-        bool deleted = to_delete.find(root -> val) != to_delete.end();
-        if (isRoot and !deleted) {
+        bool deleted = to_delete.find(root->val) != to_delete.end();
+        if (isRoot and !deleted
+        )
+        {
             result.push_back(root);
         }
 
-        root -> left = deleteNodes(root -> left, deleted, to_delete, result);
-        root -> right = deleteNodes(root -> right, deleted, to_delete, result);
+        root->left = deleteNodes(root->left, deleted, to_delete, result);
+        root->right = deleteNodes(root->right, deleted, to_delete, result);
         return deleted ? nullptr : root;
     }
 
 public:
-    vector<TreeNode*> delNodes(TreeNode* root, vector<int>& to_delete) {
+    vector<TreeNode *> delNodes(TreeNode *root, vector<int> &to_delete) {
         unordered_set<int> deleted(to_delete.begin(), to_delete.end());
-        vector<TreeNode*> result;
+        vector<TreeNode *> result;
         deleteNodes(root, true, deleted, result);
         return result;
     }
 };
 
-class Solution1 { // slow 21.87%
+class Solution1 {
+    // slow 21.87%
 private:
-    TreeNode* deleteNodes(TreeNode* root, unordered_set<int>& to_delete, unordered_set<TreeNode*>& result) {
+    TreeNode *deleteNodes(TreeNode *root, unordered_set<int> &to_delete, unordered_set<TreeNode *> &result) {
         if (root == nullptr) {
             return root;
         }
 
-        bool deleted = to_delete.find(root -> val) != to_delete.end();
+        bool deleted = to_delete.find(root->val) != to_delete.end();
         if (deleted) {
-            if (root -> left != nullptr) {
-                result.insert(root -> left);
+            if (root->left != nullptr) {
+                result.insert(root->left);
             }
-            if (root -> right != nullptr) {
-                result.insert(root -> right);
+            if (root->right != nullptr) {
+                result.insert(root->right);
             }
             if (result.find(root) != result.end()) {
                 result.erase(root);
             }
         }
 
-        root -> left = deleteNodes(root -> left, to_delete, result);
-        root -> right = deleteNodes(root -> right, to_delete, result);
+        root->left = deleteNodes(root->left, to_delete, result);
+        root->right = deleteNodes(root->right, to_delete, result);
         return deleted ? nullptr : root;
     }
 
 public:
-    vector<TreeNode*> delNodes(TreeNode* root, vector<int>& to_delete) {
+    vector<TreeNode *> delNodes(TreeNode *root, vector<int> &to_delete) {
         unordered_set<int> deleted(to_delete.begin(), to_delete.end());
-        unordered_set<TreeNode*> result;
+        unordered_set<TreeNode *> result;
         result.insert(root);
         deleteNodes(root, deleted, result);
-        return vector<TreeNode*>(result.begin(), result.end());
+        return vector<TreeNode *>(result.begin(), result.end());
     }
 };

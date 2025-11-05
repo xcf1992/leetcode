@@ -47,12 +47,12 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int>> updateMatrix(vector<vector<int>>& matrix) {
+    vector<vector<int> > updateMatrix(vector<vector<int> > &matrix) {
         int m = matrix.size();
         int n = matrix[0].size();
 
-        vector<vector<int>> distance(m, vector<int>(n, INT_MAX));
-        queue<pair<int, int>> bfs;
+        vector<vector<int> > distance(m, vector<int>(n, INT_MAX));
+        queue<pair<int, int> > bfs;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (matrix[i][j] == 0) {
@@ -74,7 +74,12 @@ public:
                 for (int i = 1; i < diff.size(); ++i) {
                     int nr = row + diff[i];
                     int nc = col + diff[i - 1];
-                    if (nr >= 0 and nc >= 0 and nr < m and nc < n and distance[nr][nc] == INT_MAX) {
+                    if (nr >= 0 and nc
+                    >=
+                    0
+                    and nr<m and nc < n and distance[nr][nc] == INT_MAX
+                    )
+                    {
                         distance[nr][nc] = curDis + 1;
                         bfs.push({nr, nc});
                     }

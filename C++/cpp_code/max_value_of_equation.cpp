@@ -53,13 +53,13 @@ we can use priority queue or stack.
 */
 class Solution1 {
 public:
-    int findMaxValueOfEquation(vector<vector<int>>& points, int k) {
+    int findMaxValueOfEquation(vector<vector<int> > &points, int k) {
         //(y-x, x)
-        priority_queue<vector<int>, vector<vector<int>>> pq;
+        priority_queue<vector<int>, vector<vector<int> > > pq;
 
         int ans = INT_MIN;
 
-        for(vector<int>& point : points){
+        for (vector<int> &point: points) {
             //current point serves as points[j]
             int x = point[0], y = point[1];
 
@@ -70,11 +70,11 @@ public:
             x_j - x_i <= k.
             we will discard points[i] s.t. x_j - x_i > k
             */
-            while(!pq.empty() && x - pq.top()[1] > k){
+            while (!pq.empty() && x - pq.top()[1] > k) {
                 pq.pop();
             }
 
-            if(!pq.empty()){
+            if (!pq.empty()) {
                 /*
                 y_i + y_j + |x_i - x_j|
                 = y_i + y_j + x_j - x_i
@@ -88,7 +88,7 @@ public:
                 ans = max(ans, pq.top()[0] + (y + x));
             }
 
-            pq.push({y-x, x});
+            pq.push({y - x, x});
         }
 
         return ans;
@@ -97,20 +97,20 @@ public:
 
 class Solution {
 public:
-    int findMaxValueOfEquation(vector<vector<int>>& points, int k) {
+    int findMaxValueOfEquation(vector<vector<int> > &points, int k) {
         //(y-x, x)
-        deque<vector<int>> deq;
+        deque<vector<int> > deq;
 
         int ans = INT_MIN;
 
-        for(vector<int>& point : points){
+        for (vector<int> &point: points) {
             int x = point[0], y = point[1];
 
-            while(!deq.empty() && x - deq.front()[1] > k){
+            while (!deq.empty() && x - deq.front()[1] > k) {
                 deq.pop_front();
             }
 
-            if(!deq.empty()){
+            if (!deq.empty()) {
                 ans = max(ans, deq.front()[0] + (y + x));
             }
 
@@ -118,11 +118,11 @@ public:
             keep the deque decreasing(fronter element has larger y-x)
             the element before current point must have larger y-x
             */
-            while(!deq.empty() && deq.back()[0] <= y - x){
+            while (!deq.empty() && deq.back()[0] <= y - x) {
                 deq.pop_back();
             }
 
-            deq.push_back({y-x, x});
+            deq.push_back({y - x, x});
         }
 
         return ans;

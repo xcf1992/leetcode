@@ -41,7 +41,7 @@ public:
         string num = to_string(N);
         int k = num.size();
         int n = 0;
-        for (char d : num) {
+        for (char d: num) {
             n += pow(d - '0', k);
         }
         return n == N;

@@ -35,12 +35,13 @@ You can print different paths in any order, but you should keep the order of nod
 #include <stdio.h>
 using namespace std;
 
-class Solution { // dfs with memo, it is actually slower than pure dfs, I believe the cause is we have to insert at the begin of each path
+class Solution {
+    // dfs with memo, it is actually slower than pure dfs, I believe the cause is we have to insert at the begin of each path
 private:
     int N = 0;
-    unordered_map<int, vector<vector<int>>> memo;
+    unordered_map<int, vector<vector<int> > > memo;
 
-    vector<vector<int>> dfs(int cur, vector<vector<int>>& graph) {
+    vector<vector<int> > dfs(int cur, vector<vector<int> > &graph) {
         if (cur == N - 1) {
             return {{cur}};
         }
@@ -49,19 +50,20 @@ private:
             return memo[cur];
         }
 
-        for (int next : graph[cur]) {
-            for (vector<int>& path : dfs(next, graph)) {
+        for (int next: graph[cur]) {
+            for (vector<int> &path: dfs(next, graph)) {
                 path.push_back(cur);
                 memo[cur].push_back(path);
             }
         }
         return memo[cur];
     }
+
 public:
-    vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
+    vector<vector<int> > allPathsSourceTarget(vector<vector<int> > &graph) {
         N = graph.size();
-        vector<vector<int>> result = dfs(0, graph);
-        for (vector<int>& path : result) {
+        vector<vector<int> > result = dfs(0, graph);
+        for (vector<int> &path: result) {
             reverse(path.begin(), path.end());
         }
         return result;
@@ -72,22 +74,23 @@ class Solution1 {
 private:
     int N = 0;
 
-    void dfs(int cur, vector<int>& path, vector<vector<int>>& result, vector<vector<int>>& graph) {
+    void dfs(int cur, vector<int> &path, vector<vector<int> > &result, vector<vector<int> > &graph) {
         if (cur == N - 1) {
             result.push_back(path);
             return;
         }
 
-        for (int next : graph[cur]) {
+        for (int next: graph[cur]) {
             path.push_back(next);
             dfs(next, path, result, graph);
             path.pop_back();
         }
     }
+
 public:
-    vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
+    vector<vector<int> > allPathsSourceTarget(vector<vector<int> > &graph) {
         N = graph.size();
-        vector<vector<int>> result;
+        vector<vector<int> > result;
         vector<int> path(1, 0);
         dfs(0, path, result, graph);
         return result;

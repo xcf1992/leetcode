@@ -48,7 +48,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<double> sampleStats(vector<int>& count) {
+    vector<double> sampleStats(vector<int> &count) {
         double minNum = 255.0;
         double maxNum = 0.0;
         double k = 0.0;
@@ -73,10 +73,10 @@ public:
         }
 
         if (k / 2 == 1) {
-            double median = numCount.upper_bound(k / 2) -> second;
+            double median = numCount.upper_bound(k / 2)->second;
             return {minNum, maxNum, sum / k, median, mode};
         }
-        double median = numCount.upper_bound(k / 2) -> second + numCount.lower_bound(k / 2) -> second;
+        double median = numCount.upper_bound(k / 2)->second + numCount.lower_bound(k / 2)->second;
         return {minNum, maxNum, sum / k, median / 2, mode};
     }
 };

@@ -41,7 +41,11 @@ public:
         }
 
         int pos = n - 1;
-        while (pos > 0 and num[pos - 1] >= num[pos]) {
+        while (pos > 0 and num[pos - 1]
+        >=
+        num[pos]
+        )
+        {
             pos -= 1;
         }
         if (pos == 0) {
@@ -50,7 +54,11 @@ public:
         }
 
         int end = n - 1;
-        while (end >= pos and num[end] <= num[pos - 1]) {
+        while (end >= pos and num[end]
+        <=
+        num[pos - 1]
+        )
+        {
             end -= 1;
         }
         swap(num[pos - 1], num[end]);

@@ -61,8 +61,7 @@ public:
         for (int i = 0; i < dominoes.size(); i++) {
             if (dominoes[i] == 'R') {
                 distance[i] = 0;
-            }
-            else if (i != 0 && dominoes[i - 1] == 'R' && dominoes[i] == '.') {
+            } else if (i != 0 && dominoes[i - 1] == 'R' && dominoes[i] == '.') {
                 dominoes[i] = 'R';
                 distance[i] = distance[i - 1] + 1;
             }
@@ -72,13 +71,15 @@ public:
         for (int i = n - 1; i >= 0; i--) {
             if (dominoes[i] == 'L') {
                 dis = 0;
-            }
-            else if (i != n - 1 and dominoes[i + 1] == 'L') {
+            } else if (i != n - 1 and dominoes[i + 1]
+            ==
+            'L'
+            )
+            {
                 dis += 1;
                 if (dominoes[i] == '.') {
                     dominoes[i] = 'L';
-                }
-                else if (dominoes[i] == 'R') {
+                } else if (dominoes[i] == 'R') {
                     if (dis == distance[i]) {
                         dominoes[i] = '.';
                     }

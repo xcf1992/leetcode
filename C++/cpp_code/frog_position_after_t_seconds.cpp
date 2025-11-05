@@ -62,7 +62,7 @@ When it's a leaf node but the time is less than the required one, it'll simply j
 */
 class Solution {
 private:
-    vector<vector<int>> G;
+    vector<vector<int> > G;
     vector<bool> seen;
     int target;
 
@@ -73,22 +73,23 @@ private:
 
         seen[cur] = true;
         double res = 0;
-        for (int nex : G[cur]) {
+        for (int nex: G[cur]) {
             if (!seen[nex]) {
                 res += dfs(nex, t - 1);
             }
         }
         return res / (G[cur].size() - (cur != 1));
     }
+
 public:
-    double frogPosition(int n, vector<vector<int>>& edges, int t, int target) {
+    double frogPosition(int n, vector<vector<int> > &edges, int t, int target) {
         if (n == 1) {
             return 1.0;
         }
 
-        this -> target = target;
-        G = vector<vector<int>>(n + 1);
-        for (auto e : edges) {
+        this->target = target;
+        G = vector<vector<int> >(n + 1);
+        for (auto e: edges) {
             G[e[0]].push_back(e[1]);
             G[e[1]].push_back(e[0]);
         }

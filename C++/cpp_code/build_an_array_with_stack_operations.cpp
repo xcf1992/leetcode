@@ -59,7 +59,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<string> buildArray(vector<int>& target, int n) {
+    vector<string> buildArray(vector<int> &target, int n) {
         int i = 1;
         vector<string> ans;
         for (int j = 0; j < target.size(); j++) {

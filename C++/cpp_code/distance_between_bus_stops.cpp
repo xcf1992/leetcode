@@ -61,7 +61,7 @@ using namespace std;
 
 class Solution {
 public:
-    int distanceBetweenBusStops(vector<int>& distance, int start, int destination) {
+    int distanceBetweenBusStops(vector<int> &distance, int start, int destination) {
         int n = distance.size();
         int sum = distance[0];
         vector<int> preDis(n, 0);

@@ -51,14 +51,14 @@ using namespace std;
 
 class Solution {
 public:
-    int numFriendRequests(vector<int>& ages) {
+    int numFriendRequests(vector<int> &ages) {
         vector<int> people(121, 0);
-        for (int age : ages) {
+        for (int age: ages) {
             people[age] += 1;
         }
 
         int result = 0;
-        for (int i = 0 ; i <= 120; i++) {
+        for (int i = 0; i <= 120; i++) {
             for (int j = 1 + 7 + i / 2; j <= i; ++j) {
                 result += people[j] * (people[i] - (i == j));
             }

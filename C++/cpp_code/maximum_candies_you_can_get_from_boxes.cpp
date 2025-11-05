@@ -71,15 +71,19 @@ using namespace std;
 
 class Solution {
 public:
-    int maxCandies(vector<int>& status, vector<int>& candies, vector<vector<int>>& keys, vector<vector<int>>& containedBoxes, vector<int>& initialBoxes) {
+    int maxCandies(vector<int> &status, vector<int> &candies, vector<vector<int> > &keys,
+                   vector<vector<int> > &containedBoxes, vector<int> &initialBoxes) {
         queue<int> bfs;
-        for (int box : initialBoxes) {
+        for (int box: initialBoxes) {
             bfs.push(box);
         }
 
         int result = 0;
         bool allClosed = false;
-        while (!bfs.empty() and !allClosed) {
+        while (!bfs.empty() and
+        !allClosed
+        )
+        {
             allClosed = true;
             int curSize = bfs.size();
             for (int i = 0; i < curSize; ++i) {
@@ -93,11 +97,11 @@ public:
 
                 allClosed = false;
                 result += candies[curBox];
-                for (int box : containedBoxes[curBox]) {
+                for (int box: containedBoxes[curBox]) {
                     bfs.push(box);
                 }
 
-                for (int key : keys[curBox]) {
+                for (int key: keys[curBox]) {
                     status[key] = 1;
                 }
             }

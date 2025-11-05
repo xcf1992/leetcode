@@ -39,9 +39,9 @@ using namespace std;
 
 class Solution {
 public:
-    int largestUniqueNumber(vector<int>& A) {
+    int largestUniqueNumber(vector<int> &A) {
         vector<int> count(1001, 0);
-        for (int a : A) {
+        for (int a: A) {
             count[a] += 1;
         }
         for (int i = 1000; i >= 0; --i) {

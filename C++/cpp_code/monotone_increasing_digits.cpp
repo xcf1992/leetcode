@@ -66,10 +66,16 @@ public:
         string num = to_string(N);
         int len = num.size();
         int pos = 1;
-        while (pos < len and num[pos - 1] <= num[pos]) {
+        while (pos < len and num[pos - 1]
+        <=
+        num[pos]
+        )
+        {
             pos += 1;
         }
-        while (pos > 0 and pos < len and num[pos - 1] > num[pos]) {
+        while (pos > 0 and pos <len and num[pos - 1]> num[pos]
+        )
+        {
             num[pos - 1] -= 1;
             pos -= 1;
         }
@@ -96,7 +102,11 @@ public:
             return N;
         }
 
-        while (i >= 1 and num[i - 1] == num[i]) {
+        while (i >= 1 and num[i - 1]
+        ==
+        num[i]
+        )
+        {
             i--;
         }
 
@@ -107,7 +117,7 @@ public:
         } while (i < num.size());
 
         int result = 0;
-        for (char c : num) {
+        for (char c: num) {
             result = result * 10 + c - '0';
         }
         return result;

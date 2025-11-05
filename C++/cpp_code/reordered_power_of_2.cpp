@@ -64,19 +64,22 @@ private:
             num /= 10;
         }
 
-        for (int d : digit) {
+        for (int d: digit) {
             if (d != 0) {
                 return false;
             }
         }
         return true;
     }
+
 public:
     bool reorderedPowerOf2(int N) {
         string num = to_string(N);
         vector<int> count = getCount(N);
         for (int cur = 1; to_string(cur).size() <= num.size(); cur <<= 1) {
-            if (to_string(cur).size() == num.size() and (N == cur or compare(count, cur))) {
+            if (to_string(cur).size() == num.size() and(N == cur or compare(count, cur))
+            )
+            {
                 return true;
             }
         }

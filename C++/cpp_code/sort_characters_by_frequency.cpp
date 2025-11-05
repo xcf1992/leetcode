@@ -42,24 +42,26 @@ Note that 'A' and 'a' are treated as two different characters.
 #include <stdio.h>
 using namespace std;
 
-class Solution { // buscket sort O(n)
+class Solution {
+    // buscket sort O(n)
 public:
     string frequencySort(string s) {
         unordered_map<char, int> count;
-        for (auto c : s) {
+        for (auto c: s) {
             count[c] += 1;
         }
 
         int n = s.size();
         vector<string> bucket(n + 1, "");
-        for (auto& it : count) {
+        for (auto &it: count) {
             bucket[it.second] += string(it.second, it.first);
         }
 
         string result = "";
-        for (int i = n; i > 0; --i) if (!bucket[i].empty()) {
-            result += bucket[i];
-        }
+        for (int i = n; i > 0; --i)
+            if (!bucket[i].empty()) {
+                result += bucket[i];
+            }
         return result;
     }
 };

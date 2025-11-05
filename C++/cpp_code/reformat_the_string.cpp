@@ -55,7 +55,7 @@ using namespace std;
 
 class Solution {
 private:
-    string construct(vector<char>& v1, vector<char>& v2) {
+    string construct(vector<char> &v1, vector<char> &v2) {
         string result = "";
         result.push_back(v1[0]);
         for (int i = 0; i < v2.size(); ++i) {
@@ -66,15 +66,15 @@ private:
         }
         return result;
     }
+
 public:
     string reformat(string s) {
         vector<char> number;
         vector<char> letter;
-        for (char c : s) {
+        for (char c: s) {
             if (isdigit(c)) {
                 number.push_back(c);
-            }
-            else {
+            } else {
                 letter.push_back(c);
             }
         }

@@ -57,8 +57,7 @@ public:
             if (rest == 0) {
                 return negative ? "-" + result : result;
             }
-        }
-        else {
+        } else {
             result += "0";
         }
         result += ".";

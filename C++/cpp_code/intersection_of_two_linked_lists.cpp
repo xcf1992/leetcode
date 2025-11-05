@@ -54,23 +54,27 @@ using namespace std;
 
 class Solution {
 public:
-    ListNode* getIntersectionNode(ListNode* headA, ListNode* headB) {
-        if (headA == nullptr or headB == nullptr) {
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        if (headA == nullptr or headB
+        ==
+        nullptr
+        )
+        {
             return nullptr;
         }
 
-        ListNode* cur = headA;
+        ListNode *cur = headA;
         int lenA = 0;
         while (cur != nullptr) {
             lenA += 1;
-            cur = cur -> next;
+            cur = cur->next;
         }
 
         cur = headB;
         int lenB = 0;
         while (cur != nullptr) {
             lenB += 1;
-            cur = cur -> next;
+            cur = cur->next;
         }
 
         if (lenA < lenB) {
@@ -82,13 +86,13 @@ public:
         cur = headA;
         while (gap > 0) {
             gap -= 1;
-            cur = cur -> next;
+            cur = cur->next;
         }
 
-        ListNode* curB = headB;
+        ListNode *curB = headB;
         while (cur != curB) {
-            cur = cur -> next;
-            curB = curB -> next;
+            cur = cur->next;
+            curB = curB->next;
         }
         return cur;
     }

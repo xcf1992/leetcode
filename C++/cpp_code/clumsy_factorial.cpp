@@ -52,7 +52,11 @@ using namespace std;
 class Solution {
 public:
     int clumsy(int N) {
-        if (N == 1 or N == 2) {
+        if (N == 1 or N
+        ==
+        2
+        )
+        {
             return N;
         }
         if (N == 3) {

@@ -76,7 +76,11 @@ public:
         }
 
         bool negative = false;
-        if (str[ptr] == '+' or str[ptr] == '-') {
+        if (str[ptr] == '+' or str[ptr]
+        ==
+        '-'
+        )
+        {
             if (str[ptr] == '-') {
                 negative = true;
             }
@@ -84,7 +88,11 @@ public:
         }
 
         long long result = 0;
-        while (str[ptr] <= '9' and str[ptr] >= '0') {
+        while (str[ptr] <= '9' and str[ptr]
+        >=
+        '0'
+        )
+        {
             int digit = str[ptr] - '0';
             result = result * 10 + digit;
             if (result > INT_MAX) {

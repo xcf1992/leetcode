@@ -65,12 +65,20 @@ public:
         int n = s.size();
         int mod = 1e9 + 7;
         while (left < n) {
-            while (left < n and s[left] == '0') {
+            while (left < n and s[left]
+            ==
+            '0'
+            )
+            {
                 left += 1;
             }
 
             right = left;
-            while (right < n and s[right] == '1') {
+            while (right < n and s[right]
+            ==
+            '1'
+            )
+            {
                 right += 1;
             }
 

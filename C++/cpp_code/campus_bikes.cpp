@@ -53,26 +53,29 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> assignBikes(vector<vector<int>>& workers, vector<vector<int>>& bikes) {
+    vector<int> assignBikes(vector<vector<int> > &workers, vector<vector<int> > &bikes) {
         int n = workers.size();
         int m = bikes.size();
 
-        vector<vector<int>> distance; // worker, bike, distance
+        vector<vector<int> > distance; // worker, bike, distance
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < m; ++j) {
                 distance.push_back({i, j, abs(workers[i][0] - bikes[j][0]) + abs(workers[i][1] - bikes[j][1])});
             }
         }
-        sort(distance.begin(), distance.end(), [](vector<int>& a, vector<int>& b) {
+        sort(distance.begin(), distance.end(), [](vector<int> &a, vector<int> &b) {
             return a[2] < b[2]
-                or (a[2] == b[2] and a[0] < b[0])
-                or (a[2] == b[2] and a[0] == b[0] and a[1] < b[1]);
+            or(a[2] == b[2] and a[0] < b[0])
+            or(a[2] == b[2] and a[0] == b[0] and a[1] < b[1]);
         });
 
         vector<int> result(n, -1);
         vector<bool> assigned(m, false);
-        for (vector<int>& dis : distance) {
-            if (result[dis[0]] == -1 and !assigned[dis[1]]) {
+        for (vector<int> &dis: distance) {
+            if (result[dis[0]] == -1 and
+            !assigned[dis[1]]
+            )
+            {
                 result[dis[0]] = dis[1];
                 assigned[dis[1]] = true;
             }

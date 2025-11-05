@@ -87,10 +87,11 @@ Space O(1)
 */
 class MajorityChecker {
 private:
-    unordered_map<int, vector<int>> index;
+    unordered_map<int, vector<int> > index;
     vector<int> nums;
+
 public:
-    MajorityChecker(vector<int>& arr) {
+    MajorityChecker(vector<int> &arr) {
         for (int i = 0; i < arr.size(); ++i) {
             index[arr[i]].push_back(i);
         }
@@ -114,6 +115,7 @@ public:
         return -1;
     }
 };
+
 /*
  * Your MajorityChecker object will be instantiated and called as such:
  * MajorityChecker* obj = new MajorityChecker(arr);

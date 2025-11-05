@@ -71,15 +71,16 @@ and we add these times across all piles and compare it to H.
 */
 class Solution {
 private:
-    int eatingHours(vector<int>& piles, int eat) {
+    int eatingHours(vector<int> &piles, int eat) {
         int total = 0;
-        for (int p : piles) {
+        for (int p: piles) {
             total += (p - 1) / eat + 1;
         }
         return total;
     }
+
 public:
-    int minEatingSpeed(vector<int>& piles, int H) {
+    int minEatingSpeed(vector<int> &piles, int H) {
         int left = 1;
         int right = 1e9;
         while (left < right) {
@@ -87,8 +88,7 @@ public:
             int total = eatingHours(piles, mid);
             if (total > H) {
                 left = mid + 1;
-            }
-            else {
+            } else {
                 right = mid;
             }
         }

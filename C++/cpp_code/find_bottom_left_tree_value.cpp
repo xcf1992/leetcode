@@ -41,9 +41,10 @@ You may assume the tree (i.e., the given root node) is not NULL.
 #include "extra_data_types.hpp"
 using namespace std;
 
-class Solution { //dfs
+class Solution {
+    //dfs
 private:
-    void dfs(TreeNode* root, int height, int& longest, int& result) {
+    void dfs(TreeNode *root, int height, int &longest, int &result) {
         if (root == nullptr) {
             return;
         }
@@ -51,13 +52,14 @@ private:
         height += 1;
         if (height > longest) {
             longest = height;
-            result = root -> val;
+            result = root->val;
         }
-        dfs(root -> left, height, longest, result);
-        dfs(root -> right, height, longest, result);
+        dfs(root->left, height, longest, result);
+        dfs(root->right, height, longest, result);
     }
+
 public:
-    int findBottomLeftValue(TreeNode* root) {
+    int findBottomLeftValue(TreeNode *root) {
         int result = 0;
         int longest = 0;
         dfs(root, 0, longest, result);
@@ -65,38 +67,41 @@ public:
     }
 };
 
-class Solution { //bfs
+class Solution {
+    //bfs
 public:
-    int findBottomLeftValue(TreeNode* root) {
-        queue<TreeNode*> row1;
-        queue<TreeNode*> row2;
-        int result = root -> val;
+    int findBottomLeftValue(TreeNode *root) {
+        queue<TreeNode *> row1;
+        queue<TreeNode *> row2;
+        int result = root->val;
 
         row1.push(root);
 
-        while (!row1.empty() or !row2.empty()) {
+        while (!row1.empty() or
+        !row2.empty()
+        )
+        {
             if (row2.empty()) {
-                result = row1.front() -> val;
+                result = row1.front()->val;
                 while (!row1.empty()) {
-                    TreeNode* left_most = row1.front();
-                    if (left_most -> left != nullptr) {
-                        row2.push(left_most -> left);
+                    TreeNode *left_most = row1.front();
+                    if (left_most->left != nullptr) {
+                        row2.push(left_most->left);
                     }
-                    if (left_most -> right != nullptr) {
-                        row2.push(left_most -> right);
+                    if (left_most->right != nullptr) {
+                        row2.push(left_most->right);
                     }
                     row1.pop();
                 }
-            }
-            else {
-                result = row2.front() -> val;
+            } else {
+                result = row2.front()->val;
                 while (!row2.empty()) {
-                    TreeNode* left_most = row2.front();
-                    if (left_most -> left != nullptr) {
-                        row1.push(left_most -> left);
+                    TreeNode *left_most = row2.front();
+                    if (left_most->left != nullptr) {
+                        row1.push(left_most->left);
                     }
-                    if (left_most -> right != nullptr) {
-                        row1.push(left_most -> right);
+                    if (left_most->right != nullptr) {
+                        row1.push(left_most->right);
                     }
                     row2.pop();
                 }

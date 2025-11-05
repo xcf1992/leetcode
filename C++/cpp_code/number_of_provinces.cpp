@@ -46,14 +46,15 @@ using namespace std;
 
 class Solution {
 private:
-    int find(int cur, vector<int>& root) {
+    int find(int cur, vector<int> &root) {
         if (root[cur] == -1) {
             return cur;
         }
         return find(root[cur], root);
     }
+
 public:
-    int findCircleNum(vector<vector<int>>& isConnected) {
+    int findCircleNum(vector<vector<int> > &isConnected) {
         int n = isConnected.size();
         vector<int> root(n, -1);
         for (int i = 0; i < n; ++i) {
@@ -71,7 +72,7 @@ public:
         }
 
         int result = 0;
-        for (int i : root) {
+        for (int i: root) {
             if (i == -1) {
                 result += 1;
             }

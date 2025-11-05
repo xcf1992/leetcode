@@ -45,23 +45,26 @@ using namespace std;
 
 class Solution {
 public:
-    TreeNode* upsideDownBinaryTree(TreeNode *root) {
-        if (root == nullptr or root -> left == nullptr) {
+    TreeNode *upsideDownBinaryTree(TreeNode *root) {
+        if (root == nullptr or
+        root->left == nullptr
+        )
+        {
             return root;
         }
 
-        TreeNode* lc = root -> left;
-        TreeNode* rc = root -> right;
-        root -> right = nullptr;
-        root -> left = nullptr;
+        TreeNode *lc = root->left;
+        TreeNode *rc = root->right;
+        root->right = nullptr;
+        root->left = nullptr;
 
-        TreeNode* newRoot = upsideDownBinaryTree(lc);
-        TreeNode* cur = newRoot;
-        while (cur -> right != nullptr) {
-            cur = cur -> right;
+        TreeNode *newRoot = upsideDownBinaryTree(lc);
+        TreeNode *cur = newRoot;
+        while (cur->right != nullptr) {
+            cur = cur->right;
         }
-        cur -> right = root;
-        cur -> left = rc;
+        cur->right = root;
+        cur->left = rc;
         return newRoot;
     }
 };

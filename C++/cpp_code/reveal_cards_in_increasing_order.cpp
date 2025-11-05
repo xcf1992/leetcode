@@ -68,7 +68,7 @@ using namespace std;
 */
 class Solution {
 public:
-    vector<int> deckRevealedIncreasing(vector<int>& deck) {
+    vector<int> deckRevealedIncreasing(vector<int> &deck) {
         sort(deck.begin(), deck.end());
         deque<int> result;
         result.push_front(deck.back());
@@ -83,7 +83,7 @@ public:
 
 class Solution1 {
 private:
-    vector<int> orderDeck(vector<int>& deck, int start, int n) {
+    vector<int> orderDeck(vector<int> &deck, int start, int n) {
         int curSize = n - start;
         vector<int> result(curSize, 0);
         if (curSize == 2) {
@@ -123,8 +123,9 @@ private:
         }
         return result;
     }
+
 public:
-    vector<int> deckRevealedIncreasing(vector<int>& deck) {
+    vector<int> deckRevealedIncreasing(vector<int> &deck) {
         int n = deck.size();
         sort(deck.begin(), deck.end());
         return orderDeck(deck, 0, n);

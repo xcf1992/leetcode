@@ -51,10 +51,10 @@ using namespace std;
 
 class Solution {
 public:
-    vector<bool> prefixesDivBy5(vector<int>& A) {
+    vector<bool> prefixesDivBy5(vector<int> &A) {
         vector<bool> result;
         int cur = 0;
-        for (int a : A) {
+        for (int a: A) {
             cur = cur * 2 + a;
             result.push_back(cur % 5 == 0 ? true : false);
             cur %= 5;

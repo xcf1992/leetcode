@@ -43,6 +43,7 @@ private:
         }
         return num;
     }
+
 public:
     int smallestFactorization(int a) {
         if (a <= 1) {

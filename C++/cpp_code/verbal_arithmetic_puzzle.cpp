@@ -63,14 +63,20 @@ private:
     * widx: index of a word in word list
     * sum: summation of all word[digit]
     */
-    bool check(vector<string>& words, string& result, int digit, int widx, int sum) {
+    bool check(vector<string> &words, string &result, int digit, int widx, int sum) {
         if (digit == limit) {
             return sum == 0;
         }
 
         if (widx == words.size()) {
-            if (c2i.find(result[digit]) == c2i.end() and i2c.find(sum % 10) == i2c.end()) {
-                if (sum % 10 == 0 and digit + 1 == limit) {
+            if (c2i.find(result[digit]) == c2i.end() and
+            i2c.find(sum % 10) == i2c.end()
+            )
+            {
+                if (sum % 10 == 0 and digit
+                +1 == limit
+                )
+                {
                     return false; // avoid leading zero in result
                 }
                 c2i[result[digit]] = sum % 10;
@@ -80,7 +86,11 @@ private:
                 i2c.erase(sum % 10);
                 return valid;
             }
-            if (c2i.find(result[digit]) != c2i.end() and c2i[result[digit]] == sum % 10) {
+            if (c2i.find(result[digit]) != c2i.end() and c2i[result[digit]]
+            ==
+            sum % 10
+            )
+            {
                 return check(words, result, digit + 1, 0, sum / 10);
             }
             return false;
@@ -93,15 +103,22 @@ private:
 
         // if word[widx][digit] already mapped to a value
         if (c2i.find(words[widx][digit]) != c2i.end()) {
-            if (digit + 1 == words[widx].length() and words[widx].size() > 1 and c2i[words[widx][digit]] == 0) {
+            if (digit + 1 == words[widx].length() and words[widx]
+            .
+            size() > 1
+            and c2i[words[widx][digit]]
+            ==
+            0
+            )
+            {
                 return false;
             }
             return check(words, result, digit, widx + 1, sum + c2i[words[widx][digit]]);
         }
 
-		// if word[widx][digit] not mapped to a value yet
+        // if word[widx][digit] not mapped to a value yet
         for (int i = 0; i < 10; ++i) {
-            if (digit+1 == words[widx].length() && i == 0 && words[widx].length() > 1) {
+            if (digit + 1 == words[widx].length() && i == 0 && words[widx].length() > 1) {
                 continue;
             }
             if (i2c.count(i)) {
@@ -119,10 +136,11 @@ private:
         }
         return false;
     }
+
 public:
-    bool isSolvable(vector<string>& words, string result) {
+    bool isSolvable(vector<string> &words, string result) {
         limit = result.size();
-        for (string& word : words) {
+        for (string &word: words) {
             if (word.size() > limit) {
                 return false;
             }

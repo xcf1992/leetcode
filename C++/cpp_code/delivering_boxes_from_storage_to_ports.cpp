@@ -107,7 +107,7 @@ Space O(N)
 */
 class Solution {
 public:
-    int boxDelivering(vector<vector<int>>& A, int portsCount, int B, int W) {
+    int boxDelivering(vector<vector<int> > &A, int portsCount, int B, int W) {
         int n = A.size(), need = 0, j = 0, lastj = 0;
         vector<int> dp(n + 1, 200000);
         dp[0] = 0;

@@ -96,7 +96,7 @@ class Solution {
 private:
     unordered_map<string, int> memo;
 
-    int dp(vector<int>& slices, int start, int end, int n, int cycle) {
+    int dp(vector<int> &slices, int start, int end, int n, int cycle) {
         string key = to_string(start) + "$" + to_string(end) + "$" + to_string(n) + "$" + to_string(cycle);
         if (memo.find(key) != memo.end()) {
             return memo[key];
@@ -121,8 +121,9 @@ private:
         memo[key] = res;
         return memo[key];
     }
+
 public:
-    int maxSizeSlices(vector<int>& slices) {
+    int maxSizeSlices(vector<int> &slices) {
         int n = slices.size();
         return dp(slices, 0, n - 1, n / 3, 1);
     }

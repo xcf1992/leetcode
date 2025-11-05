@@ -47,10 +47,11 @@ public:
     bool checkValidString(string s) {
         int minLeft = 0; // tacking minimum possible number of (
         int maxLeft = 0; // tacking maximum possible number of (
-        for (char c : s) {
+        for (char c: s) {
             minLeft += c == '(' ? 1 : -1;
             maxLeft += c == ')' ? -1 : 1;
-            if (maxLeft < 0) { // if the max possible ( is less than0 return false
+            if (maxLeft < 0) {
+                // if the max possible ( is less than0 return false
                 return false;
             }
             minLeft = max(0, minLeft); // is the min possible ( is less than 0, make it to be 0
@@ -59,7 +60,8 @@ public:
     }
 };
 
-class Solution1 { // backtracking time limit exceeded
+class Solution1 {
+    // backtracking time limit exceeded
 private:
     bool check(string s, int pos, int left, int right) {
         if (pos == s.size()) {
@@ -76,10 +78,13 @@ private:
             return check(s, pos + 1, left, right + 1);
         }
         if (right == left) {
-            return check(s, pos + 1, left + 1, right) or check(s, pos + 1, left, right);
+            return check(s, pos + 1, left + 1, right)
+            or check(s, pos + 1, left, right);
         }
-        return check(s, pos + 1, left + 1, right) or check(s, pos + 1, left, right + 1) or check(s, pos + 1, left, right);
+        return check(s, pos + 1, left + 1, right)
+        or check(s, pos + 1, left, right + 1) or check(s, pos + 1, left, right);
     }
+
 public:
     bool checkValidString(string s) {
         return check(s, 0, 0, 0);

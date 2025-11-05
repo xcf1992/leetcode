@@ -119,7 +119,7 @@ we've made use of calculatePoints function which is simply a recursive function 
 */
 class Solution {
 private:
-    int dfs(vector<int>& boxes, vector<vector<vector<int>>>& memo, int l, int r, int k) {
+    int dfs(vector<int> &boxes, vector<vector<vector<int> > > &memo, int l, int r, int k) {
         if (l > r) {
             return 0;
         }
@@ -127,7 +127,11 @@ private:
             return memo[l][r][k];
         }
 
-        while (l < r and boxes[r - 1] == boxes[r]) {
+        while (l < r and boxes[r - 1]
+        ==
+        boxes[r]
+        )
+        {
             r -= 1;
             k += 1;
         }
@@ -139,10 +143,11 @@ private:
         }
         return memo[l][r][k];
     }
+
 public:
-    int removeBoxes(vector<int>& boxes) {
+    int removeBoxes(vector<int> &boxes) {
         int n = boxes.size();
-        vector<vector<vector<int>>> memo(100, vector<vector<int>>(100, vector<int>(100, 0)));
+        vector<vector<vector<int> > > memo(100, vector<vector<int> >(100, vector<int>(100, 0)));
         return dfs(boxes, memo, 0, n - 1, 0);
     }
 };

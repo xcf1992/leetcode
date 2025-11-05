@@ -62,10 +62,12 @@ using namespace std;
 
 class Solution {
 private:
-    unordered_map<int, vector<pair<int, int>>> shape;
+    unordered_map<int, vector<pair<int, int> > > shape;
 
-    void dfs(int row, int col, vector<vector<int>> &grid, int mark) {
-        if (row < 0 or col < 0 or row >= grid.size() or col >= grid[0].size() or grid[row][col] != 1) {
+    void dfs(int row, int col, vector<vector<int> > &grid, int mark) {
+        if (row < 0 or col<0 or row >= grid.size() or col >= grid[0].size() or grid[row][col] != 1
+        )
+        {
             return;
         }
         grid[row][col] = mark;
@@ -76,9 +78,9 @@ private:
         dfs(row, col + 1, grid, mark);
     }
 
-    vector<pair<int, int>> normalize(vector<pair<int, int>> island) {
-        vector<vector<pair<int, int>>> islands(8);
-        for (pair<int, int> node : island) {
+    vector<pair<int, int> > normalize(vector<pair<int, int> > island) {
+        vector<vector<pair<int, int> > > islands(8);
+        for (pair<int, int> node: island) {
             int x = node.first;
             int y = node.second;
             islands[0].push_back({x, y});
@@ -91,11 +93,11 @@ private:
             islands[7].push_back({-y, -x});
         }
 
-        for (vector<pair<int, int>>& is : islands) {
+        for (vector<pair<int, int> > &is: islands) {
             sort(is.begin(), is.end());
         }
 
-        for (vector<pair<int, int>>& is : islands) {
+        for (vector<pair<int, int> > &is: islands) {
             for (int i = 1; i < is.size(); ++i) {
                 is[i].first -= is[0].first;
                 is[i].second -= is[0].second;
@@ -105,10 +107,11 @@ private:
         sort(islands.begin(), islands.end());
         return islands[0];
     }
+
 public:
-    int numDistinctIslands2(vector<vector<int>>& grid) {
+    int numDistinctIslands2(vector<vector<int> > &grid) {
         int mark = 2;
-        set<vector<pair<int, int>>> result;
+        set<vector<pair<int, int> > > result;
         for (int i = 0; i < grid.size(); ++i) {
             for (int j = 0; j < grid[0].size(); ++j) {
                 if (grid[i][j] == 1) {

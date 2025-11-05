@@ -53,9 +53,9 @@ using namespace std;
 
 class Solution {
 public:
-    int minJumps(vector<int>& arr) {
+    int minJumps(vector<int> &arr) {
         int n = arr.size();
-        unordered_map<int, vector<int>> indicesOfValue;
+        unordered_map<int, vector<int> > indicesOfValue;
         for (int i = 0; i < n; i++) {
             indicesOfValue[arr[i]].push_back(i);
         }
@@ -74,11 +74,13 @@ public:
                     return step; // Reached to last index
                 }
 
-                vector<int>& next = indicesOfValue[arr[cur]];
+                vector<int> &next = indicesOfValue[arr[cur]];
                 next.push_back(cur - 1);
                 next.push_back(cur + 1);
-                for (int j : next) {
-                    if (j >= 0 and j < n and !visited[j]) {
+                for (int j: next) {
+                    if (j >= 0 and j<n and !visited[j]
+                    )
+                    {
                         visited[j] = true;
                         bfs.push(j);
                     }

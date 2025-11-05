@@ -63,16 +63,17 @@ using namespace std;
 */
 class Solution {
 public:
-    int largestPerimeter(vector<int>& A) {
+    int largestPerimeter(vector<int> &A) {
         int n = A.size();
         if (n < 3) {
             return 0;
         }
 
         sort(A.begin(), A.end());
-        for (int i = n - 1; i >= 2; --i) if (A[i] < A[i - 1] + A[i - 2]) {
-            return A[i] + A[i - 1] + A[i - 2];
-        }
+        for (int i = n - 1; i >= 2; --i)
+            if (A[i] < A[i - 1] + A[i - 2]) {
+                return A[i] + A[i - 1] + A[i - 2];
+            }
         return 0;
     }
 };
@@ -80,7 +81,7 @@ public:
 // TLE
 class Solution1 {
 public:
-    int largestPerimeter(vector<int>& A) {
+    int largestPerimeter(vector<int> &A) {
         int n = A.size();
         if (n < 3) {
             return 0;
@@ -98,7 +99,7 @@ public:
                         break;
                     }
                     result = max(result, l1 + l2 + l3);
-                 }
+                }
             }
         }
         return result;

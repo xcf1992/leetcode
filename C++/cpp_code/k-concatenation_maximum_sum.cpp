@@ -47,8 +47,9 @@ using namespace std;
 class Solution {
 private:
     int mod = 1e9 + 7;
+
 public:
-    int kConcatenationMaxSum(vector<int>& arr, int k) {
+    int kConcatenationMaxSum(vector<int> &arr, int k) {
         int n = arr.size();
         long total = arr[0];
         int preMax = arr[0];
@@ -60,7 +61,7 @@ public:
             curMax = max(curMax + arr[i], arr[i]) % mod;
             maxSum = max(maxSum, curMax);
             total = (total + arr[i]) % mod;
-            preMax = max(preMax, (int)total);
+            preMax = max(preMax, (int) total);
 
             int j = n - 1 - i;
             sufSum = (sufSum + arr[j]) % mod;
@@ -77,6 +78,6 @@ public:
             total = 0;
         }
         total = total * (k - 2) % mod;
-        return max((int)total % mod + preMax + sufMax, maxSum) % mod;
+        return max((int) total % mod + preMax + sufMax, maxSum) % mod;
     }
 };

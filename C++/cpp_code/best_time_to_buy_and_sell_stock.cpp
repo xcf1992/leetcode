@@ -31,7 +31,7 @@ public:
     int maxProfit(vector<int> &prices) {
         int result = 0;
         int curMin = INT_MAX;
-        for (int price : prices) {
+        for (int price: prices) {
             curMin = min(curMin, price);
             result = max(result, price - curMin);
         }
@@ -53,8 +53,7 @@ public:
         for (int i = 1; i < n; i++) {
             if (prices[i] > curMax) {
                 curMax = prices[i];
-            }
-            else if (prices[i] < curMin) {
+            } else if (prices[i] < curMin) {
                 profit = max(profit, curMax - curMin);
                 curMax = curMin = prices[i];
             }

@@ -28,15 +28,14 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> findDuplicates(vector<int>& nums) {
+    vector<int> findDuplicates(vector<int> &nums) {
         vector<int> result;
         int n = nums.size();
         for (int i = 0; i < n; ++i) {
             int num = nums[i];
             if (nums[abs(num) - 1] > 0) {
                 nums[abs(num) - 1] = -nums[abs(num) - 1];
-            }
-            else {
+            } else {
                 result.push_back(abs(num));
             }
         }

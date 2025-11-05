@@ -40,10 +40,10 @@ using namespace std;
 class MyStack {
 private:
     queue<int> stk;
+
 public:
     /** Initialize your data structure here. */
     MyStack() {
-
     }
 
     /** Push element x onto stack. */

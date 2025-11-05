@@ -49,6 +49,7 @@ class RandomizedSet {
 private:
     unordered_map<int, int> indices;
     vector<int> nums;
+
 public:
     /* Initialize your data structure here.*/
     RandomizedSet() {
@@ -72,7 +73,7 @@ public:
             return false;
         }
 
-        int index = it -> second;
+        int index = it->second;
         nums[index] = nums.back();
         indices[nums[index]] = index;
         nums.pop_back();
@@ -86,6 +87,7 @@ public:
         return nums[pos];
     }
 };
+
 /*
 * Your RandomizedSet object will be instantiated and called as such:
 * RandomizedSet obj = new RandomizedSet();

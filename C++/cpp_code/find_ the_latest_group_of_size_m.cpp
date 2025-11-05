@@ -78,7 +78,7 @@ If count[m] > 0, we update res to current step index i + 1.
 */
 class Solution {
 public:
-    int findLatestStep(vector<int>& A, int m) {
+    int findLatestStep(vector<int> &A, int m) {
         int res = -1, n = A.size();
         vector<int> length(n + 2), count(n + 1);
         for (int i = 0; i < n; ++i) {

@@ -41,19 +41,23 @@ using namespace std;
 
 class Solution {
 private:
-    void getLeaves(TreeNode* root, vector<int>& leaves) {
+    void getLeaves(TreeNode *root, vector<int> &leaves) {
         if (root == nullptr) {
             return;
         }
-        if (root -> left == nullptr and root -> right == nullptr) {
-            leaves.push_back(root -> val);
+        if (root->left == nullptr and
+        root->right == nullptr
+        )
+        {
+            leaves.push_back(root->val);
             return;
         }
-        getLeaves(root -> left, leaves);
-        getLeaves(root -> right, leaves);
+        getLeaves(root->left, leaves);
+        getLeaves(root->right, leaves);
     }
+
 public:
-    bool leafSimilar(TreeNode* root1, TreeNode* root2) {
+    bool leafSimilar(TreeNode *root1, TreeNode *root2) {
         vector<int> leaves1;
         getLeaves(root1, leaves1);
         vector<int> leaves2;

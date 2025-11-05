@@ -40,22 +40,26 @@ using namespace std;
 
 class Solution {
 private:
-    void traverse(TreeNode* root, string cur, int& sum) {
+    void traverse(TreeNode *root, string cur, int &sum) {
         if (root == nullptr) {
             return;
         }
 
-        cur.push_back((root -> val) + '0');
-        if (root -> left == nullptr and root -> right == nullptr) {
+        cur.push_back((root->val) + '0');
+        if (root->left == nullptr and
+        root->right == nullptr
+        )
+        {
             sum += stoi(cur, nullptr, 2);
             return;
         }
 
-        traverse(root -> left, cur, sum);
-        traverse(root -> right, cur, sum);
+        traverse(root->left, cur, sum);
+        traverse(root->right, cur, sum);
     }
+
 public:
-    int sumRootToLeaf(TreeNode* root) {
+    int sumRootToLeaf(TreeNode *root) {
         int sum = 0;
         traverse(root, "", sum);
         return sum;

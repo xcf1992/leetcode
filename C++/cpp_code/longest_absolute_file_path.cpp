@@ -59,7 +59,11 @@ public:
         int start = 0;
         bool isFile = false;
         for (int i = 0; i < input.size(); i++) {
-            while (i < input.size() and input[i] != '\n') {
+            while (i < input.size() and input[i]
+            !=
+            '\n'
+            )
+            {
                 if (input[i] == '.') {
                     isFile = true;
                 }
@@ -68,40 +72,41 @@ public:
             i += 1;
 
             int len = i - start - 1;
-            if (isFile) { // if it is a file
+            if (isFile) {
+                // if it is a file
                 if (path.empty()) {
                     maxLen = len;
-                }
-                else if (level >= path.size()) {
+                } else if (level >= path.size()) {
                     maxLen = max(maxLen, path.back() + 1 + len);
-                }
-                else {
+                } else {
                     while (path.size() > level) {
                         path.pop_back();
                     }
                     if (path.empty()) {
                         maxLen = max(maxLen, len);
-                    }
-                    else {
+                    } else {
                         maxLen = max(maxLen, path.back() + 1 + len);
                     }
                 }
                 isFile = false;
-            }
-            else { // if it is a folder
+            } else {
+                // if it is a folder
                 while (path.size() > level) {
                     path.pop_back();
                 }
                 if (path.empty()) {
                     path.push_back(len);
-                }
-                else {
+                } else {
                     path.push_back(len + 1 + path.back());
                 }
             }
 
             level = 0;
-            while (i < input.size() and input[i] == '\t') {
+            while (i < input.size() and input[i]
+            ==
+            '\t'
+            )
+            {
                 level += 1;
                 i += 1;
             }

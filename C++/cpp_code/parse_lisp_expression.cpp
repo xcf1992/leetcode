@@ -68,7 +68,7 @@ using namespace std;
 class Solution {
 private:
     //function to seperate each expression
-    string parse(string& s, int& start) {
+    string parse(string &s, int &start) {
         int end = start + 1, temp = start, count = 1;
         if (s[start] == '(') {
             while (count != 0) {
@@ -78,17 +78,21 @@ private:
                     count--;
                 end++;
             }
-        }
-        else {
-            while (end < s.size() and s[end] != ' ')
-                end++;
+        } else {
+            while (end < s.size() and s[end]
+            !=
+            ' '
+            )
+            end++;
         }
         start = end + 1;
         return s.substr(temp, end - temp);
     }
 
     int calculate(string expression, unordered_map<string, int> myMap) {
-        if (expression[0] == '-' or isdigit(expression[0])) {
+        if (expression[0] == '-' or isdigit(expression[0])
+        )
+        {
             return stoi(expression);
         }
         if (expression[0] != '(') {
@@ -101,7 +105,7 @@ private:
         string word = parse(s, start);
         if (word == "let") {
             while (true) {
-                string variable = parse(s,start);
+                string variable = parse(s, start);
                 //if there is no more expression, simply evaluate the variable
                 if (start > s.size()) {
                     return calculate(variable, myMap);
@@ -109,15 +113,14 @@ private:
                 string temp = parse(s, start);
                 myMap[variable] = calculate(temp, myMap);
             }
-        }
-        else if (word == "add"){
-            return calculate(parse(s, start), myMap) + calculate(parse(s,start), myMap);
-        }
-        else if (word == "mult") {
-            return calculate(parse(s, start), myMap) * calculate(parse(s,start), myMap);
+        } else if (word == "add") {
+            return calculate(parse(s, start), myMap) + calculate(parse(s, start), myMap);
+        } else if (word == "mult") {
+            return calculate(parse(s, start), myMap) * calculate(parse(s, start), myMap);
         }
         return 0;
     }
+
 public:
     int evaluate(string expression) {
         unordered_map<string, int> myMap;

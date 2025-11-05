@@ -46,26 +46,30 @@ using namespace std;
 
 class Solution {
 private:
-    void pushLeft(stack<TreeNode*>& stk, TreeNode* root) {
+    void pushLeft(stack<TreeNode *> &stk, TreeNode *root) {
         if (root == nullptr) {
             return;
         }
         stk.push(root);
-        pushLeft(stk, root -> left);
+        pushLeft(stk, root->left);
     }
+
 public:
-    vector<int> getAllElements(TreeNode* root1, TreeNode* root2) {
-        stack<TreeNode*> s1;
+    vector<int> getAllElements(TreeNode *root1, TreeNode *root2) {
+        stack<TreeNode *> s1;
         pushLeft(s1, root1); // we need push all the left tree nodes to the stack at the beginning
-        stack<TreeNode*> s2;
+        stack<TreeNode *> s2;
         pushLeft(s2, root2);
         vector<int> result;
-        while (!s1.empty() or !s2.empty()) {
-            stack<TreeNode*>& temp = s1.empty() ? s2 : (s2.empty() ? s1 : (s1.top() -> val > s2.top() -> val ? s2 : s1));
-            TreeNode* cur = temp.top();
+        while (!s1.empty() or
+        !s2.empty()
+        )
+        {
+            stack<TreeNode *> &temp = s1.empty() ? s2 : (s2.empty() ? s1 : (s1.top()->val > s2.top()->val ? s2 : s1));
+            TreeNode *cur = temp.top();
             temp.pop();
-            result.push_back(cur -> val);
-            pushLeft(temp, cur -> right);
+            result.push_back(cur->val);
+            pushLeft(temp, cur->right);
         }
         return result;
     }

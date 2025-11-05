@@ -58,7 +58,7 @@ Categorize the self-crossing scenarios, there are 3 of them:
 */
 class Solution {
 public:
-    bool isSelfCrossing(vector<int>& x) {
+    bool isSelfCrossing(vector<int> &x) {
         int n = x.size();
         if (n <= 3) {
             return 0;
@@ -66,17 +66,38 @@ public:
 
         for (int i = 3; i < n; i++) {
             // Fourth line crosses first line and onward // gap 3
-            if (x[i] >= x[i - 2] and x[i - 1] <= x[i - 3]) {
+            if (x[i] >= x[i - 2] and x[i - 1]
+            <=
+            x[i - 3]
+            )
+            {
                 return true;
             }
 
             // Fifth line meets first line and onward // gap 4
-            if (i >= 4 and x[i - 1] == x[i - 3] and x[i] + x[i - 4] >= x[i - 2]) {
+            if (i >= 4 and x[i - 1]
+            ==
+            x[i - 3]
+            and x[i]
+            +x[i - 4] >= x[i - 2]
+            )
+            {
                 return true;
             }
 
             // Sixth line crosses first line and works for the lines after // gap 5
-            if (i >= 5 and x[i - 2] >= x[i - 4] and x[i] + x[i - 4] >= x[i - 2] and x[i - 1] <= x[i - 3] and x[i - 1] + x[i - 5] >= x[i - 3]) {
+            if (i >= 5 and x[i - 2]
+            >=
+            x[i - 4]
+            and x[i]
+            +x[i - 4] >= x[i - 2]
+            and x[i - 1]
+            <=
+            x[i - 3]
+            and x[i - 1]
+            +x[i - 5] >= x[i - 3]
+            )
+            {
                 return true;
             }
         }

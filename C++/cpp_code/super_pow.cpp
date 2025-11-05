@@ -42,8 +42,9 @@ private:
         }
         return result % MOD;
     }
+
 public:
-    int superPow(int a, vector<int>& b) {
+    int superPow(int a, vector<int> &b) {
         if (b.empty()) {
             return 1;
         }

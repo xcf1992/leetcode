@@ -44,12 +44,12 @@ using namespace std;
 
 class Solution {
 public:
-    string minimizeError(vector<string>& prices, int target) {
+    string minimizeError(vector<string> &prices, int target) {
         double floorS = 0.0;
         double ceilS = 0.0;
         int integer = 0;
-        priority_queue<double, vector<double>, greater<double>> floorErr, ceilErr;
-        for (string& p : prices) {
+        priority_queue<double, vector<double>, greater<double> > floorErr, ceilErr;
+        for (string &p: prices) {
             double price = stod(p);
             floorS += floor(price);
             ceilS += ceil(price);
@@ -61,7 +61,9 @@ public:
             ceilErr.push(ceil(price) - price);
         }
 
-        if (target > ceilS or target < floorS) {
+        if (target > ceilS or target<floorS
+        )
+        {
             return "-1";
         }
 

@@ -51,26 +51,47 @@ using namespace std;
 
 class Solution {
 private:
-    bool crush(vector<vector<int>>& board, int n, int m) {
-        vector<pair<int,int>> candy;
+    bool crush(vector<vector<int> > &board, int n, int m) {
+        vector<pair<int, int> > candy;
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < m; ++j) {
                 if (board[i][j]) {
                     int i0 = i, i1 = i, j0 = j, j1 = j;
-                    while (i1 < n and i1 < i + 3 and board[i1][j] == board[i][j]) {
+                    while (i1 < n and i1<i + 3 and board[i1][j] == board[i][j]
+                    )
+                    {
                         i1++;
                     }
-                    while (i0 >= 0 and i0 > i - 3 and board[i0][j] == board[i][j]) {
+                    while (i0 >= 0 and i0
+                    >
+                    i - 3
+                    and board[i0][j]
+                    ==
+                    board[i][j]
+                    )
+                    {
                         i0--;
                     }
-                    while (j1 < m and j1 < j + 3 and board[i][j1] == board[i][j]) {
+                    while (j1 < m and j1<j + 3 and board[i][j1] == board[i][j]
+                    )
+                    {
                         j1++;
                     }
-                    while (j0 >= 0 and j0 > j - 3 and board[i][j0] == board[i][j]){
+                    while (j0 >= 0 and j0
+                    >
+                    j - 3
+                    and board[i][j0]
+                    ==
+                    board[i][j]
+                    )
+                    {
                         j0--;
                     }
-                    if (i1 - i0 > 3 or j1 - j0 > 3) {
-                        candy.push_back({i,j});
+                    if (i1 - i0 > 3 or j1
+                    -j0 > 3
+                    )
+                    {
+                        candy.push_back({i, j});
                     }
                 }
             }
@@ -80,13 +101,13 @@ private:
             return false;
         }
 
-        for (auto p : candy) {
+        for (auto p: candy) {
             board[p.first][p.second] = 0;
         }
         return true;
     }
 
-    void drop(vector<vector<int>>& board, int n, int m) {
+    void drop(vector<vector<int> > &board, int n, int m) {
         for (int j = 0; j < m; ++j) {
             int t = n - 1;
             for (int i = n - 1; i >= 0; i--) {
@@ -100,8 +121,9 @@ private:
             }
         }
     }
+
 public:
-    vector<vector<int>> candyCrush(vector<vector<int>>& board) {
+    vector<vector<int> > candyCrush(vector<vector<int> > &board) {
         int n = board.size();
         int m = board[0].size();
         while (crush(board, n, m)) {

@@ -61,11 +61,11 @@ using namespace std;
 
 class Solution {
 public:
-    int mincostTickets(vector<int>& days, vector<int>& costs) {
+    int mincostTickets(vector<int> &days, vector<int> &costs) {
         int lastDay = days.back();
         vector<int> dp(lastDay + 1, 0);
         vector<bool> travelDay(lastDay + 1, false);
-        for (int day : days) {
+        for (int day: days) {
             travelDay[day] = true;
         }
 

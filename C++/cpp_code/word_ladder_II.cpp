@@ -46,11 +46,11 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<string>> findLadders(string beginWord, string endWord, vector<string>& wordList) {
-        vector<vector<string>> result;
+    vector<vector<string> > findLadders(string beginWord, string endWord, vector<string> &wordList) {
+        vector<vector<string> > result;
         unordered_set<string> visited;
         unordered_set<string> dict(wordList.begin(), wordList.end());
-        queue<vector<string>> bfs;
+        queue<vector<string> > bfs;
 
         int len = 1;
         int minLen = INT_MAX;
@@ -64,16 +64,16 @@ public:
             * these words will never be visited again after this level and should be removed from wordList.
             * This is guaranteed by the shortest path.
             */
-            if (ladder.size() > len) { //reach a new level
-                for (string word : visited) {
+            if (ladder.size() > len) {
+                //reach a new level
+                for (string word: visited) {
                     dict.erase(word);
                 }
                 visited.clear();
 
                 if (ladder.size() > minLen) {
                     break;
-                }
-                else {
+                } else {
                     len = ladder.size();
                 }
             }
@@ -101,8 +101,7 @@ public:
                         if (nextWord == endWord) {
                             minLen = len;
                             result.push_back(newLadder);
-                        }
-                        else {
+                        } else {
                             bfs.push(newLadder);
                         }
                     }
@@ -113,10 +112,13 @@ public:
     }
 };
 
-class Solution1 { //TLE
+class Solution1 {
+    //TLE
 private:
-    unordered_map<string, vector<string>> dict;
-    void dfs(unordered_set<string>& visited, vector<vector<string>>& result, vector<string>& ladder, int& minLen, string& endWord) {
+    unordered_map<string, vector<string> > dict;
+
+    void dfs(unordered_set<string> &visited, vector<vector<string> > &result, vector<string> &ladder, int &minLen,
+             string &endWord) {
         string curWord = ladder.back();
         if (curWord == endWord) {
             if (ladder.size() < minLen) {
@@ -137,7 +139,7 @@ private:
 
         for (int i = 0; i < curWord.size(); ++i) {
             string temp = curWord.substr(0, i) + "*" + curWord.substr(i + 1);
-            for (string& nextWord : dict[temp]) {
+            for (string &nextWord: dict[temp]) {
                 if (visited.find(nextWord) == visited.end()) {
                     visited.insert(nextWord);
                     ladder.push_back(nextWord);
@@ -148,16 +150,17 @@ private:
             }
         }
     }
+
 public:
-    vector<vector<string>> findLadders(string beginWord, string endWord, vector<string>& wordList) {
-        for (string& word : wordList) {
+    vector<vector<string> > findLadders(string beginWord, string endWord, vector<string> &wordList) {
+        for (string &word: wordList) {
             for (int i = 0; i < word.size(); ++i) {
                 string temp = word.substr(0, i) + "*" + word.substr(i + 1);
                 dict[temp].push_back(word);
             }
         }
 
-        vector<vector<string>> result;
+        vector<vector<string> > result;
         vector<string> ladder;
         unordered_set<string> visited;
         ladder.push_back(beginWord);

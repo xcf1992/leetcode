@@ -41,7 +41,7 @@ using namespace std;
 
 class Solution {
 public:
-    bool makesquare(vector<int>& nums) {
+    bool makesquare(vector<int> &nums) {
         int n = nums.size();
         long sum = accumulate(nums.begin(), nums.end(), 0l);
         if (sum % 4) {
@@ -61,23 +61,25 @@ public:
         for (int mask = 0; mask <= all; mask++) {
             long subsetSum = 0;
             // calculate the sum of this subset
-            for (int i = 0; i < 32; i++) if ((mask >> i) & 1) {
-                subsetSum += nums[i];
-            }
+            for (int i = 0; i < 32; i++)
+                if ((mask >> i) & 1) {
+                    subsetSum += nums[i];
+                }
             if (subsetSum != sideLen) {
                 continue;
             }
 
-            for (int usedMask : usedMasks) if ((usedMask & mask) == 0) {
-                // then they form a valid half subset whose sum is 2 * sideLen,
-                // that can be further partitioned into two equal subsets (usedMask and mask)
-                int validHalf = usedMask | mask;
-                validHalfSubsets[validHalf] = true;
-                // if in the past we concluded that the other half is also a valid half subset, DONE!
-                if (validHalfSubsets[all ^ validHalf]) {
-                    return true;
+            for (int usedMask: usedMasks)
+                if ((usedMask & mask) == 0) {
+                    // then they form a valid half subset whose sum is 2 * sideLen,
+                    // that can be further partitioned into two equal subsets (usedMask and mask)
+                    int validHalf = usedMask | mask;
+                    validHalfSubsets[validHalf] = true;
+                    // if in the past we concluded that the other half is also a valid half subset, DONE!
+                    if (validHalfSubsets[all ^ validHalf]) {
+                        return true;
+                    }
                 }
-            }
             // usedMask only store the mask has the sum of length == sideLen
             usedMasks.push_back(mask);
         }
@@ -85,11 +87,12 @@ public:
     }
 };
 
-class Solution1 { // simple dfs but slow
+class Solution1 {
+    // simple dfs but slow
 private:
-    bool valid(vector<int>& nums, int index, vector<int>& side, int length) {
+    bool valid(vector<int> &nums, int index, vector<int> &side, int length) {
         if (index >= nums.size()) {
-            for (int l : side) {
+            for (int l: side) {
                 if (l != length) {
                     return false;
                 }
@@ -108,15 +111,16 @@ private:
         }
         return false;
     }
+
 public:
-    bool makesquare(vector<int>& nums) {
+    bool makesquare(vector<int> &nums) {
         if (nums.size() < 4) {
             return false;
         }
 
         int sum = 0;
         int longest = 0;
-        for (int num : nums) {
+        for (int num: nums) {
             sum += num;
             longest = max(longest, num);
         }

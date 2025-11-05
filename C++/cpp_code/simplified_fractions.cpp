@@ -45,19 +45,21 @@ using namespace std;
 
 class Solution {
 private:
-    int gcd(int a ,int b) {
+    int gcd(int a, int b) {
         if (b == 0) {
             return a;
         }
-        return gcd(b, a%b);
+        return gcd(b, a % b);
     }
+
 public:
     vector<string> simplifiedFractions(int n) {
         vector<string> result;
         for (int denominator = 2; denominator <= n; ++denominator) {
-            for (int numerator = 1; numerator < denominator; ++ numerator) if (gcd(denominator, numerator) == 1) {
-                result.push_back(to_string(numerator) + "/" + to_string(denominator));
-            }
+            for (int numerator = 1; numerator < denominator; ++numerator)
+                if (gcd(denominator, numerator) == 1) {
+                    result.push_back(to_string(numerator) + "/" + to_string(denominator));
+                }
         }
         return result;
     }

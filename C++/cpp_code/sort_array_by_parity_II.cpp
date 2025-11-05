@@ -37,18 +37,28 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> sortArrayByParityII(vector<int>& A) {
+    vector<int> sortArrayByParityII(vector<int> &A) {
         int odd = 1;
         int even = 0;
         int n = A.size();
-        while (odd < n and even < n) {
-            while (odd < n and A[odd] % 2 == 1) {
+        while (odd < n and even<n
+        )
+        {
+            while (odd < n and A[odd]
+            %2 == 1
+            )
+            {
                 odd += 2;
             }
-            while (even < n and A[even] % 2 == 0) {
+            while (even < n and A[even]
+            %2 == 0
+            )
+            {
                 even += 2;
             }
-            if (odd < n and even < n) {
+            if (odd < n and even<n
+            )
+            {
                 swap(A[odd], A[even]);
             }
         }

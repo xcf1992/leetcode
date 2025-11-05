@@ -37,27 +37,27 @@ using namespace std;
 
 class Solution {
 private:
-    void find(TreeNode* root, TreeNode*& prev, long& result) {
+    void find(TreeNode *root, TreeNode *&prev, long &result) {
         if (root == nullptr) {
             return;
         }
 
-        find(root -> left, prev, result);
+        find(root->left, prev, result);
         if (prev != nullptr) {
             if (result == -1) {
-                result = abs(root -> val - prev -> val);
-            }
-            else {
-                result = min(result, (long)abs(prev -> val - root -> val));
+                result = abs(root->val - prev->val);
+            } else {
+                result = min(result, (long) abs(prev->val - root->val));
             }
         }
         prev = root;
-        find(root -> right, prev, result);
+        find(root->right, prev, result);
     }
+
 public:
-    int getMinimumDifference(TreeNode* root) {
+    int getMinimumDifference(TreeNode *root) {
         long result = -1;
-        TreeNode* prev = nullptr;
+        TreeNode *prev = nullptr;
         find(root, prev, result);
         return result;
     }

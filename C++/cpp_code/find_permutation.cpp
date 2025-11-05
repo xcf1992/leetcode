@@ -125,7 +125,11 @@ public:
             if (s[i] == 'D') {
                 int left = i;
                 int right = i;
-                while (right < n and s[right] == 'D') {
+                while (right < n and s[right]
+                ==
+                'D'
+                )
+                {
                     right += 1;
                 }
                 i = right - 1; // cause we will have i++ later

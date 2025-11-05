@@ -87,8 +87,8 @@ I don't understand why people are so into a "prove".
 */
 class Solution {
 public:
-    int maxPerformance(int n, vector<int>& speed, vector<int>& efficiency, int k) {
-        vector<pair<int, int>> ess;
+    int maxPerformance(int n, vector<int> &speed, vector<int> &efficiency, int k) {
+        vector<pair<int, int> > ess;
         for (int i = 0; i < n; ++i) {
             ess.emplace_back(efficiency[i], speed[i]);
         }
@@ -96,8 +96,8 @@ public:
 
         long sum = 0;
         long result = 0;
-        priority_queue<int, vector<int>, greater<int>> pq; // minheap of speed
-        for(auto& [e, s]: ess) {
+        priority_queue<int, vector<int>, greater<int> > pq; // minheap of speed
+        for (auto &[e, s]: ess) {
             pq.emplace(s);
             sum += s;
             if (pq.size() > k) {

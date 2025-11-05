@@ -70,7 +70,7 @@ using namespace std;
 
 class Solution {
 public:
-    int maxProfit(vector<int>& inv, int orders) {
+    int maxProfit(vector<int> &inv, int orders) {
         long res = 0, colors = 1;
         sort(begin(inv), end(inv));
         for (int i = inv.size() - 1; i >= 0 && orders > 0; --i, ++colors) {

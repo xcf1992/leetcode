@@ -82,7 +82,7 @@ And I have pairs set that holds all consequitive element pairs for sequences fro
 */
 class Solution {
 public:
-    bool sequenceReconstruction(vector<int>& org, vector<vector<int>>& seqs) {
+    bool sequenceReconstruction(vector<int> &org, vector<vector<int> > &seqs) {
         if (seqs.empty()) {
             return false;
         }
@@ -96,10 +96,16 @@ public:
         int matched = n - 1;
         bool allEmpty = true;
         vector<int> order(n + 1, -1);
-        for (vector<int>& seq : seqs) {
+        for (vector<int> &seq: seqs) {
             for (int i = 0; i < seq.size(); ++i) {
                 allEmpty = false;
-                if (seq[i] <= 0 or seq[i] > n or pos[seq[i]] == -1) {
+                if (seq[i] <= 0 or seq[i]
+                >
+                n or pos[seq[i]]
+                ==
+                -1
+                )
+                {
                     return false;
                 }
                 if (i == 0) {
@@ -113,12 +119,18 @@ public:
                 * we only need to count each pair in org once, but they may appear in multiple seq more than once
                 * we we make order[seq[i - 1]] as 1 when have counted pair {org[seq[i - 1]], org[seq[i]]}
                 */
-                if (pos[seq[i - 1]] == pos[seq[i]] - 1 and order[seq[i - 1]] == -1) {
+                if (pos[seq[i - 1]] == pos[seq[i]] - 1 and order[seq[i - 1]]
+                ==
+                -1
+                )
+                {
                     matched -= 1;
                     order[seq[i - 1]] = 1;
                 }
             }
         }
-        return matched == 0 and !allEmpty;
+        return matched == 0
+        and
+        !allEmpty;
     }
 };

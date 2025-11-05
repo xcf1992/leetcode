@@ -27,7 +27,7 @@ using namespace std;
 
 class Solution {
 public:
-    int shortestDistance(vector<string>& words, string word1, string word2) {
+    int shortestDistance(vector<string> &words, string word1, string word2) {
         int index1 = -1;
         int index2 = -1;
         int result = words.size();
@@ -38,8 +38,7 @@ public:
                     result = min(result, i - index2);
                 }
                 index1 = i;
-            }
-            else if (words[i] == word2) {
+            } else if (words[i] == word2) {
                 if (index1 != -1) {
                     result = min(result, i - index1);
                 }

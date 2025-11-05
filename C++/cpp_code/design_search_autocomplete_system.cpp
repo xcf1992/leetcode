@@ -88,45 +88,46 @@ using namespace std;
 
 struct TrieNode {
     int time;
-    unordered_map<char, TrieNode*> next;
+    unordered_map<char, TrieNode *> next;
+
     TrieNode() {
         time = 0;
     }
 };
 
 struct myComp {
-    bool operator() (pair<string, int>& p1, pair<string, int>& p2){
+    bool operator()(pair<string, int> &p1, pair<string, int> &p2) {
         return p1.second == p2.second ? p1.first < p2.first : p1.second > p2.second;
     }
 };
 
 class AutocompleteSystem {
 private:
-    TrieNode* root;
-    TrieNode* cur;
+    TrieNode *root;
+    TrieNode *cur;
     string sentence;
-    priority_queue<pair<string, int>, vector<pair<string, int>>, myComp> pq;
+    priority_queue<pair<string, int>, vector<pair<string, int> >, myComp> pq;
 
     void buildTrie(string s, int time) {
-        TrieNode* node = root;
-        for (char c : s) {
-            if (!node -> next[c]) {
-                node -> next[c] = new TrieNode();
+        TrieNode *node = root;
+        for (char c: s) {
+            if (!node->next[c]) {
+                node->next[c] = new TrieNode();
             }
-            node = node -> next[c];
+            node = node->next[c];
         }
-        node -> time += time;
+        node->time += time;
     }
 
-    void dfs(string& s, TrieNode* node) {
-        if (node -> time) {
-            pq.push({s, node -> time});
+    void dfs(string &s, TrieNode *node) {
+        if (node->time) {
+            pq.push({s, node->time});
             while (pq.size() > 3) {
                 pq.pop();
             }
         }
 
-        for (auto& nex : node -> next) {
+        for (auto &nex: node->next) {
             s.push_back(nex.first);
             dfs(s, nex.second);
             s.pop_back();
@@ -137,8 +138,9 @@ private:
         cur = root;
         sentence = "";
     }
+
 public:
-    AutocompleteSystem(vector<string>& sentences, vector<int>& times) {
+    AutocompleteSystem(vector<string> &sentences, vector<int> &times) {
         root = new TrieNode();
         reset();
         for (int i = 0; i < sentences.size(); i++) {
@@ -154,10 +156,10 @@ public:
         }
 
         sentence.push_back(c);
-        if (cur -> next[c] == nullptr) {
-            cur -> next[c] = new TrieNode();
+        if (cur->next[c] == nullptr) {
+            cur->next[c] = new TrieNode();
         }
-        cur = cur -> next[c];
+        cur = cur->next[c];
 
         dfs(sentence, cur);
         vector<string> result;
@@ -169,6 +171,7 @@ public:
         return result;
     }
 };
+
 /*
 * Your AutocompleteSystem object will be instantiated and called as such:
 * AutocompleteSystem obj = new AutocompleteSystem(sentences, times);

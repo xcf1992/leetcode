@@ -58,9 +58,9 @@ using namespace std;
 
 class Solution {
 public:
-    int numSpecialEquivGroups(vector<string>& A) {
+    int numSpecialEquivGroups(vector<string> &A) {
         unordered_set<string> result;
-        for (string word : A) {
+        for (string word: A) {
             string odd = "";
             string even = "";
             for (int i = 0; i < word.size(); i++) {

@@ -71,28 +71,32 @@ sub: 1111111 -> 1111110 -> 1111101 -> 1111100 -> 1111011 -> .... -> 0000001 -> 0
 */
 class Solution {
 private:
-    int getMask(string& word) {
+    int getMask(string &word) {
         int mask = 0;
-        for (char c : word) {
+        for (char c: word) {
             mask |= 1 << (c - 'a');
         }
         return mask;
     }
+
 public:
-    vector<int> findNumOfValidWords(vector<string>& words, vector<string>& puzzles) {
+    vector<int> findNumOfValidWords(vector<string> &words, vector<string> &puzzles) {
         unordered_map<int, int> wordMask;
-        for (string& w : words) {
+        for (string &w: words) {
             wordMask[getMask(w)] += 1;
         }
 
         vector<int> result;
-        for (string& puz : puzzles) {
+        for (string &puz: puzzles) {
             int pmask = getMask(puz);
             int count = 0;
             int sub = pmask;
             int first = 1 << (puz[0] - 'a');
             while (true) {
-                if ((sub & first) == first and wordMask.find(sub) != wordMask.end()) {
+                if ((sub & first) == first and
+                wordMask.find(sub) != wordMask.end()
+                )
+                {
                     count += wordMask[sub];
                 }
                 if (sub == 0) {

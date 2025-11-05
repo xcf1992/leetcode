@@ -68,6 +68,7 @@ private:
     int m;
     int n;
     int total;
+
 public:
     Solution(int n_rows, int n_cols) {
         m = n_rows;
@@ -91,6 +92,7 @@ public:
         pos.clear();
     }
 };
+
 /*
 * Your Solution object will be instantiated and called as such:
 * Solution obj = new Solution(n_rows, n_cols);

@@ -54,10 +54,11 @@ public:
         }
 
         int cows = 0;
-        for (int i = 0; i < guess.size(); i++) if (count[guess[i] - '0']) {
-            cows += 1;
-            count[guess[i] - '0'] -= 1;
-        }
+        for (int i = 0; i < guess.size(); i++)
+            if (count[guess[i] - '0']) {
+                cows += 1;
+                count[guess[i] - '0'] -= 1;
+            }
         // we return cows - bulls as to remove the number we count bulls as cows
         return to_string(bulls) + "A" + to_string(cows - bulls) + "B";
     }

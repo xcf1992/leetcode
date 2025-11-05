@@ -103,7 +103,7 @@ by making use of errorerror and continuing the process till errorerror becomes l
 */
 class Solution {
 private:
-    bool check(vector<int>& nums, double mid, int k) {
+    bool check(vector<int> &nums, double mid, int k) {
         double sum = 0.0;
         for (int i = 0; i < k; ++i) {
             sum += nums[i] - mid;
@@ -140,21 +140,21 @@ private:
         }
         return false;
     }
+
 public:
-    double findMaxAverage(vector<int>& nums, int k) {
+    double findMaxAverage(vector<int> &nums, int k) {
         double max_val = INT_MIN;
         double min_val = INT_MAX;
         for (int n: nums) {
-            max_val = max((int)max_val, n);
-            min_val = min((int)min_val, n);
+            max_val = max((int) max_val, n);
+            min_val = min((int) min_val, n);
         }
 
         while (max_val - min_val > 0.00001) {
             double mid = min_val + (max_val - min_val) / 2;
             if (check(nums, mid, k)) {
                 min_val = mid;
-            }
-            else {
+            } else {
                 max_val = mid;
             }
         }

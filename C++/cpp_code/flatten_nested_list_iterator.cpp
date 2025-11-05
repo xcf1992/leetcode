@@ -49,15 +49,16 @@ public:
 class NestedIterator {
 private:
     stack<vector<NestedInteger>::iterator> begins, ends;
+
 public:
-    NestedIterator(vector<NestedInteger>& nestedList) {
+    NestedIterator(vector<NestedInteger> &nestedList) {
         begins.push(nestedList.begin());
         ends.push(nestedList.end());
     }
 
     int next() {
         hasNext();
-        int result = begins.top() -> getInteger();
+        int result = begins.top()->getInteger();
         begins.top() += 1;
         return result;
     }
@@ -67,16 +68,15 @@ public:
             if (begins.top() == ends.top()) {
                 begins.pop();
                 ends.pop();
-            }
-            else {
+            } else {
                 auto x = begins.top();
-                if (x -> isInteger()) {
+                if (x->isInteger()) {
                     return true;
                 }
 
                 begins.top() += 1;
-                begins.push(x -> getList().begin());
-                ends.push(x -> getList().end());
+                begins.push(x->getList().begin());
+                ends.push(x->getList().end());
             }
         }
         return false;

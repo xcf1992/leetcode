@@ -29,14 +29,14 @@ Your algorithm's time complexity must be better than O(n log n), where n is the 
 using namespace std;
 
 struct myCmp {
-    bool operator()(pair<int, int>& myPair1, pair<int, int>& myPair2) {
+    bool operator()(pair<int, int> &myPair1, pair<int, int> &myPair2) {
         return myPair1.first < myPair2.first;
     }
 };
 
 class Solution {
 public:
-    vector<int> topKFrequent(vector<int>& nums, int k) {
+    vector<int> topKFrequent(vector<int> &nums, int k) {
         std::vector<int> result;
 
         unordered_map<int, int> frequency;
@@ -44,13 +44,16 @@ public:
             frequency[nums[i]] += 1;
         }
 
-        priority_queue<pair<int, int>, vector<pair<int, int>>, myCmp> pq;
-        for (auto& it : frequency) {
+        priority_queue<pair<int, int>, vector<pair<int, int> >, myCmp> pq;
+        for (auto &it: frequency) {
             pq.push({it.second, it.first});
         }
 
-        while (!pq.empty() and result.size() < k) {
-            auto& p = pq.top();
+        while (!pq.empty() and
+        result.size() < k
+        )
+        {
+            auto &p = pq.top();
             result.push_back(p.second);
             pq.pop();
         }

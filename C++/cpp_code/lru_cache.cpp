@@ -36,19 +36,22 @@ cache.get(4);       // returns 4
 using namespace std;
 
 struct CacheNode {
-    CacheNode* pre;
-    CacheNode* next;
+    CacheNode *pre;
+    CacheNode *next;
     int key;
     int val;
-    CacheNode(int k, int v) : key(k), val(v), pre(nullptr), next(nullptr){};
+
+    CacheNode(int k, int v) : key(k), val(v), pre(nullptr), next(nullptr) {
+    };
 };
 
 class LRUCache {
 private:
-    unordered_map<int, CacheNode*> memo;
+    unordered_map<int, CacheNode *> memo;
     int cap;
     int size;
-    CacheNode* head;
+    CacheNode *head;
+
 public:
     LRUCache(int capacity) {
         if (capacity < 0) {
@@ -58,8 +61,8 @@ public:
         cap = capacity;
         size = 0;
         head = new CacheNode(-1, -1);
-        head -> next = head;
-        head -> pre = head;
+        head->next = head;
+        head->pre = head;
     }
 
     int get(int key) {
@@ -67,15 +70,15 @@ public:
             return -1;
         }
 
-        CacheNode* cur = memo[key];
-        cur -> pre -> next = cur -> next;
-        cur -> next -> pre = cur -> pre;
+        CacheNode *cur = memo[key];
+        cur->pre->next = cur->next;
+        cur->next->pre = cur->pre;
 
-        cur -> next = head -> next;
-        head -> next -> pre = cur;
-        cur -> pre = head;
-        head -> next = cur;
-        return cur -> val;
+        cur->next = head->next;
+        head->next->pre = cur;
+        cur->pre = head;
+        head->next = cur;
+        return cur->val;
     }
 
     void put(int key, int value) {
@@ -84,26 +87,26 @@ public:
         }
 
         if (memo.find(key) != memo.end()) {
-            CacheNode* cur = memo[key];
-            cur -> val = value;
+            CacheNode *cur = memo[key];
+            cur->val = value;
             get(key);
             return;
         }
 
-        CacheNode* newNode = new CacheNode(key, value);
+        CacheNode *newNode = new CacheNode(key, value);
         memo[key] = newNode;
         size += 1;
 
-        newNode -> next = head -> next;
-        head -> next -> pre = newNode;
-        newNode -> pre = head;
-        head -> next = newNode;
+        newNode->next = head->next;
+        head->next->pre = newNode;
+        newNode->pre = head;
+        head->next = newNode;
         if (size > cap) {
             size -= 1;
-            CacheNode* removed = head -> pre;
-            removed -> pre -> next = head;
-            head -> pre = removed -> pre;
-            memo.erase(removed -> key);
+            CacheNode *removed = head->pre;
+            removed->pre->next = head;
+            head->pre = removed->pre;
+            memo.erase(removed->key);
             delete removed;
         }
     }

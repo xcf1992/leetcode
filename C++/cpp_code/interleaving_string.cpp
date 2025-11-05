@@ -36,21 +36,27 @@ public:
             return false;
         }
 
-        vector<vector<bool>> dp(n1 + 1, vector<bool>(n2 + 1, false));
+        vector<vector<bool> > dp(n1 + 1, vector<bool>(n2 + 1, false));
         dp[0][0] = true;
         for (int i = 1; i <= n1; ++i) {
-            dp[i][0] = dp[i - 1][0] and (s3[i - 1] == s1[i - 1]);
+            dp[i][0] = dp[i - 1][0]
+            and(s3[i - 1] == s1[i - 1]);
         }
         for (int j = 1; j <= n2; ++j) {
-            dp[0][j] = dp[0][j - 1] and (s3[j - 1] == s2[j - 1]);
+            dp[0][j] = dp[0][j - 1]
+            and(s3[j - 1] == s2[j - 1]);
         }
 
         for (int i = 1; i <= n1; ++i) {
             for (int j = 1; j <= n2; ++j) {
-                if (dp[i - 1][j] and (s1[i - 1] == s3[i + j - 1])) {
+                if (dp[i - 1][j] and(s1[i - 1] == s3[i + j - 1])
+                )
+                {
                     dp[i][j] = true;
                 }
-                if (dp[i][j - 1] and (s2[j - 1] == s3[i + j - 1])) {
+                if (dp[i][j - 1] and(s2[j - 1] == s3[i + j - 1])
+                )
+                {
                     dp[i][j] = true;
                 }
             }

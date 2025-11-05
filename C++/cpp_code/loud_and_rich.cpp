@@ -57,42 +57,75 @@ using namespace std;
 
 class Solution {
 private:
-    void check(int index, vector<int>& quiet, vector<int>& result, unordered_map<int, vector<int>>& graph) {
+    void check(int index, vector<int> &quiet, vector<int> &result, unordered_map<int, vector<int> > &graph) {
         if (result[index] > 0) {
             return;
         }
 
         result[index] = index;
-        for (int person : graph[index]) {
+        for (int person: graph[index]) {
             check(person, quiet, result, graph);
             result[index] = quiet[result[index]] > quiet[result[person]] ? result[person] : result[index];
         }
     }
+
 public:
-    vector<int> loudAndRich(vector<vector<int>>& richer, vector<int>& quiet) {
-<<<<<<< HEAD
+    vector<int> loudAndRich(vector<vector<int> > &richer, vector<int> &quiet) {
+        <<
+        <<
+        <<
+        <
+        HEAD
         int num = quiet.size();
         vector<int> result(num, -1);
-=======
+        ==
+        ==
+        ==
+        =
         int n = quiet.size();
         if (n == 0) {
             return {};
         }
->>>>>>> sep 4 evenging
+        >
+        >
+        >
+        >
+        >
+        >
+        >
+        sep
+        4
+        evenging
 
-        unordered_map<int, vector<int>> graph;
-        for (vector<int>& rich : richer) {
+        unordered_map<int, vector<int> > graph;
+        for (vector<int> &rich: richer) {
             graph[rich[1]].push_back(rich[0]);
         }
 
-<<<<<<< HEAD
+        <<
+        <<
+        <<
+        <
+        HEAD
         for (int i = 0; i < num; i++) {
-=======
-        vector<int> result(n, -1);
-        for (int i = 0; i < n; i++) {
->>>>>>> sep 4 evenging
-            check(i, quiet, result, graph);
+            ==
+            ==
+            ==
+            =
+            vector<int> result(n, -1);
+            for (int i = 0; i < n; i++) {
+                >
+                >
+                >
+                >
+                >
+                >
+                >
+                sep
+                4
+                evenging
+                        check(i, quiet, result, graph);
+            }
+            return result;
         }
-        return result;
-    }
-};
+    };

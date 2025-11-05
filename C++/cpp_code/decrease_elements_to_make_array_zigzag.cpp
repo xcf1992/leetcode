@@ -54,7 +54,7 @@ https://leetcode.com/problems/decrease-elements-to-make-array-zigzag/discuss/350
 */
 class Solution {
 public:
-    int movesToMakeZigzag(vector<int>& nums) {
+    int movesToMakeZigzag(vector<int> &nums) {
         vector<int> result(2, 0);
         int n = nums.size();
         for (int i = 0; i < n; ++i) {
@@ -68,21 +68,30 @@ public:
 
 class Solution1 {
 private:
-    void getCount(vector<int> nums, int& count, int start) {
+    void getCount(vector<int> nums, int &count, int start) {
         int n = nums.size();
         for (int i = start; i < n; i += 2) {
-            if (i > 0 and nums[i - 1] >= nums[i]) {
+            if (i > 0 and nums[i - 1]
+            >=
+            nums[i]
+            )
+            {
                 count += nums[i - 1] - nums[i] + 1;
                 nums[i - 1] = nums[i] - 1;
             }
-            if (i < n - 1 and nums[i + 1] >= nums[i]) {
+            if (i < n - 1 and nums[i + 1]
+            >=
+            nums[i]
+            )
+            {
                 count += nums[i + 1] - nums[i] + 1;
                 nums[i + 1] = nums[i] - 1;
             }
         }
     }
+
 public:
-    int movesToMakeZigzag(vector<int>& nums) {
+    int movesToMakeZigzag(vector<int> &nums) {
         int n = nums.size();
         if (n <= 1) {
             return 0;

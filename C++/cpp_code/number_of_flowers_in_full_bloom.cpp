@@ -51,7 +51,7 @@ using namespace std;
  */
 class Solution {
 public:
-    vector<int> fullBloomFlowers(vector<vector<int>>& flowers, vector<int>& people) {
+    vector<int> fullBloomFlowers(vector<vector<int> > &flowers, vector<int> &people) {
         size_t num_of_flowers = flowers.size();
         vector<int> flower_start(num_of_flowers, 0);
         vector<int> flower_end(num_of_flowers, 0);
@@ -61,7 +61,7 @@ public:
         }
         sort(flower_start.begin(), flower_start.end());
         sort(flower_end.begin(), flower_end.end());
-        
+
         vector<int> result(people.size(), 0);
         for (size_t i = 0; i < people.size(); i++) {
             int start_cnt = upper_bound(flower_start.begin(), flower_start.end(), people[i]) - flower_start.begin();

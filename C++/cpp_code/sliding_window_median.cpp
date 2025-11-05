@@ -61,15 +61,14 @@ std::multiset meets the requirements of Container, AllocatorAwareContainer, Asso
 */
 class Solution {
 public:
-    vector<double> medianSlidingWindow(vector<int>& nums, int k) {
+    vector<double> medianSlidingWindow(vector<int> &nums, int k) {
         vector<double> result;
         multiset<int> low, high;
         for (int i = 0; i < nums.size(); ++i) {
             if (i >= k) {
                 if (nums[i - k] <= *low.rbegin()) {
                     low.erase(low.find(nums[i - k]));
-                }
-                else {
+                } else {
                     high.erase(high.find(nums[i - k]));
                 }
             }
@@ -78,36 +77,43 @@ public:
             low.insert(nums[i]);
             high.insert(*low.rbegin());
             low.erase(prev(low.end()));
-            if (low.size() < high.size()) { // these steps may seem duplicate, but it is actually to make sure low.size() is at least equal to high
+            if (low.size() < high.size()) {
+                // these steps may seem duplicate, but it is actually to make sure low.size() is at least equal to high
                 low.insert(*high.begin());
                 high.erase(high.begin());
             }
 
             if (i >= k - 1) {
-                result.push_back(k % 2 == 1 ? *low.rbegin() : ((double)(*low.rbegin()) + (double)(*high.begin())) / 2);
+                result.push_back(k % 2 == 1
+                                     ? *low.rbegin()
+                                     : ((double) (*low.rbegin()) + (double) (*high.begin())) / 2);
             }
         }
         return result;
     }
 };
 
-class Solution1 { // 24.03% the idea is basically keep window a sorted array, using insert to put new coming element at correct pos
+class Solution1 {
+    // 24.03% the idea is basically keep window a sorted array, using insert to put new coming element at correct pos
 private:
     // left is the number we are about to remove from window
     // right is the number is the number we are about to add into window
-    void process(vector<int>& window, int left, int right) {
+    void process(vector<int> &window, int left, int right) {
         auto it = lower_bound(window.begin(), window.end(), right);
         window.insert(it, right);
         it = lower_bound(window.begin(), window.end(), left);
         window.erase(it);
     }
+
 public:
-    vector<double> medianSlidingWindow(vector<int>& nums, int k) {
+    vector<double> medianSlidingWindow(vector<int> &nums, int k) {
         vector<int> window(nums.begin(), nums.begin() + k);
         sort(window.begin(), window.end());
         vector<double> result(nums.size() - k + 1);
         for (int i = 0; i < nums.size() - k + 1; i++) {
-            result[i] = k % 2 == 0 ? (static_cast<double>(window[k / 2 - 1]) + (double)window[k / 2]) / 2 : window[k / 2];
+            result[i] = k % 2 == 0
+                            ? (static_cast<double>(window[k / 2 - 1]) + (double) window[k / 2]) / 2
+                            : window[k / 2];
             if (i + k < nums.size()) {
                 process(window, nums[i], nums[i + k]);
             }

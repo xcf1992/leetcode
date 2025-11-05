@@ -48,12 +48,16 @@ using namespace std;
 
 class Solution {
 private:
-    int check(int x, int y, vector<vector<int>>& grid) {
+    int check(int x, int y, vector<vector<int> > &grid) {
         int sum = 0;
         vector<int> digit(10, 0);
         for (int i = x; i < x + 3; i++) {
             for (int j = y; j < y + 3; j++) {
-                if (grid[i][j] < 1 or grid[i][j] > 9) {
+                if (grid[i][j] < 1 or grid[i][j]
+                >
+                9
+                )
+                {
                     return 0;
                 }
                 sum += grid[i][j];
@@ -74,7 +78,11 @@ private:
 
         for (int j = y; j < y + 3; j++) {
             for (int i = x; i < x + 3; i++) {
-                if (grid[i][j] < 1 or grid[i][j] > 9) {
+                if (grid[i][j] < 1 or grid[i][j]
+                >
+                9
+                )
+                {
                     return 0;
                 }
                 sum += grid[i][j];
@@ -94,8 +102,9 @@ private:
         }
         return 1;
     }
+
 public:
-    int numMagicSquaresInside(vector<vector<int>>& grid) {
+    int numMagicSquaresInside(vector<vector<int> > &grid) {
         int m = grid.size();
         if (m < 3) {
             return 0;

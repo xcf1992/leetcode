@@ -64,7 +64,7 @@ class Solution {
 public:
     string sortString(string s) {
         vector<int> count(26, 0);
-        for (char c : s) {
+        for (char c: s) {
             count[c - 'a'] += 1;
         }
 

@@ -46,34 +46,44 @@ It is guaranteed a sufficient team exists.
 #include <stdio.h>
 using namespace std;
 
-class Solution { // another way to write solution1 simillar idea 691. Stickers to Spell Word
+class Solution {
+    // another way to write solution1 simillar idea 691. Stickers to Spell Word
 private:
-    int getSkillSet(vector<string>& people, unordered_map<string, int>& skillIndex) {
+    int getSkillSet(vector<string> &people, unordered_map<string, int> &skillIndex) {
         int result = 0;
-        for (string& skill : people) {
+        for (string &skill: people) {
             result |= 1 << skillIndex[skill];
         }
         return result;
     }
+
 public:
-    vector<int> smallestSufficientTeam(vector<string>& req_skills, vector<vector<string>>& people) {
+    vector<int> smallestSufficientTeam(vector<string> &req_skills, vector<vector<string> > &people) {
         int n = req_skills.size();
         unordered_map<string, int> skillIndex;
         for (int i = 0; i < n; ++i) {
             skillIndex[req_skills[i]] = i;
         }
 
-        vector<vector<int>> dp(1 << n);
+        vector<vector<int> > dp(1 << n);
         dp[0] = {};
-        for (int state = 0; state < (1 << n); ++state) if (state == 0 or !dp[state].empty()) {
-            for (int p = 0; p < people.size(); ++p) if (!people[p].empty()) {
-                int skill = getSkillSet(people[p], skillIndex);
-                int nextState = state | skill;
-                if (dp[nextState].empty() or dp[nextState].size() > 1 + dp[state].size()) {
-                    dp[nextState] = dp[state];
-                    dp[nextState].push_back(p);
+        for (int state = 0; state < (1 << n); ++state) if (state == 0 or
+        !dp[state].empty()
+        )
+        {
+            for (int p = 0; p < people.size(); ++p)
+                if (!people[p].empty()) {
+                    int skill = getSkillSet(people[p], skillIndex);
+                    int nextState = state | skill;
+                    if (dp[nextState].empty() or dp[nextState]
+                    .
+                    size() > 1 + dp[state].size()
+                    )
+                    {
+                        dp[nextState] = dp[state];
+                        dp[nextState].push_back(p);
+                    }
                 }
-            }
         }
         return dp[(1 << n) - 1];
     }
@@ -81,15 +91,16 @@ public:
 
 class Solution1 {
 private:
-    int getSkillSet(vector<string>& people, unordered_map<string, int>& skillIndex) {
+    int getSkillSet(vector<string> &people, unordered_map<string, int> &skillIndex) {
         int result = 0;
-        for (string& skill : people) {
+        for (string &skill: people) {
             result |= 1 << skillIndex[skill];
         }
         return result;
     }
+
 public:
-    vector<int> smallestSufficientTeam(vector<string>& req_skills, vector<vector<string>>& people) {
+    vector<int> smallestSufficientTeam(vector<string> &req_skills, vector<vector<string> > &people) {
         int n = req_skills.size();
         unordered_map<string, int> skillIndex;
         for (int i = 0; i < n; ++i) {
@@ -100,14 +111,18 @@ public:
         * if rehashing occurs due to the insertion, all iterators are invalidated.
         * Hope it helps someone who makes the same mistake.
        */
-        map<int, vector<int>> dp;
+        map<int, vector<int> > dp;
         dp[0] = {};
         for (int i = 0; i < people.size(); ++i) {
             int newSkill = getSkillSet(people[i], skillIndex);
             for (auto it = dp.begin(); it != dp.end(); it++) {
-                int curSkill = it -> first;
+                int curSkill = it->first;
                 int combineSkill = curSkill | newSkill;
-                if (dp.find(combineSkill) == dp.end() or dp[combineSkill].size() > dp[curSkill].size() + 1) {
+                if (dp.find(combineSkill) == dp.end() or dp[combineSkill]
+                .
+                size() > dp[curSkill].size() + 1
+                )
+                {
                     dp[combineSkill] = dp[curSkill];
                     dp[combineSkill].push_back(i);
                 }

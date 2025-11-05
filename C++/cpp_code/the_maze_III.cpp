@@ -76,16 +76,16 @@ class Solution {
 private:
     int M = 0;
     int N = 0;
-    map<char, vector<int>> move = {
+    map<char, vector<int> > move = {
         {'d', {1, 0}},
         {'l', {0, -1}},
         {'r', {0, 1}},
         {'u', {-1, 0}}
     };
 
-    void dfs(vector<vector<int>>& maze, vector<int> ball, vector<int>& hole, string& path, string& directions,
-             vector<vector<int>>& distance, map<char, vector<int>>& move) {
-        for (auto& it : move) {
+    void dfs(vector<vector<int> > &maze, vector<int> ball, vector<int> &hole, string &path, string &directions,
+             vector<vector<int> > &distance, map<char, vector<int> > &move) {
+        for (auto &it: move) {
             char d = it.first;
             int xDiff = it.second[0];
             int yDiff = it.second[1];
@@ -95,11 +95,25 @@ private:
             bool drop = false;
 
             path.push_back(d);
-            while (curX + xDiff < M and curX + xDiff >= 0 and curY + yDiff < N and curY + yDiff >= 0 and maze[curX + xDiff][curY + yDiff] != 1) {
+            while (curX + xDiff < M and curX
+            +xDiff >= 0
+            and curY
+            +yDiff < N
+            and curY
+            +yDiff >= 0
+            and maze[curX + xDiff][curY + yDiff]
+            !=
+            1
+            )
+            {
                 curX += xDiff;
                 curY += yDiff;
                 length += 1;
-                if (curX == hole[0] and curY == hole[1]) {
+                if (curX == hole[0] and curY
+                ==
+                hole[1]
+                )
+                {
                     if (distance[hole[0]][hole[1]] > distance[ball[0]][ball[1]] + length) {
                         distance[hole[0]][hole[1]] = distance[ball[0]][ball[1]] + length;
                         directions = path;
@@ -108,19 +122,24 @@ private:
                     break;
                 }
             }
-            if (!drop and distance[curX][curY] > distance[ball[0]][ball[1]] + length) {
+            if (!drop and distance[curX][curY]
+            >
+            distance[ball[0]][ball[1]] + length
+            )
+            {
                 distance[curX][curY] = distance[ball[0]][ball[1]] + length;
                 dfs(maze, {curX, curY}, hole, path, directions, distance, move);
             }
             path.pop_back();
         }
     }
+
 public:
-    string findShortestWay(vector<vector<int>>& maze, vector<int>& ball, vector<int>& hole) {
+    string findShortestWay(vector<vector<int> > &maze, vector<int> &ball, vector<int> &hole) {
         M = maze.size();
         N = maze[0].size();
 
-        vector<vector<int>> distance(M, vector<int>(N, INT_MAX));
+        vector<vector<int> > distance(M, vector<int>(N, INT_MAX));
         distance[ball[0]][ball[1]] = 0;
 
         string directions = "";

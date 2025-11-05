@@ -53,7 +53,11 @@ public:
         int right = 0;
         int result = 0;
         while (right < s.size()) {
-            while (right < s.size() and s[left] == s[right]) {
+            while (right < s.size() and s[left]
+            ==
+            s[right]
+            )
+            {
                 right += 1;
             }
             result = max(result, right - left);
@@ -62,4 +66,3 @@ public:
         return result;
     }
 };
-

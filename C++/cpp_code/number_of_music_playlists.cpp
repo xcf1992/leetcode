@@ -48,9 +48,10 @@ we can do this cause L >= N
 class Solution {
 private:
     int MOD = 1e9 + 7;
+
 public:
     int numMusicPlaylists(int N, int L, int K) {
-        vector<vector<long>> dp(L + 1, vector<long>(N + 1, 0));
+        vector<vector<long> > dp(L + 1, vector<long>(N + 1, 0));
         dp[0][0] = 1;
         for (int i = 1; i <= L; i++) {
             for (int j = 1; j <= N; j++) {

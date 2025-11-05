@@ -47,16 +47,16 @@ using namespace std;
 
 class Solution {
 public:
-    int findBlackPixel(vector<vector<char>>& picture, int N) {
+    int findBlackPixel(vector<vector<char> > &picture, int N) {
         int m = picture.size();
         int n = picture[0].size();
         vector<int> rowCnt(m, 0);
         vector<int> colCnt(n, 0);
         vector<string> rowVal(m, "");
-        unordered_map<int, vector<int>> colBlack;
+        unordered_map<int, vector<int> > colBlack;
 
         for (int i = 0; i < m; ++i) {
-            for (int j = 0; j <n; ++j) {
+            for (int j = 0; j < n; ++j) {
                 rowVal[i].push_back(picture[i][j]);
                 if (picture[i][j] == 'B') {
                     rowCnt[i] += 1;
@@ -68,10 +68,16 @@ public:
 
         int result = 0;
         for (int i = 0; i < m; ++i) {
-            for (int j = 0; j <n; ++j) {
-                if (picture[i][j] == 'B' and rowCnt[i] == N and colCnt[j] == N) {
+            for (int j = 0; j < n; ++j) {
+                if (picture[i][j] == 'B' and rowCnt[i]
+                ==
+                N and colCnt[j]
+                ==
+                N
+                )
+                {
                     bool lonely = true;
-                    for (int row : colBlack[j]) {
+                    for (int row: colBlack[j]) {
                         if (rowVal[row] != rowVal[i]) {
                             lonely = false;
                             break;

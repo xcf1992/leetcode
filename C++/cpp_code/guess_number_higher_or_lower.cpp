@@ -43,8 +43,7 @@ public:
         while (guessResult != 0) {
             if (guessResult == 1) {
                 left = result + 1;
-            }
-            else {
+            } else {
                 right = result - 1;
             }
             result = left + (right - left) / 2;

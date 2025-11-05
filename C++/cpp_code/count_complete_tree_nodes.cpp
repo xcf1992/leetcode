@@ -61,43 +61,47 @@ So overall O(log(n)^2).
 */
 class Solution {
 private:
-    int getHeight(TreeNode* root) {
-        return root == nullptr ? -1 : 1 + getHeight(root -> left);
+    int getHeight(TreeNode *root) {
+        return root == nullptr ? -1 : 1 + getHeight(root->left);
     }
+
 public:
-    int countNodes(TreeNode* root) {
+    int countNodes(TreeNode *root) {
         int h = getHeight(root);
         if (h < 0) {
             return 0;
         }
 
-        if (getHeight(root -> right) == h - 1) { // the last node is in the right subtree of root
-            return (1 << h) + countNodes(root -> right);
+        if (getHeight(root->right) == h - 1) {
+            // the last node is in the right subtree of root
+            return (1 << h) + countNodes(root->right);
         }
-        return (1 << (h - 1)) + countNodes(root -> left);
+        return (1 << (h - 1)) + countNodes(root->left);
     }
 };
 
 class Solution1 {
 public:
-    int countNodes(TreeNode* root) {
+    int countNodes(TreeNode *root) {
         if (root == nullptr) {
             return 0;
         }
 
         int leftHeight = 1;
-        TreeNode* leftC = root -> left;
+        TreeNode *leftC = root->left;
         while (leftC != nullptr) {
-            leftC = leftC -> left;
+            leftC = leftC->left;
             leftHeight += 1;
         }
 
         int rightHeight = 1;
-        TreeNode* rightC = root -> right;
+        TreeNode *rightC = root->right;
         while (rightC != nullptr) {
-            rightC = rightC -> right;
+            rightC = rightC->right;
             rightHeight += 1;
         }
-        return leftHeight == rightHeight ? pow(2, leftHeight) - 1 : 1 + countNodes(root -> left) + countNodes(root -> right);
+        return leftHeight == rightHeight
+                   ? pow(2, leftHeight) - 1
+                   : 1 + countNodes(root->left) + countNodes(root->right);
     }
 };

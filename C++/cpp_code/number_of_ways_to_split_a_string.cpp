@@ -57,7 +57,7 @@ public:
         int count1 = 0;
         long long n = s.size();
         int mod = 1e9 + 7;
-        for (char c : s) {
+        for (char c: s) {
             count1 += c - '0';
         }
         if (count1 % 3 != 0) {
@@ -75,16 +75,32 @@ public:
         long long gap2 = -1;
         for (int i = 0; i < n; ++i) {
             cur += s[i] - '0';
-            if (cur == count1 / 3 and idx1 == -1) {
+            if (cur == count1 / 3 and idx1
+            ==
+            -1
+            )
+            {
                 idx1 = i;
             }
-            if (cur == 1 + count1 / 3 and gap1 == -1) {
+            if (cur == 1 + count1 / 3 and gap1
+            ==
+            -1
+            )
+            {
                 gap1 = i - idx1 - 1;
             }
-            if (cur == 2 * count1 / 3 and idx2 == -1) {
+            if (cur == 2 * count1 / 3 and idx2
+            ==
+            -1
+            )
+            {
                 idx2 = i;
             }
-            if (cur == 1 + 2 * count1 / 3 and gap2 == -1) {
+            if (cur == 1 + 2 * count1 / 3 and gap2
+            ==
+            -1
+            )
+            {
                 gap2 = i - idx2 - 1;
             }
         }

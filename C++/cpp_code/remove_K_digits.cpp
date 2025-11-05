@@ -54,16 +54,31 @@ public:
 
         string result = "";
         for (int i = 0; i < n; ++i) {
-            while (!result.empty() and num[i] < result.back() and k > 0) {
+            while (!result.empty() and num[i]
+            <
+            result.back()
+            and k
+            >
+            0
+            )
+            {
                 result.pop_back();
                 k -= 1;
             }
-            if (!result.empty() or num[i] != '0') {
+            if (!result.empty() or num[i]
+            !=
+            '0'
+            )
+            {
                 result.push_back(num[i]);
             }
         }
 
-        while (!result.empty() and k > 0) {
+        while (!result.empty() and k
+        >
+        0
+        )
+        {
             result.pop_back();
             k -= 1;
         }

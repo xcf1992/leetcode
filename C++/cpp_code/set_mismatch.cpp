@@ -29,7 +29,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> findErrorNums(vector<int>& nums) {
+    vector<int> findErrorNums(vector<int> &nums) {
         for (int i = 0; i < nums.size(); i++) {
             while (nums[i] != nums[nums[i] - 1]) {
                 swap(nums[i], nums[nums[i] - 1]);
@@ -46,14 +46,13 @@ public:
 
 class Solution1 {
 public:
-    vector<int> findErrorNums(vector<int>& nums) {
+    vector<int> findErrorNums(vector<int> &nums) {
         int n = nums.size();
         vector<int> result;
         for (int i = 0; i < n; ++i) {
             if (nums[abs(nums[i]) - 1] < 0) {
                 result.push_back(abs(nums[i]));
-            }
-            else {
+            } else {
                 nums[abs(nums[i]) - 1] = 0 - nums[abs(nums[i]) - 1];
             }
         }

@@ -77,14 +77,19 @@ using namespace std;
 
 class Solution {
 public:
-    TreeNode* pruneTree(TreeNode* root) {
+    TreeNode *pruneTree(TreeNode *root) {
         if (root == nullptr) {
             return nullptr;
         }
 
-        root -> left = pruneTree(root -> left);
-        root -> right = pruneTree(root -> right);
-        if (root -> left == nullptr and root -> right == nullptr and root -> val == 0) {
+        root->left = pruneTree(root->left);
+        root->right = pruneTree(root->right);
+        if (root->left == nullptr and
+        root->right == nullptr
+        and
+        root->val == 0
+        )
+        {
             return nullptr;
         }
         return root;

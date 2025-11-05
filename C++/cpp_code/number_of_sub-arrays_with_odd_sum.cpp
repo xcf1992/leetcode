@@ -55,16 +55,15 @@ using namespace std;
 
 class Solution {
 public:
-    int numOfSubarrays(vector<int>& arr) {
+    int numOfSubarrays(vector<int> &arr) {
         int mod = 1e9 + 7;
         int result = 0;
         int oddSum = 0;
         int evenSum = 0;
-        for (int num : arr) {
+        for (int num: arr) {
             if (num % 2 == 0) {
                 evenSum = (evenSum + 1) % mod;
-            }
-            else {
+            } else {
                 int temp = evenSum;
                 evenSum = oddSum;
                 oddSum = (temp + 1) % mod;

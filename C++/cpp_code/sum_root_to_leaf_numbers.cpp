@@ -51,19 +51,23 @@ using namespace std;
 
 class Solution {
 private:
-    void calculate(TreeNode * root, int current, int& sum) {
+    void calculate(TreeNode *root, int current, int &sum) {
         if (root == nullptr) {
             return;
         }
 
-        current = current * 10 + root -> val;
-        if (root -> left == nullptr and root -> right == nullptr) {
+        current = current * 10 + root->val;
+        if (root->left == nullptr and
+        root->right == nullptr
+        )
+        {
             sum += current;
             return;
         }
-        calculate(root -> left, current, sum);
-        calculate(root -> right, current, sum);
+        calculate(root->left, current, sum);
+        calculate(root->right, current, sum);
     }
+
 public:
     int sumNumbers(TreeNode *root) {
         int sum = 0;

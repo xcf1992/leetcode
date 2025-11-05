@@ -165,18 +165,34 @@ public:
         int n = s.size();
         vector<int> arr(n);
         for (int i = 0; i < n;) {
-            if (s[i] >= 'a' and s[i] <= 'z') {
+            if (s[i] >= 'a' and s[i]
+            <=
+            'z'
+            )
+            {
                 a = 0;
             }
-            if (s[i] >= 'A' and s[i] <= 'Z') {
+            if (s[i] >= 'A' and s[i]
+            <=
+            'Z'
+            )
+            {
                 A = 0;
             }
-            if (s[i] >= '0' and s[i] <= '9') {
+            if (s[i] >= '0' and s[i]
+            <=
+            '9'
+            )
+            {
                 d = 0;
             }
 
             int j = i;
-            while (i < n and s[j] == s[i]) {
+            while (i < n and s[j]
+            ==
+            s[i]
+            )
+            {
                 i += 1;
             }
             arr[j] = i - j;
@@ -185,14 +201,21 @@ public:
         int missed = a + A + d;
         if (n < 6) {
             result += missed + max(0, 6 - (n + missed));
-        }
-        else {
+        } else {
             int over_len = max(n - 20, 0);
             int left_over = 0;
             result += over_len;
             for (int k = 1; k < 3; k++) {
-                for (int i = 0; i < n and over_len > 0; ++i) {
-                    if (arr[i] < 3 or arr[i] %3 != (k - 1)) {
+                for (int i = 0; i < n and over_len
+                >
+                0;
+                ++i
+                )
+                {
+                    if (arr[i] < 3 or arr[i]
+                    %3 != (k - 1)
+                    )
+                    {
                         continue;
                     }
                     arr[i] -= min(over_len, k);
@@ -201,7 +224,11 @@ public:
             }
 
             for (int i = 0; i < n; ++i) {
-                if (arr[i] >= 3 and over_len > 0) {
+                if (arr[i] >= 3 and over_len
+                >
+                0
+                )
+                {
                     int need = arr[i] - 2;
                     arr[i] -= over_len;
                     over_len -= need;

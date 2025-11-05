@@ -24,16 +24,22 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int>> threeSum(vector<int> &num) {
+    vector<vector<int> > threeSum(vector<int> &num) {
         int n = num.size();
-        if (n <= 2 or (n == 3 and num[0] + num[1] + num[2] != 0)) {
+        if (n <= 2 or(n == 3 and num[0] + num[1] + num[2] != 0)
+        )
+        {
             return {};
         }
         sort(num.begin(), num.end());
 
-        vector<vector<int>> results;
+        vector<vector<int> > results;
         for (int i = 0; i < n; ++i) {
-            if (i != 0 and num[i] == num[i - 1]) {
+            if (i != 0 and num[i]
+            ==
+            num[i - 1]
+            )
+            {
                 continue;
             }
 
@@ -44,18 +50,24 @@ public:
                 int sum = num[left] + num[right];
                 if (sum < target) {
                     left += 1;
-                }
-                else if (sum > target) {
+                } else if (sum > target) {
                     right -= 1;
-                }
-                else {
+                } else {
                     results.push_back({num[i], num[left], num[right]});
                     int front = num[left];
                     int back = num[right];
-                    while (left < right and num[left] == front) {
+                    while (left < right and num[left]
+                    ==
+                    front
+                    )
+                    {
                         left += 1;
                     }
-                    while (left < right and num[right] == back) {
+                    while (left < right and num[right]
+                    ==
+                    back
+                    )
+                    {
                         right -= 1;
                     }
                 }

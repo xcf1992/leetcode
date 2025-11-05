@@ -42,7 +42,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> getModifiedArray(int length, vector<vector<int>>& updates) {
+    vector<int> getModifiedArray(int length, vector<vector<int> > &updates) {
         vector<int> result(length, 0);
         for (int i = 0; i < updates.size(); i++) {
             result[updates[i][0]] += updates[i][2];

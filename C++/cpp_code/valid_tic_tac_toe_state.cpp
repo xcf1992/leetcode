@@ -56,41 +56,61 @@ using namespace std;
 
 class Solution {
 private:
-    bool windBy(char ch, vector<string>& board) {
-        if (board[0][0] == ch and board[1][1] == ch and board[2][2] == ch) {
+    bool windBy(char ch, vector<string> &board) {
+        if (board[0][0] == ch and board[1][1]
+        ==
+        ch and board[2][2]
+        ==
+        ch
+        )
+        {
             return true;
         }
-        if (board[0][2] == ch and board[1][1] == ch and board[2][0] == ch) {
+        if (board[0][2] == ch and board[1][1]
+        ==
+        ch and board[2][0]
+        ==
+        ch
+        )
+        {
             return true;
         }
 
         string temp = string(3, ch);
-        for (string& row : board) {
+        for (string &row: board) {
             if (temp == row) {
                 return true;
             }
         }
 
-        for (int j = 0; j < 3; j++) if (board[0][j] == ch and board[1][j] == ch and board[2][j] == ch) {
+        for (int j = 0; j < 3; j++) if (board[0][j] == ch and board[1][j]
+        ==
+        ch and board[2][j]
+        ==
+        ch
+        )
+        {
             return true;
         }
         return false;
     }
+
 public:
-    bool validTicTacToe(vector<string>& board) {
+    bool validTicTacToe(vector<string> &board) {
         int xCount = 0;
         int oCount = 0;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (board[i][j] == 'X') {
                     xCount += 1;
-                }
-                else if (board[i][j] == 'O') {
+                } else if (board[i][j] == 'O') {
                     oCount += 1;
                 }
             }
         }
-        if (xCount - oCount > 1 or xCount < oCount) {
+        if (xCount - oCount > 1 or xCount<oCount
+        )
+        {
             return false;
         }
 
@@ -99,7 +119,10 @@ public:
         if (xWin and oWin) {
             return false;
         }
-        if (!xWin and !oWin) {
+        if (!xWin and
+        !oWin
+        )
+        {
             return true;
         }
         if (xWin) {

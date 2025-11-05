@@ -72,24 +72,23 @@ using namespace std;
 
 class Solution {
 public:
-    string rankTeams(vector<string>& votes) {
-        vector<vector<int>> rank(26, vector<int>(27, 0));
+    string rankTeams(vector<string> &votes) {
+        vector<vector<int> > rank(26, vector<int>(27, 0));
         for (int i = 0; i < 26; ++i) {
             rank[i][0] = i;
         }
 
-        for (string& vote : votes) {
+        for (string &vote: votes) {
             for (int i = 0; i < vote.size(); ++i) {
                 rank[vote[i] - 'A'][i + 1] += 1;
             }
         }
 
-        sort(rank.begin(), rank.end(), [](vector<int>& a, vector<int>& b) {
+        sort(rank.begin(), rank.end(), [](vector<int> &a, vector<int> &b) {
             for (int i = 1; i <= 26; ++i) {
                 if (a[i] < b[i]) {
                     return false;
-                }
-                else if (a[i] > b[i]) {
+                } else if (a[i] > b[i]) {
                     return true;
                 }
             }

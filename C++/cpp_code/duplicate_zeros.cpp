@@ -39,13 +39,15 @@ using namespace std;
 
 class Solution {
 public:
-    void duplicateZeros(vector<int>& arr) {
+    void duplicateZeros(vector<int> &arr) {
         int n = arr.size();
         int index = 0;
-        for (int i = 0; i < n; ++i, ++index) if (arr[i] == 0) {
-            index += 1;
-        }
-        index -= 1; // in case [1,0,2,3,0,4,5,0], after loop, index will be 11, minus 1 here so it will be the last available index
+        for (int i = 0; i < n; ++i, ++index)
+            if (arr[i] == 0) {
+                index += 1;
+            }
+        index -= 1;
+        // in case [1,0,2,3,0,4,5,0], after loop, index will be 11, minus 1 here so it will be the last available index
 
         for (int i = n - 1; i >= 0; --i) {
             if (index <= n - 1) {
@@ -73,7 +75,7 @@ Expected
 */
 class Solution1 {
 public:
-    void duplicateZeros(vector<int>& arr) {
+    void duplicateZeros(vector<int> &arr) {
         int n = arr.size();
         if (n <= 1) {
             return;
@@ -90,7 +92,11 @@ public:
 
         int right = n - 1;
         int left = n - count - 1;
-        while (left >= 0 and count > 0) {
+        while (left >= 0 and count
+        >
+        0
+        )
+        {
             if (arr[left] == 0) {
                 arr[right] = 0;
                 right -= 1;

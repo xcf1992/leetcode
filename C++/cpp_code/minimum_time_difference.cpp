@@ -29,10 +29,11 @@ private:
         int minutes = stoi(timePoint.substr(found + 1));
         return hour * 60 + minutes;
     }
+
 public:
-    int findMinDifference(vector<string>& timePoints) {
+    int findMinDifference(vector<string> &timePoints) {
         vector<bool> minutes(1440, false);
-        for (string timePoint : timePoints) {
+        for (string timePoint: timePoints) {
             int minute = transfer(timePoint);
             if (minutes[minute]) {
                 return 0;
@@ -50,8 +51,7 @@ public:
                     first = i;
                     last = i;
                     prev = i;
-                }
-                else {
+                } else {
                     result = min(result, i - prev);
                     prev = i;
                     last = i;

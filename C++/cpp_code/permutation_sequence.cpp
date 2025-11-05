@@ -57,7 +57,7 @@ public:
                 if (available < index) {
                     continue;
                 }
-                
+
                 result.push_back('0' + digit[pos]);
                 digit[pos] = 0;
                 break;

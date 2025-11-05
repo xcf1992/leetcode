@@ -12,13 +12,13 @@ using namespace std;
 
 class Solution {
 public:
-    vector<string> findRestaurant(vector<string>& list1, vector<string>& list2) {
+    vector<string> findRestaurant(vector<string> &list1, vector<string> &list2) {
         unordered_map<string, int> restaurant;
         for (int i = 0; i < list1.size(); i++) {
             restaurant[list1[i]] = i;
         }
 
-        unordered_map<int, vector<string>> result;
+        unordered_map<int, vector<string> > result;
         int minIndex = 2000;
         for (int i = 0; i < list2.size(); i++) {
             if (restaurant.find(list2[i]) != restaurant.end()) {

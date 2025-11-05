@@ -64,9 +64,10 @@ struct TreeNode {
 
 class Solution {
 private:
-    unordered_map<TreeNode*, int> cache;
+    unordered_map<TreeNode *, int> cache;
+
 public:
-    int rob(TreeNode* root) {
+    int rob(TreeNode *root) {
         if (root == nullptr) {
             return 0;
         }
@@ -75,15 +76,15 @@ public:
             return cache[root];
         }
 
-        int maxMoney = root -> val;
-        if (root -> left != nullptr) {
-            maxMoney += rob(root -> left -> left) + rob(root -> left -> right);
+        int maxMoney = root->val;
+        if (root->left != nullptr) {
+            maxMoney += rob(root->left->left) + rob(root->left->right);
         }
-        if (root -> right != nullptr) {
-            maxMoney += rob(root -> right -> left) + rob(root -> right -> right);
+        if (root->right != nullptr) {
+            maxMoney += rob(root->right->left) + rob(root->right->right);
         }
 
-        cache[root] = max(maxMoney, rob(root -> left) + rob(root -> right));
+        cache[root] = max(maxMoney, rob(root->left) + rob(root->right));
         return cache[root];
     }
 };

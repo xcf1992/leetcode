@@ -39,19 +39,23 @@ using namespace std;
 
 class Solution {
 private:
-    void count(TreeNode* root, int L, int R, int& result) {
+    void count(TreeNode *root, int L, int R, int &result) {
         if (root == nullptr) {
             return;
         }
 
-        if (root -> val <= R and root -> val >= L) {
-            result += root -> val;
+        if (root->val <= R and
+        root->val >= L
+        )
+        {
+            result += root->val;
         }
-        count(root -> left, L, R, result);
-        count(root -> right, L, R, result);
+        count(root->left, L, R, result);
+        count(root->right, L, R, result);
     }
+
 public:
-    int rangeSumBST(TreeNode* root, int L, int R) {
+    int rangeSumBST(TreeNode *root, int L, int R) {
         int result = 0;
         count(root, L, R, result);
         return result;

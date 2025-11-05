@@ -33,8 +33,10 @@ private:
     int m = 0;
     int n = 0;
 
-    void dfs(vector<vector<char>>& board, int row, int col) {
-        if (row < 0 or col < 0 or row >= m or col >= n) {
+    void dfs(vector<vector<char> > &board, int row, int col) {
+        if (row < 0 or col<0 or row >= m or col >= n
+        )
+        {
             return;
         }
         if (board[row][col] != 'O') {
@@ -48,8 +50,9 @@ private:
             dfs(board, row + rDiff[i], col + cDiff[i]);
         }
     }
+
 public:
-    void solve(vector<vector<char>>& board) {
+    void solve(vector<vector<char> > &board) {
         m = board.size();
         if (m == 0) {
             return;
@@ -69,8 +72,7 @@ public:
             for (int j = 0; j < n; ++j) {
                 if (board[i][j] == 'C') {
                     board[i][j] = 'O';
-                }
-                else if (board[i][j] == 'O') {
+                } else if (board[i][j] == 'O') {
                     board[i][j] = 'X';
                 }
             }

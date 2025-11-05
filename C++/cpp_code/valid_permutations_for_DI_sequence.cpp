@@ -106,10 +106,11 @@ j goes up to accumulate from bottom to up: max j = n-i-1 (same as above), min j 
 class Solution {
 private:
     int mod = 1e9 + 7;
+
 public:
     int numPermsDISequence(string S) {
         int n = S.size();
-        vector<vector<int>> dp(n + 1, vector<int>(n + 1, 0));
+        vector<vector<int> > dp(n + 1, vector<int>(n + 1, 0));
         for (int i = 0; i <= n; i++) {
             dp[0][i] = 1;
         }
@@ -121,8 +122,7 @@ public:
                     cur = (cur + dp[i][j]) % mod;
                     dp[i + 1][j] = cur;
                 }
-            }
-            else {
+            } else {
                 for (int j = n - i - 1; j >= 0; j--) {
                     cur = (cur + dp[i][j + 1]) % mod;
                     dp[i + 1][j] = cur;
@@ -161,10 +161,11 @@ time complexity is O(n^3)
 class Solution1 {
 private:
     int MOD = 1e9 + 7;
+
 public:
     int numPermsDISequence(string S) {
         int n = S.size();
-        vector<vector<int>> dp(n + 1, vector<int>(n + 1, 0));
+        vector<vector<int> > dp(n + 1, vector<int>(n + 1, 0));
         for (int i = 0; i <= n; i++) {
             dp[0][i] = 1;
         }
@@ -178,8 +179,7 @@ public:
                         dp[i][j] += dp[i - 1][k];
                         dp[i][j] %= MOD;
                     }
-                }
-                else {
+                } else {
                     // it is decreasing, so previous number should be less than current number
                     // dp[i][j] means current number ranked j in 0 ... n, so privous number could be from 0 to j - 1
                     for (int k = 0; k < j; k++) {
@@ -191,7 +191,7 @@ public:
         }
 
         long result = 0;
-        for (int x : dp[n]) {
+        for (int x: dp[n]) {
             result += x;
             result %= MOD;
         }

@@ -84,30 +84,35 @@ dfs2: O(N)
 */
 class Solution {
 private:
-    void getChildCount(int root, vector<vector<int>>& connected, vector<int>& count, vector<int>& result, vector<bool>& visited) {
+    void getChildCount(int root, vector<vector<int> > &connected, vector<int> &count, vector<int> &result,
+                       vector<bool> &visited) {
         visited[root] = true;
-        for (int child : connected[root]) if (!visited[child]) {
-            getChildCount(child, connected, count, result, visited);
-            count[root] += count[child];
-            result[root] += result[child] + count[child];
-        }
+        for (int child: connected[root])
+            if (!visited[child]) {
+                getChildCount(child, connected, count, result, visited);
+                count[root] += count[child];
+                result[root] += result[child] + count[child];
+            }
     }
 
-    void updateDistance(int root, vector<vector<int>>& connected, vector<int>& count, vector<int>& result, vector<bool>& visited, int N) {
+    void updateDistance(int root, vector<vector<int> > &connected, vector<int> &count, vector<int> &result,
+                        vector<bool> &visited, int N) {
         visited[root] = true;
-        for (int child : connected[root]) if (!visited[child]) {
-            result[child] = result[root] - count[child] + N - count[child];
-            updateDistance(child, connected, count, result, visited, N);
-        }
+        for (int child: connected[root])
+            if (!visited[child]) {
+                result[child] = result[root] - count[child] + N - count[child];
+                updateDistance(child, connected, count, result, visited, N);
+            }
     }
+
 public:
-    vector<int> sumOfDistancesInTree(int N, vector<vector<int>>& edges) {
+    vector<int> sumOfDistancesInTree(int N, vector<vector<int> > &edges) {
         if (N == 1) {
             return {0};
         }
 
-        vector<vector<int>> connected(N);
-        for (vector<int>& edge : edges) {
+        vector<vector<int> > connected(N);
+        for (vector<int> &edge: edges) {
             connected[edge[0]].push_back(edge[1]);
             connected[edge[1]].push_back(edge[0]);
         }
@@ -115,10 +120,12 @@ public:
         vector<bool> visited(N, false);
         vector<int> count(N, 1); // the count of child nodes include itself
         vector<int> result(N, 0);
-        getChildCount(0, connected, count, result, visited); // we set 0 as root, count of child for each node, update distance accourdingly
+        getChildCount(0, connected, count, result, visited);
+        // we set 0 as root, count of child for each node, update distance accourdingly
 
         visited.clear(); // after this step only the result of root 0 is correct,
-        visited.resize(N, false); // we will update result for other nodes from root to leaves, according its distance to its parent
+        visited.resize(N, false);
+        // we will update result for other nodes from root to leaves, according its distance to its parent
         updateDistance(0, connected, count, result, visited, N);
         return result;
     }
@@ -127,16 +134,16 @@ public:
 // memory limit exceed
 class Solution1 {
 public:
-    vector<int> sumOfDistancesInTree(int N, vector<vector<int>>& edges) {
-        unordered_map<int, vector<int>> connected;
-        for (vector<int>& edge : edges) {
+    vector<int> sumOfDistancesInTree(int N, vector<vector<int> > &edges) {
+        unordered_map<int, vector<int> > connected;
+        for (vector<int> &edge: edges) {
             connected[edge[0]].push_back(edge[1]);
             connected[edge[1]].push_back(edge[0]);
         }
 
         vector<int> result(N, 0);
-        vector<vector<bool>> visited(N, vector<bool>(N, false));
-        queue<vector<int>> bfs;
+        vector<vector<bool> > visited(N, vector<bool>(N, false));
+        queue<vector<int> > bfs;
         for (int i = 0; i < N; i++) {
             bfs.push({i, i}); // {source, cur}
             visited[i][i] = true;
@@ -150,7 +157,7 @@ public:
                 int cur = bfs.front()[1];
                 bfs.pop();
                 result[source] += distance;
-                for (int next : connected[cur]) {
+                for (int next: connected[cur]) {
                     if (!visited[source][next]) {
                         visited[source][next] = true;
                         bfs.push({source, next});

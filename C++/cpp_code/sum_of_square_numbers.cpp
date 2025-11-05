@@ -40,8 +40,7 @@ public:
 
             if (val < c) {
                 left += 1;
-            }
-            else {
+            } else {
                 right -= 1;
             }
         }

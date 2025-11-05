@@ -68,9 +68,11 @@ private:
         }
         return y == 0 ? x : gcd(y, x % y);
     }
+
 public:
     bool canMeasureWater(int x, int y, int z) {
-        return z == 0 or (x + y >= z and z % gcd(x, y) == 0);
+        return z == 0
+        or(x + y >= z and z % gcd(x, y) == 0);
     }
 };
 

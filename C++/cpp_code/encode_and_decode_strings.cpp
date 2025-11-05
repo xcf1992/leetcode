@@ -51,21 +51,19 @@ using namespace std;
 class Codec {
 public:
     // Encodes a list of strings to a single string.
-    string encode(vector<string>& strs) {
+    string encode(vector<string> &strs) {
         if (strs.empty()) {
             return "";
         }
 
         string result = "";
-        for (string s : strs) {
-            for (char c : s) {
+        for (string s: strs) {
+            for (char c: s) {
                 if (c == '#') {
                     result += "$#";
-                }
-                else if (c == '$') {
+                } else if (c == '$') {
                     result += "$$";
-                }
-                else {
+                } else {
                     result.push_back(c);
                 }
             }
@@ -106,20 +104,17 @@ public:
 // then we cannot test if there are two string or one start letter
 class Codec1 {
 public:
-
     // Encodes a list of strings to a single string.
-    string encode(vector<string>& strs) {
+    string encode(vector<string> &strs) {
         string result = "$";
-        for (string str : strs) {
+        for (string str: strs) {
             result += "#";
-            for (char c : str) {
+            for (char c: str) {
                 if (c == '#') {
                     result += "##";
-                }
-                else if (c == '$') {
+                } else if (c == '$') {
                     result += "$$";
-                }
-                else {
+                } else {
                     result += c;
                 }
             }
@@ -136,20 +131,29 @@ public:
         for (int i = 0; i < s.size(); i++) {
             char letter = s[i];
             if (letter == '#') {
-                if (i + 1 < s.size() and s[i + 1] == '#') {
+                if (i + 1 < s.size() and s[i + 1]
+                ==
+                '#'
+                )
+                {
                     cur += letter;
                     i++;
                 }
-                else {
+                else
+                {
                     cur = "";
                 }
-            }
-            else if (letter == '$') {
-                if (i + 1 < s.size() and s[i + 1] == '$') {
+            } else if (letter == '$') {
+                if (i + 1 < s.size() and s[i + 1]
+                ==
+                '$'
+                )
+                {
                     cur += letter;
                     i++;
                 }
-                else {
+                else
+                {
                     if (met) {
                         result.push_back(cur);
                     }
@@ -157,14 +161,14 @@ public:
                     cur = "";
                     i++;
                 }
-            }
-            else {
+            } else {
                 cur += letter;
             }
         }
         return result;
     }
 };
+
 // Your Codec object will be instantiated and called as such:
 // Codec codec;
 // codec.decode(codec.encode(strs));

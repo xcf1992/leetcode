@@ -39,9 +39,13 @@ public:
             return false;
         }
 
-        if (root -> left == nullptr and root -> right == nullptr) {
-            return sum == root -> val;
+        if (root->left == nullptr and
+        root->right == nullptr
+        )
+        {
+            return sum == root->val;
         }
-        return hasPathSum(root -> left, sum - root -> val) or hasPathSum(root -> right, sum - root -> val);
+        return hasPathSum(root->left, sum - root->val)
+        or hasPathSum(root->right, sum - root->val);
     }
 };

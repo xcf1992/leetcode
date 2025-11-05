@@ -61,11 +61,10 @@ public:
         int left = 0;
         int right = S.size();
         vector<int> result;
-        for (char c : S) {
+        for (char c: S) {
             if (c == 'D') {
                 result.push_back(right--);
-            }
-            else {
+            } else {
                 result.push_back(left++);
             }
         }
@@ -111,6 +110,7 @@ private:
         left.insert(left.end(), right.begin(), right.end());
         return left;
     }
+
 public:
     vector<int> diStringMatch(string S) {
         int n = S.size();

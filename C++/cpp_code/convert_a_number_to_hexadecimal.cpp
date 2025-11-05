@@ -43,6 +43,7 @@ using namespace std;
 class Solution {
 private:
     const string HEX = "0123456789abcdef";
+
 public:
     string toHex(int num) {
         if (num == 0) {
@@ -51,7 +52,10 @@ public:
 
         string result = "";
         int count = 0;
-        while (num != 0 and count < 8) { // use != 0, in order to transform negative number
+        while (num != 0 and count<8
+        )
+        {
+            // use != 0, in order to transform negative number
             result.push_back(HEX[num & 0xf]);
             num >>= 4;
             count++;

@@ -52,6 +52,7 @@ private:
         }
         return sum;
     }
+
 public:
     int countLargestGroup(int n) {
         unordered_map<int, int> count;
@@ -62,12 +63,11 @@ public:
 
         int result = 0;
         int curMax = INT_MIN;
-        for (auto& it : count) {
+        for (auto &it: count) {
             if (it.second > curMax) {
                 curMax = it.second;
                 result = 1;
-            }
-            else if (it.second == curMax) {
+            } else if (it.second == curMax) {
                 result += 1;
             }
         }

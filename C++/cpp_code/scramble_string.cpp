@@ -69,7 +69,8 @@ Output: false
 #include <numeric>
 using namespace std;
 
-class Solution { // dp, even slower than simple recursively
+class Solution {
+    // dp, even slower than simple recursively
 public:
     bool isScramble(string s1, string s2) {
         int len = s1.size();
@@ -77,7 +78,7 @@ public:
         * dp[i][j][k] identify if s1(i, i + 1, ... , i + k - 1) is scrambled as
         *                         s2(j, j + 1, ... , j + k - 1)
        */
-        vector<vector<vector<bool>>> dp(len, vector<vector<bool>>(len, vector<bool>(len + 1, false)));
+        vector<vector<vector<bool> > > dp(len, vector<vector<bool> >(len, vector<bool>(len + 1, false)));
         for (int k = 1; k <= len; ++k) {
             for (int i = 0; i + k <= len; ++i) {
                 for (int j = 0; j + k <= len; ++j) {
@@ -86,7 +87,11 @@ public:
                         continue;
                     }
                     for (int q = 1; q < k; ++q) {
-                        if ((dp[i][j][q] and dp[i + q][j + q][k - q]) or (dp[i][j + k - q][q] and dp[i + q][j][k - q])) {
+                        if ((dp[i][j][q] and dp[i + q][j + q][k - q]
+                        )
+                        or(dp[i][j + k - q][q] and dp[i + q][j][k - q])
+                        )
+                        {
                             dp[i][j][k] = true;
                             break;
                         }
@@ -98,16 +103,22 @@ public:
     }
 };
 
-class Solution2 { // check recursively with memo
+class Solution2 {
+    // check recursively with memo
 private:
-    unordered_map<string, unordered_map<string, bool>> memo;
+    unordered_map<string, unordered_map<string, bool> > memo;
+
 public:
     bool isScramble(string s1, string s2) {
         if (s1 == s2) {
             return true;
         }
 
-        if (memo.find(s1) != memo.end() and memo[s1].find(s2) != memo[s1].end()) {
+        if (memo.find(s1) != memo.end() and memo[s1]
+        .
+        find(s2) != memo[s1].end()
+        )
+        {
             return memo[s1][s2];
         }
 
@@ -122,11 +133,15 @@ public:
 
         int len = s1.size();
         for (int l = 1; l < len; ++l) {
-            if (isScramble(s1.substr(0, l), s2.substr(0, l)) and isScramble(s1.substr(l), s2.substr(l))) {
+            if (isScramble(s1.substr(0, l), s2.substr(0, l)) and isScramble(s1.substr(l), s2.substr(l))
+            )
+            {
                 memo[s1][s2] = true;
                 return true;
             }
-            if (isScramble(s1.substr(0, l), s2.substr(len - l)) and isScramble(s1.substr(l), s2.substr(0, len - l))) {
+            if (isScramble(s1.substr(0, l), s2.substr(len - l)) and isScramble(s1.substr(l), s2.substr(0, len - l))
+            )
+            {
                 memo[s1][s2] = true;
                 return true;
             }
@@ -136,7 +151,8 @@ public:
     }
 };
 
-class Solution1 { // check recursively
+class Solution1 {
+    // check recursively
 public:
     bool isScramble(string s1, string s2) {
         if (s1 == s2) {
@@ -152,10 +168,14 @@ public:
 
         int len = s1.size();
         for (int l = 1; l < len; ++l) {
-            if (isScramble(s1.substr(0, l), s2.substr(0, l)) and isScramble(s1.substr(l), s2.substr(l))) {
+            if (isScramble(s1.substr(0, l), s2.substr(0, l)) and isScramble(s1.substr(l), s2.substr(l))
+            )
+            {
                 return true;
             }
-            if (isScramble(s1.substr(0, l), s2.substr(len - l)) and isScramble(s1.substr(l), s2.substr(0, len - l))) {
+            if (isScramble(s1.substr(0, l), s2.substr(len - l)) and isScramble(s1.substr(l), s2.substr(0, len - l))
+            )
+            {
                 return true;
             }
         }

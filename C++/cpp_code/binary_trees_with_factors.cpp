@@ -47,17 +47,21 @@ class Solution {
 private:
     int mod = 1e9 + 7;
 
-    void buildTrees(vector<int>& A, unordered_map<int, long>& count, int index) {
+    void buildTrees(vector<int> &A, unordered_map<int, long> &count, int index) {
         count[A[index]] += 1;
         for (int i = 0; i < index; i++) {
-            if (A[index] % A[i] == 0 and count.find(A[index] / A[i]) != count.end()) {
+            if (A[index] % A[i] == 0 and
+            count.find(A[index] / A[i]) != count.end()
+            )
+            {
                 count[A[index]] += count[A[i]] * count[A[index] / A[i]];
                 count[A[index]] %= mod;
             }
         }
     }
+
 public:
-    int numFactoredBinaryTrees(vector<int>& A) {
+    int numFactoredBinaryTrees(vector<int> &A) {
         sort(A.begin(), A.end());
         unordered_map<int, long> count;
         for (int i = 0; i < A.size(); i++) {
@@ -66,7 +70,7 @@ public:
 
         int result = 0;
         for (auto it = count.begin(); it != count.end(); it++) {
-            result += it -> second;
+            result += it->second;
             result %= mod;
         }
         return result;

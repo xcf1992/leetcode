@@ -72,7 +72,7 @@ public:
         }
 
         int result = 0;
-        for (int i = binary.size() - 1; i >= 0 ; i--) {
+        for (int i = binary.size() - 1; i >= 0; i--) {
             result = result * 2 + 1 - (binary[i] - '0');
         }
         return result;

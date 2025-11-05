@@ -52,6 +52,7 @@ private:
     vector<int> array;
     int start;
     int count;
+
 public:
     /* Initialize your data structure here. Set the size of the deque to be k.*/
     MyCircularDeque(int k) {
@@ -67,8 +68,7 @@ public:
         }
         if (start == 0) {
             start = array.size() - 1;
-        }
-        else {
+        } else {
             start -= 1;
         }
         array[start] = value;
@@ -125,6 +125,7 @@ public:
         return count == array.size();
     }
 };
+
 /*
 * Your MyCircularDeque object will be instantiated and called as such:
 * MyCircularDeque obj = new MyCircularDeque(k);

@@ -55,12 +55,10 @@ public:
             char c = s[i];
             if (c == '(') {
                 stk.push(i);
-            }
-            else if (c == ')') {
+            } else if (c == ')') {
                 if (stk.empty()) {
                     s[i] = '*';
-                }
-                else {
+                } else {
                     stk.pop();
                 }
             }
@@ -72,7 +70,7 @@ public:
         }
 
         string result = "";
-        for (char c : s) {
+        for (char c: s) {
             if (c != '*') {
                 result.push_back(c);
             }

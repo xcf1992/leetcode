@@ -74,22 +74,36 @@ since we cannot jump to any index after that.
 */
 class Solution {
 private:
-    int dfs(vector<int>& memo, vector<int>& arr, int d, int index) {
+    int dfs(vector<int> &memo, vector<int> &arr, int d, int index) {
         if (memo[index] != -1) {
             return memo[index];
         }
 
         memo[index] = 0;
-        for (int i = index + 1; i < arr.size() and i <= index + d and arr[i] < arr[index]; ++i) {
+        for (int i = index + 1; i < arr.size() and i
+        <=
+        index + d
+        and arr[i]
+        <
+        arr[index];
+        ++i
+        )
+        {
             memo[index] = max(memo[index], 1 + dfs(memo, arr, d, i));
         }
-        for (int i = index - 1; i >= max(0, index - d) and arr[i] < arr[index]; --i) {
+        for (int i = index - 1; i >= max(0, index - d) and arr[i]
+        <
+        arr[index];
+        --i
+        )
+        {
             memo[index] = max(memo[index], 1 + dfs(memo, arr, d, i));
         }
         return memo[index];
     }
+
 public:
-    int maxJumps(vector<int>& arr, int d) {
+    int maxJumps(vector<int> &arr, int d) {
         int n = arr.size();
         vector<int> memo(n, -1);
         int result = INT_MIN;

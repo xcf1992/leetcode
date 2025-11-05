@@ -30,7 +30,7 @@ using namespace std;
 
 class Solution {
 private:
-    void find(int target, int curSum, int start, int count, int& result) {
+    void find(int target, int curSum, int start, int count, int &result) {
         if (curSum == target) {
             result = min(result, count);
         }
@@ -43,6 +43,7 @@ private:
             curSum -= i * i;
         }
     }
+
 public:
     int numSquares(int n) {
         int result = n;

@@ -81,7 +81,7 @@ but we need to convert it to index1.
 */
 class Solution {
 public:
-    int hIndex(vector<int>& citations) {
+    int hIndex(vector<int> &citations) {
         int n = citations.size();
         int left = 0;
         int right = n - 1;
@@ -89,12 +89,15 @@ public:
             int mid = (right - left) / 2 + left;
             if (citations[mid] < n - mid) {
                 left = mid + 1;
-            }
-            else {
+            } else {
                 right = mid;
             }
         }
-        if (left < n and citations[left] >= n - left) {
+        if (left < n and citations[left]
+        >=
+        n - left
+        )
+        {
             return n - left;
         }
         return 0;
@@ -103,13 +106,12 @@ public:
 
 class Solution1 {
 public:
-    int hIndex(vector<int>& citations) {
+    int hIndex(vector<int> &citations) {
         int index = 0;
         for (int i = citations.size() - 1; i >= 0; i--) {
             if (citations[i] > index) {
                 index += 1;
-            }
-            else {
+            } else {
                 break;
             }
         }

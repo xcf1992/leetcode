@@ -50,14 +50,18 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> prevPermOpt1(vector<int>& A) {
+    vector<int> prevPermOpt1(vector<int> &A) {
         int n = A.size();
         if (n <= 1) {
             return A;
         }
 
         int left = n - 2;
-        while (left >= 0 and A[left] <= A[left + 1]) {
+        while (left >= 0 and A[left]
+        <=
+        A[left + 1]
+        )
+        {
             left -= 1;
         }
         if (left < 0) {

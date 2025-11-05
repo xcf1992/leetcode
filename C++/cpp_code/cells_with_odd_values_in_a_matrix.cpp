@@ -41,10 +41,10 @@ using namespace std;
 
 class Solution {
 public:
-    int oddCells(int n, int m, vector<vector<int>>& indices) {
+    int oddCells(int n, int m, vector<vector<int> > &indices) {
         vector<int> row(n, 0);
         vector<int> col(m, 0);
-        for (vector<int>& index : indices) {
+        for (vector<int> &index: indices) {
             row[index[0]] += 1;
             col[index[1]] += 1;
         }

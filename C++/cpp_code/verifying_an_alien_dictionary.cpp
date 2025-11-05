@@ -52,7 +52,9 @@ private:
     bool comeBefore(string word1, string word2, vector<int> letter) {
         int i = 0;
         int j = 0;
-        while (i < word1.size() and j < word2.size()) {
+        while (i < word1.size() and j<word2.size()
+        )
+        {
             if (letter[word1[i] - 'a'] > letter[word2[j] - 'a']) {
                 return false;
             }
@@ -65,16 +67,18 @@ private:
         }
         return i == word1.size();
     }
+
 public:
-    bool isAlienSorted(vector<string>& words, string order) {
+    bool isAlienSorted(vector<string> &words, string order) {
         vector<int> letter(26, -1);
         for (int i = 0; i < order.size(); i++) {
             letter[order[i] - 'a'] = i;
         }
 
-        for (int i = 1; i < words.size(); i++) if (!comeBefore(words[i - 1], words[i], letter)) {
-            return false;
-        }
+        for (int i = 1; i < words.size(); i++)
+            if (!comeBefore(words[i - 1], words[i], letter)) {
+                return false;
+            }
         return true;
     }
 };

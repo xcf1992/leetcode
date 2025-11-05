@@ -42,21 +42,22 @@ using namespace std;
 
 class Solution {
 private:
-    void traverse(TreeNode* root, TreeNode*& pre) {
+    void traverse(TreeNode *root, TreeNode *&pre) {
         if (root == nullptr) {
             return;
         }
 
-        traverse(root -> right, pre);
+        traverse(root->right, pre);
         if (pre != nullptr) {
-            (root -> val) += (pre -> val);
+            (root->val) += (pre->val);
         }
         pre = root;
-        traverse(root -> left, pre);
+        traverse(root->left, pre);
     }
+
 public:
-    TreeNode* bstToGst(TreeNode* root) {
-        TreeNode* pre = nullptr;
+    TreeNode *bstToGst(TreeNode *root) {
+        TreeNode *pre = nullptr;
         traverse(root, pre);
         return root;
     }

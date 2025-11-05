@@ -88,7 +88,7 @@ Then we calculate the total distance as the sum of two independent 1D problems.
 */
 class Solution {
 private:
-    int calculate(vector<int>& position) {
+    int calculate(vector<int> &position) {
         int result = 0;
         int middle = position[position.size() / 2];
         for (int i = 0; i < position.size(); i++) {
@@ -98,7 +98,7 @@ private:
     }
 
 public:
-    int minTotalDistance(vector<vector<int>>& grid) {
+    int minTotalDistance(vector<vector<int> > &grid) {
         vector<int> row, col;
         for (int i = 0; i < grid.size(); i++) {
             for (int j = 0; j < grid[0].size(); j++) {

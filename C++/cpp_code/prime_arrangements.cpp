@@ -48,16 +48,18 @@ private:
 
         vector<bool> isPrime(n + 1, true);
         isPrime[1] = false;
-        for (int i = 2; i <= n; ++i) if (isPrime[i]) {
-            for (int j = i; i * j <= n; ++j) {
-                isPrime[i * j] = false;
+        for (int i = 2; i <= n; ++i)
+            if (isPrime[i]) {
+                for (int j = i; i * j <= n; ++j) {
+                    isPrime[i * j] = false;
+                }
             }
-        }
 
         int result = 0;
-        for (int i = 1; i <= n; ++i) if (isPrime[i]) {
-            result += 1;
-        }
+        for (int i = 1; i <= n; ++i)
+            if (isPrime[i]) {
+                result += 1;
+            }
         return result;
     }
 
@@ -72,6 +74,7 @@ private:
         }
         return result;
     }
+
 public:
     int numPrimeArrangements(int n) {
         int k = getPrimeCount(n);

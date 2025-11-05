@@ -84,14 +84,15 @@ class Node {
 public:
     bool val;
     bool isLeaf;
-    Node* topLeft;
-    Node* topRight;
-    Node* bottomLeft;
-    Node* bottomRight;
+    Node *topLeft;
+    Node *topRight;
+    Node *bottomLeft;
+    Node *bottomRight;
 
-    Node() {}
+    Node() {
+    }
 
-    Node(bool _val, bool _isLeaf, Node* _topLeft, Node* _topRight, Node* _bottomLeft, Node* _bottomRight) {
+    Node(bool _val, bool _isLeaf, Node *_topLeft, Node *_topRight, Node *_bottomLeft, Node *_bottomRight) {
         val = _val;
         isLeaf = _isLeaf;
         topLeft = _topLeft;
@@ -99,50 +100,81 @@ public:
         bottomLeft = _bottomLeft;
         bottomRight = _bottomRight;
     }
- };
+};
 
 class Solution {
 private:
-    bool isLeaf(Node* node) {
-        Node* topLeft = node -> topLeft;
-        Node* topRight = node -> topRight;
-        Node* botLeft = node -> bottomLeft;
-        Node* botRight = node -> bottomRight;
+    bool isLeaf(Node *node) {
+        Node *topLeft = node->topLeft;
+        Node *topRight = node->topRight;
+        Node *botLeft = node->bottomLeft;
+        Node *botRight = node->bottomRight;
 
-        if (topLeft == nullptr and topRight == nullptr
-            and botLeft == nullptr and botRight == nullptr) {
+        if (topLeft == nullptr and topRight
+        ==
+        nullptr
+        and botLeft
+        ==
+        nullptr
+        and botRight
+        ==
+        nullptr
+        )
+        {
             return true;
         }
 
-        if (topLeft -> isLeaf and topRight -> isLeaf and botRight -> isLeaf and botLeft -> isLeaf and (
-            (topLeft -> val and topRight -> val and botLeft -> val and botRight -> val) or
-             !(topLeft -> val or topRight -> val or botLeft -> val or botRight -> val))) {
-                return true;
+        if (topLeft->isLeaf and
+        topRight->isLeaf
+        and
+        botRight->isLeaf
+        and
+        botLeft->isLeaf
+        and(
+            (topLeft->val and topRight->val and botLeft->val and botRight->val)
+        or
+        !(topLeft->val
+        or
+        topRight->val
+        or
+        botLeft->val
+        or
+        botRight->val
+        )
+        )
+        )
+        {
+            return true;
         }
         return false;
     }
+
 public:
-    Node* intersect(Node* quadTree1, Node* quadTree2) {
-        if (quadTree1 == nullptr or quadTree1 == nullptr) {
+    Node *intersect(Node *quadTree1, Node *quadTree2) {
+        if (quadTree1 == nullptr or quadTree1
+        ==
+        nullptr
+        )
+        {
             return quadTree1 == nullptr ? quadTree2 : quadTree1;
         }
 
-        if (quadTree1 -> isLeaf) {
-            return quadTree1 -> val ? quadTree1 : quadTree2;
+        if (quadTree1->isLeaf) {
+            return quadTree1->val ? quadTree1 : quadTree2;
         }
 
-        if (quadTree2 -> isLeaf) {
-            return quadTree2 -> val ? quadTree2 : quadTree1;
+        if (quadTree2->isLeaf) {
+            return quadTree2->val ? quadTree2 : quadTree1;
         }
 
-        quadTree1 -> topLeft = intersect(quadTree1 -> topLeft, quadTree2 -> topLeft);
-        quadTree1 -> topRight = intersect(quadTree1 -> topRight, quadTree2 -> topRight);
-        quadTree1 -> bottomLeft = intersect(quadTree1 -> bottomLeft, quadTree2 -> bottomLeft);
-        quadTree1 -> bottomRight = intersect(quadTree1 -> bottomRight, quadTree2 -> bottomRight);
+        quadTree1->topLeft = intersect(quadTree1->topLeft, quadTree2->topLeft);
+        quadTree1->topRight = intersect(quadTree1->topRight, quadTree2->topRight);
+        quadTree1->bottomLeft = intersect(quadTree1->bottomLeft, quadTree2->bottomLeft);
+        quadTree1->bottomRight = intersect(quadTree1->bottomRight, quadTree2->bottomRight);
 
         if (isLeaf(quadTree1)) {
-            quadTree1 -> isLeaf = true;
-            quadTree1 -> val = quadTree1 -> topLeft -> val;
+            quadTree1->isLeaf = true;
+            quadTree1->val = quadTree1->topLeft->val;
         }
         return quadTree1;
     }

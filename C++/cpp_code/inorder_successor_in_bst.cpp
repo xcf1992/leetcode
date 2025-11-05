@@ -36,27 +36,31 @@ using namespace std;
 
 class Solution {
 private:
-    TreeNode* leftMostNode(TreeNode* root) {
-        while (root -> left) {
-            root = root -> left;
+    TreeNode *leftMostNode(TreeNode *root) {
+        while (root->left) {
+            root = root->left;
         }
         return root;
     }
+
 public:
-    TreeNode* inorderSuccessor(TreeNode* root, TreeNode* p) {
-        if (p -> right) {
-            return leftMostNode(p -> right);
+    TreeNode *inorderSuccessor(TreeNode *root, TreeNode *p) {
+        if (p->right) {
+            return leftMostNode(p->right);
         }
 
-        TreeNode* suc = nullptr;
-        TreeNode* cur = root;
-        while (cur and cur -> val != p -> val) {
-            if (p -> val < cur -> val) {
+        TreeNode *suc = nullptr;
+        TreeNode *cur = root;
+        while (cur and cur
+        ->
+        val != p->val
+        )
+        {
+            if (p->val < cur->val) {
                 suc = cur;
-                cur = cur -> left;
-            }
-            else if (p -> val > cur -> val) {
-                cur = cur -> right;
+                cur = cur->left;
+            } else if (p->val > cur->val) {
+                cur = cur->right;
             }
         }
         return suc;

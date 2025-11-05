@@ -105,7 +105,7 @@ Return k.
  */
 class Solution {
 public:
-    int minZeroArray(vector<int>& nums, vector<vector<int>>& queries) {
+    int minZeroArray(vector<int> &nums, vector<vector<int> > &queries) {
         int n = nums.size();
         int sum = 0;
         int res = 0;
@@ -133,7 +133,7 @@ public:
 
 class Solution1 {
 private:
-    bool valid(vector<int>& nums, vector<int>& prefix_sum) {
+    bool valid(vector<int> &nums, vector<int> &prefix_sum) {
         int sum = 0;
         for (int i = 0; i < nums.size(); i++) {
             sum += prefix_sum[i];
@@ -144,7 +144,7 @@ private:
         return true;
     }
 
-    vector<int> build_prefix_sum(vector<int>& nums, vector<vector<int>>& queries, int cnt) {
+    vector<int> build_prefix_sum(vector<int> &nums, vector<vector<int> > &queries, int cnt) {
         int n = nums.size();
         vector<int> prefix_sum(n + 1, 0);
         for (int j = 0; j < cnt; j++) {
@@ -153,8 +153,9 @@ private:
         }
         return prefix_sum;
     }
+
 public:
-    int minZeroArray(vector<int>& nums, vector<vector<int>>& queries) {
+    int minZeroArray(vector<int> &nums, vector<vector<int> > &queries) {
         int left = 0;
         int right = queries.size();
 
@@ -168,8 +169,7 @@ public:
             prefix_sum = build_prefix_sum(nums, queries, mid);
             if (valid(nums, prefix_sum)) {
                 right = mid - 1;
-            }
-            else {
+            } else {
                 left = mid + 1;
             }
         }

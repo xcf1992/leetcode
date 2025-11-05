@@ -42,7 +42,7 @@ using namespace std;
 
 class Solution {
 public:
-    string optimalDivision(vector<int>& nums) {
+    string optimalDivision(vector<int> &nums) {
         int n = nums.size();
         if (n == 0) {
             return "";

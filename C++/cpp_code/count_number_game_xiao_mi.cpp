@@ -74,7 +74,7 @@ using namespace std;
 */
 class Solution {
 private:
-    bool firstOneWin(int num, unordered_map<int, bool>& dp, unordered_set<int>& fibonacci) {
+    bool firstOneWin(int num, unordered_map<int, bool> &dp, unordered_set<int> &fibonacci) {
         if (dp.find(num) != dp.end()) {
             return dp[num];
         }
@@ -113,6 +113,7 @@ private:
         }
         return result;
     }
+
 public:
     string countNumberGame(int num1, int num2) {
         int num = max(num1, num2);

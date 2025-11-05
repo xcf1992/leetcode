@@ -39,25 +39,41 @@ using namespace std;
 
 class Solution {
 public:
-    bool validateStackSequences(vector<int>& pushed, vector<int>& popped) {
+    bool validateStackSequences(vector<int> &pushed, vector<int> &popped) {
         stack<int> stk;
         int pu = 0;
         int po = 0;
-        while (pu < pushed.size() and po < popped.size()) {
-            if (!stk.empty() and po < popped.size() and stk.top() == popped[po]) {
+        while (pu < pushed.size() and po<popped.size()
+        )
+        {
+            if (!stk.empty() and po<popped.size() and stk.top() == popped[po]
+            )
+            {
                 stk.pop();
                 po += 1;
             }
-            else {
+            else
+            {
                 stk.push(pushed[pu]);
                 pu += 1;
             }
         }
 
-        while (po < popped.size() and !stk.empty() and stk.top() == popped[po]) {
+        while (po < popped.size() and
+        !stk.empty()
+        and
+        stk.top() == popped[po]
+        )
+        {
             po += 1;
             stk.pop();
         }
-        return stk.empty() and pu == pushed.size() and po == popped.size();
+        return stk.empty()
+        and pu
+        ==
+        pushed.size()
+        and po
+        ==
+        popped.size();
     }
 };

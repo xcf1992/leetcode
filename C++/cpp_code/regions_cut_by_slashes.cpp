@@ -104,11 +104,11 @@ private:
     int count = 0;
     int n = 0;
 
-    int find(int x, vector<int>& parent) {
+    int find(int x, vector<int> &parent) {
         return parent[x] == -1 ? x : find(parent[x], parent);
     }
 
-    void unin(int x, int y, vector<int>& parent) {
+    void unin(int x, int y, vector<int> &parent) {
         int px = find(x, parent);
         int py = find(y, parent);
         if (px != py) {
@@ -120,8 +120,9 @@ private:
     int index(int i, int j, int k) {
         return (i * n + j) * 4 + k;
     }
+
 public:
-    int regionsBySlashes(vector<string>& grid) {
+    int regionsBySlashes(vector<string> &grid) {
         n = grid.size();
         count = n * n * 4;
         vector<int> parent(count, -1);

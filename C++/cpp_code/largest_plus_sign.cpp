@@ -80,13 +80,13 @@ using namespace std;
 
 class Solution {
 public:
-    int orderOfLargestPlusSign(int N, vector<vector<int>>& mines) {
-        vector<vector<int>> grid(N, vector<int>(N, 1));
-        for (vector<int>& mine : mines) {
+    int orderOfLargestPlusSign(int N, vector<vector<int> > &mines) {
+        vector<vector<int> > grid(N, vector<int>(N, 1));
+        for (vector<int> &mine: mines) {
             grid[mine[0]][mine[1]] = 0;
         }
 
-        vector<vector<int>> dp(N, vector<int>(N, N));
+        vector<vector<int> > dp(N, vector<int>(N, N));
         for (int i = 0; i < N; ++i) {
             int left = 0;
             int right = 0;
@@ -108,8 +108,8 @@ public:
         }
 
         int result = 0;
-        for (vector<int>& row : dp) {
-            for (int count : row) {
+        for (vector<int> &row: dp) {
+            for (int count: row) {
                 result = max(result, count);
             }
         }
@@ -119,9 +119,9 @@ public:
 
 class Solution1 {
 public:
-    int orderOfLargestPlusSign(int N, vector<vector<int>>& mines) {
-        vector<vector<int>> grid(N, vector<int>(N, N));
-        for (auto& mine : mines) {
+    int orderOfLargestPlusSign(int N, vector<vector<int> > &mines) {
+        vector<vector<int> > grid(N, vector<int>(N, N));
+        for (auto &mine: mines) {
             grid[mine[0]][mine[1]] = 0;
         }
 
@@ -136,8 +136,8 @@ public:
         }
 
         int result = 0;
-        for (vector<int>& row : grid) {
-            for (int& num : row) {
+        for (vector<int> &row: grid) {
+            for (int &num: row) {
                 result = max(result, num);
             }
         }

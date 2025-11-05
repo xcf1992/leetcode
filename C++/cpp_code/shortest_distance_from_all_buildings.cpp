@@ -40,13 +40,18 @@ If it is not possible to build such house according to the above rules, return -
 #include <numeric>
 using namespace std;
 
-class Solution { // 17.08%
+class Solution {
+    // 17.08%
 private:
     int m = 0;
     int n = 0;
 
-    void update(int house, int distance, int posI, int posJ, vector<vector<int>>& shortest, unordered_map<int, unordered_set<int>>& visited, queue<vector<int>>& bfs, vector<vector<int>>& grid) {
-        if (posI < 0 or posJ < 0 or posI >= m or posJ >= n or grid[posI][posJ] != 0) {
+    void update(int house, int distance, int posI, int posJ, vector<vector<int> > &shortest,
+                unordered_map<int, unordered_set<int> > &visited, queue<vector<int> > &bfs,
+                vector<vector<int> > &grid) {
+        if (posI < 0 or posJ<0 or posI >= m or posJ >= n or grid[posI][posJ] != 0
+        )
+        {
             return;
         }
 
@@ -59,12 +64,13 @@ private:
         visited[newPos].insert(house);
         bfs.push({house, distance, newPos});
     }
+
 public:
-    int shortestDistance(vector<vector<int>>& grid) {
+    int shortestDistance(vector<vector<int> > &grid) {
         m = grid.size();
         n = grid[0].size();
-        unordered_map<int, unordered_set<int>> visited; // pos has been visited by house x
-        queue<vector<int>> bfs; // insert pair <house, distance, pos> the distance house x reach pos
+        unordered_map<int, unordered_set<int> > visited; // pos has been visited by house x
+        queue<vector<int> > bfs; // insert pair <house, distance, pos> the distance house x reach pos
         int house = 0;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
@@ -76,7 +82,7 @@ public:
             }
         }
 
-        vector<vector<int>> shortest(m, vector<int>(n, 0));
+        vector<vector<int> > shortest(m, vector<int>(n, 0));
         vector<int> diff = {0, 1, 0, -1, 0};
         while (!bfs.empty()) {
             int curHouse = bfs.front()[0];
@@ -93,7 +99,11 @@ public:
         int result = INT_MAX;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if (grid[i][j] == 0 and visited[i * n + j].size() == house) {
+                if (grid[i][j] == 0 and visited[i * n + j]
+                .
+                size() == house
+                )
+                {
                     result = min(result, shortest[i][j]);
                 }
             }

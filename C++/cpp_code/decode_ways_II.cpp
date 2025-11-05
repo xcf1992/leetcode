@@ -55,19 +55,20 @@ But the time complexity is still O(n).
 class Solution {
 private:
     int MOD = 1e9 + 7;
+
     int helper(string s) {
         if (s.size() == 1) {
             if (s[0] == '*') {
                 return 9;
             }
-            return s[0] == '0'? 0 : 1;
+            return s[0] == '0' ? 0 : 1;
         }
         // 11-26, except 20 because '*' is 1-9
         if (s == "**") {
             return 15;
         }
 
-        if (s[1] =='*') {
+        if (s[1] == '*') {
             if (s[0] == '1') {
                 return 9;
             }
@@ -78,8 +79,17 @@ private:
             return s[1] <= '6' ? 2 : 1;
         }
         // if two digits, it has to be in [10 26]; no leading 0
-        return (stoi(s) >= 10 and stoi(s) <= 26) ? 1 : 0;
+        return (stoi(s) >= 10
+        and stoi(s)
+        <=
+        26
+        )
+        ?
+        1
+        :
+        0;
     }
+
 public:
     int numDecodings(string s) {
         int n = s.size();

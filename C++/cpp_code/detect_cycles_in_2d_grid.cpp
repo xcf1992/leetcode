@@ -51,29 +51,38 @@ using namespace std;
 
 class Solution {
 private:
-    vector<int> dir = { 0, 1, 0, -1, 0 };
+    vector<int> dir = {0, 1, 0, -1, 0};
 
-    bool isCyclic(vector<vector<char>>& grid, vector<vector<bool>>& visited, int i, int j, int x, int y) {
+    bool isCyclic(vector<vector<char> > &grid, vector<vector<bool> > &visited, int i, int j, int x, int y) {
         visited[i][j] = true;
         for (int d = 0; d < 4; ++d) {
             int a = i + dir[d];
-            int b = j + dir[d+1];
-            if (a >= 0 and a < grid.size() and b >= 0 and b < grid[0].size() and grid[a][b] == grid[i][j] and !(x == a and y == b)) {
-                if(visited[a][b] or isCyclic(grid, visited, a,b,i,j)) {
+            int b = j + dir[d + 1];
+            if (a >= 0 and a<grid.size() and b >= 0 and b < grid[0].size() and grid[a][b] == grid[i][j] and !(x == a and
+                y == b
+            )
+            )
+            {
+                if (visited[a][b] or isCyclic(grid, visited, a, b, i, j)
+                )
+                {
                     return true;
                 }
             }
         }
         return false;
     }
+
 public:
-    bool containsCycle(vector<vector<char>>& grid) {
+    bool containsCycle(vector<vector<char> > &grid) {
         int n = grid.size();
         int m = grid[0].size();
-        vector<vector<bool>> visited(n, vector<bool>(m, false));
+        vector<vector<bool> > visited(n, vector<bool>(m, false));
         for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < m; ++j) if (!visited[i][j] and isCyclic(grid, visited, i, j, -1, -1)) {
-                    return true;
+            for (int j = 0; j < m; ++j) if (!visited[i][j] and isCyclic(grid, visited, i, j, -1, -1)
+            )
+            {
+                return true;
             }
         }
         return false;

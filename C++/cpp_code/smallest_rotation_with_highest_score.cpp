@@ -107,7 +107,7 @@ Hope this could help.
 */
 class Solution {
 public:
-    int bestRotation(vector<int>& A) {
+    int bestRotation(vector<int> &A) {
         int n = A.size();
         vector<int> change(n, 0);
         for (int i = 0; i < n; i++) {

@@ -65,10 +65,10 @@ using namespace std;
 
 class Solution {
 public:
-    bool isZeroArray(vector<int>& nums, vector<vector<int>>& queries) {
+    bool isZeroArray(vector<int> &nums, vector<vector<int> > &queries) {
         int n = nums.size();
         vector<int> prefix_sum(n + 1, 0);
-        for (vector<int>& query : queries) {
+        for (vector<int> &query: queries) {
             prefix_sum[query[0]] += 1;
             prefix_sum[query[1] + 1] -= 1;
         }

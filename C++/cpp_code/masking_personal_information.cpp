@@ -115,9 +115,13 @@ private:
         string countryCode(digitCount - 10, '*');
         return "+" + countryCode + "-***-***-" + result;
     }
+
 public:
     string maskPII(string S) {
-        if (S.find('@') != string::npos and S.find('.') != string::npos) {
+        if (S.find('@') != string::npos and
+        S.find('.') != string::npos
+        )
+        {
             return maskEmail(S);
         }
         return maskPhoneNumber(S);

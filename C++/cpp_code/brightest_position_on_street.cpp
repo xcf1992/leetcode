@@ -68,7 +68,7 @@ class Solution {
 public:
     int brightestPosition(vector<vector<int> > &lights) {
         vector<vector<int> > pos;
-        for (const vector<int> &l : lights) {
+        for (const vector<int> &l: lights) {
             pos.push_back({l[0] - l[1], 1});
             pos.push_back({l[0] + l[1] + 1, -1});
         }
@@ -80,7 +80,7 @@ public:
         int rst = 0;
         int cur_bright = 0;
         int max_bright = INT_MIN;
-        for (const vector<int> &cur : pos) {
+        for (const vector<int> &cur: pos) {
             cur_bright += cur[1];
             if (cur_bright > max_bright) {
                 max_bright = cur_bright;

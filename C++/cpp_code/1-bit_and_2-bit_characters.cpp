@@ -50,7 +50,7 @@ then the last character must have a size of 1 bit.
 */
 class Solution {
 public:
-    bool isOneBitCharacter(vector<int>& bits) {
+    bool isOneBitCharacter(vector<int> &bits) {
         int i = 0;
         int n = bits.size();
         while (i < n - 1) {

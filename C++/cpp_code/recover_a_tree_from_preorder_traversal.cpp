@@ -55,44 +55,53 @@ using namespace std;
 
 class Solution {
 private:
-    int getNumber(string S, int& start) {
+    int getNumber(string S, int &start) {
         int num = 0;
-        while (start < S.size() and isdigit(S[start])) {
+        while (start < S.size() and isdigit(S[start])
+        )
+        {
             num = num * 10 + (S[start] - '0');
             start += 1;
         }
         return num;
     }
+
 public:
-    TreeNode* recoverFromPreorder(string S) {
+    TreeNode *recoverFromPreorder(string S) {
         int n = S.size();
         if (n == 0) {
             return nullptr;
         }
 
-        stack<pair<int, TreeNode*>> stk;
+        stack<pair<int, TreeNode *> > stk;
         int start = 0;
         int curNum = getNumber(S, start);
-        TreeNode* root = new TreeNode(curNum);
+        TreeNode *root = new TreeNode(curNum);
         stk.push({0, root});
         while (start < n) {
             int height = 0;
-            while (start < n and S[start] == '-') {
+            while (start < n and S[start]
+            ==
+            '-'
+            )
+            {
                 start += 1;
                 height += 1;
             }
             curNum = getNumber(S, start);
-            TreeNode* curNode = new TreeNode(curNum);
+            TreeNode *curNode = new TreeNode(curNum);
 
-            while (!stk.empty() and stk.top().first != height - 1) {
+            while (!stk.empty() and
+            stk.top().first != height - 1
+            )
+            {
                 stk.pop();
             }
-            TreeNode* parent = stk.top().second;
-            if (parent -> left == nullptr) {
-                parent -> left = curNode;
-            }
-            else {
-                parent -> right = curNode;
+            TreeNode *parent = stk.top().second;
+            if (parent->left == nullptr) {
+                parent->left = curNode;
+            } else {
+                parent->right = curNode;
             }
             stk.push({height, curNode});
         }

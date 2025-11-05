@@ -35,27 +35,27 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+    vector<vector<int> > zigzagLevelOrder(TreeNode *root) {
         if (root == nullptr) {
             return {};
         }
 
-        vector<vector<int>> result;
-        queue<TreeNode*> bfs;
+        vector<vector<int> > result;
+        queue<TreeNode *> bfs;
         bfs.push(root);
         while (!bfs.empty()) {
             int curSize = bfs.size();
             vector<int> row;
             for (int i = 0; i < curSize; ++i) {
-                TreeNode* cur = bfs.front();
+                TreeNode *cur = bfs.front();
                 bfs.pop();
 
-                row.push_back(cur -> val);
-                if (cur -> left) {
-                    bfs.push(cur -> left);
+                row.push_back(cur->val);
+                if (cur->left) {
+                    bfs.push(cur->left);
                 }
-                if (cur -> right) {
-                    bfs.push(cur -> right);
+                if (cur->right) {
+                    bfs.push(cur->right);
                 }
             }
             result.push_back(row);

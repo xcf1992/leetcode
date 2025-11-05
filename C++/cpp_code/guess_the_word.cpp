@@ -89,12 +89,13 @@ where the worst case is max(the number of words with i matches)
 */
 class Solution {
 private:
-    int match(string& a, string& b){
+    int match(string &a, string &b) {
         int res = 0;
-        for(int i = 0; i < a.size(); i++)
+        for (int i = 0; i < a.size(); i++)
             res += a[i] == b[i] ? 1 : 0;
         return res;
     }
+
 public:
     /*
     * Anyone who doesn't know why checking 0 match instead of 1,2,3...6 matches, please take a look at this comment.
@@ -115,20 +116,23 @@ public:
 
     * https://leetcode.com/problems/guess-the-word/discuss/134087/C++-elimination-histogram-beats-Minimax
     */
-    void findSecretWord(vector<string>& wordlist, Master& master) {
-        for (int i = 0, x = 0; i < 10 and x < 6; ++i) {
+    void findSecretWord(vector<string> &wordlist, Master &master) {
+        for (int i = 0, x = 0; i < 10 and x<6;
+        ++i
+        )
+        {
             unordered_map<string, int> count;
-            for (string w1 : wordlist)
-                for (string w2 : wordlist)
+            for (string w1: wordlist)
+                for (string w2: wordlist)
                     if (match(w1, w2) == 0)
                         count[w1]++;
             pair<string, int> minimax = make_pair(wordlist[0], 1000);
-            for (string w : wordlist)
+            for (string w: wordlist)
                 if (count[w] <= minimax.second)
                     minimax = make_pair(w, count[w]);
             x = master.guess(minimax.first);
             vector<string> wordlist2;
-            for (string w : wordlist)
+            for (string w: wordlist)
                 if (match(minimax.first, w) == x)
                     wordlist2.push_back(w);
             wordlist = wordlist2;
@@ -138,17 +142,18 @@ public:
 
 class Solution2 {
 private:
-    int match(string& a, string& b) {
+    int match(string &a, string &b) {
         int res = 0;
-        for(int i = 0; i < a.size(); i++) {
+        for (int i = 0; i < a.size(); i++) {
             res += a[i] == b[i] ? 1 : 0;
         }
         return res;
     }
+
 public:
-    void findSecretWord(vector<string>& wordlist, Master& master) {
+    void findSecretWord(vector<string> &wordlist, Master &master) {
         vector<string> candidates = wordlist;
-        for (int i = 0; i < 10; i++){
+        for (int i = 0; i < 10; i++) {
             string s = candidates[rand() % candidates.size()];
 
             int x = master.guess(s);
@@ -159,7 +164,11 @@ public:
             //candidates =  neighbors with match x intersect candidates
             vector<string> intersect;
             for (auto w: wordlist) {
-                if (match(w, s) == x and find(candidates.begin(), candidates.end(), w) != candidates.end()) {
+                if (match(w, s) == x and find(candidates.begin(), candidates.end(), w)
+                !=
+                candidates.end()
+                )
+                {
                     intersect.push_back(w);
                 }
             }

@@ -62,16 +62,20 @@ and the inner-most loop performs the calculation max_{j > i}(average(i, j) + dp(
 */
 class Solution {
 public:
-    double largestSumOfAverages(vector<int>& A, int K) {
+    double largestSumOfAverages(vector<int> &A, int K) {
         int n = A.size();
-        if (n == 0 or K == 0) {
+        if (n == 0 or K
+        ==
+        0
+        )
+        {
             return 0;
         }
 
-        vector<vector<double>> dp(K + 1, vector<double>(n, 0.0));
+        vector<vector<double> > dp(K + 1, vector<double>(n, 0.0));
         vector<int> preSum;
         preSum.push_back(A[0]);
-        for(int i = 1; i < n; i++) {
+        for (int i = 1; i < n; i++) {
             preSum.push_back(A[i] + preSum.back());
         }
 
@@ -79,7 +83,7 @@ public:
         for (int k = 1; k <= K; k++) {
             for (int i = k - 1; i < n; i++) {
                 if (k == 1) {
-                    dp[k][i] = double (preSum[i]) / (i + 1);
+                    dp[k][i] = double(preSum[i]) / (i + 1);
                     continue;
                 }
                 // since we are going to split the first i number into k groups

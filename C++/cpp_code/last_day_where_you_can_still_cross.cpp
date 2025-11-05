@@ -77,13 +77,13 @@ public:
 private:
     vector<int> dir = {0, 1, 0, -1, 0};
 
-    bool can_cross(vector<vector<int>> &cells, int row, int col, int day) {
-        vector<vector<int>> grid(row, vector<int>(col, 0));
+    bool can_cross(vector<vector<int> > &cells, int row, int col, int day) {
+        vector<vector<int> > grid(row, vector<int>(col, 0));
         for (int i = 0; i < day; ++i) {
             grid[cells[i][0] - 1][cells[i][1] - 1] = 1;
         }
 
-        queue<pair<int, int>> bfs;
+        queue<pair<int, int> > bfs;
         for (int j = 0; j < col; ++j) {
             if (grid[0][j] == 0) {
                 bfs.push(make_pair(0, j));

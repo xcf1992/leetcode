@@ -69,7 +69,7 @@ because "hi" will approach and sit at the right spot anyway.
 */
 class Solution {
 public:
-    int kthSmallest(vector<vector<int>>& matrix, int k) {
+    int kthSmallest(vector<vector<int> > &matrix, int k) {
         int n = matrix.size();
         int left = matrix[0][0];
         int right = matrix[n - 1][n - 1];
@@ -83,8 +83,7 @@ public:
 
             if (smaller < k) {
                 left = middle + 1;
-            }
-            else {
+            } else {
                 right = middle;
             }
         }

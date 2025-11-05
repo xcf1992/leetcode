@@ -63,7 +63,7 @@ So we can group connected nodes together while traversing once.
  */
 class Solution {
 public:
-    vector<bool> pathExistenceQueries(int n, vector<int>& nums, int maxDiff, vector<vector<int>>& queries) {
+    vector<bool> pathExistenceQueries(int n, vector<int> &nums, int maxDiff, vector<vector<int> > &queries) {
         vector<int> group(n, 0);
         int cur_group = 0;
         for (int i = 1; i < nums.size(); ++i) {
@@ -74,7 +74,7 @@ public:
         }
 
         vector<bool> result;
-        for (const vector<int>& q : queries) {
+        for (const vector<int> &q: queries) {
             result.push_back(group[q[0]] == group[q[1]]);
         }
         return result;

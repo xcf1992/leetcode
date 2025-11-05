@@ -38,16 +38,16 @@ using namespace std;
 
 class Solution {
 public:
-    int minimumLengthEncoding(vector<string>& words) {
+    int minimumLengthEncoding(vector<string> &words) {
         unordered_set<string> encodedWords(words.begin(), words.end());
-        for (string word : words) {
+        for (string word: words) {
             for (int i = 1; i < word.size(); i++) {
                 encodedWords.erase(word.substr(i));
             }
         }
 
         int result = encodedWords.size();
-        for (string word : encodedWords) {
+        for (string word: encodedWords) {
             result += word.size();
         }
         return result;

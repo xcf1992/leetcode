@@ -41,7 +41,7 @@ we can find it by searching for something we've inserted starting with "t#te".
 */
 struct Node {
     int weight;
-    vector<Node*> next;
+    vector<Node *> next;
 
     Node() {
         weight = -1;
@@ -51,31 +51,32 @@ struct Node {
 
 class WordFilter {
 private:
-    Node* root;
+    Node *root;
 
     void insert(string word, int weight) {
-        Node* cur = root;
-        for (char ch : word) {
+        Node *cur = root;
+        for (char ch: word) {
             int pos = ch - 'a';
-            if (cur -> next[pos] == nullptr) {
-                cur -> next[pos] = new Node();
+            if (cur->next[pos] == nullptr) {
+                cur->next[pos] = new Node();
             }
-            cur = cur -> next[pos];
-            cur -> weight = weight;
+            cur = cur->next[pos];
+            cur->weight = weight;
         }
     }
 
     int search(string word) {
-        Node* cur = root;
-        for (char ch : word) {
+        Node *cur = root;
+        for (char ch: word) {
             int pos = ch - 'a';
-            if (cur -> next[pos] == nullptr) {
+            if (cur->next[pos] == nullptr) {
                 return -1;
             }
-            cur = cur -> next[pos];
+            cur = cur->next[pos];
         }
-        return cur -> weight;
+        return cur->weight;
     }
+
 public:
     WordFilter(vector<string> words) {
         root = new Node();
@@ -92,6 +93,7 @@ public:
         return search(suffix + "{" + prefix);
     }
 };
+
 /*
 * Your WordFilter object will be instantiated and called as such:
 * WordFilter obj = new WordFilter(words);

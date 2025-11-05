@@ -46,8 +46,9 @@ in each group we always try to put the most frequent letter first
 and try to make we only use each letter once in each group
 */
 struct mycompare {
-    bool operator()(pair<int, char>& a, pair<int, char>& b) {
-        return a.first < b.first or (a.first == b.first and a.second < b.second);
+    bool operator()(pair<int, char> &a, pair<int, char> &b) {
+        return a.first < b.first
+        or(a.first == b.first and a.second < b.second);
     }
 };
 
@@ -59,19 +60,19 @@ public:
         }
 
         unordered_map<char, int> dict;
-        for (char c : s) {
+        for (char c: s) {
             dict[c] += 1;
         }
 
-        priority_queue<pair<int, char>, vector<pair<int, char>>, mycompare> pq;
+        priority_queue<pair<int, char>, vector<pair<int, char> >, mycompare> pq;
         for (auto it = dict.begin(); it != dict.end(); ++it) {
-            pq.push({it -> second, it -> first});
+            pq.push({it->second, it->first});
         }
 
         int n = s.size();
         string result = "";
         while (!pq.empty()) {
-            vector<pair<int, int>> cache; // store used char during one while loop
+            vector<pair<int, int> > cache; // store used char during one while loop
             int count = min(k, n);
             for (int i = 0; i < count; ++i) {
                 if (pq.empty()) {
@@ -87,7 +88,7 @@ public:
                 }
                 n -= 1;
             }
-            for (auto p : cache) {
+            for (auto p: cache) {
                 pq.push(p);
             }
         }

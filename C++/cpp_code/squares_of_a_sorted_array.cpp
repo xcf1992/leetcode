@@ -36,7 +36,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> sortedSquares(vector<int>& A) {
+    vector<int> sortedSquares(vector<int> &A) {
         int n = A.size();
         vector<int> result;
         int left = 0;
@@ -45,8 +45,7 @@ public:
             if (abs(A[left]) < abs(A[right])) {
                 result.push_back(A[right] * A[right]);
                 right -= 1;
-            }
-            else {
+            } else {
                 result.push_back(A[left] * A[left]);
                 left += 1;
             }

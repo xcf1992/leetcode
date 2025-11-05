@@ -36,18 +36,21 @@ public:
     bool validWordAbbreviation(string word, string abbr) {
         int pos = 0;
         int cur = 0;
-        while (cur < word.size() and pos < abbr.size()) {
+        while (cur < word.size() and pos<abbr.size()
+        )
+        {
             if (abbr[pos] == '0') {
                 return false;
             }
             if (isdigit(abbr[pos])) {
                 int start = pos;
-                while (pos < abbr.size() and isdigit(abbr[pos])) {
+                while (pos < abbr.size() and isdigit(abbr[pos])
+                )
+                {
                     pos += 1;
                 }
                 cur += stoi(abbr.substr(start, pos - start));
-            }
-            else {
+            } else {
                 if (word[cur] != abbr[pos]) {
                     return false;
                 }
@@ -55,6 +58,9 @@ public:
                 pos += 1;
             }
         }
-        return cur == word.size() and pos == abbr.size();
+        return cur == word.size()
+        and pos
+        ==
+        abbr.size();
     }
 };

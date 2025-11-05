@@ -61,10 +61,10 @@ using namespace std;
 
 class Solution {
 public:
-    int shipWithinDays(vector<int>& weights, int D) {
+    int shipWithinDays(vector<int> &weights, int D) {
         int left = 0;
         int right = 0;
-        for (int w : weights) {
+        for (int w: weights) {
             left = max(left, w);
             right += w;
         }
@@ -73,20 +73,18 @@ public:
             int mid = left + (right - left) / 2;
             int bags = 1;
             int cur = 0;
-            for (int w : weights) {
+            for (int w: weights) {
                 if (cur + w > mid) {
                     bags += 1;
                     cur = w;
-                }
-                else {
+                } else {
                     cur += w;
                 }
             }
 
             if (bags > D) {
                 left = mid + 1;
-            }
-            else {
+            } else {
                 right = mid;
             }
         }

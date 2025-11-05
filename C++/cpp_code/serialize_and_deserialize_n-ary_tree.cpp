@@ -38,36 +38,45 @@ Do not use class member/global/static variables to store states. Your serialize 
 using namespace std;
 
 
- // Definition for a Node.
+// Definition for a Node.
 class Node {
 public:
     int val = NULL;
-    vector<Node*> children;
+    vector<Node *> children;
 
-    Node() {}
+    Node() {
+    }
 
-    Node(int _val, vector<Node*> _children) {
-    val = _val;
-    children = _children;
+    Node(int _val, vector<Node *> _children) {
+        val = _val;
+        children = _children;
     }
 };
 
 class Codec {
 private:
-    Node* decode(string data, int& pos) {
-        if (data[pos] == '(' and data[pos + 1] == ')') {
+    Node *decode(string data, int &pos) {
+        if (data[pos] == '(' and data[pos + 1]
+        ==
+        ')'
+        )
+        {
             pos += 1;
             return nullptr;
         }
 
-        Node* root = new Node();
+        Node *root = new Node();
         int value = 0;
         while (isdigit(data[pos])) {
             value = value * 10 + (data[pos] - '0');
             pos += 1;
         }
-        root -> val = value;
-        if (data[pos] == '(' and data[pos + 1] == ')') {
+        root->val = value;
+        if (data[pos] == '(' and data[pos + 1]
+        ==
+        ')'
+        )
+        {
             pos += 1;
             return root;
         }
@@ -75,22 +84,23 @@ private:
         pos += 1;
 
         while (data[pos] != ')') {
-            root -> children.push_back(decode(data, pos));
+            root->children.push_back(decode(data, pos));
             pos += 1;
         }
         return root;
     }
+
 public:
     // Encodes a tree to a single string.
-    string serialize(Node* root) {
+    string serialize(Node *root) {
         if (root == nullptr) {
             return "()";
         }
 
         string result = "";
-        result += to_string(root -> val);
+        result += to_string(root->val);
         result += "(";
-        for (Node* child : root -> children) {
+        for (Node *child: root->children) {
             result += serialize(child);
         }
         result += ")";
@@ -98,11 +108,12 @@ public:
     }
 
     // Decodes your encoded data to tree.
-    Node* deserialize(string data) {
+    Node *deserialize(string data) {
         int pos = 0;
         return decode(data, pos);
     }
 };
+
 // Your Codec object will be instantiated and called as such:
 // Codec codec;
 // codec.deserialize(codec.serialize(root));

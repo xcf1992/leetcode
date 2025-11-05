@@ -101,7 +101,7 @@ we do not need the value of A[i - k] when computing dp[i+1] in the next iteratio
 */
 class Solution {
 public:
-    int constrainedSubsetSum(vector<int>& A, int k) {
+    int constrainedSubsetSum(vector<int> &A, int k) {
         deque<int> q;
         int res = A[0];
         for (int i = 0; i < A.size(); ++i) {

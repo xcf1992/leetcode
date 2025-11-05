@@ -45,8 +45,12 @@ private:
     // cv:  {long}   cumulative value so far.
     // pv:  {long}   previous operand value.
     // op:  {char}   previous operator used.
-    void dfs(vector<string>& result, string& num, int& target, string cur, int pos, long cv, long pv, char op) {
-        if (pos == num.size() and cv == target) {
+    void dfs(vector<string> &result, string &num, int &target, string cur, int pos, long cv, long pv, char op) {
+        if (pos == num.size() and cv
+        ==
+        target
+        )
+        {
             result.push_back(cur);
             return;
         }
@@ -57,22 +61,21 @@ private:
             if (to_string(newVal).size() != newStr.size()) {
                 continue;
             }
-            
+
             dfs(result, num, target, cur + "+" + newStr, i, cv + newVal, newVal, '+');
             dfs(result, num, target, cur + "-" + newStr, i, cv - newVal, newVal, '-');
             // we will consider all the * sequence as one group, so we will pass down the previous operator op
             if (op == '+') {
                 dfs(result, num, target, cur + "*" + newStr, i, cv - pv + pv * newVal, pv * newVal, op);
-            }
-            else if (op == '-') {
+            } else if (op == '-') {
                 dfs(result, num, target, cur + "*" + newStr, i, cv + pv - pv * newVal, pv * newVal, op);
-            }
-            else {
+            } else {
                 // this will only happen we first assign a sequence of * operations from beginning
                 dfs(result, num, target, cur + "*" + newStr, i, pv * newVal, pv * newVal, op);
             }
         }
     }
+
 public:
     vector<string> addOperators(string num, int target) {
         int n = num.size();

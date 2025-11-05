@@ -42,48 +42,49 @@ using namespace std;
 class Node {
 public:
     int val = NULL;
-    Node* prev = NULL;
-    Node* next = NULL;
-    Node* child = NULL;
+    Node *prev = NULL;
+    Node *next = NULL;
+    Node *child = NULL;
 
-Node() {}
+    Node() {
+    }
 
-Node(int _val, Node* _prev, Node* _next, Node* _child) {
-    val = _val;
-    prev = _prev;
-    next = _next;
-    child = _child;
+    Node(int _val, Node *_prev, Node *_next, Node *_child) {
+        val = _val;
+        prev = _prev;
+        next = _next;
+        child = _child;
     }
 };
 
 class Solution {
 public:
-    Node* flatten(Node* head) {
+    Node *flatten(Node *head) {
         if (head == nullptr) {
             return nullptr;
         }
 
-        Node* cur = head;
+        Node *cur = head;
         while (cur != nullptr) {
-            if (cur -> child == nullptr) {
-                cur = cur -> next;
+            if (cur->child == nullptr) {
+                cur = cur->next;
                 continue;
             }
-            
-            Node* childHead = flatten(cur -> child);
-            Node* childLast = childHead;
-            while (childLast -> next != nullptr) {
-                childLast = childLast -> next;
+
+            Node *childHead = flatten(cur->child);
+            Node *childLast = childHead;
+            while (childLast->next != nullptr) {
+                childLast = childLast->next;
             }
 
-            childLast -> next = cur -> next;
-            if (cur -> next != nullptr) {
-                cur -> next -> prev = childLast;
+            childLast->next = cur->next;
+            if (cur->next != nullptr) {
+                cur->next->prev = childLast;
             }
-            cur -> next = childHead;
-            childHead -> prev = cur;
-            cur -> child = nullptr;
-            cur = childLast -> next;
+            cur->next = childHead;
+            childHead->prev = cur;
+            cur->child = nullptr;
+            cur = childLast->next;
         }
         return head;
     }

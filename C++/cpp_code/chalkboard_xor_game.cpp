@@ -64,11 +64,13 @@ and giving a big hint that there may exist a simpler solution.
 */
 class Solution {
 public:
-    bool xorGame(vector<int>& nums) {
+    bool xorGame(vector<int> &nums) {
         int result = 0;
-        for (int num : nums) {
+        for (int num: nums) {
             result ^= num;
         }
-        return result == 0 or nums.size() % 2 == 0;
+        return result == 0
+        or
+        nums.size() % 2 == 0;
     }
 };

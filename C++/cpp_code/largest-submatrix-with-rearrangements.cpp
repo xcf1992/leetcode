@@ -47,22 +47,19 @@ matrix[i][j] is 0 or 1.
 #include <set>
 #include <numeric>
 using namespace std;
+
 // https://leetcode.com/problems/largest-submatrix-with-rearrangements/discuss/1020710/C%2B%2B-Clean-and-Clear-With-Intuitive-Pictures-O(m-*-n-*-logn)
-class Solution
-{
+class Solution {
 public:
-    int largestSubmatrix(vector<vector<int> > &matrix)
-    {
+    int largestSubmatrix(vector<vector<int> > &matrix) {
         int m = matrix.size(), n = matrix[0].size();
         int ans = 0;
         vector<int> height(n, 0);
 
         // view each row and its above as pillars
-        for (int i = 0; i < m; ++i)
-        {
+        for (int i = 0; i < m; ++i) {
             // calculate heights
-            for (int j = 0; j < n; ++j)
-            {
+            for (int j = 0; j < n; ++j) {
                 if (matrix[i][j] == 0)
                     height[j] = 0;
                 else
@@ -74,8 +71,7 @@ public:
             sort(order_height.begin(), order_height.end());
 
             // iterate to get the maxium rectangle
-            for (int j = 0; j < n; ++j)
-            {
+            for (int j = 0; j < n; ++j) {
                 ans = max(ans, order_height[j] * (n - j));
             }
         }

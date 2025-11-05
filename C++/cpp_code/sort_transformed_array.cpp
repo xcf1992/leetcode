@@ -44,8 +44,9 @@ private:
     int quad(int x, int a, int b, int c) {
         return a * x * x + b * x + c;
     }
+
 public:
-    vector<int> sortTransformedArray(vector<int>& nums, int a, int b, int c) {
+    vector<int> sortTransformedArray(vector<int> &nums, int a, int b, int c) {
         int n = nums.size();
         vector<int> sorted(n, 0);
         int left = 0;
@@ -53,10 +54,13 @@ public:
         int index = a >= 0 ? n - 1 : 0;
         while (left <= right) {
             if (a >= 0) {
-                sorted[index--] = quad(nums[left], a, b, c) >= quad(nums[right], a, b, c) ? quad(nums[left++], a, b, c) : quad(nums[right--], a, b, c);
-            }
-            else {
-                sorted[index++] = quad(nums[left], a, b, c) >= quad(nums[right], a, b, c) ? quad(nums[right--], a, b, c) : quad(nums[left++], a, b, c);
+                sorted[index--] = quad(nums[left], a, b, c) >= quad(nums[right], a, b, c)
+                                      ? quad(nums[left++], a, b, c)
+                                      : quad(nums[right--], a, b, c);
+            } else {
+                sorted[index++] = quad(nums[left], a, b, c) >= quad(nums[right], a, b, c)
+                                      ? quad(nums[right--], a, b, c)
+                                      : quad(nums[left++], a, b, c);
             }
         }
         return sorted;
@@ -65,33 +69,38 @@ public:
 
 class Solution1 {
 public:
-    vector<int> sortTransformedArray(vector<int>& nums, int a, int b, int c) {
+    vector<int> sortTransformedArray(vector<int> &nums, int a, int b, int c) {
         vector<int> result;
         if (a == 0) {
-            for (int i : nums) {
+            for (int i: nums) {
                 result.push_back(b * i + c);
             }
             if (b >= 0) {
                 return result;
-            }
-            else {
+            } else {
                 reverse(result.begin(), result.end());
                 return result;
             }
         }
 
         int n = nums.size();
-        double mid = 0 - (double)b / (2 * a);
+        double mid = 0 - (double) b / (2 * a);
         int left = 0;
         int right = n - 1;
-        while (left + 1 < n and ((double)nums[left + 1]) < mid) {
+        while (left + 1 < n and((double) nums[left + 1]) < mid
+        )
+        {
             left += 1;
         }
-        while (right > 0 and ((double)nums[right - 1]) >= mid) {
+        while (right > 0 and((double) nums[right - 1]) >= mid
+        )
+        {
             right -= 1;
         }
 
-        while (left >= 0 or right < n) {
+        while (left >= 0 or right<n
+        )
+        {
             if (left < 0) {
                 result.push_back(a * nums[right] * nums[right] + b * nums[right] + c);
                 right += 1;
@@ -102,11 +111,10 @@ public:
                 left -= 1;
                 continue;
             }
-            if (abs((double)nums[right] - mid) >= abs((double)nums[left] - mid)) {
+            if (abs((double) nums[right] - mid) >= abs((double) nums[left] - mid)) {
                 result.push_back(a * nums[left] * nums[left] + b * nums[left] + c);
                 left -= 1;
-            }
-            else {
+            } else {
                 result.push_back(a * nums[right] * nums[right] + b * nums[right] + c);
                 right += 1;
             }

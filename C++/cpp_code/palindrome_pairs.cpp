@@ -64,8 +64,9 @@ private:
         }
         return true;
     }
+
 public:
-    vector<vector<int>> palindromePairs(vector<string>& words) {
+    vector<vector<int> > palindromePairs(vector<string> &words) {
         unordered_map<string, int> dict;
         for (int i = 0; i < words.size(); i++) {
             string key = words[i];
@@ -73,18 +74,26 @@ public:
             dict[key] = i;
         }
 
-        vector<vector<int>> result;
+        vector<vector<int> > result;
         for (int i = 0; i < words.size(); i++) {
             for (int j = 0; j < words[i].size(); j++) {
                 string left = words[i].substr(0, j);
                 string right = words[i].substr(j);
-                if (dict.find(left) != dict.end() and isPalindrome(right) and dict[left] != i) {
+                if (dict.find(left) != dict.end() and isPalindrome(right) and dict[left]
+                !=
+                i
+                )
+                {
                     result.push_back({i, dict[left]});
                     if (left == "") {
                         result.push_back({dict[left], i});
                     }
                 }
-                if (dict.find(right) != dict.end() and isPalindrome(left) and dict[right] != i) {
+                if (dict.find(right) != dict.end() and isPalindrome(left) and dict[right]
+                !=
+                i
+                )
+                {
                     result.push_back({dict[right], i});
                 }
             }
@@ -112,9 +121,10 @@ private:
         }
         return true;
     }
+
 public:
-    vector<vector<int>> palindromePairs(vector<string>& words) {
-        vector<vector<int>> result;
+    vector<vector<int> > palindromePairs(vector<string> &words) {
+        vector<vector<int> > result;
         for (int i = 0; i < words.size(); i++) {
             for (int j = i + 1; j < words.size(); j++) {
                 if (isPalindrome(words[i] + words[j])) {

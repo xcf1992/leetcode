@@ -35,27 +35,32 @@ using namespace std;
 
 class Solution {
 private:
-    TreeNode* build(string& s, int& cur) {
+    TreeNode *build(string &s, int &cur) {
         int pos = cur;
-        while (isdigit(s[cur]) or s[cur] == '-') {
+        while (isdigit(s[cur]) or s[cur]
+        ==
+        '-'
+        )
+        {
             cur += 1;
         }
 
-        TreeNode* root = new TreeNode(stoi(s.substr(pos, cur - pos)));
+        TreeNode *root = new TreeNode(stoi(s.substr(pos, cur - pos)));
         if (s[cur] == '(') {
             cur += 1;
-            root -> left = build(s, cur);
+            root->left = build(s, cur);
             cur += 1;
         }
         if (s[cur] == '(') {
             cur += 1;
-            root -> right = build(s, cur);
+            root->right = build(s, cur);
             cur += 1;
         }
         return root;
     }
+
 public:
-    TreeNode* str2tree(string s) {
+    TreeNode *str2tree(string s) {
         int cur = 0;
         return s.empty() ? nullptr : build(s, cur);
     }

@@ -41,13 +41,14 @@ private:
         }
         return word == match[word] ? word : find(match[word]);
     }
+
 public:
-    bool areSentencesSimilarTwo(vector<string>& words1, vector<string>& words2, vector<vector<string>> pairs) {
+    bool areSentencesSimilarTwo(vector<string> &words1, vector<string> &words2, vector<vector<string> > pairs) {
         if (words1.size() != words2.size()) {
             return false;
         }
 
-        for (vector<string>& pair : pairs) {
+        for (vector<string> &pair: pairs) {
             string parent1 = find(pair[0]);
             string parent2 = find(pair[1]);
 

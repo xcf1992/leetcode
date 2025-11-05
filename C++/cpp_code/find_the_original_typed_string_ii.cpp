@@ -50,6 +50,7 @@ using namespace std;
 class Solution {
 private:
     static const int MOD = 1e9 + 7;
+
 public:
     int possibleStringCount(string word, int k) {
         size_t n = word.size();
@@ -71,7 +72,7 @@ public:
         group.push_back(cnt);
 
         long long total = 1;
-        for (int num : group) {
+        for (int num: group) {
             total = (total * num) % MOD;
         }
         if (k <= group.size()) {
@@ -80,7 +81,7 @@ public:
 
         vector<int> dp(k, 0);
         dp[0] = 1;
-        for (int num : group) {
+        for (int num: group) {
             vector<int> temp(k, 0);
             long long sum = 0;
             for (int i = 0; i < k; i++) {

@@ -95,6 +95,7 @@ private:
     int permutation(int m, int n) {
         return n == 0 ? 1 : permutation(m, n - 1) * (m - n + 1);
     }
+
 public:
     int numDupDigitsAtMostN(int N) {
         vector<int> digit;

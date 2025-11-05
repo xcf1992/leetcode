@@ -57,13 +57,18 @@ I'll say time complexity is O(1)
 */
 class StockSpanner {
 private:
-    stack<pair<int, int>> stk;
+    stack<pair<int, int> > stk;
+
 public:
-    StockSpanner() {}
+    StockSpanner() {
+    }
 
     int next(int price) {
         int cur = 1;
-        while (!stk.empty() and stk.top().first <= price) {
+        while (!stk.empty() and
+        stk.top().first <= price
+        )
+        {
             cur += stk.top().second;
             stk.pop();
         }
@@ -71,6 +76,7 @@ public:
         return cur;
     }
 };
+
 /*
 * Your StockSpanner object will be instantiated and called as such:
 * StockSpanner obj = new StockSpanner();

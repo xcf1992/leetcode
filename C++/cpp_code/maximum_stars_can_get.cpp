@@ -16,12 +16,13 @@ using namespace std;
 
 class Solution {
 public:
-    int maximumStars(vector<vector<int>>& intervals) {
+    int maximumStars(vector<vector<int> > &intervals) {
         if (intervals.empty()) {
             return 0;
         }
-        sort(intervals.begin(), intervals.end(), [](vector<int>& a, vector<int>& b) {
-            return a[1] < b[1] or (a[1] == b[1] and a[0] < b[0]);
+        sort(intervals.begin(), intervals.end(), [](vector<int> &a, vector<int> &b) {
+            return a[1] < b[1]
+            or(a[1] == b[1] and a[0] < b[0]);
         });
 
         int n = intervals.back()[1];

@@ -54,7 +54,7 @@ class Solution {
 private:
     unordered_map<char, int> c2i = {{'R', 0}, {'Y', 1}, {'B', 2}, {'G', 3}, {'W', 4}};
 
-    void collapse(string& board) {
+    void collapse(string &board) {
         if (board.empty()) {
             return;
         }
@@ -64,7 +64,11 @@ private:
             removed = false;
             for (int pos = 0; pos < board.size(); ++pos) {
                 int end = pos;
-                while (end < board.size() and board[end] == board[pos]) {
+                while (end < board.size() and board[end]
+                ==
+                board[pos]
+                )
+                {
                     end += 1;
                 }
                 if (end - pos >= 3) {
@@ -75,6 +79,7 @@ private:
             }
         }
     }
+
 public:
     int findMinStep(string board, string hand) {
         collapse(board);
@@ -83,14 +88,16 @@ public:
         }
 
         vector<int> inHand(5, 0);
-        for (char c : hand) {
+        for (char c: hand) {
             inHand[c2i[c]] += 1;
         }
 
-        queue<pair<string, vector<int>>> bfs;
+        queue<pair<string, vector<int> > > bfs;
         int used = 0;
         bfs.push({board, inHand});
-        while (!bfs.empty() and used < hand.size()) {
+        while (!bfs.empty() and used<hand.size()
+        )
+        {
             int curSize = bfs.size();
             for (int i = 0; i < curSize; i++) {
                 string curBoard = bfs.front().first;
@@ -98,7 +105,11 @@ public:
                 bfs.pop();
 
                 for (int pos = 0; pos < curBoard.size(); pos++) {
-                    if (curBoard[pos] == curBoard[pos + 1] or ballLeft[c2i[curBoard[pos]]] == 0) {
+                    if (curBoard[pos] == curBoard[pos + 1] or ballLeft[c2i[curBoard[pos]]]
+                    ==
+                    0
+                    )
+                    {
                         continue;
                     }
                     string newBoard = curBoard;

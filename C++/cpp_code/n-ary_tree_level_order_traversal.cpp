@@ -36,39 +36,40 @@
 using namespace std;
 
 
- // Definition for a Node.
- class Node {
- public:
- int val = NULL;
- vector<Node*> children;
+// Definition for a Node.
+class Node {
+public:
+    int val = NULL;
+    vector<Node *> children;
 
- Node() {}
+    Node() {
+    }
 
- Node(int _val, vector<Node*> _children) {
- val = _val;
- children = _children;
- }
- };
+    Node(int _val, vector<Node *> _children) {
+        val = _val;
+        children = _children;
+    }
+};
 
 class Solution {
 public:
-    vector<vector<int>> levelOrder(Node* root) {
-        vector<vector<int>> result;
+    vector<vector<int> > levelOrder(Node *root) {
+        vector<vector<int> > result;
         if (root == nullptr) {
             return result;
         }
 
-        queue<Node*> bfs;
+        queue<Node *> bfs;
         bfs.push(root);
         while (!bfs.empty()) {
             vector<int> level;
 
             int length = bfs.size();
             for (int i = 0; i < length; i++) {
-                Node* cur = bfs.front();
+                Node *cur = bfs.front();
                 bfs.pop();
-                level.push_back(cur -> val);
-                for (Node* child : cur -> children) {
+                level.push_back(cur->val);
+                for (Node *child: cur->children) {
                     if (child != nullptr) {
                         bfs.push(child);
                     }

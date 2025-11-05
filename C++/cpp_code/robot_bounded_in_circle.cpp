@@ -48,6 +48,7 @@ instructions[i] is in {'G', 'L', 'R'}
 #include <map>
 #include <numeric>
 using namespace std;
+
 // https://leetcode.com/problems/robot-bounded-in-circle/discuss/290856/JavaC%2B%2BPython-Let-Chopper-Help-Explain
 class Solution {
 public:
@@ -57,20 +58,22 @@ public:
         int curY = 0;
         vector<int> diffX({0, 1, 0, -1});
         vector<int> diffY({1, 0, -1, 0});
-        for (char c : instructions) {
+        for (char c: instructions) {
             if (c == 'G') {
                 curX += diffX[face];
                 curY += diffY[face];
-            }
-            else if (c == 'L') {
+            } else if (c == 'L') {
                 face = (face + 3) % 4;
-            }
-            else {
+            } else {
                 face = (face + 1) % 4;
             }
         }
 
-        if (curX == 0 and curY == 0) {
+        if (curX == 0 and curY
+        ==
+        0
+        )
+        {
             return true;
         }
         return face != 0;

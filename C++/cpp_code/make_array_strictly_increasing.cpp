@@ -43,16 +43,21 @@ Constraints:
 #include <numeric>
 using namespace std;
 
-class Solution { // dfs with memo
+class Solution {
+    // dfs with memo
 private:
-    unordered_map<int, unordered_map<int, int>> memo;
+    unordered_map<int, unordered_map<int, int> > memo;
 
-    int dfs(int cur, int prev, vector<int>& arr1, vector<int>& arr2) {
+    int dfs(int cur, int prev, vector<int> &arr1, vector<int> &arr2) {
         if (cur >= arr1.size()) {
             return 0;
         }
 
-        if (memo.find(cur) != memo.end() and memo[cur].find(prev) != memo[cur].end()) {
+        if (memo.find(cur) != memo.end() and memo[cur]
+        .
+        find(prev) != memo[cur].end()
+        )
+        {
             return memo[cur][prev];
         }
 
@@ -75,45 +80,50 @@ private:
         }
         return memo[cur][prev];
     }
+
 public:
-    int makeArrayIncreasing(vector<int>& arr1, vector<int>& arr2) { // dfs with memo
+    int makeArrayIncreasing(vector<int> &arr1, vector<int> &arr2) {
+        // dfs with memo
         sort(arr2.begin(), arr2.end());
         int result = dfs(0, INT_MIN, arr1, arr2);
         return result == INT_MAX ? -1 : result;
     }
 };
 
-class Solution1 { // TLE
+class Solution1 {
+    // TLE
 public:
-    int makeArrayIncreasing(vector<int>& arr1, vector<int>& arr2) {
+    int makeArrayIncreasing(vector<int> &arr1, vector<int> &arr2) {
         map<int, int> count;
-        for (int num : arr2) {
+        for (int num: arr2) {
             count[num] += 1;
         }
 
         vector<int> replacement;
-        for (auto& it : count) {
+        for (auto &it: count) {
             replacement.push_back(it.first);
         }
 
         int n1 = arr1.size();
         int n2 = replacement.size();
-        vector<vector<int>> dp(n1, vector<int>(n2 + 1, INT_MAX));
+        vector<vector<int> > dp(n1, vector<int>(n2 + 1, INT_MAX));
         dp[0][0] = 0;
         for (int j = 1; j <= n2; ++j) {
             dp[0][j] = 1;
         }
 
         for (int i = 1; i < n1; ++i) {
-            for (int j = 0; j <= n2; ++j) if (dp[i - 1][j] != INT_MAX) {
-                int previous = j == 0 ? arr1[i - 1] : replacement[j - 1];
-                if (arr1[i] > previous) {
-                    dp[i][0] = min(dp[i][0], dp[i - 1][j]);
+            for (int j = 0; j <= n2; ++j)
+                if (dp[i - 1][j] != INT_MAX) {
+                    int previous = j == 0 ? arr1[i - 1] : replacement[j - 1];
+                    if (arr1[i] > previous) {
+                        dp[i][0] = min(dp[i][0], dp[i - 1][j]);
+                    }
+                    for (int k = j + 1; k <= n2; ++k)
+                        if (replacement[k - 1] > previous) {
+                            dp[i][k] = min(dp[i][k], dp[i - 1][j] + 1);
+                        }
                 }
-                for (int k = j + 1; k <= n2; ++k) if (replacement[k - 1] > previous) {
-                    dp[i][k] = min(dp[i][k], dp[i - 1][j] + 1);
-                }
-            }
         }
 
         int result = INT_MAX;

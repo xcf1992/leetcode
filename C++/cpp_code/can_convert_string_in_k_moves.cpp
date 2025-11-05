@@ -71,8 +71,7 @@ public:
             int diff = t[i] - s[i] < 0 ? 26 + t[i] - s[i] : t[i] - s[i];
             if (mp.find(diff) == mp.end()) {
                 count = max(count, diff);
-            }
-            else {
+            } else {
                 count = max(count, (mp[diff] * 26) + diff);
             }
             mp[diff]++;

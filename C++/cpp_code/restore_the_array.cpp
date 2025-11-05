@@ -58,13 +58,15 @@ using namespace std;
 class Solution {
 private:
     int mod = 1e9 + 7;
-    int dfs(string& s, long k, int i, vector<int>& dp) {
+
+    int dfs(string &s, long k, int i, vector<int> &dp) {
         if (i == s.size()) {
             return 1; // base case -> Found a valid way
         }
 
         if (s[i] == '0') {
-            return 0; // all numbers are in range [1, k] and there are no leading zeros -> So numbers starting with 0 mean invalid!
+            return 0;
+            // all numbers are in range [1, k] and there are no leading zeros -> So numbers starting with 0 mean invalid!
         }
 
         if (dp[i] != -1) {
@@ -83,6 +85,7 @@ private:
         }
         return dp[i];
     }
+
 public:
     int numberOfArrays(string s, int k) {
         vector<int> dp(s.size(), -1); // dp[i] is number of ways to print valid arrays from string s start at i

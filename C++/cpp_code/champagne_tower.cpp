@@ -85,7 +85,7 @@ public:
 class Solution1 {
 public:
     double champagneTower(int poured, int query_row, int query_glass) {
-        vector<vector<double>> cups(query_row + 1, vector<double>(query_row + 1, 0.0));
+        vector<vector<double> > cups(query_row + 1, vector<double>(query_row + 1, 0.0));
         cups[0][0] = poured;
         for (int row = 1; row <= query_row; row++) {
             for (int col = 0; col <= row; col++) {

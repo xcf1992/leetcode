@@ -49,59 +49,66 @@ using namespace std;
 
 class Solution {
 private:
-    TreeNode* findTarget(TreeNode* root, TreeNode*& prev, int key) {
-        if (root == nullptr or root -> val == key) {
+    TreeNode *findTarget(TreeNode *root, TreeNode *&prev, int key) {
+        if (root == nullptr or
+        root->val == key
+        )
+        {
             return root;
         }
 
         prev = root;
-        if (key > root -> val) {
-            return findTarget(root -> right, prev, key);
+        if (key > root->val) {
+            return findTarget(root->right, prev, key);
         }
-        return findTarget(root -> left, prev, key);
+        return findTarget(root->left, prev, key);
     }
 
-    void insertNode(TreeNode* root, TreeNode* node) {
-        if (root == nullptr or node == nullptr) {
+    void insertNode(TreeNode *root, TreeNode *node) {
+        if (root == nullptr or node
+        ==
+        nullptr
+        )
+        {
             return;
         }
 
-        if (node -> val < root -> val) {
-            if (root -> left == nullptr) {
-                root -> left = node;
+        if (node->val < root->val) {
+            if (root->left == nullptr) {
+                root->left = node;
                 return;
             }
-            insertNode(root -> left, node);
+            insertNode(root->left, node);
             return;
         }
 
-        if (root -> right == nullptr) {
-            root -> right = node;
+        if (root->right == nullptr) {
+            root->right = node;
             return;
         }
-        insertNode(root -> right, node);
+        insertNode(root->right, node);
     }
-public:
-    TreeNode* deleteNode(TreeNode* root, int key) {
-        TreeNode* fake = new TreeNode(INT_MAX);
-        fake -> left = root;
 
-        TreeNode* prev = fake;
-        TreeNode* target = findTarget(root, prev, key);
+public:
+    TreeNode *deleteNode(TreeNode *root, int key) {
+        TreeNode *fake = new TreeNode(INT_MAX);
+        fake->left = root;
+
+        TreeNode *prev = fake;
+        TreeNode *target = findTarget(root, prev, key);
         if (target == nullptr) {
             return root;
         }
 
-        if (prev -> left == target) {
-            prev -> left = target -> left;
+        if (prev->left == target) {
+            prev->left = target->left;
+        } else {
+            prev->right = target->left;
         }
-        else {
-            prev -> right = target -> left;
-        }
-        insertNode(prev, target -> right);
+        insertNode(prev, target->right);
 
         delete target;
         target = nullptr;
-        return fake -> left;
+        return fake->left;
     }
 };

@@ -52,8 +52,7 @@ public:
             int quotient = i >> 1;
             if (i & 1) {
                 result[i] = result[quotient] + 1;
-            }
-            else {
+            } else {
                 result[i] = result[quotient];
             }
         }

@@ -41,34 +41,38 @@ using namespace std;
 
 class Solution {
 private:
-    TreeNode* pre;
+    TreeNode *pre;
 
-    void find(TreeNode* root, vector<int>& result, int& count, int& maxCount) {
+    void find(TreeNode *root, vector<int> &result, int &count, int &maxCount) {
         if (root == nullptr) {
             return;
         }
 
-        find(root -> left, result, count, maxCount);
-        if (pre == nullptr or root -> val != pre -> val) {
+        find(root->left, result, count, maxCount);
+        if (pre == nullptr or
+        root->val != pre->val
+        )
+        {
             count = 1;
         }
-        else {
+        else
+        {
             count += 1;
         }
 
         if (count > maxCount) {
             result.clear();
-            result.push_back(root -> val);
+            result.push_back(root->val);
             maxCount = count;
-        }
-        else if (count == maxCount) {
-            result.push_back(root -> val);
+        } else if (count == maxCount) {
+            result.push_back(root->val);
         }
         pre = root;
-        find(root -> right, result, count, maxCount);
+        find(root->right, result, count, maxCount);
     }
+
 public:
-    vector<int> findMode(TreeNode* root) {
+    vector<int> findMode(TreeNode *root) {
         int maxCount = 0;
         int count = 0;
         pre = nullptr;

@@ -73,14 +73,14 @@ public:
 
 class Solution {
 private:
-    int longest_path_len(Node* root, int& result) {
+    int longest_path_len(Node *root, int &result) {
         if (root == nullptr) {
             return -1;
         }
 
         int longest = -1;
         int longer = -1;
-        for (Node* nxt : root->children) {
+        for (Node *nxt: root->children) {
             int path_len = longest_path_len(nxt, result);
             if (path_len >= longest) {
                 longer = longest;
@@ -93,6 +93,7 @@ private:
         result = max(result, longest + longer + 2);
         return 1 + longest;
     }
+
 public:
     int diameter(Node *root) {
         int result = 0;

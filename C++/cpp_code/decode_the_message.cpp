@@ -57,7 +57,7 @@ public:
     string decodeMessage(string key, string message) {
         vector<int> decode(26, -1);
         int ori = 0;
-        for (char c : key) {
+        for (char c: key) {
             if (c == ' ' || decode[c - 'a'] != -1) {
                 continue;
             }

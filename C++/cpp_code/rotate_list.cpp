@@ -33,17 +33,23 @@ using namespace std;
 class Solution {
 public:
     ListNode *rotateRight(ListNode *head, int k) {
-        if (head == nullptr or head -> next == nullptr or k == 0) {
+        if (head == nullptr or
+        head->next == nullptr
+        or k
+        ==
+        0
+        )
+        {
             return head;
         }
 
-        ListNode* dummy = new ListNode(-1);
-        dummy -> next = head;
-        ListNode* pre = dummy;
+        ListNode *dummy = new ListNode(-1);
+        dummy->next = head;
+        ListNode *pre = dummy;
         int length = 0;
-        while (pre -> next != nullptr) {
+        while (pre->next != nullptr) {
             length++;
-            pre = pre -> next;
+            pre = pre->next;
         }
 
         k = k % length;
@@ -51,20 +57,20 @@ public:
             return head;
         }
 
-        ListNode* last = dummy -> next;
+        ListNode *last = dummy->next;
         for (int i = 1; i < k; i++) {
-            last = last -> next;
+            last = last->next;
         }
 
         pre = dummy;
-        ListNode* first = dummy -> next;
-        while (last -> next != nullptr) {
-            last = last -> next;
-            first = first -> next;
-            pre = pre -> next;
+        ListNode *first = dummy->next;
+        while (last->next != nullptr) {
+            last = last->next;
+            first = first->next;
+            pre = pre->next;
         }
-        pre -> next = nullptr;
-        last -> next = head;
+        pre->next = nullptr;
+        last->next = head;
         return first;
     }
 };

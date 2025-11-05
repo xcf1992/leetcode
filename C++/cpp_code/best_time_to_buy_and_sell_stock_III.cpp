@@ -35,7 +35,7 @@ using namespace std;
 
 class Solution {
 public:
-    int maxProfit(vector<int>& prices) {
+    int maxProfit(vector<int> &prices) {
         int n = prices.size();
         if (n <= 1) {
             return 0;
@@ -78,7 +78,7 @@ Expected
 */
 class Solution1 {
 public:
-    int maxProfit(vector<int>& prices) {
+    int maxProfit(vector<int> &prices) {
         int n = prices.size();
         if (n <= 1) {
             return 0;
@@ -93,8 +93,7 @@ public:
                 if (profit > p2) {
                     p1 = p2;
                     p2 = profit;
-                }
-                else if (profit > p1) {
+                } else if (profit > p1) {
                     p1 = profit;
                 }
                 curMin = prices[i];
@@ -106,8 +105,7 @@ public:
             if (profit > p2) {
                 p1 = p2;
                 p2 = profit;
-            }
-            else if (profit > p1) {
+            } else if (profit > p1) {
                 p1 = profit;
             }
         }

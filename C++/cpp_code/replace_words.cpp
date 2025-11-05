@@ -38,40 +38,43 @@ using namespace std;
 
 struct TrieNode {
     bool isRoot;
-    vector<TrieNode*> children = vector<TrieNode*>(26, nullptr);
-    TrieNode(bool r = false) : isRoot(r) {}
+    vector<TrieNode *> children = vector<TrieNode *>(26, nullptr);
+
+    TrieNode(bool r = false) : isRoot(r) {
+    }
 };
 
 class Trie {
 private:
-    TrieNode* root = nullptr;
+    TrieNode *root = nullptr;
+
 public:
     Trie() {
         root = new TrieNode();
     }
 
     void insert(string word) {
-        TrieNode* cur = root;
-        for (char c : word) {
+        TrieNode *cur = root;
+        for (char c: word) {
             int index = c - 'a';
-            if (cur -> children[index] == nullptr) {
-                cur -> children[index] = new TrieNode();
+            if (cur->children[index] == nullptr) {
+                cur->children[index] = new TrieNode();
             }
-            cur = cur -> children[index];
+            cur = cur->children[index];
         }
-        cur -> isRoot = true;
+        cur->isRoot = true;
     }
 
     string getRoot(string word) {
-        TrieNode* cur = root;
+        TrieNode *cur = root;
         for (int i = 0; i < word.size(); ++i) {
             int index = word[i] - 'a';
-            if (cur -> children[index] == nullptr) {
+            if (cur->children[index] == nullptr) {
                 return word;
             }
 
-            cur = cur -> children[index];
-            if (cur -> isRoot) {
+            cur = cur->children[index];
+            if (cur->isRoot) {
                 return word.substr(0, i + 1);
             }
         }
@@ -94,10 +97,11 @@ private:
         result.push_back(sentence.substr(cur));
         return result;
     }
+
 public:
-    string replaceWords(vector<string>& dict, string sentence) {
+    string replaceWords(vector<string> &dict, string sentence) {
         Trie trie;
-        for (string word : dict) {
+        for (string word: dict) {
             trie.insert(word);
         }
 

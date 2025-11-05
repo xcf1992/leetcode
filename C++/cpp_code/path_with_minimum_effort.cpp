@@ -53,13 +53,13 @@ using namespace std;
 
 class Solution {
 public:
-    int minimumEffortPath(vector<vector<int>>& heights) {
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    int minimumEffortPath(vector<vector<int> > &heights) {
+        priority_queue<pair<int, int>, vector<pair<int, int> >, greater<pair<int, int> > > pq;
         pq.push({0, 0});
 
         int m = heights.size();
         int n = heights[0].size();
-        vector<vector<int>> efforts(m, vector<int>(n, INT_MAX));
+        vector<vector<int> > efforts(m, vector<int>(n, INT_MAX));
 
         int dirs[5] = {-1, 0, 1, 0, -1};
         while (!pq.empty()) {
@@ -68,7 +68,11 @@ public:
             int effort = pq.top().second;
             pq.pop();
 
-            if (row == m - 1 and col == n - 1) {
+            if (row == m - 1 and col
+            ==
+            n - 1
+            )
+            {
                 return effort;
             }
 
@@ -80,7 +84,11 @@ public:
             for (int i = 0; i < 4; ++i) {
                 int nr = row + dirs[i];
                 int nc = col + dirs[i + 1];
-                if (nr >= m or nc >= n or nr < 0 or nc < 0) {
+                if (nr >= m or nc
+                >=
+                n or nr<0 or nc < 0
+                )
+                {
                     continue;
                 }
                 int nEffort = max(effort, abs(heights[row][col] - heights[nr][nc]));

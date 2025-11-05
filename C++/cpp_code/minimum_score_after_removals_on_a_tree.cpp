@@ -81,14 +81,14 @@ struct TreeNode {
 class Solution {
 private:
     vector<int> subtree_xor;
-    vector<unordered_set<int>> descendants;
-    vector<vector<int>> graph;
+    vector<unordered_set<int> > descendants;
+    vector<vector<int> > graph;
 
 private:
-    void dfs(int node, int parent, const vector<int>& nums) {
+    void dfs(int node, int parent, const vector<int> &nums) {
         subtree_xor[node] = nums[node];
         descendants[node].insert(node);
-        for (int neighbor : graph[node]) {
+        for (int neighbor: graph[node]) {
             if (neighbor != parent) {
                 dfs(neighbor, node, nums);
                 subtree_xor[node] ^= subtree_xor[neighbor];
@@ -98,7 +98,7 @@ private:
     }
 
 public:
-    int minimumScore(vector<int>& nums, vector<vector<int>>& edges) {
+    int minimumScore(vector<int> &nums, vector<vector<int> > &edges) {
         int n = nums.size();
         graph.clear();
         graph.resize(n, vector<int>());
@@ -106,7 +106,7 @@ public:
         subtree_xor.resize(n, 0);
         descendants.clear();
         descendants.resize(n, unordered_set<int>());
-        for (const vector<int>& edge : edges) {
+        for (const vector<int> &edge: edges) {
             graph[edge[0]].push_back(edge[1]);
             graph[edge[1]].push_back(edge[0]);
         }
@@ -129,13 +129,11 @@ public:
                     val1 = xor_j;
                     val2 = xor_i ^ xor_j;
                     val3 = total_xor ^ xor_i;
-                }
-                else if (descendants[j].find(i) != descendants[j].end()) {
+                } else if (descendants[j].find(i) != descendants[j].end()) {
                     val1 = xor_i;
                     val2 = xor_j ^ xor_i;
                     val3 = total_xor ^ xor_j;
-                }
-                else {
+                } else {
                     val1 = xor_i;
                     val2 = xor_j;
                     val3 = total_xor ^ xor_i ^ xor_j;

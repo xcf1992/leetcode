@@ -42,7 +42,7 @@ class CombinationIterator {
 private:
     queue<string> combinations;
 
-    void dfs(string& curStr, int curIndex, string& characters, int len) {
+    void dfs(string &curStr, int curIndex, string &characters, int len) {
         if (curStr.size() == len) {
             combinations.push(curStr);
             return;
@@ -54,6 +54,7 @@ private:
             curStr.pop_back();
         }
     }
+
 public:
     CombinationIterator(string characters, int combinationLength) {
         if (combinationLength > characters.size()) {
@@ -74,6 +75,7 @@ public:
         return !combinations.empty();
     }
 };
+
 /**
 * Your CombinationIterator object will be instantiated and called as such:
 * CombinationIterator* obj = new CombinationIterator(characters, combinationLength);

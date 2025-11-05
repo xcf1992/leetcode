@@ -78,7 +78,7 @@ we can add 2K to them, and this operation will not make the solution worse. Then
 */
 class Solution {
 public:
-    int smallestRangeII(vector<int>& A, int K) {
+    int smallestRangeII(vector<int> &A, int K) {
         sort(A.begin(), A.end());
         int curMax = A.back();
         int curMin = A.front();
@@ -94,10 +94,10 @@ public:
 
 class Solution1 {
 public:
-    int smallestRangeII(vector<int>& A, int K) {
+    int smallestRangeII(vector<int> &A, int K) {
         int curMin = INT_MAX;
         int curMax = INT_MIN;
-        for (int num : A) {
+        for (int num: A) {
             curMin = min(num, curMin);
             curMax = max(num, curMax);
         }
@@ -106,26 +106,33 @@ public:
             curMax = max(curMin + K, curMax - K);
         }
         int result = curMax - curMin;
-        for (int num : A) {
-            if (num + K <= curMax and num + K >= curMin) {
+        for (int num: A) {
+            if (num + K <= curMax and num
+            +K >= curMin
+            )
+            {
                 continue;
             }
-            if (num - K <= curMax and num - K >= curMin) {
+            if (num - K <= curMax and num
+            -K >= curMin
+            )
+            {
                 continue;
             }
             int newMin = num - K;
             int newMax = num + K;
             if (newMax < curMin) {
                 curMin = newMax;
-            }
-            else if (newMin > curMax) {
+            } else if (newMin > curMax) {
                 curMax = newMin;
-            }
-            else if (newMin < curMin and newMax > curMax) {
+            } else if (newMin < curMin and newMax
+            >
+            curMax
+            )
+            {
                 if (newMax - curMin > curMax - newMin) {
                     curMin = newMin;
-                }
-                else {
+                } else {
                     curMax = newMax;
                 }
             }

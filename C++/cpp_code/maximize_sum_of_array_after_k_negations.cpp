@@ -48,15 +48,23 @@ using namespace std;
 
 class Solution {
 public:
-    int largestSumAfterKNegations(vector<int>& A, int K) {
+    int largestSumAfterKNegations(vector<int> &A, int K) {
         sort(A.begin(), A.end());
-        for (int i = 0; i < A.size() and K > 0 and A[i] < 0; i++) {
+        for (int i = 0; i < A.size() and K
+        >
+        0
+        and A[i]
+        <
+        0;
+        i++
+        )
+        {
             A[i] = 0 - A[i];
             K--;
         }
         int result = 0;
         int minN = INT_MAX;
-        for (int a : A) {
+        for (int a: A) {
             result += a;
             minN = min(minN, a);
         }

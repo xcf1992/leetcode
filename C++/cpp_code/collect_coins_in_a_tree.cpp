@@ -62,7 +62,7 @@ public:
 
     int collectTheCoins(vector<int> &coins, vector<vector<int> > &edges) {
         int n = coins.size();
-        vector<vector<int>> adj(n);
+        vector<vector<int> > adj(n);
         vector<int> deg(n);
         for (auto edge: edges) {
             int u = edge[0];

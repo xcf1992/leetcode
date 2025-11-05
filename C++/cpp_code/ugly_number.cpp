@@ -38,13 +38,14 @@ using namespace std;
 class Solution {
 private:
     vector<int> factor = {2, 3, 5};
+
 public:
     bool isUgly(int num) {
         if (num <= 0) {
             return false;
         }
 
-        for (auto i : factor) {
+        for (auto i: factor) {
             while (num % i == 0) {
                 num /= i;
             }

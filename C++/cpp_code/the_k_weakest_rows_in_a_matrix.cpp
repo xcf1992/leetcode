@@ -67,28 +67,31 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> kWeakestRows(vector<vector<int>>& mat, int k) {
+    vector<int> kWeakestRows(vector<vector<int> > &mat, int k) {
         int m = mat.size();
         int n = mat[0].size();
-        vector<pair<int, int>> sortedArr;
-        for (int i = 0; i <m; ++i) {
+        vector<pair<int, int> > sortedArr;
+        for (int i = 0; i < m; ++i) {
             int soldier = 0;
             for (int j = 0; j < n; ++j) {
                 if (mat[i][j] == 1) {
                     soldier += 1;
-                }
-                else {
+                } else {
                     break;
                 }
             }
             sortedArr.push_back({soldier, i});
         }
 
-        sort(sortedArr.begin(), sortedArr.end(), [](pair<int, int>& a, pair<int, int>& b) {
-            return a.first < b.first or (a.first == b.first and a.second < b.second);
+        sort(sortedArr.begin(), sortedArr.end(), [](pair<int, int> &a, pair<int, int> &b) {
+            return a.first < b.first
+            or(a.first == b.first and a.second < b.second);
         });
         vector<int> result;
-        for (int i = 0; i < k and i < m; ++i) {
+        for (int i = 0; i < k and i<m;
+        ++i
+        )
+        {
             result.push_back(sortedArr[i].second);
         }
         return result;

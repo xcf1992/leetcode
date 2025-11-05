@@ -95,7 +95,7 @@ struct Cell {
 
 class Excel {
 private:
-    vector<vector<Cell*>> sheet;
+    vector<vector<Cell *> > sheet;
     int M = 0;
     int N = 0;
 
@@ -108,7 +108,7 @@ private:
         return (row - 1) * N + col;
     }
 
-    void addPosToFormula(unordered_map<int, int>& formula, string pos) {
+    void addPosToFormula(unordered_map<int, int> &formula, string pos) {
         int topLeft = posToInt(pos.substr(0, pos.find(':')));
         int botRight = posToInt(pos.substr(pos.find(':') + 1));
 
@@ -122,41 +122,50 @@ private:
             }
         }
     }
+
 public:
     Excel(int H, char W) {
         sheet.clear();
         M = H;
         N = W - 'A' + 1;
-        sheet.resize(M, vector<Cell*>(N, nullptr));
+        sheet.resize(M, vector<Cell *>(N, nullptr));
     }
 
     void set(int r, char c, int v) {
         int row = r - 1;
         int col = c - 'A';
-        if (row < 0 or row >= M or col < 0 or col >= N) {
+        if (row < 0 or row
+        >=
+        M or col<0 or col >= N
+        )
+        {
             return;
         }
 
         if (sheet[row][col] == nullptr) {
             sheet[row][col] = new Cell();
         }
-        sheet[row][col] -> isFormula = false;
-        sheet[row][col] -> value = v;
+        sheet[row][col]->isFormula = false;
+        sheet[row][col]->value = v;
     }
 
     int get(int r, char c) {
         int row = r - 1;
         int col = c - 'A';
-        if (row < 0 or row >= M or col < 0 or col >= N or sheet[row][col] == nullptr) {
+        if (row < 0 or row
+        >=
+        M or col<0 or col >= N or sheet[row][col] == nullptr
+        )
+        {
             return 0;
         }
 
-        if (!sheet[row][col] -> isFormula) {
-            return sheet[row][col] -> value;
+        if (!sheet[row][col]->isFormula) {
+            return sheet[row][col]->value;
         }
 
         int sum = 0;
-        for (auto& form : sheet[row][col] -> formula) {
+        for (auto &form: sheet[row][col]->formula) {
             int pos = form.first;
             int times = form.second;
             sum += times * get(1 + pos / N, 'A' + pos % N);
@@ -167,28 +176,32 @@ public:
     int sum(int r, char c, vector<string> strs) {
         int row = r - 1;
         int col = c - 'A';
-        if (row < 0 or row >= M or col < 0 or col >= N) {
+        if (row < 0 or row
+        >=
+        M or col<0 or col >= N
+        )
+        {
             return 0;
         }
 
         if (sheet[row][col] == nullptr) {
             sheet[row][col] = new Cell();
         }
-        
-        sheet[row][col] -> isFormula = true;
-        sheet[row][col] -> formula.clear();
-        for (string& str : strs) {
+
+        sheet[row][col]->isFormula = true;
+        sheet[row][col]->formula.clear();
+        for (string &str: strs) {
             if (str.find(':') == string::npos) {
                 int pos = posToInt(str);
-                sheet[row][col] -> formula[pos] += 1;
-            }
-            else {
-                addPosToFormula(sheet[row][col] -> formula, str);
+                sheet[row][col]->formula[pos] += 1;
+            } else {
+                addPosToFormula(sheet[row][col]->formula, str);
             }
         }
         return get(r, c);
     }
 };
+
 /*
 * Your Excel object will be instantiated and called as such:
 * Excel* obj = new Excel(H, W);

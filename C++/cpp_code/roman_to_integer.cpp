@@ -76,6 +76,7 @@ private:
         {'D', 500},
         {'M', 1000}
     };
+
 public:
     int romanToInt(string s) {
         int n = s.size();

@@ -69,7 +69,7 @@ result equals to min(dp)
 */
 class Solution {
 public:
-    int minSideJumps(vector<int>& A) {
+    int minSideJumps(vector<int> &A) {
         int dp[] = {1, 0, 1};
         for (int a: A) {
             if (a > 0)

@@ -56,23 +56,27 @@ struct TreeNode {
 
 class Solution {
 private:
-    int getHeight(TreeNode* root, bool& result) {
+    int getHeight(TreeNode *root, bool &result) {
         if (root == nullptr) {
             return 0;
         }
-        if (root -> left == nullptr and root -> right == nullptr) {
+        if (root->left == nullptr and
+        root->right == nullptr
+        )
+        {
             return 1;
         }
 
-        int lh = getHeight(root -> left, result);
-        int rh = getHeight(root -> right, result);
+        int lh = getHeight(root->left, result);
+        int rh = getHeight(root->right, result);
         if (abs(lh - rh) > 1) {
             result = false;
         }
         return max(lh, rh) + 1;
     }
+
 public:
-    bool isBalanced(TreeNode* root) {
+    bool isBalanced(TreeNode *root) {
         bool result = true;
         getHeight(root, result);
         return result;

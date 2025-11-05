@@ -45,24 +45,30 @@ using namespace std;
 
 class Solution {
 private:
-    void traverse(TreeNode* root, string cur, string& result) {
+    void traverse(TreeNode *root, string cur, string &result) {
         if (root == nullptr) {
             return;
         }
 
-        cur.push_back('a' + root -> val);
-        if (root -> left == nullptr and root -> right == nullptr) {
+        cur.push_back('a' + root->val);
+        if (root->left == nullptr and
+        root->right == nullptr
+        )
+        {
             reverse(cur.begin(), cur.end());
-            if (result == "" or cur < result) {
+            if (result == "" or cur<result
+            )
+            {
                 result = cur;
             }
             return;
         }
-        traverse(root -> left, cur, result);
-        traverse(root -> right, cur, result);
+        traverse(root->left, cur, result);
+        traverse(root->right, cur, result);
     }
+
 public:
-    string smallestFromLeaf(TreeNode* root) {
+    string smallestFromLeaf(TreeNode *root) {
         if (root == nullptr) {
             return "";
         }

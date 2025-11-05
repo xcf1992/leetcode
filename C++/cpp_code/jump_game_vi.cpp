@@ -68,7 +68,8 @@ public:
 
         // Start answering the best possible results for index `i` from the back
         for (int i = nums.size() - 1; i >= 0; i--) {
-            curr = nums[i] + (dq.empty() ? 0 : nums[dq.front()]); // Get current best, the maximum result will be the first element in the monoqueue.
+            curr = nums[i] + (dq.empty() ? 0 : nums[dq.front()]);
+            // Get current best, the maximum result will be the first element in the monoqueue.
 
             // We remove all the smaller results greedily as they wont get used anyways (This helps the monoqueue to remain sorted)
             while (!dq.empty() && curr > nums[dq.back()]) {

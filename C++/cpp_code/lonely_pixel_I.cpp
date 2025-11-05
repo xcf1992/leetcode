@@ -34,7 +34,7 @@ using namespace std;
 
 class Solution {
 public:
-    int findLonelyPixel(vector<vector<char>>& picture) {
+    int findLonelyPixel(vector<vector<char> > &picture) {
         int m = picture.size();
         int n = picture[0].size();
 
@@ -53,7 +53,11 @@ public:
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
                 if (picture[i][j] == 'B') {
-                    if (rowCnt[i] == 1 and colCnt[j] == 1) {
+                    if (rowCnt[i] == 1 and colCnt[j]
+                    ==
+                    1
+                    )
+                    {
                         ++res;
                     }
                 }

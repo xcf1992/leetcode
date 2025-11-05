@@ -41,6 +41,7 @@ using namespace std;
 class RecentCounter {
 private:
     vector<int> hit;
+
 public:
     RecentCounter() {
         hit.clear();

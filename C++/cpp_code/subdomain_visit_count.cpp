@@ -54,9 +54,9 @@ using namespace std;
 
 class Solution {
 public:
-    vector<string> subdomainVisits(vector<string>& cpdomains) {
+    vector<string> subdomainVisits(vector<string> &cpdomains) {
         unordered_map<string, int> visitCount;
-        for (string cpdomain : cpdomains) {
+        for (string cpdomain: cpdomains) {
             int pos = cpdomain.find(" ");
             int count = stoi(cpdomain.substr(0, pos));
             string domain = cpdomain.substr(pos + 1);
@@ -71,7 +71,7 @@ public:
         }
 
         vector<string> result;
-        for (auto& it : visitCount) {
+        for (auto &it: visitCount) {
             result.push_back(to_string(it.second) + " " + it.first);
         }
         return result;

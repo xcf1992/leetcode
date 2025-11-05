@@ -44,28 +44,31 @@ using namespace std;
 
 class Solution {
 private:
-    void search(TreeNode* root, int& minVal, int& result) {
+    void search(TreeNode *root, int &minVal, int &result) {
         if (root == nullptr) {
             return;
         }
 
-        if (root -> val > minVal and (result == -1 or root -> val < result)) {
-            result = root -> val;
+        if (root->val > minVal and(result == -1 or root->val < result)
+        )
+        {
+            result = root->val;
             return;
         }
 
-        if (root -> val == minVal) {
-            search(root -> left, minVal, result);
-            search(root -> right, minVal, result);
+        if (root->val == minVal) {
+            search(root->left, minVal, result);
+            search(root->right, minVal, result);
         }
     }
+
 public:
-    int findSecondMinimumValue(TreeNode* root) {
+    int findSecondMinimumValue(TreeNode *root) {
         if (root == nullptr) {
             return -1;
         }
 
-        int minVal = root -> val;
+        int minVal = root->val;
         int result = -1;
         search(root, minVal, result);
         return result;

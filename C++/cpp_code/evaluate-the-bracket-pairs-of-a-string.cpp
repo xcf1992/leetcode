@@ -73,10 +73,10 @@ using namespace std;
 
 class Solution {
 public:
-    string evaluate(string s, vector<vector<string>>& k) {
-        unordered_map<string,string> m;
-        for(vector<string>temp : k) {
-            m[temp[0]]= temp[1];
+    string evaluate(string s, vector<vector<string> > &k) {
+        unordered_map<string, string> m;
+        for (vector<string> temp: k) {
+            m[temp[0]] = temp[1];
         }
 
         string res = "";
@@ -86,7 +86,7 @@ public:
                 res += s[i++];
                 continue;
             }
-            
+
             int j = i + 1;
             string temp = "";
             while (j < n && s[j] != ')')

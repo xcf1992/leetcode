@@ -58,9 +58,9 @@ using namespace std;
 
 class Solution {
 public:
-    int maximumWealth(vector<vector<int>>& accounts) {
+    int maximumWealth(vector<vector<int> > &accounts) {
         int result = 0;
-        for (vector<int>& customer : accounts) {
+        for (vector<int> &customer: accounts) {
             int wealth = accumulate(customer.begin(), customer.end(), 0);
             result = max(result, wealth);
         }

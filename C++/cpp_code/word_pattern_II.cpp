@@ -39,13 +39,21 @@ private:
     unordered_map<char, string> pat2Str;
     unordered_map<string, char> str2Pat;
 
-    bool match(string& pattern, int i, string& str, int j) {
+    bool match(string &pattern, int i, string &str, int j) {
         int m = pattern.size();
         int n = str.size();
-        if (i == m and j == n) {
+        if (i == m and j
+        ==
+        n
+        )
+        {
             return true;
         }
-        if (i == m or j == n) {
+        if (i == m or j
+        ==
+        n
+        )
+        {
             return false;
         }
 
@@ -73,6 +81,7 @@ private:
         }
         return false;
     }
+
 public:
     bool wordPatternMatch(string pattern, string str) {
         return match(pattern, 0, str, 0);

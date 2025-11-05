@@ -51,8 +51,7 @@ public:
             result[i] = result[i - 1] + multiplier;
             if (i <= 9) {
                 multiplier *= (10 - i);
-            }
-            else {
+            } else {
                 multiplier = 0;
             }
         }

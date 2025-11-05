@@ -22,13 +22,14 @@ follow up: print the path
 #include <stdio.h>
 #include <set>
 using namespace std;
+
 // if want to print the path, we can use another vector<int> to store the pre
 class Solution {
 public:
-    int minCostWizards(vector<vector<int>> wizards) {
+    int minCostWizards(vector<vector<int> > wizards) {
         vector<int> distance(10, INT_MAX);
         distance[0] = 0;
-        queue<pair<int, int>> bfs;
+        queue<pair<int, int> > bfs;
         bfs.push({0, 0});
         while (!bfs.empty()) {
             int cur = bfs.front().first;
@@ -39,7 +40,7 @@ public:
                 continue;
             }
 
-            for (int nex : wizards[cur]) {
+            for (int nex: wizards[cur]) {
                 int cost = (nex - cur) * (nex - cur);
                 if (cost + dis < distance[nex]) {
                     distance[nex] = cost + dis;

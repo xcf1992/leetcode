@@ -33,11 +33,12 @@
 #include <numeric>
 using namespace std;
 
-class Solution { // bucket sort
+class Solution {
+    // bucket sort
 public:
-    int heightChecker(vector<int>& heights) {
+    int heightChecker(vector<int> &heights) {
         vector<int> heightToFreq(101, 0);
-        for (int height : heights) {
+        for (int height: heights) {
             heightToFreq[height] += 1;
         }
 
@@ -58,7 +59,7 @@ public:
 
 class Solution1 {
 public:
-    int heightChecker(vector<int>& heights) {
+    int heightChecker(vector<int> &heights) {
         int result = 0;
         vector<int> temp = heights;
         sort(temp.begin(), temp.end());

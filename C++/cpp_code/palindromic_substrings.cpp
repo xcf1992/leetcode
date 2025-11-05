@@ -38,7 +38,9 @@ public:
         for (int mid = 0; mid < len; mid++) {
             int left = mid - 1;
             int right = mid + 1;
-            while (left >= 0 and right < len and s[left] == s[right]) {
+            while (left >= 0 and right<len and s[left] == s[right]
+            )
+            {
                 result += 1;
                 left -= 1;
                 right += 1;
@@ -48,7 +50,9 @@ public:
         for (int midLeft = 0, midRight = 1; midRight < len; ++midLeft, ++midRight) {
             int left = midLeft;
             int right = midRight;
-            while (left >= 0 and right < len and s[left] == s[right]) {
+            while (left >= 0 and right<len and s[left] == s[right]
+            )
+            {
                 result += 1;
                 left -= 1;
                 right += 1;
@@ -58,16 +62,21 @@ public:
     }
 };
 
-class Solution { // dp
+class Solution {
+    // dp
 public:
     int countSubstrings(string s) {
         int n = s.size();
-        vector<vector<bool>> dp(n, vector<bool>(n, false));
+        vector<vector<bool> > dp(n, vector<bool>(n, false));
         int result = 0;
         for (int i = 0; i < n; ++i) {
             result += 1;
             dp[i][i] = true;
-            if (i > 0 and s[i] == s[i - 1]) {
+            if (i > 0 and s[i]
+            ==
+            s[i - 1]
+            )
+            {
                 result += 1;
                 dp[i - 1][i] = true;
             }
@@ -76,7 +85,9 @@ public:
         for (int len = 3; len <= n; ++len) {
             for (int i = 0; i + len - 1 < n; ++i) {
                 int j = i + len - 1;
-                if (s[i] == s[j] and dp[i + 1][j - 1]) {
+                if (s[i] == s[j] and dp[i + 1][j - 1]
+                )
+                {
                     dp[i][j] = true;
                     result += 1;
                 }

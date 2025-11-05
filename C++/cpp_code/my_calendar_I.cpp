@@ -46,18 +46,27 @@ using namespace std;
 
 class MyCalendar {
 private:
-    set<pair<int, int>> events;
+    set<pair<int, int> > events;
+
 public:
-    MyCalendar() {}
+    MyCalendar() {
+    }
 
     bool book(int start, int end) {
         auto it = events.lower_bound({start, end});
 
-        if (it != events.end() and it -> first < end) {
+        if (it != events.end() and
+        it->first < end
+        )
+        {
             return false;
         }
 
-        if (it != events.begin() and prev(it) -> second > start) {
+        if (it != events.begin() and prev(it)
+        ->
+        second > start
+        )
+        {
             return false;
         }
 
@@ -65,6 +74,7 @@ public:
         return true;
     }
 };
+
 /*
 * Your MyCalendar object will be instantiated and called as such:
 * MyCalendar obj = new MyCalendar();

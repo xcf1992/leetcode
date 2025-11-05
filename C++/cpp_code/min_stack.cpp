@@ -35,6 +35,7 @@ class MinStack {
 private:
     stack<int> numStack;
     stack<int> minStack;
+
 public:
     void push(int x) {
         if (numStack.empty()) {
@@ -42,7 +43,7 @@ public:
             minStack.push(x);
             return;
         }
-        
+
         numStack.push(x);
         if (minStack.top() >= x) {
             minStack.push(x);

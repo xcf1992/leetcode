@@ -30,33 +30,33 @@ using namespace std;
 
 class myComp {
 public:
-    bool operator()(ListNode* a, ListNode* b) {
-        return a -> val > b -> val;
+    bool operator()(ListNode *a, ListNode *b) {
+        return a->val > b->val;
     }
 };
 
 class Solution {
 public:
-    ListNode* mergeKLists(vector<ListNode*>& lists) {
-        priority_queue<ListNode*, vector<ListNode*>, myComp> minHeap;
+    ListNode *mergeKLists(vector<ListNode *> &lists) {
+        priority_queue<ListNode *, vector<ListNode *>, myComp> minHeap;
         for (int i = 0; i != lists.size(); i++) {
             if (lists[i] != nullptr) {
                 minHeap.push(lists[i]);
             }
         }
 
-        ListNode* dummy = new ListNode(-1);
-        ListNode* pre = dummy;
+        ListNode *dummy = new ListNode(-1);
+        ListNode *pre = dummy;
         while (!minHeap.empty()) {
-            ListNode* cur = minHeap.top();
+            ListNode *cur = minHeap.top();
             minHeap.pop();
 
-            pre -> next = cur;
-            pre = pre -> next;
-            if (cur -> next) {
-                minHeap.push(cur -> next);
+            pre->next = cur;
+            pre = pre->next;
+            if (cur->next) {
+                minHeap.push(cur->next);
             }
         }
-        return dummy -> next;
+        return dummy->next;
     }
 };

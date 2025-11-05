@@ -25,14 +25,15 @@ using namespace std;
 
 class Solution {
 public:
-    void moveZeroes(vector<int>& nums) {
+    void moveZeroes(vector<int> &nums) {
         int n = nums.size();
         int zeroP = 0;
         int notZeroP = 0;
-        for (; notZeroP < n; ++notZeroP) if (nums[notZeroP] != 0) {
-            nums[zeroP] = nums[notZeroP];
-            zeroP++;
-        }
+        for (; notZeroP < n; ++notZeroP)
+            if (nums[notZeroP] != 0) {
+                nums[zeroP] = nums[notZeroP];
+                zeroP++;
+            }
         for (; zeroP < n; ++zeroP) {
             nums[zeroP] = 0;
         }
@@ -51,7 +52,7 @@ Expected
 */
 class Solution1 {
 public:
-    void moveZeroes(vector<int>& nums) {
+    void moveZeroes(vector<int> &nums) {
         int n = nums.size();
         if (n <= 1) {
             return;

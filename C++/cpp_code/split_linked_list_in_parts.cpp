@@ -53,36 +53,45 @@ using namespace std;
 
 class Solution {
 public:
-    vector<ListNode*> splitListToParts(ListNode* root, int k) {
+    vector<ListNode *> splitListToParts(ListNode *root, int k) {
         vector<ListNode *> result(k, nullptr);
 
         int length = 0;
-        ListNode* cur = root;
+        ListNode *cur = root;
         while (cur != nullptr) {
             length += 1;
-            cur = cur -> next;
+            cur = cur->next;
         }
 
         cur = root;
         int segment = length / k;
         int extra = length % k;
         int index = 0;
-        ListNode* pre = nullptr;
+        ListNode *pre = nullptr;
         while (cur != nullptr) {
             result[index] = cur;
             index += 1;
 
-            for (int i = 0; i < segment and cur != nullptr; ++i) {
+            for (int i = 0; i < segment and cur
+            !=
+            nullptr;
+            ++i
+            )
+            {
                 pre = cur;
-                cur = cur -> next;
+                cur = cur->next;
             }
-            if (cur != nullptr and extra != 0) {
+            if (cur != nullptr and extra
+            !=
+            0
+            )
+            {
                 pre = cur;
-                cur = cur -> next;
+                cur = cur->next;
                 extra -= 1;
             }
             if (pre != nullptr) {
-                pre -> next = nullptr;
+                pre->next = nullptr;
             }
         }
         return result;

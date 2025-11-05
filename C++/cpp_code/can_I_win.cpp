@@ -47,7 +47,7 @@ using namespace std;
 
 class Solution {
 private:
-    bool canWin(int total, int usedNumMask, vector<unordered_map<int, bool>>& cache, int maxNum) {
+    bool canWin(int total, int usedNumMask, vector<unordered_map<int, bool> > &cache, int maxNum) {
         if (total <= 0) {
             return false;
         }
@@ -67,17 +67,18 @@ private:
         cache[total][usedNumMask] = false;
         return false;
     }
+
 public:
     bool canIWin(int maxChoosableInteger, int desiredTotal) {
         if (maxChoosableInteger >= desiredTotal) {
             return true;
         }
-        
+
         if (maxChoosableInteger * (maxChoosableInteger + 1) < desiredTotal * 2) {
             return false;
         }
 
-        vector<unordered_map<int, bool>> cache(desiredTotal + 1);
+        vector<unordered_map<int, bool> > cache(desiredTotal + 1);
         return canWin(desiredTotal, 0, cache, maxChoosableInteger);
     }
 };

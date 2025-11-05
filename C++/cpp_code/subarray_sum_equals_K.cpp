@@ -27,12 +27,12 @@ using namespace std;
 
 class Solution {
 public:
-    int subarraySum(vector<int>& nums, int k) {
+    int subarraySum(vector<int> &nums, int k) {
         unordered_map<int, int> preSum;
         preSum[0] = 1;
         int sum = 0;
         int result = 0;
-        for (int num : nums) {
+        for (int num: nums) {
             sum += num;
             if (preSum.find(sum - k) != preSum.end()) {
                 result += preSum[sum - k];

@@ -38,18 +38,23 @@ using namespace std;
 class MaxStack {
     stack<int> elements;
     stack<int> maxElements;
+
 public:
     /* initialize your data structure here.*/
     MaxStack() {
-
     }
 
     void push(int x) {
         elements.push(x);
-        if (maxElements.empty() or x >= maxElements.top()) {
+        if (maxElements.empty() or x
+        >=
+        maxElements.top()
+        )
+        {
             maxElements.push(x);
         }
-        else {
+        else
+        {
             maxElements.push(maxElements.top());
         }
     }
@@ -87,6 +92,7 @@ public:
         return maxVal;
     }
 };
+
 /*
 * Your MaxStack object will be instantiated and called as such:
 * MaxStack obj = new MaxStack();

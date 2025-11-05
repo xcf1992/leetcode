@@ -51,7 +51,7 @@ using namespace std;
 
 class Solution {
 public:
-    int countSquares(vector<vector<int>>& matrix) {
+    int countSquares(vector<vector<int> > &matrix) {
         int m = matrix.size();
         if (m == 0) {
             return 0;
@@ -59,20 +59,23 @@ public:
         int n = matrix[0].size();
 
         int result = 0;
-        vector<vector<int>> maxLen(m, vector<int>(n, 0));
-        for (int i = 0; i < m; ++i) if (matrix[i][0] == 1) {
-            maxLen[i][0] = 1;
-            result += 1;
-        }
-        for (int j = 1; j < n; ++j) if (matrix[0][j] == 1) {
-            maxLen[0][j] = 1;
-            result += 1;
-        }
-        for (int i = 1; i < m; ++i) {
-            for (int j = 1; j < n; ++j) if (matrix[i][j] == 1) {
-                maxLen[i][j] = 1 + min(maxLen[i - 1][j - 1], min(maxLen[i - 1][j], maxLen[i][j - 1]));
-                result += maxLen[i][j];
+        vector<vector<int> > maxLen(m, vector<int>(n, 0));
+        for (int i = 0; i < m; ++i)
+            if (matrix[i][0] == 1) {
+                maxLen[i][0] = 1;
+                result += 1;
             }
+        for (int j = 1; j < n; ++j)
+            if (matrix[0][j] == 1) {
+                maxLen[0][j] = 1;
+                result += 1;
+            }
+        for (int i = 1; i < m; ++i) {
+            for (int j = 1; j < n; ++j)
+                if (matrix[i][j] == 1) {
+                    maxLen[i][j] = 1 + min(maxLen[i - 1][j - 1], min(maxLen[i - 1][j], maxLen[i][j - 1]));
+                    result += maxLen[i][j];
+                }
         }
         return result;
     }

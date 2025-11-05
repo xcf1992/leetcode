@@ -49,8 +49,8 @@ using namespace std;
 
 class Solution {
 private:
-   const vector<int> rotate = {0, 1, -1, -1, -1, -1, 9, -1, 8, 6};
-   const vector<int> valid = {0, 1, 6, 8, 9};
+    const vector<int> rotate = {0, 1, -1, -1, -1, -1, 9, -1, 8, 6};
+    const vector<int> valid = {0, 1, 6, 8, 9};
 
     bool isConfusing(int num) {
         string numStr = to_string(num);
@@ -63,7 +63,7 @@ private:
         return false;
     }
 
-    void dfs(long long cur, int N, int& result) {
+    void dfs(long long cur, int N, int &result) {
         if (cur > N) {
             return;
         }
@@ -72,15 +72,16 @@ private:
             result += 1;
         }
 
-        for (int d : valid) {
+        for (int d: valid) {
             dfs(cur * 10 + d, N, result);
         }
-   }
+    }
+
 public:
     int confusingNumberII(int N) {
         int result = 0;
         int cur = 0;
-        for (int d : valid) {
+        for (int d: valid) {
             if (d != 0) {
                 dfs(d, N, result);
             }

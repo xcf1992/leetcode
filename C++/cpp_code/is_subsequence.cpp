@@ -41,7 +41,7 @@ using namespace std;
 class Solution {
 public:
     bool isSubsequence(string t, string s) {
-        vector<vector<int>> pos(26);
+        vector<vector<int> > pos(26);
         for (int i = 0; i < s.size(); ++i) {
             pos[s[i] - 'a'].push_back(i);
         }
@@ -63,7 +63,9 @@ public:
     bool isSubsequence(string s, string t) {
         int sPtr = 0;
         int tPtr = 0;
-        while (sPtr < s.size() and tPtr < t.size()) {
+        while (sPtr < s.size() and tPtr<t.size()
+        )
+        {
             if (s[sPtr] == t[tPtr]) {
                 sPtr++;
             }

@@ -331,10 +331,10 @@ using namespace std;
 */
 class Solution {
 public:
-    int cherryPickup(vector<vector<int>>& grid) {
+    int cherryPickup(vector<vector<int> > &grid) {
         int N = grid.size();
         int M = (N << 1) - 1; // 2*N - 1
-        vector<vector<int>> dp(N, vector<int>(N, 0));
+        vector<vector<int> > dp(N, vector<int>(N, 0));
         dp[0][0] = grid[0][0];
 
         for (int n = 1; n < M; n++) {
@@ -342,7 +342,11 @@ public:
                 for (int p = N - 1; p >= 0; p--) {
                     int j = n - i;
                     int q = n - p;
-                    if (j < 0 or j >= N or q < 0 or q >= N or grid[i][j] < 0 or grid[p][q] < 0) {
+                    if (j < 0 or j
+                    >=
+                    N or q<0 or q >= N or grid[i][j] < 0 or grid[p][q] < 0
+                    )
+                    {
                         dp[i][p] = -1;
                         continue;
                     }
@@ -352,7 +356,11 @@ public:
                     if (p > 0) {
                         dp[i][p] = max(dp[i][p], dp[i][p - 1]);
                     }
-                    if (i > 0 and p > 0) {
+                    if (i > 0 and p
+                    >
+                    0
+                    )
+                    {
                         dp[i][p] = max(dp[i][p], dp[i - 1][p - 1]);
                     }
                     if (dp[i][p] >= 0) {

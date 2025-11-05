@@ -82,15 +82,18 @@ struct myComp {
 
 class Solution {
 public:
-    int minRefuelStops(int target, int startFuel, vector<vector<int>>& stations) {
+    int minRefuelStops(int target, int startFuel, vector<vector<int> > &stations) {
         stations.push_back({target, 0});
         priority_queue<int, vector<int>, myComp> pq;
         int tank = startFuel;
         int pos = 0;
         int result = 0;
-        for (vector<int>& station : stations) {
+        for (vector<int> &station: stations) {
             tank -= station[0] - pos;
-            while (tank < 0 and !pq.empty()) {
+            while (tank < 0 and
+            !pq.empty()
+            )
+            {
                 tank += pq.top();
                 pq.pop();
                 result += 1;
@@ -99,7 +102,7 @@ public:
             if (tank < 0) {
                 return -1;
             }
-            
+
             pq.push(station[1]);
             pos = station[0];
         }
@@ -134,7 +137,7 @@ time complexity is O(n ^ 2), n is the number of stations
 */
 class Solution2 {
 public:
-    int minRefuelStops(int target, int startFuel, vector<vector<int>>& stations) {
+    int minRefuelStops(int target, int startFuel, vector<vector<int> > &stations) {
         int n = stations.size();
         vector<long> dp(n + 1, startFuel);
         for (int i = 0; i < n; i++) {
@@ -156,7 +159,7 @@ public:
 
 class Solution1 {
 private:
-    bool refuel(int leftGas, int curStation, int stops, int& result, vector<vector<int>>& stations) {
+    bool refuel(int leftGas, int curStation, int stops, int &result, vector<vector<int> > &stations) {
         if (leftGas < 0) {
             return false;
         }
@@ -167,14 +170,18 @@ private:
         }
 
         int distance = stations[curStation + 1][0] - stations[curStation][0];
-        if (refuel(leftGas - distance, curStation + 1, stops, result, stations) or
-            refuel(leftGas - distance + stations[curStation][1], curStation + 1, stops + 1, result, stations)) {
+        if (refuel(leftGas - distance, curStation + 1, stops, result, stations)
+            or
+                    refuel(leftGas - distance + stations[curStation][1], curStation + 1, stops + 1, result, stations)
+        )
+        {
             return true;
         }
         return false;
     }
+
 public:
-    int minRefuelStops(int target, int startFuel, vector<vector<int>>& stations) {
+    int minRefuelStops(int target, int startFuel, vector<vector<int> > &stations) {
         stations.push_back({target, 0});
         int result = INT_MAX;
         if (refuel(startFuel - stations[0][0], 0, 0, result, stations)) {

@@ -71,12 +71,12 @@ Space O(N^2), can be imporved to O(N)
 */
 class Solution {
 public:
-    int minCost(int n, vector<int>& A) {
+    int minCost(int n, vector<int> &A) {
         A.push_back(0);
         A.push_back(n);
         sort(A.begin(), A.end());
         int k = A.size();
-        vector<vector<int>> dp(k, vector<int>(k));
+        vector<vector<int> > dp(k, vector<int>(k));
         for (int d = 2; d < k; ++d) {
             for (int i = 0; i < k - d; ++i) {
                 dp[i][i + d] = INT_MAX;

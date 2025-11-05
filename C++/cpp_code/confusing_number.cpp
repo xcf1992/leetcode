@@ -61,12 +61,20 @@ public:
         string num = to_string(N);
         int left = 0;
         int right = num.size() - 1;
-        while (right >= left and num[right] == '0') {
+        while (right >= left and num[right]
+        ==
+        '0'
+        )
+        {
             right -= 1;
         }
 
         while (left <= right) {
-            if (rotate[num[left] - '0'] == -1 or rotate[num[right] - '0'] == -1) {
+            if (rotate[num[left] - '0'] == -1 or rotate[num[right] - '0']
+            ==
+            -1
+            )
+            {
                 return false;
             }
 

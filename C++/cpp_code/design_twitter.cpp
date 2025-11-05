@@ -65,17 +65,20 @@ struct Tweet {
     int id;
     int time;
 
-    Tweet(int i, int t): id(i), time(t) {}
+    Tweet(int i, int t) : id(i), time(t) {
+    }
 };
 
 class Twitter {
 private:
-    unordered_map<int, unordered_set<int>> iFollow;
-    unordered_map<int, vector<Tweet>> tweets;
+    unordered_map<int, unordered_set<int> > iFollow;
+    unordered_map<int, vector<Tweet> > tweets;
     int curTime = 0;
+
 public:
     /* Initialize your data structure here.*/
-    Twitter() {}
+    Twitter() {
+    }
 
     /* Compose a new tweet.*/
     void postTweet(int userId, int tweetId) {
@@ -89,21 +92,24 @@ public:
     * Tweets must be ordered from most recent to least recent.
     */
     vector<int> getNewsFeed(int userId) {
-        auto comp = [](Tweet& a, Tweet& b) {
+        auto comp = [](Tweet &a, Tweet &b) {
             return a.time < b.time;
         };
         priority_queue<Tweet, vector<Tweet>, decltype(comp)> maxHeap(comp);
 
         unordered_set<int> users(iFollow[userId]);
         users.insert(userId);
-        for (int user : users) {
-            for (Tweet t : tweets[user]) {
+        for (int user: users) {
+            for (Tweet t: tweets[user]) {
                 maxHeap.push(t);
             }
         }
 
         vector<int> result;
-        while (!maxHeap.empty() and result.size() < 10) {
+        while (!maxHeap.empty() and
+        result.size() < 10
+        )
+        {
             result.push_back(maxHeap.top().id);
             maxHeap.pop();
         }
@@ -123,6 +129,7 @@ public:
         iFollow[followerId].erase(iFollow[followerId].find(followeeId));
     }
 };
+
 /*
  * Your Twitter object will be instantiated and called as such:
  * Twitter obj = new Twitter();

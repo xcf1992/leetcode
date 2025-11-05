@@ -65,7 +65,10 @@ Also, it is easy to see that for any number whose last digit is not in {1, 3, 7,
 class Solution {
 public:
     int smallestRepunitDivByK(int K) {
-        if (K % 2 == 0 or K % 5 == 0) {
+        if (K % 2 == 0 or K
+        %5 == 0
+        )
+        {
             return -1;
         }
         int r = 0;

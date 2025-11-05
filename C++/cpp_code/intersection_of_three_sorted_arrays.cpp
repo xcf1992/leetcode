@@ -28,17 +28,17 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> arraysIntersection(vector<int>& arr1, vector<int>& arr2, vector<int>& arr3) {
+    vector<int> arraysIntersection(vector<int> &arr1, vector<int> &arr2, vector<int> &arr3) {
         unordered_map<int, int> count;
-        for (int num : arr1) {
+        for (int num: arr1) {
             count[num] += 1;
         }
-        for (int num : arr2) {
+        for (int num: arr2) {
             count[num] += 1;
         }
 
         vector<int> result;
-        for (int num : arr3) {
+        for (int num: arr3) {
             count[num] += 1;
             if (count[num] == 3) {
                 result.push_back(num);

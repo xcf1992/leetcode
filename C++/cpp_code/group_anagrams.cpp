@@ -31,27 +31,29 @@ using namespace std;
 
 class Solution {
 private:
-    string getMask(string& word) {
+    string getMask(string &word) {
         vector<int> count(26, 0);
-        for (char c : word) {
+        for (char c: word) {
             count[c - 'a'] += 1;
         }
 
         string mask = "";
-        for (int i = 0; i < 26; ++i) if (count[i] != 0) {
-            mask += string(1, 'a' + i) + to_string(count[i]);
-        }
+        for (int i = 0; i < 26; ++i)
+            if (count[i] != 0) {
+                mask += string(1, 'a' + i) + to_string(count[i]);
+            }
         return mask;
     }
+
 public:
-    vector<vector<string>> groupAnagrams(vector<string>& strs) {
-        unordered_map<string, vector<string>> memo;
-        for (string& word : strs) {
+    vector<vector<string> > groupAnagrams(vector<string> &strs) {
+        unordered_map<string, vector<string> > memo;
+        for (string &word: strs) {
             memo[getMask(word)].push_back(word);
         }
 
-        vector<vector<string>> result;
-        for (auto& it : memo) {
+        vector<vector<string> > result;
+        for (auto &it: memo) {
             result.push_back(it.second);
         }
         return result;

@@ -136,8 +136,9 @@ private:
     int getPos(int i, int n) {
         return (1 + 2 * i) % (n | 1);
     }
+
 public:
-    void wiggleSort(vector<int>& nums) {
+    void wiggleSort(vector<int> &nums) {
         int n = nums.size();
         auto midPtr = nums.begin() + n / 2;
         nth_element(nums.begin(), midPtr, nums.end());
@@ -147,16 +148,16 @@ public:
         int right = n - 1;
         int cur = 0;
         while (cur <= right) {
-            if (nums[getPos(cur, n)] > midNum) { // the part before virtual index left will always be <= midNum, so we can move cur forward
+            if (nums[getPos(cur, n)] > midNum) {
+                // the part before virtual index left will always be <= midNum, so we can move cur forward
                 swap(nums[getPos(left, n)], nums[getPos(cur, n)]);
                 left += 1;
                 cur += 1;
-            }
-            else if (nums[getPos(cur, n)] < midNum) { // we do no konw the value at virtual index right, we need to check again after swap
+            } else if (nums[getPos(cur, n)] < midNum) {
+                // we do no konw the value at virtual index right, we need to check again after swap
                 swap(nums[getPos(cur, n)], nums[getPos(right, n)]);
                 right -= 1;
-            }
-            else {
+            } else {
                 cur += 1;
             }
         }
@@ -166,7 +167,7 @@ public:
 // wrong for [4,5,5,6]
 class Solution1 {
 public:
-    void wiggleSort(vector<int>& nums) {
+    void wiggleSort(vector<int> &nums) {
         int n = nums.size();
         vector<int> temp = nums;
         sort(temp.begin(), temp.end());

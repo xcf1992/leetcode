@@ -54,9 +54,9 @@ using namespace std;
 
 class Solution {
 public:
-    int minSubarray(vector<int>& A, int p) {
+    int minSubarray(vector<int> &A, int p) {
         int n = A.size(), res = n, need = 0, cur = 0;
-        for (auto a : A)
+        for (auto a: A)
             need = (need + a) % p;
         unordered_map<int, int> last = {{0, -1}};
         for (int i = 0; i < n; ++i) {

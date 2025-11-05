@@ -32,13 +32,17 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> nextGreaterElements(vector<int>& nums) {
+    vector<int> nextGreaterElements(vector<int> &nums) {
         int n = nums.size();
         vector<int> result(n, -1);
         stack<int> bigger;
         for (int i = 0; i < 2 * n; ++i) {
             int num = nums[i % n];
-            while (!bigger.empty() and nums[bigger.top()] < num) {
+            while (!bigger.empty() and nums[bigger.top()]
+            <
+            num
+            )
+            {
                 result[bigger.top()] = num;
                 bigger.pop();
             }

@@ -78,22 +78,29 @@ The optimal path should be [1, 3, 5] where the cost is only 2
 */
 class Solution {
 public:
-    vector<int> cheapestJump(vector<int>& A, int B) {
+    vector<int> cheapestJump(vector<int> &A, int B) {
         int n = A.size();
         vector<int> cost(n, INT_MAX);
         cost[0] = 0;
         vector<int> previous(n, -1);
         vector<int> length(n, 0);
-        for (int i = 0; i < n; ++i) if (A[i] != -1) {
-            for (int j = max(0, i - B); j < i; ++j) if (A[j] != -1 and cost[j] != INT_MAX) {
-                int curCost = cost[j] + A[i];
-                if (curCost < cost[i] or (curCost == cost[i] and length[j] + 1 > length[i])) {
-                    cost[i] = curCost;
-                    previous[i] = j;
-                    length[i] = length[j] + 1;
+        for (int i = 0; i < n; ++i)
+            if (A[i] != -1) {
+                for (int j = max(0, i - B); j < i; ++j) if (A[j] != -1 and cost[j]
+                !=
+                INT_MAX
+                )
+                {
+                    int curCost = cost[j] + A[i];
+                    if (curCost < cost[i] or(curCost == cost[i] and length[j] + 1 > length[i])
+                    )
+                    {
+                        cost[i] = curCost;
+                        previous[i] = j;
+                        length[i] = length[j] + 1;
+                    }
                 }
             }
-        }
 
         vector<int> result;
         for (int i = n - 1; i >= 0; i = previous[i]) {
@@ -107,21 +114,31 @@ public:
     }
 };
 
-class Solution1 { // dfs with memo
+class Solution1 {
+    // dfs with memo
 private:
     unordered_map<int, long> memo;
 
-    long jump(vector<int>& A, int B, int start, vector<int>& next) {
+    long jump(vector<int> &A, int B, int start, vector<int> &next) {
         if (memo.find(start) != memo.end()) {
             return memo[start];
         }
 
-        if (start == A.size() - 1 and A[start] != -1) {
+        if (start == A.size() - 1 and A[start]
+        !=
+        -1
+        )
+        {
             return A[start];
         }
 
         memo[start] = INT_MAX;
-        for (int j = start + 1; j < A.size() and j <= start + B; ++j) {
+        for (int j = start + 1; j < A.size() and j
+        <=
+        start + B;
+        ++j
+        )
+        {
             if (A[j] != -1) {
                 long cost = A[start] + jump(A, B, j, next);
                 if (cost < memo[start]) {
@@ -132,8 +149,9 @@ private:
         }
         return memo[start];
     }
+
 public:
-    vector<int> cheapestJump(vector<int>& A, int B) {
+    vector<int> cheapestJump(vector<int> &A, int B) {
         int n = A.size();
         vector<int> next(n, -1);
         jump(A, B, 0, next);

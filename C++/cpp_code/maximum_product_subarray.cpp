@@ -1,4 +1,4 @@
-ß/*
+ß /*
 152. Maximum Product Subarray
 https://leetcode.com/problems/maximum-product-subarray/
 
@@ -16,6 +16,7 @@ Input: [-2,0,-1]
 Output: 0
 Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
 */
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -30,7 +31,7 @@ using namespace std;
 
 class Solution {
 public:
-    int maxProduct(vector<int>& nums) {
+    int maxProduct(vector<int> &nums) {
         int curMax = nums[0];
         int curMin = nums[0];
         int result = nums[0];

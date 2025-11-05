@@ -39,12 +39,13 @@ You may assume that nums' length ≥ k-1 and k ≥ 1.
 using namespace std;
 
 class KthLargest {
-    priority_queue<int, vector<int>, greater<int>> minHeap;
+    priority_queue<int, vector<int>, greater<int> > minHeap;
     int K;
+
 public:
     KthLargest(int k, vector<int> nums) {
         K = k;
-        for (int num : nums) {
+        for (int num: nums) {
             minHeap.push(num);
             if (minHeap.size() > K) {
                 minHeap.pop();
@@ -60,6 +61,7 @@ public:
         return minHeap.top();
     }
 };
+
 /*
 Your KthLargest object will be instantiated and called as such:
 KthLargest obj = new KthLargest(k, nums);

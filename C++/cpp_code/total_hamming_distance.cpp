@@ -32,12 +32,12 @@ using namespace std;
 
 class Solution {
 public:
-    int totalHammingDistance(vector<int>& nums) {
+    int totalHammingDistance(vector<int> &nums) {
         int result = 0;
         int n = nums.size();
         for (int i = 0; i < 32; i++) {
             int zeroCount = 0;
-            for (int& num : nums) {
+            for (int &num: nums) {
                 if (num % 2 == 0) {
                     zeroCount += 1;
                 }

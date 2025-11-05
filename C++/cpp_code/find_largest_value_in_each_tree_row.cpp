@@ -25,53 +25,55 @@ Output: [1, 3, 9]
 #include "extra_data_types.hpp"
 using namespace std;
 
-class Solution { // dfs
+class Solution {
+    // dfs
 private:
-    void dfs(int depth, TreeNode* root, vector<int>& result) {
+    void dfs(int depth, TreeNode *root, vector<int> &result) {
         if (root == nullptr) {
             return;
         }
 
         if (depth == result.size()) {
-            result.push_back(root -> val);
+            result.push_back(root->val);
+        } else {
+            result[depth] = max(result[depth], root->val);
         }
-        else {
-            result[depth] = max(result[depth], root -> val);
-        }
-        dfs(depth + 1, root -> left, result);
-        dfs(depth + 1, root -> right, result);
+        dfs(depth + 1, root->left, result);
+        dfs(depth + 1, root->right, result);
     }
+
 public:
-    vector<int> largestValues(TreeNode* root) {
+    vector<int> largestValues(TreeNode *root) {
         vector<int> result;
         dfs(0, root, result);
         return result;
     }
 };
 
-class Solution1 { // bfs
+class Solution1 {
+    // bfs
 public:
-    vector<int> largestValues(TreeNode* root) {
+    vector<int> largestValues(TreeNode *root) {
         if (root == nullptr) {
             return {};
         }
 
         vector<int> result;
-        queue<TreeNode*> row;
+        queue<TreeNode *> row;
         row.push(root);
         while (!row.empty()) {
             int max_value = INT_MIN;
             int curSize = row.size();
             for (int i = 0; i < curSize; ++i) {
-                TreeNode* current = row.front();
+                TreeNode *current = row.front();
                 row.pop();
-                
-                max_value = max(max_value, current -> val);
-                if (current -> left != nullptr) {
-                    row.push(current -> left);
+
+                max_value = max(max_value, current->val);
+                if (current->left != nullptr) {
+                    row.push(current->left);
                 }
-                if (current -> right != nullptr) {
-                    row.push(current -> right);
+                if (current->right != nullptr) {
+                    row.push(current->right);
                 }
             }
             result.push_back(max_value);

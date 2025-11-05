@@ -57,11 +57,21 @@ public:
         int n = start.size();
         int pos1 = 0;
         int pos2 = 0;
-        while (pos1 < n and pos2 < n) {
-            while (pos1 < n and start[pos1] == 'X') {
+        while (pos1 < n and pos2<n
+        )
+        {
+            while (pos1 < n and start[pos1]
+            ==
+            'X'
+            )
+            {
                 pos1 += 1;
             }
-            while (pos2 < n and end[pos2] == 'X') {
+            while (pos2 < n and end[pos2]
+            ==
+            'X'
+            )
+            {
                 pos2 += 1;
             }
 
@@ -71,16 +81,24 @@ public:
                 return false;
             }
 
-            if (pos1 < n and pos2 < n) {
+            if (pos1 < n and pos2<n
+            )
+            {
                 if (start[pos1] != end[pos2]) {
                     return false;
                 }
 
-                if (start[pos1] == 'L' and pos1 < pos2) {
+                if (start[pos1] == 'L' and pos1<pos2
+                )
+                {
                     return false;
                 }
 
-                if (start[pos1] == 'R' and pos1 > pos2) {
+                if (start[pos1] == 'R' and pos1
+                >
+                pos2
+                )
+                {
                     return false;
                 }
             }
@@ -124,10 +142,15 @@ public:
                 right -= 1;
             }
 
-            if (left > 0 or right < 0 or (right > 0 and left != 0) or (left > 0 and right != 0)) {
+            if (left > 0 or right<0 or(right > 0 and left != 0) or(left > 0 and right != 0)
+            )
+            {
                 return false;
             }
         }
-        return left == 0 and right == 0;
+        return left == 0
+        and right
+        ==
+        0;
     }
 };

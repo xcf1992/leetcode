@@ -39,8 +39,8 @@ using namespace std;
 
 class Solution {
 private:
-    void find(string& word, unordered_set<string>& synonyms, unordered_map<string, vector<string>>& adj) {
-        for (string& next : adj[word]) {
+    void find(string &word, unordered_set<string> &synonyms, unordered_map<string, vector<string> > &adj) {
+        for (string &next: adj[word]) {
             if (synonyms.find(next) == synonyms.end()) {
                 synonyms.insert(next);
                 find(next, synonyms, adj);
@@ -48,13 +48,14 @@ private:
         }
     }
 
-    void dfs(unordered_map<string, vector<string>>& adj, vector<string>& result, string curText, vector<string>& words, int start) {
+    void dfs(unordered_map<string, vector<string> > &adj, vector<string> &result, string curText, vector<string> &words,
+             int start) {
         if (start >= words.size()) {
             result.push_back(curText.substr(1));
             return;
         }
 
-        string& word = words[start];
+        string &word = words[start];
         if (adj.find(word) == adj.end()) {
             dfs(adj, result, curText + " " + word, words, start + 1);
             return;
@@ -63,14 +64,15 @@ private:
         unordered_set<string> synonyms;
         synonyms.insert(word);
         find(word, synonyms, adj);
-        for (string replace : synonyms) {
+        for (string replace: synonyms) {
             dfs(adj, result, curText + " " + replace, words, start + 1);
         }
     }
+
 public:
-    vector<string> generateSentences(vector<vector<string>>& synonyms, string text) {
-        unordered_map<string, vector<string>> adj;
-        for(auto& word :synonyms){
+    vector<string> generateSentences(vector<vector<string> > &synonyms, string text) {
+        unordered_map<string, vector<string> > adj;
+        for (auto &word: synonyms) {
             adj[word[0]].push_back(word[1]);
             adj[word[1]].push_back(word[0]);
         }

@@ -68,20 +68,23 @@ Otherwise, we continue with putting the next numbers at the same position and ke
 */
 class Solution {
 private:
-    void count(vector<int>& numbers, int pos, int n, int& result) {
+    void count(vector<int> &numbers, int pos, int n, int &result) {
         if (pos > n) {
             result += 1;
             return;
         }
 
         for (int i = 1; i <= n; i++) {
-            if (numbers[i] == 1 and (i % pos == 0 or pos % i == 0)) {
+            if (numbers[i] == 1 and(i % pos == 0 or pos % i == 0)
+            )
+            {
                 numbers[i] = 0;
                 count(numbers, pos + 1, n, result);
                 numbers[i] = 1;
             }
         }
     }
+
 public:
     int countArrangement(int N) {
         vector<int> numbers(N + 1, 1);

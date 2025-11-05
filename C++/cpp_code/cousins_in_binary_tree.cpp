@@ -51,32 +51,44 @@ using namespace std;
 
 class Solution {
 private:
-    void isCousin(TreeNode* root, int depth, int x, int y, int& dx, int& dy, bool& cousin) {
+    void isCousin(TreeNode *root, int depth, int x, int y, int &dx, int &dy, bool &cousin) {
         if (root == nullptr) {
             return;
         }
 
-        if (root -> val == x) {
+        if (root->val == x) {
             dx = depth;
         }
-        if (root -> val == y) {
+        if (root->val == y) {
             dy = depth;
         }
 
-        if (root -> left != nullptr and root -> right != nullptr) {
-            if ((root -> left -> val == x and root -> right -> val == y) or (root -> left -> val == y and root -> right -> val == x)) {
+        if (root->left != nullptr and
+        root->right != nullptr
+        )
+        {
+            if ((root->left->val == x and
+            root->right->val == y
+            )
+            or(root->left->val == y and root->right->val == x)
+            )
+            {
                 cousin = false;
             }
         }
-        isCousin(root -> left, depth + 1, x, y, dx, dy, cousin);
-        isCousin(root -> right, depth + 1, x, y, dx, dy, cousin);
+        isCousin(root->left, depth + 1, x, y, dx, dy, cousin);
+        isCousin(root->right, depth + 1, x, y, dx, dy, cousin);
     }
+
 public:
-    bool isCousins(TreeNode* root, int x, int y) {
+    bool isCousins(TreeNode *root, int x, int y) {
         int dx = 0;
         int dy = 0;
         bool cousin = true;
         isCousin(root, 0, x, y, dx, dy, cousin);
-        return cousin and dx == dy;
+        return cousin
+        and dx
+        ==
+        dy;
     }
 };

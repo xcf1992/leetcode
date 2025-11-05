@@ -60,16 +60,21 @@ nums中必然包含1，如果不包含1，那么[1,n]这个范围中的1就没�
 */
 class Solution {
 public:
-    int minPatches(vector<int>& nums, int n) {
+    int minPatches(vector<int> &nums, int n) {
         int result = 0;
         int index = 0;
         long miss = 1;
         while (miss <= n) {
-            if (index < nums.size() and miss >= nums[index]) {
+            if (index < nums.size() and miss
+            >=
+            nums[index]
+            )
+            {
                 miss += nums[index];
                 index += 1;
             }
-            else {
+            else
+            {
                 result += 1;
                 miss += miss;
             }

@@ -42,14 +42,14 @@ using namespace std;
 
 class Solution {
 public:
-    int maxOperations(vector<int>& nums, int k) {
+    int maxOperations(vector<int> &nums, int k) {
         map<int, int> count;
-        for (int num : nums) {
+        for (int num: nums) {
             count[num] += 1;
         }
 
         int result = 0;
-        for (auto& it : count) {
+        for (auto &it: count) {
             int cur = it.first;
             int cnt = it.second;
             if (cur > k) {

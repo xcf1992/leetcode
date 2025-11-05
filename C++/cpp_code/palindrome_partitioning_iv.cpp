@@ -53,13 +53,13 @@ public:
             dp[i][i + 1] = s[i] == s[i + 1] ? 1 : 0;
         }
 
-        for (int k = 3; k <= n; k++) { // k is the length of substring
+        for (int k = 3; k <= n; k++) {
+            // k is the length of substring
             for (int i = 0; i < n - k + 1; i++) {
                 int j = k + i - 1;
                 if (dp[i + 1][j - 1] == 1 && s[i] == s[j]) {
                     dp[i][j] = 1;
-                }
-                else {
+                } else {
                     dp[i][j] = 0;
                 }
             }

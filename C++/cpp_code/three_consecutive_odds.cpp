@@ -35,9 +35,14 @@ using namespace std;
 
 class Solution {
 public:
-    bool threeConsecutiveOdds(vector<int>& arr) {
+    bool threeConsecutiveOdds(vector<int> &arr) {
         for (int i = 1; i < arr.size() - 1; ++i) {
-            if (arr[i] % 2 != 0 and arr[i - 1] % 2 != 0 and arr[i + 1] % 2 != 0) {
+            if (arr[i] % 2 != 0 and arr[i - 1]
+            %2 != 0
+            and arr[i + 1]
+            %2 != 0
+            )
+            {
                 return true;
             }
         }

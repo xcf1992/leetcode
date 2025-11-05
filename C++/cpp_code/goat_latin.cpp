@@ -53,8 +53,7 @@ private:
         if (vowel.find(word.front()) == vowel.end()) {
             result = word.substr(1);
             result.push_back(word.front());
-        }
-        else {
+        } else {
             result = word;
         }
         result += "ma";
@@ -63,6 +62,7 @@ private:
         }
         return result;
     }
+
 public:
     string toGoatLatin(string S) {
         istringstream iss(S);

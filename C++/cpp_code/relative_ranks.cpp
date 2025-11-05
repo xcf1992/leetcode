@@ -27,7 +27,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<string> findRelativeRanks(vector<int>& nums) {
+    vector<string> findRelativeRanks(vector<int> &nums) {
         unordered_map<int, int> index;
         priority_queue<int> rank;
         for (int i = 0; i < nums.size(); i++) {
@@ -40,14 +40,11 @@ public:
         while (rank.size() > 0) {
             if (count == 1) {
                 result[index[rank.top()]] = "Gold Medal";
-            }
-            else if (count == 2) {
+            } else if (count == 2) {
                 result[index[rank.top()]] = "Silver Medal";
-            }
-            else if (count == 3) {
+            } else if (count == 3) {
                 result[index[rank.top()]] = "Bronze Medal";
-            }
-            else {
+            } else {
                 result[index[rank.top()]] = to_string(count);
             }
             rank.pop();

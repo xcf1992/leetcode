@@ -81,7 +81,7 @@ Space O(N)
 */
 class Solution {
 public:
-    string stoneGameIII(vector<int>& A) {
+    string stoneGameIII(vector<int> &A) {
         int n = A.size();
         vector<int> dp(n, -1e9);
         for (int i = n - 1; i >= 0; --i) {

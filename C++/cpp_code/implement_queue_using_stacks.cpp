@@ -42,10 +42,10 @@ class MyQueue {
 private:
     stack<int> input;
     stack<int> output;
+
 public:
     /** Initialize your data structure here. */
     MyQueue() {
-
     }
 
     /** Push element x to the back of queue. */
@@ -62,13 +62,13 @@ public:
 
     /** Get the front element. */
     int peek() {
-       if (output.empty()) {
-           while (!input.empty()) {
-               output.push(input.top());
-               input.pop();
-           }
-       }
-       return output.top();
+        if (output.empty()) {
+            while (!input.empty()) {
+                output.push(input.top());
+                input.pop();
+            }
+        }
+        return output.top();
     }
 
     /** Returns whether the queue is empty. */
@@ -80,10 +80,10 @@ public:
 class MyQueue1 {
 private:
     stack<int> queue;
+
 public:
     /** Initialize your data structure here. */
     MyQueue1() {
-
     }
 
     // Push element x to the back of queue.
@@ -107,7 +107,7 @@ public:
 
     // Get the front element.
     int peek(void) {
-       return queue.top();
+        return queue.top();
     }
 
     // Return whether the queue is empty.
@@ -115,6 +115,7 @@ public:
         return queue.empty();
     }
 };
+
 /*
 Your MyQueue object will be instantiated and called as such:
 MyQueue* obj = new MyQueue();

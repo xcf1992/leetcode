@@ -34,13 +34,13 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> anagramMappings(vector<int>& A, vector<int>& B) {
+    vector<int> anagramMappings(vector<int> &A, vector<int> &B) {
         vector<int> result;
         unordered_map<int, int> pos;
         for (int i = 0; i < B.size(); i++) {
             pos[B[i]] = i;
         }
-        for (int num : A) {
+        for (int num: A) {
             result.push_back(pos[num]);
         }
         return result;

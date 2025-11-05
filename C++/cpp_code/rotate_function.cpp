@@ -37,7 +37,7 @@ using namespace std;
 
 class Solution {
 public:
-    int maxRotateFunction(vector<int>& A) {
+    int maxRotateFunction(vector<int> &A) {
         long result = 0;
         long sum = 0;
 
@@ -49,7 +49,7 @@ public:
 
         long last = result;
         for (int i = 1; i < n; i++) {
-            last += sum - (long)n * A[n - i];
+            last += sum - (long) n * A[n - i];
             result = max(result, last);
         }
         return result;

@@ -38,8 +38,7 @@ public:
 
             if (mid * mid > num) {
                 right = mid - 1;
-            }
-            else {
+            } else {
                 left = mid + 1;
             }
         }
@@ -52,7 +51,11 @@ public:
     bool isPerfectSquare(int num) {
         int diff = 1;
         int cur = 0;
-        while (cur <= num and cur >= 0) {
+        while (cur <= num and cur
+        >=
+        0
+        )
+        {
             if (cur == num) {
                 return true;
             }

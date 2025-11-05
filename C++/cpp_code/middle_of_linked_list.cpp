@@ -42,16 +42,19 @@ using namespace std;
 
 class Solution {
 public:
-    ListNode* middleNode(ListNode* head) {
+    ListNode *middleNode(ListNode *head) {
         if (head == nullptr) {
             return head;
         }
 
-        ListNode* slow = head;
-        ListNode* fast = head;
-        while (fast != nullptr and fast -> next != nullptr) {
-            slow = slow -> next;
-            fast = fast -> next -> next;
+        ListNode *slow = head;
+        ListNode *fast = head;
+        while (fast != nullptr and
+        fast->next != nullptr
+        )
+        {
+            slow = slow->next;
+            fast = fast->next->next;
         }
         return slow;
     }

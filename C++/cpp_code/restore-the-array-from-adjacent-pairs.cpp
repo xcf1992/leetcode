@@ -58,15 +58,15 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> restoreArray(vector<vector<int>>& adjacentPairs) {
+    vector<int> restoreArray(vector<vector<int> > &adjacentPairs) {
         unordered_map<int, vector<int> > ps;
-        for (auto &p : adjacentPairs) {
+        for (auto &p: adjacentPairs) {
             ps[p[0]].push_back(p[1]);
             ps[p[1]].push_back(p[0]);
         }
 
         vector<int> res;
-        for (auto &p : ps) {
+        for (auto &p: ps) {
             if (p.second.size() == 1) {
                 res.push_back(p.first);
                 res.push_back(p.second[0]);

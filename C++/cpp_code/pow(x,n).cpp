@@ -44,13 +44,14 @@ private:
         }
         return result;
     }
+
 public:
     double myPow(double x, int n) {
         if (n == 0) {
             return 1.0;
         }
         if (n < 0) {
-            return (double) 1.0 / calculate(x, (long long)0 - n);
+            return (double) 1.0 / calculate(x, (long long) 0 - n);
         }
         return calculate(x, n);
     }

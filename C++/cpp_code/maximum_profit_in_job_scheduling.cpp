@@ -82,9 +82,9 @@ Space O(N)
 */
 class Solution {
 public:
-    int jobScheduling(vector<int>& startTime, vector<int>& endTime, vector<int>& profit) {
+    int jobScheduling(vector<int> &startTime, vector<int> &endTime, vector<int> &profit) {
         int n = startTime.size();
-        vector<vector<int>> jobs;
+        vector<vector<int> > jobs;
         for (int i = 0; i < n; ++i) {
             jobs.push_back({endTime[i], startTime[i], profit[i]});
         }
@@ -92,12 +92,12 @@ public:
 
         map<int, int> dp;
         dp[0] = 0;
-        for (vector<int>& job : jobs) {
-            int cur = prev(dp.upper_bound(job[1])) -> second + job[2]; // profit we can get if we take cur job
-            if (cur > dp.rbegin() -> second) {
+        for (vector<int> &job: jobs) {
+            int cur = prev(dp.upper_bound(job[1]))->second + job[2]; // profit we can get if we take cur job
+            if (cur > dp.rbegin()->second) {
                 dp[job[0]] = cur; // maximum profit we can get at time job[0]
             }
         }
-        return dp.rbegin() -> second;
+        return dp.rbegin()->second;
     }
 };

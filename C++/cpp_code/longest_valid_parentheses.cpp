@@ -32,13 +32,11 @@ public:
         for (int i = 0; i < n; i++) {
             if (s[i] == '(') {
                 stk.push(i);
-            }
-            else {
+            } else {
                 stk.pop();
                 if (stk.empty()) {
                     stk.push(i);
-                }
-                else {
+                } else {
                     result = max(result, i - stk.top());
                 }
             }
@@ -47,7 +45,8 @@ public:
     }
 };
 
-class Solution1 { // two pass
+class Solution1 {
+    // two pass
 public:
     int longestValidParentheses(string s) {
         int n = s.size();
@@ -56,31 +55,27 @@ public:
         int right = 0;
         for (int i = 0; i < n; i++) {
             if (s[i] == '(') {
-                left +=1;
-            }
-            else {
+                left += 1;
+            } else {
                 right += 1;
             }
             if (left == right) {
                 result = max(result, left * 2);
-            }
-            else if (right >= left) {
+            } else if (right >= left) {
                 left = right = 0;
             }
         }
 
         left = right = 0;
-        for (int i = n - 1; i>= 0; --i) {
+        for (int i = n - 1; i >= 0; --i) {
             if (s[i] == '(') {
                 left += 1;
-            }
-            else {
+            } else {
                 right += 1;
             }
             if (right == left) {
                 result = max(result, 2 * left);
-            }
-            else if (left >= right) {
+            } else if (left >= right) {
                 left = right = 0;
             }
         }

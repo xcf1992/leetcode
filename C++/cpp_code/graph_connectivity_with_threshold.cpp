@@ -74,6 +74,7 @@ using namespace std;
 // Feel free to copy this class for later reuse!
 class UnionFind {
     vector<int> parent, size;
+
 public:
     UnionFind(int n) {
         parent.resize(n);
@@ -94,11 +95,11 @@ public:
         int pv = find(v);
         if (pu == pv) return false;
 
-        if (size[pu] > size[pv]) { // Union by larger size
+        if (size[pu] > size[pv]) {
+            // Union by larger size
             size[pu] += size[pv];
             parent[pv] = pu;
-        }
-        else {
+        } else {
             size[pv] += size[pu];
             parent[pu] = pv;
         }
@@ -108,7 +109,7 @@ public:
 
 class Solution {
 public:
-    vector<bool> areConnected(int n, int threshold, vector<vector<int>>& queries) {
+    vector<bool> areConnected(int n, int threshold, vector<vector<int> > &queries) {
         UnionFind uf(n + 1);
         for (int i = 1; i <= n; i++) {
             for (int j = i * 2; j <= n; j += i) {
@@ -117,9 +118,9 @@ public:
                 }
             }
         }
-        
+
         vector<bool> ans;
-        for (auto& q : queries) {
+        for (auto &q: queries) {
             int pa = uf.find(q[0]);
             int pb = uf.find(q[1]);
             ans.push_back(pa == pb);

@@ -39,11 +39,13 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int>> intervalIntersection(vector<vector<int>>& A, vector<vector<int>>& B) {
+    vector<vector<int> > intervalIntersection(vector<vector<int> > &A, vector<vector<int> > &B) {
         int m = A.size();
         int n = B.size();
-        vector<vector<int>> result;
-        for (int a = 0, b = 0; a < m and b < n;) {
+        vector<vector<int> > result;
+        for (int a = 0, b = 0; a < m and b<n;
+        )
+        {
             int left = max(A[a][0], B[b][0]);
             int right = min(A[a][1], B[b][1]);
             if (left <= right) {
@@ -51,8 +53,7 @@ public:
             }
             if (A[a][1] < B[b][1]) {
                 a += 1;
-            }
-            else {
+            } else {
                 b += 1;
             }
         }

@@ -33,14 +33,15 @@ using namespace std;
 
 class Solution {
 private:
-    bool allZero(vector<int>& count) {
-        for (int num : count) {
+    bool allZero(vector<int> &count) {
+        for (int num: count) {
             if (num != 0) {
                 return false;
             }
         }
         return true;
     }
+
 public:
     bool checkInclusion(string s1, string s2) {
         int m = s1.size();

@@ -50,7 +50,7 @@ using namespace std;
 
 class Solution {
 public:
-    int minNumberOfSemesters(int n, vector<vector<int>>& dependencies, int k) {
+    int minNumberOfSemesters(int n, vector<vector<int> > &dependencies, int k) {
         // dependency[i]: dependency mask of course i, the set bits is dependent
         vector<int> dependency(n, 0);
         for (size_t i = 0; i < dependencies.size(); ++i) {

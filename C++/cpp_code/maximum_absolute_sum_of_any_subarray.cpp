@@ -70,9 +70,9 @@ both case we can use sum[0..a] - sum[0...b] since sum[0..a] >= 0, and sum[0...b]
 */
 class Solution {
 public:
-    int maxAbsoluteSum(vector<int>& A) {
+    int maxAbsoluteSum(vector<int> &A) {
         int s = 0, mi = 0, ma = 0;
-        for (int& a: A) {
+        for (int &a: A) {
             s += a;
             mi = min(mi, s);
             ma = max(ma, s);

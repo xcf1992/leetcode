@@ -83,15 +83,15 @@ using namespace std;
 
 class Solution {
 public:
-    int oddEvenJumps(vector<int>& A) {
+    int oddEvenJumps(vector<int> &A) {
         int n = A.size();
-        vector<int> oddNext(n , -1);
-        vector<int> evenNext(n , -1);
+        vector<int> oddNext(n, -1);
+        vector<int> evenNext(n, -1);
         map<int, int> numIndex;
         for (int i = n - 1; i >= 0; i--) {
             auto it = numIndex.lower_bound(A[i]); // >= A[i]
             if (it != numIndex.end()) {
-                oddNext[i] = it -> second;
+                oddNext[i] = it->second;
             }
 
             it = numIndex.upper_bound(A[i]);
@@ -99,7 +99,7 @@ public:
             // so --it will be the element <= A[i]
             // if it == numIndex.begin(), then no legal next even jump cause every current number is > A[i]
             if (it != numIndex.begin()) {
-                evenNext[i] = prev(it) -> second;
+                evenNext[i] = prev(it)->second;
             }
             // we will overwrite samevalue index here, so we can always get the smallest index for value <= A[i]
             numIndex[A[i]] = i;

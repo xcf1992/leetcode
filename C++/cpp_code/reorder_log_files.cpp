@@ -43,20 +43,19 @@ using namespace std;
 
 class Solution {
 public:
-    vector<string> reorderLogFiles(vector<string>& logs) {
+    vector<string> reorderLogFiles(vector<string> &logs) {
         vector<string> letterLogs;
         vector<string> digitLogs;
-        for (string log : logs) {
+        for (string log: logs) {
             int found = log.find(" ");
             if (isdigit(log[found + 1])) {
                 digitLogs.push_back(log);
-            }
-            else {
+            } else {
                 letterLogs.push_back(log);
             }
         }
 
-        sort(letterLogs.begin(), letterLogs.end(), [](string& a, string& b) {
+        sort(letterLogs.begin(), letterLogs.end(), [](string &a, string &b) {
             string tempa = a.substr(a.find(" ") + 1);
             string tempb = b.substr(b.find(" ") + 1);
             if (tempa == tempb) {
@@ -65,7 +64,7 @@ public:
             return tempa < tempb;
         });
 
-        for (string log : digitLogs) {
+        for (string log: digitLogs) {
             letterLogs.push_back(log);
         }
         return letterLogs;

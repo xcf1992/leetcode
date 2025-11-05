@@ -204,6 +204,7 @@ The space complexity is O(n).
 class Solution {
 private:
     int MOD = 1e9 + 7;
+
 public:
     int checkRecord(int n) {
         if (n == 1) {
@@ -222,7 +223,8 @@ public:
         for (int i = 2; i <= n; i++) {
             endWithP[i] = ((endWithP[i - 1] + endWithL[i - 1]) % MOD + endWithA[i - 1]) % MOD;
             if (i >= 3) {
-                endWithL[i] = ((endWithA[i - 1] + endWithP[i - 1]) % MOD + (endWithA[i - 2] + endWithP[i - 2]) % MOD) % MOD;
+                endWithL[i] = ((endWithA[i - 1] + endWithP[i - 1]) % MOD + (endWithA[i - 2] + endWithP[i - 2]) % MOD) %
+                              MOD;
             }
             if (i >= 4) {
                 endWithA[i] = ((endWithA[i - 1] + endWithA[i - 2]) % MOD + endWithA[i - 3]) % MOD;

@@ -30,7 +30,14 @@ public:
         int i = num1.size() - 1;
         int j = num2.size() - 1;
         int carry = 0;
-        while (i >= 0 or j >= 0 or carry > 0) {
+        while (i >= 0 or j
+        >=
+        0
+        or carry
+        >
+        0
+        )
+        {
             int sum = 0;
             if (carry > 0) {
                 sum += carry;

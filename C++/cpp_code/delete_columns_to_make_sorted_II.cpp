@@ -80,7 +80,7 @@ yfa
 */
 class Solution {
 public:
-    int minDeletionSize(vector<string>& A) {
+    int minDeletionSize(vector<string> &A) {
         int m = A.size();
         int n = A[0].size();
         int result = 0;
@@ -88,7 +88,11 @@ public:
         for (int col = 0; col < n; col++) {
             int row = 0;
             for (; row < m - 1; row++) {
-                if (!sorted[row] and A[row][col] > A[row + 1][col]) {
+                if (!sorted[row] and A[row][col]
+                >
+                A[row + 1][col]
+                )
+                {
                     result += 1;
                     break;
                 }
@@ -109,7 +113,7 @@ public:
 // xga, xfb, yfa
 class Solution1 {
 public:
-    int minDeletionSize(vector<string>& A) {
+    int minDeletionSize(vector<string> &A) {
         int result = 0;
         int n = A[0].size();
         for (int col = 0; col < n; col++) {
@@ -119,8 +123,7 @@ public:
                 if (A[row].substr(0, col + 1) < A[row - 1].substr(0, col + 1)) {
                     pass = false;
                     break;
-                }
-                else if (A[row].substr(0, col + 1) == A[row - 1].substr(0, col + 1)) {
+                } else if (A[row].substr(0, col + 1) == A[row - 1].substr(0, col + 1)) {
                     equal += 1;
                 }
             }
@@ -128,8 +131,7 @@ public:
                 if (equal == 0) {
                     return result;
                 }
-            }
-            else {
+            } else {
                 for (int row = 0; row < A.size(); row++) {
                     A[row][col] = 'a';
                 }

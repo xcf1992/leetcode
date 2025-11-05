@@ -64,7 +64,7 @@ If we can reach the last building, we return A.length - 1.
 */
 class Solution {
 public:
-    int furthestBuilding(vector<int>& A, int bricks, int ladders) {
+    int furthestBuilding(vector<int> &A, int bricks, int ladders) {
         priority_queue<int> pq;
         for (int i = 0; i < A.size() - 1; i++) {
             int d = A[i + 1] - A[i];

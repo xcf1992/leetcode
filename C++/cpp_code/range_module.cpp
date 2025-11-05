@@ -48,20 +48,30 @@ using namespace std;
 class RangeModule {
 private:
     map<int, int> range;
+
 public:
-    RangeModule() {}
+    RangeModule() {
+    }
 
     void addRange(int left, int right) {
         removeRange(left, right);
         range[left] = right;
         auto it = range.find(left);
-        if (it != range.begin() and prev(it) -> second == left) {
+        if (it != range.begin() and prev(it)
+        ->
+        second == left
+        )
+        {
             it--;
-            it -> second = right;
+            it->second = right;
             range.erase(left);
         }
-        if (it != prev(range.end()) and next(it) -> first == right) {
-            it -> second = next(it) -> second;
+        if (it != prev(range.end()) and next(it)
+        ->
+        first == right
+        )
+        {
+            it->second = next(it)->second;
             range.erase(next(it));
         }
     }
@@ -76,7 +86,7 @@ public:
             return false;
         }
         it--;
-        return it -> second >= right;
+        return it->second >= right;
     }
 
     void removeRange(int left, int right) {
@@ -90,28 +100,36 @@ public:
         }
 
         vector<int> removed;
-        while (it != range.end() and it -> first < right) {
-            if (it -> first < left and it -> second > left) {
-                int temp = it -> second;
-                it -> second = left;
+        while (it != range.end() and
+        it->first < right
+        )
+        {
+            if (it->first < left and
+            it->second > left
+            )
+            {
+                int temp = it->second;
+                it->second = left;
                 if (temp > right) {
                     range[right] = temp;
                 }
             }
-            else if (it -> first >= left) {
-                removed.push_back(it -> first);
-                if (it -> second > right) {
-                    range[right] = it -> second;
+            else
+            if (it->first >= left) {
+                removed.push_back(it->first);
+                if (it->second > right) {
+                    range[right] = it->second;
                 }
             }
             it++;
         }
 
-        for (int i : removed) {
+        for (int i: removed) {
             range.erase(i);
         }
     }
 };
+
 /*
 * Your RangeModule object will be instantiated and called as such:
 * RangeModule obj = new RangeModule();

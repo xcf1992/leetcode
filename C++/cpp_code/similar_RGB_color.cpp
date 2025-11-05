@@ -51,6 +51,7 @@ private:
         }
         return string(2, colorDigit[c]);
     }
+
 public:
     string similarRGB(string color) {
         return "#" + getColor(color.substr(1, 2)) + getColor(color.substr(3, 2)) + getColor(color.substr(5, 2));

@@ -73,10 +73,11 @@ private:
     int gcd(int a, int b) {
         return b == 0 ? a : gcd(b, a % b);
     }
+
 public:
-    bool isGoodArray(vector<int>& nums) {
+    bool isGoodArray(vector<int> &nums) {
         int result = nums[0];
-        for (int num : nums) {
+        for (int num: nums) {
             result = gcd(result, num);
         }
         return result == 1;

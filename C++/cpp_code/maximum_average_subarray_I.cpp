@@ -31,7 +31,7 @@ using namespace std;
 
 class Solution {
 public:
-    double findMaxAverage(vector<int>& nums, int k) {
+    double findMaxAverage(vector<int> &nums, int k) {
         double curSum = 0.0;
         for (int i = 0; i < k; i++) {
             curSum += nums[i];

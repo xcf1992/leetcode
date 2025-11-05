@@ -70,10 +70,11 @@ using namespace std;
 class LockingTree {
 private:
     int n;
-    unordered_map<int, vector<int>> children;
-    vector<vector<int>> node;
+    unordered_map<int, vector<int> > children;
+    vector<vector<int> > node;
+
 public:
-    LockingTree(vector<int>& parent) {
+    LockingTree(vector<int> &parent) {
         n = parent.size();
         node.resize(n, vector<int>(2, -1));
 
@@ -119,13 +120,14 @@ public:
         node[num][1] = user;
         return true;
     }
+
 private:
-    void check_children_locked(int cur, bool& locked) {
+    void check_children_locked(int cur, bool &locked) {
         if (children.find(cur) == children.end() || children[cur].size() == 0) {
             return;
         }
 
-        for (int& child : children[cur]) {
+        for (int &child: children[cur]) {
             if (node[child][1] != -1) {
                 locked = true;
                 return;
@@ -151,7 +153,7 @@ private:
             return;
         }
 
-        for (int& child : children[cur]) {
+        for (int &child: children[cur]) {
             node[child][1] = -1;
             unlock_children(child);
         }

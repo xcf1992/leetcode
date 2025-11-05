@@ -47,7 +47,7 @@ https://leetcode.com/problems/contains-duplicate-iii/discuss/61645/AC-O(N)-solut
 */
 class Solution {
 public:
-    bool containsNearbyAlmostDuplicate(vector<int>& nums, int indexDiff, int valueDiff) {
+    bool containsNearbyAlmostDuplicate(vector<int> &nums, int indexDiff, int valueDiff) {
         size_t n = nums.size();
         if (n <= 1 || indexDiff == 0) {
             return false;

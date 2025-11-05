@@ -45,7 +45,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> transformArray(vector<int>& arr) {
+    vector<int> transformArray(vector<int> &arr) {
         int n = arr.size();
         if (n <= 2) {
             return arr;
@@ -56,12 +56,20 @@ public:
             valueChanged = false;
             vector<int> temp = arr;
             for (int i = 1; i < n - 1; ++i) {
-                if (arr[i] > arr[i - 1] and arr[i] > arr[i + 1]) {
-                    temp[i] -=1;
+                if (arr[i] > arr[i - 1] and arr[i]
+                >
+                arr[i + 1]
+                )
+                {
+                    temp[i] -= 1;
                     valueChanged = true;
                 }
-                if (arr[i] < arr[i - 1] and arr[i] < arr[i + 1]) {
-                    temp[i] +=1;
+                if (arr[i] < arr[i - 1] and arr[i]
+                <
+                arr[i + 1]
+                )
+                {
+                    temp[i] += 1;
                     valueChanged = true;
                 }
             }

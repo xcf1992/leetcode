@@ -27,7 +27,7 @@ using namespace std;
 
 class Solution {
 public:
-    int threeSumSmaller(vector<int>& nums, int target) {
+    int threeSumSmaller(vector<int> &nums, int target) {
         int n = nums.size();
         if (n < 3) {
             return 0;
@@ -47,8 +47,7 @@ public:
                 if (nums[mid] + nums[right] < limit) {
                     result += right - mid;
                     mid += 1;
-                }
-                else {
+                } else {
                     right -= 1;
                 }
             }

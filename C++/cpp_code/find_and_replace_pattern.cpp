@@ -56,16 +56,21 @@ private:
             if (p2w.find(pattern[i]) == p2w.end()) {
                 p2w[pattern[i]] = word[i];
             }
-            if (w2p[word[i]] != pattern[i] or p2w[pattern[i]] != word[i]) {
+            if (w2p[word[i]] != pattern[i] or p2w[pattern[i]]
+            !=
+            word[i]
+            )
+            {
                 return false;
             }
         }
         return true;
     }
+
 public:
-    vector<string> findAndReplacePattern(vector<string>& words, string pattern) {
+    vector<string> findAndReplacePattern(vector<string> &words, string pattern) {
         vector<string> result;
-        for (string word : words) {
+        for (string word: words) {
             if (check(word, pattern)) {
                 result.push_back(word);
             }

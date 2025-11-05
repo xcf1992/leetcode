@@ -52,7 +52,7 @@ forcing start to be incremented to the point where start == m which is our resul
 class Solution {
 private:
     // return number of pairs with distance <= mi
-    int getCount(int mid, vector<int>& nums) {
+    int getCount(int mid, vector<int> &nums) {
         int count = 0;
         int left = 0;
         for (int right = 0; right < nums.size(); ++right) {
@@ -63,8 +63,9 @@ private:
         }
         return count;
     }
+
 public:
-    int smallestDistancePair(vector<int>& nums, int k) {
+    int smallestDistancePair(vector<int> &nums, int k) {
         sort(nums.begin(), nums.end());
         int low = 0;
         int high = nums.back() - nums.front();
@@ -73,8 +74,7 @@ public:
             int count = getCount(middle, nums);
             if (count >= k) {
                 high = middle;
-            }
-            else {
+            } else {
                 low = middle + 1;
             }
         }
@@ -84,17 +84,18 @@ public:
 
 // TLE
 struct myComp {
-    bool operator()(vector<int>& a, vector<int>& b) {
+    bool operator()(vector<int> &a, vector<int> &b) {
         return a[2] - a[0] > b[2] - b[0];
     }
 };
+
 class Solution1 {
 public:
-    int smallestDistancePair(vector<int>& nums, int k) {
+    int smallestDistancePair(vector<int> &nums, int k) {
         int n = nums.size();
         sort(nums.begin(), nums.end());
 
-        priority_queue<vector<int>, vector<vector<int>>, myComp> minHeap;
+        priority_queue<vector<int>, vector<vector<int> >, myComp> minHeap;
         for (int i = 0; i < n - 1; i++) {
             minHeap.push({nums[i], i, nums[i + 1], i + 1});
         }

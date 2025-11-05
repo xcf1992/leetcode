@@ -50,7 +50,7 @@ using namespace std;
 
 class Solution {
 private:
-    vector<string> splitString(string& s, char delimiter) {
+    vector<string> splitString(string &s, char delimiter) {
         string temp = s;
         vector<string> tokens;
         do {
@@ -68,7 +68,7 @@ private:
             return "Neither";
         }
 
-        for (string segment : segments) {
+        for (string segment: segments) {
             if (!validIPv4Segment(segment)) {
                 return "Neither";
             }
@@ -77,7 +77,9 @@ private:
     }
 
     bool validIPv4Segment(string segment) {
-        if (segment == "" or (segment.size() > 1 and segment[0] == '0')) {
+        if (segment == "" or(segment.size() > 1 and segment[0] == '0')
+        )
+        {
             return false;
         }
 
@@ -100,7 +102,7 @@ private:
             return "Neither";
         }
 
-        for (string segment : segments) {
+        for (string segment: segments) {
             if (!validIPv6Segment(segment)) {
                 return "Neither";
             }
@@ -110,24 +112,37 @@ private:
 
     bool validIPv6Segment(string segment) {
         int length = segment.size();
-        if (length == 0 or length > 4) {
+        if (length == 0 or length
+        >
+        4
+        )
+        {
             return false;
         }
 
-        for (char c : segment) {
+        for (char c: segment) {
             if (isdigit(c)) {
                 continue;
             }
-            if (c >= 'a' and c <= 'f') {
+            if (c >= 'a' and c
+            <=
+            'f'
+            )
+            {
                 continue;
             }
-            if (c >= 'A' and c <= 'F') {
+            if (c >= 'A' and c
+            <=
+            'F'
+            )
+            {
                 continue;
             }
             return false;
         }
         return true;
     }
+
 public:
     string validIPAddress(string IP) {
         if (IP.find('.') != string::npos) {

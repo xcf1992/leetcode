@@ -81,8 +81,9 @@ class Solution {
         }
         return true;
     }
+
 public:
-    int maxDistance(vector<int>& A, int m) {
+    int maxDistance(vector<int> &A, int m) {
         sort(begin(A), end(A));
         if (m == 2) {
             return A.back() - A[0];
@@ -93,8 +94,7 @@ public:
             int M = (L + R) / 2;
             if (valid(A, M, m)) {
                 L = M + 1;
-            }
-            else {
+            } else {
                 R = M - 1;
             }
         }

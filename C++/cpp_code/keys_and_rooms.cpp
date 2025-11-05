@@ -48,7 +48,7 @@ using namespace std;
 
 class Solution {
 public:
-    bool canVisitAllRooms(vector<vector<int>>& rooms) {
+    bool canVisitAllRooms(vector<vector<int> > &rooms) {
         int n = rooms.size();
         if (n <= 1) {
             return true;
@@ -62,7 +62,7 @@ public:
             int key = keys.front();
             keys.pop();
 
-            for (int newKey : rooms[key]) {
+            for (int newKey: rooms[key]) {
                 if (!visited[newKey]) {
                     visited[newKey] = true;
                     keys.push(newKey);
@@ -70,9 +70,10 @@ public:
             }
         }
 
-        for (bool visit : visited) if (!visit) {
-            return false;
-        }
+        for (bool visit: visited)
+            if (!visit) {
+                return false;
+            }
         return true;
     }
 };

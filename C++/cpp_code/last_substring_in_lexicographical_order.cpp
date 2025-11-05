@@ -43,8 +43,7 @@ public:
         while (i < n) {
             if (s[i] > s[maxIndex]) {
                 maxIndex = i;
-            }
-            else if (s[i] == s[maxIndex]) {
+            } else if (s[i] == s[maxIndex]) {
                 // We compare them by two pointers i and j
                 // i points to one character of cur_str, and j points to max_str
                 int j = maxIndex;
@@ -52,7 +51,12 @@ public:
                 // If s[i] != s[j] or j == ori_i, then tie is broken
                 // Otherwise we keep compare the next character
                 int look_back_i = i;
-                while (i < n and s[i] == s[j] and j < ori_i) {
+                while (i < n and s[i]
+                ==
+                s[j]
+                and j<ori_i
+                )
+                {
                     if (s[i] == s[maxIndex]) {
                         look_back_i = i;
                     }
@@ -60,7 +64,13 @@ public:
                     j++;
                 }
                 // If the max_str is larger than cur_str, then we don't update max_str
-                if (j == ori_i or i == n or s[j] > s[i]) {
+                if (j == ori_i or i
+                ==
+                n or s[j]
+                >
+                s[i]
+                )
+                {
                     continue;
                 }
                 // update max_str
@@ -76,7 +86,8 @@ public:
     }
 };
 
-class Solution1 { // memory limit exceed
+class Solution1 {
+    // memory limit exceed
 public:
     string lastSubstring(string s) {
         int n = s.size();
@@ -87,7 +98,11 @@ public:
         vector<int> subs(26, -1);
         for (int i = 0; i < n; ++i) {
             string sub = s.substr(i);
-            if (subs[s[i] - 'a'] == -1 or sub > s.substr(subs[s[i] - 'a'])) {
+            if (subs[s[i] - 'a'] == -1 or sub
+            >
+            s.substr(subs[s[i] - 'a'])
+            )
+            {
                 subs[s[i] - 'a'] = i;
             }
         }

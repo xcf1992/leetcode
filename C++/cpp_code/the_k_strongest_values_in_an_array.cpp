@@ -72,7 +72,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> getStrongest(vector<int>& arr, int k) {
+    vector<int> getStrongest(vector<int> &arr, int k) {
         int n = arr.size();
         sort(arr.begin(), arr.end());
         int med = arr[(n - 1) / 2];
@@ -84,8 +84,7 @@ public:
             if (abs(arr[right] - med) < abs(arr[left] - med)) {
                 result.push_back(arr[left]);
                 left += 1;
-            }
-            else {
+            } else {
                 result.push_back(arr[right]);
                 right -= 1;
             }

@@ -44,26 +44,29 @@ The answer is guaranteed to fit in a 32-bit signed integer.
 using namespace std;
 
 struct myComp {
-    bool operator() (pair<int, int>& a, pair<int, int>& b) {
+    bool operator()(pair<int, int> &a, pair<int, int> &b) {
         return a.first < b.first;
     }
 };
 
 class Solution {
 public:
-    int findMaximizedCapital(int k, int W, vector<int>& Profits, vector<int>& Capital) {
-        auto comp = [](pair<int, int>& a, pair<int, int>& b) {
+    int findMaximizedCapital(int k, int W, vector<int> &Profits, vector<int> &Capital) {
+        auto comp = [](pair<int, int> &a, pair<int, int> &b) {
             return a.first > b.first;
         };
-        priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(comp)> minCapital(comp);
+        priority_queue<pair<int, int>, vector<pair<int, int> >, decltype(comp)> minCapital(comp);
         for (int i = 0; i < Capital.size(); i++) {
             minCapital.push({Capital[i], Profits[i]});
         }
 
         int result = W;
-        priority_queue<pair<int, int>, vector<pair<int, int>>, myComp> maxProfit;
+        priority_queue<pair<int, int>, vector<pair<int, int> >, myComp> maxProfit;
         for (int i = 0; i < k; i++) {
-            while (!minCapital.empty() and minCapital.top().first <= result) {
+            while (!minCapital.empty() and
+            minCapital.top().first <= result
+            )
+            {
                 maxProfit.push({minCapital.top().second, minCapital.top().first});
                 minCapital.pop();
             }

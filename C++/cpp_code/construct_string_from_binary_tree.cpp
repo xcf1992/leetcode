@@ -41,18 +41,17 @@ except we can't omit the first parenthesis pair to break the one-to-one mapping 
 */
 class Solution {
 public:
-    string tree2str(TreeNode* t) {
+    string tree2str(TreeNode *t) {
         string result = "";
         if (t) {
-            result = to_string(t -> val);
-            if (t -> left) {
+            result = to_string(t->val);
+            if (t->left) {
                 result += "(" + tree2str(t->left) + ")";
-            }
-            else if (t -> right) {
+            } else if (t->right) {
                 result += "()";
             }
-            if (t -> right) {
-                result += "(" + tree2str(t -> right) + ")";
+            if (t->right) {
+                result += "(" + tree2str(t->right) + ")";
             }
         }
         return result;

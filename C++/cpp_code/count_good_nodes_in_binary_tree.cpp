@@ -50,21 +50,22 @@ using namespace std;
 
 class Solution {
 private:
-    void traverse(TreeNode* root, int curMax, int& result) {
+    void traverse(TreeNode *root, int curMax, int &result) {
         if (root == nullptr) {
             return;
         }
 
-        if (root -> val >= curMax) {
-            curMax = root -> val;
+        if (root->val >= curMax) {
+            curMax = root->val;
             result += 1;
         }
 
-        traverse(root -> left, curMax, result);
-        traverse(root -> right, curMax, result);
+        traverse(root->left, curMax, result);
+        traverse(root->right, curMax, result);
     }
+
 public:
-    int goodNodes(TreeNode* root) {
+    int goodNodes(TreeNode *root) {
         int curMax = INT_MIN;
         int result = 0;
         traverse(root, curMax, result);

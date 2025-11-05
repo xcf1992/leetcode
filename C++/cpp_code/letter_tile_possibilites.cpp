@@ -36,7 +36,7 @@ using namespace std;
 
 class Solution {
 private:
-    void generate(vector<string>& result, unordered_map<char, int>& count, string current, int len) {
+    void generate(vector<string> &result, unordered_map<char, int> &count, string current, int len) {
         if (current != "") {
             result.push_back(current);
         }
@@ -45,19 +45,20 @@ private:
         }
 
         for (auto it = count.begin(); it != count.end(); ++it) {
-            if (it -> second > 0) {
-                it -> second -= 1;
-                current.push_back(it -> first);
+            if (it->second > 0) {
+                it->second -= 1;
+                current.push_back(it->first);
                 generate(result, count, current, len);
                 current.pop_back();
-                it -> second += 1;
+                it->second += 1;
             }
         }
     }
+
 public:
     int numTilePossibilities(string tiles) {
         unordered_map<char, int> count;
-        for (char c : tiles) {
+        for (char c: tiles) {
             count[c] += 1;
         }
 

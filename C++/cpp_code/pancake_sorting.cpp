@@ -49,7 +49,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> pancakeSort(vector<int>& A) {
+    vector<int> pancakeSort(vector<int> &A) {
         vector<int> result;
         for (int cur = A.size(); cur > 0; cur--) {
             int index = 0;

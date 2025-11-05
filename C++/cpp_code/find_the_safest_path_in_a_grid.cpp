@@ -64,7 +64,7 @@ There is at least one thief in the grid.
 using namespace std;
 
 struct comp {
-    bool operator() (const vector<int>& a, const vector<int>& b) {
+    bool operator()(const vector<int> &a, const vector<int> &b) {
         return a[2] < b[2];
     }
 };
@@ -72,9 +72,10 @@ struct comp {
 class Solution {
 private:
     vector<int> dir = {0, 1, 0, -1, 0};
-    void calc_safe_factor(const vector<vector<int>>& grid, vector<vector<int>>& safe_factor) {
+
+    void calc_safe_factor(const vector<vector<int> > &grid, vector<vector<int> > &safe_factor) {
         int n = grid.size();
-        queue<pair<int, int>> bfs;
+        queue<pair<int, int> > bfs;
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < n; ++j) {
                 if (grid[i][j] == 1) {
@@ -102,18 +103,19 @@ private:
             }
         }
     }
+
 public:
-    int maximumSafenessFactor(vector<vector<int>>& grid) {
+    int maximumSafenessFactor(vector<vector<int> > &grid) {
         int n = grid.size();
         if (grid[0][0] == 1 || grid[n - 1][n - 1] == 1) {
             return 0;
         }
 
-        vector<vector<int>> safe_factor(n, vector<int>(n, INT_MAX));
+        vector<vector<int> > safe_factor(n, vector<int>(n, INT_MAX));
         calc_safe_factor(grid, safe_factor);
 
-        vector<vector<bool>> visited(n, vector<bool>(n, false));
-        priority_queue<vector<int>, vector<vector<int>>, comp> pq;
+        vector<vector<bool> > visited(n, vector<bool>(n, false));
+        priority_queue<vector<int>, vector<vector<int> >, comp> pq;
         pq.push({0, 0, safe_factor[0][0]});
         visited[0][0] = true;
         while (!pq.empty()) {

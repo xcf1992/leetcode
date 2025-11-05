@@ -55,19 +55,19 @@ class Solution {
 public:
     int findRotateSteps(string ring, string key) {
         int rsize = ring.size();
-        unordered_map<char, vector<int>> pos;
+        unordered_map<char, vector<int> > pos;
         for (int i = 0; i < rsize; i++) {
             pos[ring[i]].push_back(i);
         }
 
         int ksize = key.size();
-        vector<vector<int>> dp(ksize + 1, vector<int>(rsize, INT_MAX));
+        vector<vector<int> > dp(ksize + 1, vector<int>(rsize, INT_MAX));
         dp[0][0] = 0;
         vector<int> curPos;
         curPos.push_back(0);
         for (int i = 0; i < ksize; i++) {
-            for (int nextIndex : pos[key[i]]) {
-                for (int curIndex : curPos) {
+            for (int nextIndex: pos[key[i]]) {
+                for (int curIndex: curPos) {
                     int distance = abs(nextIndex - curIndex);
                     distance = min(distance, rsize - distance);
                     dp[i + 1][nextIndex] = min(dp[i + 1][nextIndex], dp[i][curIndex] + distance);
@@ -77,7 +77,7 @@ public:
         }
 
         int result = INT_MAX;
-        for (int dis : dp[ksize]) {
+        for (int dis: dp[ksize]) {
             result = min(result, dis);
         }
         return result + ksize;

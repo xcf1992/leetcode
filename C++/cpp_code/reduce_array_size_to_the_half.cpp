@@ -49,21 +49,21 @@ arr.length is even.
 using namespace std;
 
 struct myComp {
-    bool operator()(pair<int, int>& a, pair<int, int>& b) {
+    bool operator()(pair<int, int> &a, pair<int, int> &b) {
         return a.second < b.second;
     }
 };
 
 class Solution {
 public:
-    int minSetSize(vector<int>& arr) {
+    int minSetSize(vector<int> &arr) {
         unordered_map<int, int> count;
-        for (int num : arr) {
+        for (int num: arr) {
             count[num] += 1;
         }
 
-        priority_queue<pair<int, int>, vector<pair<int, int>>, myComp> pq;
-        for (auto& c : count) {
+        priority_queue<pair<int, int>, vector<pair<int, int> >, myComp> pq;
+        for (auto &c: count) {
             pq.push(c);
         }
 

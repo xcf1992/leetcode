@@ -36,7 +36,7 @@ using namespace std;
 
 class Solution {
 public:
-    void wallsAndGates(vector<vector<int>>& rooms) {
+    void wallsAndGates(vector<vector<int> > &rooms) {
         if (rooms.empty()) {
             return;
         }
@@ -45,9 +45,10 @@ public:
 
         queue<int> bfs;
         for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) if (rooms[i][j] == 0) {
-                bfs.push(i * n + j);
-            }
+            for (int j = 0; j < n; j++)
+                if (rooms[i][j] == 0) {
+                    bfs.push(i * n + j);
+                }
         }
 
         vector<int> move({0, 1, 0, -1, 0});
@@ -59,7 +60,13 @@ public:
             for (int k = 0; k < 4; k++) {
                 int nr = row + move[k];
                 int nc = col + move[k + 1];
-                if (nr >= 0 and nc >= 0 and nr < m and nc < n and rooms[nr][nc] > rooms[row][col] + 1) {
+                if (nr >= 0 and nc
+                >=
+                0
+                and nr <m and nc < n and rooms[nr][nc]> rooms[row][col]
+                +1
+                )
+                {
                     rooms[nr][nc] = rooms[row][col] + 1;
                     bfs.push(nr * n + nc);
                 }

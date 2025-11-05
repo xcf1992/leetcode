@@ -29,32 +29,38 @@ using namespace std;
 
 class Solution {
 public:
-    ListNode* reverseBetween(ListNode* head, int m, int n) {
-        if (head == nullptr or head -> next == nullptr or n == m) {
+    ListNode *reverseBetween(ListNode *head, int m, int n) {
+        if (head == nullptr or
+        head->next == nullptr
+        or n
+        ==
+        m
+        )
+        {
             return head;
         }
 
-        ListNode* dummy = new ListNode(-1);
-        dummy -> next = head;
-        ListNode* pre = dummy;
+        ListNode *dummy = new ListNode(-1);
+        dummy->next = head;
+        ListNode *pre = dummy;
         for (int i = 1; i < m; ++i) {
-            pre = pre -> next;
+            pre = pre->next;
         }
-        if (pre -> next == nullptr) {
+        if (pre->next == nullptr) {
             return head;
         }
 
-        ListNode* cur = pre -> next;
+        ListNode *cur = pre->next;
         for (int i = m; i < n; i++) {
-            if (cur -> next == nullptr) {
-                return dummy -> next;
+            if (cur->next == nullptr) {
+                return dummy->next;
             }
-            ListNode* suc = cur -> next;
+            ListNode *suc = cur->next;
 
-            cur -> next = suc -> next;
-            suc -> next = pre -> next;
-            pre -> next = suc;
+            cur->next = suc->next;
+            suc->next = pre->next;
+            pre->next = suc;
         }
-        return dummy -> next;
+        return dummy->next;
     }
 };

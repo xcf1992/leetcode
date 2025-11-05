@@ -33,14 +33,14 @@ using namespace std;
 
 class Solution {
 public:
-    int closestValue(TreeNode* root, double target) {
-        int closet = root -> val;
-        TreeNode* cur = root;
+    int closestValue(TreeNode *root, double target) {
+        int closet = root->val;
+        TreeNode *cur = root;
         while (cur != nullptr) {
-            if (abs(target - cur -> val) < abs(target - closet)) {
-                closet = cur -> val;
+            if (abs(target - cur->val) < abs(target - closet)) {
+                closet = cur->val;
             }
-            cur = cur -> val > target ? cur -> left : cur -> right;
+            cur = cur->val > target ? cur->left : cur->right;
         }
         return closet;
     }

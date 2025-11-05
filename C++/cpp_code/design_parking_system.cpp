@@ -50,6 +50,7 @@ using namespace std;
 class ParkingSystem {
 private:
     vector<int> spaces;
+
 public:
     ParkingSystem(int big, int medium, int small) {
         spaces.resize(4, 0);
@@ -66,6 +67,7 @@ public:
         return false;
     }
 };
+
 /**
  * Your ParkingSystem object will be instantiated and called as such:
  * ParkingSystem* obj = new ParkingSystem(big, medium, small);

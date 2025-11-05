@@ -47,7 +47,7 @@ Of course, you can merge 2 for loop into ones, if you like.
 */
 class Solution {
 private:
-    int atMostK(vector<int>& A, int K) {
+    int atMostK(vector<int> &A, int K) {
         int result = 0;
         int start = 0;
         unordered_map<int, int> count;
@@ -68,11 +68,13 @@ private:
         }
         return result;
     }
+
 public:
-    int subarraysWithKDistinct(vector<int>& A, int K) {
+    int subarraysWithKDistinct(vector<int> &A, int K) {
         return atMostK(A, K) - atMostK(A, K - 1);
     }
 };
+
 /*
 We used a map to keep track of the last apperance index of a character.
 Then we move the right in outer layer to update the map.
@@ -85,7 +87,7 @@ Space complexity O(K), for the map keep track of last apperance of each K elemen
 */
 class Solution1 {
 public:
-    int subarraysWithKDistinct(vector<int>& A, int K) {
+    int subarraysWithKDistinct(vector<int> &A, int K) {
         int n = A.size();
         unordered_map<int, int> pos;
         int result = 0;
@@ -95,7 +97,7 @@ public:
             pos[A[end]] = end;
             while (pos.size() > K) {
                 if (pos[A[start]] == start) {
-                     pos.erase(A[start]);
+                    pos.erase(A[start]);
                 }
                 start += 1;
             }
@@ -108,10 +110,11 @@ public:
             */
             if (pos.size() == K) {
                 int left = end;
-                for (auto it : pos) {
+                for (auto it: pos) {
                     left = min(left, it.second);
                 }
-                result += left - start + 1; // Any window start between [start, left] and end with end is a qualified answer.
+                result += left - start + 1;
+                // Any window start between [start, left] and end with end is a qualified answer.
             }
             end += 1;
         }

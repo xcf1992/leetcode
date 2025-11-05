@@ -43,14 +43,17 @@ using namespace std;
 class Solution {
 public:
     string toHexspeak(string num) {
-        vector<string> digit({ "O", "I", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"});
+        vector<string> digit({"O", "I", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"});
         long long val = stoll(num);
         string hex = "";
         bool valid = true;
         while (val != 0) {
             int cur = val % 16;
             hex += digit[cur];
-            if (hex.back() >= '2' and hex.back() <= '9') {
+            if (hex.back() >= '2' and
+            hex.back() <= '9'
+            )
+            {
                 valid = false;
                 break;
             }

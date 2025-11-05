@@ -77,16 +77,13 @@ Space O(n)
 要么永远追不上前面的车
 而追不上的情况正好stack就空了 自己就成了后面车的塞子
 */
-class Solution
-{
+class Solution {
 public:
-    vector<double> getCollisionTimes(vector<vector<int> > &A)
-    {
+    vector<double> getCollisionTimes(vector<vector<int> > &A) {
         int n = A.size();
         vector<int> stack;
         vector<double> res(n, -1);
-        for (int i = n - 1; i >= 0; --i)
-        {
+        for (int i = n - 1; i >= 0; --i) {
             int p = A[i][0];
             int s = A[i][1];
             while (!stack.empty()) {
@@ -94,8 +91,7 @@ public:
                 int p2 = A[j][0], s2 = A[j][1];
                 if (s <= s2 || (1.0 * (p2 - p) / (s - s2) >= res[j] && res[j] > 0)) {
                     stack.pop_back();
-                }
-                else {
+                } else {
                     break;
                 }
             }

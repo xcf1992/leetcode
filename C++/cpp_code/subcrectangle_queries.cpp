@@ -84,10 +84,11 @@ using namespace std;
 
 class SubrectangleQueries {
 private:
-    vector<vector<int>> rect;
-    vector<vector<int>> subs;
+    vector<vector<int> > rect;
+    vector<vector<int> > subs;
+
 public:
-    SubrectangleQueries(vector<vector<int>>& rectangle) {
+    SubrectangleQueries(vector<vector<int> > &rectangle) {
         swap(rect, rectangle);
     }
 

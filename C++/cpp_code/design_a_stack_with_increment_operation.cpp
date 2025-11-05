@@ -72,6 +72,7 @@ private:
     vector<int> stk;
     vector<int> inc;
     int n;
+
 public:
     CustomStack(int maxSize) {
         n = maxSize;
@@ -103,7 +104,7 @@ public:
     }
 
     void increment(int k, int val) {
-        int i = min(k, (int)stk.size()) - 1;
+        int i = min(k, (int) stk.size()) - 1;
         if (i >= 0) {
             inc[i] += val;
         }

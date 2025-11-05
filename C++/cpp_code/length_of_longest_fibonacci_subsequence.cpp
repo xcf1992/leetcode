@@ -53,7 +53,7 @@ In Python, I use value as key.
 */
 class Solution {
 public:
-    int lenLongestFibSubseq(vector<int>& A) {
+    int lenLongestFibSubseq(vector<int> &A) {
         int n = A.size();
         if (n < 3) {
             return 0;
@@ -65,14 +65,18 @@ public:
         }
 
         int result = 0;
-        vector<vector<int>> dp(n, vector<int>(n, 0));
+        vector<vector<int> > dp(n, vector<int>(n, 0));
         for (int j = 0; j < n; ++j) {
             for (int i = 0; i < j; ++i) {
                 int diff = A[j] - A[i];
-                if (diff < A[i] and index.find(diff) != index.end()) {
+                if (diff < A[i] and
+                index.find(diff) != index.end()
+                )
+                {
                     dp[i][j] = dp[index[diff]][i] + 1;
                 }
-                else {
+                else
+                {
                     dp[i][j] = 2;
                 }
                 result = max(result, dp[i][j]);
@@ -84,7 +88,7 @@ public:
 
 class Solution1 {
 public:
-    int lenLongestFibSubseq(vector<int>& A) {
+    int lenLongestFibSubseq(vector<int> &A) {
         int n = A.size();
         if (n < 3) {
             return 0;

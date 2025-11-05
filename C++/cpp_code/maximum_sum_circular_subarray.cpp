@@ -71,13 +71,13 @@ return the maximum one,
 */
 class Solution {
 public:
-    int maxSubarraySumCircular(vector<int>& A) {
+    int maxSubarraySumCircular(vector<int> &A) {
         int total = 0;
         int minSum = INT_MAX;
         int maxSum = INT_MIN;
         int curMin = 0;
         int curMax = 0;
-        for (int a : A) {
+        for (int a: A) {
             curMax = max(curMax + a, a);
             maxSum = max(maxSum, curMax);
             curMin = min(curMin + a, a);

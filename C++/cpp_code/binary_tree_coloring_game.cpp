@@ -87,21 +87,22 @@ Note : Equal case will never arise since n is odd
 */
 class Solution {
 private:
-    int count(TreeNode* root, int x, int& lCount, int& rCount) {
+    int count(TreeNode *root, int x, int &lCount, int &rCount) {
         if (root == nullptr) {
             return 0;
         }
 
-        int l = count(root -> left, x, lCount, rCount);
-        int r = count(root -> right, x, lCount, rCount);
-        if (root -> val == x) {
+        int l = count(root->left, x, lCount, rCount);
+        int r = count(root->right, x, lCount, rCount);
+        if (root->val == x) {
             lCount = l;
             rCount = r;
         }
         return 1 + l + r;
     }
+
 public:
-    bool btreeGameWinningMove(TreeNode* root, int n, int x) {
+    bool btreeGameWinningMove(TreeNode *root, int n, int x) {
         int lCount = 0;
         int rCount = 0;
         count(root, x, lCount, rCount);

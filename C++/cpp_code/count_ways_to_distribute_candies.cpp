@@ -90,8 +90,8 @@ class Solution {
 public:
     int waysToDistribute(int n, int k) {
         long long mod = 1e9 + 7;
-        vector<vector<long long>> dp(k + 1, vector<long long>(n + 1, 0));
-        for (int i = 0; i <= k; i ++) {
+        vector<vector<long long> > dp(k + 1, vector<long long>(n + 1, 0));
+        for (int i = 0; i <= k; i++) {
             dp[i][i] = 1;
         }
 

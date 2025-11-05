@@ -89,14 +89,14 @@ So either we can take 10 day one or 95 day one. But it will be only one course p
 */
 class Solution {
 public:
-    int scheduleCourse(vector<vector<int>>& courses) {
-        sort(courses.begin(), courses.end(), [](vector<int>& a, vector<int>& b) {
+    int scheduleCourse(vector<vector<int> > &courses) {
+        sort(courses.begin(), courses.end(), [](vector<int> &a, vector<int> &b) {
             return a[1] < b[1];
         });
 
         priority_queue<int> maxHeap;
         int current = 0;
-        for (vector<int>& c : courses) {
+        for (vector<int> &c: courses) {
             current += c[0];
             maxHeap.push(c[0]);
             if (current > c[1]) {
@@ -108,9 +108,10 @@ public:
     }
 };
 
-class Solution1 { // dfs with memo TLE
+class Solution1 {
+    // dfs with memo TLE
 private:
-    int schedule(vector<vector<int>>& courses, vector<vector<int>>& dp, int start, int curTime) {
+    int schedule(vector<vector<int> > &courses, vector<vector<int> > &dp, int start, int curTime) {
         if (start >= courses.size()) {
             return 0;
         }
@@ -125,17 +126,18 @@ private:
         dp[start][curTime] = max(dp[start][curTime], schedule(courses, dp, start + 1, curTime));
         return dp[start][curTime];
     }
+
 public:
-    int scheduleCourse(vector<vector<int>>& courses) {
+    int scheduleCourse(vector<vector<int> > &courses) {
         int n = courses.size();
         if (n == 0) {
             return 0;
         }
 
-        sort(courses.begin(), courses.end(), [](vector<int>& a, vector<int>& b) {
+        sort(courses.begin(), courses.end(), [](vector<int> &a, vector<int> &b) {
             return a[1] < b[1];
         });
-        vector<vector<int>> dp(n, vector<int>(courses.back()[1] + 1, -1));
+        vector<vector<int> > dp(n, vector<int>(courses.back()[1] + 1, -1));
         return schedule(courses, dp, 0, 0);
     }
 };

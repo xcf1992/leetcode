@@ -73,14 +73,12 @@ public:
                         if (!dirs.empty()) {
                             dirs.pop_back();
                         }
-                    }
-                    else if (cur != ".") {
+                    } else if (cur != ".") {
                         dirs.push_back(cur);
                     }
                     cur = "";
                 }
-            }
-            else {
+            } else {
                 cur.push_back(path[i]);
             }
         }

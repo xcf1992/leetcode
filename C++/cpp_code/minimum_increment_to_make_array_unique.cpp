@@ -37,9 +37,9 @@ using namespace std;
 
 class Solution {
 public:
-    int minIncrementForUnique(vector<int>& A) {
+    int minIncrementForUnique(vector<int> &A) {
         vector<int> count(100000, 0);
-        for (int num : A) {
+        for (int num: A) {
             count[num] += 1;
         }
 
@@ -56,7 +56,7 @@ public:
 
 class Solution1 {
 public:
-    int minIncrementForUnique(vector<int>& A) {
+    int minIncrementForUnique(vector<int> &A) {
         if (A.empty()) {
             return 0;
         }

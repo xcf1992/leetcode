@@ -71,13 +71,15 @@ where N is the length of target and M is the length of stamp
 */
 class Solution {
 private:
-    int remove(string& target, string stamp) {
+    int remove(string &target, string stamp) {
         int n = target.size();
         for (int i = 0; i < n; i++) {
             int pos = i;
             int j = 0;
             bool matched = false;
-            while (j < stamp.size() and pos < target.size() and (target[pos] == stamp[j] or target[pos] == '*')) {
+            while (j < stamp.size() and pos<target.size() and(target[pos] == stamp[j] or target[pos] == '*')
+            )
+            {
                 if (target[pos] == stamp[j]) {
                     matched = true;
                 }
@@ -85,7 +87,9 @@ private:
                 j += 1;
             }
 
-            if (j == stamp.size() and matched) {
+            if (j == stamp.size() and matched
+            )
+            {
                 for (int k = 0; k < stamp.size(); k++) {
                     target[i + k] = '*';
                 }
@@ -94,6 +98,7 @@ private:
         }
         return target.size();
     }
+
 public:
     vector<int> movesToStamp(string stamp, string target) {
         int n = target.size();
@@ -139,9 +144,11 @@ public:
         int curModified = -1;
         while (curModified != 0) {
             curModified = 0;
-            for (int sz = sLen; sz > 0; --sz) { // the stamp should at least have one letter
+            for (int sz = sLen; sz > 0; --sz) {
+                // the stamp should at least have one letter
                 for (int preStar = 0; preStar + sz <= sLen; ++preStar) {
-                    string curStamp = string(preStar, '*') + stamp.substr(preStar, sz) + string(sLen - preStar - sz, '*');
+                    string curStamp = string(preStar, '*') + stamp.substr(preStar, sz) + string(
+                                          sLen - preStar - sz, '*');
                     auto pos = target.find(curStamp);
                     while (pos != string::npos) {
                         result.push_back(pos);
@@ -154,7 +161,8 @@ public:
             modified += curModified;
         }
 
-        if (modified == tLen) { // check if all the target letters has been modified
+        if (modified == tLen) {
+            // check if all the target letters has been modified
             reverse(result.begin(), result.end());
             return result;
         }

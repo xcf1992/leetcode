@@ -64,8 +64,9 @@ private:
         }
         return end;
     }
+
 public:
-    vector<int> prisonAfterNDays(vector<int>& cells, int N) {
+    vector<int> prisonAfterNDays(vector<int> &cells, int N) {
         string start = string(8, '0');
         for (int i = 0; i < 8; i++) {
             start[i] = '0' + cells[i] - 0;
@@ -73,7 +74,10 @@ public:
 
         vector<string> loop;
         unordered_set<string> visited;
-        if (start.front() == '1' or start.back() == '1') {
+        if (start.front() == '1' or
+        start.back() == '1'
+        )
+        {
             start = transform(start);
             N -= 1;
         }
@@ -86,7 +90,7 @@ public:
 
         vector<int> result;
         start = loop[N % visited.size()];
-        for (char ch : start) {
+        for (char ch: start) {
             result.push_back(ch - '0');
         }
         return result;

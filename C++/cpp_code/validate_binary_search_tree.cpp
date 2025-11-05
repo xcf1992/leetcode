@@ -48,15 +48,20 @@ struct TreeNode {
     }
 };
 
-class Solution { // use stack
+class Solution {
+    // use stack
 public:
-    bool isValidBST(TreeNode* root) {
-        stack<TreeNode*> stk;
-        long long curMin = (long long)INT_MIN - 1;
-        while (!stk.empty() or root != nullptr) {
+    bool isValidBST(TreeNode *root) {
+        stack<TreeNode *> stk;
+        long long curMin = (long long) INT_MIN - 1;
+        while (!stk.empty() or root
+        !=
+        nullptr
+        )
+        {
             while (root != nullptr) {
                 stk.push(root);
-                root = root -> left;
+                root = root->left;
             }
             root = stk.top();
             stk.pop();
@@ -65,32 +70,38 @@ public:
             * is smaller than the previous one
             * that's not BST.
             */
-            if (root -> val <= curMin) {
+            if (root->val <= curMin) {
                 return false;
             }
-            curMin = root -> val;
-            root = root -> right;
+            curMin = root->val;
+            root = root->right;
         }
         return true;
     }
 };
 
-class Solution1 { // use lower bound and upper bound
+class Solution1 {
+    // use lower bound and upper bound
 private:
-    bool validate(TreeNode* root, long long minVal, long long maxVal) {
+    bool validate(TreeNode *root, long long minVal, long long maxVal) {
         if (root == nullptr) {
             return true;
         }
 
-        if (root -> val >= maxVal or root -> val <= minVal) {
+        if (root->val >= maxVal or
+        root->val <= minVal
+        )
+        {
             return false;
         }
-        return validate(root -> right, root -> val, maxVal) and validate(root -> left, minVal, root -> val);
+        return validate(root->right, root->val, maxVal)
+        and validate(root->left, minVal, root->val);
     }
+
 public:
-    bool isValidBST(TreeNode* root) {
-        long long minVal = (long long)INT_MIN - 1;
-        long long maxVal = (long long)INT_MAX + 1;
+    bool isValidBST(TreeNode *root) {
+        long long minVal = (long long) INT_MIN - 1;
+        long long maxVal = (long long) INT_MAX + 1;
         return validate(root, minVal, maxVal);
     }
 };

@@ -47,8 +47,8 @@ using namespace std;
 
 class Solution {
 public:
-    int countMatches(vector<vector<string>>& items, string ruleKey, string ruleValue) {
-        unordered_map<string, unordered_map<string, vector<int>>> reverseIndex;
+    int countMatches(vector<vector<string> > &items, string ruleKey, string ruleValue) {
+        unordered_map<string, unordered_map<string, vector<int> > > reverseIndex;
         for (int i = 0; i < items.size(); ++i) {
             auto item = items[i];
             reverseIndex["type"][item[0]].push_back(i);

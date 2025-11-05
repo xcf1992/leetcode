@@ -32,7 +32,8 @@ public:
         }
 
         string result = "";
-        do { // use do-while in case num == 0
+        do {
+            // use do-while in case num == 0
             result.push_back(num % 7 + '0');
             num = num / 7;
         } while (num > 0);

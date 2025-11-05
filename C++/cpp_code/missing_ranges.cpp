@@ -27,7 +27,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<string> findMissingRanges(vector<int>& nums, int lower, int upper) {
+    vector<string> findMissingRanges(vector<int> &nums, int lower, int upper) {
         if (nums.empty()) {
             if (lower == upper) {
                 return {to_string(lower)};
@@ -42,8 +42,7 @@ public:
             long cur = nums[i];
             if (left + 1 == cur) {
                 result.push_back(to_string(left));
-            }
-            else if (left + 1 < cur) {
+            } else if (left + 1 < cur) {
                 result.push_back(to_string(left) + "->" + to_string(cur - 1));
             }
             left = cur + 1;
@@ -51,8 +50,7 @@ public:
 
         if (left == right) {
             result.push_back(to_string(left));
-        }
-        else if (left < right) {
+        } else if (left < right) {
             result.push_back(to_string(left) + "->" + to_string(right));
         }
         return result;

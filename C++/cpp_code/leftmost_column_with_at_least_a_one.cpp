@@ -67,10 +67,12 @@ using namespace std;
 // This is the BinaryMatrix's API interface.
 // You should not implement it, or speculate about its implementation
 class BinaryMatrix {
-  public:
+public:
     int get(int row, int col);
+
     vector<int> dimensions();
 };
+
 /*
 O(M + N)
     int leftMostColumnWithOne(BinaryMatrix &binaryMatrix) {
@@ -93,6 +95,7 @@ class Solution {
 private:
     int m = 0;
     int n = 0;
+
     int findFirstOne(BinaryMatrix &binaryMatrix, int row) {
         int left = 0;
         int right = n - 1;
@@ -100,13 +103,13 @@ private:
             int mid = left + (right - left) / 2;
             if (binaryMatrix.get(row, mid) == 1) {
                 right = mid - 1;
-            }
-            else {
+            } else {
                 left = mid + 1;
             }
         }
         return left;
     }
+
 public:
     int leftMostColumnWithOne(BinaryMatrix &binaryMatrix) {
         vector<int> dimension = binaryMatrix.dimensions();
@@ -120,6 +123,6 @@ public:
                 result = min(result, col);
             }
         }
-        return result == n ? - 1 : result;
+        return result == n ? -1 : result;
     }
 };

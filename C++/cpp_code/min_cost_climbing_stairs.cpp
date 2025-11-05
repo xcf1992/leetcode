@@ -33,11 +33,11 @@ using namespace std;
 
 class Solution {
 public:
-    int minCostClimbingStairs(vector<int>& cost) {
+    int minCostClimbingStairs(vector<int> &cost) {
         int oneStep = 0;
         int twoStep = 0;
         int fee = 0;
-        for (int curFee : cost) {
+        for (int curFee: cost) {
             fee = min(oneStep, twoStep) + curFee;
             twoStep = oneStep;
             oneStep = fee;

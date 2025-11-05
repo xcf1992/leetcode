@@ -45,8 +45,7 @@ public:
             }
             if (numbers[left - 1] + numbers[right - 1] < target) {
                 left++;
-            }
-            else {
+            } else {
                 right--;
             }
         }

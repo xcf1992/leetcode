@@ -43,9 +43,9 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> frequencySort(vector<int>& nums) {
+    vector<int> frequencySort(vector<int> &nums) {
         int cnt[201] = {};
-        for (auto n : nums) {
+        for (auto n: nums) {
             ++cnt[n + 100];
         }
         sort(begin(nums), end(nums), [&](int a, int b) {

@@ -43,7 +43,7 @@ using namespace std;
 
 class Solution {
 public:
-    int countPairs(vector<int>& deliciousness) {
+    int countPairs(vector<int> &deliciousness) {
         int M = 1000000007;
         int n = deliciousness.size();
         if (n == 1) {
@@ -57,11 +57,11 @@ public:
         int ans = 0;
         for (int i = 1; i < n; i++) {
             for (int p = 0; p <= 21; p++) {
-                if ((int)pow(2, p) > 2 * deliciousness[i]) {
+                if ((int) pow(2, p) > 2 * deliciousness[i]) {
                     break;
                 }
 
-                int target = (int)pow(2, p) - deliciousness[i];
+                int target = (int) pow(2, p) - deliciousness[i];
                 if (cnt.find(target) != cnt.end()) {
                     ans += cnt[target] % M;
                     ans %= M;

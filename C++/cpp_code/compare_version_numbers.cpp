@@ -68,6 +68,7 @@ private:
         }
         return -1;
     }
+
 public:
     int compareVersion(string version1, string version2) {
         if (version1 == version2) {

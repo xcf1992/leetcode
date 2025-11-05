@@ -76,17 +76,17 @@ using namespace std;
 
 class Solution {
 public:
-    TreeNode* insertIntoMaxTree(TreeNode* root, int val) {
-        TreeNode* newNode = new TreeNode(val);
+    TreeNode *insertIntoMaxTree(TreeNode *root, int val) {
+        TreeNode *newNode = new TreeNode(val);
         if (root == nullptr) {
             return newNode;
         }
 
-        if (val > root -> val) {
-            newNode -> left = root;
+        if (val > root->val) {
+            newNode->left = root;
             return newNode;
         }
-        root -> right = insertIntoMaxTree(root -> right, val);
+        root->right = insertIntoMaxTree(root->right, val);
         return root;
     }
 };

@@ -26,7 +26,7 @@ using namespace std;
 
 class Solution {
 private:
-    void generate(vector<string>& result, int cur, int preNum, string abbreviation, string& word) {
+    void generate(vector<string> &result, int cur, int preNum, string abbreviation, string &word) {
         if (cur >= word.size()) {
             if (preNum != 0) {
                 abbreviation += to_string(preNum);
@@ -42,6 +42,7 @@ private:
         abbreviation.push_back(word[cur]);
         generate(result, cur + 1, 0, abbreviation, word);
     }
+
 public:
     vector<string> generateAbbreviations(string word) {
         vector<string> result;
@@ -74,8 +75,7 @@ public:
                     if (j == n - 1) {
                         abbreviation += to_string(count);
                     }
-                }
-                else {
+                } else {
                     if (count != 0) {
                         abbreviation += to_string(count);
                         count = 0;
@@ -92,7 +92,7 @@ public:
 
 class Solution2 {
 private:
-    void dfs(vector<string>& result, string word, int pos, string cur, int count) {
+    void dfs(vector<string> &result, string word, int pos, string cur, int count) {
         if (pos == word.size()) {
             if (count > 0) {
                 cur += to_string(count);
@@ -105,6 +105,7 @@ private:
         cur = cur + (count > 0 ? to_string(count) : "") + word[pos];
         dfs(result, word, pos + 1, cur, 0);
     }
+
 public:
     vector<string> generateAbbreviations(string word) {
         vector<string> result;

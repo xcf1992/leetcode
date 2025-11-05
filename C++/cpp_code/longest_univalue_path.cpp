@@ -48,23 +48,24 @@ using namespace std;
 
 class Solution {
 private:
-    int getPathLenth(TreeNode* root, int& result, long pValue) {
+    int getPathLenth(TreeNode *root, int &result, long pValue) {
         if (root == nullptr) {
             return 0;
         }
 
-        int leftLen = getPathLenth(root -> left, result, root -> val);
-        int rightLen = getPathLenth(root -> right, result, root -> val);
+        int leftLen = getPathLenth(root->left, result, root->val);
+        int rightLen = getPathLenth(root->right, result, root->val);
         result = max(result, leftLen + rightLen + 1);
-        return pValue == root -> val ? max(leftLen, rightLen) + 1 : 0;
+        return pValue == root->val ? max(leftLen, rightLen) + 1 : 0;
     }
+
 public:
-    int longestUnivaluePath(TreeNode* root) {
+    int longestUnivaluePath(TreeNode *root) {
         if (root == nullptr) {
             return 0;
         }
         int result = 0;
-        getPathLenth(root, result, (long)INT_MIN - 1);
+        getPathLenth(root, result, (long) INT_MIN - 1);
         return result - 1;
     }
 };

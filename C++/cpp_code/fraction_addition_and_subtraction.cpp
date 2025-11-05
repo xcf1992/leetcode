@@ -60,8 +60,12 @@ private:
     }
 
     int getLCM(int a, int b) {
-        return a == 0 or b == 0 ? 0 : a * b / getGCD(a, b);
+        return a == 0
+        or b
+        ==
+        0 ? 0 : a * b / getGCD(a, b);
     }
+
 public:
     string fractionAddition(string expression) {
         int n = 0;
@@ -76,8 +80,7 @@ public:
             if (expression[i] == '-') {
                 p1 = -1;
                 i++;
-            }
-            else if (expression[i] == '+') {
+            } else if (expression[i] == '+') {
                 i++;
             }
 
@@ -88,7 +91,9 @@ public:
 
             i++;
 
-            while (isdigit(expression[i]) and i < expression.size()) {
+            while (isdigit(expression[i]) and i<expression.size()
+            )
+            {
                 d1 = d1 * 10 + (expression[i] - '0');
                 i++;
             }
@@ -99,8 +104,7 @@ public:
             if (newn >= 0) {
                 p = 1;
                 n = newn;
-            }
-            else {
+            } else {
                 p = -1;
                 n = 0 - newn;
             }

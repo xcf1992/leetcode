@@ -48,87 +48,102 @@ using namespace std;
 
 class Solution {
 public:
-    int maxDistance(vector<vector<int>>& grid) {
+    int maxDistance(vector<vector<int> > &grid) {
         int m = grid.size();
         int n = grid[0].size();
 
-        vector<vector<long>> dp(m, vector<long>(n, INT_MAX));
+        vector<vector<long> > dp(m, vector<long>(n, INT_MAX));
         int count = 0;
         for (int i = 0; i < m; ++i) {
-            for (int j = 0; j < n; ++j) if (grid[i][j] == 1) {
-                dp[i][j] = 0;
-                count += 1;
-            }
+            for (int j = 0; j < n; ++j)
+                if (grid[i][j] == 1) {
+                    dp[i][j] = 0;
+                    count += 1;
+                }
         }
-        if (count == 0 or count == m * n) {
+        if (count == 0 or count
+        ==
+        m * n
+        )
+        {
             return -1;
         }
 
         for (int i = 0; i < m; ++i) {
-            for (int j = 0; j < n; ++j) if (grid[i][j] == 0) {
-                if (i > 0) {
-                    dp[i][j] = min(dp[i][j], dp[i - 1][j] + 1);
+            for (int j = 0; j < n; ++j)
+                if (grid[i][j] == 0) {
+                    if (i > 0) {
+                        dp[i][j] = min(dp[i][j], dp[i - 1][j] + 1);
+                    }
+                    if (j > 0) {
+                        dp[i][j] = min(dp[i][j], dp[i][j - 1] + 1);
+                    }
                 }
-                if (j > 0) {
-                    dp[i][j] = min(dp[i][j], dp[i][j - 1] + 1);
-                }
-            }
         }
 
         for (int i = m - 1; i >= 0; --i) {
-            for (int j = n - 1; j >= 0; --j) if (grid[i][j] == 0) {
-                if (i < m - 1) {
-                    dp[i][j] = min(dp[i][j], dp[i + 1][j] + 1);
+            for (int j = n - 1; j >= 0; --j)
+                if (grid[i][j] == 0) {
+                    if (i < m - 1) {
+                        dp[i][j] = min(dp[i][j], dp[i + 1][j] + 1);
+                    }
+                    if (j < n - 1) {
+                        dp[i][j] = min(dp[i][j], dp[i][j + 1] + 1);
+                    }
                 }
-                if (j < n - 1) {
-                    dp[i][j] = min(dp[i][j], dp[i][j + 1] + 1);
-                }
-            }
         }
 
         int result = 0;
         for (int i = 0; i < m; ++i) {
-            for (int j = 0 ; j < n; ++j) if (grid[i][j] == 0 and dp[i][j] < INT_MAX) {
-                result = max(result, (int)dp[i][j]);
+            for (int j = 0; j < n; ++j) if (grid[i][j] == 0 and dp[i][j]
+            <
+            INT_MAX
+            )
+            {
+                result = max(result, (int) dp[i][j]);
             }
         }
         return result;
     }
 };
 
-class Solution1 { // TLE
+class Solution1 {
+    // TLE
 private:
-    int getMinDis(vector<int> cell, vector<vector<int>>& islands) {
+    int getMinDis(vector<int> cell, vector<vector<int> > &islands) {
         int distance = INT_MAX;
-        for (vector<int>& island : islands) {
+        for (vector<int> &island: islands) {
             distance = min(distance, abs(island[0] - cell[0]) + abs(island[1] - cell[1]));
         }
         return distance;
     }
+
 public:
-    int maxDistance(vector<vector<int>>& grid) {
+    int maxDistance(vector<vector<int> > &grid) {
         int m = grid.size();
         int n = grid[0].size();
 
-        vector<vector<int>> islands;
-        vector<vector<int>> water;
+        vector<vector<int> > islands;
+        vector<vector<int> > water;
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
                 if (grid[i][j] == 1) {
                     islands.push_back({i, j});
-                }
-                else {
+                } else {
                     water.push_back({i, j});
                 }
             }
         }
 
-        if (water.empty() or islands.empty()) {
+        if (water.empty() or
+        islands.empty()
+        )
+        {
             return -1;
         }
 
         int result = 0;
-        for (vector<int>& cell : water) {
+        for (vector<int> &cell: water) {
             result = max(result, getMinDis(cell, islands));
         }
         return result;

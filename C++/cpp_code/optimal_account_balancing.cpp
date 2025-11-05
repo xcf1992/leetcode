@@ -52,8 +52,12 @@ using namespace std;
 
 class Solution {
 private:
-    int count(vector<int>& balance, int start) {
-        while (start < balance.size() and balance[start] == 0) {
+    int count(vector<int> &balance, int start) {
+        while (start < balance.size() and balance[start]
+        ==
+        0
+        )
+        {
             start += 1;
         }
 
@@ -71,18 +75,20 @@ private:
         }
         return result;
     }
+
 public:
-    int minTransfers(vector<vector<int>>& transactions) {
+    int minTransfers(vector<vector<int> > &transactions) {
         map<int, int> balance;
-        for (vector<int>& transaction : transactions) {
+        for (vector<int> &transaction: transactions) {
             balance[transaction[0]] -= transaction[2];
             balance[transaction[1]] += transaction[2];
         }
 
         vector<int> nonZeroBalance;
-        for (auto& it : balance) if (it.second != 0) {
-            nonZeroBalance.push_back(it.second);
-        }
+        for (auto &it: balance)
+            if (it.second != 0) {
+                nonZeroBalance.push_back(it.second);
+            }
         return count(nonZeroBalance, 0);
     }
 };
@@ -90,35 +96,39 @@ public:
 // wrong answer [[1,5,8],[8,9,8],[2,3,9],[4,3,1]]
 class Solution1 {
 public:
-    int minTransfers(vector<vector<int>>& transactions) {
+    int minTransfers(vector<vector<int> > &transactions) {
         map<int, int> balance;
-        for (vector<int>& transaction : transactions) {
+        for (vector<int> &transaction: transactions) {
             balance[transaction[0]] -= transaction[2];
             balance[transaction[1]] += transaction[2];
         }
 
         int result = 0;
         for (auto it = balance.begin(); it != balance.end(); ++it) {
-            if (it -> second != 0) {
+            if (it->second != 0) {
                 auto temp = it;
                 for (auto jt = ++temp; jt != balance.end(); ++jt) {
-                    if ((jt -> second > 0 and it -> second < 0) or (jt -> second < 0 and it -> second > 0)) {
+                    if ((jt->second > 0 and
+                    it->second < 0
+                    )
+                    or(jt->second < 0 and it->second > 0)
+                    )
+                    {
                         result += 1;
-                        if (abs(it -> second) > abs(jt -> second)) {
-                            int op = (it -> second) / abs(it -> second);
-                            it -> second = op * (abs(it -> second) - abs(jt -> second));
+                        if (abs(it->second) > abs(jt->second)) {
+                            int op = (it->second) / abs(it->second);
+                            it->second = op * (abs(it->second) - abs(jt->second));
 
-                            jt -> second = 0;
-                        }
-                        else {
-                            int op = (jt -> second) / abs(jt -> second);
-                            jt -> second = op * (abs(jt -> second) - abs(it -> second));
+                            jt->second = 0;
+                        } else {
+                            int op = (jt->second) / abs(jt->second);
+                            jt->second = op * (abs(jt->second) - abs(it->second));
 
-                            it -> second = 0;
+                            it->second = 0;
                         }
                     }
 
-                    if (it -> second == 0) {
+                    if (it->second == 0) {
                         break;
                     }
                 }

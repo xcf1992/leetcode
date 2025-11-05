@@ -25,10 +25,12 @@ find(6) -> false
 using namespace std;
 
 class TwoSum {
-    unordered_map<int,int> count;
+    unordered_map<int, int> count;
+
 public:
     /* Initialize your data structure here.*/
-    TwoSum() {}
+    TwoSum() {
+    }
 
     /* Add the number to an internal data structure..*/
     void add(int number) {
@@ -37,7 +39,10 @@ public:
 
     /* Find if there exists any pair of numbers which sum is equal to the value.*/
     bool find(int value) {
-        for(auto& el : count) if (count.find(value - el.first) != end(count) and (value - el.first != el.first or el.second > 1)) {
+        for (auto &el: count) if (count.find(value - el.first) != end(count) and(
+            value - el.first != el.first or el.second > 1)
+        )
+        {
             return true;
         }
         return false;

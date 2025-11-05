@@ -50,10 +50,13 @@ board[i][j] will be a permutation of [0,  1,  2,  3,  4,  5].
 #include <map>
 using namespace std;
 
-class Solution { // 93.57%
+class Solution {
+    // 93.57%
 public:
-    int slidingPuzzle(vector<vector<int>>& board) {
-        unordered_map<int, vector<int>> moves{{0, {1, 3}}, {1, {0, 2, 4}}, {2, {1, 5}}, {3, {0, 4}}, {4, {3, 5, 1}}, {5, {4, 2}}};
+    int slidingPuzzle(vector<vector<int> > &board) {
+        unordered_map<int, vector<int> > moves{
+            {0, {1, 3}}, {1, {0, 2, 4}}, {2, {1, 5}}, {3, {0, 4}}, {4, {3, 5, 1}}, {5, {4, 2}}
+        };
         string puzzle = "";
         int zeroPos = 0;
         for (int i = 0; i < board.size(); i++) {
@@ -67,7 +70,7 @@ public:
         string target = "123450";
 
         unordered_set<string> visited;
-        queue<pair<string, int>> bfs;
+        queue<pair<string, int> > bfs;
         bfs.push({puzzle, zeroPos});
         int step = 0;
         while (!bfs.empty()) {
@@ -81,7 +84,7 @@ public:
                     return step;
                 }
 
-                for (int next : moves[zeroPos]) {
+                for (int next: moves[zeroPos]) {
                     string nextPuzzle = puzzle;
                     swap(nextPuzzle[zeroPos], nextPuzzle[next]);
                     if (visited.find(nextPuzzle) == visited.end()) {
@@ -96,11 +99,15 @@ public:
     }
 };
 
-class Solution1 { // 5.12% too slow
+class Solution1 {
+    // 5.12% too slow
 private:
-    unordered_map<int, vector<int>> moves{{0, {1, 3}}, {1, {0, 2, 4}}, {2, {1, 5}}, {3, {0, 4}}, {4, {3, 5, 1}}, {5, {4, 2}}};
+    unordered_map<int, vector<int> > moves{
+        {0, {1, 3}}, {1, {0, 2, 4}}, {2, {1, 5}}, {3, {0, 4}}, {4, {3, 5, 1}}, {5, {4, 2}}
+    };
 
-    void dfs(string puzzle, unordered_map<string, int>& transform, int curZero, int swapZero, int curMove, int& minMoves) {
+    void dfs(string puzzle, unordered_map<string, int> &transform, int curZero, int swapZero, int curMove,
+             int &minMoves) {
         swap(puzzle[curZero], puzzle[swapZero]);
 
         if (puzzle == "123450") {
@@ -112,15 +119,20 @@ private:
             return;
         }
 
-        if (transform.find(puzzle) == transform.end() or transform[puzzle] > curMove) {
+        if (transform.find(puzzle) == transform.end() or transform[puzzle]
+        >
+        curMove
+        )
+        {
             transform[puzzle] = curMove;
-            for (int newZero : moves[swapZero]) {
-                dfs(puzzle,  transform,  swapZero,  newZero,  curMove + 1,  minMoves);
+            for (int newZero: moves[swapZero]) {
+                dfs(puzzle, transform, swapZero, newZero, curMove + 1, minMoves);
             }
         }
     }
+
 public:
-    int slidingPuzzle(vector<vector<int>>& board) {
+    int slidingPuzzle(vector<vector<int> > &board) {
         string puzzle = "";
         for (int i = 0; i < board.size(); i++) {
             for (int j = 0; j < board[0].size(); j++) {
@@ -129,7 +141,7 @@ public:
         }
 
         int minMoves = INT_MAX;
-        unordered_map<string,  int> transform;
+        unordered_map<string, int> transform;
         dfs(puzzle, transform, puzzle.find('0'), puzzle.find('0'), 0, minMoves);
         return minMoves == INT_MAX ? -1 : minMoves;
     }

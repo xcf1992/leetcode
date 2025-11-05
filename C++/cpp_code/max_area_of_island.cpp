@@ -43,8 +43,12 @@ private:
     int n = 0;
     vector<int> diff = {0, 1, 0, -1, 0};
 
-    void check(int r, int c, int& area, vector<vector<int>>& grid) {
-        if (r < 0 or r >= m or c < 0 or c >= n or grid[r][c] != 1) {
+    void check(int r, int c, int &area, vector<vector<int> > &grid) {
+        if (r < 0 or r
+        >=
+        m or c<0 or c >= n or grid[r][c] != 1
+        )
+        {
             return;
         }
 
@@ -54,18 +58,20 @@ private:
             check(r + diff[i], c + diff[i - 1], area, grid);
         }
     }
+
 public:
-    int maxAreaOfIsland(vector<vector<int>>& grid) {
+    int maxAreaOfIsland(vector<vector<int> > &grid) {
         m = grid.size();
         n = grid[0].size();
 
         int result = 0;
         for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) if (grid[i][j] == 1) {
-                int area = 0;
-                check(i, j, area, grid);
-                result = max(area, result);
-            }
+            for (int j = 0; j < n; j++)
+                if (grid[i][j] == 1) {
+                    int area = 0;
+                    check(i, j, area, grid);
+                    result = max(area, result);
+                }
         }
         return result;
     }

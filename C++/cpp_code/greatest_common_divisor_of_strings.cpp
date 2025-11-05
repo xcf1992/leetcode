@@ -69,7 +69,8 @@ public:
     }
 };
 
-class Solution1 { // 5%
+class Solution1 {
+    // 5%
 private:
     bool divisable(string str1, string str2) {
         int n1 = str1.size();
@@ -86,6 +87,7 @@ private:
         }
         return true;
     }
+
 public:
     string gcdOfStrings(string str1, string str2) {
         if (str1.size() < str2.size()) {
@@ -96,7 +98,9 @@ public:
         int n2 = str2.size();
         for (int i = n2; i >= 1; i--) {
             string temp = str2.substr(0, i);
-            if (divisable(str1, temp) and divisable(str2, temp)) {
+            if (divisable(str1, temp) and divisable(str2, temp)
+            )
+            {
                 return temp;
             }
         }

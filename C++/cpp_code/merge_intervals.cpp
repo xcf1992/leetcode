@@ -32,17 +32,17 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+    vector<vector<int> > merge(vector<vector<int> > &intervals) {
         int n = intervals.size();
         if (n <= 1) {
             return intervals;
         }
 
-        sort(intervals.begin(), intervals.end(), [](vector<int>& a, vector<int>& b) {
+        sort(intervals.begin(), intervals.end(), [](vector<int> &a, vector<int> &b) {
             return a[0] < b[0];
         });
 
-        vector<vector<int>> result;
+        vector<vector<int> > result;
         int start = intervals[0][0];
         int end = intervals[0][1];
         for (int i = 1; i < n; ++i) {

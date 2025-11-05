@@ -30,11 +30,12 @@ using namespace std;
 
 class Solution {
 private:
-    int getDistance(vector<int>& p1, vector<int>& p2) {
+    int getDistance(vector<int> &p1, vector<int> &p2) {
         return (p1[0] - p2[0]) * (p1[0] - p2[0]) + (p1[1] - p2[1]) * (p1[1] - p2[1]);
     }
+
 public:
-    bool validSquare(vector<int>& p1, vector<int>& p2, vector<int>& p3, vector<int>& p4) {
+    bool validSquare(vector<int> &p1, vector<int> &p2, vector<int> &p3, vector<int> &p4) {
         unordered_set<int> sides({
             getDistance(p1, p2),
             getDistance(p1, p3),
@@ -43,6 +44,8 @@ public:
             getDistance(p2, p4),
             getDistance(p3, p4)
         });
-        return sides.find(0) == sides.end() and sides.size() == 2;
+        return sides.find(0) == sides.end()
+        and
+        sides.size() == 2;
     }
 };

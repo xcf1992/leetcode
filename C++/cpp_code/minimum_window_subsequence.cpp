@@ -90,7 +90,7 @@ public:
 
         int start = -1;
         int minLen = S.size();
-        vector<vector<int>> dp(m + 1, vector<int>(n + 1, -1));
+        vector<vector<int> > dp(m + 1, vector<int>(n + 1, -1));
         for (int i = 0; i <= m; ++i) {
             dp[i][0] = i;
         }
@@ -98,8 +98,7 @@ public:
             for (int j = 1; j <= min(i, n); ++j) {
                 if (S[i - 1] == T[j - 1]) {
                     dp[i][j] = dp[i - 1][j - 1];
-                }
-                else {
+                } else {
                     dp[i][j] = dp[i - 1][j];
                 }
             }
@@ -151,8 +150,7 @@ public:
                         minLen = end - i + 1;
                         start = i;
                     }
-                }
-                else {
+                } else {
                     j += 1;
                 }
             }

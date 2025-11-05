@@ -56,7 +56,8 @@ Constraints:
 #include "extra_data_types.hpp"
 using namespace std;
 
-int f[101] = { 0, 1, 0};
+int f[101] = {0, 1, 0};
+
 class Solution {
 public:
     int getMaximumGenerated(int n) {

@@ -96,8 +96,8 @@ Use priority queue to decide the order of merge.
 */
 class Solution {
 public:
-    int minBuildTime(vector<int>& blocks, int split) {
-        priority_queue<int, vector<int>, greater<int>> pq;
+    int minBuildTime(vector<int> &blocks, int split) {
+        priority_queue<int, vector<int>, greater<int> > pq;
         for (int b: blocks) {
             pq.push(b);
         }
@@ -113,9 +113,10 @@ public:
     }
 };
 
-class Solution1 { // 444ms, 14%
+class Solution1 {
+    // 444ms, 14%
 private:
-    int dfs(int workers, int bCount, vector<int>& blocks, int split, vector<vector<int>>& dp) {
+    int dfs(int workers, int bCount, vector<int> &blocks, int split, vector<vector<int> > &dp) {
         if (bCount <= 0) {
             return 0;
         }
@@ -137,10 +138,11 @@ private:
         dp[bCount][workers] = min(option1, option2);
         return dp[bCount][workers];
     }
+
 public:
-    int minBuildTime(vector<int>& blocks, int split) {
+    int minBuildTime(vector<int> &blocks, int split) {
         int n = blocks.size();
-        vector<vector<int>> dp(n, vector<int>(n, INT_MAX));
+        vector<vector<int> > dp(n, vector<int>(n, INT_MAX));
         sort(blocks.begin(), blocks.end());
         return dfs(1, n, blocks, split, dp);
     }

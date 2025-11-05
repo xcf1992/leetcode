@@ -57,7 +57,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> addToArrayForm(vector<int>& A, int K) {
+    vector<int> addToArrayForm(vector<int> &A, int K) {
         vector<int> k;
         while (K != 0) {
             k.push_back(K % 10);

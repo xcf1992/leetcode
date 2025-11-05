@@ -34,8 +34,9 @@ Explanation: There are two distinct solutions to the 4-queens puzzle as shown be
 #include <numeric>
 using namespace std;
 
-class Solution { // slow faster than 9.71%
-    bool isValid(vector<int>& cur, int n) {
+class Solution {
+    // slow faster than 9.71%
+    bool isValid(vector<int> &cur, int n) {
         for (int i = 0; i < n; ++i) {
             for (int j = i + 1; j < n; ++j) {
                 if (abs(i - j) == abs(cur[i] - cur[j])) {
@@ -45,6 +46,7 @@ class Solution { // slow faster than 9.71%
         }
         return true;
     }
+
 public:
     int totalNQueens(int n) {
         vector<int> cur(n, 0);

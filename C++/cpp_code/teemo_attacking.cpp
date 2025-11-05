@@ -48,14 +48,13 @@ using namespace std;
 
 class Solution {
 public:
-    int findPoisonedDuration(vector<int>& timeSeries, int duration) {
+    int findPoisonedDuration(vector<int> &timeSeries, int duration) {
         int result = 0;
         int stopTime = 0;
-        for (int time : timeSeries) {
+        for (int time: timeSeries) {
             if (time >= stopTime) {
                 result += duration;
-            }
-            else {
+            } else {
                 result += (time + duration) - stopTime;
             }
             stopTime = time + duration;
@@ -66,7 +65,7 @@ public:
 
 class Solution1 {
 public:
-    int findPoisonedDuration(vector<int>& timeSeries, int duration) {
+    int findPoisonedDuration(vector<int> &timeSeries, int duration) {
         if (timeSeries.empty()) {
             return 0;
         }
@@ -75,8 +74,7 @@ public:
         for (int i = 0; i < timeSeries.size() - 1; i++) {
             if (timeSeries[i] + duration - 1 >= timeSeries[i + 1]) {
                 result += timeSeries[i + 1] - timeSeries[i];
-            }
-            else {
+            } else {
                 result += duration;
             }
         }

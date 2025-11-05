@@ -45,10 +45,10 @@ using namespace std;
 
 class Solution {
 public:
-    int smallestRangeI(vector<int>& A, int K) {
+    int smallestRangeI(vector<int> &A, int K) {
         int curMin = INT_MAX;
         int curMax = INT_MIN;
-        for (int num : A) {
+        for (int num: A) {
             curMin = min(num, curMin);
             curMax = max(num, curMax);
         }
@@ -59,7 +59,7 @@ public:
 
 class Solution1 {
 public:
-    int smallestRangeI(vector<int>& A, int K) {
+    int smallestRangeI(vector<int> &A, int K) {
         int result = 0;
         int curMin = A[0] - K;
         int curMax = A[0] + K;
@@ -67,27 +67,27 @@ public:
             int newMin = A[i] - K;
             int newMax = A[i] + K;
             if (result == 0) {
-                if (newMin > curMax or newMax < curMin) {
+                if (newMin > curMax or newMax<curMin
+                )
+                {
                     if (curMin > newMax) {
                         curMax = curMin;
                         curMin = newMax;
-                    }
-                    else {
+                    } else {
                         curMin = curMax;
                         curMax = newMin;
                     }
                     result = curMax - curMin;
                 }
-                else {
+                else
+                {
                     curMin = max(newMin, curMin);
                     curMax = min(newMax, curMax);
                 }
-            }
-            else {
+            } else {
                 if (newMin > curMax) {
                     curMax = newMin;
-                }
-                else if (newMax < curMin) {
+                } else if (newMax < curMin) {
                     curMin = newMax;
                 }
                 result = curMax - curMin;

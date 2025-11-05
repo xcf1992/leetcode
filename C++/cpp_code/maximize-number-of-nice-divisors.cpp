@@ -54,28 +54,23 @@ If primeFactors gives remainder 1, then maximization will require us to having 2
 If primeFactors gives remainder 2, then one prime number will have to have a frequency equal to two.
 In order to preven TLE, we write an optimised power function, optimised using binary search.
 */
-class Solution
-{
+class Solution {
 private:
     int mod = 1000000007;
 
-    int power(long long base, int pow)
-    {
+    int power(long long base, int pow) {
         if (pow == 0)
             return 1;
         return (pow & 1 ? (base * power(base, pow - 1)) % mod : power((base * base) % mod, pow / 2)) % mod;
     }
+
 public:
-    int maxNiceDivisors(int primeFactors)
-    {
+    int maxNiceDivisors(int primeFactors) {
         long ans = 1;
-        if (primeFactors % 3 == 1 && primeFactors > 1)
-        {
+        if (primeFactors % 3 == 1 && primeFactors > 1) {
             ans = 4;
             primeFactors -= 4;
-        }
-        else if (primeFactors % 3 == 2)
-        {
+        } else if (primeFactors % 3 == 2) {
             ans = 2;
             primeFactors -= 2;
         }

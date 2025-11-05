@@ -85,7 +85,7 @@ i = 2, nums = [ 9, 11, 8, 9, 10, 7, 9 ], S1 candidate = 8, S3 candidate = 9, Sta
 */
 class Solution {
 public:
-    bool find132pattern(vector<int>& nums) {
+    bool find132pattern(vector<int> &nums) {
         stack<int> s3stk;
         int s2 = INT_MIN;
         for (int i = nums.size() - 1; i >= 0; i--) {
@@ -93,7 +93,10 @@ public:
                 return true;
             }
 
-            while (!s3stk.empty() and s3stk.top() < nums[i]) {
+            while (!s3stk.empty() and
+            s3stk.top() < nums[i]
+            )
+            {
                 s2 = s3stk.top();
                 s3stk.pop();
             }

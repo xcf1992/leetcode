@@ -40,6 +40,7 @@ private:
         string part2 = number.substr(pos + 1, number.find("i") - pos - 1);
         return {stoi(part1), stoi(part2)};
     }
+
 public:
     string complexNumberMultiply(string a, string b) {
         pair<int, int> factor1 = decode(a);

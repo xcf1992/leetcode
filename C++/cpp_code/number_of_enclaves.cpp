@@ -48,8 +48,10 @@ private:
     int M = 0;
     int N = 0;
 
-    void change(int row, int col, vector<vector<int>>& A) {
-        if (row < 0 or col < 0 or row >= M or col >= N) {
+    void change(int row, int col, vector<vector<int> > &A) {
+        if (row < 0 or col<0 or row >= M or col >= N
+        )
+        {
             return;
         }
 
@@ -63,12 +65,13 @@ private:
         change(row, col + 1, A);
         change(row, col - 1, A);
     }
+
 public:
-    int numEnclaves(vector<vector<int>>& A) {
+    int numEnclaves(vector<vector<int> > &A) {
         M = A.size();
         N = A[0].size();
 
-        for (int row = 0; row < M ; ++row) {
+        for (int row = 0; row < M; ++row) {
             if (A[row][0] == 1) {
                 change(row, 0, A);
             }

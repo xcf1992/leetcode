@@ -50,17 +50,33 @@ class Solution {
 public:
     bool buddyStrings(string A, string B) {
         int n = A.size();
-        if (n <= 1 or n != B.size()) {
+        if (n <= 1 or n
+        !=
+        B.size()
+        )
+        {
             return false;
         }
-        if (A == B and set<char>(A.begin(), A.end()).size() < n) { // there are duplicate letters
+        if (A == B and set<char>(A.begin(), A.end())
+        .
+        size() < n
+        )
+        {
+            // there are duplicate letters
             return true;
         }
 
         vector<int> diff;
-        for (int i = 0; i < n; i++) if (A[i] != B[i]) {
-            diff.push_back(i);
-        }
-        return diff.size() == 2 and A[diff[0]] == B[diff[1]] and A[diff[1]] == B[diff[0]];
+        for (int i = 0; i < n; i++)
+            if (A[i] != B[i]) {
+                diff.push_back(i);
+            }
+        return diff.size() == 2
+        and A[diff[0]]
+        ==
+        B[diff[1]]
+        and A[diff[1]]
+        ==
+        B[diff[0]];
     }
 };

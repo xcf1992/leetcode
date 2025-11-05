@@ -84,9 +84,9 @@ when you’ve chosen an odd number of those numbers to apply the XOR operation (
  */
 class Solution {
 public:
-    long long maximumValueSum(vector<int>& nums, int k, vector<vector<int>>& edges) {
+    long long maximumValueSum(vector<int> &nums, int k, vector<vector<int> > &edges) {
         vector<long long> dp = {0, LLONG_MIN};
-        for (int num : nums) {
+        for (int num: nums) {
             vector<long long> new_dp = {dp[0] + num, dp[1] + num};
             new_dp[0] = max(new_dp[0], dp[1] + (num ^ k));
             new_dp[1] = max(new_dp[1], dp[0] + (num ^ k));

@@ -37,19 +37,18 @@ so by replacing internal element with current num(which is smaller), we hope we 
 */
 class Solution {
 public:
-    int lengthOfLIS(vector<int>& nums) {
+    int lengthOfLIS(vector<int> &nums) {
         int n = nums.size();
         if (n <= 1) {
             return n;
         }
 
         vector<int> lis;
-        for (int num : nums) {
+        for (int num: nums) {
             auto it = lower_bound(lis.begin(), lis.end(), num);
             if (it == lis.end()) {
                 lis.push_back(num);
-            }
-            else {
+            } else {
                 *it = num;
             }
         }
@@ -59,7 +58,7 @@ public:
 
 class Solution1 {
 public:
-    int lengthOfLIS(vector<int>& nums) {
+    int lengthOfLIS(vector<int> &nums) {
         int n = nums.size();
         if (n <= 1) {
             return n;

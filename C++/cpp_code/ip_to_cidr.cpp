@@ -58,6 +58,7 @@ n will be an integer in the range [1, 1000].
 #include <stack>
 #include <stdio.h>
 using namespace std;
+
 // https://leetcode.com/problems/ip-to-cidr/discuss/151348/Java-Solution-with-Very-Detailed-Explanation-8ms
 class Solution {
 private:
@@ -77,19 +78,25 @@ private:
         }
         return res + to_string(32 - len);
     }
+
 public:
     vector<string> ipToCIDR(string ip, int n) {
         unsigned int IP = 0;
         string temp = "";
         for (int i = 0; i <= ip.size(); i++) {
-            if (ip[i] == '.' or i == ip.size()) {
+            if (ip[i] == '.' or i
+            ==
+            ip.size()
+            )
+            {
                 IP |= stoi(temp);
                 if (i != ip.size()) {
                     IP <<= 8;
                 }
                 temp = "";
             }
-            else {
+            else
+            {
                 temp.push_back(ip[i]);
             }
         }

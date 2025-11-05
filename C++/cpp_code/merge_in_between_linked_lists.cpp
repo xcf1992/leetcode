@@ -54,37 +54,37 @@ using namespace std;
  */
 class Solution {
 public:
-    ListNode* mergeInBetween(ListNode* list1, int a, int b, ListNode* list2) {
-        ListNode* pre = new ListNode(-1);
-        pre -> next = list1;
+    ListNode *mergeInBetween(ListNode *list1, int a, int b, ListNode *list2) {
+        ListNode *pre = new ListNode(-1);
+        pre->next = list1;
         int index = 0;
-        ListNode* cur = list1;
+        ListNode *cur = list1;
         while (index != a) {
             index += 1;
             pre = cur;
-            cur = cur -> next;
+            cur = cur->next;
         }
-        pre -> next = nullptr;
+        pre->next = nullptr;
 
-        ListNode* suc = new ListNode(-1);;
-        suc = cur -> next;
+        ListNode *suc = new ListNode(-1);;
+        suc = cur->next;
         while (index != b) {
             index += 1;
-            cur = cur -> next;
-            suc = cur -> next;
+            cur = cur->next;
+            suc = cur->next;
         }
-        cur -> next = nullptr;
+        cur->next = nullptr;
 
         cur = list2;
-        while (cur -> next != nullptr) {
-            cur = cur -> next;
+        while (cur->next != nullptr) {
+            cur = cur->next;
         }
-        if (pre -> next == list1) {
-            cur -> next = suc;
+        if (pre->next == list1) {
+            cur->next = suc;
             return list2;
         }
-        pre -> next = list2;
-        cur -> next = suc;
+        pre->next = list2;
+        cur->next = suc;
         return list1;
     }
 };

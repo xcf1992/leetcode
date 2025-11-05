@@ -63,7 +63,11 @@ public:
         int depth = 0;
         for (int i = 0; i < S.size(); i++) {
             depth += S[i] == '(' ? 1 : -1;
-            if (S[i] == ')' and S[i - 1] == '(') {
+            if (S[i] == ')' and S[i - 1]
+            ==
+            '('
+            )
+            {
                 sum += (1 << depth);
             }
         }
@@ -91,12 +95,11 @@ public:
     int scoreOfParentheses(string S) {
         stack<int> stk;
         int cur = 0;
-        for (char c : S) {
+        for (char c: S) {
             if (c == '(') {
                 stk.push(cur);
                 cur = 0;
-            }
-            else {
+            } else {
                 cur += stk.top() + max(cur, 1);
                 stk.pop();
             }

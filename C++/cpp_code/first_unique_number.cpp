@@ -86,15 +86,19 @@ private:
     queue<int> uniques;
     unordered_set<int> uniqueSet;
     unordered_set<int> occurence;
+
 public:
-    FirstUnique(vector<int>& nums) {
-        for (int num : nums) {
+    FirstUnique(vector<int> &nums) {
+        for (int num: nums) {
             add(num);
         }
     }
 
     int showFirstUnique() {
-        while (!uniques.empty() and uniqueSet.find(uniques.front()) == uniqueSet.end()) {
+        while (!uniques.empty() and
+        uniqueSet.find(uniques.front()) == uniqueSet.end()
+        )
+        {
             uniques.pop();
         }
         return uniques.empty() ? -1 : uniques.front();

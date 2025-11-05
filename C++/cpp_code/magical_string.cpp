@@ -63,8 +63,7 @@ public:
             s2.push_back(s1[s2.size()]);
             if (s2.back() == '1') {
                 s1 += s1.back() == '1' ? '2' : '1';
-            }
-            else if (s2.back() == '2') {
+            } else if (s2.back() == '2') {
                 s1 += s1.back() == '1' ? "22" : "11";
             }
         }

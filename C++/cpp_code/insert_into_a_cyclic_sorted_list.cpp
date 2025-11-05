@@ -52,11 +52,12 @@ using namespace std;
 class Node {
 public:
     int val;
-    Node* next;
+    Node *next;
 
-    Node() {}
+    Node() {
+    }
 
-    Node(int _val, Node* _next) {
+    Node(int _val, Node *_next) {
         val = _val;
         next = _next;
     }
@@ -64,31 +65,34 @@ public:
 
 class Solution {
 public:
-    Node* insert(Node* head, int insertVal) {
-        Node* newNode = new Node(insertVal, nullptr);
+    Node *insert(Node *head, int insertVal) {
+        Node *newNode = new Node(insertVal, nullptr);
         if (head == nullptr) {
-            newNode -> next = newNode;
+            newNode->next = newNode;
             return newNode;
         }
 
-        Node* cur = head;
-        Node* biggestNode = cur;
+        Node *cur = head;
+        Node *biggestNode = cur;
         do {
-            Node* suc = cur -> next;
-            if (cur -> val <= insertVal and suc -> val >= insertVal) {
-                cur -> next = newNode;
-                newNode -> next = suc;
+            Node *suc = cur->next;
+            if (cur->val <= insertVal and
+            suc->val >= insertVal
+            )
+            {
+                cur->next = newNode;
+                newNode->next = suc;
                 return head;
             }
             cur = suc;
-            suc = cur -> next;
-            if (cur -> val >= biggestNode -> val) {
+            suc = cur->next;
+            if (cur->val >= biggestNode->val) {
                 biggestNode = cur;
             }
         } while (cur != head);
 
-        newNode -> next = biggestNode -> next;
-        biggestNode -> next = newNode;
+        newNode->next = biggestNode->next;
+        biggestNode->next = newNode;
         return head;
     }
 };

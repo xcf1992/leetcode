@@ -89,7 +89,11 @@ class Solution {
 public:
     int getMaxRepetitions(string s1, int n1, string s2, int n2) {
         int l1 = s1.size();
-        if (l1 == 0 or n1 == 0) {
+        if (l1 == 0 or n1
+        ==
+        0
+        )
+        {
             return 0;
         }
         int l2 = s2.size();
@@ -111,12 +115,13 @@ public:
 
             countr[i] = count;
             nextIndexr[i] = nextIndex;
-            for (int k = 0; k < i; k++) if (nextIndexr[k] == nextIndex) {
-                int prev_count = countr[k]; // count from [0, k]
-                int pattern_count = (countr[i] - countr[k]) * ((n1 - 1 - k) / (i - k));
-                int remain_count = countr[k + (n1 - 1 - k) % (i - k)] - countr[k];
-                return (prev_count + pattern_count + remain_count) / n2;
-            }
+            for (int k = 0; k < i; k++)
+                if (nextIndexr[k] == nextIndex) {
+                    int prev_count = countr[k]; // count from [0, k]
+                    int pattern_count = (countr[i] - countr[k]) * ((n1 - 1 - k) / (i - k));
+                    int remain_count = countr[k + (n1 - 1 - k) % (i - k)] - countr[k];
+                    return (prev_count + pattern_count + remain_count) / n2;
+                }
         }
         return countr[n1 - 1] / n2;
     }

@@ -66,20 +66,20 @@ struct TreeNode {
 
 class Solution {
 private:
-    TreeNode* lowest_common_ancestor(TreeNode *root, int startValue, int destValue) {
+    TreeNode *lowest_common_ancestor(TreeNode *root, int startValue, int destValue) {
         if (root == nullptr || root->val == startValue || root->val == destValue) {
             return root;
         }
 
-        TreeNode* lca_left = lowest_common_ancestor(root->left, startValue, destValue);
-        TreeNode* lca_right = lowest_common_ancestor(root->right, startValue, destValue);
+        TreeNode *lca_left = lowest_common_ancestor(root->left, startValue, destValue);
+        TreeNode *lca_right = lowest_common_ancestor(root->right, startValue, destValue);
         if (lca_left != nullptr && lca_right != nullptr) {
             return root;
         }
         return lca_left != nullptr ? lca_left : lca_right;
     }
 
-    bool get_distance(TreeNode* root, int val, int& distance) {
+    bool get_distance(TreeNode *root, int val, int &distance) {
         if (root == nullptr) {
             return false;
         }
@@ -99,9 +99,10 @@ private:
         distance -= 1;
         return false;
     }
+
 public:
-    int findDistance(TreeNode* root, int p, int q) {
-        TreeNode* lca = lowest_common_ancestor(root, p, q);
+    int findDistance(TreeNode *root, int p, int q) {
+        TreeNode *lca = lowest_common_ancestor(root, p, q);
 
         int l_distance = 0;
         get_distance(lca, p, l_distance);

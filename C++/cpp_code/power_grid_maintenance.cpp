@@ -79,7 +79,7 @@ using namespace std;
 
 class Solution {
 private:
-    int find_parent(int cur, vector<int>& parent) {
+    int find_parent(int cur, vector<int> &parent) {
         if (parent[cur] == -1) {
             return cur;
         }
@@ -88,10 +88,10 @@ private:
     }
 
 public:
-    vector<int> processQueries(int c, vector<vector<int>>& connections, vector<vector<int>>& queries) {
+    vector<int> processQueries(int c, vector<vector<int> > &connections, vector<vector<int> > &queries) {
         vector<int> parent(c + 1, -1);
-        vector<set<int>> grid(c + 1, set<int>());
-        for (const vector<int>& conn : connections) {
+        vector<set<int> > grid(c + 1, set<int>());
+        for (const vector<int> &conn: connections) {
             int u = find_parent(conn[0], parent);
             int v = find_parent(conn[1], parent);
             if (u == v) {
@@ -105,7 +105,7 @@ public:
         }
 
         vector<int> result;
-        for (const vector<int>& q : queries) {
+        for (const vector<int> &q: queries) {
             int cur = q[1];
             int cur_parent = find_parent(cur, parent);
             if (q[0] == 2) {

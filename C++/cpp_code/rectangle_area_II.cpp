@@ -90,10 +90,11 @@ Then, we can query() in linear time using a technique similar to a classic LeetC
 class Solution {
 private:
     int mod = 1e9 + 7;
+
 public:
-    int rectangleArea(vector<vector<int>>& rectangles) {
+    int rectangleArea(vector<vector<int> > &rectangles) {
         unordered_set<int> xValues;
-        for (vector<int>& rec : rectangles) {
+        for (vector<int> &rec: rectangles) {
             xValues.insert(rec[0]);
             xValues.insert(rec[2]);
         }
@@ -106,8 +107,8 @@ public:
             x_i[x[i]] = i;
         }
 
-        vector<vector<int>> line;
-        for (vector<int>& rec : rectangles) {
+        vector<vector<int> > line;
+        for (vector<int> &rec: rectangles) {
             int x1 = rec[0], y1 = rec[1], x2 = rec[2], y2 = rec[3];
             // first event to add active x points
             line.push_back({y1, x1, x2, 1});
@@ -119,7 +120,7 @@ public:
         long long cur_y = 0, cur_x_sum = 0, result = 0;
         // count calculate which x point is still valid right now
         vector<int> count(x.size(), 0);
-        for (vector<int>& l : line) {
+        for (vector<int> &l: line) {
             long long y = l[0], x1 = l[1], x2 = l[2], sig = l[3];
             result = (result + (y - cur_y) * cur_x_sum) % mod;
             cur_y = y;

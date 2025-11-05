@@ -75,18 +75,19 @@ the minimum cost between any two nodes will be the bitwise AND of all edges that
  */
 class Solution {
 private:
-    int find_parent(int cur, vector<int>& parent) {
+    int find_parent(int cur, vector<int> &parent) {
         if (parent[cur] == -1) {
             return cur;
         }
         parent[cur] = find_parent(parent[cur], parent);
         return parent[cur];
     }
+
 public:
-    vector<int> minimumCost(int n, vector<vector<int>>& edges, vector<vector<int>>& query) {
+    vector<int> minimumCost(int n, vector<vector<int> > &edges, vector<vector<int> > &query) {
         vector<int> parent(n, -1);
         vector<int> min_cost(n, INT_MAX);
-        for (const vector<int>& edge : edges) {
+        for (const vector<int> &edge: edges) {
             int u = find_parent(edge[0], parent);
             int v = find_parent(edge[1], parent);
             int w = edge[2];
@@ -100,7 +101,7 @@ public:
         }
 
         vector<int> result;
-        for (const vector<int>& q : query) {
+        for (const vector<int> &q: query) {
             if (q[0] == q[1]) {
                 result.push_back(0);
                 continue;

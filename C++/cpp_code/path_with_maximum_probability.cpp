@@ -53,8 +53,8 @@ using namespace std;
 
 class Solution {
 public:
-    double maxProbability(int n, vector<vector<int>>& edges, vector<double>& succProb, int start, int end) {
-        unordered_map<int, vector<pair<int, double>>> next;
+    double maxProbability(int n, vector<vector<int> > &edges, vector<double> &succProb, int start, int end) {
+        unordered_map<int, vector<pair<int, double> > > next;
         for (int i = 0; i < edges.size(); ++i) {
             int from = edges[i][0];
             int to = edges[i][1];
@@ -66,14 +66,14 @@ public:
 
         vector<double> reachProb(n, 0.0);
         reachProb[start] = 1.0;
-        queue<pair<int, double>> bfs;
+        queue<pair<int, double> > bfs;
         bfs.push({start, 1.0});
         while (!bfs.empty()) {
             int curPos = bfs.front().first;
             double curProb = bfs.front().second;
             bfs.pop();
 
-            for (pair<int, double>& nxt: next[curPos]) {
+            for (pair<int, double> &nxt: next[curPos]) {
                 int to = nxt.first;
                 double prob = nxt.second;
                 double newProb = prob * curProb;

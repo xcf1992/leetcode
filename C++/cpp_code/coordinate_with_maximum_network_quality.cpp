@@ -71,48 +71,44 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> bestCoordinate(vector<vector<int>>& towers, int radius) {
+    vector<int> bestCoordinate(vector<vector<int> > &towers, int radius) {
+        int x = -1;
+        int y = -1;
 
-        int x = -1 ;
-        int y = -1 ;
-
-        int max = INT_MIN ;
+        int max = INT_MIN;
 
         //for every tower
-        for(int i = 0 ; i < towers.size() ; i++){
+        for (int i = 0; i < towers.size(); i++) {
             //check for everyother tower including itself
 
-            int sumquality = 0 ;
+            int sumquality = 0;
 
             //calculate total quality
-            for(int j = 0 ; j < towers.size() ; j++){
+            for (int j = 0; j < towers.size(); j++) {
+                double dist = (towers[j][0] - towers[i][0]) * (towers[j][0] - towers[i][0]) +
+                              (towers[j][1] - towers[i][1]) * (towers[j][1] - towers[i][1]);
+                dist = sqrt(dist);
 
-                double dist = (towers[j][0] - towers[i][0])*(towers[j][0] - towers[i][0]) +
-                                (towers[j][1] - towers[i][1])*(towers[j][1] - towers[i][1]) ;
-                dist = sqrt(dist) ;
-
-                if(dist <= radius){
-                    sumquality += towers[j][2] / (dist+1) ;
+                if (dist <= radius) {
+                    sumquality += towers[j][2] / (dist + 1);
                 }
             }
             //cout << sumquality << endl ;
 
-            if(sumquality == max ){
-                if(towers[i][0] < x || towers[i][0] == x && towers[i][1] < y) {
-                    x = towers[i][0] ;
-                    y = towers[i][1] ;
+            if (sumquality == max) {
+                if (towers[i][0] < x || towers[i][0] == x && towers[i][1] < y) {
+                    x = towers[i][0];
+                    y = towers[i][1];
                 }
+            } else if (sumquality > max) {
+                x = towers[i][0];
+                y = towers[i][1];
+                max = sumquality;
             }
-            else if(sumquality > max){
-                x = towers[i][0] ;
-                y = towers[i][1] ;
-                max = sumquality ;
-            }
-
         }
-        vector<int>answer ;
+        vector<int> answer;
         answer.push_back(x);
         answer.push_back(y);
-        return answer ;
+        return answer;
     }
 };

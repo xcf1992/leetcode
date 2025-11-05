@@ -70,7 +70,7 @@ using namespace std;
 
 class Solution {
 public:
-    char slowestKey(vector<int>& releaseTimes, string keysPressed) {
+    char slowestKey(vector<int> &releaseTimes, string keysPressed) {
         char result = keysPressed[0];
         int duration = releaseTimes[0];
         for (int i = 1; i < releaseTimes.size(); ++i) {
@@ -80,7 +80,11 @@ public:
                 result = keysPressed[i];
                 continue;
             }
-            if (press == duration and keysPressed[i] > result) {
+            if (press == duration and keysPressed[i]
+            >
+            result
+            )
+            {
                 result = keysPressed[i];
                 continue;
             }

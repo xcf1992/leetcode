@@ -88,15 +88,20 @@ the subarray[1,1] should only be provide minimum 1 once
 class Solution {
 private:
     int MOD = 1e9 + 7;
+
 public:
-    int sumSubarrayMins(vector<int>& A) {
+    int sumSubarrayMins(vector<int> &A) {
         int n = A.size();
         vector<int> left(n, 0);
         vector<int> right(n, 0);
-        stack<pair<int, int>> stk1, stk2;
+        stack<pair<int, int> > stk1, stk2;
         for (int i = 0; i < n; i++) {
             int count = 1;
-            while (!stk1.empty() and stk1.top().first > A[i]) { // the count of number A[j] which > A[i], where j <= i
+            while (!stk1.empty() and
+            stk1.top().first > A[i]
+            )
+            {
+                // the count of number A[j] which > A[i], where j <= i
                 count += stk1.top().second;
                 stk1.pop();
             }
@@ -105,7 +110,11 @@ public:
 
             int j = n - 1 - i;
             count = 1;
-            while (!stk2.empty() and stk2.top().first >= A[j]) { // the count of number A[j] which >= A[i], where j >= i
+            while (!stk2.empty() and
+            stk2.top().first >= A[j]
+            )
+            {
+                // the count of number A[j] which >= A[i], where j >= i
                 count += stk2.top().second;
                 stk2.pop();
             }

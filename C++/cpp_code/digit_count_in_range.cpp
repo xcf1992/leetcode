@@ -36,7 +36,8 @@ using namespace std;
 
 class Solution {
 private:
-    int getCount(int d, int bound) { // compute number of times digit c appears in from 0 to bound inclusively.
+    int getCount(int d, int bound) {
+        // compute number of times digit c appears in from 0 to bound inclusively.
         int result = 0;
         for (long i = 1; i <= bound; i *= 10) {
             long divisor = i * 10;
@@ -57,9 +58,12 @@ private:
         }
         return result;
     }
+
 public:
     int digitsCount(int d, int low, int high) {
-        if (d < 0 or high < 0) {
+        if (d < 0 or high<0
+        )
+        {
             return 0;
         }
         return getCount(d, high) - getCount(d, low - 1);

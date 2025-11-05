@@ -37,11 +37,14 @@ using namespace std;
 
 class Solution {
 public:
-    string longestWord(vector<string>& words) {
+    string longestWord(vector<string> &words) {
         sort(words.begin(), words.end());
         unordered_set<string> prefix;
         string result = "";
-        for (string word : words) if (word.size() == 1 or prefix.find(word.substr(0, word.size() - 1)) != prefix.end()) {
+        for (string word: words) if (word.size() == 1 or
+        prefix.find(word.substr(0, word.size() - 1)) != prefix.end()
+        )
+        {
             result = word.size() > result.size() ? word : result;
             prefix.insert(word);
         }

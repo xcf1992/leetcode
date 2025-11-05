@@ -43,7 +43,7 @@ same as 265. Paint House II
 */
 class Solution {
 public:
-    int minFallingPathSum(vector<vector<int>>& arr) {
+    int minFallingPathSum(vector<vector<int> > &arr) {
         int m = arr.size();
         if (m == 0) {
             return 0;
@@ -60,8 +60,7 @@ public:
                 leastVal = arr[0][j];
                 lessCol = leastCol;
                 leastCol = j;
-            }
-            else if (arr[0][j] < lessVal) {
+            } else if (arr[0][j] < lessVal) {
                 lessVal = arr[0][j];
                 lessCol = j;
             }
@@ -76,8 +75,7 @@ public:
                 int sum = arr[i][j];
                 if (j != leastCol) {
                     sum += leastVal;
-                }
-                else {
+                } else {
                     sum += lessVal;
                 }
 
@@ -86,8 +84,7 @@ public:
                     newLeastVal = sum;
                     newLessCol = newLeastCol;
                     newLeastCol = j;
-                }
-                else if (sum < newLessVal) {
+                } else if (sum < newLessVal) {
                     newLessVal = sum;
                     newLessCol = j;
                 }

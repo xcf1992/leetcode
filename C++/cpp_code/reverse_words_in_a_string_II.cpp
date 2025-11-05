@@ -32,15 +32,16 @@ using namespace std;
 
 class Solution {
 private:
-    void flip(vector<char>& str, int start, int end) {
+    void flip(vector<char> &str, int start, int end) {
         while (start < end) {
             swap(str[start], str[end]);
             start += 1;
             end -= 1;
         }
     }
+
 public:
-    void reverseWords(vector<char>& str) {
+    void reverseWords(vector<char> &str) {
         int n = str.size();
         if (n <= 1) {
             return;
@@ -50,7 +51,11 @@ public:
         int start = 0;
         int end = 0;
         while (start < n) {
-            while (end < n and str[end] != ' ') {
+            while (end < n and str[end]
+            !=
+            ' '
+            )
+            {
                 end += 1;
             }
             flip(str, start, end - 1);

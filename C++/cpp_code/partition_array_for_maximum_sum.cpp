@@ -39,7 +39,7 @@ where k = 1 to k = K.
 */
 class Solution {
 public:
-    int maxSumAfterPartitioning(vector<int>& A, int K) {
+    int maxSumAfterPartitioning(vector<int> &A, int K) {
         int n = A.size();
         if (n == 0) {
             return 0;
@@ -48,7 +48,12 @@ public:
         vector<int> dp(n, 0);
         for (int i = 0; i < n; ++i) {
             int maxNum = A[i];
-            for (int k = 1; k <= K and i - k + 1 >= 0; ++k) { // we pick A[i - k + 1] to A[i] this k elements as a group
+            for (int k = 1; k <= K and i
+            -k + 1 >= 0;
+            ++k
+            )
+            {
+                // we pick A[i - k + 1] to A[i] this k elements as a group
                 maxNum = max(maxNum, A[i - k + 1]);
                 dp[i] = max(dp[i], (i - k >= 0 ? dp[i - k] : 0) + k * maxNum);
             }

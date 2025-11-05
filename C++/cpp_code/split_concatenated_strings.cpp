@@ -54,15 +54,15 @@ To solve this problem, we must keep in heart the following points:
 */
 class Solution {
 private:
-    void findMaxStrings(vector<string>& strs) {
-        for (string& str : strs) {
+    void findMaxStrings(vector<string> &strs) {
+        for (string &str: strs) {
             string temp = str;
             reverse(temp.begin(), temp.end());
             str = str > temp ? str : temp;
         }
     }
 
-    void solve(vector<string>& strs, int i, string& result) {
+    void solve(vector<string> &strs, int i, string &result) {
         string before = "";
         string after = "";
         for (int j = 0; j < i; j++) {
@@ -82,8 +82,9 @@ private:
             result = result == "" ? cur2 : max(result, cur2);
         }
     }
+
 public:
-    string splitLoopedString(vector<string>& strs) {
+    string splitLoopedString(vector<string> &strs) {
         if (strs.empty()) {
             return "";
         }

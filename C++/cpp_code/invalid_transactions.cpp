@@ -48,15 +48,14 @@ using namespace std;
 
 class Solution {
 private:
-    vector<string> split(string& transaction) {
+    vector<string> split(string &transaction) {
         vector<string> result;
         string cur = "";
         for (char c: transaction) {
             if (c == ',') {
                 result.push_back(cur);
                 cur = "";
-            }
-            else {
+            } else {
                 cur.push_back(c);
             }
         }
@@ -65,30 +64,32 @@ private:
         return result;
     }
 
-    bool isValid(vector<string>& tran, vector<vector<string>>& trans) {
+    bool isValid(vector<string> &tran, vector<vector<string> > &trans) {
         if (stoi(tran[2]) > 1000) {
             return false;
         }
 
-        for (int i = 0; i < trans.size(); ++i) if (tran[3] != trans[i][3]) {
-            if (abs(stoi(tran[1]) - stoi(trans[i][1])) <= 60) {
-                return false;
+        for (int i = 0; i < trans.size(); ++i)
+            if (tran[3] != trans[i][3]) {
+                if (abs(stoi(tran[1]) - stoi(trans[i][1])) <= 60) {
+                    return false;
+                }
             }
-        }
         return true;
     }
+
 public:
-    vector<string> invalidTransactions(vector<string>& transactions) {
-        unordered_map<string, vector<vector<string>>> peopleTrans;
-        for (string& transaction: transactions) {
+    vector<string> invalidTransactions(vector<string> &transactions) {
+        unordered_map<string, vector<vector<string> > > peopleTrans;
+        for (string &transaction: transactions) {
             vector<string> trans = split(transaction);
             peopleTrans[trans[0]].push_back(trans);
         }
 
         vector<string> result;
-        for (auto& it: peopleTrans) {
-            vector<vector<string>> trans = it.second;
-            for (vector<string>& tran: trans) {
+        for (auto &it: peopleTrans) {
+            vector<vector<string> > trans = it.second;
+            for (vector<string> &tran: trans) {
                 if (!isValid(tran, trans)) {
                     result.push_back(tran[4]);
                 }

@@ -60,15 +60,16 @@ private:
         }
         return n2 == 0 ? n1 : gcd(n2, n1 % n2);
     }
+
 public:
-    bool hasGroupsSizeX(vector<int>& deck) {
+    bool hasGroupsSizeX(vector<int> &deck) {
         unordered_map<int, int> count;
-        for (int card : deck) {
+        for (int card: deck) {
             count[card] += 1;
         }
 
         int result = 0;
-        for (auto& it : count) {
+        for (auto &it: count) {
             result = gcd(it.second, result);
         }
         return result >= 2;

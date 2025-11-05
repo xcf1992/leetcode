@@ -40,9 +40,9 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int>> highFive(vector<vector<int>>& items) {
-        map<int, vector<int>> count;
-        for (vector<int>& item : items) {
+    vector<vector<int> > highFive(vector<vector<int> > &items) {
+        map<int, vector<int> > count;
+        for (vector<int> &item: items) {
             int id = item[0];
             int score = item[1];
             if (count.find(id) == count.end()) {
@@ -51,13 +51,16 @@ public:
             count[id][score] += 1;
         }
 
-        vector<vector<int>> result;
-        for (auto& it : count) {
+        vector<vector<int> > result;
+        for (auto &it: count) {
             int id = it.first;
             vector<int> scores = it.second;
             int number = 0;
             int sum = 0;
-            for (int i = 100; i >= 1 and number < 5; --i) if (scores[i] != 0) {
+            for (int i = 100; i >= 1 and number<5;
+            --i
+            )
+            if (scores[i] != 0) {
                 sum += i * min(5 - number, scores[i]);
                 number += min(5 - number, scores[i]);
             }

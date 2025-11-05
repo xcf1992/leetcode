@@ -63,16 +63,23 @@ dp[n][k+1] = dp[n][k] + dp[n-1][k+1] - dp[n-1][k+1-n]
 class Solution {
 private:
     int MOD = 1e9 + 7;
+
 public:
     int kInversePairs(int n, int k) {
-        if (k > n * (n - 1) / 2 or k < 0) {
+        if (k > n * (n - 1) / 2 or k<0
+        )
+        {
             return 0;
         }
-        if (k == 0 or k == n * (n - 1) / 2) {
+        if (k == 0 or k
+        ==
+        n * (n - 1) / 2
+        )
+        {
             return 1;
         }
 
-        vector<vector<long>> dp(n + 1, vector<long>(k + 1, 0));
+        vector<vector<long> > dp(n + 1, vector<long>(k + 1, 0));
         dp[2][0] = 1;
         dp[2][1] = 1;
         for (int i = 3; i <= n; ++i) {

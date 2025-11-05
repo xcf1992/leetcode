@@ -29,17 +29,18 @@ using namespace std;
 
 class Solution {
 private:
-    int find(vector<int>& parent, int index) {
+    int find(vector<int> &parent, int index) {
         if (parent[index] != index) {
             parent[index] = find(parent, parent[index]);
         }
         return parent[index];
     }
+
 public:
-    bool validTree(int n, vector<vector<int>>& edges) {
+    bool validTree(int n, vector<vector<int> > &edges) {
         vector<int> parent(n, 0);
         iota(parent.begin(), parent.end(), 0);
-        for (vector<int>& edge : edges) {
+        for (vector<int> &edge: edges) {
             int rootX = find(parent, edge[0]);
             int rootY = find(parent, edge[1]);
             if (rootX == rootY) {

@@ -28,39 +28,46 @@ using namespace std;
 
 class Solution {
 public:
-    bool isPalindrome(ListNode* head) {
-        if (head == nullptr or head -> next == nullptr) {
+    bool isPalindrome(ListNode *head) {
+        if (head == nullptr or
+        head->next == nullptr
+        )
+        {
             return true;
         }
 
-        ListNode* slow = head;
-        ListNode* fast = head;
+        ListNode *slow = head;
+        ListNode *fast = head;
         while (fast != nullptr) {
-            fast = fast -> next;
+            fast = fast->next;
             if (fast != nullptr) {
-                slow = slow -> next;
-                fast = fast -> next;
+                slow = slow->next;
+                fast = fast->next;
             }
         }
 
-        ListNode* reverseHead = slow;
-        ListNode* cur = reverseHead -> next;
-        reverseHead -> next = nullptr;
+        ListNode *reverseHead = slow;
+        ListNode *cur = reverseHead->next;
+        reverseHead->next = nullptr;
         while (cur != nullptr) {
-            ListNode* suc = cur -> next;
-            cur -> next = reverseHead;
+            ListNode *suc = cur->next;
+            cur->next = reverseHead;
             reverseHead = cur;
             cur = suc;
         }
 
         cur = reverseHead;
         slow = head;
-        while (cur != nullptr and slow != nullptr) {
-            if (cur -> val != slow -> val) {
+        while (cur != nullptr and slow
+        !=
+        nullptr
+        )
+        {
+            if (cur->val != slow->val) {
                 return false;
             }
-            cur = cur -> next;
-            slow = slow -> next;
+            cur = cur->next;
+            slow = slow->next;
         }
         return true;
     }

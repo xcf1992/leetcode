@@ -51,16 +51,16 @@ using namespace std;
 
 class Solution {
 public:
-    bool possibleBipartition(int N, vector<vector<int>>& dislikes) {
+    bool possibleBipartition(int N, vector<vector<int> > &dislikes) {
         vector<int> group(N + 1, 0); // there are 2 colors 1 & -1
-        unordered_map<int, vector<int>> hate;
-        for (vector<int>& d : dislikes) {
+        unordered_map<int, vector<int> > hate;
+        for (vector<int> &d: dislikes) {
             hate[d[0]].push_back(d[1]);
             hate[d[1]].push_back(d[0]);
         }
 
         queue<int> bfs;
-        for (auto cur : hate) {
+        for (auto cur: hate) {
             if (group[cur.first] != 0) {
                 continue;
             }
@@ -71,12 +71,12 @@ public:
                 int s = bfs.front();
                 bfs.pop();
 
-                for (int next : hate[s]) { // all neighbors of s
+                for (int next: hate[s]) {
+                    // all neighbors of s
                     if (group[next] == 0) {
                         group[next] = -1 * group[s];
                         bfs.push(next);
-                    }
-                    else if (group[next] != -1 * group[s]) {
+                    } else if (group[next] != -1 * group[s]) {
                         return false;
                     }
                 }
@@ -86,32 +86,37 @@ public:
     }
 };
 
-class Solution1 { // dfs
+class Solution1 {
+    // dfs
 private:
-    bool check(unordered_map<int, vector<int>>& hate, vector<int>& group, int index, int color) {
+    bool check(unordered_map<int, vector<int> > &hate, vector<int> &group, int index, int color) {
         if (group[index] != 0) {
             return group[index] == color;
         }
 
         group[index] = color;
-        for (int nxt : hate[index]) {
+        for (int nxt: hate[index]) {
             if (!check(hate, group, nxt, 0 - color)) {
                 return false;
             }
         }
         return true;
     }
+
 public:
-    bool possibleBipartition(int N, vector<vector<int>>& dislikes) {
-        unordered_map<int, vector<int>> hate;
-        for (vector<int>& d : dislikes) {
+    bool possibleBipartition(int N, vector<vector<int> > &dislikes) {
+        unordered_map<int, vector<int> > hate;
+        for (vector<int> &d: dislikes) {
             hate[d[0]].push_back(d[1]);
             hate[d[1]].push_back(d[0]);
         }
 
         vector<int> group(N + 1, 0); // there are 2 colors 1 & -1
         for (int i = 0; i < N; ++i) {
-            if (group[i] == 0 and !check(hate, group, i, 1)) {
+            if (group[i] == 0 and
+            !check(hate, group, i, 1)
+            )
+            {
                 return false;
             }
         }

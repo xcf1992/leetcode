@@ -68,57 +68,64 @@ using namespace std;
 
 class Solution {
 private:
-    void getLeftPath(TreeNode* root, vector<int>& leftPath, bool boundary) {
+    void getLeftPath(TreeNode *root, vector<int> &leftPath, bool boundary) {
         if (root == nullptr) {
             return;
         }
 
-        if (root -> left == nullptr and root -> right == nullptr) {
-            leftPath.push_back(root -> val);
+        if (root->left == nullptr and
+        root->right == nullptr
+        )
+        {
+            leftPath.push_back(root->val);
             return;
         }
 
         if (boundary) {
-            leftPath.push_back(root -> val);
+            leftPath.push_back(root->val);
         }
-        getLeftPath(root -> left, leftPath, boundary);
-        getLeftPath(root -> right, leftPath, boundary and root -> left == nullptr);
+        getLeftPath(root->left, leftPath, boundary);
+        getLeftPath(root->right, leftPath, boundary and root->left == nullptr);
     }
 
-    void getRightPath(TreeNode* root, vector<int>& rightPath, bool boundary) {
+    void getRightPath(TreeNode *root, vector<int> &rightPath, bool boundary) {
         if (root == nullptr) {
             return;
         }
 
-        if (root -> left == nullptr and root -> right == nullptr) {
-            rightPath.push_back(root -> val);
+        if (root->left == nullptr and
+        root->right == nullptr
+        )
+        {
+            rightPath.push_back(root->val);
             return;
         }
 
         if (boundary) {
-            rightPath.push_back(root -> val);
+            rightPath.push_back(root->val);
         }
-        getRightPath(root -> right, rightPath, boundary);
-        getRightPath(root -> left, rightPath, boundary and root -> right == nullptr);
+        getRightPath(root->right, rightPath, boundary);
+        getRightPath(root->left, rightPath, boundary and root->right == nullptr);
     }
+
 public:
-    vector<int> boundaryOfBinaryTree(TreeNode* root) {
+    vector<int> boundaryOfBinaryTree(TreeNode *root) {
         if (root == nullptr) {
             return {};
         }
 
         vector<int> leftPath;
-        getLeftPath(root -> left, leftPath, true);
+        getLeftPath(root->left, leftPath, true);
         vector<int> rightPath;
-        getRightPath(root -> right, rightPath, true);
+        getRightPath(root->right, rightPath, true);
         reverse(rightPath.begin(), rightPath.end());
 
         vector<int> result;
-        result.push_back(root -> val);
-        for (int i : leftPath) {
+        result.push_back(root->val);
+        for (int i: leftPath) {
             result.push_back(i);
         }
-        for (int i : rightPath) {
+        for (int i: rightPath) {
             result.push_back(i);
         }
         return result;

@@ -40,19 +40,20 @@
 #include <set>
 using namespace std;
 
- // Definition for a QuadTree node.
+// Definition for a QuadTree node.
 class Node {
 public:
     bool val;
     bool isLeaf;
-    Node* topLeft;
-    Node* topRight;
-    Node* bottomLeft;
-    Node* bottomRight;
+    Node *topLeft;
+    Node *topRight;
+    Node *bottomLeft;
+    Node *bottomRight;
 
-    Node() {}
+    Node() {
+    }
 
-    Node(bool _val, bool _isLeaf, Node* _topLeft, Node* _topRight, Node* _bottomLeft, Node* _bottomRight) {
+    Node(bool _val, bool _isLeaf, Node *_topLeft, Node *_topRight, Node *_bottomLeft, Node *_bottomRight) {
         val = _val;
         isLeaf = _isLeaf;
         topLeft = _topLeft;
@@ -60,25 +61,42 @@ public:
         bottomLeft = _bottomLeft;
         bottomRight = _bottomRight;
     }
- };
+};
 
 class Solution {
 private:
-    Node* buildNode(vector<vector<int>>& grid, int x, int y, int length) {
+    Node *buildNode(vector<vector<int> > &grid, int x, int y, int length) {
         if (length == 1) {
             return new Node(grid[x][y] == 1, true, nullptr, nullptr, nullptr, nullptr);
         }
 
         int newLength = length / 2;
-        Node* topLeft = buildNode(grid, x, y, newLength);
-        Node* topRight = buildNode(grid, x, y + newLength, newLength);
-        Node* botLeft = buildNode(grid, x + newLength, y, newLength);
-        Node* botRight = buildNode(grid, x + newLength, y + newLength, newLength);
+        Node *topLeft = buildNode(grid, x, y, newLength);
+        Node *topRight = buildNode(grid, x, y + newLength, newLength);
+        Node *botLeft = buildNode(grid, x + newLength, y, newLength);
+        Node *botRight = buildNode(grid, x + newLength, y + newLength, newLength);
 
-        if (topLeft -> isLeaf and topRight -> isLeaf and botRight -> isLeaf and botLeft -> isLeaf and
-            ((topLeft -> val and topRight -> val and botLeft -> val and botRight -> val) or
-            !(topLeft -> val or topRight -> val or botLeft -> val or botRight -> val))) {
-            bool val = topLeft -> val;
+        if (topLeft->isLeaf and
+        topRight->isLeaf
+        and
+        botRight->isLeaf
+        and
+        botLeft->isLeaf
+        and
+                ((topLeft->val and topRight->val and botLeft->val and botRight->val)
+        or
+        !(topLeft->val
+        or
+        topRight->val
+        or
+        botLeft->val
+        or
+        botRight->val
+        )
+        )
+        )
+        {
+            bool val = topLeft->val;
             delete topLeft;
             topLeft = nullptr;
             delete topRight;
@@ -91,8 +109,9 @@ private:
         }
         return new Node(true, false, topLeft, topRight, botLeft, botRight);
     }
+
 public:
-    Node* construct(vector<vector<int>>& grid) {
+    Node *construct(vector<vector<int> > &grid) {
         int N = grid.size();
         if (N == 0) {
             return nullptr;

@@ -56,7 +56,7 @@ We reuse last n-1 digits of the input-so-far password as below:
 */
 class Solution {
 private:
-    bool dfs(string& result, int n, int k, int total, unordered_set<string>& visited) {
+    bool dfs(string &result, int n, int k, int total, unordered_set<string> &visited) {
         if (visited.size() == total) {
             return true;
         }
@@ -65,10 +65,11 @@ private:
         prefix.push_back('0');
         for (int i = 0; i < k; i++) {
             prefix.back() = '0' + i;
-            if (visited.find(prefix) == visited.end()) { // we get a new possible pwd by using last n - 1 digit and a new digit
+            if (visited.find(prefix) == visited.end()) {
+                // we get a new possible pwd by using last n - 1 digit and a new digit
                 visited.insert(prefix);
                 result.push_back(prefix.back());
-                if (dfs(result , n, k, total, visited)) {
+                if (dfs(result, n, k, total, visited)) {
                     return true;
                 }
                 visited.erase(prefix);
@@ -77,13 +78,14 @@ private:
         }
         return false;
     }
+
 public:
     string crackSafe(int n, int k) {
         string result(n, '0');
         int total = pow(k, n);
         unordered_set<string> visited;
         visited.insert(result);
-        dfs(result , n, k, total, visited);
+        dfs(result, n, k, total, visited);
         return result;
     }
 };

@@ -41,14 +41,14 @@ using namespace std;
 
 class Solution {
 public:
-    vector<string> commonChars(vector<string>& A) {
+    vector<string> commonChars(vector<string> &A) {
         vector<int> inAll(26, 0);
-        for (char c : A[0]) {
+        for (char c: A[0]) {
             inAll[c - 'a'] += 1;
         }
-        for (string& a : A) {
+        for (string &a: A) {
             vector<int> exist(26, 0);
-            for (char c : a) {
+            for (char c: a) {
                 exist[c - 'a'] += 1;
             }
             for (int i = 0; i < 26; i++) {

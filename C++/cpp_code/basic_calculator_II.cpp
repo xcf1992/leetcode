@@ -39,19 +39,27 @@ using namespace std;
 
 class Solution {
 private:
-    long parseNum(string& s, int& i) {
+    long parseNum(string &s, int &i) {
         long num = 0;
-        while (i < s.size() and isdigit(s[i])) {
+        while (i < s.size() and isdigit(s[i])
+        )
+        {
             num = num * 10 + (s[i] - '0');
             i += 1;
         }
         return num;
     }
 
-    int parseExp(string& s, int& i) {
+    int parseExp(string &s, int &i) {
         vector<int> nums;
         char op = '+';
-        for (; i < s.size() and op != ')'; ++i) { // when op becomes ), we will still have ++i, and skip it and jump back to upper level
+        for (; i < s.size() and op
+        !=
+        ')';
+        ++i
+        )
+        {
+            // when op becomes ), we will still have ++i, and skip it and jump back to upper level
             if (s[i] == ' ') {
                 continue;
             }
@@ -59,14 +67,11 @@ private:
             long n = s[i] == '(' ? parseExp(s, ++i) : parseNum(s, i);
             if (op == '+') {
                 nums.push_back(n);
-            }
-            else if (op == '-') {
+            } else if (op == '-') {
                 nums.push_back(-n);
-            }
-            else if (op == '*') {
+            } else if (op == '*') {
                 nums.back() *= n;
-            }
-            else if (op == '/') {
+            } else if (op == '/') {
                 nums.back() /= n;
             }
 
@@ -76,6 +81,7 @@ private:
         }
         return accumulate(nums.begin(), nums.end(), 0);
     }
+
 public:
     int calculate(string s) {
         int i = 0;
@@ -86,8 +92,18 @@ public:
 class Solution1 {
 private:
     bool isOpt(char c) {
-        return c == '+' or c == '-' or c == '*' or c == '/';
+        return c == '+'
+        or c
+        ==
+        '-'
+        or c
+        ==
+        '*'
+        or c
+        ==
+        '/';
     }
+
 public:
     int calculate(string s) {
         int n = s.size();
@@ -102,7 +118,12 @@ public:
             if (isdigit(s[i])) {
                 num = num * 10 + (s[i] - '0');
             }
-            if (isOpt(s[i]) or i == n - 1) { // we have to use if rather than elseif here, cause we want to go into it when i == n - 1
+            if (isOpt(s[i]) or i
+            ==
+            n - 1
+            )
+            {
+                // we have to use if rather than elseif here, cause we want to go into it when i == n - 1
                 if (op == '+') {
                     stk.push_back(num);
                 }
@@ -130,7 +151,16 @@ public:
 class Solution2 {
 private:
     bool IsOpt(char ch) {
-        return  ch == '+' or ch == '-' or ch == '*' or ch == '/';
+        return ch == '+'
+        or ch
+        ==
+        '-'
+        or ch
+        ==
+        '*'
+        or ch
+        ==
+        '/';
     }
 
     long Calc(long num1, long num2, char opt) {
@@ -158,6 +188,7 @@ private:
 
         nums.push(Calc(num1, num2, opt));
     }
+
 public:
     int calculate(string s) {
         stack<long> nums;
@@ -166,17 +197,24 @@ public:
         for (int i = 0; i < s.size(); i++) {
             if (isdigit(s[i])) {
                 num = num * 10 + s[i] - '0';
-            }
-            else if (IsOpt(s[i])) {
+            } else if (IsOpt(s[i])) {
                 nums.push(num);
                 num = 0;
-                if (s[i] == '+' or s[i] == '-') {
+                if (s[i] == '+' or s[i]
+                ==
+                '-'
+                )
+                {
                     while (!opts.empty()) {
                         CalcTop(nums, opts);
                     }
                 }
-                else { // s[i] == '*' or s[i] == '/'
-                    while (!opts.empty() and (opts.top() == '*' or opts.top() == '/')) {
+                else
+                {
+                    // s[i] == '*' or s[i] == '/'
+                    while (!opts.empty() and(opts.top() == '*' or opts.top() == '/')
+                    )
+                    {
                         CalcTop(nums, opts);
                     }
                 }

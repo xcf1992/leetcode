@@ -50,13 +50,13 @@ private:
             hash = (hash * b % q + s[i]) % q;
         }
 
-        unordered_map<int, vector<int>> seen;
+        unordered_map<int, vector<int> > seen;
         seen[hash].push_back(0);
         for (int i = k; i < n; ++i) {
             hash = (hash - power * s[i - k] % q + q) % q;
             hash = (hash * b % q + s[i]) % q;
             if (seen.find(hash) != seen.end()) {
-                for (int index : seen[hash]) {
+                for (int index: seen[hash]) {
                     if (s.substr(index, k) == s.substr(i - k + 1, k)) {
                         return index;
                     }
@@ -66,6 +66,7 @@ private:
         }
         return -1;
     }
+
 public:
     string longestDupSubstring(string S) {
         int n = S.size();
@@ -81,8 +82,7 @@ public:
                 startIndex = index;
                 k = mid;
                 lo = mid + 1;
-            }
-            else {
+            } else {
                 hi = mid;
             }
         }

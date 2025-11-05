@@ -55,18 +55,18 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> shortestAlternatingPaths(int n, vector<vector<int>>& red_edges, vector<vector<int>>& blue_edges) {
-        vector<vector<vector<int>>> connections(2, vector<vector<int>>(n, vector<int>()));
-        for (vector<int>& edge : red_edges) {
+    vector<int> shortestAlternatingPaths(int n, vector<vector<int> > &red_edges, vector<vector<int> > &blue_edges) {
+        vector<vector<vector<int> > > connections(2, vector<vector<int> >(n, vector<int>()));
+        for (vector<int> &edge: red_edges) {
             connections[0][edge[0]].push_back(edge[1]);
         }
-        for (vector<int>& edge : blue_edges) {
+        for (vector<int> &edge: blue_edges) {
             connections[1][edge[0]].push_back(edge[1]);
         }
 
-        vector<vector<int>> distance(2, vector<int>(n, INT_MAX));
+        vector<vector<int> > distance(2, vector<int>(n, INT_MAX));
         distance[0][0] = distance[1][0] = 0;
-        queue<vector<int>> bfs;
+        queue<vector<int> > bfs;
         bfs.push({0, 0, 0}); // {curPos, curDistance, curColor}
         bfs.push({0, 0, 1});
         while (!bfs.empty()) {
@@ -74,7 +74,7 @@ public:
             int dis = bfs.front()[1];
             int clr = bfs.front()[2];
             bfs.pop();
-            for (int next : connections[1 - clr][cur]) {
+            for (int next: connections[1 - clr][cur]) {
                 if (dis + 1 < distance[1 - clr][next]) {
                     distance[1 - clr][next] = 1 + dis;
                     bfs.push({next, dis + 1, 1 - clr});

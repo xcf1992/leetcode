@@ -50,21 +50,28 @@ public:
         string result = "";
         int right = n - 1;
         while (right >= 0) {
-            if (right >= 0 and s[right] == ' ') {
+            if (right >= 0 and s[right]
+            ==
+            ' '
+            )
+            {
                 right -= 1;
                 continue;
             }
 
             int left = right;
-            while (left - 1 >= 0 and s[left - 1] != ' ') {
+            while (left - 1 >= 0 and s[left - 1]
+            !=
+            ' '
+            )
+            {
                 left -= 1;
             }
 
             string word = s.substr(left, right - left + 1);
             if (result.empty()) {
                 result += word;
-            }
-            else {
+            } else {
                 result += " " + word;
             }
 

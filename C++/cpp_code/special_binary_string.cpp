@@ -41,6 +41,7 @@ using namespace std;
 class Solution {
 private:
     unordered_map<string, string> memo;
+
 public:
     string makeLargestSpecial(string S) {
         if (S == "10") {
@@ -53,7 +54,7 @@ public:
 
         vector<string> specials;
         int count = 0;
-        for (char c : S) {
+        for (char c: S) {
             if (count == 0) {
                 specials.push_back("");
             }
@@ -64,15 +65,15 @@ public:
         * cause S itself is guaranteed to be a special binary string,
         * so the first digit must be 1 and last digit must be 0.
         */
-        for (string& special : specials) {
+        for (string &special: specials) {
             special = "1" + makeLargestSpecial(special.substr(1, special.size() - 2)) + "0";
         }
 
-        sort(specials.begin(), specials.end(), [](string& a, string& b) {
+        sort(specials.begin(), specials.end(), [](string &a, string &b) {
             return a > b;
         });
         memo[S] = "";
-        for (string special : specials) {
+        for (string special: specials) {
             memo[S] += special;
         }
         return memo[S];

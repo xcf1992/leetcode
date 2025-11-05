@@ -44,6 +44,7 @@ private:
         }
         return result;
     }
+
 public:
     bool isHappy(int n) {
         unordered_set<int> visited;

@@ -63,7 +63,8 @@ return: 3
 #include <set>
 using namespace std;
 
-class Solution { // DFS
+class Solution {
+    // DFS
 private:
     bool mutatedFrom(string from, string to) {
         int result = 0;
@@ -78,21 +79,24 @@ private:
         return true;
     }
 
-    void dfs(string cur, string end, vector<string>& bank, unordered_set<string>& visited, int count, int& result) {
+    void dfs(string cur, string end, vector<string> &bank, unordered_set<string> &visited, int count, int &result) {
         if (cur == end) {
             result = min(count, result);
         }
 
-        for (string gene : bank) {
-            if (visited.find(gene) == visited.end() and mutatedFrom(cur, gene)) {
+        for (string gene: bank) {
+            if (visited.find(gene) == visited.end() and mutatedFrom(cur, gene)
+            )
+            {
                 visited.insert(gene);
                 dfs(gene, end, bank, visited, count + 1, result);
                 visited.erase(gene);
             }
         }
     }
+
 public:
-    int minMutation(string start, string end, vector<string>& bank) {
+    int minMutation(string start, string end, vector<string> &bank) {
         unordered_set<string> visited;
         int result = INT_MAX;
         visited.insert(start);
@@ -101,7 +105,8 @@ public:
     }
 };
 
-class Solution1 { // BFS
+class Solution1 {
+    // BFS
 private:
     bool mutatedFrom(string from, string to) {
         int result = 0;
@@ -115,8 +120,9 @@ private:
         }
         return true;
     }
+
 public:
-    int minMutation(string start, string end, vector<string>& bank) {
+    int minMutation(string start, string end, vector<string> &bank) {
         unordered_set<string> visited;
         queue<string> bfs;
         bfs.push(start);
@@ -132,8 +138,10 @@ public:
                     return step;
                 }
 
-                for (string gene : bank) {
-                    if (visited.find(gene) == visited.end() and mutatedFrom(cur, gene)) {
+                for (string gene: bank) {
+                    if (visited.find(gene) == visited.end() and mutatedFrom(cur, gene)
+                    )
+                    {
                         bfs.push(gene);
                         visited.insert(gene);
                     }

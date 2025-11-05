@@ -22,14 +22,15 @@ using namespace std;
 
 class Solution {
 private:
-    vector<vector<int>> diff{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    vector<vector<int> > diff{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+
 public:
-    vector<vector<int>> generateMatrix(int n) {
-        vector<vector<int>> result(n, vector<int>(n, 0));
+    vector<vector<int> > generateMatrix(int n) {
+        vector<vector<int> > result(n, vector<int>(n, 0));
         vector<int> steps{n, n - 1}; // steps we can take during current move
-        int direction = 0;   // index of direction.
+        int direction = 0; // index of direction.
         int curR = 0;
-        int curC = -1;    // initial position
+        int curC = -1; // initial position
         int num = 1;
         while (steps[direction % 2] > 0) {
             for (int i = 0; i < steps[direction % 2]; ++i) {

@@ -37,7 +37,9 @@ private:
     bool isSub(const string a, const string b) {
         int i = 0;
         int j = 0;
-        while (i < a.size() and j < b.size()) {
+        while (i < a.size() and j<b.size()
+        )
+        {
             if (a[i] == b[j]) {
                 i++;
             }
@@ -45,14 +47,15 @@ private:
         }
         return i == a.size();
     }
+
 public:
-    int findLUSlength(vector<string>& strs) {
+    int findLUSlength(vector<string> &strs) {
         sort(strs.begin(), strs.end(), [](const string a, const string b) {
             return a.size() > b.size();
         });
 
         unordered_map<string, int> count;
-        for (string str : strs) {
+        for (string str: strs) {
             count[str] += 1;
         }
 

@@ -40,13 +40,14 @@ using namespace std;
 
 class Solution {
 public:
-    int eraseOverlapIntervals(vector<vector<int>>& intervals) {
+    int eraseOverlapIntervals(vector<vector<int> > &intervals) {
         if (intervals.size() == 0) {
             return 0;
         }
 
-        sort(intervals.begin(), intervals.end(), [](vector<int>& a, vector<int>& b) {
-            return a[1] < b[1] or (a[1] == b[1] and a[0] < b[0]);
+        sort(intervals.begin(), intervals.end(), [](vector<int> &a, vector<int> &b) {
+            return a[1] < b[1]
+            or(a[1] == b[1] and a[0] < b[0]);
         });
 
         int result = 1;
@@ -64,14 +65,15 @@ public:
 // dp[i] means how many intervals we can keep from intervals[0] ~ intervals[i], both included
 class Solution1 {
 public:
-    int eraseOverlapIntervals(vector<vector<int>>& intervals) {
+    int eraseOverlapIntervals(vector<vector<int> > &intervals) {
         int n = intervals.size();
         if (n <= 1) {
             return 0;
         }
 
-        sort(intervals.begin(), intervals.end(), [](vector<int>& a, vector<int>& b) {
-            return a[0] < b[0] or (a[0] == b[0] and a[1] < b[1]);
+        sort(intervals.begin(), intervals.end(), [](vector<int> &a, vector<int> &b) {
+            return a[0] < b[0]
+            or(a[0] == b[0] and a[1] < b[1]);
         });
 
         vector<int> dp(n, 0);

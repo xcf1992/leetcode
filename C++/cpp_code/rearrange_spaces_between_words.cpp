@@ -68,7 +68,11 @@ public:
             }
 
             int right = left;
-            while (right < n and text[right] != ' ') {
+            while (right < n and text[right]
+            !=
+            ' '
+            )
+            {
                 right += 1;
             }
             words.push_back(text.substr(left, right - left));

@@ -88,15 +88,15 @@ public:
 
 class Solution {
 public:
-    Node* findRoot(vector<Node*> tree) {
-        unordered_set<Node*> visited;
-        for (Node* root : tree) {
-            for (Node* child : root->children) {
+    Node *findRoot(vector<Node *> tree) {
+        unordered_set<Node *> visited;
+        for (Node *root: tree) {
+            for (Node *child: root->children) {
                 visited.insert(child);
             }
         }
 
-        for (Node* root : tree) {
+        for (Node *root: tree) {
             if (visited.find(root) == visited.end()) {
                 return root;
             }

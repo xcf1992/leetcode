@@ -81,7 +81,11 @@ public:
 
         unordered_map<char, char> transform;
         for (int i = 0; i < str1.size(); ++i) {
-            if (transform.find(str1[i]) != transform.end() and transform[str1[i]] != str2[i]) {
+            if (transform.find(str1[i]) != transform.end() and transform[str1[i]]
+            !=
+            str2[i]
+            )
+            {
                 return false;
             }
             transform[str1[i]] = str2[i];

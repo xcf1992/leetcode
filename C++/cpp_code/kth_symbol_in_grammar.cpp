@@ -75,6 +75,7 @@ private:
         }
         return result;
     }
+
 public:
     int kthGrammar(int N, int K) {
         int count = countDigit1(K - 1);

@@ -74,19 +74,19 @@ struct myComp {
 
 class Solution {
 public:
-    double mincostToHireWorkers(vector<int>& quality, vector<int>& wage, int K) {
-        vector<pair<double, double>> workers;
+    double mincostToHireWorkers(vector<int> &quality, vector<int> &wage, int K) {
+        vector<pair<double, double> > workers;
         for (int i = 0; i < quality.size(); i++) {
             workers.push_back({(double) wage[i] / quality[i], (double) quality[i]});
         }
-        sort(workers.begin(), workers.end(), [](pair<double, double>& a, pair<double, double>& b) {
+        sort(workers.begin(), workers.end(), [](pair<double, double> &a, pair<double, double> &b) {
             return a.first < b.first;
         });
 
         double result = __DBL_MAX__;
         double qsum = 0.0;
         priority_queue<double, vector<double>, myComp> pq;
-        for (pair<double, double>& worker : workers) {
+        for (pair<double, double> &worker: workers) {
             qsum += worker.second;
             pq.push(worker.second);
             if (pq.size() > K) {

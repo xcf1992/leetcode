@@ -39,20 +39,23 @@ using namespace std;
 
 class Solution {
 public:
-    int minFallingPathSum(vector<vector<int>>& A) {
+    int minFallingPathSum(vector<vector<int> > &A) {
         int m = A.size();
         if (m == 0) {
             return 0;
         }
         int n = A[0].size();
 
-        vector<vector<int>> dp(m, vector<int>(n, INT_MAX));
+        vector<vector<int> > dp(m, vector<int>(n, INT_MAX));
         dp[0] = A[0];
 
         for (int i = 1; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 for (int c = -1; c <= 1; c++) {
-                    if (j + c >= 0 and j + c < n) {
+                    if (j + c >= 0 and j
+                    +c < n
+                    )
+                    {
                         dp[i][j] = min(dp[i][j], dp[i - 1][j + c] + A[i][j]);
                     }
                 }
@@ -60,7 +63,7 @@ public:
         }
 
         int result = INT_MAX;
-        for (int num : dp[m - 1]) {
+        for (int num: dp[m - 1]) {
             result = min(result, num);
         }
         return result;

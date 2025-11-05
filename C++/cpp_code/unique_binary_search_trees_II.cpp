@@ -40,29 +40,30 @@ using namespace std;
 
 class Solution {
 private:
-    vector<TreeNode*> generate(int start, int end){
-        if(start > end) {
+    vector<TreeNode *> generate(int start, int end) {
+        if (start > end) {
             return {nullptr};
         }
         if (start == end) {
             return {new TreeNode(start)};
         }
 
-        vector<TreeNode*> result;
+        vector<TreeNode *> result;
         for (int i = start; i <= end; i++) {
-            for (TreeNode* lc : generate(start, i - 1)) {
-                for (TreeNode* rc : generate(i + 1, end)) {
-                    TreeNode* root = new TreeNode(i);
-                    root -> left = lc;
-                    root -> right = rc;
+            for (TreeNode *lc: generate(start, i - 1)) {
+                for (TreeNode *rc: generate(i + 1, end)) {
+                    TreeNode *root = new TreeNode(i);
+                    root->left = lc;
+                    root->right = rc;
                     result.push_back(root);
                 }
             }
         }
         return result;
     }
+
 public:
-    vector<TreeNode*> generateTrees(int n) {
+    vector<TreeNode *> generateTrees(int n) {
         if (n == 0) {
             return {};
         }

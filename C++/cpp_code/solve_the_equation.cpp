@@ -53,16 +53,13 @@ public:
             if (equation[i] == 'x') {
                 coefficient += positive * move;
                 i++;
-            }
-            else if (equation[i] == '-') {
+            } else if (equation[i] == '-') {
                 positive = -1;
                 i++;
-            }
-            else if (equation[i] == '+') {
+            } else if (equation[i] == '+') {
                 positive = 1;
                 i++;
-            }
-            else if (isdigit(equation[i])) {
+            } else if (isdigit(equation[i])) {
                 int start = i;
                 while (isdigit(equation[i])) {
                     i++;
@@ -72,12 +69,10 @@ public:
                 if (equation[i] == 'x') {
                     coefficient += positive * value * move;
                     i++;
-                }
-                else {
+                } else {
                     num -= positive * value * move;
                 }
-            }
-            else if (equation[i] == '=') {
+            } else if (equation[i] == '=') {
                 positive = 1;
                 move = -1;
                 i++;

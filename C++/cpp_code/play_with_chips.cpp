@@ -40,7 +40,7 @@ using namespace std;
 
 class Solution {
 public:
-    int minCostToMoveChips(vector<int>& chips) {
+    int minCostToMoveChips(vector<int> &chips) {
         int n = chips.size();
         if (n <= 1) {
             return 0;
@@ -48,11 +48,10 @@ public:
 
         int odd = 0;
         int even = 0;
-        for (int c : chips) {
+        for (int c: chips) {
             if (c % 2 == 0) {
                 even += 1;
-            }
-            else {
+            } else {
                 odd += 1;
             }
         }

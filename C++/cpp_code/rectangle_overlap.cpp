@@ -34,27 +34,59 @@ using namespace std;
 
 class Solution {
 public:
-    bool isRectangleOverlap(vector<int>& rec1, vector<int>& rec2) {
-        if (rec2[0] >= rec1[2] or rec2[1] >= rec1[3]) {
+    bool isRectangleOverlap(vector<int> &rec1, vector<int> &rec2) {
+        if (rec2[0] >= rec1[2] or rec2[1]
+        >=
+        rec1[3]
+        )
+        {
             return false;
         }
-        if (rec2[0] < rec1[2] and rec2[0] >= rec1[0] and rec2[1] < rec1[3] and rec2[1] >= rec1[1]) {
+        if (rec2[0] < rec1[2] and rec2[0]
+        >=
+        rec1[0]
+        and rec2[1]
+        <
+        rec1[3]
+        and rec2[1]
+        >=
+        rec1[1]
+        )
+        {
             return true;
         }
-        if (rec2[0] >= rec1[0] and rec2[0] < rec1[2] and rec2[1] < rec1[1]) {
+        if (rec2[0] >= rec1[0] and rec2[0]
+        <
+        rec1[2]
+        and rec2[1]
+        <
+        rec1[1]
+        )
+        {
             if (rec2[3] > rec1[1]) {
                 return true;
             }
             return false;
         }
-        if (rec2[0] < rec1[0] and rec2[1] >= rec1[1] and rec2[1] < rec2[3]) {
+        if (rec2[0] < rec1[0] and rec2[1]
+        >=
+        rec1[1]
+        and rec2[1]
+        <
+        rec2[3]
+        )
+        {
             if (rec2[2] > rec1[0]) {
                 return true;
             }
             return false;
         }
 
-        if (rec2[2] > rec1[0] and rec2[3] > rec1[1]) {
+        if (rec2[2] > rec1[0] and rec2[3]
+        >
+        rec1[1]
+        )
+        {
             return true;
         }
         return false;

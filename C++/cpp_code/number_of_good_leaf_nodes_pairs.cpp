@@ -65,40 +65,53 @@ using namespace std;
  */
 class Solution {
 private:
-    vector<int> dfs(int d, TreeNode* root, int& result) {
+    vector<int> dfs(int d, TreeNode *root, int &result) {
         if (root == nullptr) {
             return {0};
         }
 
-        if (root -> left == nullptr and root -> right == nullptr) {
+        if (root->left == nullptr and
+        root->right == nullptr
+        )
+        {
             return {1}; // this a leaf node with distance 1
         }
 
-        vector<int> l = dfs(d, root -> left, result); // list from left
-        vector<int> r = dfs(d, root -> right, result); // list from right
-        for (auto a:l) {
-            for (auto b:r) {
-                if ((a and b) and a + b <= d) {
+        vector<int> l = dfs(d, root->left, result); // list from left
+        vector<int> r = dfs(d, root->right, result); // list from right
+        for (auto a: l) {
+            for (auto b: r) {
+                if ((a and b
+                )
+                and a
+                +b <= d
+                )
+                {
                     result += 1; // add all valid pairs
                 }
             }
         }
 
         vector<int> ret; // this is a list of all nodes which the current node will pass to its parent
-        for (auto a:l) {
-            if (a and a + 1 < d) {
+        for (auto a: l) {
+            if (a and a +1 < d
+            )
+            {
                 ret.push_back(a + 1);
             }
         }
-        for (auto b:r) {
-            if (b and b + 1 < d) {
+        for (auto b: r) {
+            if (b and b +1 < d
+            )
+            {
                 ret.push_back(b + 1);
             }
         }
         return ret;
     }
+
 public:
-    int countPairs(TreeNode* root, int d) {
+    int countPairs(TreeNode *root, int d) {
         int result = 0;
         dfs(d, root, result);
         return result;

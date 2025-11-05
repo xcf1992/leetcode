@@ -37,11 +37,17 @@ public:
         int left = 0;
         int right = s.size() - 1;
         while (left < right) {
-            if (!isalpha(s[left]) and !isdigit(s[left])) {
+            if (!isalpha(s[left]) and
+            !isdigit(s[left])
+            )
+            {
                 left += 1;
                 continue;
             }
-            if (!isalpha(s[right]) and !isdigit(s[right])) {
+            if (!isalpha(s[right]) and
+            !isdigit(s[right])
+            )
+            {
                 right -= 1;
                 continue;
             }

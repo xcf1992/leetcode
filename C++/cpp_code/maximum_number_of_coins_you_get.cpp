@@ -50,7 +50,7 @@ using namespace std;
 
 class Solution {
 public:
-    int maxCoins(vector<int>& piles) {
+    int maxCoins(vector<int> &piles) {
         sort(piles.begin(), piles.end());
         int result = 0;
         int n = piles.size() / 3;

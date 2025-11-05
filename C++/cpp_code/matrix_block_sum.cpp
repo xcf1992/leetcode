@@ -36,10 +36,10 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int>> matrixBlockSum(vector<vector<int>>& mat, int K) {
+    vector<vector<int> > matrixBlockSum(vector<vector<int> > &mat, int K) {
         int m = mat.size();
         int n = mat[0].size();
-        vector<vector<int>> preSum(m, vector<int>(n, 0));
+        vector<vector<int> > preSum(m, vector<int>(n, 0));
         preSum[0][0] = mat[0][0];
         for (int i = 1; i < m; ++i) {
             preSum[i][0] = preSum[i - 1][0] + mat[i][0];
@@ -53,7 +53,7 @@ public:
             }
         }
 
-        vector<vector<int>> result(m, vector<int>(n, 0));
+        vector<vector<int> > result(m, vector<int>(n, 0));
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
                 int rMin = max(0, i - K);
@@ -63,7 +63,11 @@ public:
 
                 int v1 = (cMin - 1 >= 0 ? preSum[rMax][cMin - 1] : 0);
                 int v2 = (rMin - 1 >= 0 ? preSum[rMin - 1][cMax] : 0);
-                int v3 = (cMin - 1 >= 0 and rMin - 1 >= 0 ? preSum[rMin - 1][cMin - 1] : 0);
+                int v3 = (cMin - 1 >= 0
+                and rMin
+                -1 >= 0 ? preSum[rMin - 1][cMin - 1] : 0
+                )
+                ;
                 result[i][j] = preSum[rMax][cMax] - v1 - v2 + v3;
             }
         }

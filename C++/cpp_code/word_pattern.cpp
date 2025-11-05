@@ -48,10 +48,11 @@ private:
         }
         return words;
     }
+
 public:
     bool wordPattern(string pattern, string str) {
         vector<string> words = getWords(str);
-        if (pattern.length()!= words.size()) {
+        if (pattern.length() != words.size()) {
             return false;
         }
 

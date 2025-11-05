@@ -51,7 +51,7 @@ using namespace std;
 */
 class Solution {
 public:
-    bool checkSubarraySum(vector<int>& nums, int k) {
+    bool checkSubarraySum(vector<int> &nums, int k) {
         if (k < 0) {
             k = 0 - k;
         }
@@ -68,8 +68,7 @@ public:
                 if (preSum[curSum] < i - 1) {
                     return true;
                 }
-            }
-            else {
+            } else {
                 preSum[curSum] = i;
             }
         }

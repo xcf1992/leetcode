@@ -30,7 +30,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> dailyTemperatures(vector<int>& temperatures) {
+    vector<int> dailyTemperatures(vector<int> &temperatures) {
         int n = temperatures.size();
         stack<int> tempDate;
         vector<int> result(n, 0);

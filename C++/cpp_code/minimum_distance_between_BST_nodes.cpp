@@ -23,21 +23,23 @@ using namespace std;
 class Solution {
 private:
     int result;
-    TreeNode* prev;
-    void traverse(TreeNode* root) {
+    TreeNode *prev;
+
+    void traverse(TreeNode *root) {
         if (root == nullptr) {
             return;
         }
 
-        traverse(root -> left);
+        traverse(root->left);
         if (prev != nullptr) {
-            result = min(result, root -> val - prev -> val);
+            result = min(result, root->val - prev->val);
         }
         prev = root;
-        traverse(root -> right);
+        traverse(root->right);
     }
+
 public:
-    int minDiffInBST(TreeNode* root) {
+    int minDiffInBST(TreeNode *root) {
         result = INT_MAX;
         prev = nullptr;
         traverse(root);

@@ -28,7 +28,7 @@ private:
         int guess = left + (right - left) / 2;
         int count = 0;
         int median = left;
-        for (int num : nums) {
+        for (int num: nums) {
             if (num <= guess) {
                 count += 1;
                 median = max(median, num);
@@ -43,12 +43,13 @@ private:
         }
         return find(nums, k, left, median);
     }
+
 public:
     double findMedian(vector<int> nums) {
         int len = 0;
         int minVal = INT_MAX;
         int maxVal = INT_MIN;
-        for (int num : nums) {
+        for (int num: nums) {
             len += 1;
             minVal = min(minVal, num);
             maxVal = max(maxVal, num);

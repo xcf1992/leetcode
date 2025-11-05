@@ -52,7 +52,7 @@ public:
         }
 
         vector<int> target(26, 0);
-        for (char c : p) {
+        for (char c: p) {
             target[c - 'a'] += 1;
         }
 

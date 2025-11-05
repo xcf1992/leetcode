@@ -36,20 +36,23 @@ Return 3. The paths that sum to 8 are:
 #include "extra_data_types.hpp"
 using namespace std;
 
-class Solution { // prefix sum
+class Solution {
+    // prefix sum
 private:
-    void dfs(TreeNode* root, int curSum, int target, int& result, unordered_map<int, int>& count) {
+    void dfs(TreeNode *root, int curSum, int target, int &result, unordered_map<int, int> &count) {
         if (root == nullptr) {
             return;
         }
 
-        curSum += root -> val;
+        curSum += root->val;
         result += count[curSum - target];
         count[curSum] += 1;
-        dfs(root -> left, curSum, target, result, count);
-        dfs(root -> right, curSum, target, result, count);
-        count[curSum] -= 1; // IMPORTANT here, as we pop back to upper level current sum would not be valid anymore, so we need to minus 1 here
+        dfs(root->left, curSum, target, result, count);
+        dfs(root->right, curSum, target, result, count);
+        count[curSum] -= 1;
+        // IMPORTANT here, as we pop back to upper level current sum would not be valid anymore, so we need to minus 1 here
     }
+
 public:
     int pathSum(TreeNode *root, int sum) {
         unordered_map<int, int> count;
@@ -62,19 +65,20 @@ public:
 
 class Solution1 {
 private:
-    int getAllPaths(TreeNode* root, int pre, int sum) {
+    int getAllPaths(TreeNode *root, int pre, int sum) {
         if (root == nullptr) {
             return 0;
         }
-        
-        int cur = pre + root -> val;
-        return (cur == sum) + getAllPaths(root -> left, cur, sum) + getAllPaths(root -> right, cur, sum);
+
+        int cur = pre + root->val;
+        return (cur == sum) + getAllPaths(root->left, cur, sum) + getAllPaths(root->right, cur, sum);
     }
+
 public:
     int pathSum(TreeNode *root, int sum) {
         if (root == nullptr) {
             return 0;
         }
-        return getAllPaths(root, 0, sum) + pathSum(root -> left, sum) + pathSum(root -> right, sum);
+        return getAllPaths(root, 0, sum) + pathSum(root->left, sum) + pathSum(root->right, sum);
     }
 };

@@ -86,20 +86,19 @@ Space O(1)
 */
 class Solution {
 public:
-    int minimumSize(vector<int>& nums, int maxOperations) {
+    int minimumSize(vector<int> &nums, int maxOperations) {
         int left = 1;
         int right = 1e9;
         while (left < right) {
             int mid = (left + right) / 2;
             int count = 0;
-            for (int a : nums) {
+            for (int a: nums) {
                 count += (a - 1) / mid;
             }
 
             if (count > maxOperations) {
                 left = mid + 1;
-            }
-            else {
+            } else {
                 right = mid;
             }
         }

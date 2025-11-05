@@ -38,8 +38,8 @@ using namespace std;
 
 class Solution {
 public:
-    int maxLevelSum(TreeNode* root) {
-        queue<TreeNode*> bfs;
+    int maxLevelSum(TreeNode *root) {
+        queue<TreeNode *> bfs;
         bfs.push(root);
         int sum = INT_MIN;
         int level = 1;
@@ -48,15 +48,15 @@ public:
             int curSize = bfs.size();
             int curSum = 0;
             for (int i = 0; i < curSize; ++i) {
-                TreeNode* curNode = bfs.front();
+                TreeNode *curNode = bfs.front();
                 bfs.pop();
 
-                curSum += curNode -> val;
-                if (curNode -> left != nullptr) {
-                    bfs.push(curNode -> left);
+                curSum += curNode->val;
+                if (curNode->left != nullptr) {
+                    bfs.push(curNode->left);
                 }
-                if (curNode -> right != nullptr) {
-                    bfs.push(curNode -> right);
+                if (curNode->right != nullptr) {
+                    bfs.push(curNode->right);
                 }
             }
             if (curSum > sum) {

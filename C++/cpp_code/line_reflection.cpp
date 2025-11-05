@@ -32,20 +32,24 @@ using namespace std;
 
 class Solution {
 public:
-    bool isReflected(vector<vector<int>>& points) {
+    bool isReflected(vector<vector<int> > &points) {
         int xMin = INT_MAX;
         int xMax = INT_MIN;
-        unordered_map<int, unordered_set<int>> memo;
-        for (vector<int>& point : points) {
+        unordered_map<int, unordered_set<int> > memo;
+        for (vector<int> &point: points) {
             xMin = min(xMin, point[0]);
             xMax = max(xMax, point[0]);
             memo[point[0]].insert(point[1]);
         }
 
         int sum = xMax + xMin;
-        for (vector<int>& point : points) {
+        for (vector<int> &point: points) {
             int target = sum - point[0];
-            if (memo.find(target) == memo.end() or memo[target].find(point[1]) == memo[target].end()) {
+            if (memo.find(target) == memo.end() or memo[target]
+            .
+            find(point[1]) == memo[target].end()
+            )
+            {
                 return false;
             }
         }
@@ -55,7 +59,7 @@ public:
 
 class Solution1 {
 public:
-    bool isReflected(vector<pair<int, int>>& points) {
+    bool isReflected(vector<pair<int, int> > &points) {
         if (points.size() <= 1) {
             return true;
         }
@@ -66,7 +70,11 @@ public:
         int xXor = 0;
         int yXor = 0;
         for (int i = 0; i < points.size(); i++) {
-            if (i != 0 and points[i].first == points[i - 1].first) {
+            if (i != 0 and points[i]
+            .
+            first == points[i - 1].first
+            )
+            {
                 continue;
             }
 
@@ -75,6 +83,9 @@ public:
                 xXor ^= (abs(mid - 2 * points[i].first));
             }
         }
-        return xXor == 0 and yXor == 0;
+        return xXor == 0
+        and yXor
+        ==
+        0;
     }
 };

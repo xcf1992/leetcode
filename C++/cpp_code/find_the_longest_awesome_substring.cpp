@@ -163,7 +163,8 @@ public:
         for (int i = 0; i < n; ++i) {
             cur ^= 1 << (s[i] - '0');
             res = max(res, i - seen[cur]); // Case 1. Check if we have seen similar mask
-            for (int a = 0; a < 10; ++a) { // Case 2. Check for masks that differ by one bit
+            for (int a = 0; a < 10; ++a) {
+                // Case 2. Check for masks that differ by one bit
                 res = max(res, i - seen[cur ^ (1 << a)]);
             }
             seen[cur] = min(seen[cur], i); // save the earliest position

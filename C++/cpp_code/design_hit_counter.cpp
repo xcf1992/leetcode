@@ -54,9 +54,11 @@ using namespace std;
 class HitCounter {
 private:
     queue<int> hits;
+
 public:
     /* Initialize your data structure here.*/
-    HitCounter() {}
+    HitCounter() {
+    }
 
     /* Record a hit.
         @param timestamp - The current timestamp (in seconds granularity).*/
@@ -67,7 +69,10 @@ public:
     /* Return the number of hits in the past 5 minutes.
         @param timestamp - The current timestamp (in seconds granularity).*/
     int getHits(int timestamp) {
-        while (!hits.empty() and timestamp - hits.front() >= 300) {
+        while (!hits.empty() and timestamp
+        -hits.front() >= 300
+        )
+        {
             hits.pop();
         }
         return hits.size();
@@ -78,9 +83,11 @@ class HitCounter1 {
 private:
     vector<int> times = vector<int>(300, 0);
     vector<int> hits = vector<int>(300, 0);
+
 public:
     /* Initialize your data structure here.*/
-    HitCounter1() {}
+    HitCounter1() {
+    }
 
     /* Record a hit.
         @param timestamp - The current timestamp (in seconds granularity).*/
@@ -89,8 +96,7 @@ public:
         if (times[index] != timestamp) {
             times[index] = timestamp;
             hits[index] = 1;
-        }
-        else {
+        } else {
             hits[index] += 1;
         }
     }
@@ -107,6 +113,7 @@ public:
         return total;
     }
 };
+
 /*
 * Your HitCounter object will be instantiated and called as such:
 * HitCounter obj = new HitCounter();

@@ -69,10 +69,12 @@ private:
         }
         return 0;
     }
+
 public:
-    string shortestSuperstring(vector<string>& A) {
+    string shortestSuperstring(vector<string> &A) {
         int n = A.size();
-        vector<vector<int>> overlap(n, vector<int>(n, 0)); // overlap[i][j], means the number of letters overlapped when put A[j] after A[i]
+        vector<vector<int> > overlap(n, vector<int>(n, 0));
+        // overlap[i][j], means the number of letters overlapped when put A[j] after A[i]
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (i != j) {
@@ -83,22 +85,30 @@ public:
 
         // dp[mask][i] : min superstring made by strings in mask,
         // and the last one is A[i]
-        vector<vector<string>> dp(1 << n, vector<string>(n, ""));
+        vector<vector<string> > dp(1 << n, vector<string>(n, ""));
         for (int i = 0; i < n; i++) {
             dp[1 << i][i] += A[i];
         }
 
         for (int mask = 1; mask < (1 << n); mask++) {
-            for (int j = 0; j < n; j++) if ((mask & (1 << j)) > 0) { // (mask & (1 << j)) > 0 means city j will be visited
-                for (int i = 0; i < n; i++) if (i != j and (mask & (1 << i)) > 0) { // we will put word j after word i
-                    // so for min super word end with word i dp[mask ^ (1 << j)][i] under current mask
-                    // we put A[j].substr(overlap[i][j]) after it to creat new super word end with j under current mask
-                    string temp = dp[mask ^ (1 << j)][i] + A[j].substr(overlap[i][j]);
-                    if (dp[mask][j].empty() or temp.size() < dp[mask][j].size()) {
-                        dp[mask][j] = temp;
+            for (int j = 0; j < n; j++)
+                if ((mask & (1 << j)) > 0) {
+                    // (mask & (1 << j)) > 0 means city j will be visited
+                    for (int i = 0; i < n; i++) if (i != j and(mask & (1 << i)) > 0
+                    )
+                    {
+                        // we will put word j after word i
+                        // so for min super word end with word i dp[mask ^ (1 << j)][i] under current mask
+                        // we put A[j].substr(overlap[i][j]) after it to creat new super word end with j under current mask
+                        string temp = dp[mask ^ (1 << j)][i] + A[j].substr(overlap[i][j]);
+                        if (dp[mask][j].empty() or
+                        temp.size() < dp[mask][j].size()
+                        )
+                        {
+                            dp[mask][j] = temp;
+                        }
                     }
                 }
-            }
         }
 
         int last = (1 << n) - 1;

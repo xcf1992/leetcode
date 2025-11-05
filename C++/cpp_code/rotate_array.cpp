@@ -46,15 +46,16 @@ using namespace std;
 
 class Solution {
 private:
-    void reverse(vector<int>& nums, int begin, int end) {
+    void reverse(vector<int> &nums, int begin, int end) {
         while (begin < end) {
             swap(nums[begin], nums[end]);
             begin += 1;
             end -= 1;
         }
     }
+
 public:
-    void rotate(vector<int>& nums, int k) {
+    void rotate(vector<int> &nums, int k) {
         size_t cnt = nums.size();
         k = k % cnt;
         if (cnt <= 1 || k == 0) {

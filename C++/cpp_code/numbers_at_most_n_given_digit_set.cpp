@@ -47,7 +47,7 @@ using namespace std;
 class Solution {
 private:
     // count the number with the same length as num but <= num
-    long count(vector<int>& digit, string num, int pos) {
+    long count(vector<int> &digit, string num, int pos) {
         if (pos == num.size()) {
             // should return 1, means at least have 1 number that is equal to num
             return 1;
@@ -58,19 +58,18 @@ private:
         for (int i = 0; i < digit.size(); i++) {
             if (digit[i] < (num[pos] - '0')) {
                 less += 1;
-            }
-            else if (digit[i] == (num[pos] - '0')) {
+            } else if (digit[i] == (num[pos] - '0')) {
                 result += count(digit, num, pos + 1);
-            }
-            else {
+            } else {
                 break;
             }
         }
         result += less * pow(digit.size(), num.size() - pos - 1);
         return result;
     }
+
 public:
-    int atMostNGivenDigitSet(vector<string>& D, int N) {
+    int atMostNGivenDigitSet(vector<string> &D, int N) {
         string num = to_string(N);
         int length = num.size();
 
@@ -86,7 +85,7 @@ public:
         }
 
         vector<int> digit;
-        for (string d : D) {
+        for (string d: D) {
             digit.push_back(stoi(d));
         }
         return result + count(digit, num, 0);

@@ -40,10 +40,10 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> runningSum(vector<int>& nums) {
+    vector<int> runningSum(vector<int> &nums) {
         int sum = 0;
         vector<int> result;
-        for (int num : nums) {
+        for (int num: nums) {
             sum += num;
             result.push_back(sum);
         }

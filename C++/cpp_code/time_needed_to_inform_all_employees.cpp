@@ -80,14 +80,14 @@ using namespace std;
 
 class Solution {
 public:
-    int numOfMinutes(int n, int headID, vector<int>& manager, vector<int>& informTime) {
-        unordered_map<int, vector<int>> subordinates;
+    int numOfMinutes(int n, int headID, vector<int> &manager, vector<int> &informTime) {
+        unordered_map<int, vector<int> > subordinates;
         for (int i = 0; i < manager.size(); ++i) {
             subordinates[manager[i]].push_back(i);
         }
 
         int result = 0;
-        queue<pair<int, int>> bfs;
+        queue<pair<int, int> > bfs;
         bfs.push({headID, 0});
         while (!bfs.empty()) {
             int curSize = bfs.size();
@@ -96,7 +96,7 @@ public:
                 int curTime = bfs.front().second;
                 bfs.pop();
 
-                for (int next : subordinates[person]) {
+                for (int next: subordinates[person]) {
                     int time = curTime + informTime[person];
                     bfs.push({next, time});
                     result = max(result, time);

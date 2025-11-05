@@ -64,6 +64,7 @@ private:
     int getCount(long long n, long long a, long long b, long long c) {
         return n / a + n / b + n / c - n / ab - n / ac - n / bc + n / abc;
     }
+
 public:
     int nthUglyNumber(int n, int a, int b, int c) {
         ab = lcm(a, b);
@@ -78,8 +79,7 @@ public:
             int count = getCount(mid, a, b, c);
             if (count < n) {
                 left = mid + 1;
-            }
-            else {
+            } else {
                 right = mid;
             }
         }
@@ -87,7 +87,8 @@ public:
     }
 };
 
-class Solution1 { // TLE
+class Solution1 {
+    // TLE
 public:
     int nthUglyNumber(int n, int a, int b, int c) {
         int num = 1;

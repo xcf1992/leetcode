@@ -59,35 +59,46 @@ using namespace std;
 
 class Solution {
 private:
-    unordered_set<string> merge(unordered_set<string>& a, unordered_set<string>& b) {
-        if (a.empty() or b.empty()) {
+    unordered_set<string> merge(unordered_set<string> &a, unordered_set<string> &b) {
+        if (a.empty() or
+        b.empty()
+        )
+        {
             return a.empty() ? b : a;
         }
 
         unordered_set<string> result;
-        for (string s1 : a) {
-            for (string s2 : b) {
+        for (string s1: a) {
+            for (string s2: b) {
                 result.insert(s1 + s2);
             }
         }
         return result;
     }
 
-    string getWord(string& expr, int& i) {
+    string getWord(string &expr, int &i) {
         string result = "";
-        while ('a' <= expr[i] and expr[i] <= 'z') {
+        while ('a' <= expr[i] and expr[i]
+        <=
+        'z'
+        )
+        {
             result.push_back(expr[i]);
             i += 1;
         }
         return result;
     }
 
-    unordered_set<string> dfs(string& expr, int& i) {
+    unordered_set<string> dfs(string &expr, int &i) {
         unordered_set<string> S;
         unordered_set<string> result;
-        while (i < expr.size() and expr[i] != '}') {
+        while (i < expr.size() and expr[i]
+        !=
+        '}'
+        )
+        {
             if (expr[i] == ',') {
-                for (auto& s : S) {
+                for (auto &s: S) {
                     result.insert(s);
                 }
                 S.clear();
@@ -99,24 +110,23 @@ private:
                 i += 1;
                 temp = dfs(expr, i);
                 i += 1;
-            }
-            else {
+            } else {
                 temp.insert(getWord(expr, i));
             }
 
             if (S.empty()) {
                 S = temp;
-            }
-            else {
+            } else {
                 S = merge(S, temp);
             }
         }
 
-        for (auto& s : S) {
+        for (auto &s: S) {
             result.insert(s);
         }
         return result;
     }
+
 public:
     vector<string> braceExpansionII(string expression) {
         int i = 0;
@@ -154,14 +164,17 @@ public:
 */
 class Solution1 {
 private:
-    set<string> merge(set<string>& a, set<string>& b) {
-        if (a.empty() or b.empty()) {
+    set<string> merge(set<string> &a, set<string> &b) {
+        if (a.empty() or
+        b.empty()
+        )
+        {
             return a.empty() ? b : a;
         }
 
         set<string> result;
-        for (string s1 : a) {
-            for (string s2 : b) {
+        for (string s1: a) {
+            for (string s2: b) {
                 result.insert(s1 + s2);
             }
         }
@@ -169,10 +182,15 @@ private:
     }
 
     //a{c,d}b = {acb, adb}
-    set<string> combine(const string& str, int& pos) { // rule 3
+    set<string> combine(const string &str, int &pos) {
+        // rule 3
         set<string> result;
         while (pos < str.length()) {
-            if (str[pos] == '}' or str[pos] == ',') {
+            if (str[pos] == '}' or str[pos]
+            ==
+            ','
+            )
+            {
                 break;
             }
             if (str[pos] == '{') {
@@ -180,11 +198,17 @@ private:
                 set<string> tmp = parse(str, pos);
                 pos += 1;
                 result = merge(result, tmp);
-            }
-            else {
+            } else {
                 set<string> tmp;
                 string cur;
-                while(pos < str.length() and str[pos] <= 'z' and str[pos] >= 'a'){
+                while (pos < str.length() and str[pos]
+                <=
+                'z'
+                and str[pos]
+                >=
+                'a'
+                )
+                {
                     cur.push_back(str[pos]);
                     pos += 1;
                 }
@@ -196,7 +220,8 @@ private:
     }
 
     //{a,c},{c,d} = {a, c, d}
-    set<string> parse(const string& str, int& pos) { // rule 2
+    set<string> parse(const string &str, int &pos) {
+        // rule 2
         set<string> result;
         result = combine(str, pos);
         while (pos < str.size()) {
@@ -210,6 +235,7 @@ private:
         }
         return result;
     }
+
 public:
     vector<string> braceExpansionII(string expression) {
         int pos = 0;

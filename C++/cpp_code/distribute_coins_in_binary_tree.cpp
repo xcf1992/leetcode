@@ -61,18 +61,21 @@ using namespace std;
 
 class Solution {
 private:
-    int traverse(TreeNode* root, int& result) { // return number of coins we should pass to parent
+    int traverse(TreeNode *root, int &result) {
+        // return number of coins we should pass to parent
         if (root == nullptr) {
             return 0;
         }
 
-        int leftCarry = traverse(root -> left, result);
-        int rightCarry = traverse(root -> right, result);
-        result += abs(leftCarry) + abs(rightCarry); // we abs here as it may happen we should give coin to child actually
-        return leftCarry + rightCarry + root -> val - 1;
+        int leftCarry = traverse(root->left, result);
+        int rightCarry = traverse(root->right, result);
+        result += abs(leftCarry) + abs(rightCarry);
+        // we abs here as it may happen we should give coin to child actually
+        return leftCarry + rightCarry + root->val - 1;
     }
+
 public:
-    int distributeCoins(TreeNode* root) {
+    int distributeCoins(TreeNode *root) {
         int result = 0;
         traverse(root, result);
         return result;
@@ -81,29 +84,29 @@ public:
 
 class Solution1 {
 private:
-    void check(TreeNode* root, int& result) {
+    void check(TreeNode *root, int &result) {
         if (root == nullptr) {
             return;
         }
 
-        check(root -> left, result);
-        check(root -> right, result);
-        if (root -> left != nullptr) {
-            int move = (root -> left -> val) - 1;
+        check(root->left, result);
+        check(root->right, result);
+        if (root->left != nullptr) {
+            int move = (root->left->val) - 1;
             result += abs(move);
-            (root -> val) += move;
+            (root->val) += move;
         }
-        if (root -> right != nullptr) {
-            int move = (root -> right -> val) - 1;
+        if (root->right != nullptr) {
+            int move = (root->right->val) - 1;
             result += abs(move);
-            (root -> val) += move;
+            (root->val) += move;
         }
     }
+
 public:
-    int distributeCoins(TreeNode* root) {
+    int distributeCoins(TreeNode *root) {
         int result = 0;
         check(root, result);
         return result;
     }
 };
-

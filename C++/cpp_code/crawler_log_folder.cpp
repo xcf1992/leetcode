@@ -50,9 +50,9 @@ using namespace std;
 
 class Solution {
 public:
-    int minOperations(vector<string>& logs) {
+    int minOperations(vector<string> &logs) {
         int result = 0;
-        for (string& log : logs) {
+        for (string &log: logs) {
             if (log == "../") {
                 result -= 1;
                 if (result < 0) {

@@ -38,8 +38,12 @@ using namespace std;
 
 class Solution1 {
 public:
-    int searchInsert(vector<int>& nums, int target) {
-        if (nums.empty() or target <= nums[0]) {
+    int searchInsert(vector<int> &nums, int target) {
+        if (nums.empty() or target
+        <=
+        nums[0]
+        )
+        {
             return 0;
         }
         if (target > nums.back()) {
@@ -56,8 +60,7 @@ public:
 
             if (nums[mid] < target) {
                 start = mid + 1;
-            }
-            else {
+            } else {
                 end = mid;
             }
         }
@@ -67,15 +70,14 @@ public:
 
 class Solution {
 public:
-    int searchInsert(vector<int>& nums, int target) {
+    int searchInsert(vector<int> &nums, int target) {
         int left = 0;
         int right = nums.size() - 1;
         while (left <= right) {
             int mid = left + (right - left) / 2;
             if (nums[mid] < target) {
                 left = mid + 1;
-            }
-            else {
+            } else {
                 right = mid - 1;
             }
         }

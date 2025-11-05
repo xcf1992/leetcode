@@ -32,14 +32,15 @@ using namespace std;
 
 class Solution {
 public:
-    int removeCoveredIntervals(vector<vector<int>>& intervals) {
+    int removeCoveredIntervals(vector<vector<int> > &intervals) {
         int n = intervals.size();
         if (n <= 1) {
             return n;
         }
 
-        sort(intervals.begin(), intervals.end(), [](vector<int>& a, vector<int>& b) {
-            return a[0] < b[0] or (a[0] == b[0] and a[1] < b[1]);
+        sort(intervals.begin(), intervals.end(), [](vector<int> &a, vector<int> &b) {
+            return a[0] < b[0]
+            or(a[0] == b[0] and a[1] < b[1]);
         });
 
         int result = 1;

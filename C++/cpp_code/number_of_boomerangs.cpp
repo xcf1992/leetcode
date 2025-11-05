@@ -32,7 +32,7 @@ using namespace std;
 
 class Solution {
 public:
-    int numberOfBoomerangs(vector<vector<int>>& points) {
+    int numberOfBoomerangs(vector<vector<int> > &points) {
         int result = 0;
         for (int i = 0; i < points.size(); i++) {
             unordered_map<long, int> distance(points.size());
@@ -46,7 +46,7 @@ public:
                 distance[dx * dx + dy * dy] += 1;
             }
 
-            for (auto& num : distance) {
+            for (auto &num: distance) {
                 result += num.second * (num.second - 1);
             }
         }

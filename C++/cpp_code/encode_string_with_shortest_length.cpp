@@ -80,7 +80,7 @@ which means (s+s).substr(L,N) == s, so condition 1 is obtained.
 */
 class Solution1 {
 private:
-    string compress(string& s, int start, int end, vector<vector<string>>& dp) {
+    string compress(string &s, int start, int end, vector<vector<string> > &dp) {
         string temp = s.substr(start, end - start + 1);
         int pos = (temp + temp).find(temp, 1);
         if (pos >= temp.size()) {
@@ -88,10 +88,11 @@ private:
         }
         return to_string(temp.size() / pos) + "[" + dp[start][start + pos - 1] + "]";
     }
+
 public:
     string encode(string s) {
         int n = s.size();
-        vector<vector<string>> dp(n, vector<string>(n, ""));
+        vector<vector<string> > dp(n, vector<string>(n, ""));
         for (int length = 1; length <= n; length++) {
             for (int i = 0; i + length <= n; i++) {
                 int j = i + length - 1;
@@ -115,11 +116,12 @@ public:
     }
 };
 
-class Solution { // dfs with memo O(n ^ 3)
+class Solution {
+    // dfs with memo O(n ^ 3)
 private:
     unordered_map<string, string> memo;
 
-    int numRepetition(string& s, string sub) {
+    int numRepetition(string &s, string sub) {
         int count = 0;
         int pos = 0;
         while (pos < s.size()) {
@@ -131,6 +133,7 @@ private:
         }
         return count;
     }
+
 public:
     string encode(string s) {
         int n = s.size();
@@ -149,8 +152,7 @@ public:
             for (int k = 1; k <= count; ++k) {
                 if (k == 1) {
                     temp = sub + encode(s.substr(i + 1));
-                }
-                else {
+                } else {
                     temp = to_string(k) + "[" + encode(sub) + "]" + encode(s.substr(k * sub.size()));
                 }
                 if (temp.size() < memo[s].size()) {

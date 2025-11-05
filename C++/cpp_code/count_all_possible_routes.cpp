@@ -89,7 +89,7 @@ If you look at this recursion, we can see that there are overlapping subproblems
 class Solution {
 private:
     // dp[curCity][fuel] = number of ways to reach finish, when we are at city `curCity` with fuel `fuel`
-    long solve(vector<int>& locations, int curCity, int e, vector<vector<long>>& dp, int fuel) {
+    long solve(vector<int> &locations, int curCity, int e, vector<vector<long> > &dp, int fuel) {
         // 4. There is no further way left.
         if (fuel < 0) {
             return 0;
@@ -105,15 +105,17 @@ private:
             // 1. Visit all cities except `curCity`.
             if (nextCity != curCity) {
                 // 2. Continue this process recursively.
-                ans = (ans + solve(locations, nextCity, e, dp, fuel - abs(locations[curCity] - locations[nextCity]))) % 1000000007;
+                ans = (ans + solve(locations, nextCity, e, dp, fuel - abs(locations[curCity] - locations[nextCity]))) %
+                      1000000007;
             }
         }
         return dp[curCity][fuel] = ans;
     }
+
 public:
-    int countRoutes(vector<int>& locations, int start, int finish, int fuel) {
+    int countRoutes(vector<int> &locations, int start, int finish, int fuel) {
         int n = locations.size();
-        vector<vector<long>> dp(n, vector<long>(fuel + 1, -1));
+        vector<vector<long> > dp(n, vector<long>(fuel + 1, -1));
         return solve(locations, start, finish, dp, fuel);
     }
 };

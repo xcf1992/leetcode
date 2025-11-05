@@ -25,12 +25,13 @@ All the integers in the array will be in the range of [-10000, 10000].
 #include <stdio.h>
 using namespace std;
 
-class Solution { // bucket sort
+class Solution {
+    // bucket sort
 public:
-    int arrayPairSum(vector<int>& nums) {
+    int arrayPairSum(vector<int> &nums) {
         int limit = 10000;
         vector<int> arr(20001, 0);
-        for (int num : nums) {
+        for (int num: nums) {
             arr[num + limit] += 1;
         }
 
@@ -46,7 +47,7 @@ public:
 
 class Solution1 {
 public:
-    int arrayPairSum(vector<int>& nums) {
+    int arrayPairSum(vector<int> &nums) {
         sort(nums.begin(), nums.end());
         int sum = 0;
         for (int i = 0; i < nums.size(); i += 2) {

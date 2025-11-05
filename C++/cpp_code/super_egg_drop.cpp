@@ -53,14 +53,15 @@
 #include <numeric>
 using namespace std;
 
-class Solution { // binary search
+class Solution {
+    // binary search
 private:
 
 public:
     int superEggDrop(int K, int N) {
-
     }
 };
+
 /*
  It's natural to attempt dynamic programming,
  as we encounter similar subproblems.
@@ -132,10 +133,11 @@ if egg breaks, F must be in [1,n0] floors, we can use m-1 moves and k-1 eggs to 
 if egg doesn't breaks and F is in [n0+2, n0+n1+1] floors, we can use m-1 moves and k eggs to find out F is which one.
 So, with m moves and k eggs, we can find out F in n0+n1+1 floors, whichever F is.
 */
-class Solution { // 2d dp
+class Solution {
+    // 2d dp
 public:
     int superEggDrop(int K, int N) {
-        vector<vector<int>> dp(N + 1, vector<int>(K + 1, 0));
+        vector<vector<int> > dp(N + 1, vector<int>(K + 1, 0));
         int m = 0;
         while (dp[m][K] < N) {
             m += 1;
@@ -154,7 +156,7 @@ But it runs TLE.
 */
 class Solution1 {
 private:
-    int helper(int K, int N, vector<vector<int>>& memo) {
+    int helper(int K, int N, vector<vector<int> > &memo) {
         if (N <= 1) {
             return N;
         }
@@ -173,9 +175,10 @@ private:
         }
         return memo[K][N];
     }
+
 public:
     int superEggDrop(int K, int N) {
-        vector<vector<int>> memo(K + 1, vector<int>(N + 1, 0));
+        vector<vector<int> > memo(K + 1, vector<int>(N + 1, 0));
         return helper(K, N, memo);
     }
 };

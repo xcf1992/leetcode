@@ -37,7 +37,7 @@ using namespace std;
 
 class Solution {
 public:
-    int maxScoreSightseeingPair(vector<int>& A) {
+    int maxScoreSightseeingPair(vector<int> &A) {
         int result = A[0];
         int curMax = A[0];
         for (int i = 1; i < A.size(); i++) {

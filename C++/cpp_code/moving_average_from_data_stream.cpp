@@ -26,6 +26,7 @@ private:
     queue<int> window;
     int sum;
     int length;
+
 public:
     /* Initialize your data structure here.*/
     MovingAverage(int size) {

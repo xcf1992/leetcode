@@ -12,14 +12,14 @@ using namespace std;
 
 class Solution {
 public:
-    int dominantIndex(vector<int>& nums) {
+    int dominantIndex(vector<int> &nums) {
         if (nums.size() < 1) {
             return -1;
         }
         if (nums.size() == 1) {
             return 0;
         }
-        
+
         int largest = nums[1] >= nums[0];
         int larger = nums[1] < nums[0];
         for (int i = 2; i < nums.size(); i++) {
@@ -27,8 +27,7 @@ public:
             if (num > nums[largest]) {
                 larger = largest;
                 largest = i;
-            }
-            else if (num > nums[larger]) {
+            } else if (num > nums[larger]) {
                 larger = num;
             }
         }

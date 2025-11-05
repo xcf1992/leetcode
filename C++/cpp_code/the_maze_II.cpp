@@ -70,16 +70,21 @@ private:
     vector<int> cDiff = {0, 0, -1, 1};
 
     bool isValid(int row, int col) {
-        return row >= 0 and col >= 0 and row < m and col < n;
+        return row >= 0
+        and col
+        >=
+        0
+        and row<m and col < n;
     }
+
 public:
-    int shortestDistance(vector<vector<int>>& maze, vector<int>& start, vector<int>& destination) {
+    int shortestDistance(vector<vector<int> > &maze, vector<int> &start, vector<int> &destination) {
         m = maze.size();
         n = maze[0].size();
 
-        queue<pair<int, int>> bfs;
+        queue<pair<int, int> > bfs;
         bfs.push({start[0], start[1]});
-        vector<vector<int>> distance(m, vector<int>(n, INT_MAX));
+        vector<vector<int> > distance(m, vector<int>(n, INT_MAX));
         distance[start[0]][start[1]] = 0;
 
         int result = INT_MAX;
@@ -90,7 +95,11 @@ public:
             int row = curPos.first;
             int col = curPos.second;
             int curDis = distance[row][col];
-            if (row == destination[0] and col == destination[1]) {
+            if (row == destination[0] and col
+            ==
+            destination[1]
+            )
+            {
                 result = min(result, curDis);
                 continue;
             }
@@ -100,7 +109,11 @@ public:
                 col = curPos.second;
                 int move = 0;
 
-                while (isValid(row + rDiff[i], col + cDiff[i]) and maze[row + rDiff[i]][col + cDiff[i]] != 1) {
+                while (isValid(row + rDiff[i], col + cDiff[i]) and maze[row + rDiff[i]][col + cDiff[i]]
+                !=
+                1
+                )
+                {
                     row += rDiff[i];
                     col += cDiff[i];
                     move += 1;

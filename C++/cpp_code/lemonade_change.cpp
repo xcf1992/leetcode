@@ -65,26 +65,29 @@ using namespace std;
 
 class Solution {
 public:
-    bool lemonadeChange(vector<int>& bills) {
+    bool lemonadeChange(vector<int> &bills) {
         vector<int> changes(2, 0);
-        for (int bill : bills) {
+        for (int bill: bills) {
             if (bill == 5) {
                 changes[0] += 1;
-            }
-            else if (bill == 10) {
+            } else if (bill == 10) {
                 if (changes[0] < 1) {
                     return false;
                 }
                 changes[0] -= 1;
                 changes[1] += 1;
-            }
-            else if (bill == 20) {
-                if (changes[1] >= 1 and changes[0] >= 1) {
+            } else if (bill == 20) {
+                if (changes[1] >= 1 and changes[0]
+                >=
+                1
+                )
+                {
                     changes[0] -= 1;
                     changes[1] -= 1;
                     continue;
                 }
-                else if (changes[0] >= 3) {
+                else
+                if (changes[0] >= 3) {
                     changes[0] -= 3;
                     continue;
                 }

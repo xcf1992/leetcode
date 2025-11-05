@@ -57,46 +57,51 @@ using namespace std;
 
 class Solution {
 public:
-    bool isNumber(string& s) {
-        return s.back() >= '0' and s.back() <= '9';
+    bool isNumber(string &s) {
+        return s.back() >= '0'
+        and
+        s.back() <= '9';
     }
 
-    bool isVariable(string& s) {
-        return s[0] >= 'a' and s[0] <= 'z';
+    bool isVariable(string &s) {
+        return s[0] >= 'a'
+        and s[0]
+        <=
+        'z';
     }
 
-    int priority(string& s) {
+    int priority(string &s) {
         if (s == "+") return 1;
         if (s == "-") return 1;
         if (s == "*") return 2;
         return -1; // "("
     }
 
-    bool equal(vector<string>& a, vector<string>& b) {
+    bool equal(vector<string> &a, vector<string> &b) {
         if (a.size() != b.size()) return false;
         for (int i = 1; i < a.size(); i++) if (a[i] != b[i]) return false;
         return true;
     }
 
-    vector<vector<string>> calculate(vector<vector<string>>& a, string& opr, vector<vector<string>>& b) {
+    vector<vector<string> > calculate(vector<vector<string> > &a, string &opr, vector<vector<string> > &b) {
         // input:
         // `a` and `b`: [[1,e,e], [-64]], [[-1,pressure], [5]] --- such vector<vector<string>>
         // `opr`: "+" or "-" or "*"
         // output:
         // [[1,e,e], [-1,pressure], [-59]]: the calculated and sorted and merged polynomials
-        vector<vector<string>> c;
+        vector<vector<string> > c;
         if (opr == "+") {
-            for (auto& s : a) c.push_back(s);
-            for (auto& s : b) c.push_back(s);
+            for (auto &s: a) c.push_back(s);
+            for (auto &s: b) c.push_back(s);
         } else if (opr == "-") {
-            for (auto& s : a) c.push_back(s);
-            for (auto& s : b) {
+            for (auto &s: a) c.push_back(s);
+            for (auto &s: b) {
                 c.push_back(s);
                 c.back()[0] = to_string(-stoi(c.back()[0]));
             }
         } else {
-            for (auto& s : a) {
-                for (auto& t : b) {
+            for (auto &s: a) {
+                for (auto &t: b) {
                     // multiply s and t
                     vector<string> o;
                     o.push_back(to_string(stoi(s[0]) * stoi(t[0])));
@@ -110,11 +115,11 @@ public:
         // merge and sort the result
 
         // 1. sort every "*" expression
-        for (auto& s : c) {
+        for (auto &s: c) {
             sort(s.begin() + 1, s.end());
         }
         // 2. sort the "*" expressions
-        sort(c.begin(), c.end(), [](auto& p, auto& q) {
+        sort(c.begin(), c.end(), [](auto &p, auto &q) {
             if (p.size() != q.size()) return p.size() > q.size();
             for (int i = 1; i < p.size(); i++) {
                 if (p[i] != q[i]) return p[i] < q[i];
@@ -122,11 +127,15 @@ public:
             return true;
         });
         // 3. merge the "*" expressions
-        vector<vector<string>> result;
-        for (auto& s : c) {
-            if (!result.empty() and equal(result.back(), s)) {
+        vector<vector<string> > result;
+        for (auto &s: c) {
+            if (!result.empty() and equal(result.back(), s)
+            )
+            {
                 result.back()[0] = to_string(stoi(result.back()[0]) + stoi(s[0]));
-            } else {
+            }
+            else
+            {
                 result.push_back(s);
             }
             if (result.back()[0] == "0") result.pop_back();
@@ -134,15 +143,21 @@ public:
         return result;
     }
 
-    vector<string> basicCalculatorIV(string expression, vector<string>& evalvars, vector<int>& evalints) {
+    vector<string> basicCalculatorIV(string expression, vector<string> &evalvars, vector<int> &evalints) {
         // split into symbols, each symbol is "(" or ")" or a number or a variable or a operator.
         vector<string> v(1);
-        for (char c : expression) {
-            if (c == '(' or c == ')') {
+        for (char c: expression) {
+            if (c == '(' or c
+            ==
+            ')'
+            )
+            {
                 if (!v.back().empty()) v.push_back(string());
                 v.back() += c;
                 v.push_back(string());
-            } else if (c == ' ') {
+            }
+            else
+            if (c == ' ') {
                 if (!v.back().empty()) v.push_back(string());
             } else {
                 v.back() += c;
@@ -158,7 +173,7 @@ public:
         }
 
         // replace the evalvars in `v`
-        for (auto& s : v) {
+        for (auto &s: v) {
             if (m.find(s) != m.end()) {
                 s = to_string(m[s]);
             }
@@ -170,10 +185,14 @@ public:
         stack<string> st;
         st.push("(");
         vector<string> u;
-        for (auto& s : v) {
-            if (isNumber(s) or isVariable(s)) {
+        for (auto &s: v) {
+            if (isNumber(s) or isVariable(s)
+            )
+            {
                 u.push_back(s);
-            } else if (s == "(") {
+            }
+            else
+            if (s == "(") {
                 st.push(s);
             } else if (s == ")") {
                 while (st.top() != "(") {
@@ -194,12 +213,12 @@ public:
 
         // calculate the RPN
         // each element in the stack is, for example, [[12, a, b, b] + [-2333, b, c] + ... + [233]]
-        stack<vector<vector<string>>> ste; // stack of expressions
-        for (auto& s : u) {
+        stack<vector<vector<string> > > ste; // stack of expressions
+        for (auto &s: u) {
             if (isNumber(s)) {
-                ste.push(vector<vector<string>>(1, vector<string>(1, s)));
+                ste.push(vector<vector<string> >(1, vector<string>(1, s)));
             } else if (isVariable(s)) {
-                ste.push(vector<vector<string>>(1, vector<string>(2, s)));
+                ste.push(vector<vector<string> >(1, vector<string>(2, s)));
                 ste.top()[0][0] = "1";
             } else {
                 auto second = ste.top();
@@ -214,10 +233,10 @@ public:
         // the result is, for example, ["12*a*b*b", "-2333*b*c", ......, "233"]
         auto r = ste.top();
         vector<string> result;
-        for (auto& p : r) {
+        for (auto &p: r) {
             if (p[0] == "0") continue;
             result.push_back(string());
-            for (auto& q : p) {
+            for (auto &q: p) {
                 result.back() += q + "*";
             }
             result.back().pop_back();

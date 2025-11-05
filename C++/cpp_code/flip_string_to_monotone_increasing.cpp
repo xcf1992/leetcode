@@ -41,7 +41,8 @@ S only consists of '0' and '1' characters.
 #include <numeric>
 using namespace std;
 
-class Solution { // dp
+class Solution {
+    // dp
 public:
     int minFlipsMonoIncr(string S) {
         int n = S.size();
@@ -51,11 +52,10 @@ public:
 
         int endOne = 0;
         int endZero = 0;
-        for (char c : S) {
+        for (char c: S) {
             if (c == '0') {
                 endOne = 1 + min(endOne, endZero);
-            }
-            else {
+            } else {
                 endOne = min(endZero, endOne);
                 endZero = 1 + endZero;
             }

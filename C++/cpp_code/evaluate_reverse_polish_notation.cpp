@@ -48,10 +48,14 @@ using namespace std;
 
 class Solution {
 public:
-    int evalRPN(vector<string>& tokens) {
+    int evalRPN(vector<string> &tokens) {
         vector<int> calculator;
         for (unsigned int i = 0; i != tokens.size(); i++) {
-            if (isdigit(tokens[i][0]) or tokens[i].size() > 1) {
+            if (isdigit(tokens[i][0]) or tokens[i]
+            .
+            size() > 1
+            )
+            {
                 calculator.push_back(stoi(tokens[i]));
                 continue;
             }
@@ -62,14 +66,11 @@ public:
             calculator.pop_back();
             if (tokens[i] == "+") {
                 calculator.push_back(operand2 + operand1);
-            }
-            else if (tokens[i] == "-") {
+            } else if (tokens[i] == "-") {
                 calculator.push_back(operand2 - operand1);
-            }
-            else if (tokens[i] == "*") {
+            } else if (tokens[i] == "*") {
                 calculator.push_back(operand2 * operand1);
-            }
-            else if (tokens[i] == "/") {
+            } else if (tokens[i] == "/") {
                 calculator.push_back(operand2 / operand1);
             }
         }

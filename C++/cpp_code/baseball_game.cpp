@@ -21,26 +21,26 @@ using namespace std;
 */
 class Solution {
 public:
-    int calPoints(vector<string>& ops) {
+    int calPoints(vector<string> &ops) {
         vector<int> points;
-        for (string op : ops) {
+        for (string op: ops) {
             if (op == "C") {
                 points.pop_back();
-            }
-            else if (op == "D") {
+            } else if (op == "D") {
                 points.push_back(points.back() * 2);
-            }
-            else if (op == "+") {
+            } else if (op == "+") {
                 int n = points.size();
                 points.push_back(points[n - 1] + points[n - 2]);
-            }Ø
-            else {
+            }
+            Ø
+            else
+            {
                 points.push_back(stoi(op));
             }
         }
 
         int sum = 0;
-        for (int i : points) {
+        for (int i: points) {
             sum += i;
         }
         return sum;

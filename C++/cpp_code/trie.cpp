@@ -66,16 +66,16 @@ public:
     }
 
 private:
-    TrieNode* root;
+    TrieNode *root;
 };
 
 int main() {
-	Trie trie;
-	trie.insert("hello");
-	trie.search("hell");
-	trie.search("helloa");
-	trie.search("hello");
-	trie.startsWith("hell");
-	trie.startsWith("helloa");
-	trie.startsWith("hello");
+    Trie trie;
+    trie.insert("hello");
+    trie.search("hell");
+    trie.search("helloa");
+    trie.search("hello");
+    trie.startsWith("hell");
+    trie.startsWith("helloa");
+    trie.startsWith("hello");
 }

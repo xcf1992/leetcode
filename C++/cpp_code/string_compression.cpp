@@ -53,18 +53,19 @@ using namespace std;
 
 class Solution {
 private:
-    void update(vector<char>& chars, int count, int& start) {
+    void update(vector<char> &chars, int count, int &start) {
         if (count == 1) {
             return;
         }
 
-        for (char c : to_string(count)) {
+        for (char c: to_string(count)) {
             chars[start] = c;
             start += 1;
         }
     }
+
 public:
-    int compress(vector<char>& chars) {
+    int compress(vector<char> &chars) {
         int n = chars.size();
         if (n <= 1) {
             return n;

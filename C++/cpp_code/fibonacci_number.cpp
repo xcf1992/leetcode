@@ -45,7 +45,7 @@ using namespace std;
 
 class Solution {
 private:
-    int count(int N, vector<int>& mem) {
+    int count(int N, vector<int> &mem) {
         if (mem[N] != -1) {
             return mem[N];
         }
@@ -53,6 +53,7 @@ private:
         mem[N] = count(N - 1, mem) + count(N - 2, mem);
         return mem[N];
     }
+
 public:
     int fib(int N) {
         vector<int> mem(100, -1);

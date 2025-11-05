@@ -51,12 +51,12 @@ using namespace std;
 struct TrieNode {
     bool isFile = false;
     string content = "";
-    map<string, TrieNode*> children;
+    map<string, TrieNode *> children;
 };
 
 class FileSystem {
 private:
-    TrieNode* root;
+    TrieNode *root;
 
     vector<string> splitString(string path) {
         path = path.substr(1);
@@ -69,6 +69,7 @@ private:
         }
         return result;
     }
+
 public:
     FileSystem() {
         root = new TrieNode();
@@ -77,17 +78,17 @@ public:
     vector<string> ls(string path) {
         vector<string> paths = splitString(path);
 
-        TrieNode* cur = root;
-        for (string& p : paths) {
-            cur = cur -> children[p];
+        TrieNode *cur = root;
+        for (string &p: paths) {
+            cur = cur->children[p];
         }
 
-        if (cur -> isFile) {
+        if (cur->isFile) {
             return {paths.back()};
         }
 
         vector<string> result;
-        for (auto& p : cur -> children) {
+        for (auto &p: cur->children) {
             result.push_back(p.first);
         }
         return result;
@@ -95,37 +96,38 @@ public:
 
     void mkdir(string path) {
         vector<string> paths = splitString(path);
-        TrieNode* cur = root;
-        for (string& p : paths) {
-            if (cur -> children[p] == nullptr) {
-                cur -> children[p] = new TrieNode();
+        TrieNode *cur = root;
+        for (string &p: paths) {
+            if (cur->children[p] == nullptr) {
+                cur->children[p] = new TrieNode();
             }
-            cur = cur -> children[p];
+            cur = cur->children[p];
         }
     }
 
     void addContentToFile(string filePath, string content) {
         vector<string> paths = splitString(filePath);
-        TrieNode* cur = root;
-        for (string& p : paths) {
-            if (cur -> children[p] == nullptr) {
-                cur -> children[p] = new TrieNode();
+        TrieNode *cur = root;
+        for (string &p: paths) {
+            if (cur->children[p] == nullptr) {
+                cur->children[p] = new TrieNode();
             }
-            cur = cur -> children[p];
+            cur = cur->children[p];
         }
-        cur -> isFile = true;
-        cur -> content += content;
+        cur->isFile = true;
+        cur->content += content;
     }
 
     string readContentFromFile(string filePath) {
         vector<string> paths = splitString(filePath);
-        TrieNode* cur = root;
-        for (string& p : paths) {
-            cur = cur -> children[p];
+        TrieNode *cur = root;
+        for (string &p: paths) {
+            cur = cur->children[p];
         }
-        return cur -> content;
+        return cur->content;
     }
 };
+
 /*
 Your FileSystem object will be instantiated and called as such:
 FileSystem* obj = new FileSystem();

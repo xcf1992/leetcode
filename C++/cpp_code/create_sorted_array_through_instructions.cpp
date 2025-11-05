@@ -97,7 +97,8 @@ where M is the range of A[i].
 class Solution {
 public:
     int c[100001];
-    int createSortedArray(vector<int>& A) {
+
+    int createSortedArray(vector<int> &A) {
         memset(c, 0, sizeof(c));
         int res = 0, n = A.size(), mod = 1e9 + 7;
         for (int i = 0; i < n; ++i) {

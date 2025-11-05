@@ -56,16 +56,16 @@ using namespace std;
 
 class Solution {
 public:
-    string findReplaceString(string S, vector<int>& indexes, vector<string>& sources, vector<string>& targets) {
-        vector<pair<int, int>> sortedIndex;
+    string findReplaceString(string S, vector<int> &indexes, vector<string> &sources, vector<string> &targets) {
+        vector<pair<int, int> > sortedIndex;
         for (int i = 0; i < indexes.size(); i++) {
             sortedIndex.push_back({i, indexes[i]});
         }
-        sort(sortedIndex.begin(), sortedIndex.end(), [](pair<int, int>& a, pair<int, int>& b) {
+        sort(sortedIndex.begin(), sortedIndex.end(), [](pair<int, int> &a, pair<int, int> &b) {
             return a.second > b.second;
         });
 
-        for (pair<int, int>& index : sortedIndex) {
+        for (pair<int, int> &index: sortedIndex) {
             int pos = index.second;
             int i = index.first;
             string s = sources[i];

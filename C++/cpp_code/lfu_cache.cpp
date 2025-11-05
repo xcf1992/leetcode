@@ -49,8 +49,8 @@ struct LFUNode {
     int freq;
     int key;
     int value;
-    LFUNode* prev;
-    LFUNode* next;
+    LFUNode *prev;
+    LFUNode *next;
 
     LFUNode(int f, int k, int v) {
         freq = f;
@@ -64,8 +64,8 @@ class LFUCache {
 private:
     int capacity;
     int minFreq;
-    unordered_map<int, LFUNode*> key2node;
-    unordered_map<int, LFUNode*> freq2node;
+    unordered_map<int, LFUNode *> key2node;
+    unordered_map<int, LFUNode *> freq2node;
 
 public:
     LFUCache(int c) {
@@ -78,71 +78,77 @@ public:
             return -1;
         }
 
-        LFUNode* cur = key2node[key];
-        LFUNode* prevNode = cur -> prev;
-        LFUNode* nextNode = cur -> next;
+        LFUNode *cur = key2node[key];
+        LFUNode *prevNode = cur->prev;
+        LFUNode *nextNode = cur->next;
         if (prevNode != nullptr) {
-            prevNode -> next = nextNode;
+            prevNode->next = nextNode;
         }
         if (nextNode != nullptr) {
-            nextNode -> prev = prevNode;
+            nextNode->prev = prevNode;
         }
-        if (minFreq == cur -> freq and freq2node[minFreq] -> next == freq2node[minFreq]) {
+        if (minFreq == cur->freq and freq2node[minFreq]
+        ->
+        next == freq2node[minFreq]
+        )
+        {
             freq2node.erase(minFreq);
             minFreq += 1;
         }
 
-        cur -> freq += 1;
-        if (freq2node.find(cur -> freq) == freq2node.end()) {
-            LFUNode* newHead = new LFUNode(cur -> freq, -1, -1);
-            newHead -> next = newHead;
-            newHead -> prev = newHead;
-            freq2node[cur -> freq] = newHead;
+        cur->freq += 1;
+        if (freq2node.find(cur->freq) == freq2node.end()) {
+            LFUNode *newHead = new LFUNode(cur->freq, -1, -1);
+            newHead->next = newHead;
+            newHead->prev = newHead;
+            freq2node[cur->freq] = newHead;
         }
-        cur -> next = freq2node[cur -> freq] -> next;
-        cur -> next -> prev = cur;
-        freq2node[cur -> freq] -> next = cur;
-        cur -> prev = freq2node[cur -> freq];
-        return cur -> value;
+        cur->next = freq2node[cur->freq]->next;
+        cur->next->prev = cur;
+        freq2node[cur->freq]->next = cur;
+        cur->prev = freq2node[cur->freq];
+        return cur->value;
     }
 
     void put(int key, int value) {
         if (key2node.find(key) != key2node.end()) {
-            key2node[key] -> value = value;
+            key2node[key]->value = value;
             get(key);
             return;
         }
 
         if (key2node.size() == capacity) {
-            LFUNode* listHead = freq2node[minFreq];
-            if (listHead == nullptr) { // it will only happen when the capacity is 0
+            LFUNode *listHead = freq2node[minFreq];
+            if (listHead == nullptr) {
+                // it will only happen when the capacity is 0
                 return;
             }
 
-            LFUNode* last = listHead -> prev;
-            listHead -> prev = last -> prev;
-            last -> prev -> next = listHead;
-            key2node.erase(last -> key);
-            if (listHead -> next == listHead) {
-                freq2node.erase(listHead -> freq);
+            LFUNode *last = listHead->prev;
+            listHead->prev = last->prev;
+            last->prev->next = listHead;
+            key2node.erase(last->key);
+            if (listHead->next == listHead) {
+                freq2node.erase(listHead->freq);
             }
         }
 
-        LFUNode* newNode = new LFUNode(1, key, value);
+        LFUNode *newNode = new LFUNode(1, key, value);
         minFreq = 1;
         key2node[key] = newNode;
         if (freq2node.find(minFreq) == freq2node.end()) {
-            LFUNode* newHead = new LFUNode(minFreq, -1, -1);
-            newHead -> next = newHead;
-            newHead -> prev = newHead;
+            LFUNode *newHead = new LFUNode(minFreq, -1, -1);
+            newHead->next = newHead;
+            newHead->prev = newHead;
             freq2node[minFreq] = newHead;
         }
-        newNode -> next = freq2node[minFreq] -> next;
-        freq2node[minFreq] -> next -> prev = newNode;
-        newNode -> prev = freq2node[minFreq];
-        freq2node[minFreq] -> next = newNode;
+        newNode->next = freq2node[minFreq]->next;
+        freq2node[minFreq]->next->prev = newNode;
+        newNode->prev = freq2node[minFreq];
+        freq2node[minFreq]->next = newNode;
     }
 };
+
 /*
 * Your LFUCache object will be instantiated and called as such:
 * LFUCache* obj = new LFUCache(capacity);

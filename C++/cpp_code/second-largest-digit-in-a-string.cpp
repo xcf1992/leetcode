@@ -41,8 +41,12 @@ class Solution {
 public:
     int secondHighest(string s) {
         vector<int> digit(10, 0);
-        for (char c : s) {
-            if (c >= '0' and c <= '9') {
+        for (char c: s) {
+            if (c >= '0' and c
+            <=
+            '9'
+            )
+            {
                 digit[c - '0'] = 1;
             }
         }
@@ -55,8 +59,7 @@ public:
 
             if (result == -2) {
                 result = -1;
-            }
-            else {
+            } else {
                 result = i;
                 break;
             }

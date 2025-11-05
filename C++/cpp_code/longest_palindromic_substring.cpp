@@ -29,7 +29,7 @@ class Solution {
 public:
     string longestPalindrome(string s) {
         int n = s.size();
-        vector<vector<bool>> dp(n, vector<bool>(n, false));
+        vector<vector<bool> > dp(n, vector<bool>(n, false));
         int maxLen = 1;
         int start = 0;
         for (int length = 0; length < n; length++) {
@@ -61,12 +61,15 @@ public:
 class Solution1 {
 private:
     string expand(string s, int left, int right) {
-        while (left >= 0 and right < s.size() and s[left] == s[right]) {
+        while (left >= 0 and right<s.size() and s[left] == s[right]
+        )
+        {
             left--;
             right++;
         }
         return s.substr(left + 1, right - left - 1);
     }
+
 public:
     string longestPalindrome(string s) {
         if (s.size() <= 1) {

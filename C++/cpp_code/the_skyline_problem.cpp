@@ -49,25 +49,25 @@ Special thanks to @stellari for adding this problem, creating these two awesome 
 using namespace std;
 
 struct myComp {
-    bool operator() (pair<int, int>& p1, pair<int, int>& p2) {
+    bool operator()(pair<int, int> &p1, pair<int, int> &p2) {
         return p1.second < p2.second;
     }
 };
 
 class Solution {
 public:
-    vector<vector<int>> getSkyline(vector<vector<int>>& buildings) {
+    vector<vector<int> > getSkyline(vector<vector<int> > &buildings) {
         set<int> points;
-        for (vector<int>& building : buildings) {
+        for (vector<int> &building: buildings) {
             points.insert(building[0]);
             points.insert(building[1]);
         }
 
-        vector<vector<int>> result;
-        priority_queue<pair<int, int>, vector<pair<int, int>>, myComp> pq;
+        vector<vector<int> > result;
+        priority_queue<pair<int, int>, vector<pair<int, int> >, myComp> pq;
         int cur = 0;
         int lastHeight = 0;
-        for (int point : points) {
+        for (int point: points) {
             // push in all buildings starts before point
             while (cur < buildings.size() && buildings[cur][0] <= point) {
                 pq.push({buildings[cur][1], buildings[cur][2]});
@@ -75,7 +75,10 @@ public:
             }
 
             // pops out building ends before current point
-            while (!pq.empty() and pq.top().first <= point) {
+            while (!pq.empty() and
+            pq.top().first <= point
+            )
+            {
                 pq.pop();
             }
 

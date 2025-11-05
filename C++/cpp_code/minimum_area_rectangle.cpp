@@ -40,19 +40,20 @@ using namespace std;
 // Time complexity is n^2
 class Solution {
 public:
-    int minAreaRect(vector<vector<int>>& points) {
-        map<int, vector<int>> x2Points;
-        for (vector<int>& point : points) {
+    int minAreaRect(vector<vector<int> > &points) {
+        map<int, vector<int> > x2Points;
+        for (vector<int> &point: points) {
             x2Points[point[0]].push_back(point[1]);
         }
 
         int result = INT_MAX;
         unordered_map<int, int> memo;
         for (auto it = x2Points.begin(); it != x2Points.end(); it++) {
-            int x = it -> first;
-            vector<int> yPoints = it -> second;
+            int x = it->first;
+            vector<int> yPoints = it->second;
             sort(yPoints.begin(), yPoints.end());
-            for (int i = 0; i < yPoints.size() - 1; i++) { // we need to check every possible combination here
+            for (int i = 0; i < yPoints.size() - 1; i++) {
+                // we need to check every possible combination here
                 for (int j = i + 1; j < yPoints.size(); j++) {
                     int y1 = yPoints[i];
                     int y2 = yPoints[j];

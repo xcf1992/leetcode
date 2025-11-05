@@ -71,6 +71,7 @@ private:
         }
         return stod(s);
     }
+
 public:
     bool isRationalEqual(string S, string T) {
         return convert(S) == convert(T);

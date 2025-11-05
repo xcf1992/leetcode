@@ -54,6 +54,7 @@ class Sea {
 public:
     bool hasShips(vector<int> topRight, vector<int> bottomLeft);
 };
+
 /*
 if current retangle has no ship, we can return 0, or if the retangle is a point, we can return hasShips result.
 otherwise, we split the retangle to 4 pieces:
@@ -67,7 +68,11 @@ and count each pieces' ships, the result is sum of 4 pieces results.
 class Solution {
 public:
     int countShips(Sea sea, vector<int> topRight, vector<int> bottomLeft) {
-        if (topRight[0] < bottomLeft[0] or topRight[1] < bottomLeft[1]) {
+        if (topRight[0] < bottomLeft[0] or topRight[1]
+        <
+        bottomLeft[1]
+        )
+        {
             return 0;
         }
 
@@ -75,13 +80,22 @@ public:
         if (!hasShip) {
             return 0;
         }
-        if (topRight[0] == bottomLeft[0] and topRight[1] == bottomLeft[1]) {
+        if (topRight[0] == bottomLeft[0] and topRight[1]
+        ==
+        bottomLeft[1]
+        )
+        {
             return hasShip ? 1 : 0;
         }
 
-        return countShips(sea, {topRight[0], (topRight[1] + bottomLeft[1]) / 2}, {(topRight[0] + bottomLeft[0]) / 2 + 1, bottomLeft[1]})
-             + countShips(sea, topRight, {(topRight[0] + bottomLeft[0]) / 2 + 1, (topRight[1] + bottomLeft[1]) / 2 + 1})
-             + countShips(sea, {(topRight[0] + bottomLeft[0]) / 2, (topRight[1] + bottomLeft[1]) / 2}, bottomLeft)
-             + countShips(sea, {(topRight[0] + bottomLeft[0]) / 2, topRight[1]}, {bottomLeft[0], (topRight[1] + bottomLeft[1]) / 2 + 1});
+        return countShips(sea, {topRight[0], (topRight[1] + bottomLeft[1]) / 2},
+                          {(topRight[0] + bottomLeft[0]) / 2 + 1, bottomLeft[1]})
+               + countShips(sea, topRight, {
+                                (topRight[0] + bottomLeft[0]) / 2 + 1, (topRight[1] + bottomLeft[1]) / 2 + 1
+                            })
+               + countShips(sea, {(topRight[0] + bottomLeft[0]) / 2, (topRight[1] + bottomLeft[1]) / 2}, bottomLeft)
+               + countShips(sea, {(topRight[0] + bottomLeft[0]) / 2, topRight[1]}, {
+                                bottomLeft[0], (topRight[1] + bottomLeft[1]) / 2 + 1
+                            });
     }
 };

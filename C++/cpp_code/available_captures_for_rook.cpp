@@ -58,7 +58,7 @@ using namespace std;
 
 class Solution {
 public:
-    int numRookCaptures(vector<vector<char>>& board) {
+    int numRookCaptures(vector<vector<char> > &board) {
         int m = board.size();
         int n = board[0].size();
         int row = -1;

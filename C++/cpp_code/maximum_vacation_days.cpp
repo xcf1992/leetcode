@@ -85,14 +85,18 @@ using namespace std;
 
 class Solution {
 public:
-    int maxVacationDays(vector<vector<int>>& flights, vector<vector<int>>& days) {
+    int maxVacationDays(vector<vector<int> > &flights, vector<vector<int> > &days) {
         int N = flights.size();
         int weeks = days[0].size();
 
-        vector<vector<int>> dp(weeks, vector<int>(N, -1));
+        vector<vector<int> > dp(weeks, vector<int>(N, -1));
         int result = 0;
         for (int i = 0; i < N; ++i) {
-            if (i == 0 or flights[0][i] != 0) {
+            if (i == 0 or flights[0][i]
+            !=
+            0
+            )
+            {
                 dp[0][i] = days[i][0];
             }
             result = max(result, dp[0][i]);
@@ -104,7 +108,11 @@ public:
                     if (dp[i - 1][k] == -1) {
                         continue;
                     }
-                    if (j == k or flights[k][j] == 1) {
+                    if (j == k or flights[k][j]
+                    ==
+                    1
+                    )
+                    {
                         dp[i][j] = max(dp[i][j], dp[i - 1][k] + days[j][i]);
                     }
                 }

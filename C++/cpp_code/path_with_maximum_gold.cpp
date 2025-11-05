@@ -51,14 +51,17 @@ There are at most 25 cells containing gold.
 using namespace std;
 // some interesting idea about applying dp to this problem
 // https://leetcode.com/problems/path-with-maximum-gold/discuss/399124/C%2B%2B-plain-DFS-vs-Memorized-DFS
-class Solution { // pure dfs
+class Solution {
+    // pure dfs
 private:
     int m = 0;
     int n = 0;
     vector<int> diff = {0, 1, 0, -1, 0};
 
-    void dfs(int row, int col, int& gold, int& result, vector<vector<int>>& grid) {
-        if (row >= m or row < 0 or col >= n or col < 0 or grid[row][col] <= 0) {
+    void dfs(int row, int col, int &gold, int &result, vector<vector<int> > &grid) {
+        if (row >= m or row<0 or col >= n or col < 0 or grid[row][col] <= 0
+        )
+        {
             return;
         }
 
@@ -71,8 +74,9 @@ private:
         grid[row][col] = -grid[row][col];
         gold -= grid[row][col];
     }
+
 public:
-    int getMaximumGold(vector<vector<int>>& grid) {
+    int getMaximumGold(vector<vector<int> > &grid) {
         m = grid.size();
         if (m == 0) {
             return 0;

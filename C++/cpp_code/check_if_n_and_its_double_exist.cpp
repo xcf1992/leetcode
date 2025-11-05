@@ -44,13 +44,16 @@ using namespace std;
 
 class Solution {
 public:
-    bool checkIfExist(vector<int>& arr) {
+    bool checkIfExist(vector<int> &arr) {
         unordered_set<int> nums;
-        for (int num : arr) {
+        for (int num: arr) {
             if (nums.find(num * 2) != nums.end()) {
                 return true;
             }
-            if (num % 2 == 0 and nums.find(num / 2) != nums.end()) {
+            if (num % 2 == 0 and
+            nums.find(num / 2) != nums.end()
+            )
+            {
                 return true;
             }
             nums.insert(num);

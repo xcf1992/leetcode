@@ -68,6 +68,7 @@ private:
     unordered_map<string, double> count;
     unordered_map<int, string> checkInStation;
     unordered_map<int, int> checkInTime;
+
 public:
     UndergroundSystem() {
     }
@@ -89,6 +90,7 @@ public:
         return avgTime[key] / count[key];
     }
 };
+
 /*
 Your UndergroundSystem object will be instantiated and called as such:
 UndergroundSystem* obj = new UndergroundSystem();

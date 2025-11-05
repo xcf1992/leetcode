@@ -37,15 +37,20 @@ total[i] stores the sum of subset with sum less than equal to target sum
 
 https://leetcode.com/problems/partition-to-k-equal-sum-subsets/discuss/335668/Dynamic-Programming-with-Bit-Masking-Solution-%3A-Best-for-Interviews
 */
-class Solution { // dp O(N * 2 ^ N)
+class Solution {
+    // dp O(N * 2 ^ N)
 public:
-    bool canPartitionKSubsets(vector<int>& nums, int k) {
+    bool canPartitionKSubsets(vector<int> &nums, int k) {
         int N = nums.size();
         sort(nums.begin(), nums.end());
 
         int sum = accumulate(nums.begin(), nums.end(), 0);
         int target = sum / k;
-        if (sum % k > 0 or nums[N - 1] > target) {
+        if (sum % k > 0 or nums[N - 1]
+        >
+        target
+        )
+        {
             return false;
         }
 
@@ -58,12 +63,14 @@ public:
             }
             for (int i = 0; i < N; i++) {
                 int future = state | (1 << i);
-                if (state != future and !dp[future]) {
+                if (state != future and
+                !dp[future]
+                )
+                {
                     if (nums[i] <= target - (total[state] % target)) {
                         dp[future] = true;
                         total[future] = total[state] + nums[i];
-                    }
-                    else {
+                    } else {
                         break;
                     }
                 }
@@ -75,7 +82,7 @@ public:
 
 class Solution1 {
 private:
-    bool partition(vector<int>& nums, vector<int>& used, int start, int k, int curSum, int target) {
+    bool partition(vector<int> &nums, vector<int> &used, int start, int k, int curSum, int target) {
         if (k == 0) {
             return true;
         }
@@ -85,7 +92,10 @@ private:
         }
 
         for (int i = start; i < nums.size(); i++) {
-            if (!used[i] and curSum + nums[i] <= target) {
+            if (!used[i] and curSum
+            +nums[i] <= target
+            )
+            {
                 used[i] = true;
                 if (partition(nums, used, i + 1, k, curSum + nums[i], target)) {
                     return true;
@@ -95,8 +105,9 @@ private:
         }
         return false;
     }
+
 public:
-    bool canPartitionKSubsets(vector<int>& nums, int k) {
+    bool canPartitionKSubsets(vector<int> &nums, int k) {
         int sum = accumulate(nums.begin(), nums.end(), 0);
         if (sum % k != 0) {
             return false;

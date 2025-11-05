@@ -84,10 +84,11 @@ At most 200000 calls will be made to push, pop, and popAtStack.
 #include <numeric>
 using namespace std;
 
-class DinnerPlates { // from god lee but it does not work, check back later
+class DinnerPlates {
+    // from god lee but it does not work, check back later
 public:
     int c;
-    map<int, vector<int>> m;
+    map<int, vector<int> > m;
     set<int> available;
 
     DinnerPlates(int capacity) {
@@ -109,7 +110,7 @@ public:
         if (m.size() == 0) {
             return -1;
         }
-        return popAtStack(m.rbegin() -> first);
+        return popAtStack(m.rbegin()->first);
     }
 
     int popAtStack(int index) {
@@ -127,9 +128,10 @@ public:
     }
 };
 
-class DinnerPlates1 { // 17.40%
+class DinnerPlates1 {
+    // 17.40%
 private:
-    vector<stack<int>> plates;
+    vector<stack<int> > plates;
     int limit = 0;
     map<int, int> count;
 
@@ -149,12 +151,11 @@ public:
         }
 
         auto it = count.begin();
-        plates[it -> first].push(val);
-        if (plates[it -> first].size() >= limit) {
+        plates[it->first].push(val);
+        if (plates[it->first].size() >= limit) {
             count.erase(it);
-        }
-        else {
-            count[it -> first] += 1;
+        } else {
+            count[it->first] += 1;
         }
     }
 
@@ -165,7 +166,10 @@ public:
 
         int result = plates.back().top();
         plates.back().pop();
-        while (!plates.empty() and plates.back().empty()) {
+        while (!plates.empty() and
+        plates.back().empty()
+        )
+        {
             count.erase(plates.size() - 1);
             plates.pop_back();
         }
@@ -194,6 +198,7 @@ public:
         return result;
     }
 };
+
 /*
 * Your DinnerPlates object will be instantiated and called as such:
 * DinnerPlates* obj = new DinnerPlates(capacity);

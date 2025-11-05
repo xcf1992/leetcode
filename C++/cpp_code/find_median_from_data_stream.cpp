@@ -41,24 +41,29 @@ using namespace std;
 class MedianFinder {
 private:
     priority_queue<int> left;
-    priority_queue<int, vector<int>, greater<int>> right;
+    priority_queue<int, vector<int>, greater<int> > right;
+
 public:
     /* initialize your data structure here.*/
-    MedianFinder() {}
+    MedianFinder() {
+    }
 
     void addNum(int num) {
-        if (left.empty() or left.top() > num) {
+        if (left.empty() or
+        left.top() > num
+        )
+        {
             left.push(num);
         }
-        else {
+        else
+        {
             right.push(num);
         }
 
         if (left.size() > right.size() + 1) {
             right.push(left.top());
             left.pop();
-        }
-        else if (left.size() + 1 < right.size()) {
+        } else if (left.size() + 1 < right.size()) {
             left.push(right.top());
             right.pop();
         }

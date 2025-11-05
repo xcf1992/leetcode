@@ -44,7 +44,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+    vector<vector<int> > floodFill(vector<vector<int> > &image, int sr, int sc, int newColor) {
         int m = image.size();
         if (m == 0) {
             return {};
@@ -57,7 +57,7 @@ public:
         }
         image[sr][sc] = newColor;
 
-        queue<pair<int, int>> bfs;
+        queue<pair<int, int> > bfs;
         bfs.push({sr, sc});
 
         vector<int> rDiff({1, -1, 0, 0});
@@ -70,7 +70,12 @@ public:
             for (int i = 0; i < 4; i++) {
                 int nRow = row + rDiff[i];
                 int nCol = col + cDiff[i];
-                if (nRow >= 0 and nCol >= 0 and nRow < m and nCol < n and image[nRow][nCol] == color) {
+                if (nRow >= 0 and nCol
+                >=
+                0
+                and nRow<m and nCol < n and image[nRow][nCol] == color
+                )
+                {
                     image[nRow][nCol] = newColor;
                     bfs.push({nRow, nCol});
                 }
@@ -82,13 +87,21 @@ public:
 
 class Solution1 {
 private:
-    void fill(vector<vector<int>>& image, int sr, int sc, int oldColor) {
+    void fill(vector<vector<int> > &image, int sr, int sc, int oldColor) {
         int m = image.size();
         int n = image[0].size();
-        if (sr < 0 or sr >= m) {
+        if (sr < 0 or sr
+        >=
+        m
+        )
+        {
             return;
         }
-        if (sc < 0 or sc >= n) {
+        if (sc < 0 or sc
+        >=
+        n
+        )
+        {
             return;
         }
         if (image[sr][sc] != oldColor) {
@@ -103,8 +116,9 @@ private:
         fill(image, sr + 1, sc, oldColor);
         return;
     }
+
 public:
-    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+    vector<vector<int> > floodFill(vector<vector<int> > &image, int sr, int sc, int newColor) {
         fill(image, sr, sc, image[sr][sc]);
         for (int i = 0; i < image.size(); i++) {
             for (int j = 0; j < image[0].size(); j++) {

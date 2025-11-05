@@ -29,7 +29,7 @@ using namespace std;
 
 class Solution {
 private:
-    bool nondreasing(vector<int>& nums) {
+    bool nondreasing(vector<int> &nums) {
         for (int i = 1; i < nums.size(); i++) {
             if (nums[i] < nums[i - 1]) {
                 return false;
@@ -37,22 +37,24 @@ private:
         }
         return true;
     }
-public:
-    bool checkPossibility(vector<int>& nums) {
-        for (int i = 1; i < nums.size(); i++) if (nums[i] < nums[i - 1]) {
-            int temp = nums[i - 1];
-            nums[i - 1] = i - 2 >= 0 ? nums[i - 2] : nums[i];
-            if (nondreasing(nums)) {
-                return true;
-            }
 
-            nums[i - 1] = temp;
-            nums[i] = i + 1 < nums.size() ? nums[i + 1] : nums[i - 1];
-            if (nondreasing(nums)) {
-                return true;
+public:
+    bool checkPossibility(vector<int> &nums) {
+        for (int i = 1; i < nums.size(); i++)
+            if (nums[i] < nums[i - 1]) {
+                int temp = nums[i - 1];
+                nums[i - 1] = i - 2 >= 0 ? nums[i - 2] : nums[i];
+                if (nondreasing(nums)) {
+                    return true;
+                }
+
+                nums[i - 1] = temp;
+                nums[i] = i + 1 < nums.size() ? nums[i + 1] : nums[i - 1];
+                if (nondreasing(nums)) {
+                    return true;
+                }
+                return false;
             }
-            return false;
-        }
         return true;
     }
 };

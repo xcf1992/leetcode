@@ -96,7 +96,8 @@ public:
         char local[4];
         int curr = 0;
         while (int temp = read4(local)) {
-            if (curr + temp > n) { // for cases when input stream size is larger than n, we stop at position n
+            if (curr + temp > n) {
+                // for cases when input stream size is larger than n, we stop at position n
                 temp = n - curr;
             }
 

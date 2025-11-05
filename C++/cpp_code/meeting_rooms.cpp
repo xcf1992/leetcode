@@ -27,8 +27,8 @@ using namespace std;
 
 class Solution {
 public:
-    bool canAttendMeetings(vector<vector<int>>& intervals) {
-        sort(intervals.begin(), intervals.end(), [](vector<int>& a, vector<int>& b) {
+    bool canAttendMeetings(vector<vector<int> > &intervals) {
+        sort(intervals.begin(), intervals.end(), [](vector<int> &a, vector<int> &b) {
             return a[0] < b[0];
         });
 

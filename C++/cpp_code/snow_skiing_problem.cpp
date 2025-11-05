@@ -19,18 +19,18 @@ using namespace std;
 
 class Solution {
 public:
-    int getMaximumScore(unordered_map<char, int> scores, unordered_map<char, unordered_map<char, int>> edges) {
+    int getMaximumScore(unordered_map<char, int> scores, unordered_map<char, unordered_map<char, int> > edges) {
         int n = scores.size();
         unordered_map<char, int> inDegree;
         unordered_map<char, int> outDegree;
-        for (auto& it : scores) {
+        for (auto &it: scores) {
             inDegree[it.first] = 0;
             outDegree[it.first] = 0;
         }
 
-        for (auto& it : edges) {
+        for (auto &it: edges) {
             int start = it.first;
-            for (auto& to : it.second) {
+            for (auto &to: it.second) {
                 char dest = to.first;
                 int dis = to.second;
                 inDegree[dest] += 1;
@@ -39,7 +39,7 @@ public:
         }
 
         unordered_set<char> endPoints;
-        for (auto& it : outDegree) {
+        for (auto &it: outDegree) {
             if (it.second == 0) {
                 endPoints.insert(it.first);
             }
@@ -47,7 +47,7 @@ public:
 
         vector<char> bfs;
         unordered_map<char, int> result;
-        for (auto& it : inDegree) {
+        for (auto &it: inDegree) {
             if (it.second == 0) {
                 bfs.push_back(it.first);
                 result[it.first] = scores[it.first];
@@ -60,10 +60,14 @@ public:
                 int cur = bfs.front();
                 bfs.pop_back();
 
-                for (auto& it : edges[cur]) {
+                for (auto &it: edges[cur]) {
                     char nextP = it.first;
                     int dis = it.second;
-                    if (result.find(nextP) == result.end() or result[nextP] < scores[cur] + scores[nextP] - dis) {
+                    if (result.find(nextP) == result.end() or result[nextP]
+                    <
+                    scores[cur] + scores[nextP] - dis
+                    )
+                    {
                         result[nextP] = scores[cur] + scores[nextP] - dis;
                     }
 
@@ -76,7 +80,7 @@ public:
         }
 
         int maxScore = INT_MIN;
-        for (char c : endPoints) {
+        for (char c: endPoints) {
             if (endPoints.find(c) == endPoints.end()) {
                 continue;
             }

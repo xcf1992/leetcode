@@ -52,15 +52,18 @@ using namespace std;
 
 class Solution {
 public:
-    int findLucky(vector<int>& arr) {
+    int findLucky(vector<int> &arr) {
         unordered_map<int, int> freq;
-        for (int num : arr) {
+        for (int num: arr) {
             freq[num] += 1;
         }
 
         int result = INT_MIN;
-        for (auto& it : freq) {
-            if (it.first == it.second and it.first > result) {
+        for (auto &it: freq) {
+            if (it.first == it.second and
+            it.first > result
+            )
+            {
                 result = it.first;
             }
         }

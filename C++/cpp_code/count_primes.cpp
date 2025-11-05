@@ -29,16 +29,18 @@ public:
         }
 
         vector<bool> isPrime(n, true);
-        for (int i = 3; i <= sqrt(n) + 1; i += 2) if (isPrime[i]) {
-            for (int j = i * i; j < n; j += i) {
-                isPrime[j] = false;
+        for (int i = 3; i <= sqrt(n) + 1; i += 2)
+            if (isPrime[i]) {
+                for (int j = i * i; j < n; j += i) {
+                    isPrime[j] = false;
+                }
             }
-        }
 
         int result = 1;
-        for (int i = 3; i < n; i += 2) if (isPrime[i]) {
-            result += 1;
-        }
+        for (int i = 3; i < n; i += 2)
+            if (isPrime[i]) {
+                result += 1;
+            }
         return result;
     }
 };

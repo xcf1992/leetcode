@@ -41,8 +41,10 @@ private:
     int n = 0;
     vector<int> diff = {0, 1, 0, -1, 0};
 
-    void dfs(vector<vector<char>>& grid, int row, int col) {
-        if (row < 0 or col < 0 or row >= m or col >= n or grid[row][col] != '1') {
+    void dfs(vector<vector<char> > &grid, int row, int col) {
+        if (row < 0 or col<0 or row >= m or col >= n or grid[row][col] != '1'
+        )
+        {
             return;
         }
 
@@ -51,8 +53,9 @@ private:
             dfs(grid, row + diff[i], col + diff[i - 1]);
         }
     }
+
 public:
-    int numIslands(vector<vector<char>>& grid) {
+    int numIslands(vector<vector<char> > &grid) {
         m = grid.size();
         if (m == 0) {
             return 0;

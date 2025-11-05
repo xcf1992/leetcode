@@ -37,44 +37,47 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> closestKValues(TreeNode* root, double target, int k) {
-        stack<TreeNode*> larger;
-        stack<TreeNode*> smaller;
-        TreeNode* cur = root;
+    vector<int> closestKValues(TreeNode *root, double target, int k) {
+        stack<TreeNode *> larger;
+        stack<TreeNode *> smaller;
+        TreeNode *cur = root;
         while (cur != nullptr) {
-            if (cur -> val > target) {
+            if (cur->val > target) {
                 larger.push(cur);
-                cur = cur -> left;
-            }
-            else {
+                cur = cur->left;
+            } else {
                 smaller.push(cur);
-                cur = cur -> right;
+                cur = cur->right;
             }
         }
 
         vector<int> closet;
         while (closet.size() < k) {
             // update left parents stack to have the next closest node on top
-            if (larger.empty() or (!smaller.empty() and larger.top() -> val - target > target - smaller.top() -> val)) {
+            if (larger.empty() or(!smaller.empty() and larger.top()->val - target > target - smaller.top()->val)
+            )
+            {
                 cur = smaller.top();
                 smaller.pop();
-                closet.push_back(cur -> val);
+                closet.push_back(cur->val);
 
-                cur = cur -> left;
+                cur = cur->left;
                 while (cur != nullptr) {
                     smaller.push(cur);
-                    cur = cur -> right;
+                    cur = cur->right;
                 }
             }
-            else { // update right parents stack to have the next closest node on top
+            else
+            {
+                // update right parents stack to have the next closest node on top
                 cur = larger.top();
                 larger.pop();
-                closet.push_back(cur -> val);
+                closet.push_back(cur->val);
 
-                cur = cur -> right;
+                cur = cur->right;
                 while (cur != nullptr) {
                     larger.push(cur);
-                    cur = cur -> left;
+                    cur = cur->left;
                 }
             }
         }
@@ -82,29 +85,30 @@ public:
     }
 };
 
-class Solution1 { // O(n) solution, easier to understand
+class Solution1 {
+    // O(n) solution, easier to understand
 private:
-    void find(TreeNode* root, double target, int k, deque<int>& result) {
+    void find(TreeNode *root, double target, int k, deque<int> &result) {
         if (root == nullptr) {
             return;
         }
 
-        find(root -> left, target, k, result);
+        find(root->left, target, k, result);
 
-        result.push_back(root -> val);
+        result.push_back(root->val);
         if (result.size() > k) {
             if (abs(result.front() - target) > abs(result.back() - target)) {
                 result.pop_front();
-            }
-            else {
+            } else {
                 result.pop_back();
             }
         }
 
-        find(root -> right, target, k, result);
+        find(root->right, target, k, result);
     }
+
 public:
-    vector<int> closestKValues(TreeNode* root, double target, int k) {
+    vector<int> closestKValues(TreeNode *root, double target, int k) {
         deque<int> result;
         find(root, target, k, result);
         return vector<int>(result.begin(), result.end());

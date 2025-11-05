@@ -71,7 +71,7 @@ Space O(1)
 */
 class Solution {
 public:
-    int getWinner(vector<int>& A, int k) {
+    int getWinner(vector<int> &A, int k) {
         int cur = A[0];
         int win = 0;
         for (int i = 1; i < A.size(); ++i) {

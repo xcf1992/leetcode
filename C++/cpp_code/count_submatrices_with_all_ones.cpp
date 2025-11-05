@@ -67,19 +67,22 @@ private:
     int m = 0;
     int n = 0;
 
-    int check(vector<int>& height) {
+    int check(vector<int> &height) {
         vector<int> count(n, 0);
         vector<int> stk;
         for (int i = 0; i < n; ++i) {
-            while (!stk.empty() and height[stk.back()] >= height[i]) {
+            while (!stk.empty() and height[stk.back()]
+            >=
+            height[i]
+            )
+            {
                 stk.pop_back();
             }
 
             if (!stk.empty()) {
                 int pre = stk.back();
                 count[i] = count[pre] + height[i] * (i - pre);
-            }
-            else {
+            } else {
                 count[i] = height[i] * (i + 1);
             }
 
@@ -87,13 +90,14 @@ private:
         }
 
         int sum = 0;
-        for (int c : count) {
+        for (int c: count) {
             sum += c;
         }
         return sum;
     }
+
 public:
-    int numSubmat(vector<vector<int>>& mat) {
+    int numSubmat(vector<vector<int> > &mat) {
         m = mat.size();
         n = mat[0].size();
         vector<int> height(n, 0);

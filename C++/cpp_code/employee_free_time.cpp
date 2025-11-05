@@ -44,61 +44,69 @@ using namespace std;
 struct Interval {
     int start;
     int end;
-    Interval() : start(0), end(0) {}
-    Interval(int s, int e) : start(s), end(e) {}
+
+    Interval() : start(0), end(0) {
+    }
+
+    Interval(int s, int e) : start(s), end(e) {
+    }
 };
 
 class Solution {
 public:
-    vector<Interval*> employeeFreeTime(vector<vector<Interval*>>& schedules) {
+    vector<Interval *> employeeFreeTime(vector<vector<Interval *> > &schedules) {
         map<int, int> timeline;
-        for (auto& schedule : schedules) {
-            for (Interval* interval : schedule) {
-                timeline[interval -> start] += 1;
-                timeline[interval -> end] -= 1;
+        for (auto &schedule: schedules) {
+            for (Interval *interval: schedule) {
+                timeline[interval->start] += 1;
+                timeline[interval->end] -= 1;
             }
         }
 
-        vector<Interval*> result;
+        vector<Interval *> result;
         int workers = 0;
-        for (pair<int, int> busy : timeline) {
+        for (pair<int, int> busy: timeline) {
             workers += busy.second;
             if (workers == 0) {
                 result.push_back(new Interval(busy.first, 0));
-            }
-            else if (!result.empty() and result.back() -> end == 0) {
-                result.back() -> end = busy.first;
+            } else if (!result.empty() and
+            result.back()->end == 0
+            )
+            {
+                result.back()->end = busy.first;
             }
         }
 
-        if (result.back() -> end == 0) {
+        if (result.back()->end == 0) {
             result.pop_back();
         }
         return result;
     }
 };
 
-class Solution1 { //5.27%
+class Solution1 {
+    //5.27%
 public:
-    vector<Interval*> employeeFreeTime(vector<vector<Interval*>>& schedules) {
-        vector<Interval*> intervals;
-        for (vector<Interval*> schedule : schedules) {
-            for (Interval* it : schedule) {
+    vector<Interval *> employeeFreeTime(vector<vector<Interval *> > &schedules) {
+        vector<Interval *> intervals;
+        for (vector<Interval *> schedule: schedules) {
+            for (Interval *it: schedule) {
                 intervals.push_back(it);
             }
         }
 
-        sort(intervals.begin(), intervals.end(), [](Interval* a, Interval* b) {
-            return a -> start < b -> start or (a -> start == b -> start and a -> end < b -> end);
+        sort(intervals.begin(), intervals.end(), [](Interval *a, Interval *b) {
+            return a->start < b->start
+            or(a->start == b->start and a->end < b->end);
         });
 
-        vector<Interval*> result;
-        int end = intervals[0] -> end;
+        vector<Interval *> result;
+        int end = intervals[0]->end;
         for (int i = 1; i < intervals.size(); ++i) {
-            if (intervals[i] -> start > end) {
-                result.push_back(new Interval(end, intervals[i] -> start));
+            if (intervals[i]->start > end) {
+                result.push_back(new Interval(end, intervals[i]->start));
             }
-            end = max(end, intervals[i] -> end);
+            end = max(end, intervals[i]->end);
         }
         return result;
     }

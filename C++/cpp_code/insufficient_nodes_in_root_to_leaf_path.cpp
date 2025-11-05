@@ -67,28 +67,33 @@ using namespace std;
 
 class Solution {
 private:
-    bool isSufficient(TreeNode* root, int sum, int limit) {
+    bool isSufficient(TreeNode *root, int sum, int limit) {
         if (root == nullptr) {
             return false;
         }
 
-        sum += root -> val;
-        if (root -> left == nullptr and root -> right == nullptr) {
+        sum += root->val;
+        if (root->left == nullptr and
+        root->right == nullptr
+        )
+        {
             return sum >= limit;
         }
 
-        bool leftSufficient = isSufficient(root -> left, sum, limit);
+        bool leftSufficient = isSufficient(root->left, sum, limit);
         if (!leftSufficient) {
-            root -> left = nullptr;
+            root->left = nullptr;
         }
-        bool rightSufficient = isSufficient(root -> right, sum, limit);
+        bool rightSufficient = isSufficient(root->right, sum, limit);
         if (!rightSufficient) {
-            root -> right = nullptr;
+            root->right = nullptr;
         }
-        return leftSufficient or rightSufficient;
+        return leftSufficient
+        or rightSufficient;
     }
+
 public:
-    TreeNode* sufficientSubset(TreeNode *root, int limit) {
+    TreeNode *sufficientSubset(TreeNode *root, int limit) {
         return isSufficient(root, 0, limit) ? root : nullptr;
     }
 };

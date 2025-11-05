@@ -36,8 +36,7 @@ public:
             result[i] = current;
             if (current * 10 <= n) {
                 current *= 10;
-            }
-            else {
+            } else {
                 if (current == n) {
                     current /= 10;
                 }

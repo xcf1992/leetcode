@@ -59,7 +59,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> decrypt(vector<int>& code, int k) {
+    vector<int> decrypt(vector<int> &code, int k) {
         int N = code.size();
         vector<int> Sum(code), ans(N, 0);
         if (k == 0) {
@@ -74,8 +74,7 @@ public:
             int end = (i + N + (k > 0 ? k : -1)) % N;
             if (start < end) {
                 ans[i] = Sum[end] - Sum[start];
-            }
-            else {
+            } else {
                 ans[i] = Sum[end] + (Sum[N - 1] - Sum[start]);
             }
         }

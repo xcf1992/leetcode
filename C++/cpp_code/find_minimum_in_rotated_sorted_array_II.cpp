@@ -43,22 +43,26 @@ To fix this:
 */
 class Solution {
 public:
-    int findMin(vector<int>& num) {
+    int findMin(vector<int> &num) {
         int left = 0;
         int right = num.size() - 1;
         while (left < right) {
             int mid = left + (right - left) / 2;
             if (num[mid] > num[right]) {
                 left = mid + 1;
-            }
-            else if (num[mid] < num[right]) {
+            } else if (num[mid] < num[right]) {
                 right = mid;
-            }
-            else { // when num[mid] and num[hi] are same, fixed
-                if (right != 0 and num[right] >= num[right - 1]) {
+            } else {
+                // when num[mid] and num[hi] are same, fixed
+                if (right != 0 and num[right]
+                >=
+                num[right - 1]
+                )
+                {
                     right -= 1;
                 }
-                else {
+                else
+                {
                     return num[right];
                 }
             }

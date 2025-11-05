@@ -44,13 +44,13 @@ using namespace std;
 
 class Solution {
 public:
-    int maxProfitAssignment(vector<int>& difficulty, vector<int>& profit, vector<int>& worker) {
-        vector<pair<int, int>> jobs;
+    int maxProfitAssignment(vector<int> &difficulty, vector<int> &profit, vector<int> &worker) {
+        vector<pair<int, int> > jobs;
         for (int i = 0; i < difficulty.size(); i++) {
             jobs.push_back({difficulty[i], profit[i]});
         }
 
-        sort(jobs.begin(), jobs.end(), [](pair<int, int>& a, pair<int, int>& b) {
+        sort(jobs.begin(), jobs.end(), [](pair<int, int> &a, pair<int, int> &b) {
             return a.first < b.first;
         });
         sort(worker.begin(), worker.end());
@@ -58,8 +58,12 @@ public:
         int i = 0;
         int maxProfit = 0;
         int result = 0;
-        for (int ability : worker) {
-            while (i < jobs.size() and jobs[i].first <= ability) {
+        for (int ability: worker) {
+            while (i < jobs.size() and jobs[i]
+            .
+            first <= ability
+            )
+            {
                 maxProfit = max(maxProfit, jobs[i].second);
                 i++;
             }

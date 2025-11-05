@@ -59,13 +59,14 @@ private:
     vector<int> diff{0, 1, 0, -1, 0};
     int m = 0;
     int n = 0;
+
 public:
-    vector<vector<int>> highestPeak(vector<vector<int>>& isWater) {
+    vector<vector<int> > highestPeak(vector<vector<int> > &isWater) {
         m = isWater.size();
         n = isWater[0].size();
 
-        vector<vector<int>> result(m, vector<int>(n, -1));
-        queue<vector<int>> bfs;
+        vector<vector<int> > result(m, vector<int>(n, -1));
+        queue<vector<int> > bfs;
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
                 if (isWater[i][j] == 1) {

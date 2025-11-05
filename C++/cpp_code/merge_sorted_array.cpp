@@ -31,16 +31,19 @@ using namespace std;
 
 class Solution {
 public:
-    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+    void merge(vector<int> &nums1, int m, vector<int> &nums2, int n) {
         int aP = m - 1;
         int bP = n - 1;
         int cur = m + n - 1;
-        while (aP >= 0 and bP >= 0) {
+        while (aP >= 0 and bP
+        >=
+        0
+        )
+        {
             if (nums2[bP] > nums1[aP]) {
                 nums1[cur] = nums2[bP];
                 bP--;
-            }
-            else {
+            } else {
                 nums1[cur] = nums1[aP];
                 aP--;
             }

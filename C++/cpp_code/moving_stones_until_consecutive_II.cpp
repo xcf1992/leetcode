@@ -124,22 +124,27 @@ For case 1,2,3,4,10,
 */
 class Solution {
 public:
-    vector<int> numMovesStonesII(vector<int>& stones) {
+    vector<int> numMovesStonesII(vector<int> &stones) {
         sort(stones.begin(), stones.end());
 
         int n = stones.size();
         int minMove = n;
         int i = 0;
         for (int j = 0; j < n; ++j) {
-            while (stones[j] - stones[i] + 1 > n) { // this is not valid as the window size is larger than n
+            while (stones[j] - stones[i] + 1 > n) {
+                // this is not valid as the window size is larger than n
                 i += 1;
             }
 
             // j - i + 1 is the number of stones already in this interval
-            if (j - i + 1 == n - 1 and stones[j] - stones[i] + 1 == n - 1) {
+            if (j - i + 1 == n - 1 and stones[j]
+            -stones[i] + 1 == n - 1
+            )
+            {
                 minMove = min(minMove, 2);
             }
-            else {
+            else
+            {
                 minMove = min(minMove, n - (j - i + 1));
             }
         }

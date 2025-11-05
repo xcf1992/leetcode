@@ -55,32 +55,39 @@ using namespace std;
 
 class Solution {
 private:
-    void traverse(TreeNode* root, vector<int>& result) {
+    void traverse(TreeNode *root, vector<int> &result) {
         if (root == nullptr) {
             return;
         }
 
-        if (root -> left == nullptr and root -> right == nullptr) {
+        if (root->left == nullptr and
+        root->right == nullptr
+        )
+        {
             return;
         }
 
-        if (root -> left != nullptr and root -> right != nullptr) {
-            traverse(root -> left, result);
-            traverse(root -> right, result);
+        if (root->left != nullptr and
+        root->right != nullptr
+        )
+        {
+            traverse(root->left, result);
+            traverse(root->right, result);
             return;
         }
 
-        if (root -> left != nullptr) {
-            result.push_back(root -> left -> val);
+        if (root->left != nullptr) {
+            result.push_back(root->left->val);
         }
-        if (root -> right != nullptr) {
-            result.push_back(root -> right -> val);
+        if (root->right != nullptr) {
+            result.push_back(root->right->val);
         }
-        traverse(root -> left, result);
-        traverse(root -> right, result);
+        traverse(root->left, result);
+        traverse(root->right, result);
     }
+
 public:
-    vector<int> getLonelyNodes(TreeNode* root) {
+    vector<int> getLonelyNodes(TreeNode *root) {
         vector<int> result;
         traverse(root, result);
         return result;

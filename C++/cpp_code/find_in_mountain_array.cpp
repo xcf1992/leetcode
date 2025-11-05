@@ -57,8 +57,10 @@ using namespace std;
 class MountainArray {
 public:
     int get(int index);
+
     int length();
 };
+
 /*
 Intuition
 Triple Binary Search, Triple Happiness.
@@ -94,8 +96,7 @@ public:
             if (mountainArr.get(mid) < mountainArr.get(mid + 1)) {
                 left = mid + 1;
                 peak = left;
-            }
-            else {
+            } else {
                 right = mid;
             }
         }
@@ -110,8 +111,7 @@ public:
             }
             if (mountainArr.get(mid) < target) {
                 left = mid + 1;
-            }
-            else {
+            } else {
                 right = mid - 1;
             }
         }
@@ -126,8 +126,7 @@ public:
             }
             if (mountainArr.get(mid) < target) {
                 right = mid - 1;
-            }
-            else {
+            } else {
                 left = mid + 1;
             }
         }

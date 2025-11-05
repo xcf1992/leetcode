@@ -42,8 +42,9 @@ private:
     int gcd(int a, int b) {
         return b == 0 ? a : gcd(b, a % b);
     }
+
 public:
-    int maxPoints(vector<vector<int>>& points) {
+    int maxPoints(vector<vector<int> > &points) {
         int n = points.size();
         if (n <= 2) {
             return n;
@@ -57,7 +58,11 @@ public:
 
             for (int j = i + 1; j < n; j++) {
                 double slope = 0.0;
-                if (points[i][0] == points[j][0] and points[i][1] == points[j][1]) {
+                if (points[i][0] == points[j][0] and points[i][1]
+                ==
+                points[j][1]
+                )
+                {
                     same++;
                     continue;
                 }
@@ -73,7 +78,7 @@ public:
 
             result = max(result, vertical + same);
             for (auto it = count.begin(); it != count.end(); it++) {
-                result = max(result, it -> second + same);
+                result = max(result, it->second + same);
             }
         }
         return result;
@@ -86,7 +91,7 @@ cause two points are too close, thus the slope cannot be differentiated under c+
 */
 class Solution1 {
 public:
-    int maxPoints(vector<vector<int>>& points) {
+    int maxPoints(vector<vector<int> > &points) {
         int n = points.size();
         if (n <= 2) {
             return n;
@@ -100,7 +105,11 @@ public:
 
             for (int j = i + 1; j < n; j++) {
                 double slope = 0.0;
-                if (points[i][0] == points[j][0] and points[i][1] == points[j][1]) {
+                if (points[i][0] == points[j][0] and points[i][1]
+                ==
+                points[j][1]
+                )
+                {
                     same++;
                     continue;
                 }
@@ -113,7 +122,7 @@ public:
             }
             result = max(result, vertical + same);
             for (auto it = count.begin(); it != count.end(); it++) {
-                result = max(result, it -> second + same);
+                result = max(result, it->second + same);
             }
         }
         return result;

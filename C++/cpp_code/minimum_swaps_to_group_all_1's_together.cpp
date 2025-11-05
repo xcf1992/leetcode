@@ -46,9 +46,9 @@ using namespace std;
 
 class Solution {
 public:
-    int minSwaps(vector<int>& data) {
+    int minSwaps(vector<int> &data) {
         int count = 0;
-        for (int d : data) {
+        for (int d: data) {
             count += d;
         }
         if (count <= 1) {

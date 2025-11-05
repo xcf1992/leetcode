@@ -29,14 +29,15 @@ Input: sum("ap"), Output: 5
 using namespace std;
 
 struct TrieNode {
-    vector<TrieNode*> child = vector<TrieNode*>(26, nullptr);
+    vector<TrieNode *> child = vector<TrieNode *>(26, nullptr);
     int sum = 0;
 };
 
 class MapSum {
 private:
-    TrieNode* root;
+    TrieNode *root;
     unordered_map<string, int> pairs;
+
 public:
     /* Initialize your data structure here.*/
     MapSum() {
@@ -44,28 +45,29 @@ public:
     }
 
     void insert(string key, int val) {
-        TrieNode* cur = root;
+        TrieNode *cur = root;
         for (int i = 0; i < key.size(); i++) {
-            if (cur -> child[key[i] - 'a'] == nullptr) {
-                cur -> child[key[i] - 'a'] = new TrieNode();
+            if (cur->child[key[i] - 'a'] == nullptr) {
+                cur->child[key[i] - 'a'] = new TrieNode();
             }
-            cur = cur -> child[key[i] - 'a'];
-            cur -> sum += val - pairs[key];
+            cur = cur->child[key[i] - 'a'];
+            cur->sum += val - pairs[key];
         }
         pairs[key] = val;
     }
 
     int sum(string prefix) {
-        TrieNode* cur = root;
+        TrieNode *cur = root;
         for (int i = 0; i < prefix.size(); i++) {
             if (cur == nullptr) {
                 break;
             }
-            cur = cur -> child[prefix[i] - 'a'];
+            cur = cur->child[prefix[i] - 'a'];
         }
-        return cur == nullptr ? 0 : cur -> sum;
+        return cur == nullptr ? 0 : cur->sum;
     }
 };
+
 /*
 * Your MapSum object will be instantiated and called as such:
 * MapSum obj = new MapSum();

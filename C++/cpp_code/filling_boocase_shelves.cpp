@@ -57,9 +57,10 @@ using namespace std;
 第j+1到第i+1本书组成一层。
 对于这些选择，取最小值。
 */
-class Solution { // dp
+class Solution {
+    // dp
 public:
-    int minHeightShelves(vector<vector<int>>& books, int shelf_width) {
+    int minHeightShelves(vector<vector<int> > &books, int shelf_width) {
         int n = books.size();
         vector<int> dp(n + 1, 1000 * 1000);
         dp[0] = 0;
@@ -81,12 +82,13 @@ public:
     }
 };
 
-class Solution1 { // dfs with memo
+class Solution1 {
+    // dfs with memo
 private:
     unordered_map<int, int> memo; // memo[i] means the min height needed to store books from i ~ n - 1
     int n = 0;
 
-    int dfs(vector<vector<int>>& books, int index, int shelf_width) {
+    int dfs(vector<vector<int> > &books, int index, int shelf_width) {
         if (index == n) {
             return 0;
         }
@@ -108,8 +110,9 @@ private:
         }
         return memo[index];
     }
+
 public:
-    int minHeightShelves(vector<vector<int>>& books, int shelf_width) {
+    int minHeightShelves(vector<vector<int> > &books, int shelf_width) {
         n = books.size();
         return dfs(books, 0, shelf_width);
     }

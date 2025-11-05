@@ -40,6 +40,7 @@ class Solution {
 private:
     long B = 29;
     long MOD = 1e9 + 7;
+
 public:
     string shortestPalindrome(string s) {
         int n = s.size();
@@ -74,7 +75,7 @@ public:
         string s2 = s;
         reverse(s2.begin(), s2.end());
         int n = s.size();
-        for (int l = n; l >= 0; l--){
+        for (int l = n; l >= 0; l--) {
             if (s.substr(0, l) == s2.substr(n - l))
                 return s2.substr(0, n - l) + s;
         }

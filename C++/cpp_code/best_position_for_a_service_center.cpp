@@ -70,20 +70,20 @@ Continue this process, dividing the grid size (delta) by 10 till it's smaller th
 */
 class Solution {
 public:
-    double getMinDistSum(vector<vector<int>>& pos) {
+    double getMinDistSum(vector<vector<int> > &pos) {
         double left = 100, bottom = 100, right = 0, top = 0;
-        for (auto &p : pos) {
-            left = min(left, (double)p[0]);
-            bottom = min(bottom, (double)p[1]);
-            right = max(right, (double)p[0]);
-            top = max(top, (double)p[1]);
+        for (auto &p: pos) {
+            left = min(left, (double) p[0]);
+            bottom = min(bottom, (double) p[1]);
+            right = max(right, (double) p[0]);
+            top = max(top, (double) p[1]);
         }
         double res = DBL_MAX, res_x = 0, res_y = 0;
         for (double delta = 10; delta >= 0.00001; delta /= 10) {
             for (double x = left; x <= right; x += delta) {
                 for (double y = bottom; y <= top; y += delta) {
                     double d = 0;
-                    for (auto &p : pos)
+                    for (auto &p: pos)
                         d += sqrt((p[0] - x) * (p[0] - x) + (p[1] - y) * (p[1] - y));
                     if (res > d) {
                         res = d;

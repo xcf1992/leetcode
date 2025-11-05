@@ -74,21 +74,22 @@ private:
         result.push_back(web);
         return result;
     }
+
 public:
-    vector<string> mostVisitedPattern(vector<string>& username, vector<int>& timestamp, vector<string>& website) {
-        unordered_map<string, vector<pair<int, string>>> visit;
+    vector<string> mostVisitedPattern(vector<string> &username, vector<int> &timestamp, vector<string> &website) {
+        unordered_map<string, vector<pair<int, string> > > visit;
         for (int i = 0; i < username.size(); ++i) {
             visit[username[i]].push_back({timestamp[i], website[i]});
         }
 
         unordered_map<string, int> count;
-        for (auto& it : visit) {
-            vector<pair<int, string>> timeWeb = it.second;
+        for (auto &it: visit) {
+            vector<pair<int, string> > timeWeb = it.second;
             if (timeWeb.size() < 3) {
                 continue;
             }
 
-            sort(timeWeb.begin(), timeWeb.end(), [](pair<int, string>& a, pair<int, string>& b) {
+            sort(timeWeb.begin(), timeWeb.end(), [](pair<int, string> &a, pair<int, string> &b) {
                 return a.first < b.first;
             });
             int n = timeWeb.size();
@@ -100,21 +101,23 @@ public:
                     }
                 }
             }
-            for (string pattern : webPattern) {
+            for (string pattern: webPattern) {
                 count[pattern] += 1;
             }
         }
 
         vector<string> result;
         int maxVisit = 0;
-        for (auto& it : count) {
+        for (auto &it: count) {
             if (it.second > maxVisit) {
                 maxVisit = it.second;
                 result = splitWeb(it.first);
-            }
-            else if (it.second == maxVisit) {
+            } else if (it.second == maxVisit) {
                 vector<string> cur = splitWeb(it.first);
-                if (result[0] > cur[0] or (result[0] == cur[0] and result[1] > cur[1]) or (result[0] == cur[0] and result[1] == cur[1] and result[2] > cur[2])) {
+                if (result[0] > cur[0] or(result[0] == cur[0] and result[1] > cur[1])
+                or(result[0] == cur[0] and result[1] == cur[1] and result[2] > cur[2])
+                )
+                {
                     result = cur;
                 }
             }

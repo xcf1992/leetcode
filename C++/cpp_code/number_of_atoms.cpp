@@ -70,7 +70,7 @@ using namespace std;
 
 class Solution {
 private:
-    map<string, int> count(string formula, int& start) {
+    map<string, int> count(string formula, int &start) {
         map<string, int> atoms;
         if (start >= formula.size()) {
             return atoms;
@@ -89,7 +89,9 @@ private:
 
                 int num = 1;
                 int end = start;
-                while (end < formula.size() and isdigit(formula[end])) {
+                while (end < formula.size() and isdigit(formula[end])
+                )
+                {
                     end += 1;
                 }
                 if (end != start) {
@@ -97,19 +99,36 @@ private:
                 }
 
                 for (auto it = subAtoms.begin(); it != subAtoms.end(); it++) {
-                    atoms[it -> first] += (it -> second) * num;
+                    atoms[it->first] += (it->second) * num;
                 }
                 start = end;
-            }
-            else if (letter >= 'A' and letter <= 'Z') {
+            } else if (letter >= 'A' and letter
+            <=
+            'Z'
+            )
+            {
                 int end = start + 1;
-                while (end < formula.size() and formula[end] >= 'a' and formula[end] <= 'z') {
+                while (end < formula.size() and formula[end]
+                >=
+                'a'
+                and formula[end]
+                <=
+                'z'
+                )
+                {
                     end += 1;
                 }
                 string atom = formula.substr(start, end - start);
 
                 start = end;
-                while (end < formula.size() and formula[end] >= '0' and formula[end] <= '9') {
+                while (end < formula.size() and formula[end]
+                >=
+                '0'
+                and formula[end]
+                <=
+                '9'
+                )
+                {
                     end += 1;
                 }
                 atoms[atom] += end == start ? 1 : stoi(formula.substr(start, end - start));
@@ -119,12 +138,13 @@ private:
         }
         return atoms;
     }
+
 public:
     string countOfAtoms(string formula) {
         string result = "";
         int start = 0;
         map<string, int> atomNum = count(formula, start);
-        for (auto& it : atomNum) {
+        for (auto &it: atomNum) {
             result += it.first;
             if (it.second > 1) {
                 result += to_string(it.second);

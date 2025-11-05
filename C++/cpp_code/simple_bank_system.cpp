@@ -70,8 +70,9 @@ private:
         }
         return true;
     }
+
 public:
-    Bank(vector<long long>& balance) {
+    Bank(vector<long long> &balance) {
         balance_.clear();
         balance_.assign(balance.begin(), balance.end());
         cnt_ = balance_.size();

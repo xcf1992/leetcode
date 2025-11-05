@@ -37,7 +37,7 @@ using namespace std;
 
 class Solution {
 public:
-    int minCostII(vector<vector<int>>& costs) {
+    int minCostII(vector<vector<int> > &costs) {
         int n = costs.size();
         if (n == 0) {
             return 0;
@@ -48,15 +48,14 @@ public:
         int least = INT_MAX;
         int lstIndex = -1;
         int less = INT_MAX;
-        int lesIndex = - 1;
+        int lesIndex = -1;
         for (int i = 0; i < k; i++) {
             if (minCost[i] < least) {
                 less = least;
                 least = minCost[i];
                 lesIndex = least;
                 lstIndex = i;
-            }
-            else if (minCost[i] < less) {
+            } else if (minCost[i] < less) {
                 less = minCost[i];
                 lesIndex = i;
             }
@@ -70,8 +69,7 @@ public:
             for (int k = 0; k < minCost.size(); k++) {
                 if (k != lstIndex) {
                     minCost[k] = least + costs[i][k];
-                }
-                else {
+                } else {
                     minCost[k] = less + costs[i][k];
                 }
 
@@ -80,8 +78,7 @@ public:
                     curLst = minCost[k];
                     curLesIndex = curLstIndex;
                     curLstIndex = k;
-                }
-                else if (curLes > minCost[k]) {
+                } else if (curLes > minCost[k]) {
                     curLes = minCost[k];
                     curLesIndex = k;
                 }

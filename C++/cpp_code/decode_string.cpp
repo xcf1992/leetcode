@@ -34,13 +34,16 @@ using namespace std;
 
 class Solution {
 private:
-    string decode(string& s, int& i) {
+    string decode(string &s, int &i) {
         string result = "";
-        while (i < s.size() and s[i] != ']') {
+        while (i < s.size() and s[i]
+        !=
+        ']'
+        )
+        {
             if (isalpha(s[i])) {
                 result.push_back(s[i]);
-            }
-            else {
+            } else {
                 int numStart = i;
                 while (isdigit(s[i])) {
                     i++;
@@ -56,6 +59,7 @@ private:
         }
         return result;
     }
+
 public:
     string decodeString(string s) {
         int i = 0;

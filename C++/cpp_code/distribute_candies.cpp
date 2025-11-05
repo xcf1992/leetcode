@@ -39,7 +39,7 @@ using namespace std;
 
 class Solution {
 public:
-    int distributeCandies(vector<int>& candies) {
+    int distributeCandies(vector<int> &candies) {
         unordered_set<int> different_candy(candies.begin(), candies.end());
         return min(candies.size() / 2, different_candy.size());
     }

@@ -56,18 +56,18 @@ so it didn't matter that we chose the rabbits to be grouped by color or not when
 */
 class Solution {
 public:
-    int numRabbits(vector<int>& answers) {
+    int numRabbits(vector<int> &answers) {
         if (answers.empty()) {
             return 0;
         }
 
         unordered_map<double, double> counts;
-        for (int ans : answers) {
+        for (int ans: answers) {
             counts[ans + 1] += 1;
         }
 
         int result = 0;
-        for (pair<double, double> count : counts) {
+        for (pair<double, double> count: counts) {
             result += ceil(count.second / count.first) * count.first;
         }
         return result;

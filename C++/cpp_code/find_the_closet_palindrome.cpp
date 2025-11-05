@@ -50,6 +50,7 @@ private:
         }
         return s;
     }
+
 public:
     string nearestPalindromic(string n) {
         if (n == "0") {
@@ -62,14 +63,18 @@ public:
         long long resVal = stoll(result);
         long long diff = abs(resVal - orgVal);
 
-        long long scale = (long long)pow(10, n.size() / 2);
+        long long scale = (long long) pow(10, n.size() / 2);
         // candidate #2 (ex: 123xx -> 12221, 123xxx -> 122221, 100xx -> 9999)
         string smaller = makePalindromic(to_string((orgVal / scale) * scale - 1));
         // candidate #3 (ex: 123xx -> 12421, 123xxx -> 124421, 99xx -> 10001)
         string bigger = makePalindromic(to_string((orgVal / scale) * scale + scale));
 
         long long smallerVal = stoll(smaller);
-        if (diff == 0 or abs(orgVal - smallerVal) <= diff) {
+        if (diff == 0 or abs(orgVal - smallerVal)
+        <=
+        diff
+        )
+        {
             result = smaller;
             diff = abs(orgVal - smallerVal);
         }
@@ -87,13 +92,14 @@ class Solution1 {
 private:
     long long getNum(string n) {
         long long result = 0;
-        for (char c : n) {
+        for (char c: n) {
             result = result * 10 + (c - '0');
         }
         return result;
     }
 
-    char getClosetPalindrome(string num, string original, int len) { // make sure we get the smaller and closet number, test case 1938013391, 1938943391, "12389"
+    char getClosetPalindrome(string num, string original, int len) {
+        // make sure we get the smaller and closet number, test case 1938013391, 1938943391, "12389"
         long long num1;
         long long num2;
         string n1 = num;
@@ -107,8 +113,7 @@ private:
                 n2[i] = '9';
             }
             num2 = getNum(n2);
-        }
-        else {
+        } else {
             for (int i = 0; i < len; i++) {
                 n1[i] = num[0];
             }
@@ -124,9 +129,11 @@ private:
         }
         return n1[0];
     }
+
 public:
     string nearestPalindromic(string n) {
-        if (n.size() == 1) { // 0 to -1, 9 to 8
+        if (n.size() == 1) {
+            // 0 to -1, 9 to 8
             return to_string(stoi(n) - 1);
         }
         int left = 0;
@@ -136,21 +143,24 @@ public:
         bool onlyNine = true;
         while (left <= right) {
             if (n[left] != n[right]) {
-                if (left + 1 == right) { // 28 should change to 33 but not 22
+                if (left + 1 == right) {
+                    // 28 should change to 33 but not 22
                     char closet = getClosetPalindrome(n.substr(left), temp.substr(left), 2);
                     n[left] = closet;
                     n[right] = closet;
-                }
-                else {
+                } else {
                     n[right] = n[left];
                 }
                 if (left != 0) {
                     allZero = false;
                 }
                 onlyNine = false;
-            }
-            else {
-                if (left != 0 and n[left] != '0') {
+            } else {
+                if (left != 0 and n[left]
+                !=
+                '0'
+                )
+                {
                     allZero = false;
                 }
                 if (n[left] != '9') {
@@ -164,12 +174,17 @@ public:
             left += 1;
             right -= 1;
         }
-        if (onlyNine) { // 999 should be changed to 1001
+        if (onlyNine) {
+            // 999 should be changed to 1001
             return "1" + string(n.size() - 1, '0') + "1";
         }
-        if (allZero) { // 10001 should be changed to 9999
+        if (allZero) {
+            // 10001 should be changed to 9999
             if (temp.front() == '1') {
-                if (temp.back() == '0' or temp.back() == '1') {
+                if (temp.back() == '0' or
+                temp.back() == '1'
+                )
+                {
                     return string(n.size() - 1, '9');
                 }
             }

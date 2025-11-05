@@ -38,29 +38,30 @@ using namespace std;
 
 class Solution {
 private:
-    TreeNode* vectorToBalancedTree(int start, int end, vector<int>& nums) {
+    TreeNode *vectorToBalancedTree(int start, int end, vector<int> &nums) {
         if (start >= end) {
             return nullptr;
         }
 
         int mid = start + (end - start) / 2;
-        TreeNode* root = new TreeNode(nums[mid]);
-        root -> left = vectorToBalancedTree(start, mid, nums);
-        root -> right = vectorToBalancedTree(mid + 1, end, nums);
+        TreeNode *root = new TreeNode(nums[mid]);
+        root->left = vectorToBalancedTree(start, mid, nums);
+        root->right = vectorToBalancedTree(mid + 1, end, nums);
         return root;
     }
 
-    void balancedTreeToVector(TreeNode* root, vector<int>& nums) {
+    void balancedTreeToVector(TreeNode *root, vector<int> &nums) {
         if (root == nullptr) {
             return;
         }
 
-        balancedTreeToVector(root -> left, nums);
-        nums.push_back(root -> val);
-        balancedTreeToVector(root -> right, nums);
+        balancedTreeToVector(root->left, nums);
+        nums.push_back(root->val);
+        balancedTreeToVector(root->right, nums);
     }
+
 public:
-    TreeNode* balanceBST(TreeNode* root) {
+    TreeNode *balanceBST(TreeNode *root) {
         vector<int> nums;
         balancedTreeToVector(root, nums);
         return vectorToBalancedTree(0, nums.size(), nums);

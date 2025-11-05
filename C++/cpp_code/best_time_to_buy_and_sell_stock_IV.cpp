@@ -56,7 +56,7 @@ Then we compare this result with the max profit of not selling the stock at day 
 */
 class Solution {
 private:
-    int getMaxProfit(vector<int>& prices) {
+    int getMaxProfit(vector<int> &prices) {
         int result = 0;
         for (int i = 1; i < prices.size(); ++i) {
             if (prices[i] > prices[i - 1]) {
@@ -65,8 +65,9 @@ private:
         }
         return result;
     }
+
 public:
-    int maxProfit(int k, vector<int>& prices) {
+    int maxProfit(int k, vector<int> &prices) {
         int n = prices.size();
         if (n <= 1) {
             return 0;
@@ -76,7 +77,7 @@ public:
             return getMaxProfit(prices);
         }
 
-        vector<vector<int>> dp(k + 1, vector<int>(n, 0));
+        vector<vector<int> > dp(k + 1, vector<int>(n, 0));
         for (int count = 1; count <= k; ++count) {
             int curMax = dp[count - 1][0] - prices[0];
             for (int i = 1; i < n; ++i) {

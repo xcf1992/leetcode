@@ -43,12 +43,13 @@ public:
             swap(s, t);
         }
 
-        for (int i = 0; i < m; i++) if (s[i] != t[i]) {
-            if (m == n) {
-                return s.substr(i + 1) == t.substr(i + 1);
+        for (int i = 0; i < m; i++)
+            if (s[i] != t[i]) {
+                if (m == n) {
+                    return s.substr(i + 1) == t.substr(i + 1);
+                }
+                return s.substr(i) == t.substr(i + 1);
             }
-            return s.substr(i) == t.substr(i + 1);
-        }
         return m + 1 == n;
     }
 };

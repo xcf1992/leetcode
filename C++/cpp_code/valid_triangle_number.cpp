@@ -33,7 +33,7 @@ using namespace std;
 
 class Solution {
 public:
-    int triangleNumber(vector<int>& nums) {
+    int triangleNumber(vector<int> &nums) {
         int n = nums.size();
         if (n < 3) {
             return 0;
@@ -48,8 +48,7 @@ public:
                 if (nums[k] + nums[j] > nums[i]) {
                     result += j - k;
                     j -= 1;
-                }
-                else {
+                } else {
                     k += 1;
                 }
             }

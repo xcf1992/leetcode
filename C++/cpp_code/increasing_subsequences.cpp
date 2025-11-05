@@ -38,14 +38,21 @@ we skip to the next number.
 */
 class Solution {
 private:
-    void dfs(vector<vector<int>>& result, vector<int>& cur, vector<int>& nums, int index) {
+    void dfs(vector<vector<int> > &result, vector<int> &cur, vector<int> &nums, int index) {
         if (cur.size() > 1) {
             result.push_back(cur);
         }
 
         unordered_set<int> unique;
         for (int i = index; i < nums.size(); i++) {
-            if ((cur.empty() or nums[i] >= cur.back()) and unique.find(nums[i]) == unique.end()) {
+            if ((cur.empty() or nums[i]
+            >=
+            cur.back()
+            )
+            and
+            unique.find(nums[i]) == unique.end()
+            )
+            {
                 cur.push_back(nums[i]);
                 dfs(result, cur, nums, i + 1);
                 cur.pop_back();
@@ -53,9 +60,10 @@ private:
             }
         }
     }
+
 public:
-    vector<vector<int>> findSubsequences(vector<int>& nums) {
-        vector<vector<int>> result;
+    vector<vector<int> > findSubsequences(vector<int> &nums) {
+        vector<vector<int> > result;
         vector<int> cur;
         dfs(result, cur, nums, 0);
         return result;

@@ -48,11 +48,10 @@ public:
 
         if (dungeon[m - 1][n - 1] >= 0) {
             hp[m - 1][n - 1] = 1;
-        }
-        else {
+        } else {
             hp[m - 1][n - 1] = 1 - dungeon[m - 1][n - 1];
         }
-        
+
         for (int j = n - 2; j >= 0; --j) {
             hp[m - 1][j] = max(hp[m - 1][j + 1] - dungeon[m - 1][j], 1);
         }

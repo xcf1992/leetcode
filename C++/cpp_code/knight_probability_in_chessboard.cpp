@@ -45,8 +45,10 @@ class Solution {
 private:
     int movement[8][2] = {{1, 2}, {1, -2}, {-1, 2}, {-1, -2}, {2, 1}, {2, -1}, {-2, 1}, {-2, -1}};
 
-    double calculate(vector<vector<vector<double>>>& dp, int N, int K, int r, int c) {
-        if (r < 0 or c < 0 or c >= N or r >= N) {
+    double calculate(vector<vector<vector<double> > > &dp, int N, int K, int r, int c) {
+        if (r < 0 or c<0 or c >= N or r >= N
+        )
+        {
             return 0.0;
         }
         if (K == 0) {
@@ -56,14 +58,15 @@ private:
             return dp[K][r][c];
         }
 
-        for (auto& i : movement) {
+        for (auto &i: movement) {
             dp[K][r][c] += calculate(dp, N, K - 1, r + i[0], c + i[1]);
         }
         return dp[K][r][c];
     }
+
 public:
     double knightProbability(int N, int K, int r, int c) {
-        vector<vector<vector<double>>> dp(K + 1, vector<vector<double>>(N, vector<double>(N, 0.0)));
+        vector<vector<vector<double> > > dp(K + 1, vector<vector<double> >(N, vector<double>(N, 0.0)));
         return calculate(dp, N, K, r, c) / pow(8, K);
     }
 };

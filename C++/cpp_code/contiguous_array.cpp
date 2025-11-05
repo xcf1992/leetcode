@@ -32,7 +32,7 @@ using namespace std;
 
 class Solution {
 public:
-    int findMaxLength(vector<int>& nums) {
+    int findMaxLength(vector<int> &nums) {
         int n = nums.size();
         unordered_map<int, int> pos;
         int diff = 0;
@@ -45,8 +45,7 @@ public:
 
             if (pos.find(diff) == pos.end()) {
                 pos[diff] = i;
-            }
-            else {
+            } else {
                 result = max(result, i - pos[diff]);
             }
         }

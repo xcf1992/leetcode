@@ -61,13 +61,20 @@ using namespace std;
 class Solution {
 private:
     bool split(int start, vector<int> &result, string S) {
-        if (start == S.size() and result.size() >= 3) {
+        if (start == S.size() and
+        result.size() >= 3
+        )
+        {
             return true;
         }
 
         long num = 0;
         for (int i = start; i < S.size(); i++) {
-            if (i != start and S[start] == '0') {
+            if (i != start and S[start]
+            ==
+            '0'
+            )
+            {
                 break;
             }
             num = num * 10 + (S[i] - '0');
@@ -75,7 +82,11 @@ private:
                 break;
             }
 
-            if (result.size() < 2 or num == (long)result[result.size() - 2] + (long)result[result.size() - 1]) {
+            if (result.size() < 2 or num
+            ==
+            (long) result[result.size() - 2] + (long) result[result.size() - 1]
+            )
+            {
                 result.push_back(num);
                 if (split(i + 1, result, S)) {
                     return true;
@@ -85,6 +96,7 @@ private:
         }
         return false;
     }
+
 public:
     vector<int> splitIntoFibonacci(string S) {
         vector<int> result;

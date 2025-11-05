@@ -51,25 +51,24 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> processQueries(vector<int>& queries, int m) {
-       vector<int>s;
-        for(int i=1; i<=m; i++){
+    vector<int> processQueries(vector<int> &queries, int m) {
+        vector<int> s;
+        for (int i = 1; i <= m; i++) {
             s.push_back(i);
         }
-        vector<int>ans;
-        for(int i=0; i<queries.size();i++){
-            int index=0;
-            for(int j=0; j<s.size(); j++)
-            {
-                if(s[j]==queries[i]){
-                    index=j;
+        vector<int> ans;
+        for (int i = 0; i < queries.size(); i++) {
+            int index = 0;
+            for (int j = 0; j < s.size(); j++) {
+                if (s[j] == queries[i]) {
+                    index = j;
                     break;
                 }
             }
-            for(int j=index; j>0; j--){
-                s[j]=s[j-1];
+            for (int j = index; j > 0; j--) {
+                s[j] = s[j - 1];
             }
-            s[0]=queries[i];
+            s[0] = queries[i];
             ans.push_back(index);
         }
         return ans;

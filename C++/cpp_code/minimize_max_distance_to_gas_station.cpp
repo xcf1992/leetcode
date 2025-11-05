@@ -45,23 +45,23 @@ using namespace std;
 */
 class Solution {
 private:
-    bool check(vector<int>& stations, int K, double mid) {
+    bool check(vector<int> &stations, int K, double mid) {
         int count = 0;
         for (int i = 0; i < stations.size() - 1; ++i) {
             count += ceil((stations[i + 1] - stations[i]) / mid) - 1;
         }
         return count <= K;
     }
+
 public:
-    double minmaxGasDist(vector<int>& stations, int K) {
+    double minmaxGasDist(vector<int> &stations, int K) {
         double left = 0;
         double right = stations.back() - stations.front();
         while (right - left > 1e-6) {
             double mid = left + (right - left) / 2;
             if (check(stations, K, mid)) {
                 right = mid;
-            }
-            else {
+            } else {
                 left = mid;
             }
         }

@@ -44,15 +44,20 @@ using namespace std;
 class TopVotedCandidate {
 private:
     map<int, int> topVote;
+
 public:
-    TopVotedCandidate(vector<int>& persons, vector<int>& times) {
+    TopVotedCandidate(vector<int> &persons, vector<int> &times) {
         unordered_map<int, int> count;
         int lead = -1;
         for (int i = 0; i < persons.size(); ++i) {
             int person = persons[i];
             int time = times[i];
             count[person] += 1;
-            if (lead == -1 or count[person] >= count[lead]) {
+            if (lead == -1 or count[person]
+            >=
+            count[lead]
+            )
+            {
                 lead = person;
                 topVote[time] = lead;
             }
@@ -61,13 +66,14 @@ public:
 
     int q(int t) {
         auto it = topVote.upper_bound(t);
-        return prev(it) -> second;
+        return prev(it)->second;
     }
 };
 
 class TopVotedCandidate1 {
 private:
     map<int, int> topVote;
+
 public:
     TopVotedCandidate(vector<int> persons, vector<int> times) {
         int n = persons.size();
@@ -76,9 +82,13 @@ public:
         for (int i = 0; i < n; i++) {
             topVote[times[i]] = persons[i];
         }
-        for (auto& it : topVote) {
+        for (auto &it: topVote) {
             count[it.second] += 1;
-            if (lead == -1 or count[it.second] >= count[lead]) {
+            if (lead == -1 or count[it.second]
+            >=
+            count[lead]
+            )
+            {
                 lead = it.second;
             }
             topVote[it.first] = lead;
@@ -88,7 +98,7 @@ public:
     int q(int t) {
         auto it = topVote.upper_bound(t);
         it--;
-        return it -> second;
+        return it->second;
     }
 };
 

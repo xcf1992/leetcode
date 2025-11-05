@@ -31,16 +31,18 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int>> diagonalSort(vector<vector<int>>& mat) {
+    vector<vector<int> > diagonalSort(vector<vector<int> > &mat) {
         int m = mat.size();
         int n = mat[0].size();
 
-        vector<vector<int>> sortedMat;
+        vector<vector<int> > sortedMat;
         for (int i = m - 1; i >= 0; --i) {
             int r = i;
             int c = 0;
             vector<int> diag;
-            while (r < m and c < n) {
+            while (r < m and c<n
+            )
+            {
                 diag.push_back(mat[r][c]);
                 r += 1;
                 c += 1;
@@ -51,7 +53,9 @@ public:
             int r = 0;
             int c = j;
             vector<int> diag;
-            while (r < m and c < n) {
+            while (r < m and c<n
+            )
+            {
                 diag.push_back(mat[r][c]);
                 r += 1;
                 c += 1;
@@ -59,7 +63,7 @@ public:
             sortedMat.push_back(diag);
         }
 
-        for (vector<int>& arr : sortedMat) {
+        for (vector<int> &arr: sortedMat) {
             sort(arr.begin(), arr.end());
         }
 
@@ -68,7 +72,9 @@ public:
             int r = i;
             int c = 0;
             int pos = 0;
-            while (r < m and c < n) {
+            while (r < m and c<n
+            )
+            {
                 mat[r][c] = sortedMat[index][pos];
                 pos += 1;
                 r += 1;
@@ -80,7 +86,9 @@ public:
             int r = 0;
             int c = j;
             int pos = 0;
-            while (r < m and c < n) {
+            while (r < m and c<n
+            )
+            {
                 mat[r][c] = sortedMat[index][pos];
                 pos += 1;
                 r += 1;

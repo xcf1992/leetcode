@@ -51,17 +51,25 @@ using namespace std;
 
 class Solution {
 public:
-    bool isMonotonic(vector<int>& A) {
+    bool isMonotonic(vector<int> &A) {
         if (A.size() <= 2) {
             return true;
         }
 
         int i = 0;
-        while (i + 1 < A.size() and A[i] == A[i + 1]) {
+        while (i + 1 < A.size() and A[i]
+        ==
+        A[i + 1]
+        )
+        {
             i += 1;
         }
         bool increase = true;
-        if (i + 1 < A.size() and A[i] > A[i + 1]) {
+        if (i + 1 < A.size() and A[i]
+        >
+        A[i + 1]
+        )
+        {
             increase = false;
             i += 1;
         }
@@ -70,8 +78,7 @@ public:
                 if (!increase) {
                     return false;
                 }
-            }
-            else if (A[i] > A[i + 1]) {
+            } else if (A[i] > A[i + 1]) {
                 if (increase) {
                     return false;
                 }

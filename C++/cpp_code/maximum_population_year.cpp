@@ -46,21 +46,21 @@ using namespace std;
 
 class Solution {
 public:
-    int maximumPopulation(vector<vector<int>>& logs) {
-        vector<pair<int,int>> population;
-        for (const vector<int>& log : logs) {
+    int maximumPopulation(vector<vector<int> > &logs) {
+        vector<pair<int, int> > population;
+        for (const vector<int> &log: logs) {
             population.push_back({log[0], 1});
             population.push_back({log[1], -1});
         }
 
-        sort(population.begin(), population.end(), [](pair<int,int> a, pair<int,int> b) {
+        sort(population.begin(), population.end(), [](pair<int, int> a, pair<int, int> b) {
             return a.first < b.first || (a.first == b.first && a.second < b.second);
         });
 
         int rst = 0;
         int cur_population = 0;
         int max_population = -1;
-        for (const pair<int,int>& p : population) {
+        for (const pair<int, int> &p: population) {
             cur_population += p.second;
             if (cur_population > max_population) {
                 max_population = cur_population;

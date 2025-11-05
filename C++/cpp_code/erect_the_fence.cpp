@@ -50,8 +50,8 @@ using namespace std;
 // https://www.geeksforgeeks.org/check-if-two-given-line-segments-intersect/
 // https://www.geeksforgeeks.org/orientation-3-ordered-points/
 
-typedef int coord_t;  // coordinate type
-typedef long long coord2_t;  // must be big enough to hold 2*max(|coordinate|)^2
+typedef int coord_t; // coordinate type
+typedef long long coord2_t; // must be big enough to hold 2*max(|coordinate|)^2
 
 class Solution {
 private:
@@ -62,25 +62,30 @@ private:
     * negative for clockwise turn,
     * and zero if the points are collinear.
    */
-    coord2_t cross(const vector<int>& O, const vector<int>& A, const vector<int>& B) {
-        return (A[0] - O[0]) * (coord2_t)(B[1] - O[1]) - (A[1] - O[1]) * (coord2_t)(B[0] - O[0]);
+    coord2_t cross(const vector<int> &O, const vector<int> &A, const vector<int> &B) {
+        return (A[0] - O[0]) * (coord2_t) (B[1] - O[1]) - (A[1] - O[1]) * (coord2_t) (B[0] - O[0]);
     }
 
-    static bool cmp(vector<int>& p1, vector<int>& p2) { // from left to right, from bot to top
-        return p1[0] < p2[0] or (p1[0] == p2[0] and p1[1] < p2[1]);
+    static bool cmp(vector<int> &p1, vector<int> &p2) {
+        // from left to right, from bot to top
+        return p1[0] < p2[0]
+        or(p1[0] == p2[0] and p1[1] < p2[1]);
     }
 
-    static bool equ(vector<int>& p1, vector<int>& p2) {
-        return p1[0] == p2[0] and p1[1] == p2[1];
+    static bool equ(vector<int> &p1, vector<int> &p2) {
+        return p1[0] == p2[0]
+        and p1[1]
+        ==
+        p2[1];
     }
+
 public:
-
-  // Returns a list of points on the convex hull in counter-clockwise order.
-  // Note: the last point in the returned list is the same as the first one.
-    vector<vector<int>> outerTrees(vector<vector<int>>& points) {
+    // Returns a list of points on the convex hull in counter-clockwise order.
+    // Note: the last point in the returned list is the same as the first one.
+    vector<vector<int> > outerTrees(vector<vector<int> > &points) {
         int n = points.size();
         int k = 0;
-        vector<vector<int>> result(2 * n);
+        vector<vector<int> > result(2 * n);
 
         // Sort points lexicographically
         sort(points.begin(), points.end(), cmp);
@@ -90,7 +95,11 @@ public:
             // If the point at K-1 position is not a part
             // of hull as vector from ans[k-2] to ans[k-1]
             // and ans[k-2] to A[i] has a clockwise turn
-            while (k >= 2 and cross(result[k - 2], result[k - 1], points[i]) < 0) {
+            while (k >= 2 and cross(result[k - 2], result[k - 1], points[i])
+            <
+            0
+            )
+            {
                 k--;
             }
             result[k] = points[i];
@@ -103,7 +112,11 @@ public:
             // If the point at K-1 position is not a part
             // of hull as vector from ans[k-2] to ans[k-1]
             // and ans[k-2] to A[i] has a clockwise turn
-            while (k >= t and cross(result[k - 2], result[k - 1], points[i]) < 0) {
+            while (k >= t and cross(result[k - 2], result[k - 1], points[i])
+            <
+            0
+            )
+            {
                 k--;
             }
             result[k] = points[i];

@@ -60,18 +60,19 @@ using namespace std;
 
 class Solution {
 public:
-    int projectionArea(vector<vector<int>>& grid) {
+    int projectionArea(vector<vector<int> > &grid) {
         int res = 0;
         int n = grid.size();
 
         vector<int> rowMax(n, 0);
         vector<int> colMax(n, 0);
         for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < n; ++j) if (grid[i][j] > 0) {
-                res += 1;
-                rowMax[i] = max(rowMax[i], grid[i][j]);
-                colMax[j] = max(colMax[j], grid[i][j]);
-            }
+            for (int j = 0; j < n; ++j)
+                if (grid[i][j] > 0) {
+                    res += 1;
+                    rowMax[i] = max(rowMax[i], grid[i][j]);
+                    colMax[j] = max(colMax[j], grid[i][j]);
+                }
         }
 
         for (int i = 0; i < n; ++i) {
@@ -84,7 +85,7 @@ public:
 
 class Solution1 {
 public:
-    int projectionArea(vector<vector<int>>& grid) {
+    int projectionArea(vector<vector<int> > &grid) {
         int res = 0;
         int n = grid.size();
 

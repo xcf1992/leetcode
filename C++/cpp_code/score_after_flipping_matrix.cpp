@@ -45,7 +45,7 @@ using namespace std;
 
 class Solution {
 private:
-    int countSum(vector<vector<int>>& A, int m, int n) {
+    int countSum(vector<vector<int> > &A, int m, int n) {
         int result = 0;
         for (int i = 0; i < m; i++) {
             int row = 0;
@@ -58,17 +58,19 @@ private:
         }
         return result;
     }
+
 public:
-    int matrixScore(vector<vector<int>>& A) {
+    int matrixScore(vector<vector<int> > &A) {
         int m = A.size();
         int n = A[0].size();
 
         // make sure the first bit of every row is 1
-        for (int i = 0; i < m; i++) if (A[i][0] == 0) {
-            for (int j = 0; j < n; j++) {
-                A[i][j] = 1 - A[i][j];
+        for (int i = 0; i < m; i++)
+            if (A[i][0] == 0) {
+                for (int j = 0; j < n; j++) {
+                    A[i][j] = 1 - A[i][j];
+                }
             }
-        }
 
         // for any column >= 1, if there are more 0 than 1, flip the column
         for (int j = 1; j < n; j++) {

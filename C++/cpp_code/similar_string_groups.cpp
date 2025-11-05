@@ -43,39 +43,44 @@ The judging time limit has been increased for this question.
 #include <numeric>
 using namespace std;
 
-class Solution { // use union find
+class Solution {
+    // use union find
 private:
-    int find(vector<int>& parent, int num) {
+    int find(vector<int> &parent, int num) {
         if (parent[num] != num) {
             parent[num] = find(parent, parent[num]);
         }
         return parent[num];
     }
 
-    bool similar(string a, string b) { // All words in A have the same length and are anagrams of each other. so we do not need to swap and check
+    bool similar(string a, string b) {
+        // All words in A have the same length and are anagrams of each other. so we do not need to swap and check
         int diff = 0;
-        for (int i = 0; i < a.size(); i++) if (a[i] != b[i]) {
-            diff += 1;
-            if (diff > 2) {
-                return false;
+        for (int i = 0; i < a.size(); i++)
+            if (a[i] != b[i]) {
+                diff += 1;
+                if (diff > 2) {
+                    return false;
+                }
             }
-        }
         return true;
     }
+
 public:
-    int numSimilarGroups(vector<string>& A) {
+    int numSimilarGroups(vector<string> &A) {
         int n = A.size();
         vector<int> parent(n);
         iota(parent.begin(), parent.end(), 0);
 
         for (int i = 0; i < n; ++i) {
             int p1 = find(parent, i);
-            for (int j = i + 1; j < n; ++j) if (similar(A[i], A[j])) {
-                int p2 = find(parent, j);
-                if (p1 != p2) {
-                    parent[p2] = p1;
+            for (int j = i + 1; j < n; ++j)
+                if (similar(A[i], A[j])) {
+                    int p2 = find(parent, j);
+                    if (p1 != p2) {
+                        parent[p2] = p1;
+                    }
                 }
-            }
         }
 
         int result = 0;
@@ -88,7 +93,8 @@ public:
     }
 };
 
-class Solution1 { // 14.07%
+class Solution1 {
+    // 14.07%
 private:
     bool similar(string a, string b) {
         int diff = 0;
@@ -97,10 +103,12 @@ private:
                 diff++;
             }
         }
-        return diff == 2 or (diff == 0 and a.size() >= 2);
+        return diff == 2
+        or(diff == 0 and a.size() >= 2);
     }
+
 public:
-    int numSimilarGroups(vector<string>& A) {
+    int numSimilarGroups(vector<string> &A) {
         int n = A.size();
         if (n <= 1) {
             return n;
@@ -121,7 +129,10 @@ public:
                 int cur = bfs.front();
                 bfs.pop();
                 for (int next = 0; next < n; next++) {
-                    if (visited[next] or !similar(A[cur], A[next])) {
+                    if (visited[next] or
+                    !similar(A[cur], A[next])
+                    )
+                    {
                         continue;
                     }
                     visited[next] = true;

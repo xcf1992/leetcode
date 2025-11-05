@@ -32,10 +32,15 @@ using namespace std;
 
 class Codec {
 private:
-    TreeNode* myDeserialize(string& data, int& pos) {
+    TreeNode *myDeserialize(string &data, int &pos) {
         int n = data.size();
         int i = pos;
-        while (data[i] != '(' and data[i] != ')' and i < n) {
+        while (data[i] != '(' and data[i]
+        !=
+        ')'
+        and i<n
+        )
+        {
             i++;
         }
 
@@ -44,27 +49,30 @@ private:
         }
 
         int val = stoi(data.substr(pos, i - pos));
-        TreeNode* node = new TreeNode(val);
+        TreeNode *node = new TreeNode(val);
 
         pos = i;
         pos++;
-        node -> left = myDeserialize(data, pos);
+        node->left = myDeserialize(data, pos);
         pos++;
         pos++;
-        node -> right = myDeserialize(data, pos);
+        node->right = myDeserialize(data, pos);
         pos++;
         return node;
     }
+
 public:
     // Encodes a tree to a single string.
-    string serialize(TreeNode* root) {
-        return root == nullptr ? "" : to_string(root -> val) +
-                                        "(" + serialize(root -> left) + ")" +
-                                        "(" + serialize(root -> right) + ")";
+    string serialize(TreeNode *root) {
+        return root == nullptr
+                   ? ""
+                   : to_string(root->val) +
+                     "(" + serialize(root->left) + ")" +
+                     "(" + serialize(root->right) + ")";
     }
 
     // Decodes your encoded data to tree.
-    TreeNode* deserialize(string data) {
+    TreeNode *deserialize(string data) {
         int pos = 0;
         return myDeserialize(data, pos);
     }
@@ -72,12 +80,16 @@ public:
 
 class Codec1 {
 private:
-    TreeNode* myDeserialize(string& data, int& pos) {
+    TreeNode *myDeserialize(string &data, int &pos) {
         int n = data.size();
         int i = pos;
         bool found = false;
         for (; i < n; i++) {
-            if (data[i] == ',' or data[i] == ']') {
+            if (data[i] == ',' or data[i]
+            ==
+            ']'
+            )
+            {
                 break;
             }
             if (data[i] == '[') {
@@ -86,12 +98,14 @@ private:
             }
         }
 
-        if (i == pos and i < n) {
+        if (i == pos and i<n
+        )
+        {
             return nullptr;
         }
 
         int val = stoi(data.substr(pos, i - pos));
-        TreeNode* node = new TreeNode(val);
+        TreeNode *node = new TreeNode(val);
 
         if (i == n) {
             return node;
@@ -100,24 +114,25 @@ private:
         pos = i;
         if (found) {
             pos++;
-            node -> left = myDeserialize(data, pos);
+            node->left = myDeserialize(data, pos);
             pos++;
-            node -> right = myDeserialize(data, pos);
+            node->right = myDeserialize(data, pos);
             pos++;
         }
         return node;
     }
+
 public:
     // Encodes a tree to a single string.
-    string serialize(TreeNode* root) {
+    string serialize(TreeNode *root) {
         if (!root) {
             return "";
         }
-        return to_string(root -> val) + "[" + serialize(root -> left) + "," + serialize(root -> right) + "]";
+        return to_string(root->val) + "[" + serialize(root->left) + "," + serialize(root->right) + "]";
     }
 
     // Decodes your encoded data to tree.
-    TreeNode* deserialize(string data) {
+    TreeNode *deserialize(string data) {
         if (data.empty()) {
             return nullptr;
         }
@@ -128,38 +143,43 @@ public:
 
 class Codec2 {
 private:
-    TreeNode* parse(string data, int& pos) {
+    TreeNode *parse(string data, int &pos) {
         if (data[pos] == '$') {
             pos++;
             return nullptr;
         }
 
         int cur = pos;
-        while (data[cur] <= '9' and data[cur] >= '0') {
+        while (data[cur] <= '9' and data[cur]
+        >=
+        '0'
+        )
+        {
             cur++;
         }
         int value = stoi(data.substr(pos, cur - pos));
-        TreeNode* root = new TreeNode(value);
+        TreeNode *root = new TreeNode(value);
 
         pos = cur + 1;
-        root -> left = parse(data, pos);
+        root->left = parse(data, pos);
         pos++;
-        root -> right = parse(data, pos);
+        root->right = parse(data, pos);
         return root;
     }
+
 public:
     // Encodes a tree to a single string.
-    string serialize(TreeNode* root) {
+    string serialize(TreeNode *root) {
         if (root == nullptr) {
             return "$";
         }
-        return to_string(root -> val) + "," +
-                serialize(root -> left) + "," +
-                serialize(root -> right);
+        return to_string(root->val) + "," +
+               serialize(root->left) + "," +
+               serialize(root->right);
     }
 
     // Decodes your encoded data to tree.
-    TreeNode* deserialize(string data) {
+    TreeNode *deserialize(string data) {
         int pos = 0;
         return parse(data, pos);
     }

@@ -79,17 +79,22 @@ using namespace std;
 
 class ThroneInheritance {
 public:
-    unordered_map<string, pair<bool, vector<string>>> m;
+    unordered_map<string, pair<bool, vector<string> > > m;
     string king;
-    ThroneInheritance(string king) : king(king) {}
+
+    ThroneInheritance(string king) : king(king) {
+    }
+
     void birth(string parent, string child) { m[parent].second.push_back(child); }
     void death(string name) { m[name].first = true; }
+
     void traverse(string &name, vector<string> &res) {
         if (!m[name].first)
             res.push_back(name);
-        for (auto child : m[name].second)
+        for (auto child: m[name].second)
             traverse(child, res);
     }
+
     vector<string> getInheritanceOrder() {
         vector<string> res;
         traverse(king, res);

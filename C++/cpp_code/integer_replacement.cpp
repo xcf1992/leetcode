@@ -50,6 +50,7 @@ dp(n) = min(dp(n-1), dp((n+1)/2)+1)+1 n is odd, now we just need to resolve dp((
 class Solution {
 private:
     unordered_map<int, int> cache;
+
 public:
     int integerReplacement(int n) {
         if (cache.find(n) != cache.end()) {
@@ -62,9 +63,8 @@ public:
 
         if (n % 2 == 0) {
             cache[n] = 1 + integerReplacement(n / 2);
-        }
-        else {
-            cache[n] = 1 + min(integerReplacement(n - 1), 1 + integerReplacement(((long)n + 1) / 2));
+        } else {
+            cache[n] = 1 + min(integerReplacement(n - 1), 1 + integerReplacement(((long) n + 1) / 2));
         }
         return cache[n];
     }
@@ -78,11 +78,11 @@ public:
         while (num > 3) {
             if (num % 2 == 0) {
                 num >>= 1;
-            }
-            else if (num & 2) { // 0x11
+            } else if (num & 2) {
+                // 0x11
                 num += 1;
-            }
-            else { // 0x01
+            } else {
+                // 0x01
                 num -= 1;
             }
             result += 1;

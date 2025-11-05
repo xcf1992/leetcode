@@ -36,7 +36,7 @@ public:
         if (A.size() != B.size()) {
             return false;
         }
-        
+
         int n = A.size();
         string temp = A + A;
         for (int i = 0; i < n; i++) {

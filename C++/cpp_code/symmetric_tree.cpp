@@ -40,24 +40,36 @@ using namespace std;
 // iterative solution would be using two queue to store left tree and right tree, with left tree put lc first and right tree put rc first
 class Solution {
 private:
-    bool symmetric(TreeNode* root1, TreeNode* root2) {
-        if (root1 == nullptr or root2 == nullptr) {
-            return root1 == nullptr and root2 == nullptr;
+    bool symmetric(TreeNode *root1, TreeNode *root2) {
+        if (root1 == nullptr or root2
+        ==
+        nullptr
+        )
+        {
+            return root1 == nullptr
+            and root2
+            ==
+            nullptr;
         }
-        if (root1 -> val != root2 -> val) {
+        if (root1->val != root2->val) {
             return false;
         }
-        return symmetric(root1 -> left, root2 -> right) and symmetric(root1 -> right, root2 -> left);
+        return symmetric(root1->left, root2->right)
+        and symmetric(root1->right, root2->left);
     }
+
 public:
-    bool isSymmetric(TreeNode* root) {
+    bool isSymmetric(TreeNode *root) {
         if (root == nullptr) {
             return true;
         }
 
-        if (root -> left == nullptr and root -> right == nullptr) {
+        if (root->left == nullptr and
+        root->right == nullptr
+        )
+        {
             return true;
         }
-        return symmetric(root -> left, root -> right);
+        return symmetric(root->left, root->right);
     }
 };

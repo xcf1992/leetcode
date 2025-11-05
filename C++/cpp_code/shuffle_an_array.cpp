@@ -33,6 +33,7 @@ class Solution {
 private:
     vector<int> origin;
     vector<int> shuffled;
+
 public:
     Solution(vector<int> nums) {
         origin = nums;

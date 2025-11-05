@@ -32,15 +32,15 @@ then the lastBit will be 100, which means a and b is different in this bit
 */
 class Solution {
 public:
-    vector<int> singleNumber(vector<int>& nums) {
+    vector<int> singleNumber(vector<int> &nums) {
         int xorResult = 0;
-        for (auto num : nums) {
+        for (auto num: nums) {
             xorResult ^= num;
         }
 
         int lastBit = xorResult & ((xorResult - 1) ^ xorResult);
         int result = 0;
-        for (auto num : nums) {
+        for (auto num: nums) {
             if (lastBit & num) {
                 result ^= num;
             }

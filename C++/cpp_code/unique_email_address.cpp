@@ -45,7 +45,7 @@ using namespace std;
 
 class Solution {
 private:
-    string filter(string& email) {
+    string filter(string &email) {
         int i = 0;
         string result = "";
         bool findPlus = false;
@@ -56,8 +56,7 @@ private:
             if (!findPlus) {
                 if (email[i] == '+') {
                     findPlus = true;
-                }
-                else if (email[i] != '.') {
+                } else if (email[i] != '.') {
                     result += email[i];
                 }
             }
@@ -66,10 +65,11 @@ private:
         result += email.substr(i);
         return result;
     }
+
 public:
-    int numUniqueEmails(vector<string>& emails) {
+    int numUniqueEmails(vector<string> &emails) {
         unordered_set<string> result;
-        for (string& email : emails) {
+        for (string &email: emails) {
             result.insert(filter(email));
         }
         return result.size();

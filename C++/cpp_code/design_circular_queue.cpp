@@ -58,6 +58,7 @@ private:
     vector<int> array;
     int start;
     int count;
+
 public:
     /* Initialize your data structure here. Set the size of the queue to be k.*/
     MyCircularQueue(int k) {
@@ -106,6 +107,7 @@ public:
         return count == array.size();
     }
 };
+
 /*
 * Your MyCircularQueue object will be instantiated and called as such:
 * MyCircularQueue obj = new MyCircularQueue(k);

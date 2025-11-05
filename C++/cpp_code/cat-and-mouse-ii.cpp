@@ -69,46 +69,48 @@ There is only one of each character 'C', 'M', and 'F' in grid.
 #include <set>
 #include <numeric>
 using namespace std;
+
 // https://leetcode.com/problems/cat-and-mouse-ii/discuss/1020573/Game-ends-about-70-moves-C%2B%2B
 class Solution {
 public:
     int memo[71][8][8][8][8];
-    vector<string>v;
-    int cj,mj;
-    int R,C;
-    int di[4] = {-1,1,0,0};
-    int dj[4] = {0,0,1,-1};
+    vector<string> v;
+    int cj, mj;
+    int R, C;
+    int di[4] = {-1, 1, 0, 0};
+    int dj[4] = {0, 0, 1, -1};
 
     bool dp(int nturn, int cx, int cy, int mx, int my) {
-        if (nturn %2 == 1) {
+        if (nturn % 2 == 1) {
             //mouse turn
             if (mx == cx && my == cy) return false; //mouse is caught by the cat, losing position for the mouse
-            if (nturn >= 70) return false;//mouse can't win, it used many moves and it couldnt get the food
-            if (v[mx][my] == 'F') return true;//winner position, mouse got the food
-            if (v[cx][cy] == 'F') return false;//losing position, cat got the food
+            if (nturn >= 70) return false; //mouse can't win, it used many moves and it couldnt get the food
+            if (v[mx][my] == 'F') return true; //winner position, mouse got the food
+            if (v[cx][cy] == 'F') return false; //losing position, cat got the food
         } else {
             //cat turn
-            if (mx == cx && my == cy) return true;//cat captured the mouse, winner position
-            if (nturn >= 70) return true;//winner position for the cat, nice block ;)
+            if (mx == cx && my == cy) return true; //cat captured the mouse, winner position
+            if (nturn >= 70) return true; //winner position for the cat, nice block ;)
             if (v[mx][my] == 'F') return false; // losing position, mouse got the food
-            if (v[cx][cy] == 'F') return true;//winner position, cat got the food
+            if (v[cx][cy] == 'F') return true; //winner position, cat got the food
         }
 
-        if (memo[nturn][cx][cy][mx][my] != -1) return memo[nturn][cx][cy][mx][my] ;
+        if (memo[nturn][cx][cy][mx][my] != -1) return memo[nturn][cx][cy][mx][my];
         bool win = false;
 
-        if (nturn %2 == 1) {
+        if (nturn % 2 == 1) {
             //mouse turn
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j <= mj; j++) {
-                    int Mx = mx + j*di[i];
-                    int My = my + j*dj[i];
-                    if (Mx >= 0 && Mx <R && My>=0 && My <C && v[Mx][My]!= '#') {
-                        if (dp(nturn +1, cx,cy,Mx,My) == 0 ) {//If there is any move that causes the next player to lose then I am in a winning position.
+                    int Mx = mx + j * di[i];
+                    int My = my + j * dj[i];
+                    if (Mx >= 0 && Mx < R && My >= 0 && My < C && v[Mx][My] != '#') {
+                        if (dp(nturn + 1, cx, cy, Mx, My) == 0) {
+                            //If there is any move that causes the next player to lose then I am in a winning position.
                             win = true;
                             break;
                         }
-                    }else break;
+                    } else break;
                 }
                 if (win)break;
             }
@@ -116,14 +118,15 @@ public:
             //cat turn
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j <= cj; j++) {
-                    int Cx = cx + j*di[i];
-                    int Cy = cy + j*dj[i];
-                    if (Cx >= 0 && Cx <R && Cy>=0 && Cy <C && v[Cx][Cy]!= '#') {
-                        if (dp(nturn +1, Cx,Cy,mx,my) == 0 ) { //If there is any move that causes the next player to lose then I am in a winning position.
+                    int Cx = cx + j * di[i];
+                    int Cy = cy + j * dj[i];
+                    if (Cx >= 0 && Cx < R && Cy >= 0 && Cy < C && v[Cx][Cy] != '#') {
+                        if (dp(nturn + 1, Cx, Cy, mx, my) == 0) {
+                            //If there is any move that causes the next player to lose then I am in a winning position.
                             win = true;
                             break;
                         }
-                    }else break;
+                    } else break;
                 }
                 if (win)break;
             }
@@ -133,9 +136,11 @@ public:
         return win;
     }
 
-    bool canMouseWin(vector<string>& _v, int _cj, int _mj) {
+    bool canMouseWin(vector<string> &_v, int _cj, int _mj) {
         memset(memo, -1, sizeof(memo));
-        v= _v; cj = _cj; mj = _mj;
+        v = _v;
+        cj = _cj;
+        mj = _mj;
         int cx, cy, mx, my;
         R = v.size();
         C = v[0].size();
@@ -152,6 +157,6 @@ public:
                     my = j;
                 }
             }
-        return dp(1,cx,cy,mx,my);
+        return dp(1, cx, cy, mx, my);
     }
 };

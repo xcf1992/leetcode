@@ -36,7 +36,7 @@ using namespace std;
 
 class Solution {
 public:
-    bool uniqueOccurrences(vector<int>& arr) {
+    bool uniqueOccurrences(vector<int> &arr) {
         int n = arr.size();
         if (n <= 1) {
             return true;
@@ -44,7 +44,7 @@ public:
 
         vector<int> occurernce(n + 1, 0);
         unordered_map<int, int> count;
-        for (int num : arr) {
+        for (int num: arr) {
             count[num] += 1;
             occurernce[count[num] - 1] -= 1;
             occurernce[count[num]] += 1;

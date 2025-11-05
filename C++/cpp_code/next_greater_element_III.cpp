@@ -47,7 +47,11 @@ public:
         }
 
         int left = len - 1;
-        while (left - 1 >= 0 and num[left - 1] >= num[left]) {
+        while (left - 1 >= 0 and num[left - 1]
+        >=
+        num[left]
+        )
+        {
             left -= 1;
         }
         if (left == 0) {
@@ -65,6 +69,6 @@ public:
             swap(num[left++], num[right--]);
         }
         long long result = stol(num);
-        return result > (long)INT_MAX ? -1 : result;
+        return result > (long) INT_MAX ? -1 : result;
     }
 };

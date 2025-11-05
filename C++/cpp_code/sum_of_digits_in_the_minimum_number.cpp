@@ -41,9 +41,9 @@ using namespace std;
 
 class Solution {
 public:
-    int sumOfDigits(vector<int>& A) {
+    int sumOfDigits(vector<int> &A) {
         int minNum = INT_MAX;
-        for (int& n : A) {
+        for (int &n: A) {
             minNum = min(minNum, n);
         }
 

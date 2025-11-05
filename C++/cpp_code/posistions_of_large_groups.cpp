@@ -43,16 +43,20 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int>> largeGroupPositions(string S) {
+    vector<vector<int> > largeGroupPositions(string S) {
         if (S.size() < 3) {
             return {};
         }
 
-        vector<vector<int>> result;
+        vector<vector<int> > result;
         int start = 0;
         int end = 1;
         while (end < S.size()) {
-            while (end < S.size() and S[end] == S[start]) {
+            while (end < S.size() and S[end]
+            ==
+            S[start]
+            )
+            {
                 end += 1;
             }
 

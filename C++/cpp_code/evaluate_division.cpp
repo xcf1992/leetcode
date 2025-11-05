@@ -36,7 +36,8 @@ using namespace std;
 
 class Solution {
 private:
-    double calculate(string first, string second, unordered_map<string, unordered_map<string, double>>& connect, unordered_set<string>& visited) {
+    double calculate(string first, string second, unordered_map<string, unordered_map<string, double> > &connect,
+                     unordered_set<string> &visited) {
         if (connect.find(first) == connect.end()) {
             return -1.0;
         }
@@ -47,7 +48,7 @@ private:
         }
 
         visited.insert(first);
-        for (auto& it : next) {
+        for (auto &it: next) {
             if (visited.find(it.first) != visited.end()) {
                 continue;
             }
@@ -60,9 +61,11 @@ private:
         }
         return -1.0;
     }
+
 public:
-    vector<double> calcEquation(vector<vector<string>>& equations, vector<double>& values, vector<vector<string>>& queries) {
-        unordered_map<string, unordered_map<string, double>> connect;
+    vector<double> calcEquation(vector<vector<string> > &equations, vector<double> &values,
+                                vector<vector<string> > &queries) {
+        unordered_map<string, unordered_map<string, double> > connect;
         for (int i = 0; i < equations.size(); ++i) {
             vector<string> equation = equations[i];
             connect[equation[0]][equation[1]] = values[i];
@@ -70,7 +73,7 @@ public:
         }
 
         vector<double> result;
-        for (vector<string>& query : queries) {
+        for (vector<string> &query: queries) {
             string first = query[0];
             string second = query[1];
             if (connect.find(first) == connect.end() || connect.find(second) == connect.end()) {
@@ -92,10 +95,11 @@ public:
 
 class Solution1 {
 public:
-    vector<double> calcEquation(vector<pair<string, string>> equations, vector<double>& values, vector<pair<string, string>> queries) {
+    vector<double> calcEquation(vector<pair<string, string> > equations, vector<double> &values,
+                                vector<pair<string, string> > queries) {
         unordered_map<string, int> points;
         int index = 0;
-        for (auto e : equations) {
+        for (auto e: equations) {
             if (points.find(e.first) == points.end()) {
                 points[e.first] = index;
                 index += 1;
@@ -106,7 +110,7 @@ public:
             }
         }
 
-        vector<vector <double>> graph(points.size(), vector<double>(points.size(), INT_MAX));
+        vector<vector<double> > graph(points.size(), vector<double>(points.size(), INT_MAX));
         for (int i = 0; i < equations.size(); i++) {
             int x = points[equations[i].first];
             int y = points[equations[i].second];
@@ -119,7 +123,11 @@ public:
         for (int k = 0; k < points.size(); k++) {
             for (int i = 0; i < points.size(); i++) {
                 for (int j = 0; j < points.size(); j++) {
-                    if (graph[i][k] != INT_MAX and graph[k][j] != INT_MAX) {
+                    if (graph[i][k] != INT_MAX and graph[k][j]
+                    !=
+                    INT_MAX
+                    )
+                    {
                         graph[i][j] = min(graph[i][j], graph[i][k] * graph[k][j]);
                     }
                 }
@@ -127,12 +135,18 @@ public:
         }
 
         vector<double> result;
-        for (auto q : queries) {
-            if (points.find(q.first) == points.end() or points.find(q.second) == points.end()) {
+        for (auto q: queries) {
+            if (points.find(q.first) == points.end() or
+            points.find(q.second) == points.end()
+            )
+            {
                 result.push_back(-1.0);
             }
-            else {
-                result.push_back(graph[points[q.first]][points[q.second]] == INT_MAX ? -1.0 : graph[points[q.first]][points[q.second]]);
+            else
+            {
+                result.push_back(graph[points[q.first]][points[q.second]] == INT_MAX
+                                     ? -1.0
+                                     : graph[points[q.first]][points[q.second]]);
             }
         }
 

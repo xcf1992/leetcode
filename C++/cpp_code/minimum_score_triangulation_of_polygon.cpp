@@ -52,9 +52,9 @@ while there is edge connect A[i] and A[j].
 */
 class Solution {
 public:
-    int minScoreTriangulation(vector<int>& A) {
+    int minScoreTriangulation(vector<int> &A) {
         int n = A.size();
-        vector<vector<int>> dp(n, vector<int>(n, 0));
+        vector<vector<int> > dp(n, vector<int>(n, 0));
         for (int side = 3; side <= n; ++side) {
             for (int i = 0; i + side - 1 < n; ++i) {
                 int j = i + side - 1;

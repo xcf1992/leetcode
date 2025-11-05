@@ -47,16 +47,16 @@ using namespace std;
 
 class Solution {
 public:
-    int threeSumMulti(vector<int>& A, int target) {
+    int threeSumMulti(vector<int> &A, int target) {
         int MOD = 1e9 + 7;
         unordered_map<int, long> count;
-        for (int a : A) {
+        for (int a: A) {
             count[a] += 1;
         }
 
         long result = 0;
-        for (auto it : count) {
-            for (auto it2 : count) {
+        for (auto it: count) {
+            for (auto it2: count) {
                 int i = it.first;
                 int j = it2.first;
                 int k = target - i - j;
@@ -64,13 +64,25 @@ public:
                     continue;
                 }
 
-                if (i == j and j == k) {
+                if (i == j and j
+                ==
+                k
+                )
+                {
                     result += count[i] * (count[i] - 1) * (count[i] - 2) / 6;
                 }
-                else if (i == j and j != k) {
+                else
+                if (i == j and j
+                !=
+                k
+                )
+                {
                     result += count[i] * (count[i] - 1) * count[k] / 2;
                 }
-                else if (i < j and j < k) {
+                else
+                if (i < j and j<k
+                )
+                {
                     result += count[i] * count[j] * count[k];
                 }
                 result %= MOD;
@@ -83,9 +95,11 @@ public:
 class Solution1 {
 private:
     int MOD = 1e9 + 7;
+
 public:
-    int threeSumMulti(vector<int>& A, int target) {
-        sort(A.begin(), A.end()); // we only need to find 3 different indices, so we can sort without worrying about the actual order of each number's indices
+    int threeSumMulti(vector<int> &A, int target) {
+        sort(A.begin(), A.end());
+        // we only need to find 3 different indices, so we can sort without worrying about the actual order of each number's indices
         long result = 0;
         int n = A.size();
         for (int i = 0; i < n; i++) {
@@ -97,11 +111,19 @@ public:
                     if (A[left] != A[right]) {
                         int lCount = 1;
                         int rCount = 1;
-                        while (left + 1 < right and A[left + 1] == A[left]) {
+                        while (left + 1 < right and A[left + 1]
+                        ==
+                        A[left]
+                        )
+                        {
                             left += 1;
                             lCount += 1;
                         }
-                        while (right - 1 > left and A[right - 1] == A[right]) {
+                        while (right - 1 > left and A[right - 1]
+                        ==
+                        A[right]
+                        )
+                        {
                             right -= 1;
                             rCount += 1;
                         }
@@ -109,17 +131,14 @@ public:
                         result %= MOD;
                         right -= 1;
                         left += 1;
-                    }
-                    else {
+                    } else {
                         result += (right - left + 1) * (right - left) / 2;
                         result %= MOD;
                         break;
                     }
-                }
-                else if (A[left] + A[right] < needed) {
+                } else if (A[left] + A[right] < needed) {
                     left += 1;
-                }
-                else {
+                } else {
                     right -= 1;
                 }
             }

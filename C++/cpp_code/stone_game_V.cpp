@@ -60,9 +60,9 @@ We can see that there are recalculations of selected row when we perform the pre
 class Solution {
 private:
     vector<int> prefixSum;
-    vector<vector<int>> memo;
+    vector<vector<int> > memo;
 
-    int dp(vector<int>& stoneValue, int i, int j) {
+    int dp(vector<int> &stoneValue, int i, int j) {
         if (i == j) {
             return 0;
         }
@@ -73,25 +73,27 @@ private:
 
         memo[i][j] = 0;
         for (int p = i + 1; p <= j; p++) {
-	        int l = prefixSum[p] - prefixSum[i];
+            int l = prefixSum[p] - prefixSum[i];
             int r = prefixSum[j + 1] - prefixSum[p];
-            if(l < r) { // Left part is smaller
+            if (l < r) {
+                // Left part is smaller
                 memo[i][j] = max(memo[i][j], l + dp(stoneValue, i, p - 1));
-            }
-            else if (l > r) { // Right part is smaller
+            } else if (l > r) {
+                // Right part is smaller
                 memo[i][j] = max(memo[i][j], r + dp(stoneValue, p, j));
-            }
-            else { // Both parts are equal
+            } else {
+                // Both parts are equal
                 memo[i][j] = max(memo[i][j], l + max(dp(stoneValue, p, j), dp(stoneValue, i, p - 1)));
             }
         }
         return memo[i][j];
     }
+
 public:
-    int stoneGameV(vector<int>& stoneValue) {
+    int stoneGameV(vector<int> &stoneValue) {
         int n = stoneValue.size();
         memo.resize(n, vector<int>(n, -1));
-        prefixSum.resize(n + 1,0);
+        prefixSum.resize(n + 1, 0);
         for (int i = 0; i < stoneValue.size(); i++) {
             prefixSum[i + 1] = prefixSum[i] + stoneValue[i];
         }

@@ -89,15 +89,15 @@ private:
     }
 
 public:
-    int minTime(int n, vector<vector<int>>& edges, int k) {
-        sort(edges.begin(), edges.end(), [](const vector<int>& x, const vector<int>& y) {
+    int minTime(int n, vector<vector<int> > &edges, int k) {
+        sort(edges.begin(), edges.end(), [](const vector<int> &x, const vector<int> &y) {
             return x[0] > y[0];
         });
 
         vector<int> parent(n, -1);
         int cnt = n;
         int result = 0;
-        for (const vector<int>& e : edges) {
+        for (const vector<int> &e: edges) {
             int u = find_parent(e[0], parent);
             int v = find_parent(e[1], parent);
             if (u == v) {

@@ -44,14 +44,15 @@ public:
         while (left < celerity) {
             if (knows(left, celerity)) {
                 left += 1;
-            }
-            else {
+            } else {
                 celerity -= 1;
             }
         }
 
         for (int i = 0; i < n; i++) {
-            if (i != celerity and (!knows(i, celerity) or knows(celerity, i))) {
+            if (i != celerity and(!knows(i, celerity) or knows(celerity, i))
+            )
+            {
                 return -1;
             }
         }

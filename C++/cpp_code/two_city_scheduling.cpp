@@ -42,8 +42,8 @@ using namespace std;
 
 class Solution {
 public:
-    int twoCitySchedCost(vector<vector<int>>& costs) {
-        sort(costs.begin(), costs.end(), [](vector<int>& a, vector<int>& b){
+    int twoCitySchedCost(vector<vector<int> > &costs) {
+        sort(costs.begin(), costs.end(), [](vector<int> &a, vector<int> &b) {
             return abs(a[0] - a[1]) > abs(b[0] - b[1]);
         });
 
@@ -51,23 +51,20 @@ public:
         int A = 0;
         int B = 0;
         int result = 0;
-        for (vector<int>& cost : costs) {
+        for (vector<int> &cost: costs) {
             if (cost[0] > cost[1]) {
                 if (B < n) {
                     result += cost[1];
                     B += 1;
-                }
-                else {
+                } else {
                     A += 1;
                     result += cost[0];
                 }
-            }
-            else {
+            } else {
                 if (A < n) {
                     result += cost[0];
                     A += 1;
-                }
-                else {
+                } else {
                     result += cost[1];
                     B += 1;
                 }

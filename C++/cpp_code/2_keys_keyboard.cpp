@@ -47,7 +47,8 @@ which can be copied and then pasted over multiple times to generate the desired 
 The moment we find a length that divides our required sequence length perfectly,
 then we don't need to check for any smaller length sequences.
 */
-class Solution2 { // refine of solution1
+class Solution2 {
+    // refine of solution1
 public:
     int minSteps(int n) {
         vector<int> dp(n + 1, INT_MAX);
@@ -66,7 +67,8 @@ public:
 
 class Solution {
 public:
-    int minSteps(int n) { //100%
+    int minSteps(int n) {
+        //100%
         if (n == 1) {
             return 0;
         }
@@ -79,7 +81,8 @@ public:
     }
 };
 
-class Solution1 { // faster than 26.80%
+class Solution1 {
+    // faster than 26.80%
 public:
     int minSteps(int n) {
         vector<int> dp(n + 1, INT_MAX);

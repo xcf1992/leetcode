@@ -87,25 +87,29 @@ using namespace std;
 #define FIND_DATA_END 0
 #define FIND_DATA_NOT_END 1
 #define NOT_FIND_DATA 2
+
 class Solution {
 public:
-    string seekTag(string& code, int &idx){
+    string seekTag(string &code, int &idx) {
         string endTag;
-        while( idx < code.size() ){
+        while (idx < code.size()) {
             char c = code[idx++];
-            if( c == '>'){
-                return endTag.size() <= 9 ? endTag:"";
-            }
-            else if( c <'A' or c >'Z')
-                return "";
+            if (c == '>') {
+                return endTag.size() <= 9 ? endTag : "";
+            } else if (c < 'A' or c
+            >
+            'Z'
+            )
+            return "";
             endTag.push_back(c);
         }
         return "";
     }
-    int seekEndData(string &str, int &idx){
-        if( str.substr(idx, 9) == "<![CDATA[" ){
-            size_t found = str.find( "]]>", idx);
-            if( found != string::npos ){
+
+    int seekEndData(string &str, int &idx) {
+        if (str.substr(idx, 9) == "<![CDATA[") {
+            size_t found = str.find("]]>", idx);
+            if (found != string::npos) {
                 idx = found + 3;
                 return FIND_DATA_END;
             }
@@ -115,39 +119,58 @@ public:
     }
 
     bool isValid(string code) {
-        if( code.size() == 0 ) return true;
-        if( code[0] != '<') return false;
-        if( code.back() != '>') return false;
+        if (code.size() == 0) return true;
+        if (code[0] != '<') return false;
+        if (code.back() != '>') return false;
         stack<string> stk;
-        for( int i = 0; i < code.size(); ){
+        for (int i = 0; i < code.size();) {
             char c = code[i];
-            if( c == '<' and code[i+1] !='/' ){  //tag start
-                int res = seekEndData(code, i);  //try to find data content and skip it.
-                if( res == FIND_DATA_END){  //skip data tag.
-
-                }else if( res == FIND_DATA_NOT_END)  //include data tag but not include ']]>'
+            if (c == '<' and code[i + 1]
+            !=
+            '/'
+            )
+            {
+                //tag start
+                int res = seekEndData(code, i); //try to find data content and skip it.
+                if (res == FIND_DATA_END) {
+                    //skip data tag.
+                } else if (res == FIND_DATA_NOT_END) //include data tag but not include ']]>'
                     return false;
-                else{                   //try to find tag.
+                else {
+                    //try to find tag.
                     i++;
                     string tag = seekTag(code, i);
-                    if( tag.size() > 0 )
+                    if (tag.size() > 0)
                         stk.push(tag);
                     else
                         return false;
                 }
-            }else if( c=='<' and code[i+1] =='/'){  // try to find end tag.
-                i+=2;
+            }
+            else
+            if (c == '<' and code[i + 1]
+            ==
+            '/'
+            )
+            {
+                // try to find end tag.
+                i += 2;
                 string endTag = seekTag(code, i);
-                if( endTag.size() > 0 ){
-                    if( stk.size() == 0 or endTag != stk.top() )
-                        return false;
-                    stk.pop();
-                }else
+                if (endTag.size() > 0) {
+                    if (stk.size() == 0 or endTag
+                    !=
+                    stk.top()
+                    )
                     return false;
-            }else
-                i++;
-            if( i < code.size() and stk.size() == 0 )  //it is not closed by a tag.
-                return false;
+                    stk.pop();
+                } else
+                    return false;
+            }
+            else
+            i++;
+            if (i < code.size() and
+            stk.size() == 0
+            ) //it is not closed by a tag.
+            return false;
         }
         return stk.size() > 0 ? false : true;
     }

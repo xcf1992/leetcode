@@ -55,7 +55,7 @@ using namespace std;
 
 class Solution {
 private:
-    bool valid(vector<int>& price, int k, int gap) {
+    bool valid(vector<int> &price, int k, int gap) {
         int cnt = 1;
         int last_price = price[0];
         for (int i = 1; i < price.size(); i++) {
@@ -71,8 +71,9 @@ private:
         }
         return false;
     }
+
 public:
-    int maximumTastiness(vector<int>& price, int k) {
+    int maximumTastiness(vector<int> &price, int k) {
         sort(price.begin(), price.end());
 
         int n = price.size();

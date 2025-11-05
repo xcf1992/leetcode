@@ -63,9 +63,10 @@ using namespace std;
 
 struct Node {
     int val;
-    Node* next;
-    Node* pre;
-    Node* down;
+    Node *next;
+    Node *pre;
+    Node *down;
+
     Node(int v = 0) {
         val = v;
         next = nullptr;
@@ -76,8 +77,9 @@ struct Node {
 
 class Skiplist {
 private:
-    Node* head = nullptr;
+    Node *head = nullptr;
     int layers = 0;
+
 public:
     Skiplist() {
         srand(time(nullptr));
@@ -88,51 +90,59 @@ public:
             return false;
         }
 
-        Node* cur = head;
+        Node *cur = head;
         while (cur != nullptr) {
-            while (cur -> next != nullptr and cur -> next -> val < target) {
-                cur = cur -> next;
+            while (cur->next != nullptr and
+            cur->next->val < target
+            )
+            {
+                cur = cur->next;
             }
-            if (cur -> next != nullptr and cur -> next -> val == target) {
+            if (cur->next != nullptr and
+            cur->next->val == target
+            )
+            {
                 return true;
             }
-            cur = cur -> down;
+            cur = cur->down;
         }
         return false;
     }
 
     void add(int num) {
-        Node* cur = head;
-        vector<Node*> path(layers, nullptr);
+        Node *cur = head;
+        vector<Node *> path(layers, nullptr);
         for (int i = layers - 1; i >= 0; --i) {
-            while (cur -> next != nullptr and cur -> next -> val < num) {
-                cur = cur -> next;
+            while (cur->next != nullptr and
+            cur->next->val < num
+            )
+            {
+                cur = cur->next;
             }
             path[i] = cur;
-            cur = cur -> down;
+            cur = cur->down;
         }
 
         for (int i = 0; i <= path.size(); ++i) {
             cur = new Node(num);
             if (i == path.size()) {
-                Node* last = head;
+                Node *last = head;
                 head = new Node(-1);
-                head -> down = last;
-                head -> next = cur;
-                cur -> pre = head;
+                head->down = last;
+                head->next = cur;
+                cur->pre = head;
                 layers += 1;
-            }
-            else {
-                cur -> next = path[i] -> next;
-                cur -> pre = path[i];
-                path[i] -> next = cur;
-                if (cur -> next != nullptr) {
-                    cur -> next -> pre = cur;
+            } else {
+                cur->next = path[i]->next;
+                cur->pre = path[i];
+                path[i]->next = cur;
+                if (cur->next != nullptr) {
+                    cur->next->pre = cur;
                 }
             }
 
             if (i > 0) {
-                cur -> down = path[i - 1] -> next;
+                cur->down = path[i - 1]->next;
             }
 
             if (rand() % 2) {
@@ -142,24 +152,31 @@ public:
     }
 
     bool erase(int num) {
-        Node* cur = head;
+        Node *cur = head;
         for (int i = layers - 1; i >= 0; --i) {
-            while (cur -> next != nullptr and cur -> next -> val < num) {
-                cur = cur -> next;
+            while (cur->next != nullptr and
+            cur->next->val < num
+            )
+            {
+                cur = cur->next;
             }
-            if (cur -> next != nullptr and cur -> next -> val == num) {
-                cur = cur -> next;
+            if (cur->next != nullptr and
+            cur->next->val == num
+            )
+            {
+                cur = cur->next;
                 while (cur != nullptr) {
-                    cur -> pre -> next = cur -> next;
-                    if (cur -> next != nullptr) {
-                        cur -> next -> pre = cur -> pre;
+                    cur->pre->next = cur->next;
+                    if (cur->next != nullptr) {
+                        cur->next->pre = cur->pre;
                     }
-                    cur = cur -> down;
+                    cur = cur->down;
                 }
                 return true;
             }
-            else {
-                cur = cur -> down;
+            else
+            {
+                cur = cur->down;
                 if (cur == nullptr) {
                     return false;
                 }
@@ -168,6 +185,7 @@ public:
         return false;
     }
 };
+
 /*
 * Your Skiplist object will be instantiated and called as such:
 * Skiplist* obj = new Skiplist();

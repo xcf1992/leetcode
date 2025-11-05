@@ -36,19 +36,20 @@ using namespace std;
 
 class Solution {
 private:
-    int getSum(TreeNode* root, int& result) {
+    int getSum(TreeNode *root, int &result) {
         if (root == nullptr) {
             return 0;
         }
 
-        int leftSum = max(0, getSum(root -> left, result));
-        int rightSum = max(0, getSum(root -> right, result));
-        int sum = leftSum + rightSum + root -> val;
+        int leftSum = max(0, getSum(root->left, result));
+        int rightSum = max(0, getSum(root->right, result));
+        int sum = leftSum + rightSum + root->val;
         result = max(result, sum);
-        return max(leftSum, rightSum) + root -> val;
+        return max(leftSum, rightSum) + root->val;
     }
+
 public:
-    int maxPathSum(TreeNode* root) {
+    int maxPathSum(TreeNode *root) {
         int result = INT_MIN;
         getSum(root, result);
         return result;

@@ -52,12 +52,12 @@ the key point is to count the number of one between each 1
 */
 class Solution {
 public:
-    int numSubarraysWithSum(vector<int>& A, int S) {
+    int numSubarraysWithSum(vector<int> &A, int S) {
         int curSum = 0;
         int result = 0;
         unordered_map<int, int> count;
         count[0] = 1;
-        for (int num : A) {
+        for (int num: A) {
             curSum += num;
             result += count[curSum - S];
             count[curSum] += 1;
@@ -68,7 +68,7 @@ public:
 
 class Solution1 {
 public:
-    int numSubarraysWithSum(vector<int>& A, int S) {
+    int numSubarraysWithSum(vector<int> &A, int S) {
         int n = A.size();
         if (S == 0) {
             int result = 0;
@@ -97,8 +97,7 @@ public:
             int j = i + S - 1;
             if (j < onePos.size() - 1) {
                 result += (onePos[i] - onePos[i - 1]) * (onePos[j + 1] - onePos[j]);
-            }
-            else {
+            } else {
                 break;
             }
         }
@@ -109,7 +108,7 @@ public:
 // time limit exceeded
 class Solution1 {
 public:
-    int numSubarraysWithSum(vector<int>& A, int S) {
+    int numSubarraysWithSum(vector<int> &A, int S) {
         int n = A.size();
         vector<int> rightSum(n + 1, 0);
         for (int i = n - 1; i >= 0; i--) {

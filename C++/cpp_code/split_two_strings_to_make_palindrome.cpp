@@ -77,7 +77,7 @@ Try writing a few examples with answer true and look at the 3 points above. You 
 */
 class Solution {
 private:
-    bool isPa(string& s, int i, int j) {
+    bool isPa(string &s, int i, int j) {
         for (; i < j; ++i, --j) {
             if (s[i] != s[j]) {
                 return false;
@@ -86,14 +86,16 @@ private:
         return true;
     }
 
-    bool check(string& a, string& b) {
+    bool check(string &a, string &b) {
         for (int i = 0, j = a.size() - 1; i < j; ++i, --j) {
-            if (a[i] != b[j]) { // think about abedfg and abaaba
+            if (a[i] != b[j]) {
+                // think about abedfg and abaaba
                 return isPa(a, i, j) || isPa(b, i, j);
             }
         }
         return true;
     }
+
 public:
     bool checkPalindromeFormation(string a, string b) {
         return check(a, b) || check(b, a);

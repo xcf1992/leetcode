@@ -42,20 +42,32 @@ using namespace std;
 
 class Solution {
 private:
-    bool counted(int x, int y, vector<vector<char>>& board) {
-        if (x != 0 and board[x - 1][y] == 'X') {
+    bool counted(int x, int y, vector<vector<char> > &board) {
+        if (x != 0 and board[x - 1][y]
+        ==
+        'X'
+        )
+        {
             return true;
         }
-        if (y != 0 and board[x][y - 1] == 'X') {
+        if (y != 0 and board[x][y - 1]
+        ==
+        'X'
+        )
+        {
             return true;
         }
         return false;
     }
+
 public:
-    int countBattleships(vector<vector<char>>& board) {
+    int countBattleships(vector<vector<char> > &board) {
         int result = 0;
         for (int i = 0; i < board.size(); i++) {
-            for (int j = 0; j < board[0].size(); j++) if (board[i][j] == 'X' and !counted(i, j, board)) {
+            for (int j = 0; j < board[0].size(); j++) if (board[i][j] == 'X' and
+            !counted(i, j, board)
+            )
+            {
                 result += 1;
             }
         }

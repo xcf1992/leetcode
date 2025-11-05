@@ -53,9 +53,9 @@ using namespace std;
 
 class Solution {
 public:
-    vector<long long> countBlackBlocks(int m, int n, vector<vector<int>>& coordinates) {
+    vector<long long> countBlackBlocks(int m, int n, vector<vector<int> > &coordinates) {
         map<pair<int, int>, long long> block_cnt;
-        for (const vector<int>& black : coordinates) {
+        for (const vector<int> &black: coordinates) {
             int i = black[0];
             int j = black[1];
             for (int row = i - 1; row <= i; row++) {
@@ -70,8 +70,8 @@ public:
         }
 
         vector<long long> rst(5, 0);
-        rst[0] = (long long)(m - 1) * (long long)(n - 1) - block_cnt.size();
-        for (const auto& i : block_cnt) {
+        rst[0] = (long long) (m - 1) * (long long) (n - 1) - block_cnt.size();
+        for (const auto &i: block_cnt) {
             if (i.second < 5) {
                 rst[i.second] += 1;
             }

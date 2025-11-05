@@ -32,26 +32,26 @@ using namespace std;
 
 class Solution {
 public:
-    vector<double> averageOfLevels(TreeNode* root) {
+    vector<double> averageOfLevels(TreeNode *root) {
         vector<double> result;
-        queue<TreeNode*> bfs;
+        queue<TreeNode *> bfs;
         bfs.push(root);
         while (!bfs.empty()) {
             double sum = 0.0;
             int curSize = bfs.size();
             for (int i = 0; i < curSize; ++i) {
-                TreeNode* current = bfs.front();
+                TreeNode *current = bfs.front();
                 bfs.pop();
 
-                sum += current -> val;
-                if (current -> left != nullptr) {
-                    bfs.push(current -> left);
+                sum += current->val;
+                if (current->left != nullptr) {
+                    bfs.push(current->left);
                 }
-                if (current -> right != nullptr) {
-                    bfs.push(current -> right);
+                if (current->right != nullptr) {
+                    bfs.push(current->right);
                 }
             }
-            result.push_back(sum / (double)curSize);
+            result.push_back(sum / (double) curSize);
         }
         return result;
     }

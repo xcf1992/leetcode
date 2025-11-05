@@ -51,8 +51,9 @@ A: in Cpp and Java, mod on negative number will still get a negative number.
 class Solution {
 private:
     int mod = 1e9 + 7;
+
 public:
-    int sumSubseqWidths(vector<int>& A) {
+    int sumSubseqWidths(vector<int> &A) {
         int n = A.size();
         sort(A.begin(), A.end());
 
@@ -84,8 +85,9 @@ the expected is: 857876214
 class Solution1 {
 private:
     int mod = 1e9 + 7;
+
 public:
-    int sumSubseqWidths(vector<int>& A) {
+    int sumSubseqWidths(vector<int> &A) {
         sort(A.begin(), A.end());
         long result = 0;
         for (int i = 0; i < A.size(); i++) {

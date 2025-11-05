@@ -82,14 +82,16 @@ b:              b0 |----| b1
 class MyCalendarTwo {
 private:
     map<int, int> events;
+
 public:
-    MyCalendarTwo() {}
+    MyCalendarTwo() {
+    }
 
     bool book(int start, int end) {
         events[start] += 1;
         events[end] -= 1;
         int booked = 0;
-        for (auto& event : events) {
+        for (auto &event: events) {
             booked += event.second;
             if (booked == 3) {
                 events[start] -= 1;
@@ -100,6 +102,7 @@ public:
         return true;
     }
 };
+
 /*
 * Your MyCalendarTwo object will be instantiated and called as such:
 * MyCalendarTwo obj = new MyCalendarTwo();

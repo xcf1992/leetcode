@@ -38,24 +38,25 @@ using namespace std;
 
 class Solution {
 private:
-    void getFactors(int index, int number, unordered_map<int, vector<int>>& factorToIndex) {
-        for (int i = 2; i * i <= number; ++i) if (number % i == 0) {
-            factorToIndex[i].push_back(index);
-            while (number % i == 0) {
-                number /= i;
+    void getFactors(int index, int number, unordered_map<int, vector<int> > &factorToIndex) {
+        for (int i = 2; i * i <= number; ++i)
+            if (number % i == 0) {
+                factorToIndex[i].push_back(index);
+                while (number % i == 0) {
+                    number /= i;
+                }
             }
-        }
 
         if (number > 1) {
             factorToIndex[number].push_back(index);
         }
     }
 
-    int find(int index, vector<int>& parent) {
+    int find(int index, vector<int> &parent) {
         return parent[index] == -1 ? index : find(parent[index], parent);
     }
 
-    void unin(int index1, int index2, vector<int>& parent, vector<int>& count) {
+    void unin(int index1, int index2, vector<int> &parent, vector<int> &count) {
         int p1 = find(index1, parent);
         int p2 = find(index2, parent);
         if (p1 != p2) {
@@ -64,17 +65,18 @@ private:
             count[p2] = 0;
         }
     }
+
 public:
-    int largestComponentSize(vector<int>& A) {
+    int largestComponentSize(vector<int> &A) {
         int n = A.size();
-        unordered_map<int, vector<int>> factorToIndex;
+        unordered_map<int, vector<int> > factorToIndex;
         for (int i = 0; i < n; i++) {
             getFactors(i, A[i], factorToIndex);
         }
 
         vector<int> parent(n, -1);
         vector<int> count(n, 1);
-        for (auto& it : factorToIndex) {
+        for (auto &it: factorToIndex) {
             vector<int> connectedIndex = it.second;
             int p = connectedIndex[0];
             for (int i = 1; i < connectedIndex.size(); i++) {
@@ -83,7 +85,7 @@ public:
         }
 
         int result = 1;
-        for (int c : count) {
+        for (int c: count) {
             result = max(result, c);
         }
         return result;

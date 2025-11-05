@@ -52,7 +52,8 @@ using namespace std;
 
 class TimeMap {
 private:
-    unordered_map<string, map<int, string>> keyTimeMap;
+    unordered_map<string, map<int, string> > keyTimeMap;
+
 public:
     /* Initialize your data structure here.*/
     TimeMap() {
@@ -79,6 +80,7 @@ public:
         return prev(it)->second;
     }
 };
+
 /*
 * Your TimeMap object will be instantiated and called as such:
 * TimeMap* obj = new TimeMap();
@@ -89,7 +91,8 @@ public:
 // TLE
 class TimeMap1 {
 private:
-    unordered_map<string, vector<pair<int, string>>> timeBasedMap;
+    unordered_map<string, vector<pair<int, string> > > timeBasedMap;
+
 public:
     /* Initialize your data structure here.*/
     TimeMap1() {
@@ -105,20 +108,20 @@ public:
             return "";
         }
 
-        vector<pair<int, string>> timedValues = timeBasedMap[key];
-        auto it = lower_bound(timedValues.begin(), timedValues.end(), timestamp, [](pair<int, string>& a, int t) {
+        vector<pair<int, string> > timedValues = timeBasedMap[key];
+        auto it = lower_bound(timedValues.begin(), timedValues.end(), timestamp, [](pair<int, string> &a, int t) {
             return a.first < t;
         });
 
         if (it == timedValues.end()) {
             return timedValues.back().second;
         }
-        if (it -> first == timestamp) {
-            return it -> second;
+        if (it->first == timestamp) {
+            return it->second;
         }
         if (it == timedValues.begin()) {
             return "";
         }
-        return (--it) -> second;
+        return (--it)->second;
     }
 };

@@ -67,13 +67,19 @@ struct TreeNode {
 
 class Solution {
 public:
-    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        if (root == nullptr or root == p or root == q) {
+    TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q) {
+        if (root == nullptr or root
+        ==
+        p or root
+        ==
+        q
+        )
+        {
             return root;
         }
 
-        TreeNode* left_lca = lowestCommonAncestor(root -> left, p, q);
-        TreeNode* right_lca = lowestCommonAncestor(root -> right, p, q);
+        TreeNode *left_lca = lowestCommonAncestor(root->left, p, q);
+        TreeNode *right_lca = lowestCommonAncestor(root->right, p, q);
         if (left_lca and right_lca) {
             return root;
         }

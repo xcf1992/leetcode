@@ -68,21 +68,19 @@ using namespace std;
 
 class Solution {
 public:
-    vector<string> getFolderNames(vector<string>& names) {
+    vector<string> getFolderNames(vector<string> &names) {
         unordered_set<string> s;
-        unordered_map<string,int> m;
+        unordered_map<string, int> m;
         vector<string> res(names.size());
-        for(int i = 0; i < names.size(); ++i) {
-            if(s.insert(names[i]).second) {
+        for (int i = 0; i < names.size(); ++i) {
+            if (s.insert(names[i]).second) {
                 res[i] = names[i];
-            }
-            else {
+            } else {
                 int k = m[names[i]];
                 bool found = false;
-                while(!found)
-                {
-                    string x = names[i]+'('+to_string(++k) + ')';
-                    if(s.insert(x).second) {
+                while (!found) {
+                    string x = names[i] + '(' + to_string(++k) + ')';
+                    if (s.insert(x).second) {
                         res[i] = x;
                         m[names[i]] = k;
                         found = true;

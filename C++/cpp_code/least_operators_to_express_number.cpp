@@ -109,8 +109,7 @@ public:
                 int pos2 = min(cur * k + pos, (cur + 1) * k + neg);
                 int neg2 = min((x - cur) * k + pos, (x - cur - 1) * k + neg);
                 pos = pos2, neg = neg2;
-            }
-            else {
+            } else {
                 pos = cur * 2;
                 neg = (x - cur) * 2;
             }
@@ -119,15 +118,18 @@ public:
     }
 };
 
-class Solution { // very basic dfs, we can add a memo[target] to make it top-down dp
+class Solution {
+    // very basic dfs, we can add a memo[target] to make it top-down dp
 private:
     unordered_map<int, int> memo;
+
 public:
     int leastOpsExpressTarget(int x, int target) {
         if (memo.find(target) != memo.end()) {
             return memo[target];
         }
-        if (x == target) {  // just push x at the end
+        if (x == target) {
+            // just push x at the end
             return 0;
         }
 
@@ -139,11 +141,13 @@ public:
 
         long long sums = x;
         int times = 0;
-        while (sums < target) { // this is gready, put as much as possible 'x'
+        while (sums < target) {
+            // this is gready, put as much as possible 'x'
             times += 1;
             sums *= x;
         }
-        if (sums == target) { // one more 'x' you put, one more operator
+        if (sums == target) {
+            // one more 'x' you put, one more operator
             memo[target] = times;
             return memo[target];
         }
@@ -154,8 +158,9 @@ public:
         if (sums - target < target) {
             l = leastOpsExpressTarget(x, sums - target) + times; // using subtract
         }
-        r = leastOpsExpressTarget(x, target - (sums / x)) + times - 1; // using add, cause we only need sum/x, so times - 1
-        memo[target] = min(l, r) + 1;  // No matter +/- used, one more operator is add
+        r = leastOpsExpressTarget(x, target - (sums / x)) + times - 1;
+        // using add, cause we only need sum/x, so times - 1
+        memo[target] = min(l, r) + 1; // No matter +/- used, one more operator is add
         return memo[target];
     }
 };

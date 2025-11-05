@@ -82,9 +82,10 @@ So any window starting from left+1~i-1 will not be valid because of the existenc
 so we have to set left to i, to make the window potentially valid.
 This make all the information from already scanned positions useful.
 */
-class Solution { // O(N)
+class Solution {
+    // O(N)
 public:
-    int kEmptySlots(vector<int>& bulbs, int K) {
+    int kEmptySlots(vector<int> &bulbs, int K) {
         int n = bulbs.size();
         vector<int> days(n, 0); // days[i] means bulbs i + 1 was turned on at days[i]
         for (int i = 0; i < n; i++) {
@@ -96,7 +97,11 @@ public:
         int res = INT_MAX;
         for (int i = 1; right < n; i++) {
             // current days[i] is valid, continue scanning
-            if (days[i] > days[left] and days[i] > days[right]) {
+            if (days[i] > days[left] and days[i]
+            >
+            days[right]
+            )
+            {
                 continue;
             }
             // reach boundary of sliding window, since previous number are all valid, record result
@@ -111,18 +116,25 @@ public:
     }
 };
 
-class Solution { // O(nlogn)
+class Solution {
+    // O(nlogn)
 public:
-    int kEmptySlots(vector<int>& bulbs, int K) {
+    int kEmptySlots(vector<int> &bulbs, int K) {
         set<int> lighted;
         int day = 1;
-        for (int bulb : bulbs) {
+        for (int bulb: bulbs) {
             auto it = lighted.upper_bound(bulb);
-            if (it != lighted.end() and *it - bulb == K + 1) {
+            if (it != lighted.end() and *it
+            -bulb == K + 1
+            )
+            {
                 return day;
             }
             it = lighted.insert(bulb).first;
-            if (it != lighted.begin() and bulb - *prev(it) == K + 1) {
+            if (it != lighted.begin() and bulb
+            -*prev(it) == K + 1
+            )
+            {
                 return day;
             }
             day += 1;

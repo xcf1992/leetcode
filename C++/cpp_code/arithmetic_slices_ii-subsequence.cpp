@@ -60,17 +60,17 @@ so count = 1 and we put [2,2] in 6. Also 6-2 = 4, we put [4,1] in 6;
 */
 class Solution {
 public:
-    int numberOfArithmeticSlices(vector<int>& A) {
+    int numberOfArithmeticSlices(vector<int> &A) {
         int n = A.size();
         if (n < 3) {
             return 0;
         }
 
         int result = 0;
-        vector<unordered_map<long long, int>> dp(n);
+        vector<unordered_map<long long, int> > dp(n);
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < i; j++) {
-                long long gap = (long long)A[i] - (long long)A[j];
+                long long gap = (long long) A[i] - (long long) A[j];
                 dp[i][gap] += 1;
                 if (dp[j].find(gap) != dp[j].end()) {
                     /*

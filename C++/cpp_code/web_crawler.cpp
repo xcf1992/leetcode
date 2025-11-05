@@ -84,7 +84,7 @@ using namespace std;
 // This is the HtmlParser's API interface.
 // You should not implement it, or speculate about its implementation
 class HtmlParser {
-  public:
+public:
     vector<string> getUrls(string url);
 };
 
@@ -104,8 +104,11 @@ public:
             bfs.pop();
 
             string domain = cur.substr(0, cur.find('/', 7));
-            for (string& nxt : htmlParser.getUrls(cur)) {
-                if (visited.find(nxt) != visited.end() or nxt.find(domain) == string::npos) {
+            for (string &nxt: htmlParser.getUrls(cur)) {
+                if (visited.find(nxt) != visited.end() or
+                nxt.find(domain) == string::npos
+                )
+                {
                     continue;
                 }
 

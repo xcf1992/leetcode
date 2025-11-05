@@ -45,13 +45,13 @@ using namespace std;
 
 class Solution {
 private:
-    bool eventualSafe(vector<vector<int>>& graph, int node, vector<int>& visited) {
+    bool eventualSafe(vector<vector<int> > &graph, int node, vector<int> &visited) {
         if (visited[node] != 0) {
             return visited[node] == 1;
         }
 
         visited[node] = -1;
-        for (int next : graph[node]) {
+        for (int next: graph[node]) {
             if (!eventualSafe(graph, next, visited)) {
                 return false;
             }
@@ -59,8 +59,9 @@ private:
         visited[node] = 1;
         return true;
     }
+
 public:
-    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
+    vector<int> eventualSafeNodes(vector<vector<int> > &graph) {
         int nodes = graph.size();
         vector<int> result;
         vector<int> visited(nodes, 0);

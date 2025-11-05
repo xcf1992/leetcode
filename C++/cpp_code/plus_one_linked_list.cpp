@@ -28,16 +28,16 @@ using namespace std;
 
 class Solution {
 public:
-    ListNode* plusOne(ListNode* head) {
+    ListNode *plusOne(ListNode *head) {
         if (head == nullptr) {
             return head;
         }
 
-        stack<ListNode*> stk;
-        ListNode* cur = head;
+        stack<ListNode *> stk;
+        ListNode *cur = head;
         while (cur != nullptr) {
             stk.push(cur);
-            cur = cur -> next;
+            cur = cur->next;
         }
 
         int add = 1;
@@ -45,8 +45,8 @@ public:
             cur = stk.top();
             stk.pop();
 
-            int sum = cur -> val + add;
-            cur -> val = sum % 10;
+            int sum = cur->val + add;
+            cur->val = sum % 10;
             add = sum / 10;
         }
 
@@ -54,60 +54,63 @@ public:
             return head;
         }
 
-        ListNode* newHead = new ListNode(1);
-        newHead -> next = head;
+        ListNode *newHead = new ListNode(1);
+        newHead->next = head;
         return newHead;
     }
 };
 
 class Solution {
 public:
-    ListNode* plusOne(ListNode* head) {
-        ListNode* cur = head;
-        ListNode* start = cur;
-        ListNode* last;
+    ListNode *plusOne(ListNode *head) {
+        ListNode *cur = head;
+        ListNode *start = cur;
+        ListNode *last;
 
         while (cur != nullptr) {
-            if (cur -> val == 9) {
+            if (cur->val == 9) {
                 start = cur;
-                while (cur -> next != nullptr and cur -> next -> val == 9) {
-                    cur = cur -> next;
+                while (cur->next != nullptr and
+                cur->next->val == 9
+                )
+                {
+                    cur = cur->next;
                 }
             }
             if (cur != nullptr) {
-                if (cur -> next == nullptr) {
+                if (cur->next == nullptr) {
                     last = cur;
                 }
-                cur = cur -> next;
+                cur = cur->next;
             }
         }
 
-        if (last -> val != 9) {
-            last -> val += 1;
+        if (last->val != 9) {
+            last->val += 1;
             return head;
         }
 
         if (start == head) {
-            ListNode* newHead = new ListNode(1);
-            newHead -> next = head;
-            for (ListNode* it = start; it != nullptr; it = it -> next) {
-                it -> val = 0;
+            ListNode *newHead = new ListNode(1);
+            newHead->next = head;
+            for (ListNode *it = start; it != nullptr; it = it->next) {
+                it->val = 0;
             }
             return newHead;
         }
 
-        ListNode* it = head;
+        ListNode *it = head;
         while (it != nullptr) {
-            if (it -> next == start) {
-                it -> val += 1;
-                it = it -> next;
+            if (it->next == start) {
+                it->val += 1;
+                it = it->next;
                 while (it != nullptr) {
-                    it -> val = 0;
-                    it = it -> next;
+                    it->val = 0;
+                    it = it->next;
                 }
             }
             if (it != nullptr) {
-                it = it -> next;
+                it = it->next;
             }
         }
         return head;
@@ -116,40 +119,40 @@ public:
 
 class Solution1 {
 private:
-    ListNode* reverse(ListNode* head) {
-        ListNode* cur = head -> next;
-        head -> next = nullptr;
+    ListNode *reverse(ListNode *head) {
+        ListNode *cur = head->next;
+        head->next = nullptr;
         while (cur != nullptr) {
-            ListNode* next = cur -> next;
+            ListNode *next = cur->next;
 
-            cur -> next = head;
+            cur->next = head;
             head = cur;
             cur = next;
         }
         return head;
     }
 
-    ListNode* plus(ListNode* head) {
-        ListNode* cur = head;
-        ListNode* last = nullptr;
+    ListNode *plus(ListNode *head) {
+        ListNode *cur = head;
+        ListNode *last = nullptr;
         while (cur != nullptr) {
-            if (cur -> val == 9) {
-                cur -> val = 0;
+            if (cur->val == 9) {
+                cur->val = 0;
                 last = cur;
-            }
-            else {
-                cur -> val += 1;
+            } else {
+                cur->val += 1;
                 break;
             }
-            cur = cur -> next;
+            cur = cur->next;
         }
         if (cur == nullptr) {
-            last -> next = new ListNode(1);
+            last->next = new ListNode(1);
         }
         return head;
     }
+
 public:
-    ListNode* plusOne(ListNode* head) {
+    ListNode *plusOne(ListNode *head) {
         if (head == nullptr) {
             return head;
         }

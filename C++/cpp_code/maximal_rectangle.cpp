@@ -27,9 +27,10 @@ Output: 6
 #include <stdio.h>
 using namespace std;
 
-class Solution { // O(M * N)
+class Solution {
+    // O(M * N)
 public:
-    int maximalRectangle(vector<vector<char>>& matrix) {
+    int maximalRectangle(vector<vector<char> > &matrix) {
         int m = matrix.size();
         if (m == 0) {
             return 0;
@@ -51,8 +52,7 @@ public:
                     * the only thing that affects our left is if we encounter a zero in our current row.
                     */
                     left[j] = max(left[j], curLeft);
-                }
-                else {
+                } else {
                     height[j] = 0;
                     /*
                     * cur_left is one greater than rightmost occurrence of zero we have encountered.
@@ -67,8 +67,7 @@ public:
             for (int j = n - 1; j >= 0; --j) {
                 if (matrix[i][j] == '1') {
                     right[j] = min(right[j], curRight);
-                }
-                else {
+                } else {
                     right[j] = n;
                     curRight = j;
                 }
@@ -82,23 +81,23 @@ public:
     }
 };
 
-class Solution1 { // 50% O(M * N * N)
+class Solution1 {
+    // 50% O(M * N * N)
 public:
-    int maximalRectangle(vector<vector<char>>& matrix) {
+    int maximalRectangle(vector<vector<char> > &matrix) {
         int m = matrix.size();
         if (m == 0) {
             return 0;
         }
         int n = matrix[0].size();
         // consecutiveOne[i][j] means number of consecutive ones from matrix[i][j] to its left
-        vector<vector<int>> consecutiveOne(m, vector<int>(n, 0));
+        vector<vector<int> > consecutiveOne(m, vector<int>(n, 0));
         int result = 0;
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
                 if (matrix[i][j] == '0') {
                     consecutiveOne[i][j] = 0;
-                }
-                else {
+                } else {
                     consecutiveOne[i][j] = j == 0 ? 1 : consecutiveOne[i][j - 1] + 1;
                 }
 

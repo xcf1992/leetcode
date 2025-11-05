@@ -54,24 +54,25 @@ using namespace std;
 
 class Solution {
 public:
-    int bestTeamScore(vector<int>& scores, vector<int>& ages) {
+    int bestTeamScore(vector<int> &scores, vector<int> &ages) {
         const int n = scores.size();
-        vector<pair<int, int>> arr(n, {0, 0});
-        for(int i = 0; i < n; ++i){
+        vector<pair<int, int> > arr(n, {0, 0});
+        for (int i = 0; i < n; ++i) {
             arr[i].first = ages[i];
             arr[i].second = scores[i];
         }
-        sort(arr.begin(), arr.end(), [](pair<int, int>& a, pair<int, int>& b) {
-            return a.first < b.first or (a.first == b.first and a.second < b.second);
+        sort(arr.begin(), arr.end(), [](pair<int, int> &a, pair<int, int> &b) {
+            return a.first < b.first
+            or(a.first == b.first and a.second < b.second);
         });
 
         vector<int> dp(n, 0);
         int team_score = 0;
-        for(int i = 0; i < n; ++i){
+        for (int i = 0; i < n; ++i) {
             dp[i] = arr[i].second;
             for (int j = i - 1; j >= 0; --j) {
                 // arr sorted by age, latter element has to have high score to maintain increasing susequence
-                if (arr[i].second >= arr[j].second){
+                if (arr[i].second >= arr[j].second) {
                     // update each status
                     dp[i] = max(dp[i], dp[j] + arr[i].second);
                 }

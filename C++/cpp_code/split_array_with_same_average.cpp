@@ -53,7 +53,7 @@ The second part is to call the recursive function find(parameters) to see if a s
 */
 class Solution {
 private:
-    bool find(int target, int count, int sum, int index, vector<int>& A) {
+    bool find(int target, int count, int sum, int index, vector<int> &A) {
         if (index + count > A.size()) {
             return false;
         }
@@ -61,15 +61,17 @@ private:
             return sum == target;
         }
         // if we pick current number than the left num need minus 1 and add value to current sum
-        return find(target, count - 1, sum + A[index], index + 1, A) or find(target, count, sum, index + 1, A);
+        return find(target, count - 1, sum + A[index], index + 1, A)
+        or find(target, count, sum, index + 1, A);
     }
+
 public:
-    bool splitArraySameAverage(vector<int>& A) {
+    bool splitArraySameAverage(vector<int> &A) {
         int n = A.size();
         int sum = accumulate(A.begin(), A.end(), 0);
-        double avrg = sum / (double)n;
+        double avrg = sum / (double) n;
         int count = 0;
-        for (int a : A) {
+        for (int a: A) {
             if (a >= avrg) {
                 count += 1;
             }
@@ -80,7 +82,9 @@ public:
 
         for (int i = 1; i <= n / 2; i++) {
             // we need to check if we can have i number from A that have average sum * i / n
-            if ((sum * i) % n == 0 and find(sum * i / n, i, 0, 0, A)) {
+            if ((sum * i) % n == 0 and find(sum * i / n, i, 0, 0, A)
+            )
+            {
                 return true;
             }
         }

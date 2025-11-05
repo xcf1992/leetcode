@@ -55,6 +55,7 @@ private:
     double x_c;
     double y_c;
     double pi = 3.14159265358979732384626433832795;
+
 public:
     Solution(double radius, double x_center, double y_center) {
         r = radius;
@@ -71,6 +72,7 @@ public:
         return {x + x_c, y + y_c};
     }
 };
+
 /*
  * Your Solution object will be instantiated and called as such:
  * Solution obj = new Solution(radius, x_center, y_center);

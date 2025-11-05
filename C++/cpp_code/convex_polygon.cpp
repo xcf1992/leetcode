@@ -51,16 +51,17 @@ So det([v1, v2]) ≥ 0 if and only if v1 turns at most 180 degrees counterclockw
 class Solution {
 private:
     // determinant of 2x2 matrix [A1-A0, A2-A0]
-    long det2(const vector<vector<int>>& A) {
-    	return (A[1][0]-A[0][0])*(A[2][1]-A[0][1]) - (A[1][1]-A[0][1])*(A[2][0]-A[0][0]);
+    long det2(const vector<vector<int> > &A) {
+        return (A[1][0] - A[0][0]) * (A[2][1] - A[0][1]) - (A[1][1] - A[0][1]) * (A[2][0] - A[0][0]);
     }
+
 public:
-    bool isConvex(vector<vector<int>>& p) {
-      for (int i=0, pos=0, neg=0, n=p.size(); i < n; ++i) {
-        long det = det2({p[i], p[(i+1)%n], p[(i+2)%n]});
-        if ((pos|=(det>0))*(neg|=(det<0))) return false;
-      }
-      return true;
+    bool isConvex(vector<vector<int> > &p) {
+        for (int i = 0, pos = 0, neg = 0, n = p.size(); i < n; ++i) {
+            long det = det2({p[i], p[(i + 1) % n], p[(i + 2) % n]});
+            if ((pos |= (det > 0)) * (neg |= (det < 0))) return false;
+        }
+        return true;
     }
 };
 
@@ -76,13 +77,21 @@ private:
         }
 
         int tmp = atan(abs(y1 - y2) / abs(x1 - x2)) * 180 / PI;
-        if (x1 < x2 and y1 > y2){
+        if (x1 < x2 and y1
+        >
+        y2
+        )
+        {
             return 180 - tmp;
         }
-        if (x1 < x2 and y1 < y2) {
+        if (x1 < x2 and y1<y2
+        )
+        {
             return 180 + tmp;
         }
-        if (x1 > x2 and y1 < y2) {
+        if (x1 > x2 and y1<y2
+        )
+        {
             return 360 - tmp;
         }
         return tmp;
@@ -100,9 +109,11 @@ private:
         }
         return 0;
     }
+
 public:
     double PI = 3.1415926;
-    bool isConvex(vector<vector<int>>& points) {
+
+    bool isConvex(vector<vector<int> > &points) {
         int n = points.size();
         if (n <= 3) {
             return true;
@@ -117,8 +128,7 @@ public:
 
             if (diff < 180) {
                 less++;
-            }
-            else if (diff > 180) {
+            } else if (diff > 180) {
                 more++;
             }
             if (less and more) {

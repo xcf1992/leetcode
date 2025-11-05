@@ -108,7 +108,7 @@ therefore condition 2 cannot be true for non-perfect rectangles.
 */
 class Solution {
 private:
-    void update(unordered_set<string>& points, string p) {
+    void update(unordered_set<string> &points, string p) {
         if (points.find(p) == points.end()) {
             points.insert(p);
             return;
@@ -116,14 +116,14 @@ private:
         points.erase(p);
     }
 
-    void updatePoints(unordered_set<string>& points, vector<int>& rect) {
+    void updatePoints(unordered_set<string> &points, vector<int> &rect) {
         update(points, to_string(rect[0]) + "_" + to_string(rect[1]));
         update(points, to_string(rect[0]) + "_" + to_string(rect[3]));
         update(points, to_string(rect[2]) + "_" + to_string(rect[1]));
         update(points, to_string(rect[2]) + "_" + to_string(rect[3]));
     }
 
-    bool isValid(unordered_set<string>& points, int leftX, int leftY, int rightX, int rightY) {
+    bool isValid(unordered_set<string> &points, int leftX, int leftY, int rightX, int rightY) {
         if (points.find(to_string(leftX) + "_" + to_string(leftY)) == points.end()) {
             return false;
         }
@@ -141,14 +141,15 @@ private:
         }
         return true;
     }
+
 public:
-    bool isRectangleCover(vector<vector<int>>& rectangles) {
+    bool isRectangleCover(vector<vector<int> > &rectangles) {
         int n = rectangles.size();
         int leftX = INT_MAX, rightX = INT_MIN;
         int leftY = INT_MAX, rightY = INT_MIN;
         int area = 0;
         unordered_set<string> points;
-        for (vector<int>& rect : rectangles) {
+        for (vector<int> &rect: rectangles) {
             leftX = min(leftX, rect[0]);
             leftY = min(leftY, rect[1]);
             rightX = max(rightX, rect[2]);
@@ -156,23 +157,34 @@ public:
             area += (rect[2] - rect[0]) * (rect[3] - rect[1]);
             updatePoints(points, rect);
         }
-        return isValid(points, leftX, leftY, rightX, rightY) and area == (rightX - leftX) * (rightY - leftY);
+        return isValid(points, leftX, leftY, rightX, rightY)
+        and area
+        ==
+        (rightX - leftX) * (rightY - leftY);
     }
 };
 
 // wrong [[0,0,1,1],[0,1,3,2],[1,0,2,2]]
 class Solution1 {
 public:
-    bool isRectangleCover(vector<vector<int>>& rectangles) {
+    bool isRectangleCover(vector<vector<int> > &rectangles) {
         int leftX = rectangles[0][0], leftY = rectangles[0][1];
         int rightX = rectangles[0][2], rightY = rectangles[0][3];
         int sum = (rightX - leftX) * (rightY - leftY);
         for (int i = 1; i < rectangles.size(); i++) {
-            if (rectangles[i][0] <= leftX and rectangles[i][1] <= leftY) {
+            if (rectangles[i][0] <= leftX and rectangles[i][1]
+            <=
+            leftY
+            )
+            {
                 leftX = rectangles[i][0];
                 leftY = rectangles[i][1];
             }
-            if (rectangles[i][2] >= rightX and rectangles[i][3] >= rightY) {
+            if (rectangles[i][2] >= rightX and rectangles[i][3]
+            >=
+            rightY
+            )
+            {
                 rightX = rectangles[i][2];
                 rightY = rectangles[i][3];
             }

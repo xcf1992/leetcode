@@ -47,7 +47,7 @@ public:
         if (n == 0) {
             return -1;
         }
-        vector<vector<int>> dict(26);
+        vector<vector<int> > dict(26);
         for (int i = 0; i < n; i++) {
             dict[source[i] - 'a'].push_back(i);
         }

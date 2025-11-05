@@ -55,11 +55,11 @@ We will use several filters to compare: File size, Hash and byte by byte compari
 
 class Solution {
 public:
-    vector<vector<string>> findDuplicate(vector<string>& paths) {
-        unordered_map<string, vector<string>> files;
-        vector<vector<string>> result;
+    vector<vector<string> > findDuplicate(vector<string> &paths) {
+        unordered_map<string, vector<string> > files;
+        vector<vector<string> > result;
 
-        for (auto path : paths) {
+        for (auto path: paths) {
             stringstream ss(path);
             string root;
             string s;
@@ -71,7 +71,7 @@ public:
             }
         }
 
-        for (auto file : files) {
+        for (auto file: files) {
             if (file.second.size() > 1)
                 result.push_back(file.second);
         }

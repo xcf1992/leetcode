@@ -67,8 +67,7 @@ public:
             if (S[cur] == '(') {
                 left += 1;
                 temp.push_back('(');
-            }
-            else {
+            } else {
                 left -= 1;
                 temp.push_back(')');
                 if (left == 0) {

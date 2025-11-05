@@ -53,18 +53,19 @@ using namespace std;
 
 class Solution {
 private:
-    int find(int num, vector<int>& parent) {
+    int find(int num, vector<int> &parent) {
         if (parent[num] == -1) {
             return num;
         }
         parent[num] = find(parent[num], parent);
         return parent[num];
     }
+
 public:
-    string smallestStringWithSwaps(string s, vector<vector<int>>& pairs) {
+    string smallestStringWithSwaps(string s, vector<vector<int> > &pairs) {
         int n = s.size();
         vector<int> parent(n, -1);
-        for (vector<int>& pair : pairs) {
+        for (vector<int> &pair: pairs) {
             int pu = find(pair[0], parent);
             int pv = find(pair[1], parent);
             if (pu != pv) {
@@ -72,22 +73,23 @@ public:
             }
         }
 
-        vector<vector<int>> component(n);
+        vector<vector<int> > component(n);
         for (int i = 0; i < n; ++i) {
             component[find(i, parent)].push_back(i); // the sequence of id in each component will be in increasing order
         }
 
-        for (vector<int>& c : component) if (!c.empty()) {
-            string temp = "";
-            for (int id : c) {
-                temp += s[id];
-            }
-            sort(temp.begin(), temp.end());
+        for (vector<int> &c: component)
+            if (!c.empty()) {
+                string temp = "";
+                for (int id: c) {
+                    temp += s[id];
+                }
+                sort(temp.begin(), temp.end());
 
-            for (int j = 0; j < c.size(); ++j) {
-                s[c[j]] = temp[j];
+                for (int j = 0; j < c.size(); ++j) {
+                    s[c[j]] = temp[j];
+                }
             }
-        }
         return s;
     }
 };

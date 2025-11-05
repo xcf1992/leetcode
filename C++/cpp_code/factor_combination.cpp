@@ -54,18 +54,18 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int>> getFactors(int n) {
+    vector<vector<int> > getFactors(int n) {
         if (n <= 2) {
             return {};
         }
 
-        vector<vector<int>> factors;
+        vector<vector<int> > factors;
         for (int i = 2; i * i <= n; i++) {
             if (n % i == 0) {
                 int j = n / i;
                 if (j >= i) {
                     factors.push_back({j, i});
-                    for (vector<int> factor : getFactors(j)) {
+                    for (vector<int> factor: getFactors(j)) {
                         if (i <= factor.back()) {
                             factor.push_back(i);
                             factors.push_back(factor);
@@ -80,21 +80,22 @@ public:
 
 class Solution1 {
 private:
-    vector<vector<int>> res;
+    vector<vector<int> > res;
+
 public:
-    vector<vector<int>> getFactors(int n) {
+    vector<vector<int> > getFactors(int n) {
         vector<int> line;
         getFHelp(n, 2, line);
         return res;
     }
 
     void getFHelp(int n, int bottom, vector<int> line) {
-        for(int i=bottom; i<=sqrt(n); i++){
-            if(n%i == 0) {
+        for (int i = bottom; i <= sqrt(n); i++) {
+            if (n % i == 0) {
                 vector<int> new_line = line;
                 new_line.push_back(i);
-                getFHelp(n/i, i, new_line);
-                new_line.push_back(n/i);
+                getFHelp(n / i, i, new_line);
+                new_line.push_back(n / i);
                 res.push_back(new_line);
             }
         }

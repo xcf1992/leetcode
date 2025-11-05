@@ -64,7 +64,8 @@ using namespace std;
 
 class Solution {
 public:
-    vector<string> watchedVideosByFriends(vector<vector<string>>& watchedVideos, vector<vector<int>>& friends, int id, int level) {
+    vector<string> watchedVideosByFriends(vector<vector<string> > &watchedVideos, vector<vector<int> > &friends, int id,
+                                          int level) {
         int n = watchedVideos.size();
         queue<int> bfs;
         vector<bool> visited(n, false);
@@ -77,7 +78,7 @@ public:
                 int curPeople = bfs.front();
                 bfs.pop();
 
-                for (int hisFriend : friends[curPeople]) {
+                for (int hisFriend: friends[curPeople]) {
                     if (!visited[hisFriend]) {
                         visited[hisFriend] = true;
                         bfs.push(hisFriend);
@@ -92,21 +93,22 @@ public:
             int curPeople = bfs.front();
             bfs.pop();
 
-            for (string& v : watchedVideos[curPeople]) {
+            for (string &v: watchedVideos[curPeople]) {
                 videos[v] += 1;
             }
         }
 
-        vector<pair<string, int>> sortedVideos;
-        for (auto& it : videos) {
+        vector<pair<string, int> > sortedVideos;
+        for (auto &it: videos) {
             sortedVideos.push_back({it.first, it.second});
         }
-        sort(sortedVideos.begin(), sortedVideos.end(), [](pair<string, int>& a, pair<string, int>& b) {
-            return a.second < b.second or (a.second == b.second and a.first < b.first);
+        sort(sortedVideos.begin(), sortedVideos.end(), [](pair<string, int> &a, pair<string, int> &b) {
+            return a.second < b.second
+            or(a.second == b.second and a.first < b.first);
         });
 
         vector<string> result;
-        for (auto& it : sortedVideos) {
+        for (auto &it: sortedVideos) {
             result.push_back(it.first);
         }
         return result;

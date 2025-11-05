@@ -41,7 +41,7 @@ but now we can do it in one iteration using 2 pointers, switching between the tw
 */
 class Solution {
 public:
-    int trap(vector<int>& height) {
+    int trap(vector<int> &height) {
         int n = height.size();
         int result = 0;
         int left = 0;
@@ -52,17 +52,14 @@ public:
             if (height[left] < height[right]) {
                 if (height[left] >= leftMax) {
                     leftMax = height[left];
-                }
-                else {
+                } else {
                     result += leftMax - height[left];
                 }
                 left += 1;
-            }
-            else {
+            } else {
                 if (height[right] > rightMax) {
                     rightMax = height[right];
-                }
-                else {
+                } else {
                     result += rightMax - height[right];
                 }
                 right -= 1;
@@ -72,9 +69,10 @@ public:
     }
 };
 
-class Solution1 { // O(n) tiem and space
+class Solution1 {
+    // O(n) tiem and space
 public:
-    int trap(vector<int>& height) {
+    int trap(vector<int> &height) {
         int n = height.size();
         if (n < 2) {
             return 0;

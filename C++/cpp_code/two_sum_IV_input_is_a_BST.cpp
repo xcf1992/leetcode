@@ -38,16 +38,17 @@ Output: False
 using namespace std;
 
 class Solution {
-    void toList(TreeNode* root, vector<int>& nums) {
+    void toList(TreeNode *root, vector<int> &nums) {
         if (root == nullptr) {
             return;
         }
-        toList(root -> left, nums);
-        nums.push_back(root -> val);
-        toList(root -> right, nums);
+        toList(root->left, nums);
+        nums.push_back(root->val);
+        toList(root->right, nums);
     }
+
 public:
-    bool findTarget(TreeNode* root, int k) {
+    bool findTarget(TreeNode *root, int k) {
         vector<int> nums;
         toList(root, nums);
 
@@ -60,8 +61,7 @@ public:
 
             if (nums[left] + nums[right] < k) {
                 left += 1;
-            }
-            else {
+            } else {
                 right -= 1;
             }
         }

@@ -42,7 +42,7 @@ using namespace std;
 
 class Solution {
 public:
-    int wiggleMaxLength(vector<int>& nums) {
+    int wiggleMaxLength(vector<int> &nums) {
         int n = nums.size();
         if (n <= 1) {
             return n;
@@ -54,8 +54,7 @@ public:
         for (int i = 1; i < n; ++i) {
             if (nums[i] > nums[i - 1]) {
                 increase = decrease + 1;
-            }
-            else if (nums[i] < nums[i - 1]) {
+            } else if (nums[i] < nums[i - 1]) {
                 decrease = increase + 1;
             }
             result = max(increase, decrease);
@@ -77,7 +76,7 @@ We call this a subsequence of type D.
 */
 class Solution1 {
 public:
-    int wiggleMaxLength(vector<int>& nums) {
+    int wiggleMaxLength(vector<int> &nums) {
         int result = 0;
         int up = 1;
         int down = 1;
@@ -113,12 +112,10 @@ public:
                 */
                 newUp = down + 1;
                 newDown = down;
-            }
-            else if (nums[i] < nums[i - 1]) {
+            } else if (nums[i] < nums[i - 1]) {
                 newDown = up + 1;
                 newUp = up;
-            }
-            else {
+            } else {
                 newUp = up;
                 newDown = down;
             }

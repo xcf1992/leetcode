@@ -41,7 +41,8 @@ public:
     }
 };
 
-class Solution1 { // tle
+class Solution1 {
+    // tle
 public:
     bool canWinNim(int n) {
         if (n <= 3) {
@@ -54,8 +55,7 @@ public:
         for (int i = 4; i <= n; i++) {
             if (take_one and take_two and take_three) {
                 result = false;
-            }
-            else {
+            } else {
                 result = true;
             }
             take_three = take_two;

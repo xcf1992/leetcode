@@ -43,10 +43,11 @@ private:
     int M = 0;
     int N = 0;
 
-    vector<vector<int>> prefixSum;
-    vector<vector<int>> mtx;
+    vector<vector<int> > prefixSum;
+    vector<vector<int> > mtx;
+
 public:
-    NumMatrix(vector<vector<int>>& matrix) {
+    NumMatrix(vector<vector<int> > &matrix) {
         M = matrix.size();
         if (M != 0) {
             N = matrix[0].size();
@@ -81,6 +82,7 @@ public:
         return result;
     }
 };
+
 /*
 * Your NumMatrix object will be instantiated and called as such:
 * NumMatrix* obj = new NumMatrix(matrix);

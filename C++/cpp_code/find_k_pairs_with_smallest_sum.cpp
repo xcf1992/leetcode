@@ -41,23 +41,30 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k) {
+    vector<vector<int> > kSmallestPairs(vector<int> &nums1, vector<int> &nums2, int k) {
         int len1 = nums1.size();
         int len2 = nums2.size();
-        if (len1 == 0 or len2 == 0) {
+        if (len1 == 0 or len2
+        ==
+        0
+        )
+        {
             return {};
         }
 
-        auto comp = [](vector<int>& a, vector<int>& b) {
+        auto comp = [](vector<int> &a, vector<int> &b) {
             return a[2] > b[2];
         };
-        priority_queue<vector<int>, vector<vector<int>>, decltype(comp)> minHeap(comp);
+        priority_queue<vector<int>, vector<vector<int> >, decltype(comp)> minHeap(comp);
         for (int j = 0; j < len2; ++j) {
             minHeap.push({0, j, nums1[0] + nums2[j]});
         }
 
-        vector<vector<int>> result;
-        while (!minHeap.empty() and result.size() < k) {
+        vector<vector<int> > result;
+        while (!minHeap.empty() and
+        result.size() < k
+        )
+        {
             vector<int> pair = minHeap.top();
             minHeap.pop();
 
@@ -72,23 +79,30 @@ public:
 
 class Solution2 {
 public:
-    vector<vector<int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k) {
-        if (nums1.empty() or nums2.empty()) {
+    vector<vector<int> > kSmallestPairs(vector<int> &nums1, vector<int> &nums2, int k) {
+        if (nums1.empty() or
+        nums2.empty()
+        )
+        {
             return {};
         }
 
-        vector<vector<int>> pairs;
-        for (int num1 : nums1) {
-            for (int num2 : nums2) {
+        vector<vector<int> > pairs;
+        for (int num1: nums1) {
+            for (int num2: nums2) {
                 pairs.push_back({num1, num2});
             }
         }
-        sort(pairs.begin(), pairs.end(), [](vector<int>& a, vector<int>& b) {
+        sort(pairs.begin(), pairs.end(), [](vector<int> &a, vector<int> &b) {
             return a[0] + a[1] < b[0] + b[1];
         });
 
-        vector<vector<int>> result;
-        for (int i = 0; i < pairs.size() and result.size() < k; ++i) {
+        vector<vector<int> > result;
+        for (int i = 0; i < pairs.size() and
+        result.size() < k;
+        ++i
+        )
+        {
             result.push_back(pairs[i]);
         }
         return result;
@@ -97,24 +111,30 @@ public:
 
 class Solution1 {
 public:
-    vector<vector<int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k) {
-        vector<vector<int>> result;
-        if (nums1.empty() or nums2.empty()) {
+    vector<vector<int> > kSmallestPairs(vector<int> &nums1, vector<int> &nums2, int k) {
+        vector<vector<int> > result;
+        if (nums1.empty() or
+        nums2.empty()
+        )
+        {
             return result;
         }
 
-        auto comp = [](vector<int>& a, vector<int>& b) {
+        auto comp = [](vector<int> &a, vector<int> &b) {
             return a[0] + a[1] > b[0] + b[1];
         };
-        priority_queue<vector<int>, vector<vector<int>>, decltype(comp)> minHeap(comp);
+        priority_queue<vector<int>, vector<vector<int> >, decltype(comp)> minHeap(comp);
 
-        for (int num1 : nums1) {
-            for (int num2 : nums2) {
+        for (int num1: nums1) {
+            for (int num2: nums2) {
                 minHeap.push({num1, num2});
             }
         }
 
-        while (!minHeap.empty() and result.size() < k) {
+        while (!minHeap.empty() and
+        result.size() < k
+        )
+        {
             result.push_back(minHeap.top());
             minHeap.pop();
         }

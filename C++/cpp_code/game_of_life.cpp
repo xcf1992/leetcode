@@ -103,7 +103,7 @@ https://leetcode.com/problems/game-of-life/discuss/73217/Infinite-board-solution
 */
 class Solution {
 public:
-    void gameOfLife(vector<vector<int>>& board) {
+    void gameOfLife(vector<vector<int> > &board) {
         int m = board.size();
         int n = board[0].size();
         for (int i = 0; i < m; i++) {
@@ -114,7 +114,10 @@ public:
                         count += board[x][y] & 1;
                     }
                 }
-                if (count == 3 or count - board[i][j] == 3) {
+                if (count == 3 or count
+                -board[i][j] == 3
+                )
+                {
                     board[i][j] |= 2;
                 }
             }

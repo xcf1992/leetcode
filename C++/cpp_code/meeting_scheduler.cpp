@@ -43,24 +43,30 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> minAvailableDuration(vector<vector<int>>& slots1, vector<vector<int>>& slots2, int duration) {
+    vector<int> minAvailableDuration(vector<vector<int> > &slots1, vector<vector<int> > &slots2, int duration) {
         int n1 = slots1.size();
         int n2 = slots2.size();
-        if (n1 == 0 or n2 == 0) {
+        if (n1 == 0 or n2
+        ==
+        0
+        )
+        {
             return {};
         }
 
-        sort(slots1.begin(), slots1.end(), [](vector<int>& a, vector<int>& b) {
+        sort(slots1.begin(), slots1.end(), [](vector<int> &a, vector<int> &b) {
             return a[0] < b[0];
         });
-        sort(slots2.begin(), slots2.end(), [](vector<int>& a, vector<int>& b) {
+        sort(slots2.begin(), slots2.end(), [](vector<int> &a, vector<int> &b) {
             return a[0] < b[0];
         });
 
         int i = 0;
         int j = 0;
         vector<int> result;
-        while (i < n1 and j < n2) {
+        while (i < n1 and j<n2
+        )
+        {
             int start = max(slots1[i][0], slots2[j][0]);
             int end = min(slots1[i][1], slots2[j][1]);
             if (end - start >= duration) {
@@ -69,14 +75,11 @@ public:
 
             if (i == n1 - 1) {
                 j += 1;
-            }
-            else if (j == n2 - 1) {
+            } else if (j == n2 - 1) {
                 i += 1;
-            }
-            else if (slots1[i][1] < slots2[j][1]) {
+            } else if (slots1[i][1] < slots2[j][1]) {
                 i += 1;
-            }
-            else {
+            } else {
                 j += 1;
             }
         }

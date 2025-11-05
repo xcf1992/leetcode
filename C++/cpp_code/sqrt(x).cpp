@@ -41,11 +41,9 @@ public:
             long long mid = begin + (end - begin) / 2;
             if (mid * mid == x) {
                 return mid;
-            }
-            else if (mid * mid < x) {
+            } else if (mid * mid < x) {
                 begin = mid + 1;
-            }
-            else {
+            } else {
                 end = mid;
             }
         }

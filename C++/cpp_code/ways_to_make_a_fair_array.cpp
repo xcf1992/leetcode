@@ -60,15 +60,15 @@ using namespace std;
 
 class Solution {
 public:
-    int waysToMakeFair(vector<int>& nums) {
+    int waysToMakeFair(vector<int> &nums) {
         vector<int> rest(2, 0);
-        for (int i = 0; i < nums.size(); i++){
+        for (int i = 0; i < nums.size(); i++) {
             rest[i % 2] += nums[i];
         }
 
         int res = 0;
         vector<int> pre(2, 0);
-        for (int i = 0; i < nums.size(); i++){
+        for (int i = 0; i < nums.size(); i++) {
             rest[i % 2] -= nums[i];
             res += (pre[1] + rest[0] == pre[0] + rest[1]);
             pre[i % 2] += nums[i];

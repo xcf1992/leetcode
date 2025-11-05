@@ -115,16 +115,19 @@ So col swaps and row swaps should be same here.
 class Solution {
 private:
     int N = 0;
-    bool isValid(vector<vector<int>>& board) {
+
+    bool isValid(vector<vector<int> > &board) {
         for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) if (board[0][0] ^ board[0][j] ^ board[i][0] ^ board[i][j] == 1) {
-                return false;
-            }
+            for (int j = 0; j < N; j++)
+                if (board[0][0] ^ board[0][j] ^ board[i][0] ^ board[i][j] == 1) {
+                    return false;
+                }
         }
         return true;
     }
+
 public:
-    int movesToChessboard(vector<vector<int>>& board) {
+    int movesToChessboard(vector<vector<int> > &board) {
         N = board.size();
         if (!isValid(board)) {
             return -1;
@@ -134,14 +137,25 @@ public:
         int rowSwap = 0; // the numebr of swaps needed to make row become 1010101... or 01010101....
         int colSum = 0;
         int colSwap = 0;
-        for (int i = 0; i < N; i++) { // Check the first row and first col, how many matches 01010101...
+        for (int i = 0; i < N; i++) {
+            // Check the first row and first col, how many matches 01010101...
             rowSum += board[0][i];
             rowSwap += board[i][0] == i % 2;
             colSum += board[i][0];
             colSwap += board[0][i] == i % 2;
         }
 
-        if (N / 2 > rowSum or rowSum > (N + 1) / 2 or N / 2 > colSum or colSum > (N + 1) / 2) {
+        if (N / 2 > rowSum or rowSum
+        >
+        (N + 1) / 2
+        or N
+        /
+        2 > colSum
+        or colSum
+        >
+        (N + 1) / 2
+        )
+        {
             return -1;
         }
 
@@ -152,8 +166,7 @@ public:
             if (rowSwap % 2 == 1) {
                 rowSwap = N - rowSwap;
             }
-        }
-        else {
+        } else {
             rowSwap = min(rowSwap, N - rowSwap);
             colSwap = min(colSwap, N - colSwap);
         }

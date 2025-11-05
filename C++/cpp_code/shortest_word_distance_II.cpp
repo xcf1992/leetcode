@@ -35,10 +35,11 @@ using namespace std;
 
 class WordDistance {
 private:
-    unordered_map<string, vector<int>> wordMap;
+    unordered_map<string, vector<int> > wordMap;
+
 public:
     WordDistance(vector<string> words) {
-        for (int i = 0 ; i < words.size(); i++) {
+        for (int i = 0; i < words.size(); i++) {
             wordMap[words[i]].push_back(i);
         }
     }
@@ -47,18 +48,20 @@ public:
         int i = 0;
         int j = 0;
         int result = INT_MAX;
-        while (i < wordMap[word1].size() and j < wordMap[word2].size()) {
+        while (i < wordMap[word1].size() and j<wordMap[word2].size()
+        )
+        {
             result = min(result, abs(wordMap[word1][i] - wordMap[word2][j]));
             if (wordMap[word1][i] < wordMap[word2][j]) {
                 i++;
-            }
-            else {
+            } else {
                 j++;
             }
         }
         return result;
     }
 };
+
 /*
 * Your WordDistance object will be instantiated and called as such:
 * WordDistance obj = new WordDistance(words);

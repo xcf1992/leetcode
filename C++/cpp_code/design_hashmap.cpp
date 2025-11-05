@@ -50,6 +50,7 @@ using namespace std;
 class MyHashMap {
 private:
     vector<int> array;
+
 public:
     /* Initialize your data structure here.*/
     MyHashMap() {
@@ -71,6 +72,7 @@ public:
         array[key] = -1;
     }
 };
+
 /*
 * Your MyHashMap object will be instantiated and called as such:
 * MyHashMap obj = new MyHashMap();

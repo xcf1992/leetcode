@@ -32,9 +32,10 @@ using namespace std;
 
 class Solution {
 private:
-    vector<vector<int>> diff{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    vector<vector<int> > diff{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+
 public:
-    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+    vector<int> spiralOrder(vector<vector<int> > &matrix) {
         int m = matrix.size();
         if (m == 0) {
             return {};

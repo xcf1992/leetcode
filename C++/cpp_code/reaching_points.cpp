@@ -70,15 +70,22 @@ When tx == ty, no more moves can be made.
 class Solution {
 public:
     bool reachingPoints(int sx, int sy, int tx, int ty) {
-        while (sx < tx and sy < ty) {
+        while (sx < tx and sy<ty
+        )
+        {
             if (tx < ty) {
                 ty %= tx;
-            }
-            else {
+            } else {
                 tx %= ty;
             }
         }
-        return (sx == tx and sy <= ty and (ty - sy) % sx == 0) or (sy == ty and sx <= tx and (tx - sx) % sy == 0);
+        return (sx == tx
+        and sy
+        <=
+        ty and(ty - sy)
+        %sx == 0
+        )
+        or(sy == ty and sx <= tx and(tx - sx) % sy == 0);
     }
 };
 
@@ -87,17 +94,25 @@ Every parent point (x, y) has two children, (x, x+y) and (x+y, y).
 However, every point (x, y) only has one parent candidate (x-y, y) if x >= y,
 else (x, y-x). This is because we never have points with negative coordinates.
 */
-class Solution1 { //TLE
+class Solution1 {
+    //TLE
 public:
     bool reachingPoints(int sx, int sy, int tx, int ty) {
-        while (tx >= sx and ty >= sy) {
-            if (tx == sx and ty == sy) {
+        while (tx >= sx and ty
+        >=
+        sy
+        )
+        {
+            if (tx == sx and ty
+            ==
+            sy
+            )
+            {
                 return true;
             }
             if (tx > ty) {
                 tx = tx - ty;
-            }
-            else {
+            } else {
                 ty = ty - tx;
             }
         }

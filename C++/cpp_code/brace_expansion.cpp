@@ -42,33 +42,37 @@ using namespace std;
 
 class Solution {
 private:
-    void dfs(vector<set<char>>& groups, int index, vector<string>& result, string cur) {
+    void dfs(vector<set<char> > &groups, int index, vector<string> &result, string cur) {
         if (index == groups.size()) {
             result.push_back(cur);
             return;
         }
 
-        for (char c : groups[index]) {
+        for (char c: groups[index]) {
             cur.push_back(c);
             dfs(groups, index + 1, result, cur);
             cur.pop_back();
         }
     }
+
 public:
     vector<string> expand(string S) {
         int n = S.size();
-        vector<set<char>> groups;
+        vector<set<char> > groups;
         for (int i = 0; i < n; ++i) {
             set<char> cur;
             if (S[i] == '{') {
-                while (i < n and S[i] != '}') {
+                while (i < n and S[i]
+                !=
+                '}'
+                )
+                {
                     if (isalpha(S[i])) {
                         cur.insert(S[i]);
                     }
                     i += 1;
                 }
-            }
-            else {
+            } else {
                 cur.insert(S[i]);
             }
             groups.push_back(cur);

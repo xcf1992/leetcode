@@ -54,17 +54,18 @@ using namespace std;
 
 class Solution {
 private:
-    int getSum(TreeNode* root, unordered_map<int, int>& count) {
+    int getSum(TreeNode *root, unordered_map<int, int> &count) {
         if (root == nullptr) {
             return 0;
         }
 
-        int sum = root -> val + getSum(root -> left, count) + getSum(root -> right, count);
+        int sum = root->val + getSum(root->left, count) + getSum(root->right, count);
         count[sum] += 1;
         return sum;
     }
+
 public:
-    bool checkEqualTree(TreeNode* root) {
+    bool checkEqualTree(TreeNode *root) {
         unordered_map<int, int> count;
         int sum = getSum(root, count);
         if (sum % 2 != 0) {

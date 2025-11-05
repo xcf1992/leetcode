@@ -76,37 +76,31 @@ valid values are <6,8,24> and gcd = 2. Note that gcd(6,8) = 2, now even if we ta
 
 In the solution, the outer loop fixes our "x" and the inner loop goes over all the valid values.
 */
-class Solution
-{
+class Solution {
 public:
-    int gcd(int a, int b)
-    {
+    int gcd(int a, int b) {
         if (a == 0)
             return b;
         return gcd(b % a, a);
     }
 
-    int countDifferentSubsequenceGCDs(vector<int> &nums)
-    {
+    int countDifferentSubsequenceGCDs(vector<int> &nums) {
         int n = nums.size();
         int LIMIT = 2e5 + 1;
 
         int ans = 0;
 
         vector<bool> hash(LIMIT, false);
-        for (auto num : nums)
+        for (auto num: nums)
             hash[num] = true;
 
-        for (int i = 1; i < LIMIT; i++)
-        {
+        for (int i = 1; i < LIMIT; i++) {
             // to check if i is a valid gcd of subsequence.
 
             int g = 0;
 
-            for (int j = i; j < LIMIT; j += i)
-            {
-                if (hash[j])
-                {
+            for (int j = i; j < LIMIT; j += i) {
+                if (hash[j]) {
                     g = gcd(g, j);
                 }
             }

@@ -47,8 +47,9 @@ using namespace std;
 
 class SnapshotArray {
 private:
-    vector<map<int, int>> snapArray;
+    vector<map<int, int> > snapArray;
     int snapId;
+
 public:
     SnapshotArray(int length) {
         snapId = 0;
@@ -69,9 +70,10 @@ public:
 
     int get(int index, int snap_id) {
         auto it = snapArray[index].upper_bound(snap_id);
-        return it == snapArray[index].begin() ? 0 : prev(it) -> second;
+        return it == snapArray[index].begin() ? 0 : prev(it)->second;
     }
 };
+
 /*
 * Your SnapshotArray object will be instantiated and called as such:
 * SnapshotArray* obj = new SnapshotArray(length);

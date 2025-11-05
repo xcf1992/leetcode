@@ -49,15 +49,20 @@ private:
     bool complete(string word, unordered_map<char, int> letters, int plateSize) {
         for (int i = 0; i < word.size(); i++) {
             char letter = tolower(word[i]);
-            if (letters.find(letter) != letters.end() and letters[letter] > 0) {
+            if (letters.find(letter) != letters.end() and letters[letter]
+            >
+            0
+            )
+            {
                 plateSize -= 1;
                 letters[letter] -= 1;
             }
         }
         return plateSize == 0;
     }
+
 public:
-    string shortestCompletingWord(string licensePlate, vector<string>& words) {
+    string shortestCompletingWord(string licensePlate, vector<string> &words) {
         unordered_map<char, int> letters;
         int plateSize = 0;
         for (int i = 0; i < licensePlate.size(); i++) {
@@ -70,9 +75,13 @@ public:
 
         int maxLength = -1;
         string result = "";
-        for (string& word : words) {
+        for (string &word: words) {
             if (complete(word, letters, plateSize)) {
-                if (maxLength == -1 or maxLength > word.size()) {
+                if (maxLength == -1 or maxLength
+                >
+                word.size()
+                )
+                {
                     maxLength = word.size();
                     result = word;
                 }

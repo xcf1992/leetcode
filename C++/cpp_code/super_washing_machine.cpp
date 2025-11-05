@@ -72,7 +72,7 @@ Therefore, res = max(res, 3, 4, 7) = max(res, 7).
 */
 class Solution {
 public:
-    int findMinMoves(vector<int>& machines) {
+    int findMinMoves(vector<int> &machines) {
         int n = machines.size();
         int sum = accumulate(machines.begin(), machines.end(), 0);
         if (sum % n != 0) {
@@ -85,7 +85,7 @@ public:
         for (int i = 0; i < n; ++i) {
             int toRight = machines[i] - avg - toLeft;
             result = max(result, max(toLeft + toRight, max(toLeft, toRight)));
-            toLeft = - toRight;
+            toLeft = -toRight;
         }
         return result;
     }
@@ -126,9 +126,10 @@ for 0, L = 1 * 2 - 1= 1, R = 1 * 2 - 5 = -3, result = 3
 for 5, L = 2 * 2 - 1= 3, R = 0 * 2 - 0= 0, result = 3
 so minium moves is 3
 */
-class Solution1 { // this one is easier to understand
+class Solution1 {
+    // this one is easier to understand
 public:
-    int findMinMoves(vector<int>& machines) {
+    int findMinMoves(vector<int> &machines) {
         int n = machines.size();
         int sum = accumulate(machines.begin(), machines.end(), 0);
         if (sum % n != 0) {
@@ -144,10 +145,15 @@ public:
             int rightNeed = avg * (n - i - 1) - right;
             int leftNeed = avg * i - left;
 
-            if (leftNeed > 0 and rightNeed > 0) {
+            if (leftNeed > 0 and rightNeed
+            >
+            0
+            )
+            {
                 result = max(result, leftNeed + rightNeed);
             }
-            else {
+            else
+            {
                 result = max(result, max(abs(leftNeed), abs(rightNeed)));
             }
             left += machines[i];

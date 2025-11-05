@@ -48,42 +48,46 @@ using namespace std;
 
 class CBTInserter {
 private:
-    TreeNode* r = nullptr;
-    queue<TreeNode*> row;
+    TreeNode *r = nullptr;
+    queue<TreeNode *> row;
+
 public:
-    CBTInserter(TreeNode* root) {
+    CBTInserter(TreeNode *root) {
         r = root;
         row.push(root);
-        TreeNode* cur = row.front();
-        while (cur -> left != nullptr and cur -> right != nullptr) {
+        TreeNode *cur = row.front();
+        while (cur->left != nullptr and
+        cur->right != nullptr
+        )
+        {
             row.pop();
-            row.push(cur -> left);
-            row.push(cur -> right);
+            row.push(cur->left);
+            row.push(cur->right);
             cur = row.front();
         }
-        if (cur -> left != nullptr) {
-            row.push(cur -> left);
+        if (cur->left != nullptr) {
+            row.push(cur->left);
         }
     }
 
     int insert(int v) {
-        TreeNode* cur = row.front();
-        if (cur -> left == nullptr) {
-            cur -> left = new TreeNode(v);
-            row.push(cur -> left);
-        }
-        else {
-            cur -> right = new TreeNode(v);
-            row.push(cur -> right);
+        TreeNode *cur = row.front();
+        if (cur->left == nullptr) {
+            cur->left = new TreeNode(v);
+            row.push(cur->left);
+        } else {
+            cur->right = new TreeNode(v);
+            row.push(cur->right);
             row.pop();
         }
-        return cur -> val;
+        return cur->val;
     }
 
-    TreeNode* get_root() {
+    TreeNode *get_root() {
         return r;
     }
 };
+
 /*
 * Your CBTInserter object will be instantiated and called as such:
 * CBTInserter* obj = new CBTInserter(root);

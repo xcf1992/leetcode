@@ -65,7 +65,7 @@ class Solution {
 private:
     vector<string> open(string curStr) {
         vector<string> nextStrs;
-        for (int i = 0; i< curStr.size(); i++) {
+        for (int i = 0; i < curStr.size(); i++) {
             string temp = curStr;
             temp[i] = ((curStr[i] - '0' + 1) % 10) + '0';
             nextStrs.push_back(temp);
@@ -74,10 +74,14 @@ private:
         }
         return nextStrs;
     }
+
 public:
-    int openLock(vector<string>& deadends, string target) {
+    int openLock(vector<string> &deadends, string target) {
         unordered_set<string> des(deadends.begin(), deadends.end());
-        if (des.find("0000") != des.end() or des.find(target) != des.end()) {
+        if (des.find("0000") != des.end() or
+        des.find(target) != des.end()
+        )
+        {
             return -1;
         }
 
@@ -97,8 +101,11 @@ public:
                 }
 
                 vector<string> nextStrings = open(curStr);
-                for (string nextStr : nextStrings) {
-                    if (des.find(nextStr) == des.end() and visited.find(nextStr) == visited.end()) {
+                for (string nextStr: nextStrings) {
+                    if (des.find(nextStr) == des.end() and
+                    visited.find(nextStr) == visited.end()
+                    )
+                    {
                         visited.insert(nextStr);
                         bfs.push(nextStr);
                     }

@@ -50,32 +50,33 @@ class Solution {
 private:
     int MOD = 1e9 + 7;
 
-    void getSum(long& sum, TreeNode* root) {
+    void getSum(long &sum, TreeNode *root) {
         if (root == nullptr) {
             return;
         }
 
-        sum += root -> val;
-        getSum(sum, root -> left);
-        getSum(sum, root -> right);
+        sum += root->val;
+        getSum(sum, root->left);
+        getSum(sum, root->right);
     }
 
-    int getMaxProduct(long sum, long& minGap, TreeNode* root) {
+    int getMaxProduct(long sum, long &minGap, TreeNode *root) {
         if (root == nullptr) {
             return 0;
         }
 
-        int lSum = getMaxProduct(sum, minGap, root -> left);
-        int rSum = getMaxProduct(sum, minGap, root -> right);
-        int curSum = root -> val + lSum + rSum;
+        int lSum = getMaxProduct(sum, minGap, root->left);
+        int rSum = getMaxProduct(sum, minGap, root->right);
+        int curSum = root->val + lSum + rSum;
         int gap = abs((sum - curSum) - curSum);
         if (minGap > gap) {
             minGap = gap;
         }
         return curSum;
     }
+
 public:
-    int maxProduct(TreeNode* root) {
+    int maxProduct(TreeNode *root) {
         long sum = 0;
         getSum(sum, root);
 

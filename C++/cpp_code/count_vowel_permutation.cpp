@@ -49,12 +49,12 @@ class Solution {
 public:
     int countVowelPermutation(int n) {
         int mod = 1e9 + 7;
-        vector<vector<int>> moves({{1}, {0, 2}, {0, 1, 3, 4}, {2, 4}, {0}}); // a e i o u
+        vector<vector<int> > moves({{1}, {0, 2}, {0, 1, 3, 4}, {2, 4}, {0}}); // a e i o u
         vector<int> dp(5, 1);
         for (int i = 1; i < n; ++i) {
             vector<int> temp(5, 0);
             for (int last = 0; last < 5; ++last) {
-                for (int nxt : moves[last]) {
+                for (int nxt: moves[last]) {
                     temp[nxt] = (temp[nxt] + dp[last]) % mod;
                 }
             }
@@ -62,7 +62,7 @@ public:
         }
 
         int result = 0;
-        for (int count : dp) {
+        for (int count: dp) {
             result = (result + count) % mod;
         }
         return result;

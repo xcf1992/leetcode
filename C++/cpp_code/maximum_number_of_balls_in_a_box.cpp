@@ -60,11 +60,12 @@ class Solution {
 private:
     int getBox(int ball) {
         int box = 0;
-        for (char c : to_string(ball)) {
+        for (char c: to_string(ball)) {
             box += c - '0';
         }
         return box;
     }
+
 public:
     int countBalls(int lowLimit, int highLimit) {
         unordered_map<int, int> box;

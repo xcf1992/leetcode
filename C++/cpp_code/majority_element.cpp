@@ -29,7 +29,7 @@ using namespace std;
 
 class Solution {
 public:
-    int majorityElement(vector<int>& num) {
+    int majorityElement(vector<int> &num) {
         int cur = -1;
         int count = 0;
         for (int i = 0; i < num.size(); ++i) {
@@ -41,8 +41,7 @@ public:
 
             if (num[i] == cur) {
                 count += 1;
-            }
-            else {
+            } else {
                 count -= 1;
             }
         }

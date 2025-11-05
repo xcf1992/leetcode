@@ -37,7 +37,8 @@ using namespace std;
 
 class Solution {
 private:
-    unordered_map<string, vector<int>> memo;
+    unordered_map<string, vector<int> > memo;
+
 public:
     vector<int> diffWaysToCompute(string input) {
         if (memo.find(input) != memo.end()) {
@@ -51,15 +52,13 @@ public:
                 continue;
             }
 
-            for (int a : diffWaysToCompute(input.substr(0, i))) {
-                for (int b : diffWaysToCompute(input.substr(i + 1))) {
+            for (int a: diffWaysToCompute(input.substr(0, i))) {
+                for (int b: diffWaysToCompute(input.substr(i + 1))) {
                     if (c == '+') {
                         result.push_back(a + b);
-                    }
-                    else if (c == '-') {
+                    } else if (c == '-') {
                         result.push_back(a - b);
-                    }
-                    else if (c == '*') {
+                    } else if (c == '*') {
                         result.push_back(a * b);
                     }
                 }

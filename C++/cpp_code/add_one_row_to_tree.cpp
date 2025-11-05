@@ -77,43 +77,43 @@ using namespace std;
 
 class Solution {
 public:
-    TreeNode* addOneRow(TreeNode* root, int v, int d) {
+    TreeNode *addOneRow(TreeNode *root, int v, int d) {
         if (d == 1) {
-            TreeNode* newRoot = new TreeNode(v);
-            newRoot -> left = root;
+            TreeNode *newRoot = new TreeNode(v);
+            newRoot->left = root;
             return newRoot;
         }
 
-        queue<TreeNode*> bfs;
+        queue<TreeNode *> bfs;
         bfs.push(root);
         int depth = 1;
         while (depth < d - 1) {
             int curSize = bfs.size();
             for (int i = 0; i < curSize; ++i) {
-                TreeNode* node = bfs.front();
+                TreeNode *node = bfs.front();
                 bfs.pop();
 
-                if (node -> left) {
+                if (node->left) {
                     bfs.push(node->left);
                 }
-                if (node -> right) {
-                    bfs.push(node -> right);
+                if (node->right) {
+                    bfs.push(node->right);
                 }
             }
             depth += 1;
         }
 
         while (!bfs.empty()) {
-            TreeNode* node = bfs.front();
+            TreeNode *node = bfs.front();
             bfs.pop();
 
-            TreeNode* newLeft = new TreeNode(v);
-            newLeft -> left = node -> left;
-            node -> left = newLeft;
+            TreeNode *newLeft = new TreeNode(v);
+            newLeft->left = node->left;
+            node->left = newLeft;
 
-            TreeNode* newRight = new TreeNode(v);
-            newRight -> right = node -> right;
-            node -> right = newRight;
+            TreeNode *newRight = new TreeNode(v);
+            newRight->right = node->right;
+            node->right = newRight;
         }
         return root;
     }

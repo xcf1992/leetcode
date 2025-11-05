@@ -52,9 +52,9 @@ using namespace std;
 
 class Solution {
 public:
-    bool canArrange(vector<int>& arr, int k) {
+    bool canArrange(vector<int> &arr, int k) {
         vector<int> count(k, 0);
-        for (int num : arr) {
+        for (int num: arr) {
             int left = ((num % k) + k) % k;
             count[left] += 1;
         }

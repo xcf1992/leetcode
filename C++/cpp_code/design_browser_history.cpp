@@ -67,6 +67,7 @@ class BrowserHistory {
 private:
     vector<string> history;
     int cur = 0;
+
 public:
     BrowserHistory(string homepage) {
         history.push_back(homepage);
@@ -92,6 +93,7 @@ public:
         return history[cur - 1];
     }
 };
+
 /**
  * Your BrowserHistory object will be instantiated and called as such:
  * BrowserHistory* obj = new BrowserHistory(homepage);

@@ -34,17 +34,25 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
+    vector<vector<int> > insert(vector<vector<int> > &intervals, vector<int> &newInterval) {
         int n = intervals.size();
-        vector<vector<int>> result;
+        vector<vector<int> > result;
 
         int index = 0;
-        while (index < n and intervals[index][1] < newInterval[0]) {
+        while (index < n and intervals[index][1]
+        <
+        newInterval[0]
+        )
+        {
             result.push_back(intervals[index]);
             index += 1;
         }
 
-        while (index < n and intervals[index][0] <= newInterval[1]) {
+        while (index < n and intervals[index][0]
+        <=
+        newInterval[1]
+        )
+        {
             newInterval[0] = min(newInterval[0], intervals[index][0]);
             newInterval[1] = max(newInterval[1], intervals[index][1]);
             index += 1;

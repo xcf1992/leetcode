@@ -75,7 +75,7 @@ Space O(K), where K = set(A).length
 */
 class Solution {
 public:
-    int maxEqualFreq(vector<int>& nums) {
+    int maxEqualFreq(vector<int> &nums) {
         int n = nums.size();
         if (n <= 1) {
             return n;
@@ -90,11 +90,21 @@ public:
             int curCount = ++count[num];
             freq[curCount] += 1;
 
-            if (freq[curCount] * curCount == i and i < n) {
+            if (freq[curCount] * curCount == i and i<n
+            )
+            {
                 result = i + 1;
             }
             int gap = i - freq[curCount] * curCount;
-            if ((gap == curCount + 1 or gap == 1) and freq[gap] == 1) {
+            if ((gap == curCount + 1 or gap
+            ==
+            1
+            )
+            and freq[gap]
+            ==
+            1
+            )
+            {
                 result = i;
             }
         }

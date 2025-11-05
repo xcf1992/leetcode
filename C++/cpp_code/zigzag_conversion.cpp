@@ -39,7 +39,13 @@ using namespace std;
 class Solution {
 public:
     string convert(string s, int numRows) {
-        if (s.empty() or s.size() <= numRows or numRows == 1) {
+        if (s.empty() or
+        s.size() <= numRows
+        or numRows
+        ==
+        1
+        )
+        {
             return s;
         }
 
@@ -48,14 +54,17 @@ public:
         int direct = 1;
         for (int i = 0; i < s.size(); ++i) {
             result[row].push_back(s[i]);
-            if (row + direct >= numRows or row + direct < 0) {
+            if (row + direct >= numRows or row
+            +direct < 0
+            )
+            {
                 direct = 0 - direct;
             }
             row += direct;
         }
 
         string line = "";
-        for (string re : result) {
+        for (string re: result) {
             line += re;
         }
         return line;
@@ -65,7 +74,13 @@ public:
 class Solution1 {
 public:
     string convert(string s, int nRows) {
-        if (s.empty() or s.size() <= nRows or nRows == 1) {
+        if (s.empty() or
+        s.size() <= nRows
+        or nRows
+        ==
+        1
+        )
+        {
             return s;
         }
 

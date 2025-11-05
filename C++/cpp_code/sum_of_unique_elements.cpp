@@ -43,10 +43,10 @@ using namespace std;
 
 class Solution {
 public:
-    int sumOfUnique(vector<int>& nums) {
+    int sumOfUnique(vector<int> &nums) {
         vector<int> count(101, 0);
         int result = 0;
-        for (int num : nums) {
+        for (int num: nums) {
             count[num] += 1;
             if (count[num] == 1) {
                 result += num;

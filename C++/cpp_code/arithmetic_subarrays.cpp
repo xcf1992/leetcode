@@ -62,7 +62,7 @@ using namespace std;
 
 class Solution {
 private:
-    bool isArithmetic(vector<int>& arr) {
+    bool isArithmetic(vector<int> &arr) {
         int diff = arr[1] - arr[0];
         for (int j = 2; j < arr.size(); j++) {
             if (arr[j] - arr[j - 1] != diff) {
@@ -71,14 +71,16 @@ private:
         }
         return true;
     }
+
 public:
-    vector<bool> checkArithmeticSubarrays(vector<int>& nums, vector<int>& l, vector<int>& r) {
+    vector<bool> checkArithmeticSubarrays(vector<int> &nums, vector<int> &l, vector<int> &r) {
         int n = l.size();
         vector<bool> result;
         for (int i = 0; i < n; i++) {
             vector<int> arr(nums.begin() + l[i], nums.begin() + 1 + r[i]);
             sort(arr.begin(), arr.end());
-            if (arr.size() == 1) { // Size should be at least two
+            if (arr.size() == 1) {
+                // Size should be at least two
                 result.push_back(false);
                 continue;
             }

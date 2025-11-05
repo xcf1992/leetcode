@@ -54,9 +54,10 @@ words[i], letters[i] contains only lower case English letters.
 #include <stdio.h>
 using namespace std;
 
-class Solution { // pure dfs
+class Solution {
+    // pure dfs
 private:
-    int dfs(vector<string>& words, vector<int>& count, vector<int>& score, int index) {
+    int dfs(vector<string> &words, vector<int> &count, vector<int> &score, int index) {
         if (index >= words.size()) {
             return 0;
         }
@@ -65,7 +66,7 @@ private:
         for (int i = index; i < words.size(); ++i) {
             bool canForm = true;
             int sum = 0;
-            for (char c : words[i]) {
+            for (char c: words[i]) {
                 count[c - 'a'] -= 1;
                 sum += score[c - 'a'];
                 if (count[c - 'a'] < 0) {
@@ -78,20 +79,26 @@ private:
                 result = max(result, sum);
             }
 
-            for (char c : words[i]) {
+            for (char c: words[i]) {
                 count[c - 'a'] += 1;
             }
         }
         return result;
     }
+
 public:
-    int maxScoreWords(vector<string>& words, vector<char>& letters, vector<int>& score) {
-        if (words.empty() or letters.empty() or score.empty()) {
+    int maxScoreWords(vector<string> &words, vector<char> &letters, vector<int> &score) {
+        if (words.empty() or
+        letters.empty()
+        or
+        score.empty()
+        )
+        {
             return 0;
         }
 
         vector<int> count(26, 0);
-        for (char c : letters) {
+        for (char c: letters) {
             count[c - 'a'] += 1;
         }
         return dfs(words, count, score, 0);

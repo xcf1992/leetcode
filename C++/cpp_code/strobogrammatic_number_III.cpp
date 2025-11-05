@@ -32,29 +32,42 @@ class Solution {
 private:
     map<char, char> mp = {{'0', '0'}, {'1', '1'}, {'6', '9'}, {'8', '8'}, {'9', '6'}};
 
-    void dfs(string& low, string& high, string str, int left, int right, int& count) {
+    void dfs(string &low, string &high, string str, int left, int right, int &count) {
         if (left > right) {
-            if (str.length() == low.length() and str.compare(low) < 0) {
+            if (str.length() == low.length() and
+            str.compare(low) < 0
+            )
+            {
                 return;
             }
-            if (str.length() == high.length() and str.compare(high) > 0) {
+            if (str.length() == high.length() and
+            str.compare(high) > 0
+            )
+            {
                 return;
             }
             count++;
             return;
         }
 
-        for (auto p : mp) {
+        for (auto p: mp) {
             str[left] = p.first;
             str[right] = p.second;
-            if (str.size() != 1 and str[0] == '0') {
+            if (str.size() != 1 and str[0]
+            ==
+            '0'
+            )
+            {
                 continue;
             }
-            if (left < right or (left == right and p.first == p.second)) {
+            if (left < right or(left == right and p.first == p.second)
+            )
+            {
                 dfs(low, high, str, left + 1, right - 1, count);
             }
         }
     }
+
 public:
     int strobogrammaticInRange(string low, string high) {
         int count = 0;
@@ -66,24 +79,44 @@ public:
     }
 };
 
-class Solution1 { // brute force digit by digit, by chenfu
+class Solution1 {
+    // brute force digit by digit, by chenfu
 private:
     vector<char> digit{'0', '1', '6', '8', '9'};
     unordered_map<char, char> strobogrammatic{{'9', '6'}, {'1', '1'}, {'8', '8'}, {'6', '9'}, {'0', '0'}};
 
     void dfs(int n, int pos, int &result, string &temp, string &low, string &high) {
-        if ((n % 2 == 1 and pos > n / 2) or (n % 2 == 0 and pos > n / 2 - 1)) {
-            if (temp >= low and temp <= high) {
+        if ((n % 2 == 1 and pos
+        >
+        n / 2
+        )
+        or(n % 2 == 0 and pos > n / 2 - 1)
+        )
+        {
+            if (temp >= low and temp
+            <=
+            high
+            )
+            {
                 result += 1;
             }
             return;
         }
 
-        for (char c : digit) {
-            if (pos == 0 and c == '0') {
+        for (char c: digit) {
+            if (pos == 0 and c
+            ==
+            '0'
+            )
+            {
                 continue;
             }
-            if (n % 2 == 1 and pos == n / 2 and (c == '6' or c == '9')) {
+            if (n % 2 == 1 and pos
+            ==
+            n / 2
+            and(c == '6' or c == '9')
+            )
+            {
                 continue;
             }
             temp[pos] = c;
@@ -91,6 +124,7 @@ private:
             dfs(n, pos + 1, result, temp, low, high);
         }
     }
+
 public:
     int strobogrammaticInRange(string low, string high) {
         int minLen = low.size();
@@ -99,8 +133,18 @@ public:
         if (minLen == maxLen) {
             if (minLen == 1) {
                 int count = 0;
-                for (char d : digit) {
-                    if (d != '6' and d != '9' and d >= low[0] and d <= high[0]) {
+                for (char d: digit) {
+                    if (d != '6' and d
+                    !=
+                    '9'
+                    and d
+                    >=
+                    low[0]
+                    and d
+                    <=
+                    high[0]
+                    )
+                    {
                         count += 1;
                     }
                 }
@@ -120,19 +164,16 @@ public:
                 if (minLen == 1) {
                     result += 1;
                 }
-            }
-            else if (i == maxLen) {
+            } else if (i == maxLen) {
                 int count = 0;
                 string temp(maxLen, ' ');
                 string minNum = "1" + string(maxLen - 1, '0');
                 dfs(maxLen, 0, count, temp, minNum, high);
                 result += count;
-            }
-            else {
+            } else {
                 if (i % 2 == 0) {
                     result += 4 * pow(5, i / 2 - 1);
-                }
-                else {
+                } else {
                     result += 4 * 3 * pow(5, i / 2 - 1);
                 }
             }

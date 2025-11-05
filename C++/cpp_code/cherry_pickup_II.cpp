@@ -76,7 +76,7 @@ private:
     int m = 0;
     int n = 0;
 
-    int dfs(vector<vector<int>>& grid, int r, int c1, int c2) {
+    int dfs(vector<vector<int> > &grid, int r, int c1, int c2) {
         if (r == m) {
             return 0; // Reach to bottom row
         }
@@ -90,17 +90,20 @@ private:
             for (int j = -1; j <= 1; j++) {
                 int nc1 = c1 + i;
                 int nc2 = c2 + j;
-                if (nc1 >= 0 and nc1 < n and nc2 >= 0 and nc2 < n) {
+                if (nc1 >= 0 and nc1<n and nc2 >= 0 and nc2 < n
+                )
+                {
                     dp[r][c1][c2] = max(dp[r][c1][c2], dfs(grid, r + 1, nc1, nc2));
                 }
             }
         }
-        
+
         dp[r][c1][c2] += c1 == c2 ? grid[r][c1] : grid[r][c1] + grid[r][c2];
         return dp[r][c1][c2];
     }
+
 public:
-    int cherryPickup(vector<vector<int>>& grid) {
+    int cherryPickup(vector<vector<int> > &grid) {
         memset(dp, -1, sizeof(dp));
         m = grid.size();
         n = grid[0].size();

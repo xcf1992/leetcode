@@ -56,18 +56,17 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> numberOfLines(vector<int>& widths, string S) {
+    vector<int> numberOfLines(vector<int> &widths, string S) {
         if (S.empty()) {
             return {0, 0};
         }
 
         int line = 0;
         int width = 0;
-        for (char c : S) {
+        for (char c: S) {
             if (width + widths[c - 'a'] <= 100) {
                 width += widths[c - 'a'];
-            }
-            else {
+            } else {
                 width = widths[c - 'a'];
                 line += 1;
             }

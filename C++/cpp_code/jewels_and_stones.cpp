@@ -41,7 +41,7 @@ public:
         unordered_set<char> jewels(J.begin(), J.end());
 
         int result = 0;
-        for (char c : S) {
+        for (char c: S) {
             result += jewels.count(c);
         }
         return result;

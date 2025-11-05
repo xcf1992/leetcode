@@ -112,7 +112,7 @@ Algorithm
 */
 class Solution {
 public:
-    int maximumGap(vector<int>& nums) {
+    int maximumGap(vector<int> &nums) {
         int n = nums.size();
         if (n < 2) {
             return 0;
@@ -120,15 +120,16 @@ public:
 
         int curMin = nums[0];
         int curMax = nums[0];
-        for (int num : nums) {
+        for (int num: nums) {
             curMin = min(curMin, num);
             curMax = max(curMax, num);
         }
 
         int bucketSize = max(1, (curMax - curMin) / (n - 1)); // bucket size or capacity
         int bucketCount = (curMax - curMin) / bucketSize + 1; // number of buckets
-        vector<vector<int>> buckets(bucketCount, {0, INT_MAX, INT_MIN}); // bucket_used, min_of_current_bucket, max_of_current_bucket
-        for (int num :nums) {
+        vector<vector<int> > buckets(bucketCount, {0, INT_MAX, INT_MIN});
+        // bucket_used, min_of_current_bucket, max_of_current_bucket
+        for (int num: nums) {
             int index = (num - curMin) / bucketSize;
             buckets[index][0] = 1;
             buckets[index][1] = min(num, buckets[index][1]);
@@ -136,7 +137,7 @@ public:
         }
 
         int result = 0;
-        for (vector<int>& bkt : buckets) {
+        for (vector<int> &bkt: buckets) {
             if (bkt[0] == 0) {
                 continue;
             }

@@ -42,10 +42,10 @@ using namespace std;
 class MyLinkedList {
 private:
     vector<int> array;
+
 public:
     /* Initialize your data structure here.*/
     MyLinkedList() {
-
     }
 
     /* Get the value of the index-th node in the linked list. If the index is invalid, return -1.*/

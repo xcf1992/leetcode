@@ -30,7 +30,7 @@ using namespace std;
 
 class Solution {
 private:
-    void reverse(string& s, int start, int k) {
+    void reverse(string &s, int start, int k) {
         if (start >= s.size()) {
             return;
         }
@@ -44,6 +44,7 @@ private:
             swap(s[start++], s[end--]);
         }
     }
+
 public:
     string reverseStr(string s, int k) {
         int n = s.size();

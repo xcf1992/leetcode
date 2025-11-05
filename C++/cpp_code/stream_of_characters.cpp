@@ -50,39 +50,41 @@ using namespace std;
 class TrieNode {
 public:
     bool isWord = false;
-    vector<TrieNode*> next = vector<TrieNode*>(26, nullptr);
+    vector<TrieNode *> next = vector<TrieNode *>(26, nullptr);
 
-    TrieNode(bool word = false): isWord(word) {}
+    TrieNode(bool word = false) : isWord(word) {
+    }
 };
 
 class Trie {
 public:
-    TrieNode* root;
+    TrieNode *root;
+
     Trie() {
         root = new TrieNode();
     }
 
-    void insert(string& word) {
-        TrieNode* cur = root;
-        for (int i = word.size() - 1; i >= 0 ; --i) {
-            int pos = word[i] - 'a';
-            if (cur -> next[pos] == nullptr) {
-                cur -> next[pos] = new TrieNode;
-            }
-            cur = cur -> next[pos];
-        }
-        cur -> isWord = true;
-    }
-
-    bool find(string& word) {
-        TrieNode* cur = root;
+    void insert(string &word) {
+        TrieNode *cur = root;
         for (int i = word.size() - 1; i >= 0; --i) {
             int pos = word[i] - 'a';
-            cur = cur -> next[pos];
+            if (cur->next[pos] == nullptr) {
+                cur->next[pos] = new TrieNode;
+            }
+            cur = cur->next[pos];
+        }
+        cur->isWord = true;
+    }
+
+    bool find(string &word) {
+        TrieNode *cur = root;
+        for (int i = word.size() - 1; i >= 0; --i) {
+            int pos = word[i] - 'a';
+            cur = cur->next[pos];
             if (cur == nullptr) {
                 return false;
             }
-            if (cur -> isWord) {
+            if (cur->isWord) {
                 return true;
             }
         }
@@ -94,9 +96,10 @@ class StreamChecker {
 private:
     Trie trie;
     string curWord = "";
+
 public:
-    StreamChecker(vector<string>& words) {
-        for (string& word : words) {
+    StreamChecker(vector<string> &words) {
+        for (string &word: words) {
             trie.insert(word);
         }
     }
@@ -106,6 +109,7 @@ public:
         return trie.find(curWord);
     }
 };
+
 /*
 * Your StreamChecker object will be instantiated and called as such:
 * StreamChecker* obj = new StreamChecker(words);

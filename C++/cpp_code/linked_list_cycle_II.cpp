@@ -47,24 +47,32 @@ using namespace std;
 
 class Solution {
 public:
-    ListNode* detectCycle(ListNode* head) {
-        if (head == nullptr or head -> next == nullptr) {
+    ListNode *detectCycle(ListNode *head) {
+        if (head == nullptr or
+        head->next == nullptr
+        )
+        {
             return nullptr;
         }
 
-        if (head -> next == head) {
+        if (head->next == head) {
             return head;
         }
 
-        ListNode* slow = head;
-        ListNode* fast = head;
+        ListNode *slow = head;
+        ListNode *fast = head;
         do {
-            fast = fast -> next;
+            fast = fast->next;
             if (fast != nullptr) {
-                slow = slow -> next;
-                fast = fast -> next;
+                slow = slow->next;
+                fast = fast->next;
             }
-        } while (slow != fast and fast != nullptr);
+        } while (slow != fast
+        and fast
+        !=
+        nullptr
+        )
+        ;
 
         if (fast == nullptr) {
             return nullptr;
@@ -72,8 +80,8 @@ public:
 
         slow = head;
         while (slow != fast) {
-            slow = slow -> next;
-            fast = fast -> next;
+            slow = slow->next;
+            fast = fast->next;
         }
         return slow;
     }

@@ -49,9 +49,10 @@ public:
     int longestRepeatingSubstring(string S) {
         int n = S.size();
         int result = 0;
-        vector<vector<int>> dp(n + 1, vector<int>(n + 1, 0));
+        vector<vector<int> > dp(n + 1, vector<int>(n + 1, 0));
         for (int i = 1; i <= n; ++i) {
-            for (int j = i + 1; j <= n; ++j) { // j should be different from i
+            for (int j = i + 1; j <= n; ++j) {
+                // j should be different from i
                 if (S[i - 1] == S[j - 1]) {
                     dp[i][j] = dp[i - 1][j - 1] + 1;
                     result = max(result, dp[i][j]);
@@ -92,6 +93,7 @@ private:
         }
         return false;
     }
+
 public:
     int longestRepeatingSubstring(string S) {
         int n = S.size();

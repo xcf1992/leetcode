@@ -42,23 +42,24 @@ using namespace std;
 
 class Solution {
 private:
-    int getHeight(TreeNode* root, unordered_map<int, vector<int>>& memo) {
+    int getHeight(TreeNode *root, unordered_map<int, vector<int> > &memo) {
         if (root == nullptr) {
             return -1;
         }
 
-        int lh = getHeight(root -> left, memo);
-        int rh = getHeight(root -> right, memo);
+        int lh = getHeight(root->left, memo);
+        int rh = getHeight(root->right, memo);
         int height = max(lh, rh) + 1;
-        memo[height].push_back(root -> val);
+        memo[height].push_back(root->val);
         return height;
     }
+
 public:
-    vector<vector<int>> findLeaves(TreeNode* root) {
-        unordered_map<int, vector<int>> memo;
+    vector<vector<int> > findLeaves(TreeNode *root) {
+        unordered_map<int, vector<int> > memo;
         int maxHeight = getHeight(root, memo);
-        vector<vector<int>> result(maxHeight + 1);
-        for (auto& it : memo) {
+        vector<vector<int> > result(maxHeight + 1);
+        for (auto &it: memo) {
             result[it.first] = it.second;
         }
         return result;
@@ -69,24 +70,28 @@ class Solution1 {
 private:
     vector<int> leaves;
 
-    void traverse(TreeNode*& root) { // !!! use TreeNode*& here rather than TreeNode*
+    void traverse(TreeNode *&root) {
+        // !!! use TreeNode*& here rather than TreeNode*
         if (root == nullptr) {
             return;
         }
 
-        if (root -> left == nullptr and root -> right == nullptr) {
-            leaves.push_back(root -> val);
+        if (root->left == nullptr and
+        root->right == nullptr
+        )
+        {
+            leaves.push_back(root->val);
             root = nullptr;
             return;
         }
 
-        traverse(root -> left);
-        traverse(root -> right);
+        traverse(root->left);
+        traverse(root->right);
     }
 
 public:
-    vector<vector<int>> findLeaves(TreeNode* root) {
-        vector<vector<int>> result;
+    vector<vector<int> > findLeaves(TreeNode *root) {
+        vector<vector<int> > result;
         while (root != nullptr) {
             traverse(root);
             result.push_back(leaves);

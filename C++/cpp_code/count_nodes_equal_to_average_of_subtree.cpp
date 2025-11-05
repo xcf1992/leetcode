@@ -65,7 +65,7 @@ struct TreeNode {
 
 class Solution {
 private:
-    vector<int> traverse(TreeNode* root, int& result) {
+    vector<int> traverse(TreeNode *root, int &result) {
         if (root == nullptr) {
             return vector<int>(2, 0);
         }
@@ -89,8 +89,9 @@ private:
         }
         return vector<int>({node_cnt, node_sum});
     }
+
 public:
-    int averageOfSubtree(TreeNode* root) {
+    int averageOfSubtree(TreeNode *root) {
         int result = 0;
         traverse(root, result);
         return result;

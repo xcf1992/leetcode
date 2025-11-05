@@ -52,7 +52,7 @@ private:
     int m = 0;
     int n = 0;
 
-    void dfs(vector<vector<int>> &grid1, vector<vector<int>>& grid2, int cur_r, int cur_c) {
+    void dfs(vector<vector<int> > &grid1, vector<vector<int> > &grid2, int cur_r, int cur_c) {
         if (cur_r < 0 || cur_r >= m || cur_c < 0 || cur_c >= n || grid2[cur_r][cur_c] == 0) {
             return;
         }
@@ -63,14 +63,16 @@ private:
             dfs(grid1, grid2, r, c);
         }
     }
+
 public:
-    int countSubIslands(vector<vector<int>>& grid1, vector<vector<int>>& grid2) {
+    int countSubIslands(vector<vector<int> > &grid1, vector<vector<int> > &grid2) {
         m = grid1.size();
         n = grid1[0].size();
         for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) if (grid2[i][j] == 1 && grid1[i][j] == 0) {
-                dfs(grid1, grid2, i, j);
-            }
+            for (int j = 0; j < n; j++)
+                if (grid2[i][j] == 1 && grid1[i][j] == 0) {
+                    dfs(grid1, grid2, i, j);
+                }
         }
 
         int result = 0;

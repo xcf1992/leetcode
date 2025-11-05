@@ -63,7 +63,7 @@ using namespace std;
 
 class Solution {
 private:
-    int find_parent(int cur, vector<int>& parent) {
+    int find_parent(int cur, vector<int> &parent) {
         if (parent[cur] == -1) {
             return cur;
         }
@@ -71,19 +71,20 @@ private:
         parent[cur] = find_parent(parent[cur], parent);
         return parent[cur];
     }
+
 public:
-    int minCost(int n, vector<vector<int>>& edges, int k) {
+    int minCost(int n, vector<vector<int> > &edges, int k) {
         if (n <= k) {
             return 0;
         }
 
-        sort(edges.begin(), edges.end(), [](const vector<int>& a, const vector<int>& b) {
+        sort(edges.begin(), edges.end(), [](const vector<int> &a, const vector<int> &b) {
             return a[2] < b[2];
         });
 
         vector<int> parent(n, -1);
         int cnt = n;
-        for (const vector<int>& e : edges) {
+        for (const vector<int> &e: edges) {
             int u = find_parent(e[0], parent);
             int v = find_parent(e[1], parent);
             if (u != v) {

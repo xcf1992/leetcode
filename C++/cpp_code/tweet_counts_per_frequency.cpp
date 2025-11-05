@@ -56,7 +56,8 @@ using namespace std;
 
 class TweetCounts {
 private:
-    unordered_map<string, multiset<int>> tweets;
+    unordered_map<string, multiset<int> > tweets;
+
 public:
     TweetCounts() {
     }
@@ -79,12 +80,18 @@ public:
             return result;
         }
 
-        for (auto t = target -> second.lower_bound(startTime); t != target -> second.end() and *t <= endTime; ++t) {
+        for (auto t = target->second.lower_bound(startTime); t != target->second.end() and *t
+        <=
+        endTime;
+        ++t
+        )
+        {
             result[(*t - startTime) / gap] += 1;
         }
         return result;
     }
 };
+
 /**
 * Your TweetCounts object will be instantiated and called as such:
 * TweetCounts* obj = new TweetCounts();

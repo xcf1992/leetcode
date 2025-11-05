@@ -39,15 +39,24 @@ class Solution {
 public:
     string strWithout3a3b(int A, int B) {
         string result = "";
-        while (A > 0 or B > 0) {
+        while (A > 0 or B
+        >
+        0
+        )
+        {
             bool writeA = false;
             int n = result.size();
-            if (n >= 2 and result[n - 1] == result[n - 2]) {
+            if (n >= 2 and result[n - 1]
+            ==
+            result[n - 2]
+            )
+            {
                 if (result[n - 1] == 'b') {
                     writeA = true;
                 }
             }
-            else {
+            else
+            {
                 if (A >= B) {
                     writeA = A > 0;
                 }
@@ -56,8 +65,7 @@ public:
             if (writeA) {
                 result.push_back('a');
                 A -= 1;
-            }
-            else {
+            } else {
                 result.push_back('b');
                 B -= 1;
             }
@@ -70,7 +78,11 @@ class Solution1 {
 public:
     string strWithout3a3b(int A, int B) {
         string result = "";
-        while (A > 0 or B > 0) {
+        while (A > 0 or B
+        >
+        0
+        )
+        {
             if (A > B) {
                 if (result.back() == 'a') {
                     if (B > 0) {
@@ -85,8 +97,7 @@ public:
                             A -= 1;
                         }
                     }
-                }
-                else {
+                } else {
                     if (A > 0) {
                         result.push_back('a');
                         A -= 1;
@@ -100,8 +111,7 @@ public:
                         B -= 1;
                     }
                 }
-            }
-            else {
+            } else {
                 if (result.back() == 'b') {
                     if (A > 0) {
                         result.push_back('a');
@@ -115,8 +125,7 @@ public:
                             B -= 1;
                         }
                     }
-                }
-                else {
+                } else {
                     if (B > 0) {
                         result.push_back('b');
                         B -= 1;

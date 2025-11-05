@@ -64,7 +64,11 @@ public:
             while (len > 0 && t[len] != t[i]) {
                 len = lps[len - 1];
             }
-            lps.push_back((t[len] == t[i]) ? len + 1 : 0);
+            if (t[len] == t[i]) {
+                lps.push_back(len + 1);
+            } else {
+                lps.push_back(0);
+            }
         }
 
         for (int i = 0; i < lps.size(); ++i) {

@@ -32,28 +32,28 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> rightSideView(TreeNode* root) {
+    vector<int> rightSideView(TreeNode *root) {
         if (root == nullptr) {
             return {};
         }
 
         vector<int> result;
-        queue<TreeNode*> bfs;
+        queue<TreeNode *> bfs;
         bfs.push(root);
         while (!bfs.empty()) {
             int curSize = bfs.size();
             for (int i = 0; i < curSize; ++i) {
-                TreeNode* cur = bfs.front();
+                TreeNode *cur = bfs.front();
                 bfs.pop();
 
                 if (i == curSize - 1) {
-                    result.push_back(cur -> val);
+                    result.push_back(cur->val);
                 }
-                if (cur -> left != nullptr) {
-                    bfs.push(cur -> left);
+                if (cur->left != nullptr) {
+                    bfs.push(cur->left);
                 }
-                if (cur -> right != nullptr) {
-                    bfs.push(cur -> right);
+                if (cur->right != nullptr) {
+                    bfs.push(cur->right);
                 }
             }
         }

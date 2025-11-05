@@ -44,14 +44,14 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int>> shiftGrid(vector<vector<int>>& grid, int k) {
+    vector<vector<int> > shiftGrid(vector<vector<int> > &grid, int k) {
         int m = grid.size();
         if (m == 0) {
             return grid;
         }
         int n = grid[0].size();
 
-        vector<vector<int>> result(m, vector<int>(n, 0));
+        vector<vector<int> > result(m, vector<int>(n, 0));
         for (int j = 0; j < n; ++j) {
             int nj = (j + k) % n;
             int row = (j + k) / n;

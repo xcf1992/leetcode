@@ -57,16 +57,16 @@ using namespace std;
 
 class Solution {
 private:
-    vector<pair<int, int>> whiteRange;
+    vector<pair<int, int> > whiteRange;
+
 public:
     Solution(int N, vector<int> blacklist) {
         sort(blacklist.begin(), blacklist.end());
         int white = 0;
-        for (int bnum : blacklist) {
+        for (int bnum: blacklist) {
             if (bnum - white == 1) {
                 whiteRange.push_back({white, white});
-            }
-            else if (bnum - white > 1) {
+            } else if (bnum - white > 1) {
                 whiteRange.push_back({white, bnum - 1});
             }
             white = bnum + 1;
@@ -84,6 +84,7 @@ public:
         return (rand() % range) + start;
     }
 };
+
 /*
 * Your Solution object will be instantiated and called as such:
 * Solution obj = new Solution(N, blacklist);

@@ -53,7 +53,10 @@ using namespace std;
 class Solution {
 public:
     int canCompleteCircuit(vector<int> &gas, vector<int> &cost) {
-        if (gas.size() != cost.size() or gas.empty()) {
+        if (gas.size() != cost.size() or
+        gas.empty()
+        )
+        {
             return -1;
         }
 

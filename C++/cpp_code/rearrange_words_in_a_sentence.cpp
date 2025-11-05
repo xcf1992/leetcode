@@ -58,7 +58,7 @@ public:
     string arrangeWords(string text) {
         text[0] = tolower(text[0]);
         text.push_back(' ');
-        vector<pair<string, int>> words;
+        vector<pair<string, int> > words;
         int index = 0;
         string word = "";
         for (int i = 0; i < text.size(); ++i) {
@@ -72,12 +72,13 @@ public:
             index += 1;
         }
 
-        sort(words.begin(), words.end(), [](pair<string, int>& a, pair<string, int>b) {
-            return a.first.size() < b.first.size() or (a.first.size() == b.first.size() and a.second < b.second);
+        sort(words.begin(), words.end(), [](pair<string, int> &a, pair<string, int> b) {
+            return a.first.size() < b.first.size()
+            or(a.first.size() == b.first.size() and a.second < b.second);
         });
 
         string result = "";
-        for (auto w : words) {
+        for (auto w: words) {
             result += w.first;
             result.push_back(' ');
         }

@@ -89,7 +89,7 @@ we sort the indexes of each number.
 */
 class Solution {
 private:
-    void mergeCount(vector<int>& indices, int first, int last, vector<int>& result, vector<int>& nums) {
+    void mergeCount(vector<int> &indices, int first, int last, vector<int> &result, vector<int> &nums) {
         if (first >= last - 1) {
             return;
         }
@@ -101,14 +101,20 @@ private:
         vector<int> temp;
         int idx1 = first;
         int idx2 = mid;
-        int semicount = 0; // semicount if the count of numbers have merged in second half before current number in first half
-        while (idx1 < mid or idx2 < last) {
-            if (idx2 == last or (idx1 < mid and nums[indices[idx1]] <= nums[indices[idx2]])) {
+        int semicount = 0;
+        // semicount if the count of numbers have merged in second half before current number in first half
+        while (idx1 < mid or idx2<last
+        )
+        {
+            if (idx2 == last or(idx1 < mid and nums[indices[idx1]] <= nums[indices[idx2]])
+            )
+            {
                 temp.push_back(indices[idx1]);
                 result[indices[idx1]] += semicount;
                 idx1 += 1;
             }
-            else {
+            else
+            {
                 temp.push_back(indices[idx2]);
                 semicount += 1;
                 idx2 += 1;
@@ -116,8 +122,9 @@ private:
         }
         move(temp.begin(), temp.end(), indices.begin() + first);
     }
+
 public:
-    vector<int> countSmaller(vector<int>& nums) {
+    vector<int> countSmaller(vector<int> &nums) {
         int n = nums.size();
         vector<int> indices(n, 0);
         iota(indices.begin(), indices.end(), 0);

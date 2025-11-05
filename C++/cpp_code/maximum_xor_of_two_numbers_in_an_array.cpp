@@ -47,28 +47,29 @@ https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/discuss/130
 */
 struct TrieNode {
     int val;
-    TrieNode* left;
-    TrieNode* right;
-    TrieNode(int v) : val(v), left(nullptr), right(nullptr) {}
+    TrieNode *left;
+    TrieNode *right;
+
+    TrieNode(int v) : val(v), left(nullptr), right(nullptr) {
+    }
 };
 
 class Solution {
 private:
-    void insert(TrieNode* root, int num) {
-        TrieNode* cur = root;
+    void insert(TrieNode *root, int num) {
+        TrieNode *cur = root;
         for (int i = 31; i >= 0; --i) {
             int bit = num & (1 << i);
             if (bit == 0) {
-                if (cur -> right == nullptr) {
-                    cur -> right = new TrieNode(0);
+                if (cur->right == nullptr) {
+                    cur->right = new TrieNode(0);
                 }
-                cur = cur -> right;
-            }
-            else {
-                if (cur -> left == nullptr) {
-                    cur -> left = new TrieNode(1);
+                cur = cur->right;
+            } else {
+                if (cur->left == nullptr) {
+                    cur->left = new TrieNode(1);
                 }
-                cur = cur -> left;
+                cur = cur->left;
             }
         }
     }
@@ -80,35 +81,39 @@ private:
     * otherwise we set it to be 0
     * and we will move curNode accordingly
     */
-    int find(TrieNode* root, int num) {
-        TrieNode* curNode = root;
+    int find(TrieNode *root, int num) {
+        TrieNode *curNode = root;
         int curValue = 0;
         for (int i = 31; i >= 0; --i) {
             int bit = num & (1 << i);
-            if (curNode -> left and curNode -> right) {
+            if (curNode->left and
+            curNode->right
+            )
+            {
                 if (bit == 0) {
-                    curNode = curNode -> left;
-                }
-                else {
-                    curNode = curNode -> right;
+                    curNode = curNode->left;
+                } else {
+                    curNode = curNode->right;
                 }
             }
-            else {
-                curNode = curNode -> left ? curNode -> left : curNode -> right;
+            else
+            {
+                curNode = curNode->left ? curNode->left : curNode->right;
             }
-            curValue |= bit ^ (curNode -> val << i);
+            curValue |= bit ^ (curNode->val << i);
         }
         return curValue;
     }
+
 public:
-    int findMaximumXOR(vector<int>& nums) {
-        TrieNode* root = new TrieNode(0);
-        for (int num : nums) {
+    int findMaximumXOR(vector<int> &nums) {
+        TrieNode *root = new TrieNode(0);
+        for (int num: nums) {
             insert(root, num);
         }
 
         int result = 0;
-        for (int num : nums) {
+        for (int num: nums) {
             result = max(result, find(root, num));
         }
         return result;
@@ -117,18 +122,18 @@ public:
 
 class Solution1 {
 public:
-    int findMaximumXOR(vector<int>& nums) {
+    int findMaximumXOR(vector<int> &nums) {
         int result = 0;
         int mask = 0;
         for (int i = 31; i >= 0; i--) {
             unordered_set<int> values;
             mask |= (1 << i);
-            for (int num : nums) {
+            for (int num: nums) {
                 values.insert(mask & num);
             }
 
             int temp = result | (1 << i);
-            for (int value : values) {
+            for (int value: values) {
                 if (values.find(temp ^ value) != values.end()) {
                     result = temp;
                     break;

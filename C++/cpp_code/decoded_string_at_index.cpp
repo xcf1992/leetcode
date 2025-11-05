@@ -93,8 +93,7 @@ public:
         for (int i = 0; i < n; ++i) {
             if (isdigit(S[i])) {
                 len *= S[i] - '0';
-            }
-            else {
+            } else {
                 len += 1;
             }
         }
@@ -102,14 +101,15 @@ public:
         string result = "";
         for (int i = n - 1; i >= 0; --i) {
             K %= len;
-            if (K == 0 and isalpha(S[i])) {
+            if (K == 0 and isalpha(S[i])
+            )
+            {
                 result = string(1, S[i]);
                 break;
             }
             if (isdigit(S[i])) {
                 len /= S[i] - '0';
-            }
-            else {
+            } else {
                 len -= 1;;
             }
         }
@@ -136,14 +136,13 @@ class Solution2 {
 public:
     string decodeAtIndex(string S, int K) {
         string decoded = "";
-        for (char c : S) {
+        for (char c: S) {
             if (decoded.size() >= K) {
                 break;
             }
             if (isalpha(c)) {
                 decoded.push_back(c);
-            }
-            else {
+            } else {
                 string temp = decoded;
                 for (int i = 0; i < c - '0' - 1; i++) {
                     decoded += temp;

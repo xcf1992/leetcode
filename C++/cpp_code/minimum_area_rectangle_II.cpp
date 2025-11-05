@@ -85,14 +85,15 @@ The area of this rectangle dist(P, Q) * dist(P, Q') is a candidate answer.
 */
 class Solution {
 private:
-    double getDistance(int p1, int p2, vector<vector<int>>& points) {
+    double getDistance(int p1, int p2, vector<vector<int> > &points) {
         double distance = pow(points[p1][0] - points[p2][0], 2) + pow(points[p1][1] - points[p2][1], 2);
         return sqrt(distance);
     }
+
 public:
-    double minAreaFreeRect(vector<vector<int>>& points) {
+    double minAreaFreeRect(vector<vector<int> > &points) {
         int n = points.size();
-        unordered_map<string, vector<pair<int, int>>> memo;
+        unordered_map<string, vector<pair<int, int> > > memo;
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
                 double centerX = points[i][0] + points[j][0];
@@ -105,7 +106,7 @@ public:
 
         double result = 0.0;
         for (auto it = memo.begin(); it != memo.end(); it++) {
-            vector<pair<int, int>> pList = it -> second;
+            vector<pair<int, int> > pList = it->second;
             int len = pList.size();
             for (int i = 0; i < len; i++) {
                 for (int j = i + 1; j < len; j++) {
@@ -113,7 +114,11 @@ public:
                     int p2 = pList[i].second;
                     int p3 = pList[j].first;
                     double area = getDistance(p1, p3, points) * getDistance(p2, p3, points);
-                    if (result == 0.0 or result > area) {
+                    if (result == 0.0 or result
+                    >
+                    area
+                    )
+                    {
                         result = area;
                     }
                 }

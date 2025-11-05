@@ -40,7 +40,7 @@ using namespace std;
 
 class Solution {
 public:
-    int partitionDisjoint(vector<int>& A) {
+    int partitionDisjoint(vector<int> &A) {
         int n = A.size();
         vector<int> leftMax(n, A.front());
         vector<int> rightMin(n, A.back());
@@ -50,9 +50,10 @@ public:
             rightMin[j] = min(rightMin[j + 1], A[j]);
         }
 
-        for (int i = 0; i < n - 1; i++) if (leftMax[i] <= rightMin[i + 1]) {
-            return i + 1;
-        }
+        for (int i = 0; i < n - 1; i++)
+            if (leftMax[i] <= rightMin[i + 1]) {
+                return i + 1;
+            }
         return n;
     }
 };

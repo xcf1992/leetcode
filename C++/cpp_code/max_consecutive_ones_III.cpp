@@ -42,7 +42,7 @@ using namespace std;
 
 class Solution {
 public:
-    int longestOnes(vector<int>& A, int K) {
+    int longestOnes(vector<int> &A, int K) {
         int result = 0;
         int start = 0;
         int used = 0;

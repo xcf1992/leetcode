@@ -36,26 +36,25 @@ public:
             return 0;
         }
 
-        vector<int> character (26, -2);
+        vector<int> character(26, -2);
         for (int i = 0; i < n; i++) {
             int pos = s[i] - 'a';
             if (character[pos] == -2) {
                 character[pos] = i;
-            }
-            else {
+            } else {
                 character[pos] = -1;
             }
         }
 
         int result = -1;
-        for (int i = 0; i < character.size(); i++) if (character[i] >= 0) {
-            if (result == -1) {
-                result = character[i];
+        for (int i = 0; i < character.size(); i++)
+            if (character[i] >= 0) {
+                if (result == -1) {
+                    result = character[i];
+                } else {
+                    result = min(character[i], result);
+                }
             }
-            else {
-                result = min(character[i], result);
-            }
-        }
         return result;
     }
 };

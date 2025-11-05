@@ -47,8 +47,7 @@ private:
         for (int i = 1; i < say.size(); ++i) {
             if (say[i] == digit) {
                 count += 1;
-            }
-            else {
+            } else {
                 result += to_string(count) + digit;
                 count = 1;
                 digit = say[i];
@@ -57,6 +56,7 @@ private:
         result += to_string(count) + digit;
         return result;
     }
+
 public:
     string countAndSay(int n) {
         if (n <= 0) {

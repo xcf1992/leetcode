@@ -61,8 +61,10 @@ private:
     int obs = 0;
     vector<int> diff = {0, -1, 0, 1, 0};
 
-    void traverse(vector<vector<int>>& grid, int row, int col, int& result, int path, vector<vector<bool>>& visited) {
-        if (row < 0 or col < 0 or row >= M or col >= N or visited[row][col] or grid[row][col] == -1) {
+    void traverse(vector<vector<int> > &grid, int row, int col, int &result, int path, vector<vector<bool> > &visited) {
+        if (row < 0 or col<0 or row >= M or col >= N or visited[row][col] or grid[row][col] == -1
+        )
+        {
             return;
         }
 
@@ -81,8 +83,9 @@ private:
         path -= 1;
         visited[row][col] = false;
     }
+
 public:
-    int uniquePathsIII(vector<vector<int>>& grid) {
+    int uniquePathsIII(vector<vector<int> > &grid) {
         M = grid.size();
         N = grid[0].size();
         int row = 0;
@@ -101,7 +104,7 @@ public:
 
         int result = 0;
         int path = 0;
-        vector<vector<bool>> visited(M, vector<bool>(N, false));
+        vector<vector<bool> > visited(M, vector<bool>(N, false));
         traverse(grid, row, col, result, path, visited);
         return result;
     }

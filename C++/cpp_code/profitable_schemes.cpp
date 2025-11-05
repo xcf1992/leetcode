@@ -66,9 +66,10 @@ O(NPG)
 class Solution2 {
 private:
     int mod = 1e9 + 7;
+
 public:
     int profitableSchemes(int G, int P, vector<int> group, vector<int> profit) {
-        vector<vector<int>> dp(P + 1, vector<int>(G + 1, 0));
+        vector<vector<int> > dp(P + 1, vector<int>(G + 1, 0));
         dp[0][0] = 1;
         for (int k = 0; k < group.size(); k++) {
             int g = group[k];
@@ -82,7 +83,7 @@ public:
         }
 
         int result = 0;
-        for (int count : dp[P]) {
+        for (int count: dp[P]) {
             result = (result + count) % mod;
         }
         return result;
@@ -96,10 +97,11 @@ Just be careful about that i and j should be decrease, in order to get correct o
 class Solution {
 private:
     int mod = 1e9 + 7;
+
 public:
-    int profitableSchemes(int G, int P, vector<int>& group, vector<int>& profit) {
+    int profitableSchemes(int G, int P, vector<int> &group, vector<int> &profit) {
         int n = group.size();
-        vector<vector<int>> dp(P + 1, vector<int>(G + 1, 0));
+        vector<vector<int> > dp(P + 1, vector<int>(G + 1, 0));
         // when there is 0 crime, 0 scheme existed for any profit > 0 or group > 0
         dp[0][0] = 1;
         for (int i = 0; i < n; ++i) {
@@ -137,10 +139,11 @@ dp[k][i][j] = dp[k - 1][i][j] + dp[k - 1][i - current group][Math.max(0, j - cur
 class Solution1 {
 private:
     int mod = 1e9 + 7;
+
 public:
-    int profitableSchemes(int G, int P, vector<int>& group, vector<int>& profit) {
+    int profitableSchemes(int G, int P, vector<int> &group, vector<int> &profit) {
         int n = group.size();
-        vector<vector<vector<int>>> dp(n + 1, vector<vector<int>>(P + 1, vector<int>(G + 1, 0)));
+        vector<vector<vector<int> > > dp(n + 1, vector<vector<int> >(P + 1, vector<int>(G + 1, 0)));
         // when there is 0 crime, 0 scheme existed for any profit > 0 or group > 0
         dp[0][0][0] = 1;
         for (int i = 1; i <= n; i++) {
@@ -172,7 +175,8 @@ public:
 class Solution3 {
 private:
     int mod = 1e9 + 7;
-    int dfs(int g, int p, int index, vector<int>& group, vector<int>& profit, vector<vector<vector<int>>>& memo) {
+
+    int dfs(int g, int p, int index, vector<int> &group, vector<int> &profit, vector<vector<vector<int> > > &memo) {
         if (index < 0) {
             return p <= 0 ? 1 : 0;
         }
@@ -189,10 +193,11 @@ private:
         memo[index][p][g] = result;
         return result;
     }
+
 public:
-    int profitableSchemes(int G, int P, vector<int>& group, vector<int>& profit) {
+    int profitableSchemes(int G, int P, vector<int> &group, vector<int> &profit) {
         int n = group.size();
-        vector<vector<vector<int>>> memo(n + 1, vector<vector<int>>(P + 1, vector<int>(G + 1, -1)));
+        vector<vector<vector<int> > > memo(n + 1, vector<vector<int> >(P + 1, vector<int>(G + 1, -1)));
         return dfs(G, P, n - 1, group, profit, memo);
     }
 };

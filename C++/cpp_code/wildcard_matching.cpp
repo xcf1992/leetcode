@@ -60,12 +60,20 @@ private:
     * 1: unmatched without reaching the end of s
     * 2: matched
     */
-    int check(string& s, string& p, int si, int pi) {
-        if (si == s.size() and pi == p.size()) {
+    int check(string &s, string &p, int si, int pi) {
+        if (si == s.size() and pi
+        ==
+        p.size()
+        )
+        {
             return 2;
         }
 
-        if (si == s.size() and p[pi] != '*') {
+        if (si == s.size() and p[pi]
+        !=
+        '*'
+        )
+        {
             return 0;
         }
 
@@ -74,41 +82,54 @@ private:
         }
 
         if (p[pi] == '*') {
-            if (pi + 1 < p.size() and p[pi + 1] == '*') {
+            if (pi + 1 < p.size() and p[pi + 1]
+            ==
+            '*'
+            )
+            {
                 return check(s, p, si, pi + 1);
             }
             for (int i = 0; i + si <= s.size(); ++i) {
                 int result = check(s, p, si + i, pi + 1);
-                if (result == 2 or result == 0) {
+                if (result == 2 or result
+                ==
+                0
+                )
+                {
                     return result;
                 }
             }
         }
 
-        if (p[pi] == '?' or s[si] == p[pi]) {
+        if (p[pi] == '?' or s[si]
+        ==
+        p[pi]
+        )
+        {
             return check(s, p, si + 1, pi + 1);
         }
         return 1;
     }
+
 public:
     bool isMatch(string s, string p) {
         return check(s, p, 0, 0) == 2;
     }
 };
 
-class Solution1 { // dp
+class Solution1 {
+    // dp
 public:
     bool isMatch(string s, string p) {
         int m = s.length();
         int n = p.length();
-        vector<vector<bool>> dp(m + 1, vector<bool>(n + 1, false));
+        vector<vector<bool> > dp(m + 1, vector<bool>(n + 1, false));
 
         dp[0][0] = true;
         for (int j = 1; j <= n; j++) {
-            if (p[j - 1] == '*'){
+            if (p[j - 1] == '*') {
                 dp[0][j] = true;
-            }
-            else {
+            } else {
                 break;
             }
         }
@@ -116,10 +137,11 @@ public:
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
                 if (p[j - 1] != '*') {
-                    dp[i][j] = dp[i - 1][j - 1] and (s[i - 1] == p[j - 1] or p[j - 1]== '?');
-                }
-                else {
-                    dp[i][j] = dp[i - 1][j] or dp[i][j - 1];
+                    dp[i][j] = dp[i - 1][j - 1]
+                    and(s[i - 1] == p[j - 1] or p[j - 1] == '?');
+                } else {
+                    dp[i][j] = dp[i - 1][j]
+                    or dp[i][j - 1];
                 }
             }
         }

@@ -93,7 +93,7 @@ public:
                 dp[i] = n;
                 continue;
             }
-            
+
             dp[i] = n + 1 + dp[pow(2, n) - 1 - i];
             for (int m = 0; m < n - 1; m++) {
                 dp[i] = min(dp[i], n - 1 + 1 + m + 1 + dp[i - pow(2, n - 1) + pow(2, m)]);
@@ -112,7 +112,7 @@ class Solution1 {
 public:
     int racecar(int target) {
         unordered_set<string> memo;
-        queue<vector<int>> bfs; // {curPos, speed}
+        queue<vector<int> > bfs; // {curPos, speed}
         bfs.push({0, 1});
         memo.insert("0_1");
         int result = 0;

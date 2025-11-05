@@ -42,7 +42,7 @@ Then the question becomes find the longest increasing sequence by picking one el
 */
 class Solution {
 public:
-    int maxEnvelopes(vector<vector<int>>& envelopes) {
+    int maxEnvelopes(vector<vector<int> > &envelopes) {
         int n = envelopes.size();
         if (n <= 1) {
             return n;
@@ -52,8 +52,9 @@ public:
         * [3, 4] cannot contains [3, 3], so we need to put [3, 4] before [3, 3]
         * when sorting otherwise it will be counted as an increasing number if the order is [3, 3], [3, 4]
         */
-        sort(envelopes.begin(), envelopes.end(), [](vector<int>& a, vector<int>& b) {
-            return a[0] < b[0] or (a[0] == b[0] and a[1] > b[1]);
+        sort(envelopes.begin(), envelopes.end(), [](vector<int> &a, vector<int> &b) {
+            return a[0] < b[0]
+            or(a[0] == b[0] and a[1] > b[1]);
         });
         /*
         * as we sort the envelopes to a increasing array based on width
@@ -65,8 +66,7 @@ public:
             auto it = lower_bound(result.begin(), result.end(), envelopes[i][1]);
             if (it != result.end()) {
                 *it = envelopes[i][1];
-            }
-            else {
+            } else {
                 result.push_back(envelopes[i][1]);
             }
         }
@@ -76,21 +76,26 @@ public:
 
 class Solution1 {
 public:
-    int maxEnvelopes(vector<vector<int>>& envelopes) {
+    int maxEnvelopes(vector<vector<int> > &envelopes) {
         int n = envelopes.size();
         if (n <= 1) {
             return n;
         }
 
-        sort(envelopes.begin(), envelopes.end(), [](vector<int>& a, vector<int>& b) {
-            return a[0] < b[0] or (a[0] == b[0] and a[1] < b[1]);
+        sort(envelopes.begin(), envelopes.end(), [](vector<int> &a, vector<int> &b) {
+            return a[0] < b[0]
+            or(a[0] == b[0] and a[1] < b[1]);
         });
 
         vector<int> dp(n, 1);
         int result = 1;
         for (int i = 1; i < n; i++) {
             for (int j = 0; j < i; j++) {
-                if (envelopes[i][0] > envelopes[j][0] and envelopes[i][1] > envelopes[j][1]) {
+                if (envelopes[i][0] > envelopes[j][0] and envelopes[i][1]
+                >
+                envelopes[j][1]
+                )
+                {
                     dp[i] = max(dp[i], dp[j] + 1);
                 }
             }

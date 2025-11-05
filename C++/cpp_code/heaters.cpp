@@ -39,10 +39,10 @@ using namespace std;
 
 class Solution {
 public:
-    int findRadius(vector<int>& houses, vector<int>& heaters) {
+    int findRadius(vector<int> &houses, vector<int> &heaters) {
         sort(heaters.begin(), heaters.end());
         int result = INT_MIN;
-        for (int house : houses) {
+        for (int house: houses) {
             int radius = INT_MAX;
             auto larger = lower_bound(heaters.begin(), heaters.end(), house);
             if (larger != heaters.end()) {
@@ -59,11 +59,11 @@ public:
 
 class Solution1 {
 public:
-    int findRadius(vector<int>& houses, vector<int>& heaters) {
+    int findRadius(vector<int> &houses, vector<int> &heaters) {
         int result = INT_MIN;
-        for (int house : houses) {
+        for (int house: houses) {
             int radius = INT_MAX;
-            for (int heater : heaters) {
+            for (int heater: heaters) {
                 radius = min(radius, abs(house - heater));
             }
             result = max(result, radius);

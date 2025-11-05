@@ -42,6 +42,7 @@ private:
         reverse(s.begin(), s.end());
         return stol(to_string(value) + s);
     }
+
 public:
     int largestPalindrome(int n) {
         if (n == 1) {
@@ -53,7 +54,11 @@ public:
         for (int v = upper; v >= lower; --v) {
             long palindrome = buildPalindrome(v);
             for (long factor = upper; factor * factor >= palindrome; --factor) {
-                if (palindrome % factor == 0 and palindrome / factor <= upper) {
+                if (palindrome % factor == 0 and palindrome
+                /
+                factor <= upper
+                )
+                {
                     return palindrome % 1337;
                 }
             }

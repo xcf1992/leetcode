@@ -46,9 +46,10 @@ using namespace std;
 class Solution {
 private:
     long MOD = 1e9 + 7;
+
 public:
     int knightDialer(int N) {
-        vector<vector<int>> next({
+        vector<vector<int> > next({
             {4, 6},
             {8, 6},
             {7, 9},
@@ -60,14 +61,14 @@ public:
             {1, 3},
             {2, 4}
         });
-        vector<vector<int>> dp(N + 1, vector<int>(10, 0));
+        vector<vector<int> > dp(N + 1, vector<int>(10, 0));
         for (int i = 0; i < 10; i++) {
             dp[1][i] = 1;
         }
 
         for (int len = 2; len <= N; ++len) {
             for (int digit = 0; digit < 10; ++digit) {
-                for (int num : next[digit]) {
+                for (int num: next[digit]) {
                     dp[len][digit] = (dp[len][digit] + dp[len - 1][num]) % MOD;
                 }
             }
@@ -85,7 +86,8 @@ class Solution1 {
 private:
     long MOD = 1e9 + 7;
 
-    long count(int curDigit, int length, int N, vector<vector<int>>& next, unordered_map<int, unordered_map<int, long>>& mem) {
+    long count(int curDigit, int length, int N, vector<vector<int> > &next,
+               unordered_map<int, unordered_map<int, long> > &mem) {
         if (length == N) {
             return 1;
         }
@@ -96,16 +98,17 @@ private:
             }
         }
         int ans = 0;
-        for (int nextDigit : next[curDigit]) {
+        for (int nextDigit: next[curDigit]) {
             ans += count(nextDigit, length + 1, N, next, mem);
             ans %= MOD;
         }
         mem[curDigit][length] = ans;
         return ans;
     }
+
 public:
     int knightDialer(int N) {
-        vector<vector<int>> next({
+        vector<vector<int> > next({
             {4, 6},
             {8, 6},
             {7, 9},
@@ -118,7 +121,7 @@ public:
             {2, 4}
         });
 
-        unordered_map<int, unordered_map<int, long>> mem;
+        unordered_map<int, unordered_map<int, long> > mem;
         long result = 0;
         for (int i = 0; i <= 9; i++) {
             result += count(i, 1, N, next, mem);
@@ -133,20 +136,21 @@ class Solution2 {
 private:
     long MOD = 1e9 + 7;
 
-    long count(int curDigit, int length, int N, vector<vector<int>>& next) {
+    long count(int curDigit, int length, int N, vector<vector<int> > &next) {
         if (length == N) {
             return 1;
         }
         int ans = 0;
-        for (int nextDigit : next[curDigit]) {
+        for (int nextDigit: next[curDigit]) {
             ans += count(nextDigit, length + 1, N, next);
             ans %= MOD;
         }
         return ans;
     }
+
 public:
     int knightDialer(int N) {
-        vector<vector<int>> next({
+        vector<vector<int> > next({
             {4, 6},
             {8, 6},
             {7, 9},

@@ -33,13 +33,13 @@ using namespace std;
 
 class Solution {
 public:
-    bool areSentencesSimilar(vector<string>& words1, vector<string>& words2, vector<pair<string, string>> pairs) {
+    bool areSentencesSimilar(vector<string> &words1, vector<string> &words2, vector<pair<string, string> > pairs) {
         if (words1.size() != words2.size()) {
             return false;
         }
 
-        unordered_map<string, unordered_set<string>> match;
-        for (pair<string, string> &pair : pairs) {
+        unordered_map<string, unordered_set<string> > match;
+        for (pair<string, string> &pair: pairs) {
             match[pair.first].insert(pair.second);
             match[pair.second].insert(pair.first);
         }
@@ -48,8 +48,7 @@ public:
             if (words1[i] != words2[i]) {
                 if (match.find(words1[i]) == match.end()) {
                     return false;
-                }
-                else if (match[words1[i]].find(words2[i]) == match[words1[i]].end()) {
+                } else if (match[words1[i]].find(words2[i]) == match[words1[i]].end()) {
                     return false;
                 }
             }

@@ -39,9 +39,11 @@ A and B contain only lowercase letters from the set {'a', 'b', 'c', 'd', 'e', 'f
 #include <numeric>
 using namespace std;
 
-class Solution { // DFS with memo
+class Solution {
+    // DFS with memo
 private:
     unordered_map<string, int> memo;
+
 public:
     int kSimilarity(string cur, string target) {
         if (cur == target) {
@@ -72,11 +74,12 @@ public:
     }
 };
 
-class Solution2 { // DFS with memo
+class Solution2 {
+    // DFS with memo
 private:
     unordered_map<string, int> memo;
 
-    int dfs(string& cur, string& target) {
+    int dfs(string &cur, string &target) {
         if (memo.find(cur) != memo.end()) {
             return memo[cur];
         }
@@ -100,6 +103,7 @@ private:
         memo[cur] = minSwap;
         return minSwap;
     }
+
 public:
     int kSimilarity(string A, string B) {
         memo[B] = 0;
@@ -107,7 +111,8 @@ public:
     }
 };
 
-class Solution1 { // BFS
+class Solution1 {
+    // BFS
 private:
     vector<string> neighbors(string S, string target) {
         vector<string> result;
@@ -127,6 +132,7 @@ private:
         }
         return result;
     }
+
 public:
     int kSimilarity(string A, string B) {
         unordered_set<string> visited;
@@ -143,7 +149,7 @@ public:
                     return step;
                 }
 
-                for (string next : neighbors(cur, B)) {
+                for (string next: neighbors(cur, B)) {
                     if (visited.find(next) == visited.end()) {
                         visited.insert(next);
                         bfs.push(next);

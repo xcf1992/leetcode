@@ -35,17 +35,18 @@ using namespace std;
 
 class Solution {
 public:
-    int maxDistance(vector<vector<int>>& arrays) {
+    int maxDistance(vector<vector<int> > &arrays) {
         int minVal = arrays[0].front();
         int maxVal = arrays[0].back();
         int result = INT_MIN;
-        for (int j = 1; j < arrays.size(); j++) if (!arrays[j].empty()) {
-            int newMin = arrays[j].front();
-            int newMax = arrays[j].back();
-            result = max(result, max(newMax - minVal, maxVal - newMin));
-            minVal = min(newMin, minVal);
-            maxVal = max(newMax, maxVal);
-        }
+        for (int j = 1; j < arrays.size(); j++)
+            if (!arrays[j].empty()) {
+                int newMin = arrays[j].front();
+                int newMax = arrays[j].back();
+                result = max(result, max(newMax - minVal, maxVal - newMin));
+                minVal = min(newMin, minVal);
+                maxVal = max(newMax, maxVal);
+            }
         return result;
     }
 };

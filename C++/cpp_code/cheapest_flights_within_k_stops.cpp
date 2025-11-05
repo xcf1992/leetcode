@@ -62,20 +62,21 @@ There will not be any duplicated flights or self cycles.
 using namespace std;
 
 struct myComp {
-    bool operator()(vector<int>& a, vector<int>& b) {
+    bool operator()(vector<int> &a, vector<int> &b) {
         return a[0] > b[0];
     }
 };
 
-class Solution2 { // dijkstra
+class Solution2 {
+    // dijkstra
 public:
-    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int K) {
-        vector<vector<pair<int, int>>> prices(n);
-        for (vector<int>& flight : flights) {
+    int findCheapestPrice(int n, vector<vector<int> > &flights, int src, int dst, int K) {
+        vector<vector<pair<int, int> > > prices(n);
+        for (vector<int> &flight: flights) {
             prices[flight[0]].push_back({flight[1], flight[2]});
         }
 
-        priority_queue<vector<int>, vector<vector<int>>, myComp> pq;
+        priority_queue<vector<int>, vector<vector<int> >, myComp> pq;
         pq.push({0, 0, src});
         while (!pq.empty()) {
             int curCost = pq.top()[0];
@@ -90,7 +91,7 @@ public:
                 continue;
             }
 
-            for (pair<int, int>& price : prices[curPos]) {
+            for (pair<int, int> &price: prices[curPos]) {
                 pq.push({curCost + price.second, curStops + 1, price.first});
             }
         }
@@ -98,18 +99,20 @@ public:
     }
 };
 
-class Solution { // bfs
+class Solution {
+    // bfs
 public:
-    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int K) {
-        vector<vector<int>> prices(n, vector<int>(n, INT_MAX));
-        for (vector<int>& flight : flights) {
+    int findCheapestPrice(int n, vector<vector<int> > &flights, int src, int dst, int K) {
+        vector<vector<int> > prices(n, vector<int>(n, INT_MAX));
+        for (vector<int> &flight: flights) {
             prices[flight[0]][flight[1]] = flight[2];
         }
 
-        queue<vector<int>> bfs;
-        for (int next = 0; next < n; ++next) if (prices[src][next] != INT_MAX) {
-            bfs.push({0, next, prices[src][next]});
-        }
+        queue<vector<int> > bfs;
+        for (int next = 0; next < n; ++next)
+            if (prices[src][next] != INT_MAX) {
+                bfs.push({0, next, prices[src][next]});
+            }
 
         vector<int> cheapest(n, INT_MAX);
         cheapest[src] = 0;
@@ -119,14 +122,19 @@ public:
             int cost = bfs.front()[2];
             bfs.pop();
 
-            if (stops > K or cost >= cheapest[city]) {
+            if (stops > K or cost
+            >=
+            cheapest[city]
+            )
+            {
                 continue;
             }
 
             cheapest[city] = cost;
-            for (int nxt = 0; nxt < n; ++nxt) if (prices[city][nxt] != INT_MAX) {
-                bfs.push({stops + 1, nxt, cost + prices[city][nxt]});
-            }
+            for (int nxt = 0; nxt < n; ++nxt)
+                if (prices[city][nxt] != INT_MAX) {
+                    bfs.push({stops + 1, nxt, cost + prices[city][nxt]});
+                }
         }
         return cheapest[dst] == INT_MAX ? -1 : cheapest[dst];
     }
@@ -135,13 +143,13 @@ public:
 // follow up print flight path
 class Solution1 {
 public:
-    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int K) {
-        unordered_map<int, unordered_map<int, int>> prices;
-        for (vector<int>& flight : flights) {
+    int findCheapestPrice(int n, vector<vector<int> > &flights, int src, int dst, int K) {
+        unordered_map<int, unordered_map<int, int> > prices;
+        for (vector<int> &flight: flights) {
             prices[flight[0]][flight[1]] = flight[2];
         }
 
-        queue<vector<int>> bfs;
+        queue<vector<int> > bfs;
         bfs.push({0, src, 0}); // {stops, cur, cost}
         vector<int> cheapest(n, INT_MAX);
         cheapest[src] = 0;
@@ -152,11 +160,15 @@ public:
             int cost = bfs.front()[2];
             bfs.pop();
 
-            if (stops > K or city == dst) {
+            if (stops > K or city
+            ==
+            dst
+            )
+            {
                 continue;
             }
 
-            for (auto nxt : prices[city]) {
+            for (auto nxt: prices[city]) {
                 int nxtCost = cost + nxt.second;
                 if (nxtCost < cheapest[nxt.first]) {
                     cheapest[nxt.first] = nxtCost;

@@ -53,6 +53,7 @@ Constraints:
 #include <set>
 #include <numeric>
 using namespace std;
+
 // Key idea is the final index always exists in the whole process, so we only need to reversely track the index.
 class Solution {
 public:

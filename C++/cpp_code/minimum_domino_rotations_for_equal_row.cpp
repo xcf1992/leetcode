@@ -56,10 +56,14 @@ Otherwise return -1.
 */
 class Solution {
 public:
-    int minDominoRotations(vector<int>& A, vector<int>& B) {
+    int minDominoRotations(vector<int> &A, vector<int> &B) {
         int n = A.size();
         for (int i = 0, a = 0, b = 0; i < n; ++i) {
-            if (A[i] != A[0] and B[i] != A[0]) {
+            if (A[i] != A[0] and B[i]
+            !=
+            A[0]
+            )
+            {
                 break;
             }
 
@@ -75,7 +79,11 @@ public:
         }
 
         for (int i = 0, a = 0, b = 0; i < n; ++i) {
-            if (A[i] != B[0] and B[i] != B[0]) {
+            if (A[i] != B[0] and B[i]
+            !=
+            B[0]
+            )
+            {
                 break;
             }
             if (A[i] != B[0]) {

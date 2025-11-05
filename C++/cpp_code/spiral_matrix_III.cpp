@@ -50,9 +50,10 @@ class Solution {
 private:
     vector<int> rDiff = {0, 1, 0, -1};
     vector<int> cDiff = {1, 0, -1, 0};
+
 public:
-    vector<vector<int>> spiralMatrixIII(int R, int C, int r0, int c0) {
-        vector<vector<int>> result;
+    vector<vector<int> > spiralMatrixIII(int R, int C, int r0, int c0) {
+        vector<vector<int> > result;
         result.push_back({r0, c0});
         vector<int> cur({r0, c0});
         int direction = 0;
@@ -61,11 +62,24 @@ public:
             for (int i = 0; i < step; i++) {
                 cur[0] += rDiff[direction];
                 cur[1] += cDiff[direction];
-                if (cur[0] >= 0 and cur[0] < R and cur[1] >= 0 and cur[1] < C) {
+                if (cur[0] >= 0 and cur[0]
+                <
+                R and cur[1]
+                >=
+                0
+                and cur[1]
+                <
+                C
+                )
+                {
                     result.push_back(cur);
                 }
             }
-            if (direction == 1 or direction == 3) {
+            if (direction == 1 or direction
+            ==
+            3
+            )
+            {
                 step += 1;
             }
             direction = (direction + 1) % 4;

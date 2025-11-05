@@ -63,7 +63,7 @@ public:
 
 class Solution {
 private:
-    int getMaxDepth(vector<NestedInteger>& nestedList) {
+    int getMaxDepth(vector<NestedInteger> &nestedList) {
         int result = 1;
         for (int i = 0; i < nestedList.size(); i++) {
             if (!nestedList[i].isInteger()) {
@@ -73,20 +73,20 @@ private:
         return result;
     }
 
-    int calculate(vector<NestedInteger>& nestedList, int depth) {
+    int calculate(vector<NestedInteger> &nestedList, int depth) {
         int result = 0;
         for (int i = 0; i < nestedList.size(); i++) {
             if (nestedList[i].isInteger()) {
                 result += nestedList[i].getInteger() * depth;
-            }
-            else {
+            } else {
                 result += calculate(nestedList[i].getList(), depth - 1);
             }
         }
         return result;
     }
+
 public:
-    int depthSumInverse(vector<NestedInteger>& nestedList) {
+    int depthSumInverse(vector<NestedInteger> &nestedList) {
         int depth = getMaxDepth(nestedList);
         return calculate(nestedList, depth);
     }

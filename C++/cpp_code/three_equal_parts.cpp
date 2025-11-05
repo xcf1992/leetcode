@@ -52,24 +52,28 @@ the tail 0 of the third part
 */
 class Solution {
 private:
-    bool isEqual(vector<int>& A, int s1, int e1, int s2, int e2, int s3, int e3) {
+    bool isEqual(vector<int> &A, int s1, int e1, int s2, int e2, int s3, int e3) {
         string num1 = getNum(A, s1, e1);
         string num2 = getNum(A, s2, e2);
         string num3 = getNum(A, s3, e3);
-        return num1 == num2 and num1 == num3;
+        return num1 == num2
+        and num1
+        ==
+        num3;
     }
 
-    string getNum(vector<int>& A, int start, int end) {
+    string getNum(vector<int> &A, int start, int end) {
         string num = "";
         for (int i = start; i <= end; i++) {
             num.push_back('0' + A[i]);
         }
         return num;
     }
+
 public:
     vector<int> threeEqualParts(vector<int> A) {
         int total = 0;
-        for (int a : A) {
+        for (int a: A) {
             total += a;
         }
 
@@ -118,7 +122,9 @@ public:
         int gap1 = s2 - e1 - 1;
         int gap2 = s3 - e2 - 1;
         int gap3 = n - e3 - 1;
-        if (gap1 < gap3 or gap2 < gap3) {
+        if (gap1 < gap3 or gap2<gap3
+        )
+        {
             return {-1, -1};
         }
         // the returned resuult is e1 + gap3 and e2 + gap3 + 1

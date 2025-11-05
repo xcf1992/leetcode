@@ -77,9 +77,10 @@ Space complexity O(1).
 class Solution {
 public:
     int MOD = 1e9 + 7;
+
     int uniqueLetterString(string S) {
         int n = S.size();
-        vector<vector<int>> index(26, vector<int>(2, -1));
+        vector<vector<int> > index(26, vector<int>(2, -1));
         int result = 0;
         for (int i = 0; i < n; i++) {
             int letter = S[i] - 'A';
@@ -97,21 +98,20 @@ public:
 class Solution2 {
 public:
     int MOD = 1e9 + 7;
+
     int uniqueLetterString(string S) {
         int n = S.size();
-        vector<vector<int>> index(26, vector<int>(2, -1));
+        vector<vector<int> > index(26, vector<int>(2, -1));
 
         int result = 0;
         for (int i = 0; i < n; i++) {
             int letter = S[i] - 'A';
             if (index[letter][0] == -1) {
                 index[letter][0] = i;
-            }
-            else if (index[letter][1] == -1) {
+            } else if (index[letter][1] == -1) {
                 result = (result + (index[letter][0] + 1) * (i - index[letter][0]) % MOD) % MOD;
                 index[letter][1] = i;
-            }
-            else {
+            } else {
                 result = (result + (index[letter][1] - index[letter][0]) * (i - index[letter][1]) % MOD) % MOD;
                 index[letter][0] = index[letter][1];
                 index[letter][1] = i;
@@ -121,8 +121,7 @@ public:
             if (index[i][0] != -1) {
                 if (index[i][1] == -1) {
                     result = (result + (index[i][0] + 1) * (n - index[i][0]) % MOD) % MOD;
-                }
-                else {
+                } else {
                     result = (result + (index[i][1] - index[i][0]) * (n - index[i][1]) % MOD) % MOD;
                 }
             }
@@ -135,8 +134,13 @@ public:
 class Solution1 {
 private:
     int MOD = 1e9 + 7;
-    void count(string& S, int start, int end, int curUnique, int& result, vector<int>& letter) {
-        if (start >= S.size() or end >= S.size()) {
+
+    void count(string &S, int start, int end, int curUnique, int &result, vector<int> &letter) {
+        if (start >= S.size() or end
+        >=
+        S.size()
+        )
+        {
             return;
         }
 
@@ -160,6 +164,7 @@ private:
             count(S, start + 1, end + 1, curUnique, result, letter);
         }
     }
+
 public:
     int uniqueLetterString(string S) {
         int result = 0;

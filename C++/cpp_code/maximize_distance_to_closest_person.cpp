@@ -43,7 +43,7 @@ using namespace std;
 
 class Solution {
 public:
-    int maxDistToClosest(vector<int>& seats) {
+    int maxDistToClosest(vector<int> &seats) {
         int num = seats.size();
         vector<int> left(num, 0);
         vector<int> right(num, 0);

@@ -78,12 +78,11 @@ Remaining extroverts -> up to 6.
 Introverts mask -> up to 2 ^ (m + 1) - 1 = 63 combinations.
 Extroverts mask -> up to 2 ^ (m + 1) - 1 = 63 combinations.
 */
-class Solution
-{
+class Solution {
 public:
     int dp[25][7][7][64][64] = {};
-    int nCost(int m, int n, int i, int j, int mask_in, int mask_ex, int d)
-    {
+
+    int nCost(int m, int n, int i, int j, int mask_in, int mask_ex, int d) {
         int diff = 0, up = (1 << (n - 1));
         if (j > 0 && (mask_in & 1))
             diff += d - 30;
@@ -95,8 +94,8 @@ public:
             diff += d + 20;
         return diff;
     }
-    int dfs(int m, int n, int p, int in, int ex, int mask_in, int mask_ex)
-    {
+
+    int dfs(int m, int n, int p, int in, int ex, int mask_in, int mask_ex) {
         int i = p / n, j = p % n;
         if (i >= m)
             return 0;
@@ -104,21 +103,19 @@ public:
             return dp[p][in][ex][mask_in][mask_ex] - 1;
         int n_mask_in = (mask_in << 1) & 63, n_mask_ex = (mask_ex << 1) & 63;
         int res = dfs(m, n, p + 1, in, ex, n_mask_in, n_mask_ex);
-        if (in > 0)
-        {
+        if (in > 0) {
             int diff = 120 + nCost(m, n, i, j, mask_in, mask_ex, -30);
             res = max(res, diff + dfs(m, n, p + 1, in - 1, ex, n_mask_in + 1, n_mask_ex));
         }
-        if (ex > 0)
-        {
+        if (ex > 0) {
             int diff = 40 + nCost(m, n, i, j, mask_in, mask_ex, 20);
             res = max(res, diff + dfs(m, n, p + 1, in, ex - 1, n_mask_in, n_mask_ex + 1));
         }
         dp[p][in][ex][mask_in][mask_ex] = res + 1;
         return res;
     }
-    int getMaxGridHappiness(int m, int n, int introvertsCount, int extrovertsCount)
-    {
+
+    int getMaxGridHappiness(int m, int n, int introvertsCount, int extrovertsCount) {
         return dfs(m, n, 0, introvertsCount, extrovertsCount, 0, 0);
     }
 };

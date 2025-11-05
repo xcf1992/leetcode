@@ -34,13 +34,13 @@ using namespace std;
 
 class Solution {
 private:
-    vector<vector<int>> hours = {
+    vector<vector<int> > hours = {
         {0},
         {1, 2, 4, 8},
         {3, 5, 9, 6, 10},
         {7, 11}
     };
-    vector<vector<int>> minutes = {
+    vector<vector<int> > minutes = {
         {0},
         {1, 2, 4, 8, 16, 32},
         {3, 5, 9, 17, 33, 6, 10, 18, 34, 12, 20, 36, 24, 40, 48},
@@ -48,17 +48,24 @@ private:
         {15, 23, 39, 27, 43, 51, 29, 45, 53, 57, 30, 46, 54, 58},
         {31, 47, 55, 59}
     };
+
 public:
     vector<string> readBinaryWatch(int num) {
         vector<string> result;
-        for (int i = 0; i <= num and i < hours.size(); ++i) {
-            for (int j = 0; j < hours[i].size(); ++j) if (num - i < minutes.size()) {
-                for (int k = 0; k < minutes[num - i].size(); ++k) {
-                    string hour = to_string(hours[i][j]);
-                    string minute = minutes[num - i][k] < 10 ? "0" + to_string(minutes[num - i][k]) : to_string(minutes[num - i][k]);
-                    result.push_back(hour + ":" + minute);
+        for (int i = 0; i <= num and i<hours.size();
+        ++i
+        )
+        {
+            for (int j = 0; j < hours[i].size(); ++j)
+                if (num - i < minutes.size()) {
+                    for (int k = 0; k < minutes[num - i].size(); ++k) {
+                        string hour = to_string(hours[i][j]);
+                        string minute = minutes[num - i][k] < 10
+                                            ? "0" + to_string(minutes[num - i][k])
+                                            : to_string(minutes[num - i][k]);
+                        result.push_back(hour + ":" + minute);
+                    }
                 }
-            }
         }
         return result;
     }

@@ -55,24 +55,25 @@ using namespace std;
 
 class Solution {
 private:
-    int find(vector<int>& parent, int c) {
+    int find(vector<int> &parent, int c) {
         return parent[c] == c ? c : find(parent, parent[c]);
     }
+
 public:
-    bool equationsPossible(vector<string>& equations) {
+    bool equationsPossible(vector<string> &equations) {
         vector<int> parent(26, -1);
         // we do not use -1 directly, cause we may have thing like a==a, then find cannot be ended
         for (int i = 0; i < 26; i++) {
             parent[i] = i;
         }
 
-        for (string& equation : equations) {
+        for (string &equation: equations) {
             if (equation[1] == '=') {
                 parent[find(parent, equation[0] - 'a')] = find(parent, equation[3] - 'a');
             }
         }
 
-        for (string& equation : equations) {
+        for (string &equation: equations) {
             if (equation[1] == '!') {
                 if (find(parent, equation[0] - 'a') == find(parent, equation[3] - 'a')) {
                     return false;

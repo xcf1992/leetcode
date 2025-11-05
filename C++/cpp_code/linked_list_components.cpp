@@ -46,18 +46,21 @@ using namespace std;
 
 class Solution {
 public:
-    int numComponents(ListNode* head, vector<int>& G) {
+    int numComponents(ListNode *head, vector<int> &G) {
         unordered_set<int> values(G.begin(), G.end());
         int result = G.size();
-        ListNode* prev = head;
-        ListNode* cur = prev -> next;
+        ListNode *prev = head;
+        ListNode *cur = prev->next;
 
         while (cur != nullptr) {
-            if (values.find(prev -> val) != values.end() and values.find(cur -> val) != values.end()) {
+            if (values.find(prev->val) != values.end() and
+            values.find(cur->val) != values.end()
+            )
+            {
                 result -= 1;
             }
             prev = cur;
-            cur = cur -> next;
+            cur = cur->next;
         }
         return result;
     }

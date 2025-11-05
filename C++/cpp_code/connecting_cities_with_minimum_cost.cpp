@@ -46,19 +46,20 @@ using namespace std;
 // minimum spanning tree
 class Solution {
 private:
-    int find(vector<int>& parent, int city) {
+    int find(vector<int> &parent, int city) {
         return parent[city] == -1 ? city : find(parent, parent[city]);
     }
+
 public:
-    int minimumCost(int N, vector<vector<int>>& connections) {
+    int minimumCost(int N, vector<vector<int> > &connections) {
         vector<int> parent(N + 1, -1);
-        sort(connections.begin(), connections.end(), [](vector<int>& a, vector<int>& b) {
+        sort(connections.begin(), connections.end(), [](vector<int> &a, vector<int> &b) {
             return a[2] < b[2];
         });
 
         int result = 0;
         int n = N;
-        for (vector<int>& connection : connections) {
+        for (vector<int> &connection: connections) {
             int c1 = find(parent, connection[0]);
             int c2 = find(parent, connection[1]);
             if (c1 != c2) {

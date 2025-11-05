@@ -55,7 +55,9 @@ private:
         for (int i = 0; i < 4; i++) {
             int nr = r + dr[i];
             int nc = c + dc[i];
-            if (nr < 0 or nc < 0 or nr >= N or nc >= N) {
+            if (nr < 0 or nc<0 or nr >= N or nc >= N
+            )
+            {
                 continue;
             }
             if (grid[nr][nc] == 1) {
@@ -94,7 +96,9 @@ public:
                     for (int i = 0; i < 4; i++) {
                         int nr = r + dr[i];
                         int nc = c + dc[i];
-                        if (nr < 0 or nc < 0 or nr >= N or nc >= N) {
+                        if (nr < 0 or nc<0 or nr >= N or nc >= N
+                        )
+                        {
                             continue;
                         }
                         if (grid[nr][nc] > 1) {

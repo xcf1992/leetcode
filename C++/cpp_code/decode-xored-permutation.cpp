@@ -43,7 +43,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> decode(vector<int>& encoded) {
+    vector<int> decode(vector<int> &encoded) {
         int n = encoded.size() + 1;
         int sum = 0;
         for (int i = 1; i <= n; ++i) {

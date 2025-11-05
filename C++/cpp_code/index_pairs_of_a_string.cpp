@@ -42,9 +42,9 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int>> indexPairs(string text, vector<string>& words) {
-        vector<vector<int>> result;
-        for (string& word : words) {
+    vector<vector<int> > indexPairs(string text, vector<string> &words) {
+        vector<vector<int> > result;
+        for (string &word: words) {
             int cur = 0;
             int len = word.size() - 1;
             int pos = text.find(word, cur);
@@ -53,8 +53,9 @@ public:
                 pos = text.find(word, pos + 1);
             }
         }
-        sort(result.begin(), result.end(), [](vector<int>& a, vector<int>& b) {
-            return a[0] < b[0] or (a[0] == b[0] and a[1] < b[1]);
+        sort(result.begin(), result.end(), [](vector<int> &a, vector<int> &b) {
+            return a[0] < b[0]
+            or(a[0] == b[0] and a[1] < b[1]);
         });
         return result;
     }

@@ -46,7 +46,11 @@ public:
         for (int i = num.size() - 1; i >= 0; --i) {
             result += num[i];
             count += 1;
-            if (count == 3 and i != 0) {
+            if (count == 3 and i
+            !=
+            0
+            )
+            {
                 result += ".";
                 count = 0;
             }

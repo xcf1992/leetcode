@@ -91,10 +91,12 @@ Loop til l <= r
            Then parent P contains sum of range which lies in [l, r].
            Add P to sumsum and set r to point to the parent of P
 */
-class NumArray { // segment tree implementation
+class NumArray {
+    // segment tree implementation
 private:
     vector<int> tree;
     int n = 0;
+
 public:
     NumArray(vector<int> nums) {
         n = nums.size();
@@ -116,8 +118,7 @@ public:
             int right = pos;
             if (pos % 2 == 0) {
                 right += 1;
-            }
-            else {
+            } else {
                 left -= 1;
             }
             tree[pos / 2] = tree[left] + tree[right];
@@ -146,54 +147,67 @@ public:
 };
 
 // https://www.hackerearth.com/practice/data-structures/advanced-data-structures/segment-trees/tutorial/
-class NumArray { // segment tree 91%
+class NumArray {
+    // segment tree 91%
 private:
-    TreeNode* root = nullptr;
+    TreeNode *root = nullptr;
     int n = 0;
 
-    TreeNode* build(int start, int end, vector<int>& nums) {
+    TreeNode *build(int start, int end, vector<int> &nums) {
         if (start == end) {
             return new TreeNode(nums[start]);
         }
 
-        TreeNode* cur = new TreeNode(0);
+        TreeNode *cur = new TreeNode(0);
         int mid = start + (end - start) / 2;
-        cur -> left = build(start, mid, nums);
-        cur -> right = build(mid + 1, end, nums);
-        cur -> val = cur -> left -> val + cur -> right -> val;
+        cur->left = build(start, mid, nums);
+        cur->right = build(mid + 1, end, nums);
+        cur->val = cur->left->val + cur->right->val;
         return cur;
     }
 
-    void update(int start, int end, int index, int val, TreeNode* cur) {
+    void update(int start, int end, int index, int val, TreeNode *cur) {
         if (start == end) {
-            cur -> val = val;
+            cur->val = val;
             return;
         }
 
         int mid = start + (end - start) / 2;
-        if (start <= index and index <= mid) {
-            update(start, mid, index, val, cur -> left);
+        if (start <= index and index
+        <=
+        mid
+        )
+        {
+            update(start, mid, index, val, cur->left);
         }
-        else {
-            update(mid + 1, end, index, val, cur -> right);
+        else
+        {
+            update(mid + 1, end, index, val, cur->right);
         }
-        cur -> val = cur -> left -> val + cur -> right -> val;
+        cur->val = cur->left->val + cur->right->val;
     }
 
-    int query(int start, int end, int left, int right, TreeNode* cur) {
-        if (start > right or end < left) {
+    int query(int start, int end, int left, int right, TreeNode *cur) {
+        if (start > right or end<left
+        )
+        {
             return 0;
         }
 
-        if (start >= left and end <= right) {
-            return cur -> val;
+        if (start >= left and end
+        <=
+        right
+        )
+        {
+            return cur->val;
         }
 
         int mid = start + (end - start) / 2;
-        return query(start, mid, left, right, cur -> left) + query(mid + 1, end, left, right, cur -> right);
+        return query(start, mid, left, right, cur->left) + query(mid + 1, end, left, right, cur->right);
     }
+
 public:
-    NumArray(vector<int>& nums) {
+    NumArray(vector<int> &nums) {
         n = nums.size();
         if (n == 0) {
             return;
@@ -214,10 +228,11 @@ class NumArray1 {
 private:
     vector<int> sum;
     vector<int> aray;
+
 public:
     NumArray1(vector<int> nums) {
         sum.push_back(0);
-        for (int num : nums) {
+        for (int num: nums) {
             sum.push_back(sum.back() + num);
             aray.push_back(num);
         }
@@ -235,6 +250,7 @@ public:
         return sum[j + 1] - sum[i];
     }
 };
+
 /*
 * Your NumAray object wil be instantiated and caled as such:
 * NumAray obj = new NumAray(nums);

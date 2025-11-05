@@ -92,6 +92,7 @@ private:
         }
         return steps;
     }
+
 public:
     int findKthNumber(int n, int k) {
         int cur = 1;
@@ -102,8 +103,7 @@ public:
             if (steps <= k) {
                 cur += 1;
                 k -= steps;
-            }
-            else {
+            } else {
                 cur *= 10;
                 k -= 1;
             }
@@ -121,7 +121,7 @@ Time limit exceed
 */
 class Solution1 {
 private:
-    int find(int n, int k, long long number, int& rank) {
+    int find(int n, int k, long long number, int &rank) {
         if (rank == k) {
             return number;
         }
@@ -139,6 +139,7 @@ private:
         }
         return -1;
     }
+
 public:
     int findKthNumber(int n, int k) {
         int rank = 0;

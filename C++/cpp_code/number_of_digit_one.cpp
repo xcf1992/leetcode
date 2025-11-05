@@ -143,7 +143,8 @@ public:
             long divider = i * 10;
             result += (n / divider) * i;
             if (n % divider >= i) {
-                result += min(i, n % divider - i + 1); // n % divider - i + 1 will be the count, take **17 for example, there will be 10 ~ 17, 8 ones
+                result += min(i, n % divider - i + 1);
+                // n % divider - i + 1 will be the count, take **17 for example, there will be 10 ~ 17, 8 ones
             }
         }
         return result;
@@ -166,11 +167,9 @@ public:
 
             if (curNum == 0) {
                 result += higherNum * factor;
-            }
-            else if (curNum == 1) {
+            } else if (curNum == 1) {
                 result += higherNum * factor + lowerNum + 1;
-            }
-            else {
+            } else {
                 result += (higherNum + 1) * factor;
             }
             factor *= 10;

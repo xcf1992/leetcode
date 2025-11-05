@@ -34,11 +34,11 @@ using namespace std;
 
 class Solution {
 public:
-    int largest1BorderedSquare(vector<vector<int>>& grid) {
+    int largest1BorderedSquare(vector<vector<int> > &grid) {
         int m = grid.size();
         int n = grid[0].size();
-        vector<vector<int>> row(m, vector<int>(n, 0));
-        vector<vector<int>> col(m, vector<int>(n, 0));
+        vector<vector<int> > row(m, vector<int>(n, 0));
+        vector<vector<int> > col(m, vector<int>(n, 0));
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
                 if (grid[i][j] > 0) {
@@ -53,7 +53,11 @@ public:
             for (int j = n - 1; j >= 0; --j) {
                 int len = min(row[i][j], col[i][j]);
                 while (len > maxLen) {
-                    if (row[i - len + 1][j] >= len and col[i][j - len + 1] >= len) {
+                    if (row[i - len + 1][j] >= len and col[i][j - len + 1]
+                    >=
+                    len
+                    )
+                    {
                         maxLen = len;
                         break;
                     }

@@ -35,7 +35,7 @@ using namespace std;
 
 class Solution {
 public:
-    bool splitArray(vector<int>& nums) {
+    bool splitArray(vector<int> &nums) {
         int n = nums.size();
         if (n < 7) {
             return false;
@@ -55,7 +55,10 @@ public:
                 }
             }
             for (int k = j + 2; k < n - 1; k++) {
-                if (preSum[k - 1] - preSum[j] == preSum[n - 1] - preSum[k] and sub.find(preSum[k - 1] - preSum[j]) != sub.end()) {
+                if (preSum[k - 1] - preSum[j] == preSum[n - 1] - preSum[k] and
+                sub.find(preSum[k - 1] - preSum[j]) != sub.end()
+                )
+                {
                     return true;
                 }
             }

@@ -62,8 +62,7 @@ public:
             if (k > 1) {
                 result.push_back(k % 2 == 1 ? i++ : j--);
                 k -= 1;
-            }
-            else {
+            } else {
                 result.push_back(i);
                 i += 1;
             }

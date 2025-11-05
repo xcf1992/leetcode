@@ -73,7 +73,8 @@ using namespace std;
 
 struct TrieNode {
     vector<int> index;
-    vector<TrieNode*> children;
+    vector<TrieNode *> children;
+
     TrieNode() {
         children.resize(26, nullptr);
     }
@@ -81,53 +82,54 @@ struct TrieNode {
 
 class Solution {
 private:
-    TrieNode* construct(vector<string>& words) {
-        TrieNode* root = new TrieNode();
+    TrieNode *construct(vector<string> &words) {
+        TrieNode *root = new TrieNode();
         for (int i = 0; i < words.size(); i++) {
-            string& word = words[i];
-            TrieNode* cur = root;
+            string &word = words[i];
+            TrieNode *cur = root;
             for (int j = 0; j < word.size(); j++) {
-                if (cur -> children[word[j] - 'a'] == nullptr) {
-                    cur -> children[word[j] - 'a'] = new TrieNode();
+                if (cur->children[word[j] - 'a'] == nullptr) {
+                    cur->children[word[j] - 'a'] = new TrieNode();
                 }
-                cur = cur -> children[word[j] - 'a'];
-                cur -> index.push_back(i);
+                cur = cur->children[word[j] - 'a'];
+                cur->index.push_back(i);
             }
         }
         return root;
     }
 
-    void dfs(vector<vector<string>>& result, vector<string>& square, vector<string>& words, TrieNode* root, int row) {
+    void dfs(vector<vector<string> > &result, vector<string> &square, vector<string> &words, TrieNode *root, int row) {
         if (row == square.size()) {
             result.push_back(square);
             return;
         }
 
-        TrieNode* cur = root;
+        TrieNode *cur = root;
         for (int i = 0; i < row; i++) {
-            if (cur -> children[square[i][row] - 'a'] == nullptr) {
+            if (cur->children[square[i][row] - 'a'] == nullptr) {
                 return;
             }
-            cur = cur -> children[square[i][row] - 'a'];
+            cur = cur->children[square[i][row] - 'a'];
         }
 
-        for (int i : cur -> index) {
+        for (int i: cur->index) {
             square[row] = words[i];
             dfs(result, square, words, root, row + 1);
         }
     }
+
 public:
-    vector<vector<string>> wordSquares(vector<string>& words) {
+    vector<vector<string> > wordSquares(vector<string> &words) {
         int n = words.size();
         if (n == 0) {
             return {};
         }
-        TrieNode* root = construct(words);
+        TrieNode *root = construct(words);
 
-        vector<vector<string>> result;
+        vector<vector<string> > result;
         int length = words[0].size();
         vector<string> square(length, "");
-        for (string& word : words) {
+        for (string &word: words) {
             square[0] = word;
             dfs(result, square, words, root, 1);
         }

@@ -28,14 +28,14 @@ using namespace std;
 
 class Solution {
 public:
-    int findLHS(vector<int>& nums) {
+    int findLHS(vector<int> &nums) {
         map<int, int> count;
-        for (int num : nums) {
+        for (int num: nums) {
             count[num] += 1;
         }
 
         int result = 0;
-        for (auto& it : count) {
+        for (auto &it: count) {
             if (count.find(it.first + 1) != count.end()) {
                 result = max(result, it.second + count[1 + it.first]);
             }

@@ -36,22 +36,22 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> advantageCount(vector<int>& A, vector<int>& B) {
+    vector<int> advantageCount(vector<int> &A, vector<int> &B) {
         map<int, int> count;
-        for (int i : A) {
+        for (int i: A) {
             count[i] += 1;
         }
 
         vector<int> result;
-        for (int num : B) {
+        for (int num: B) {
             auto it = count.upper_bound(num);
             if (it == count.end()) {
                 it = count.begin();
             }
 
-            result.push_back(it -> first);
-            it -> second -= 1;
-            if (it -> second == 0) {
+            result.push_back(it->first);
+            it->second -= 1;
+            if (it->second == 0) {
                 count.erase(it);
             }
         }
@@ -61,7 +61,7 @@ public:
 
 class Solution1 {
 public:
-    vector<int> advantageCount(vector<int>& A, vector<int>& B) {
+    vector<int> advantageCount(vector<int> &A, vector<int> &B) {
         int n = A.size();
         sort(A.begin(), A.end());
 
@@ -71,23 +71,27 @@ public:
         vector<bool> used(n, false);
         for (int i = 0; i < n; i++) {
             if (B[i] > A[n - 1]) {
-                while (left < n and used[left]) {
+                while (left < n and used[left]
+                )
+                {
                     left += 1;
                 }
                 result[i] = A[left];
                 used[left] = true;
-            }
-            else {
+            } else {
                 int index = upper_bound(A.begin(), A.end(), B[i]) - A.begin();
-                while (index < n and used[index]) {
+                while (index < n and used[index]
+                )
+                {
                     index += 1;
                 }
                 if (index < n) {
                     result[i] = A[index];
                     used[index] = true;
-                }
-                else {
-                    while (left < n and used[left]) {
+                } else {
+                    while (left < n and used[left]
+                    )
+                    {
                         left += 1;
                     }
                     result[i] = A[left];

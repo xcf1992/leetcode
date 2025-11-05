@@ -60,9 +60,10 @@ To count this, we will use a sliding window approach:
 for each primes[j], we'll find the largest i so that primes[i] / primes[j] < x.
 These is are necessarily increasing as j (and primes[j]) increases, so this check is linear.
 */
-class Solution { // binary search
+class Solution {
+    // binary search
 private:
-    vector<int> under(double limit, vector<int>& A) {
+    vector<int> under(double limit, vector<int> &A) {
         int numer = 0;
         int denom = 1;
         int count = 0;
@@ -77,15 +78,20 @@ private:
             count += i + 1;
             // There are i+1 fractions: (primes[0], primes[j]),
             // (primes[1], primes[j]), ..., (primes[i], primes[j])
-            if (i >= 0 and numer * A[j] < denom * A[i]) {
+            if (i >= 0 and numer *A[j]
+            <
+            denom * A[i]
+            )
+            {
                 numer = A[i];
                 denom = A[j];
             }
         }
         return {count, numer, denom};
     }
+
 public:
-    vector<int> kthSmallestPrimeFraction(vector<int>& A, int K) {
+    vector<int> kthSmallestPrimeFraction(vector<int> &A, int K) {
         double left = 0;
         double right = 1;
         vector<int> result({0, 1});
@@ -94,8 +100,7 @@ public:
             vector<int> smaller = under(mid, A);
             if (smaller[0] < K) {
                 left = mid;
-            }
-            else {
+            } else {
                 right = mid;
                 result[0] = smaller[1];
                 result[1] = smaller[2];
@@ -111,13 +116,14 @@ public:
  2. then for each poped item x, we put x.first + 1/ x.second,
     and we sure x.first / x.second or x.first / x.second + 1 already in or will be in the pq
 */
-class Solution1 { // 6.61%
+class Solution1 {
+    // 6.61%
 public:
-    vector<int> kthSmallestPrimeFraction(vector<int>& A, int K) {
-        auto cmp = [&A](auto& a, auto& b) {
+    vector<int> kthSmallestPrimeFraction(vector<int> &A, int K) {
+        auto cmp = [&A](auto &a, auto &b) {
             return A[a.first] * A[b.second] > A[a.second] * A[b.first];
         };
-        priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(cmp)> pq(cmp);
+        priority_queue<pair<int, int>, vector<pair<int, int> >, decltype(cmp)> pq(cmp);
 
         for (int i = 1; i < A.size(); i++) {
             pq.push({0, i});

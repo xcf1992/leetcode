@@ -65,11 +65,13 @@ private:
     class TreeNode {
     public:
         TreeNode *next[2];
+
         TreeNode() {
             next[0] = nullptr;
             next[1] = nullptr;
         };
     };
+
     TreeNode *buildTree(vector<int> &nums) {
         TreeNode *root = new TreeNode(), *cur;
         int n = nums.size();
@@ -113,10 +115,10 @@ private:
     }
 
 public:
-    vector<int> maximizeXor(vector<int> &nums, vector<vector<int>> &queries) {
+    vector<int> maximizeXor(vector<int> &nums, vector<vector<int> > &queries) {
         vector<int> ans;
         TreeNode *root = buildTree(nums);
-        for (const vector<int> &query : queries) {
+        for (const vector<int> &query: queries) {
             int tmp = dfs(root, query[0], query[1], 0, 31);
             ans.push_back(tmp);
         }

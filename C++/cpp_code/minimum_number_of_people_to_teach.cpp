@@ -51,7 +51,7 @@ languages[i] contains only unique values
 #include <stdio.h>
 #include <set>
 #include <numeric>
-#include <bitset> 
+#include <bitset>
 using namespace std;
 /*
 Enumerate the lanuage k we want to teach.
@@ -61,22 +61,19 @@ we need to teach them speaking lanuage k.
 */
 class Solution {
 public:
-    int minimumTeachings(int n, vector<vector<int>>& languages, vector<vector<int>>& friendships) {
+    int minimumTeachings(int n, vector<vector<int> > &languages, vector<vector<int> > &friendships) {
         static const int BIT = 512;
         int res = friendships.size();
-        vector<bitset<BIT>> lan;
-        for (auto &l : languages)
-        {
+        vector<bitset<BIT> > lan;
+        for (auto &l: languages) {
             lan.emplace_back();
-            for (auto n : l)
+            for (auto n: l)
                 lan.back().set(n);
         }
 
-        for (int l = 1; l <= n; ++l)
-        {
+        for (int l = 1; l <= n; ++l) {
             unordered_set<int> s;
-            for (auto &f : friendships)
-            {
+            for (auto &f: friendships) {
                 if ((lan[f[0] - 1] & lan[f[1] - 1]).any())
                     continue;
                 if (!lan[f[0] - 1].test(l))
@@ -84,7 +81,7 @@ public:
                 if (!lan[f[1] - 1].test(l))
                     s.insert(f[1]);
             }
-            res = min(res, (int)s.size());
+            res = min(res, (int) s.size());
         }
         return res;
     }

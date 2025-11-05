@@ -52,11 +52,10 @@ public:
         int result = 0;
         int left = 0;
         int right = 0;
-        for (char c : S) {
+        for (char c: S) {
             if (c == '(') {
                 left += 1;
-            }
-            else if (c == ')') {
+            } else if (c == ')') {
                 right += 1;
                 if (left < right) {
                     left += 1;

@@ -58,15 +58,14 @@ Thanks to @dibdidib for reminding me and now I fixed it.
 
 class Solution {
 public:
-    int fixedPoint(vector<int>& A) {
+    int fixedPoint(vector<int> &A) {
         int left = 0;
         int right = A.size() - 1;
         while (left < right) {
             int mid = left + (right - left) / 2;
             if (A[mid] < mid) {
                 left = mid + 1;
-            }
-            else {
+            } else {
                 right = mid;
             }
         }

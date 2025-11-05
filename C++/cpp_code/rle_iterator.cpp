@@ -61,12 +61,14 @@ using namespace std;
 
 class RLEIterator {
 private:
-    queue<pair<int, int>> que;
+    queue<pair<int, int> > que;
+
 public:
     RLEIterator(vector<int> A) {
-        for (int i = 0; i < A.size() - 1; i += 2) if (A[i] != 0) {
-            que.push({A[i], A[i + 1]});
-        }
+        for (int i = 0; i < A.size() - 1; i += 2)
+            if (A[i] != 0) {
+                que.push({A[i], A[i + 1]});
+            }
     }
 
     int next(int n) {
@@ -74,8 +76,7 @@ public:
             if (que.front().first >= n) {
                 que.front().first -= n;
                 return que.front().second;
-            }
-            else {
+            } else {
                 n -= que.front().first;
                 que.pop();
             }

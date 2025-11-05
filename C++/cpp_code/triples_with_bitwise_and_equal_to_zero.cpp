@@ -57,7 +57,7 @@ Obviously, the next (0x1000 - 1) values (0x1001 to 0x1111) will not meet the req
 */
 class Solution {
 public:
-    int countTriplets(vector<int>& A) {
+    int countTriplets(vector<int> &A) {
         int n = A.size();
         vector<int> dp(1 << 16);
         for (int i = 0; i < n; i++) {
@@ -71,8 +71,7 @@ public:
             for (int j = 0; j < (1 << 16); j++) {
                 if ((A[i] & j) == 0) {
                     result += dp[j];
-                }
-                else {
+                } else {
                     j += (A[i] & j) - 1;
                 }
             }
@@ -83,7 +82,7 @@ public:
 
 class Solution1 {
 public:
-    int countTriplets(vector<int>& A) {
+    int countTriplets(vector<int> &A) {
         int n = A.size();
         vector<int> count(1 << 16);
         for (int i = 0; i < n; i++) {
@@ -94,9 +93,10 @@ public:
 
         int result = 0;
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < (1 << 16); j++) if ((A[i] & j) == 0) {
-                result += count[j];
-            }
+            for (int j = 0; j < (1 << 16); j++)
+                if ((A[i] & j) == 0) {
+                    result += count[j];
+                }
         }
         return result;
     }

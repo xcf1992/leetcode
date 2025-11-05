@@ -55,7 +55,7 @@ using namespace std;
 
 class Solution {
 public:
-    int maxSumRangeQuery(vector<int>& nums, vector<vector<int>>& requests) {
+    int maxSumRangeQuery(vector<int> &nums, vector<vector<int> > &requests) {
         int mod = 1e9 + 7;
         int n = nums.size();
         vector<int> count(n);
@@ -73,7 +73,7 @@ public:
         sort(begin(count), end(count));
         sort(begin(nums), end(nums));
         for (int i = 0; i < n; ++i) {
-            res = (res + (long long)nums[i] * (long long)count[i]) % mod;
+            res = (res + (long long) nums[i] * (long long) count[i]) % mod;
         }
         return res;
     }

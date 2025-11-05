@@ -40,11 +40,12 @@ class Solution {
 private:
     int time = 0;
 
-    void dfs(int cur, vector<bool>& visited, vector<int>& disc, vector<int>& low, vector<int>& parent, vector<vector<int>>& graph, vector<vector<int>>& result) {
+    void dfs(int cur, vector<bool> &visited, vector<int> &disc, vector<int> &low, vector<int> &parent,
+             vector<vector<int> > &graph, vector<vector<int> > &result) {
         visited[cur] = true;
         time += 1;
         disc[cur] = low[cur] = time;
-        for (int nxt : graph[cur]) {
+        for (int nxt: graph[cur]) {
             if (!visited[nxt]) {
                 parent[nxt] = cur;
                 dfs(nxt, visited, disc, low, parent, graph, result);
@@ -52,26 +53,27 @@ private:
                 if (low[nxt] > disc[cur]) {
                     result.push_back({cur, nxt});
                 }
-            }
-            else if (nxt != parent[cur]) {
+            } else if (nxt != parent[cur]) {
                 low[cur] = min(low[cur], disc[nxt]);
             }
         }
     }
+
 public:
-    vector<vector<int>> criticalConnections(int n, vector<vector<int>>& connections) {
-        vector<vector<int>> graph(n, vector<int>());
-        for (vector<int>& con : connections) {
+    vector<vector<int> > criticalConnections(int n, vector<vector<int> > &connections) {
+        vector<vector<int> > graph(n, vector<int>());
+        for (vector<int> &con: connections) {
             graph[con[0]].push_back(con[1]);
             graph[con[1]].push_back(con[0]);
         }
 
         vector<bool> visited(n, false);
         vector<int> disc(n, 0), low(n, 0), parent(n, -1);
-        vector<vector<int>> result;
-        for (int i = 0; i < n; ++i) if (!visited[i]) {
-            dfs(i, visited, disc, low, parent, graph, result);
-        }
+        vector<vector<int> > result;
+        for (int i = 0; i < n; ++i)
+            if (!visited[i]) {
+                dfs(i, visited, disc, low, parent, graph, result);
+            }
         return result;
     }
 };

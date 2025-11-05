@@ -47,7 +47,7 @@ using namespace std;
 
 class Solution {
 private:
-    vector<string> parse(const string& s) {
+    vector<string> parse(const string &s) {
         int i = 0;
         vector<string> tokens;
         int pos = s.find(":");
@@ -59,11 +59,12 @@ private:
         tokens.push_back(s.substr(i, s.length()));
         return tokens;
     }
+
 public:
-    vector<int> exclusiveTime(int n, vector<string>& logs) {
+    vector<int> exclusiveTime(int n, vector<string> &logs) {
         vector<int> result(n, 0);
-        stack<pair<int, int>> execution;
-        for (string log : logs) {
+        stack<pair<int, int> > execution;
+        for (string log: logs) {
             vector<string> tokens = parse(log);
             int id = stoi(tokens[0]);
             bool start = tokens[1] == "start";
@@ -74,8 +75,7 @@ public:
                     result[execution.top().first] += timestamp - execution.top().second;
                 }
                 execution.push({id, timestamp});
-            }
-            else {
+            } else {
                 result[id] += timestamp - execution.top().second + 1;
                 execution.pop();
                 if (!execution.empty()) {

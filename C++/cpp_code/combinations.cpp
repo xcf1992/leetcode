@@ -31,7 +31,7 @@ using namespace std;
 
 class Solution {
 private:
-    void dfs(int n, int k, int level, vector<int>& combination, vector<vector<int>>& result) {
+    void dfs(int n, int k, int level, vector<int> &combination, vector<vector<int> > &result) {
         if (combination.size() == k) {
             result.push_back(combination);
             return;
@@ -43,9 +43,10 @@ private:
             combination.pop_back();
         }
     }
+
 public:
-    vector<vector<int>> combine(int n, int k) {
-        vector<vector<int>> result;
+    vector<vector<int> > combine(int n, int k) {
+        vector<vector<int> > result;
         vector<int> combination;
         dfs(n, k, 1, combination, result);
         return result;

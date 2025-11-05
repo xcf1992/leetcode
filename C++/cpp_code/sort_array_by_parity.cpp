@@ -30,7 +30,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> sortArrayByParity(vector<int>& A) {
+    vector<int> sortArrayByParity(vector<int> &A) {
         int even = 0;
         int odd = A.size() - 1;
         while (even < odd) {

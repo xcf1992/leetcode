@@ -53,7 +53,7 @@ Done.
 */
 class SummaryRanges {
 private:
-    vector<vector<int>> intervals;
+    vector<vector<int> > intervals;
 
     int search(int target) {
         int left = 0;
@@ -62,16 +62,17 @@ private:
             int mid = left + (right - left) / 2;
             if (intervals[mid][0] > target) {
                 right = mid - 1;
-            }
-            else {
+            } else {
                 left = mid + 1;
             }
         }
         return left;
     }
+
 public:
     /* Initialize your data structure here.*/
-    SummaryRanges() {}
+    SummaryRanges() {
+    }
 
     void addNum(int val) {
         if (intervals.empty()) {
@@ -80,13 +81,22 @@ public:
         }
 
         int index = search(val);
-        if (index > 0 and intervals[index - 1][1] + 1 >= val) {
+        if (index > 0 and intervals[index - 1][1]
+        +1 >= val
+        )
+        {
             index -= 1;
         }
 
         int start = val;
         int end = val;
-        while (index < intervals.size() and intervals[index][0] <= val + 1 and val - 1 <= intervals[index][1]) {
+        while (index < intervals.size() and intervals[index][0]
+        <=
+        val + 1
+        and val
+        -1 <= intervals[index][1]
+        )
+        {
             start = min(intervals[index][0], start);
             end = max(end, intervals[index][1]);
             intervals.erase(intervals.begin() + index);
@@ -94,10 +104,11 @@ public:
         intervals.insert(intervals.begin() + index, {start, end});
     }
 
-    vector<vector<int>> getIntervals() {
+    vector<vector<int> > getIntervals() {
         return intervals;
     }
 };
+
 /*
 * Your SummaryRanges object will be instantiated and called as such:
 * SummaryRanges* obj = new SummaryRanges();

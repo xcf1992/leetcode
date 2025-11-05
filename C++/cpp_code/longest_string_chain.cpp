@@ -37,16 +37,17 @@ words[i] only consists of English lowercase letters.
 #include <numeric>
 using namespace std;
 
-class Solution { // bottom up
+class Solution {
+    // bottom up
 public:
-    int longestStrChain(vector<string>& words) {
-        sort(words.begin(), words.end(), [](string& a, string& b) {
+    int longestStrChain(vector<string> &words) {
+        sort(words.begin(), words.end(), [](string &a, string &b) {
             return a.size() < b.size();
         });
 
         unordered_map<string, int> dp;
         int result = 1;
-        for (string& word : words) {
+        for (string &word: words) {
             dp[word] = 1;
             for (int i = 0; i < word.size(); ++i) {
                 string pre = word.substr(0, i) + word.substr(i + 1);
@@ -60,9 +61,10 @@ public:
     }
 };
 
-class Solution1 { // top down
+class Solution1 {
+    // top down
 private:
-    int find(unordered_map<string, int>& dp, unordered_set<string>& words, string word) {
+    int find(unordered_map<string, int> &dp, unordered_set<string> &words, string word) {
         if (dp.find(word) != dp.end()) {
             return dp[word];
         }
@@ -76,11 +78,12 @@ private:
         }
         return dp[word];
     }
+
 public:
-    int longestStrChain(vector<string>& words) {
+    int longestStrChain(vector<string> &words) {
         sort(words.begin(), words.end());
         unordered_set<string> dict;
-        for (string& word : words) {
+        for (string &word: words) {
             dict.insert(word);
         }
 

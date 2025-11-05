@@ -65,12 +65,14 @@ using vi = vector<int>;
 class Solution {
 public:
     vector<vi> pos;
-    bool isPrintable(vector<vector<int>>& arr) {
-        int n = arr.size(); int m = arr[0].size();
-        pos = vector<vector<int>>(61, {n, m, 0, 0});
+
+    bool isPrintable(vector<vector<int> > &arr) {
+        int n = arr.size();
+        int m = arr[0].size();
+        pos = vector<vector<int> >(61, {n, m, 0, 0});
         unordered_set<int> colors;
-        for (int i = 0; i < n; i++){
-            for (int j = 0; j < m; j++){
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
                 colors.insert(arr[i][j]);
                 int c = arr[i][j];
                 pos[c][0] = min(pos[c][0], i);
@@ -79,14 +81,14 @@ public:
                 pos[c][3] = max(pos[c][3], j);
             }
         }
-        while (!colors.empty()){
+        while (!colors.empty()) {
             unordered_set<int> colors2;
-            for (int v: colors){
-                if (!test(v, arr)){
+            for (int v: colors) {
+                if (!test(v, arr)) {
                     colors2.insert(v);
                 }
             }
-            if (colors2.size() == colors.size()){
+            if (colors2.size() == colors.size()) {
                 return false;
             }
             colors = colors2;
@@ -94,16 +96,16 @@ public:
         return true;
     }
 
-    bool test(int c, vector<vi>& arr){
-        for (int i = pos[c][0]; i <= pos[c][2]; i++){
-            for (int j = pos[c][1]; j <= pos[c][3]; j++){
-                if (arr[i][j] > 0 && arr[i][j] != c){
+    bool test(int c, vector<vi> &arr) {
+        for (int i = pos[c][0]; i <= pos[c][2]; i++) {
+            for (int j = pos[c][1]; j <= pos[c][3]; j++) {
+                if (arr[i][j] > 0 && arr[i][j] != c) {
                     return false;
                 }
             }
         }
-        for (int i = pos[c][0]; i <= pos[c][2]; i++){
-            for (int j = pos[c][1]; j <= pos[c][3]; j++){
+        for (int i = pos[c][0]; i <= pos[c][2]; i++) {
+            for (int j = pos[c][1]; j <= pos[c][3]; j++) {
                 arr[i][j] = 0;
             }
         }

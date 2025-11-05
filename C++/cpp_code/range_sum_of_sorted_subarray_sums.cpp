@@ -50,10 +50,10 @@ The running time is O(right * lgn) worst case. The real benefit of using priorit
 */
 class Solution {
 public:
-    int rangeSum(vector<int>& nums, int n, int left, int right) {
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> mqueue;
+    int rangeSum(vector<int> &nums, int n, int left, int right) {
+        priority_queue<pair<int, int>, vector<pair<int, int> >, greater<pair<int, int> > > mqueue;
         for (int i = 0; i < n; i++) {
-            mqueue.push({nums[i], i+1});
+            mqueue.push({nums[i], i + 1});
         }
 
         int result = 0;
@@ -74,4 +74,3 @@ public:
         return result;
     }
 };
-

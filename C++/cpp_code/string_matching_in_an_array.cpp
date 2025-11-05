@@ -45,8 +45,8 @@ using namespace std;
 
 class Solution {
 public:
-    vector<string> stringMatching(vector<string>& words) {
-        sort(words.begin(), words.end(), [](string& a, string& b) {
+    vector<string> stringMatching(vector<string> &words) {
+        sort(words.begin(), words.end(), [](string &a, string &b) {
             return a.size() < b.size();
         });
 

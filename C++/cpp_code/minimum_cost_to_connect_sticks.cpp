@@ -37,13 +37,13 @@ using namespace std;
 
 class Solution {
 public:
-    int connectSticks(vector<int>& sticks) {
+    int connectSticks(vector<int> &sticks) {
         int n = sticks.size();
         if (n <= 1) {
             return 0;
         }
 
-        priority_queue<int, vector<int>, greater<int>> pq(sticks.begin(), sticks.end());
+        priority_queue<int, vector<int>, greater<int> > pq(sticks.begin(), sticks.end());
         int result = 0;
         while (pq.size() > 1) {
             int s1 = pq.top();

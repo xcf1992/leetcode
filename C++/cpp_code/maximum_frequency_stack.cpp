@@ -57,7 +57,7 @@ using namespace std;
 class FreqStack {
 private:
     unordered_map<int, int> frequency;
-    unordered_map<int, stack<int>> stk;
+    unordered_map<int, stack<int> > stk;
     int maxFreq;
 
 public:

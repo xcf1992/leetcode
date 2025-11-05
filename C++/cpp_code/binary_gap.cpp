@@ -66,8 +66,7 @@ public:
             if (N % 2 == 1) {
                 if (pre == -1) {
                     pre = cur;
-                }
-                else {
+                } else {
                     result = max(result, cur - pre);
                     pre = cur;
                 }

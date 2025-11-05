@@ -37,9 +37,9 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> corpFlightBookings(vector<vector<int>>& bookings, int n) {
+    vector<int> corpFlightBookings(vector<vector<int> > &bookings, int n) {
         vector<int> count(n + 2, 0); // count is 1 base
-        for (vector<int>& booking : bookings) {
+        for (vector<int> &booking: bookings) {
             count[booking[0]] += booking[2];
             count[booking[1] + 1] -= booking[2];
         }

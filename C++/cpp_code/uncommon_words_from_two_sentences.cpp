@@ -61,8 +61,8 @@ public:
 
         vector<string> result;
         for (auto it = words1.begin(); it != words1.end(); it++) {
-            if (it -> second == 1) {
-                result.push_back(it -> first);
+            if (it->second == 1) {
+                result.push_back(it->first);
             }
         }
         return result;

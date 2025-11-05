@@ -16,21 +16,21 @@ public:
         int vertical = 0;
         int horizontal = 0;
 
-        for (char c : moves) {
+        for (char c: moves) {
             if (c == 'U') {
                 vertical += 1;
-            }
-            else if (c == 'D') {
+            } else if (c == 'D') {
                 vertical -= 1;
-            }
-            else if (c == 'L') {
+            } else if (c == 'L') {
                 horizontal -= 1;
-            }
-            else if (c == 'R') {
+            } else if (c == 'R') {
                 horizontal += 1;
             }
         }
 
-        return vertical == 0 and horizontal == 0;
+        return vertical == 0
+        and horizontal
+        ==
+        0;
     }
 };

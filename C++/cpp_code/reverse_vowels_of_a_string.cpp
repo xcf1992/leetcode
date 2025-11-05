@@ -14,6 +14,7 @@ using namespace std;
 class Solution {
 private:
     char map[255] = {0};
+
 public:
     string reverseVowels(string s) {
         map['a'] = 1, map['e'] = 1, map['i'] = 1, map['o'] = 1, map['u'] = 1;

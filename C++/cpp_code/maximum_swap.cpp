@@ -37,7 +37,7 @@ public:
     int maximumSwap(int num) {
         string number = to_string(num);
         int n = number.size();
-        vector<pair<char, int>> bigger(n, {'0', -1});
+        vector<pair<char, int> > bigger(n, {'0', -1});
 
         char curMax = number.back();
         int pos = n - 1;
@@ -45,8 +45,7 @@ public:
             if (number[i] > curMax) {
                 curMax = number[i];
                 pos = i;
-            }
-            else if (number[i] < curMax) {
+            } else if (number[i] < curMax) {
                 bigger[i] = {curMax, pos};
             }
         }
@@ -78,10 +77,15 @@ public:
         int leftIndex = -1;
         int rightIndex = -1;
         for (int i = 0; i < digits.size(); i++) {
-            if (maxIndex == -1 or digits[maxIndex] < digits[i]) {
+            if (maxIndex == -1 or digits[maxIndex]
+            <
+            digits[i]
+            )
+            {
                 maxIndex = i;
             }
-            else {
+            else
+            {
                 leftIndex = maxIndex;
                 rightIndex = i;
             }

@@ -80,14 +80,14 @@ until there are only 2 or less nodes left
 */
 class Solution {
 public:
-    vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
+    vector<int> findMinHeightTrees(int n, vector<vector<int> > &edges) {
         if (n == 1) {
             return {0};
         }
 
-        vector<vector<int>> graph(n);
+        vector<vector<int> > graph(n);
         vector<int> degree(n, 0);
-        for (vector<int> edge : edges) {
+        for (vector<int> edge: edges) {
             graph[edge[0]].push_back(edge[1]);
             graph[edge[1]].push_back(edge[0]);
             degree[edge[0]] += 1;
@@ -107,7 +107,7 @@ public:
             for (int i = 0; i < curSize; ++i) {
                 int cur = leaves.front();
                 leaves.pop();
-                for (int node : graph[cur]) {
+                for (int node: graph[cur]) {
                     degree[node] -= 1;
                     if (degree[node] == 1) {
                         leaves.push(node);
@@ -125,15 +125,16 @@ public:
     }
 };
 
-class Solution1 { // 5.06%
+class Solution1 {
+    // 5.06%
 public:
-    vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
+    vector<int> findMinHeightTrees(int n, vector<vector<int> > &edges) {
         if (n == 1) {
             return {0};
         }
 
-        vector<unordered_set<int>> graph(n);
-        for (vector<int> edge : edges) {
+        vector<unordered_set<int> > graph(n);
+        for (vector<int> edge: edges) {
             graph[edge[0]].insert(edge[1]);
             graph[edge[1]].insert(edge[0]);
         }
@@ -150,7 +151,7 @@ public:
             for (int i = 0; i < curSize; ++i) {
                 int cur = leaves.front();
                 leaves.pop();
-                for (int parent : graph[cur]) {
+                for (int parent: graph[cur]) {
                     graph[parent].erase(cur);
                     if (graph[parent].size() == 1) {
                         leaves.push(parent);
@@ -168,10 +169,11 @@ public:
     }
 };
 
-class Solution2 { // time limit exceeded
+class Solution2 {
+    // time limit exceeded
 private:
-    void dfs(unordered_map<int, vector<int>>& graph, vector<bool>& visited, vector<int>& path,
-             unordered_set<int>& result, int& maxLength) {
+    void dfs(unordered_map<int, vector<int> > &graph, vector<bool> &visited, vector<int> &path,
+             unordered_set<int> &result, int &maxLength) {
         int cur = path.back();
         if (visited[cur]) {
             return;
@@ -191,21 +193,26 @@ private:
             return;
         }
 
-        for (int next : graph[cur]) {
-            if (path.size() <= 1 or next != path[path.size() - 2]) {
+        for (int next: graph[cur]) {
+            if (path.size() <= 1 or next
+            !=
+            path[path.size() - 2]
+            )
+            {
                 path.push_back(next);
                 dfs(graph, visited, path, result, maxLength);
                 path.pop_back();
             }
         }
     }
+
 public:
-    vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
+    vector<int> findMinHeightTrees(int n, vector<vector<int> > &edges) {
         if (n == 1) {
             return {0};
         }
-        unordered_map<int, vector<int>> graph;
-        for (vector<int> edge : edges) {
+        unordered_map<int, vector<int> > graph;
+        for (vector<int> edge: edges) {
             graph[edge[0]].push_back(edge[1]);
             graph[edge[1]].push_back(edge[0]);
         }

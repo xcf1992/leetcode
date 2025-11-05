@@ -93,18 +93,18 @@ so,We have 1 = n -m(K-1) ----> so we have
 */
 class Solution {
 public:
-    int mergeStones(vector<int>& stones, int K) {
+    int mergeStones(vector<int> &stones, int K) {
         int n = stones.size();
         if ((n - 1) % (K - 1) != 0) {
             return -1;
         }
 
         vector<int> prefix(n + 1);
-        for (int i = 0; i <  n; i++) {
+        for (int i = 0; i < n; i++) {
             prefix[i + 1] = prefix[i] + stones[i];
         }
 
-        vector<vector<int>> dp(n, vector<int>(n));
+        vector<vector<int> > dp(n, vector<int>(n));
         for (int m = K; m <= n; ++m) {
             for (int i = 0; i + m <= n; ++i) {
                 int j = i + m - 1;
@@ -123,17 +123,17 @@ public:
 
 class Solution1 {
 public:
-    int mergeStones(vector<int>& stones, int K) {
+    int mergeStones(vector<int> &stones, int K) {
         int n = stones.size();
         vector<int> sum(n, 0);
-        for (int i = 0; i < n;i++) {
+        for (int i = 0; i < n; i++) {
             sum[i] = i > 0 ? sum[i - 1] + stones[i] : 0;
         }
 
-        vector<vector<vector<int>>> dp(n, vector<vector<int>>(n, vector<int>(K + 1, INT_MAX)));
+        vector<vector<vector<int> > > dp(n, vector<vector<int> >(n, vector<int>(K + 1, INT_MAX)));
         for (int i = n - 1; i >= 0; i--) {
             for (int j = i; j < n; j++) {
-                for(int k = 1; k <= K; k++) {
+                for (int k = 1; k <= K; k++) {
                     if (j - i + 1 == k) {
                         dp[i][j][k] = 0; // it is already k piles so we do not need to do merge at all
                     }
@@ -146,19 +146,26 @@ public:
                 for (int k = 1; k <= K; k++) {
                     for (int m = i; m < j; m++) {
                         if (k > 1) {
-                            if (dp[i][m][1] == INT_MAX or dp[m + 1][j][k - 1] == INT_MAX) {
+                            if (dp[i][m][1] == INT_MAX or dp[m + 1][j][k - 1]
+                            ==
+                            INT_MAX
+                            )
+                            {
                                 continue;
                             }
                             dp[i][j][k] = min(dp[i][j][k], dp[i][m][1] + dp[m + 1][j][k - 1]);
-                        }
-                        else {
-                            if (dp[i][m][1] == INT_MAX or dp[m + 1][j][K - 1] == INT_MAX) {
+                        } else {
+                            if (dp[i][m][1] == INT_MAX or dp[m + 1][j][K - 1]
+                            ==
+                            INT_MAX
+                            )
+                            {
                                 continue;
                             }
-                            dp[i][j][1] = min(dp[i][j][1], dp[i][m][1] + dp[m + 1][j][K - 1] + sum[j] - sum[i] + stones[i]);
+                            dp[i][j][1] = min(dp[i][j][1],
+                                              dp[i][m][1] + dp[m + 1][j][K - 1] + sum[j] - sum[i] + stones[i]);
                         }
                     }
-
                 }
             }
         }
@@ -199,9 +206,10 @@ public:
 
  Answer: dp[1][len] (len is the stones number)
 */
-class Solution2 { // solution when K == 2
+class Solution2 {
+    // solution when K == 2
 public:
-    int mergeStones(vector<int>& stones, int K) {
+    int mergeStones(vector<int> &stones, int K) {
         int n = stones.size();
         if (n <= 1) {
             return 0;
@@ -212,7 +220,7 @@ public:
             prefixSum[i] = prefixSum[i - 1] + stones[i - 1];
         }
 
-        vector<vector<int>> dp(n + 1, vector<int>(n + 1, INT_MAX));
+        vector<vector<int> > dp(n + 1, vector<int>(n + 1, INT_MAX));
         for (int i = 1; i <= n; i++) {
             dp[i][i] = 0;
         }

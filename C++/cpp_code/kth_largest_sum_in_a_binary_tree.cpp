@@ -77,8 +77,8 @@ whenever the heap size exceeded k. By limiting the heap size to k, where k≤log
 class Solution {
 public:
     long long kthLargestLevelSum(TreeNode *root, int k) {
-        queue<TreeNode*> bfs;
-        priority_queue<long long, vector<long long>, greater<long long>> pq;
+        queue<TreeNode *> bfs;
+        priority_queue<long long, vector<long long>, greater<long long> > pq;
         bfs.push(root);
         while (!bfs.empty()) {
             int cur_size = bfs.size();

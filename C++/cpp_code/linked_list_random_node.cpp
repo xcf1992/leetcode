@@ -35,29 +35,31 @@ using namespace std;
 
 class Solution {
 private:
-    ListNode* start = nullptr;
+    ListNode *start = nullptr;
+
 public:
     /* @param head The linked list's head.
         Note that the head is guaranteed to be not null, so it contains at least one node.*/
-    Solution(ListNode* head) {
+    Solution(ListNode *head) {
         start = head;
     }
 
     /* Returns a random node's value.*/
     int getRandom() {
-        int result = start -> val;
-        ListNode* current = start;
+        int result = start->val;
+        ListNode *current = start;
         int count = 1;
         while (current) {
             if (rand() % count == 0) {
-                result = current -> val;
+                result = current->val;
             }
             count += 1;
-            current = current -> next;
+            current = current->next;
         }
         return result;
     }
 };
+
 /*
 * Your Solution object will be instantiated and called as such:
 * Solution obj = new Solution(head);

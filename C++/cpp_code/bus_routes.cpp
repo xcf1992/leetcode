@@ -42,16 +42,16 @@ using namespace std;
 // BFS
 class Solution {
 public:
-    int numBusesToDestination(vector<vector<int>>& routes, int S, int T) {
-        unordered_map<int, unordered_set<int>> busLine;
+    int numBusesToDestination(vector<vector<int> > &routes, int S, int T) {
+        unordered_map<int, unordered_set<int> > busLine;
         for (int i = 0; i < routes.size(); i++) {
-            for (int stop : routes[i]) {
+            for (int stop: routes[i]) {
                 busLine[stop].insert(i);
             }
         }
 
         unordered_set<int> visited;
-        queue<vector<int>> bfs; // {busStop, distance}
+        queue<vector<int> > bfs; // {busStop, distance}
         visited.insert(S);
         bfs.push({S, 0});
         while (!bfs.empty()) {
@@ -63,8 +63,8 @@ public:
                 return distance;
             }
 
-            for (int line : busLine[curStop]) {
-                for (int next : routes[line]) {
+            for (int line: busLine[curStop]) {
+                for (int next: routes[line]) {
                     if (visited.find(next) == visited.end()) {
                         visited.insert(next);
                         bfs.push({next, distance + 1});

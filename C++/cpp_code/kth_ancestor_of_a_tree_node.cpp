@@ -53,9 +53,10 @@ using namespace std;
 
 class TreeAncestor {
 public:
-    vector<vector<int>>v;
-    TreeAncestor(int n, vector<int>& parent) {
-        vector<vector<int>> par(n, vector<int>(20));
+    vector<vector<int> > v;
+
+    TreeAncestor(int n, vector<int> &parent) {
+        vector<vector<int> > par(n, vector<int>(20));
         for (int i = 0; i < n; i++) par[i][0] = parent[i];
         for (int j = 1; j < 20; j++) {
             for (int i = 0; i < n; i++) {
@@ -65,6 +66,7 @@ public:
         }
         swap(v, par);
     }
+
     int getKthAncestor(int node, int k) {
         for (int i = 0; i < 20; i++) {
             if ((k >> i) & 1) {

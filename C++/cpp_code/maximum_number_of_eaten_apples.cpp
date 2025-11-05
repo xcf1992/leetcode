@@ -57,9 +57,12 @@ public:
         int ans = 0;
         int n = apples.size();
         // min heap, the pair with the smallest expiration date is on the top
-        priority_queue<P, vector<P>, greater<P>> que;
+        priority_queue<P, vector<P>, greater<P> > que;
         int i = 0;
-        while (i < n or que.size() > 0) {
+        while (i < n or
+        que.size() > 0
+        )
+        {
             // add today's apples
             if (i < n && apples[i] > 0) {
                 que.push({i + days[i] - 1, apples[i]});

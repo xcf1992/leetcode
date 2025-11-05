@@ -51,18 +51,25 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int>> queensAttacktheKing(vector<vector<int>>& queens, vector<int>& king) {
-        vector<vector<bool>> grid(9, vector<bool>(9, false));
-        for (vector<int>& queen : queens) {
+    vector<vector<int> > queensAttacktheKing(vector<vector<int> > &queens, vector<int> &king) {
+        vector<vector<bool> > grid(9, vector<bool>(9, false));
+        for (vector<int> &queen: queens) {
             grid[queen[0]][queen[1]] = true;
         }
 
-        vector<vector<int>> result;
-        vector<vector<int>> moves({{0, 1}, {0, -1}, {1, 0}, {-1, 0}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}});
+        vector<vector<int> > result;
+        vector<vector<int> > moves({{0, 1}, {0, -1}, {1, 0}, {-1, 0}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}});
         for (int i = 0; i < moves.size(); ++i) {
             int kr = king[0];
             int kc = king[1];
-            while (kr + moves[i][0] >= 0 and kc + moves[i][1] >= 0 and kr + moves[i][0] < 8 and kc + moves[i][1] < 8) {
+            while (kr + moves[i][0] >= 0 and kc
+            +moves[i][1] >= 0
+            and kr
+            +moves[i][0] < 8
+            and kc
+            +moves[i][1] < 8
+            )
+            {
                 kr += moves[i][0];
                 kc += moves[i][1];
                 if (grid[kr][kc]) {
@@ -78,12 +85,16 @@ public:
 // wrong: consider that some black queen will block others to attack
 class Solution1 {
 public:
-    vector<vector<int>> queensAttacktheKing(vector<vector<int>>& queens, vector<int>& king) {
-        vector<vector<int>> result;
+    vector<vector<int> > queensAttacktheKing(vector<vector<int> > &queens, vector<int> &king) {
+        vector<vector<int> > result;
         int kr = king[0];
         int kc = king[1];
-        for (vector<int>& queen : queens) {
-            if (queen[0] == kr or queen[1] == kc) {
+        for (vector<int> &queen: queens) {
+            if (queen[0] == kr or queen[1]
+            ==
+            kc
+            )
+            {
                 result.push_back(queen);
             }
             if (kr + kc == queen[0] + queen[1]) {
