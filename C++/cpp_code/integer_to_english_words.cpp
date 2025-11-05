@@ -39,35 +39,37 @@ private:
         "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen",
         "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"
     });
+
     vector<string> below100 = vector<string>({
         "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"
     });
 
-    string int2string(int num) {
+    string int_to_str(int num) {
         if (num >= 1000000000) {
-            return int2string(num / 1000000000) + " Billion" + int2string(num % 1000000000);
+            return int_to_str(num / 1000000000) + " Billion" + int_to_str(num % 1000000000);
         }
 
         if (num >= 1000000) {
-            return int2string(num / 1000000) + " Million" + int2string(num % 1000000);
+            return int_to_str(num / 1000000) + " Million" + int_to_str(num % 1000000);
         }
 
         if (num >= 1000) {
-            return int2string(num / 1000) + " Thousand" + int2string(num % 1000);
+            return int_to_str(num / 1000) + " Thousand" + int_to_str(num % 1000);
         }
 
         if (num >= 100) {
-            return int2string(num / 100) + " Hundred" + int2string(num % 100);
+            return int_to_str(num / 100) + " Hundred" + int_to_str(num % 100);
         }
 
         if (num >= 20) {
-            return " " + below100[num / 10 - 2] + int2string(num % 10);
+            return " " + below100[num / 10 - 2] + int_to_str(num % 10);
         }
 
         if (num >= 1) {
             return " " + below20[num - 1];
         }
-        return ""; // this cannot be removed, otherwis test case 20 will fail
+
+        return ""; // this cannot be removed, otherwise test case 20 will fail
     }
 
 public:
@@ -75,6 +77,6 @@ public:
         if (num == 0) {
             return "Zero";
         }
-        return int2string(num).substr(1);
+        return int_to_str(num).substr(1);
     }
 };
