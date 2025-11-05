@@ -55,11 +55,11 @@ using namespace std;
 
 class Solution {
 public:
-    int maxSumRangeQuery(vector<int>& A, vector<vector<int>>& req) {
+    int maxSumRangeQuery(vector<int>& nums, vector<vector<int>>& requests) {
         int mod = 1e9 + 7;
-        int n = A.size();
-        vector<int> count(A.size());
-        for (auto &r: req) {
+        int n = nums.size();
+        vector<int> count(n);
+        for (auto &r: requests) {
             count[r[0]] += 1;
             if (r[1] + 1 < n) {
                 count[r[1] + 1] -= 1;
@@ -71,9 +71,9 @@ public:
             count[i] += count[i - 1];
         }
         sort(begin(count), end(count));
-        sort(begin(A), end(A));
+        sort(begin(nums), end(nums));
         for (int i = 0; i < n; ++i) {
-            res = (res + (long long)A[i] * (long long)count[i]) % mod;
+            res = (res + (long long)nums[i] * (long long)count[i]) % mod;
         }
         return res;
     }
