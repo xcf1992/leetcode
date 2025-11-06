@@ -46,5 +46,24 @@ using namespace std;
 class Solution {
 public:
     int divisibleTripletCount(vector<int>& nums, int d) {
+        int n = nums.size();
+        if (n <= 2) {
+            return 0;
+        }
+
+        int rst = 0;
+        unordered_map<int, int> mod_cnt;
+        mod_cnt[nums[0] % d] += 1;
+        for (int mid = 1; mid < n; mid++) {
+            for (int right = mid + 1; right < n; right++) {
+                int mod = (d - (nums[mid] % d + nums[right] % d) % d) % d;
+                if (mod_cnt.find(mod) == mod_cnt.end()) {
+                    continue;
+                }
+                rst += mod_cnt[mod];
+            }
+            mod_cnt[nums[mid] % d] += 1;
+        }
+        return rst;
     }
 };
