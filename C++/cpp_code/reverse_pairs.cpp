@@ -33,14 +33,11 @@ using namespace std;
 
 class Solution {
 private:
-    void calculate(vector<int> &nums, int left, int mid, int right, int &result) {
+    void calculate(vector<int>& nums, int left, int mid, int right, int& result) {
         int i = left;
         int j = mid;
         while (i < mid) {
-            while (j < right and(long long)
-            nums[i] > (long long) 2 * nums[j]
-            )
-            {
+            while (j < right and (long long) nums[i] > (long long)2 * nums[j]) {
                 j += 1;
             }
             result += (j - mid);
@@ -49,7 +46,7 @@ private:
         inplace_merge(nums.begin() + left, nums.begin() + mid, nums.begin() + right);
     }
 
-    void mergeSort(vector<int> &nums, int start, int end, int &result) {
+    void mergeSort(vector<int>& nums, int start, int end, int& result) {
         if (start >= end - 1) {
             return;
         }
@@ -61,7 +58,7 @@ private:
     }
 
 public:
-    int reversePairs(vector<int> &nums) {
+    int reversePairs(vector<int>& nums) {
         int result = 0;
         mergeSort(nums, 0, nums.size(), result);
         return result;
@@ -76,8 +73,8 @@ this would lead to very unbalance tree and degrade the performance to be O(n^2)
 struct BiggerNode {
     int value;
     int geCount;
-    BiggerNode *left;
-    BiggerNode *right;
+    BiggerNode* left;
+    BiggerNode* right;
 
     BiggerNode(int val) {
         value = val;
@@ -89,7 +86,7 @@ struct BiggerNode {
 
 class Solution1 {
 private:
-    BiggerNode *insert(BiggerNode *root, int val) {
+    BiggerNode* insert(BiggerNode* root, int val) {
         if (root == nullptr) {
             return new BiggerNode(val);
         }
@@ -105,7 +102,7 @@ private:
         return root;
     }
 
-    int search(BiggerNode *root, long target) {
+    int search(BiggerNode* root, long target) {
         if (root == nullptr) {
             return 0;
         }
@@ -121,10 +118,10 @@ private:
     }
 
 public:
-    int reversePairs(vector<int> &nums) {
+    int reversePairs(vector<int>& nums) {
         int result = 0;
-        BiggerNode *root = nullptr;
-        for (int n: nums) {
+        BiggerNode* root = nullptr;
+        for (int n : nums) {
             result += search(root, n * 2);
             root = insert(root, n);
         }

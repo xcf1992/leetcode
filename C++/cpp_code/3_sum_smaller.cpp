@@ -27,7 +27,7 @@ using namespace std;
 
 class Solution {
 public:
-    int threeSumSmaller(vector<int> &nums, int target) {
+    int threeSumSmaller(vector<int>& nums, int target) {
         int n = nums.size();
         if (n < 3) {
             return 0;

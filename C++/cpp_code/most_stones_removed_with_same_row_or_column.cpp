@@ -49,6 +49,7 @@ private:
         parent[i] = find(parent[i], parent);
         return parent[i];
     }
+
 public:
     int removeStones(vector<vector<int>>& stones) {
         int n = stones.size();
@@ -98,7 +99,7 @@ public:
             }
 
             visited[i] = true;
-            result -= 1; // we can remove points from one component until there is only one point left
+            result -= 1;  // we can remove points from one component until there is only one point left
             queue<int> connected;
             connected.push(i);
             // for each unvisited stone, we do a BFS search and find all its connected point

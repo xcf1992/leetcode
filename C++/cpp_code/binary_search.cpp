@@ -1,5 +1,6 @@
 /*
- Given a sorted (in ascending order) integer array nums of n elements and a target value, write a function to search target in nums. If target exists, then return its index, otherwise return -1.
+ Given a sorted (in ascending order) integer array nums of n elements and a target value, write a function to search
+ target in nums. If target exists, then return its index, otherwise return -1.
 
 
  Example 1:
@@ -39,7 +40,7 @@ using namespace std;
 
 class Solution {
 public:
-    int search(vector<int> &nums, int target) {
+    int search(vector<int>& nums, int target) {
         int start = 0;
         int end = nums.size();
         while (start < end) {

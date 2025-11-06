@@ -55,7 +55,7 @@ private:
         return true;
     }
 
-    bool dfs(vector<int> &A, vector<bool> &used, string &result) {
+    bool dfs(vector<int>& A, vector<bool>& used, string& result) {
         if (result.size() == 4) {
             return valid(result);
         }
@@ -74,7 +74,7 @@ private:
     }
 
 public:
-    string largestTimeFromDigits(vector<int> &A) {
+    string largestTimeFromDigits(vector<int>& A) {
         sort(A.rbegin(), A.rend());
         vector<bool> used(4, false);
         string result = "";

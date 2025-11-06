@@ -2,15 +2,18 @@
 https://leetcode.com/problems/clone-binary-tree-with-random-pointer/
 1485. Clone Binary Tree With Random Pointer
 
-A binary tree is given such that each node contains an additional random pointer which could point to any node in the tree or null.
+A binary tree is given such that each node contains an additional random pointer which could point to any node in the
+tree or null.
 
 Return a deep copy of the tree.
 
-The tree is represented in the same input/output way as normal binary trees where each node is represented as a pair of [val, random_index] where:
+The tree is represented in the same input/output way as normal binary trees where each node is represented as a pair of
+[val, random_index] where:
 
 val: an integer representing Node.val
-random_index: the index of the node (in the input) where the random pointer points to, or null if it does not point to any node.
-You will be given the tree in class Node and you should return the cloned tree in class NodeCopy. NodeCopy class is just a clone of Node class with the same attributes and constructors.
+random_index: the index of the node (in the input) where the random pointer points to, or null if it does not point to
+any node. You will be given the tree in class Node and you should return the cloned tree in class NodeCopy. NodeCopy
+class is just a clone of Node class with the same attributes and constructors.
 
 
 
@@ -21,9 +24,9 @@ Input: root = [[1,null],null,[4,3],[7,0]]
 Output: [[1,null],null,[4,3],[7,0]]
 Explanation: The original binary tree is [1,null,4,7].
 The random pointer of node one is null, so it is represented as [1, null].
-The random pointer of node 4 is node 7, so it is represented as [4, 3] where 3 is the index of node 7 in the array representing the tree.
-The random pointer of node 7 is node 1, so it is represented as [7, 0] where 0 is the index of node 1 in the array representing the tree.
-Example 2:
+The random pointer of node 4 is node 7, so it is represented as [4, 3] where 3 is the index of node 7 in the array
+representing the tree. The random pointer of node 7 is node 1, so it is represented as [7, 0] where 0 is the index of
+node 1 in the array representing the tree. Example 2:
 
 
 Input: root = [[1,4],null,[1,0],null,[1,5],[1,5]]
@@ -56,9 +59,9 @@ using namespace std;
 
 struct Node {
     int val;
-    Node *left;
-    Node *right;
-    Node *random;
+    Node* left;
+    Node* right;
+    Node* random;
 
     Node() : val(0), left(nullptr), right(nullptr), random(nullptr) {
     }
@@ -66,16 +69,16 @@ struct Node {
     Node(int x) : val(x), left(nullptr), right(nullptr), random(nullptr) {
     }
 
-    Node(int x, Node *left, Node *right, Node *random) : val(x), left(left), right(right), random(random) {
+    Node(int x, Node* left, Node* right, Node* random) : val(x), left(left), right(right), random(random) {
     }
 };
 
 class Solution {
     // Hashmap to map old tree's nodes with new tree's nodes.
-    unordered_map<Node *, NodeCopy *> seen;
+    unordered_map<Node*, NodeCopy*> seen;
 
     // Function to traverse on the sub graph of 'root'.
-    NodeCopy *dfs(Node *root) {
+    NodeCopy* dfs(Node* root) {
         if (root == nullptr) {
             return nullptr;
         }
@@ -84,7 +87,7 @@ class Solution {
             return seen[root];
         }
 
-        NodeCopy *newRoot = new NodeCopy(root->val);
+        NodeCopy* newRoot = new NodeCopy(root->val);
         // Mark old root as seen and store its respective new node.
         seen[root] = newRoot;
 
@@ -97,9 +100,9 @@ class Solution {
     }
 
 public:
-    NodeCopy *copyRandomBinaryTree(Node *root) {
+    NodeCopy* copyRandomBinaryTree(Node* root) {
         // Traverse on each node of the given tree.
-        NodeCopy *newRoot = dfs(root);
+        NodeCopy* newRoot = dfs(root);
         return newRoot;
     }
 };

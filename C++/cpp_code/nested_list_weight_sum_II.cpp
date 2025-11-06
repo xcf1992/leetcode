@@ -54,16 +54,16 @@ public:
     void setInteger(int value);
 
     // Set this NestedInteger to hold a nested list and adds a nested integer to it.
-    void add(const NestedInteger &ni);
+    void add(const NestedInteger& ni);
 
     // Return the nested list that this NestedInteger holds, if it holds a nested list
     // The result is undefined if this NestedInteger holds a single integer
-    const vector<NestedInteger> &getList() const;
+    const vector<NestedInteger>& getList() const;
 };
 
 class Solution {
 private:
-    int getMaxDepth(vector<NestedInteger> &nestedList) {
+    int getMaxDepth(vector<NestedInteger>& nestedList) {
         int result = 1;
         for (int i = 0; i < nestedList.size(); i++) {
             if (!nestedList[i].isInteger()) {
@@ -73,7 +73,7 @@ private:
         return result;
     }
 
-    int calculate(vector<NestedInteger> &nestedList, int depth) {
+    int calculate(vector<NestedInteger>& nestedList, int depth) {
         int result = 0;
         for (int i = 0; i < nestedList.size(); i++) {
             if (nestedList[i].isInteger()) {
@@ -86,7 +86,7 @@ private:
     }
 
 public:
-    int depthSumInverse(vector<NestedInteger> &nestedList) {
+    int depthSumInverse(vector<NestedInteger>& nestedList) {
         int depth = getMaxDepth(nestedList);
         return calculate(nestedList, depth);
     }

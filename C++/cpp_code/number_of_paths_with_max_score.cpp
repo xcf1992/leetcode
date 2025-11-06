@@ -47,22 +47,22 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> pathsWithMaxScore(vector<string> &board) {
+    vector<int> pathsWithMaxScore(vector<string>& board) {
         int mod = 1e9 + 7;
         int len = board.size();
-        vector<vector<int> > score(len + 1, vector<int>(len + 1, 0));
-        vector<vector<int> > paths(len + 1, vector<int>(len + 1, 0));
+        vector<vector<int>> score(len + 1, vector<int>(len + 1, 0));
+        vector<vector<int>> paths(len + 1, vector<int>(len + 1, 0));
         board[0][0] = board[len - 1][len - 1] = '0';
         paths[0][0] = 1;
 
-        vector<vector<int> > dirs{{1, 0}, {0, 1}, {1, 1}};
+        vector<vector<int>> dirs{{1, 0}, {0, 1}, {1, 1}};
         for (int i = 1; i <= len; ++i) {
             for (int j = 1; j <= len; ++j) {
                 if (board[i - 1][j - 1] == 'X') {
                     continue;
                 }
 
-                for (vector<int> &dir: dirs) {
+                for (vector<int>& dir : dirs) {
                     int ni = i - dir[0];
                     int nj = j - dir[1];
                     if (paths[ni][nj] > 0) {

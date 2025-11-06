@@ -15,8 +15,8 @@ It doesn't matter what you leave beyond the returned length.
 
 Example 2:
 Given nums = [0,0,1,1,1,1,2,3,3],
-Your function should return length = 7, with the first seven elements of nums being modified to 0, 0, 1, 1, 2, 3 and 3 respectively.
-It doesn't matter what values are set beyond the returned length.
+Your function should return length = 7, with the first seven elements of nums being modified to 0, 0, 1, 1, 2, 3 and 3
+respectively. It doesn't matter what values are set beyond the returned length.
 
 Clarification:
 Confused why the returned value is an integer but your answer is an array?
@@ -50,7 +50,7 @@ using namespace std;
 
 class Solution {
 public:
-    int removeDuplicates(vector<int> &nums) {
+    int removeDuplicates(vector<int>& nums) {
         int n = nums.size();
         if (n <= 2) {
             return n;
@@ -59,25 +59,15 @@ public:
         int len = 0;
         int i = 0;
         while (i < n) {
-            if (i < n - 1 and nums[i]
-            ==
-            nums[i + 1]
-            )
-            {
+            if (i < n - 1 and nums[i] == nums[i + 1]) {
                 nums[len++] = nums[i];
                 i += 1;
                 nums[len++] = nums[i];
                 i += 1;
-                while (i < n and nums[i]
-                ==
-                nums[len - 1]
-                )
-                {
+                while (i < n and nums[i] == nums[len - 1]) {
                     i += 1;
                 }
-            }
-            else
-            {
+            } else {
                 nums[len++] = nums[i];
                 i += 1;
             }

@@ -61,43 +61,22 @@ private:
     int m = 0;
     int n = 0;
 
-    bool canSit(int row, int col, vector<vector<char> > &seats) {
-        if (row < 0 or row
-        >=
-        m or col<0 or col >= n or seats[row][col] != '.'
-        )
-        {
+    bool canSit(int row, int col, vector<vector<char>>& seats) {
+        if (row < 0 or row >= m or col < 0 or col >= n or seats[row][col] != '.') {
             return false;
         }
 
-        if (col > 0 and seats[row][col - 1]
-        ==
-        's'
-        )
-        {
+        if (col > 0 and seats[row][col - 1] == 's') {
             return false;
         }
-        if (col < n - 1 and seats[row][col + 1]
-        ==
-        's'
-        )
-        {
+        if (col < n - 1 and seats[row][col + 1] == 's') {
             return false;
         }
 
-        if (row > 0 and col
-        >
-        0
-        and seats[row - 1][col - 1]
-        ==
-        's'
-        )
-        {
+        if (row > 0 and col > 0 and seats[row - 1][col - 1] == 's') {
             return false;
         }
-        if (row > 0 and col<n - 1 and seats[row - 1][col + 1] == 's'
-        )
-        {
+        if (row > 0 and col < n - 1 and seats[row - 1][col + 1] == 's') {
             return false;
         }
         return true;
@@ -105,7 +84,7 @@ private:
 
     unordered_map<int, int> memo;
 
-    int dfs(int row, int col, int prev, int cur, vector<vector<char> > &seats) {
+    int dfs(int row, int col, int prev, int cur, vector<vector<char>>& seats) {
         if (row == m) {
             return 0;
         }
@@ -138,7 +117,7 @@ private:
     }
 
 public:
-    int maxStudents(vector<vector<char> > &seats) {
+    int maxStudents(vector<vector<char>>& seats) {
         m = seats.size();
         n = seats[0].size();
         return dfs(0, 0, 0, 0, seats);

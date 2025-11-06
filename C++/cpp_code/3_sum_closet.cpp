@@ -20,7 +20,7 @@ using namespace std;
 
 class Solution {
 public:
-    int threeSumClosest(vector<int> &num, int target) {
+    int threeSumClosest(vector<int>& num, int target) {
         int n = num.size();
         if (n == 3) {
             return num[0] + num[1] + num[2];

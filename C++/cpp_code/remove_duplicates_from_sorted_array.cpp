@@ -15,13 +15,14 @@ It doesn't matter what you leave beyond the returned length.
 
 Example 2:
 Given nums = [0,0,1,1,1,2,2,3,3,4],
-Your function should return length = 5, with the first five elements of nums being modified to 0, 1, 2, 3, and 4 respectively.
-It doesn't matter what values are set beyond the returned length.
+Your function should return length = 5, with the first five elements of nums being modified to 0, 1, 2, 3, and 4
+respectively. It doesn't matter what values are set beyond the returned length.
 
 Clarification:
 Confused why the returned value is an integer but your answer is an array?
 
-Note that the input array is passed in by reference, which means modification to the input array will be known to the caller as well.
+Note that the input array is passed in by reference, which means modification to the input array will be known to the
+caller as well.
 
 Internally you can think of this:
 
@@ -50,7 +51,7 @@ using namespace std;
 
 class Solution {
 public:
-    int removeDuplicates(vector<int> &nums) {
+    int removeDuplicates(vector<int>& nums) {
         int n = nums.size();
         if (n <= 1) {
             return n;

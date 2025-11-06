@@ -45,16 +45,16 @@ using namespace std;
 class Solution {
 public:
     bool checkValidString(string s) {
-        int minLeft = 0; // tacking minimum possible number of (
-        int maxLeft = 0; // tacking maximum possible number of (
-        for (char c: s) {
+        int minLeft = 0;  // tacking minimum possible number of (
+        int maxLeft = 0;  // tacking maximum possible number of (
+        for (char c : s) {
             minLeft += c == '(' ? 1 : -1;
             maxLeft += c == ')' ? -1 : 1;
             if (maxLeft < 0) {
                 // if the max possible ( is less than0 return false
                 return false;
             }
-            minLeft = max(0, minLeft); // is the min possible ( is less than 0, make it to be 0
+            minLeft = max(0, minLeft);  // is the min possible ( is less than 0, make it to be 0
         }
         return minLeft == 0;
     }
@@ -78,11 +78,10 @@ private:
             return check(s, pos + 1, left, right + 1);
         }
         if (right == left) {
-            return check(s, pos + 1, left + 1, right)
-            or check(s, pos + 1, left, right);
+            return check(s, pos + 1, left + 1, right) or check(s, pos + 1, left, right);
         }
-        return check(s, pos + 1, left + 1, right)
-        or check(s, pos + 1, left, right + 1) or check(s, pos + 1, left, right);
+        return check(s, pos + 1, left + 1, right) or check(s, pos + 1, left, right + 1) or
+               check(s, pos + 1, left, right);
     }
 
 public:

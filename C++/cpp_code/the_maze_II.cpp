@@ -46,8 +46,9 @@ Explanation: There is no way for the ball to stop at the destination.
 Note:
 There is only one ball and one destination in the maze.
 Both the ball and the destination exist on an empty space, and they will not be at the same bfs initially.
-The given maze does not contain border (like the red rectangle in the example pictures), but you could assume the border of the maze are all walls.
-The maze contains at least 2 empty spaces, and both the width and height of the maze won't exceed 100.
+The given maze does not contain border (like the red rectangle in the example pictures), but you could assume the border
+of the maze are all walls. The maze contains at least 2 empty spaces, and both the width and height of the maze won't
+exceed 100.
 */
 #include <iostream>
 #include <string>
@@ -70,21 +71,17 @@ private:
     vector<int> cDiff = {0, 0, -1, 1};
 
     bool isValid(int row, int col) {
-        return row >= 0
-        and col
-        >=
-        0
-        and row<m and col < n;
+        return row >= 0 and col >= 0 and row < m and col < n;
     }
 
 public:
-    int shortestDistance(vector<vector<int> > &maze, vector<int> &start, vector<int> &destination) {
+    int shortestDistance(vector<vector<int>>& maze, vector<int>& start, vector<int>& destination) {
         m = maze.size();
         n = maze[0].size();
 
-        queue<pair<int, int> > bfs;
+        queue<pair<int, int>> bfs;
         bfs.push({start[0], start[1]});
-        vector<vector<int> > distance(m, vector<int>(n, INT_MAX));
+        vector<vector<int>> distance(m, vector<int>(n, INT_MAX));
         distance[start[0]][start[1]] = 0;
 
         int result = INT_MAX;
@@ -95,11 +92,7 @@ public:
             int row = curPos.first;
             int col = curPos.second;
             int curDis = distance[row][col];
-            if (row == destination[0] and col
-            ==
-            destination[1]
-            )
-            {
+            if (row == destination[0] and col == destination[1]) {
                 result = min(result, curDis);
                 continue;
             }
@@ -109,11 +102,7 @@ public:
                 col = curPos.second;
                 int move = 0;
 
-                while (isValid(row + rDiff[i], col + cDiff[i]) and maze[row + rDiff[i]][col + cDiff[i]]
-                !=
-                1
-                )
-                {
+                while (isValid(row + rDiff[i], col + cDiff[i]) and maze[row + rDiff[i]][col + cDiff[i]] != 1) {
                     row += rDiff[i];
                     col += cDiff[i];
                     move += 1;

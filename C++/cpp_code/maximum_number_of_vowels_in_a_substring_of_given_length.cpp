@@ -53,6 +53,7 @@ private:
     bool isVowel(char c) {
         return c == 'a' or c == 'e' or c == 'i' or c == 'o' or c == 'u';
     }
+
 public:
     int maxVowels(string s, int k) {
         int cur = 0;

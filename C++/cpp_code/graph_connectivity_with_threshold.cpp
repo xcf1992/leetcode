@@ -6,10 +6,8 @@ We have n cities labeled from 1 to n.
 Two different cities with labels x and y are directly connected by a bidirectional road
 if and only if x and y share a common divisor strictly greater than some threshold.
 More formally,
-cities with labels x and y have a road between them if there exists an integer z such that all of the following are true:
-x % z == 0,
-y % z == 0, and
-z > threshold.
+cities with labels x and y have a road between them if there exists an integer z such that all of the following are
+true: x % z == 0, y % z == 0, and z > threshold.
 
 Given the two integers, n and threshold,
 and an array of queries, you must determine for each queries[i] = [ai, bi]
@@ -44,8 +42,9 @@ all divisors can be used. Since all numbers share 1 as a divisor, all cities are
 Example 3:
 Input: n = 5, threshold = 1, queries = [[4,5],[4,5],[3,2],[2,3],[3,4]]
 Output: [false,false,false,false,false]
-Explanation: Only cities 2 and 4 share a common divisor 2 which is strictly greater than the threshold 1, so they are the only ones directly connected.
-Please notice that there can be multiple queries for the same pair of nodes [x, y], and that the query [x, y] is equivalent to the query [y, x].
+Explanation: Only cities 2 and 4 share a common divisor 2 which is strictly greater than the threshold 1, so they are
+the only ones directly connected. Please notice that there can be multiple queries for the same pair of nodes [x, y],
+and that the query [x, y] is equivalent to the query [y, x].
 
 Constraints:
 2 <= n <= 104
@@ -86,14 +85,16 @@ public:
     }
 
     int find(int x) {
-        if (x == parent[x]) return x;
-        return parent[x] = find(parent[x]); // Path compression
+        if (x == parent[x])
+            return x;
+        return parent[x] = find(parent[x]);  // Path compression
     }
 
     bool Union(int u, int v) {
         int pu = find(u);
         int pv = find(v);
-        if (pu == pv) return false;
+        if (pu == pv)
+            return false;
 
         if (size[pu] > size[pv]) {
             // Union by larger size
@@ -109,7 +110,7 @@ public:
 
 class Solution {
 public:
-    vector<bool> areConnected(int n, int threshold, vector<vector<int> > &queries) {
+    vector<bool> areConnected(int n, int threshold, vector<vector<int>>& queries) {
         UnionFind uf(n + 1);
         for (int i = 1; i <= n; i++) {
             for (int j = i * 2; j <= n; j += i) {
@@ -120,7 +121,7 @@ public:
         }
 
         vector<bool> ans;
-        for (auto &q: queries) {
+        for (auto& q : queries) {
             int pa = uf.find(q[0]);
             int pb = uf.find(q[1]);
             ans.push_back(pa == pb);

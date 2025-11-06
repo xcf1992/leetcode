@@ -64,8 +64,8 @@ using namespace std;
 
 class TicTacToe {
 private:
-    vector<vector<int> > rowCount;
-    vector<vector<int> > colCount;
+    vector<vector<int>> rowCount;
+    vector<vector<int>> colCount;
     vector<int> diagnal;
     vector<int> antiDiagnal;
     int size;
@@ -98,15 +98,8 @@ public:
             antiDiagnal[player - 1] += 1;
         }
 
-        if (rowCount[player - 1][row] == size or colCount[player - 1][col]
-        ==
-        size or diagnal[player - 1]
-        ==
-        size or antiDiagnal[player - 1]
-        ==
-        size
-        )
-        {
+        if (rowCount[player - 1][row] == size or colCount[player - 1][col] == size or diagnal[player - 1] == size or
+            antiDiagnal[player - 1] == size) {
             return player;
         }
         return 0;
@@ -117,4 +110,4 @@ public:
  * Your TicTacToe object will be instantiated and called as such:
  * TicTacToe obj = new TicTacToe(n);
  * int param_1 = obj.move(row,col,player);
-*/
+ */

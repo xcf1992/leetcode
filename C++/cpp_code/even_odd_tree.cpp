@@ -69,8 +69,8 @@ using namespace std;
 
 class Solution {
 public:
-    bool isEvenOddTree(TreeNode *root) {
-        queue<TreeNode *> bfs;
+    bool isEvenOddTree(TreeNode* root) {
+        queue<TreeNode*> bfs;
         int level = 0;
         bfs.push(root);
         int pre = 0;
@@ -82,21 +82,15 @@ public:
                 pre = INT_MAX;
             }
             for (int i = 0; i < curSize; ++i) {
-                TreeNode *cur = bfs.front();
+                TreeNode* cur = bfs.front();
                 bfs.pop();
 
                 if (level % 2 == 0) {
-                    if (cur->val % 2 == 0 or
-                    cur->val <= pre
-                    )
-                    {
+                    if (cur->val % 2 == 0 or cur->val <= pre) {
                         return false;
                     }
                 } else {
-                    if (cur->val % 2 != 0 or
-                    cur->val >= pre
-                    )
-                    {
+                    if (cur->val % 2 != 0 or cur->val >= pre) {
                         return false;
                     }
                 }

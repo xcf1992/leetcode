@@ -15,7 +15,8 @@ Follow up: Solve the problem if repeated values on the tree are allowed.
 Example 1:
 Input: tree = [7,4,3,null,null,6,19], target = 3
 Output: 3
-Explanation: In all examples the original and cloned trees are shown. The target node is a green node from the original tree. The answer is the yellow node from the cloned tree.
+Explanation: In all examples the original and cloned trees are shown. The target node is a green node from the original
+tree. The answer is the yellow node from the cloned tree.
 
 Example 2:
 Input: tree = [7], target =  7
@@ -62,11 +63,11 @@ public:
             return cloned;
         }
 
-        TreeNode* find = getTargetCopy(original -> left, cloned -> left, target);
+        TreeNode* find = getTargetCopy(original->left, cloned->left, target);
         if (find != nullptr) {
             return find;
         }
-        find = getTargetCopy(original -> right, cloned -> right, target);
+        find = getTargetCopy(original->right, cloned->right, target);
         if (find != nullptr) {
             return find;
         }

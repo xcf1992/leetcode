@@ -10,7 +10,8 @@ A student attendance record is a string that only contains the following three c
 'A' : Absent.
 'L' : Late.
 'P' : Present.
-A record is regarded as rewardable if it doesn't contain more than one 'A' (absent) or more than two continuous 'L' (late).
+A record is regarded as rewardable if it doesn't contain more than one 'A' (absent) or more than two continuous 'L'
+(late).
 
 Example 1:
 Input: n = 2
@@ -56,8 +57,8 @@ T(n) = A(n) + P(n) + L(n), n ≥ 1.
 As I use dynamic programming, I need to find out the recursive relation in 3 sub-problems.
 
 It can be inferred that
-If we add a 'P' to an attendance records with length n - 1, we will get an attendance records ended with 'P' with length n.
-For an attendance record with length n - 1,
+If we add a 'P' to an attendance records with length n - 1, we will get an attendance records ended with 'P' with length
+n. For an attendance record with length n - 1,
 
 If its (n - 1)th character is 'P' ---- CAN add 'P'. ("PP")
 If its (n - 1)th character is 'A' ---- CAN add 'P'. ("AP")
@@ -223,8 +224,8 @@ public:
         for (int i = 2; i <= n; i++) {
             endWithP[i] = ((endWithP[i - 1] + endWithL[i - 1]) % MOD + endWithA[i - 1]) % MOD;
             if (i >= 3) {
-                endWithL[i] = ((endWithA[i - 1] + endWithP[i - 1]) % MOD + (endWithA[i - 2] + endWithP[i - 2]) % MOD) %
-                              MOD;
+                endWithL[i] =
+                        ((endWithA[i - 1] + endWithP[i - 1]) % MOD + (endWithA[i - 2] + endWithP[i - 2]) % MOD) % MOD;
             }
             if (i >= 4) {
                 endWithA[i] = ((endWithA[i - 1] + endWithA[i - 2]) % MOD + endWithA[i - 3]) % MOD;

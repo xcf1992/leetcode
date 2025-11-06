@@ -23,7 +23,8 @@ The "head" symbol means the node it points to is the smallest element of the lin
 
 Specifically, we want to do the transformation in place.
 After the transformation, the left pointer of the tree node should point to its predecessor,
-and the right pointer should point to its successor. We should return the pointer to the first element of the linked list.
+and the right pointer should point to its successor. We should return the pointer to the first element of the linked
+list.
 
 The figure below shows the transformed BST.
 The solid line indicates the successor relationship,
@@ -51,12 +52,13 @@ public:
     Node* left;
     Node* right;
 
-    Node() {}
+    Node() {
+    }
 
     Node(int _val, Node* _left, Node* _right) {
-    val = _val;
-    left = _left;
-    right = _right;
+        val = _val;
+        left = _left;
+        right = _right;
     }
 };
 
@@ -67,28 +69,28 @@ public:
             return nullptr;
         }
 
-        Node* leftHead = treeToDoublyList(root -> left);
-        Node* rightHead = treeToDoublyList(root -> right);
-        root -> left = root;
-        root -> right = root;
+        Node* leftHead = treeToDoublyList(root->left);
+        Node* rightHead = treeToDoublyList(root->right);
+        root->left = root;
+        root->right = root;
 
         Node* head = root;
         if (leftHead != nullptr) {
             head = leftHead;
-            Node* leftTail = leftHead -> left;
-            leftTail -> right = root;
-            root -> left = leftTail;
-            root -> right = leftHead;
-            leftHead -> left = root;
+            Node* leftTail = leftHead->left;
+            leftTail->right = root;
+            root->left = leftTail;
+            root->right = leftHead;
+            leftHead->left = root;
         }
         if (rightHead != nullptr) {
-            Node* leftTail = head -> left;
-            Node* rightTail = rightHead -> left;
+            Node* leftTail = head->left;
+            Node* rightTail = rightHead->left;
 
-            leftTail -> right = rightHead;
-            rightHead -> left = leftTail;
-            head -> left = rightTail;
-            rightTail -> right = head;
+            leftTail->right = rightHead;
+            rightHead->left = leftTail;
+            head->left = rightTail;
+            rightTail->right = head;
         }
         return head;
     }

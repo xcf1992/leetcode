@@ -39,7 +39,7 @@ using namespace std;
 
 class Solution {
 public:
-    int arrayNesting(vector<int> &nums) {
+    int arrayNesting(vector<int>& nums) {
         int result = 0;
         for (int i = 0; i < nums.size(); ++i) {
             int start = i;

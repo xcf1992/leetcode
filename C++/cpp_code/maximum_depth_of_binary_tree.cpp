@@ -32,7 +32,7 @@ using namespace std;
 
 class Solution {
 private:
-    void traverse(TreeNode *root, int curDep, int &result) {
+    void traverse(TreeNode* root, int curDep, int& result) {
         if (root == nullptr) {
             return;
         }
@@ -44,7 +44,7 @@ private:
     }
 
 public:
-    int maxDepth(TreeNode *root) {
+    int maxDepth(TreeNode* root) {
         int result = 0;
         traverse(root, 0, result);
         return result;

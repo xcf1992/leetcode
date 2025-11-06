@@ -41,13 +41,13 @@ using namespace std;
 
 class Solution {
 public:
-    int findPairs(vector<int> &nums, int k) {
+    int findPairs(vector<int>& nums, int k) {
         if (k < 0) {
             return 0;
         }
         int result = 0;
         unordered_map<int, int> visit;
-        for (int num: nums) {
+        for (int num : nums) {
             if (visit.find(num) == visit.end()) {
                 if (visit.find(num + k) != visit.end()) {
                     result += 1;
@@ -56,11 +56,7 @@ public:
                     result += 1;
                 }
             } else {
-                if (k == 0 and visit[num]
-                ==
-                1
-                )
-                {
+                if (k == 0 and visit[num] == 1) {
                     result += 1;
                 }
             }

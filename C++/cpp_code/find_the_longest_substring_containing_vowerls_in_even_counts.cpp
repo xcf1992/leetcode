@@ -9,7 +9,8 @@ That is, 'a', 'e', 'i', 'o', and 'u' must appear an even number of times.
 Example 1:
 Input: s = "eleetminicoworoep"
 Output: 13
-Explanation: The longest substring is "leetminicowor" which contains two each of the vowels: e, i and o and zero of the vowels: a and u.
+Explanation: The longest substring is "leetminicowor" which contains two each of the vowels: e, i and o and zero of the
+vowels: a and u.
 
 Example 2:
 Input: s = "leetcodeisgreat"
@@ -19,7 +20,8 @@ Explanation: The longest substring is "leetc" which contains two e's.
 Example 3:
 Input: s = "bcbcbc"
 Output: 6
-Explanation: In this case, the given string "bcbcbc" is the longest because all vowels: a, e, i, o and u appear zero times.
+Explanation: In this case, the given string "bcbcbc" is the longest because all vowels: a, e, i, o and u appear zero
+times.
 
 Constraints:
 1 <= s.length <= 5 x 10^5
@@ -69,6 +71,7 @@ private:
     bool isVowel(char c) {
         return c == 'a' or c == 'e' or c == 'i' or c == 'o' or c == 'u';
     }
+
 public:
     int findTheLongestSubstring(string s) {
         unordered_map<char, int> mp = {{'a', 0}, {'e', 1}, {'i', 2}, {'o', 3}, {'u', 4}};

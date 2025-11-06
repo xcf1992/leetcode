@@ -104,11 +104,8 @@ public:
             bfs.pop();
 
             string domain = cur.substr(0, cur.find('/', 7));
-            for (string &nxt: htmlParser.getUrls(cur)) {
-                if (visited.find(nxt) != visited.end() or
-                nxt.find(domain) == string::npos
-                )
-                {
+            for (string& nxt : htmlParser.getUrls(cur)) {
+                if (visited.find(nxt) != visited.end() or nxt.find(domain) == string::npos) {
                     continue;
                 }
 

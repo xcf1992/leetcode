@@ -107,11 +107,7 @@ public:
             return 2;
         }
 
-        if (n == 2 and m
-        ==
-        1
-        )
-        {
+        if (n == 2 and m == 1) {
             return 3;
         }
 

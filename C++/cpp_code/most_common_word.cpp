@@ -49,10 +49,10 @@ using namespace std;
 
 class Solution {
 public:
-    string mostCommonWord(string paragraph, vector<string> &banned) {
+    string mostCommonWord(string paragraph, vector<string>& banned) {
         unordered_set<string> ban(banned.begin(), banned.end());
         unordered_map<string, int> count;
-        for (char &c: paragraph) {
+        for (char& c : paragraph) {
             c = isalpha(c) ? tolower(c) : ' ';
         }
 
@@ -62,11 +62,7 @@ public:
         while (iss >> word) {
             if (ban.find(word) == ban.end()) {
                 count[word] += 1;
-                if (result == "" or count[result]
-                <
-                count[word]
-                )
-                {
+                if (result == "" or count[result] < count[word]) {
                     result = word;
                 }
             }

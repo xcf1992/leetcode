@@ -52,7 +52,8 @@ A hard question = Lots of observation + data structures
 
 Let's figure out observations and then find out data structure to implement them.
 
-Observation 0: Well, we know that if we could get smallest digit to the left, then we will be able to make number smaller than we currently have. In that sense, a sorted number(Ascending) will already be smallest.
+Observation 0: Well, we know that if we could get smallest digit to the left, then we will be able to make number
+smaller than we currently have. In that sense, a sorted number(Ascending) will already be smallest.
 
 So, let's take pen and paper and try to find smallest number we can form for this:
 
@@ -90,29 +91,33 @@ We can observe here, that we should choose smallest d that is in the reach of k.
 
 Observation 2: Choose first smallest d that is in reach of k.
 
-If we combine all the observation, we can see that we will iterate from left to right and try to place digits 0 through 9.
-Let's work through a bigger example:
+If we combine all the observation, we can see that we will iterate from left to right and try to place digits 0
+through 9. Let's work through a bigger example:
 
 "9438957234785635408", k = 23
 
-We will start from left. Let's try to place 0 here. 0 is within reach of k, 0 is 17 shifts away to right. So, we will get:
-"0943895723478563548", k = 6
+We will start from left. Let's try to place 0 here. 0 is within reach of k, 0 is 17 shifts away to right. So, we will
+get: "0943895723478563548", k = 6
 
 Observe that all the number got shifted to right except the once to the right of d (8, here).
 
 Now, let's move to next position:
-Let's try to place 0 here, again. But wait, we don't 0 left, so try 1, which is not there also. So let's try 2, 2 is 8 distance away from this position. 8 > k, so we cannot choose 2. Let's try 3, 3 is 2 distance away. 2 < k, therefore let's choose 3.
+Let's try to place 0 here, again. But wait, we don't 0 left, so try 1, which is not there also. So let's try 2, 2 is 8
+distance away from this position. 8 > k, so we cannot choose 2. Let's try 3, 3 is 2 distance away. 2 < k, therefore
+let's choose 3.
 
 "0394895723478563548", k = 4
 
 and we can continue like this.
 
-For observation 1, to calculate the correct number of shifts, we will need to also store how many elements before d already shifted. We will use segment tree for this.
-For observation 2, We will use queue to choose latest occurence of each digit.
+For observation 1, to calculate the correct number of shifts, we will need to also store how many elements before d
+already shifted. We will use segment tree for this. For observation 2, We will use queue to choose latest occurence of
+each digit.
 */
 class Solution {
-    public String minInteger(String num, int k) {
-        //pqs stores the location of each digit.
+public
+    String minInteger(String num, int k) {
+        // pqs stores the location of each digit.
         List<Queue<Integer>> pqs = new ArrayList<>();
         for (int i = 0; i <= 9; ++i) {
             pqs.add(new LinkedList<>());
@@ -131,13 +136,13 @@ class Solution {
                 if (pqs.get(digit).size() != 0) {
                     // yes, there is a occurrence of digit at pos
                     Integer pos = pqs.get(digit).peek();
-					// Since few numbers already shifted to left, this `pos` might be outdated.
+                    // Since few numbers already shifted to left, this `pos` might be outdated.
                     // we try to find how many number already got shifted that were to the left of pos.
                     int shift = seg.getCountLessThan(pos);
                     // (pos - shift) is number of steps to make digit move from pos to i.
                     if (pos - shift <= k) {
                         k -= pos - shift;
-                        seg.add(pos); // Add pos to our segment tree.
+                        seg.add(pos);  // Add pos to our segment tree.
                         pqs.get(digit).remove();
                         ans += digit;
                         break;
@@ -152,16 +157,19 @@ class Solution {
         int[] nodes;
         int n;
 
-        public SegmentTree(int max) {
+    public
+        SegmentTree(int max) {
             nodes = new int[4 * (max)];
             n = max;
         }
 
-        public void add(int num) {
+    public
+        void add(int num) {
             addUtil(num, 0, n, 0);
         }
 
-        private void addUtil(int num, int l, int r, int node) {
+    private
+        void addUtil(int num, int l, int r, int node) {
             if (num < l || num > r) {
                 return;
             }
@@ -176,12 +184,15 @@ class Solution {
         }
 
         // Essentialy it tells count of numbers < num.
-        public int getCountLessThan(int num) {
+    public
+        int getCountLessThan(int num) {
             return getUtil(0, num, 0, n, 0);
         }
 
-        private int getUtil(int ql, int qr, int l, int r, int node) {
-            if (qr < l || ql > r) return 0;
+    private
+        int getUtil(int ql, int qr, int l, int r, int node) {
+            if (qr < l || ql > r)
+                return 0;
             if (ql <= l && qr >= r) {
                 return nodes[node];
             }
@@ -190,5 +201,4 @@ class Solution {
             return getUtil(ql, qr, l, mid, 2 * node + 1) + getUtil(ql, qr, mid + 1, r, 2 * node + 2);
         }
     }
-
 }

@@ -46,7 +46,7 @@ using namespace std;
 
 class Solution {
 private:
-    set<int> primes = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 };
+    set<int> primes = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29};
 
     unordered_map<int, int> memo;
     int getOneCount(int num) {
@@ -60,6 +60,7 @@ private:
         memo[num] = (num & 1) + getOneCount(num >> 1);
         return memo[num];
     }
+
 public:
     int countPrimeSetBits(int l, int r) {
         int result = 0;
@@ -72,7 +73,8 @@ public:
 
 class Solution1 {
 private:
-    set<int> primes = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 };
+    set<int> primes = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29};
+
 public:
     int countPrimeSetBits(int l, int r) {
         int result = 0;

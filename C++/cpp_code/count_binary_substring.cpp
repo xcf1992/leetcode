@@ -24,9 +24,7 @@ public:
             } else {
                 int pos = i;
                 int count = 0;
-                while (s[i] == s[pos] and count<num and i < s.size()
-                )
-                {
+                while (s[i] == s[pos] and count < num and i < s.size()) {
                     i += 1;
                     count += 1;
                 }

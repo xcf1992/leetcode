@@ -55,8 +55,8 @@ public:
         int result = 0;
         while (head != nullptr) {
             result <<= 1;
-            result |= head -> val;
-            head = head -> next;
+            result |= head->val;
+            head = head->next;
         }
         return result;
     }

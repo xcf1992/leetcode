@@ -92,7 +92,7 @@ longer = "abc" * M
 shorter = "abc" * N
 where M > N
 */
-class Solution { // greedy
+class Solution {  // greedy
 public:
     int longestDecomposition(string text) {
         int n = text.size();
@@ -116,9 +116,10 @@ public:
     }
 };
 
-class Solution1 { // dfs with memo 17.73%
+class Solution1 {  // dfs with memo 17.73%
 private:
     unordered_map<string, int> memo;
+
 public:
     int longestDecomposition(string text) {
         int n = text.size();
@@ -131,9 +132,10 @@ public:
         }
 
         memo[text] = 1;
-        for (int len = 1; len <= n / 2; ++len) if (text.substr(0, len) == text.substr(n - len, len)) {
-            memo[text] = max(memo[text], 2 + longestDecomposition(text.substr(len, n - len * 2)));
-        }
+        for (int len = 1; len <= n / 2; ++len)
+            if (text.substr(0, len) == text.substr(n - len, len)) {
+                memo[text] = max(memo[text], 2 + longestDecomposition(text.substr(len, n - len * 2)));
+            }
         return memo[text];
     }
 };

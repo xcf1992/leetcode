@@ -46,7 +46,7 @@ rem2 = Sum of subarray (0, i-1) % k
 */
 class Solution {
 public:
-    int subarraysDivByK(vector<int> &A, int K) {
+    int subarraysDivByK(vector<int>& A, int K) {
         int n = A.size();
         vector<int> mod(K, 0);
         int curSum = 0;

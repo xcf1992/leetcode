@@ -21,8 +21,8 @@ In the beginning, curOrder will be ["king"].
 Calling Successor(king, curOrder) will return Alice, so we append to curOrder to get ["king", "Alice"].
 Calling Successor(Alice, curOrder) will return Jack, so we append to curOrder to get ["king", "Alice", "Jack"].
 Calling Successor(Jack, curOrder) will return Bob, so we append to curOrder to get ["king", "Alice", "Jack", "Bob"].
-Calling Successor(Bob, curOrder) will return null. Thus the order of inheritance will be ["king", "Alice", "Jack", "Bob"].
-Using the above function, we can always obtain a unique order of inheritance.
+Calling Successor(Bob, curOrder) will return null. Thus the order of inheritance will be ["king", "Alice", "Jack",
+"Bob"]. Using the above function, we can always obtain a unique order of inheritance.
 
 Implement the ThroneInheritance class:
 ThroneInheritance(string kingName) Initializes an object of the ThroneInheritance class.
@@ -38,11 +38,11 @@ string[] getInheritanceOrder() Returns a list representing the current order of 
 
 Example 1:
 Input
-["ThroneInheritance", "birth", "birth", "birth", "birth", "birth", "birth", "getInheritanceOrder", "death", "getInheritanceOrder"]
-[["king"], ["king", "andy"], ["king", "bob"], ["king", "catherine"], ["andy", "matthew"], ["bob", "alex"], ["bob", "asha"], [null], ["bob"], [null]]
-Output
-[null, null, null, null, null, null, null, ["king", "andy", "matthew", "bob", "alex", "asha", "catherine"], null, ["king", "andy", "matthew", "alex", "asha", "catherine"]]
-Explanation
+["ThroneInheritance", "birth", "birth", "birth", "birth", "birth", "birth", "getInheritanceOrder", "death",
+"getInheritanceOrder"]
+[["king"], ["king", "andy"], ["king", "bob"], ["king", "catherine"], ["andy", "matthew"], ["bob", "alex"], ["bob",
+"asha"], [null], ["bob"], [null]] Output [null, null, null, null, null, null, null, ["king", "andy", "matthew", "bob",
+"alex", "asha", "catherine"], null, ["king", "andy", "matthew", "alex", "asha", "catherine"]] Explanation
 ThroneInheritance t= new ThroneInheritance("king"); // order: king
 t.birth("king", "andy"); // order: king > andy
 t.birth("king", "bob"); // order: king > andy > bob
@@ -79,19 +79,23 @@ using namespace std;
 
 class ThroneInheritance {
 public:
-    unordered_map<string, pair<bool, vector<string> > > m;
+    unordered_map<string, pair<bool, vector<string>>> m;
     string king;
 
     ThroneInheritance(string king) : king(king) {
     }
 
-    void birth(string parent, string child) { m[parent].second.push_back(child); }
-    void death(string name) { m[name].first = true; }
+    void birth(string parent, string child) {
+        m[parent].second.push_back(child);
+    }
+    void death(string name) {
+        m[name].first = true;
+    }
 
-    void traverse(string &name, vector<string> &res) {
+    void traverse(string& name, vector<string>& res) {
         if (!m[name].first)
             res.push_back(name);
-        for (auto child: m[name].second)
+        for (auto child : m[name].second)
             traverse(child, res);
     }
 

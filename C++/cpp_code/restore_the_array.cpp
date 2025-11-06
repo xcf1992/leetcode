@@ -31,7 +31,8 @@ Explanation: Possible arrays are [1317],[131,7],[13,17],[1,317],[13,1,7],[1,31,7
 Example 4:
 Input: s = "2020", k = 30
 Output: 1
-Explanation: The only possible array is [20,20]. [2020] is invalid because 2020 > 30. [2,020] is ivalid because 020 contains leading zeros.
+Explanation: The only possible array is [20,20]. [2020] is invalid because 2020 > 30. [2,020] is ivalid because 020
+contains leading zeros.
 
 Example 5:
 Input: s = "1234567890", k = 90
@@ -59,14 +60,15 @@ class Solution {
 private:
     int mod = 1e9 + 7;
 
-    int dfs(string &s, long k, int i, vector<int> &dp) {
+    int dfs(string& s, long k, int i, vector<int>& dp) {
         if (i == s.size()) {
-            return 1; // base case -> Found a valid way
+            return 1;  // base case -> Found a valid way
         }
 
         if (s[i] == '0') {
             return 0;
-            // all numbers are in range [1, k] and there are no leading zeros -> So numbers starting with 0 mean invalid!
+            // all numbers are in range [1, k] and there are no leading zeros -> So numbers starting with 0 mean
+            // invalid!
         }
 
         if (dp[i] != -1) {
@@ -76,9 +78,9 @@ private:
         dp[i] = 0;
         long num = 0;
         for (int j = i; j < s.size(); j++) {
-            num = num * 10 + s[j] - '0'; // num is the value of the substring s[i..j]
+            num = num * 10 + s[j] - '0';  // num is the value of the substring s[i..j]
             if (num > k) {
-                break; // num must be in range [1, k]
+                break;  // num must be in range [1, k]
             }
             dp[i] += dfs(s, k, j + 1, dp);
             dp[i] %= mod;
@@ -88,7 +90,7 @@ private:
 
 public:
     int numberOfArrays(string s, int k) {
-        vector<int> dp(s.size(), -1); // dp[i] is number of ways to print valid arrays from string s start at i
+        vector<int> dp(s.size(), -1);  // dp[i] is number of ways to print valid arrays from string s start at i
         return dfs(s, k, 0, dp);
     }
 };

@@ -36,6 +36,7 @@ class Solution {
         int count = last - first;
         return (double)count / n > 0.25;
     }
+
 public:
     int findSpecialInteger(vector<int>& arr) {
         int n = arr.size();

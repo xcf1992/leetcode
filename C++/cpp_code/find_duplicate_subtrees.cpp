@@ -42,24 +42,23 @@ using namespace std;
 
 class Solution {
 private:
-    string parse(TreeNode *root, unordered_map<string, vector<TreeNode *> > &duplicates) {
+    string parse(TreeNode* root, unordered_map<string, vector<TreeNode*>>& duplicates) {
         if (root == nullptr) {
             return "";
         }
 
-        string rootStr = "(" + parse(root->left, duplicates) + ")" +
-                         to_string(root->val) +
-                         "(" + parse(root->right, duplicates) + ")";
+        string rootStr = "(" + parse(root->left, duplicates) + ")" + to_string(root->val) + "(" +
+                         parse(root->right, duplicates) + ")";
         duplicates[rootStr].push_back(root);
         return rootStr;
     }
 
 public:
-    vector<TreeNode *> findDuplicateSubtrees(TreeNode *root) {
-        unordered_map<string, vector<TreeNode *> > duplicates;
-        vector<TreeNode *> result;
+    vector<TreeNode*> findDuplicateSubtrees(TreeNode* root) {
+        unordered_map<string, vector<TreeNode*>> duplicates;
+        vector<TreeNode*> result;
         parse(root, duplicates);
-        for (auto &nodes: duplicates) {
+        for (auto& nodes : duplicates) {
             if (nodes.second.size() > 1) {
                 result.push_back(nodes.second.front());
             }

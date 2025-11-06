@@ -46,7 +46,8 @@ public:
         string magic = "122";
         int cur = 2;
         while (magic.size() < n) {
-            magic.append(magic[cur] - '0', magic.back() ^ 3); // append (size_t n, char c); 10 ^ 11 -> 01, 01 ^ 11 -> 10
+            magic.append(magic[cur] - '0',
+                         magic.back() ^ 3);  // append (size_t n, char c); 10 ^ 11 -> 01, 01 ^ 11 -> 10
             cur += 1;
         }
         return count(magic.begin(), magic.begin() + n, '1');

@@ -56,8 +56,7 @@ public:
             if (s[index] == '#') {
                 result.push_back((stoi(s.substr(index - 2, 2)) - 1) + 'a');
                 index -= 3;
-            }
-            else {
+            } else {
                 result.push_back((s[index] - '1') + 'a');
                 index -= 1;
             }

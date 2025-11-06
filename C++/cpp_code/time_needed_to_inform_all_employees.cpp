@@ -27,8 +27,8 @@ Explanation: The head of the company is the only employee in the company.
 Example 2:
 Input: n = 6, headID = 2, manager = [2,2,-1,2,2,2], informTime = [0,0,1,0,0,0]
 Output: 1
-Explanation: The head of the company with id = 2 is the direct manager of all the employees in the company and needs 1 minute to inform them all.
-The tree structure of the employees in the company is shown.
+Explanation: The head of the company with id = 2 is the direct manager of all the employees in the company and needs 1
+minute to inform them all. The tree structure of the employees in the company is shown.
 
 Example 3:
 Input: n = 7, headID = 6, manager = [1,2,3,4,5,6,-1], informTime = [0,6,5,4,3,2,1]
@@ -80,14 +80,14 @@ using namespace std;
 
 class Solution {
 public:
-    int numOfMinutes(int n, int headID, vector<int> &manager, vector<int> &informTime) {
-        unordered_map<int, vector<int> > subordinates;
+    int numOfMinutes(int n, int headID, vector<int>& manager, vector<int>& informTime) {
+        unordered_map<int, vector<int>> subordinates;
         for (int i = 0; i < manager.size(); ++i) {
             subordinates[manager[i]].push_back(i);
         }
 
         int result = 0;
-        queue<pair<int, int> > bfs;
+        queue<pair<int, int>> bfs;
         bfs.push({headID, 0});
         while (!bfs.empty()) {
             int curSize = bfs.size();
@@ -96,7 +96,7 @@ public:
                 int curTime = bfs.front().second;
                 bfs.pop();
 
-                for (int next: subordinates[person]) {
+                for (int next : subordinates[person]) {
                     int time = curTime + informTime[person];
                     bfs.push({next, time});
                     result = max(result, time);

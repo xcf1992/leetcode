@@ -38,7 +38,8 @@ using namespace std;
 struct TrieNode {
     vector<TrieNode*> children = vector<TrieNode*>(26, nullptr);
     bool isWord = false;
-    TrieNode(bool word = false): isWord(word) {}
+    TrieNode(bool word = false) : isWord(word) {
+    }
 };
 
 class Trie {
@@ -49,35 +50,36 @@ private:
         for (int i = 0; i < s.size(); i++) {
             int ch = s[i] - 'a';
             if (isalpha(s[i])) {
-                if (cur -> children[ch] == nullptr) {
+                if (cur->children[ch] == nullptr) {
                     return false;
                 }
-                cur = cur -> children[ch];
-            }
-            else {
+                cur = cur->children[ch];
+            } else {
                 for (int j = 0; j < 26; j++) {
-                    if (cur -> children[j] != nullptr and searchWord(cur -> children[j], s.substr(i + 1))) {
+                    if (cur->children[j] != nullptr and searchWord(cur->children[j], s.substr(i + 1))) {
                         return true;
                     }
                 }
                 return false;
             }
         }
-        return cur -> isWord;
+        return cur->isWord;
     }
+
 public:
-    Trie(): root(new TrieNode()) {}
+    Trie() : root(new TrieNode()) {
+    }
 
     void add(string s) {
         TrieNode* cur = root;
         for (int i = 0; i < s.size(); i++) {
             int ch = s[i] - 'a';
-            if (cur -> children[ch] == nullptr) {
-                cur -> children[ch] = new TrieNode();
+            if (cur->children[ch] == nullptr) {
+                cur->children[ch] = new TrieNode();
             }
-            cur = cur -> children[ch];
+            cur = cur->children[ch];
         }
-        cur -> isWord = true;
+        cur->isWord = true;
     }
 
     bool search(string s) {
@@ -88,23 +90,26 @@ public:
 class WordDictionary {
 private:
     Trie trie;
+
 public:
     /* Initialize your data structure here.*/
-    WordDictionary() {}
+    WordDictionary() {
+    }
 
     /* Adds a word into the data structure.*/
     void addWord(string word) {
         trie.add(word);
     }
 
-    /* Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter.*/
+    /* Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one
+     * letter.*/
     bool search(string word) {
         return trie.search(word);
     }
 };
 /*
-* Your WordDictionary object will be instantiated and called as such:
-* WordDictionary obj = new WordDictionary();
-* obj.addWord(word);
-* bool param_2 = obj.search(word);
-*/
+ * Your WordDictionary object will be instantiated and called as such:
+ * WordDictionary obj = new WordDictionary();
+ * obj.addWord(word);
+ * bool param_2 = obj.search(word);
+ */

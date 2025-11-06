@@ -26,13 +26,10 @@ These subarrays are disjoint as they share no common nums[k] element.
 Example 2:
 Input: groups = [[10,-2],[1,2,3,4]], nums = [1,2,3,4,10,-2]
 Output: false
-Explanation: Note that choosing the subarrays [1,2,3,4,10,-2] and [1,2,3,4,10,-2] is incorrect because they are not in the same order as in groups.
-[10,-2] must come before [1,2,3,4].
-Example 3:
-Input: groups = [[1,2,3],[3,4]], nums = [7,7,1,2,3,4,7,7]
-Output: false
-Explanation: Note that choosing the subarrays [7,7,1,2,3,4,7,7] and [7,7,1,2,3,4,7,7] is invalid because they are not disjoint.
-They share a common elements nums[4] (0-indexed).
+Explanation: Note that choosing the subarrays [1,2,3,4,10,-2] and [1,2,3,4,10,-2] is incorrect because they are not in
+the same order as in groups. [10,-2] must come before [1,2,3,4]. Example 3: Input: groups = [[1,2,3],[3,4]], nums =
+[7,7,1,2,3,4,7,7] Output: false Explanation: Note that choosing the subarrays [7,7,1,2,3,4,7,7] and [7,7,1,2,3,4,7,7] is
+invalid because they are not disjoint. They share a common elements nums[4] (0-indexed).
 
 Constraints:
 groups.length == n
@@ -65,8 +62,7 @@ public:
         int groupsIndex = 0;
         while (numsIndex < nums.size() && groupsIndex < groups.size()) {
             int matchCount = 0;
-            while (numsIndex + matchCount < nums.size() &&
-                   matchCount < groups[groupsIndex].size() &&
+            while (numsIndex + matchCount < nums.size() && matchCount < groups[groupsIndex].size() &&
                    nums[numsIndex + matchCount] == groups[groupsIndex][matchCount])
                 ++matchCount;
 

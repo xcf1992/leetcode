@@ -48,9 +48,9 @@ using namespace std;
 
 class Solution {
 private:
-    vector<int> dfs(TreeNode *root) {
+    vector<int> dfs(TreeNode* root) {
         if (root == nullptr) {
-            return {-1, -1, -1}; // {goleft, goright, longest}
+            return {-1, -1, -1};  // {goleft, goright, longest}
         }
 
         vector<int> lPath = dfs(root->left);
@@ -60,7 +60,7 @@ private:
     }
 
 public:
-    int longestZigZag(TreeNode *root) {
+    int longestZigZag(TreeNode* root) {
         return dfs(root)[2];
     }
 };

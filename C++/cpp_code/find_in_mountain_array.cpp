@@ -85,7 +85,7 @@ Binary search of peak is unnecessary, just easy to write.
 */
 class Solution {
 public:
-    int findInMountainArray(int target, MountainArray &mountainArr) {
+    int findInMountainArray(int target, MountainArray& mountainArr) {
         int n = mountainArr.length();
         int left = 0;
         int right = n - 1;

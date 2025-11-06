@@ -49,9 +49,9 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> sumEvenAfterQueries(vector<int> &A, vector<vector<int> > &queries) {
+    vector<int> sumEvenAfterQueries(vector<int>& A, vector<vector<int>>& queries) {
         int sum = 0;
-        for (int a: A) {
+        for (int a : A) {
             sum += a % 2 == 0 ? a : 0;
         }
 

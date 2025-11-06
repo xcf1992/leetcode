@@ -46,11 +46,7 @@ private:
     vector<int> cDiff = {1, -1, 0, 0};
 
     bool isValid(int m, int n, int r, int c) {
-        return r >= 0
-        and c
-        >=
-        0
-        and r<m and c < n;
+        return r >= 0 and c >= 0 and r < m and c < n;
     }
 
 public:
@@ -59,7 +55,7 @@ public:
             return 0;
         }
 
-        vector<vector<vector<int> > > dp(N + 1, vector<vector<int> >(m, vector<int>(n, 0)));
+        vector<vector<vector<int>>> dp(N + 1, vector<vector<int>>(m, vector<int>(n, 0)));
         for (int y = 0; y < n; y++) {
             // along the boundary we only need 1 step to move out
             dp[1][0][y] += 1;
@@ -102,7 +98,7 @@ private:
 public:
     int findPaths(int m, int n, int N, int i, int j) {
         int result = 0;
-        queue<pair<int, int> > bfs;
+        queue<pair<int, int>> bfs;
         bfs.push(make_pair(i, j));
 
         int move = 0;
@@ -114,49 +110,33 @@ public:
 
                 int x = curPos.first - 1;
                 int y = curPos.second;
-                if (x < 0 or y<0 or x >= m or y >= n
-                )
-                {
+                if (x < 0 or y < 0 or x >= m or y >= n) {
                     result += 1;
-                }
-                else
-                {
+                } else {
                     bfs.push(make_pair(x, y));
                 }
 
                 x = curPos.first + 1;
                 y = curPos.second;
-                if (x < 0 or y<0 or x >= m or y >= n
-                )
-                {
+                if (x < 0 or y < 0 or x >= m or y >= n) {
                     result += 1;
-                }
-                else
-                {
+                } else {
                     bfs.push(make_pair(x, y));
                 }
 
                 x = curPos.first;
                 y = curPos.second - 1;
-                if (x < 0 or y<0 or x >= m or y >= n
-                )
-                {
+                if (x < 0 or y < 0 or x >= m or y >= n) {
                     result += 1;
-                }
-                else
-                {
+                } else {
                     bfs.push(make_pair(x, y));
                 }
 
                 x = curPos.first;
                 y = curPos.second + 1;
-                if (x < 0 or y<0 or x >= m or y >= n
-                )
-                {
+                if (x < 0 or y < 0 or x >= m or y >= n) {
                     result += 1;
-                }
-                else
-                {
+                } else {
                     bfs.push(make_pair(x, y));
                 }
                 result %= mod;

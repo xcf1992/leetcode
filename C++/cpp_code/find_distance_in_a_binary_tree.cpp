@@ -2,7 +2,8 @@
 https://leetcode.com/problems/find-distance-in-a-binary-tree
 1740. Find Distance in a Binary Tree
 
-Given the root of a binary tree and two integers p and q, return the distance between the nodes of value p and value q in the tree.
+Given the root of a binary tree and two integers p and q, return the distance between the nodes of value p and value q
+in the tree.
 
 The distance between two nodes is the number of edges on the path from one to the other.
 
@@ -51,8 +52,8 @@ using namespace std;
 
 struct TreeNode {
     int val;
-    TreeNode *left;
-    TreeNode *right;
+    TreeNode* left;
+    TreeNode* right;
 
     TreeNode() : val(0), left(nullptr), right(nullptr) {
     }
@@ -60,26 +61,26 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {
     }
 
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {
+    TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {
     }
 };
 
 class Solution {
 private:
-    TreeNode *lowest_common_ancestor(TreeNode *root, int startValue, int destValue) {
+    TreeNode* lowest_common_ancestor(TreeNode* root, int startValue, int destValue) {
         if (root == nullptr || root->val == startValue || root->val == destValue) {
             return root;
         }
 
-        TreeNode *lca_left = lowest_common_ancestor(root->left, startValue, destValue);
-        TreeNode *lca_right = lowest_common_ancestor(root->right, startValue, destValue);
+        TreeNode* lca_left = lowest_common_ancestor(root->left, startValue, destValue);
+        TreeNode* lca_right = lowest_common_ancestor(root->right, startValue, destValue);
         if (lca_left != nullptr && lca_right != nullptr) {
             return root;
         }
         return lca_left != nullptr ? lca_left : lca_right;
     }
 
-    bool get_distance(TreeNode *root, int val, int &distance) {
+    bool get_distance(TreeNode* root, int val, int& distance) {
         if (root == nullptr) {
             return false;
         }
@@ -101,8 +102,8 @@ private:
     }
 
 public:
-    int findDistance(TreeNode *root, int p, int q) {
-        TreeNode *lca = lowest_common_ancestor(root, p, q);
+    int findDistance(TreeNode* root, int p, int q) {
+        TreeNode* lca = lowest_common_ancestor(root, p, q);
 
         int l_distance = 0;
         get_distance(lca, p, l_distance);

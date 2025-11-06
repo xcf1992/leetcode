@@ -46,7 +46,7 @@ using namespace std;
 class Solution {
     // use union find
 private:
-    int find(vector<int> &parent, int num) {
+    int find(vector<int>& parent, int num) {
         if (parent[num] != num) {
             parent[num] = find(parent, parent[num]);
         }
@@ -67,7 +67,7 @@ private:
     }
 
 public:
-    int numSimilarGroups(vector<string> &A) {
+    int numSimilarGroups(vector<string>& A) {
         int n = A.size();
         vector<int> parent(n);
         iota(parent.begin(), parent.end(), 0);
@@ -103,12 +103,11 @@ private:
                 diff++;
             }
         }
-        return diff == 2
-        or(diff == 0 and a.size() >= 2);
+        return diff == 2 or (diff == 0 and a.size() >= 2);
     }
 
 public:
-    int numSimilarGroups(vector<string> &A) {
+    int numSimilarGroups(vector<string>& A) {
         int n = A.size();
         if (n <= 1) {
             return n;
@@ -129,10 +128,7 @@ public:
                 int cur = bfs.front();
                 bfs.pop();
                 for (int next = 0; next < n; next++) {
-                    if (visited[next] or
-                    !similar(A[cur], A[next])
-                    )
-                    {
+                    if (visited[next] or !similar(A[cur], A[next])) {
                         continue;
                     }
                     visited[next] = true;

@@ -36,9 +36,9 @@ using namespace std;
 class Solution {
     // bit manipulation
 public:
-    vector<vector<int> > subsets(vector<int> &nums) {
+    vector<vector<int>> subsets(vector<int>& nums) {
         int n = nums.size();
-        vector<vector<int> > result(1 << n);
+        vector<vector<int>> result(1 << n);
         for (int i = 0; i < (1 << n); i++) {
             for (int j = 0; j < n; j++) {
                 if ((i >> j) & 1) {
@@ -51,9 +51,9 @@ public:
 };
 
 class Solution1 {
-    //5.58%
+    // 5.58%
 private:
-    void construct(vector<int> &S, int index, vector<vector<int> > &result, vector<int> current) {
+    void construct(vector<int>& S, int index, vector<vector<int>>& result, vector<int> current) {
         if (index == S.size()) {
             result.push_back(current);
             return;
@@ -66,11 +66,11 @@ private:
     }
 
 public:
-    vector<vector<int> > subsets(vector<int> &S) {
+    vector<vector<int>> subsets(vector<int>& S) {
         if (S.empty()) {
             return {};
         }
-        vector<vector<int> > result;
+        vector<vector<int>> result;
         construct(S, 0, result, {});
         return result;
     }

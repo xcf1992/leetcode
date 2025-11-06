@@ -23,9 +23,9 @@ using namespace std;
 class Solution {
 private:
     int result;
-    TreeNode *prev;
+    TreeNode* prev;
 
-    void traverse(TreeNode *root) {
+    void traverse(TreeNode* root) {
         if (root == nullptr) {
             return;
         }
@@ -39,7 +39,7 @@ private:
     }
 
 public:
-    int minDiffInBST(TreeNode *root) {
+    int minDiffInBST(TreeNode* root) {
         result = INT_MAX;
         prev = nullptr;
         traverse(root);

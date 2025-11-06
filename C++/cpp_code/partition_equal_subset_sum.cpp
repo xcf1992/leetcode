@@ -33,8 +33,8 @@ Explanation: The array cannot be partitioned into equal sum subsets.
 #include <numeric>
 using namespace std;
 /*
-This problem is essentially let us to find whether there are several numbers in a set which are able to sum to a specific value
-(in this problem, the value is sum/2).
+This problem is essentially let us to find whether there are several numbers in a set which are able to sum to a
+specific value (in this problem, the value is sum/2).
 
 Actually, this is a 0/1 knapsack problem, for each number, we can pick it or not.
 Let us assume dp[i][j] means whether the specific sum j can be gotten from the first i numbers.
@@ -55,7 +55,7 @@ talking is cheap:
 */
 class Solution {
 public:
-    bool canPartition(vector<int> &nums) {
+    bool canPartition(vector<int>& nums) {
         int sum = accumulate(nums.begin(), nums.end(), 0);
         if (sum % 2 == 1) {
             return false;
@@ -64,7 +64,7 @@ public:
         int target = sum / 2;
         vector<int> dp(target + 1, false);
         dp[0] = true;
-        for (int num: nums) {
+        for (int num : nums) {
             for (int i = target; i >= num; i--) {
                 dp[i] |= dp[i - num];
             }

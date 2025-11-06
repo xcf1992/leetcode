@@ -7,9 +7,11 @@
 
  Also, there is no garden that has more than 3 paths coming into or leaving it.
 
- Your task is to choose a flower type for each garden such that, for any two gardens connected by a path, they have different types of flowers.
+ Your task is to choose a flower type for each garden such that, for any two gardens connected by a path, they have
+ different types of flowers.
 
- Return any such a choice as an array answer, where answer[i] is the type of flower planted in the (i+1)-th garden.  The flower types are denoted 1, 2, 3, or 4.  It is guaranteed an answer exists.
+ Return any such a choice as an array answer, where answer[i] is the type of flower planted in the (i+1)-th garden.  The
+ flower types are denoted 1, 2, 3, or 4.  It is guaranteed an answer exists.
 
 
 
@@ -51,9 +53,9 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> gardenNoAdj(int N, vector<vector<int> > &paths) {
-        vector<vector<int> > connected(N);
-        for (vector<int> &path: paths) {
+    vector<int> gardenNoAdj(int N, vector<vector<int>>& paths) {
+        vector<vector<int>> connected(N);
+        for (vector<int>& path : paths) {
             connected[path[0] - 1].push_back(path[1] - 1);
             connected[path[1] - 1].push_back(path[0] - 1);
         }
@@ -61,7 +63,7 @@ public:
         vector<int> result(N, 0);
         for (int i = 0; i < N; ++i) {
             unordered_set<int> used;
-            for (int j: connected[i]) {
+            for (int j : connected[i]) {
                 if (result[j] != 0) {
                     used.insert(result[j]);
                 }

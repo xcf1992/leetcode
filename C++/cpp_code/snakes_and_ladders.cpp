@@ -67,7 +67,7 @@ private:
     int m = 0;
     int n = 0;
 
-    int getDestination(int pos, vector<vector<int> > &board) {
+    int getDestination(int pos, vector<vector<int>>& board) {
         int row = m - 1 - (pos - 1) / n;
         int col = (pos - 1) % n;
         if ((m - 1 - row) % 2 != 0) {
@@ -81,7 +81,7 @@ private:
     }
 
 public:
-    int snakesAndLadders(vector<vector<int> > &board) {
+    int snakesAndLadders(vector<vector<int>>& board) {
         m = board.size();
         n = board[0].size();
 

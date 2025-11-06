@@ -49,20 +49,16 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> distanceK(TreeNode *root, TreeNode *target, int K) {
-        if (root == nullptr or target
-        ==
-        nullptr
-        )
-        {
+    vector<int> distanceK(TreeNode* root, TreeNode* target, int K) {
+        if (root == nullptr or target == nullptr) {
             return {};
         }
 
-        unordered_map<TreeNode *, vector<TreeNode *> > graph;
-        queue<TreeNode *> q;
+        unordered_map<TreeNode*, vector<TreeNode*>> graph;
+        queue<TreeNode*> q;
         q.push(root);
         while (!q.empty()) {
-            TreeNode *cur = q.front();
+            TreeNode* cur = q.front();
             q.pop();
 
             if (cur->left != nullptr) {
@@ -77,7 +73,7 @@ public:
             }
         }
 
-        unordered_set<TreeNode *> visited;
+        unordered_set<TreeNode*> visited;
         visited.insert(target);
         q.push(target);
         int distance = 0;
@@ -85,7 +81,7 @@ public:
         while (!q.empty()) {
             int curSize = q.size();
             for (int i = 0; i < curSize; i++) {
-                TreeNode *cur = q.front();
+                TreeNode* cur = q.front();
                 q.pop();
 
                 if (distance == K) {
@@ -93,7 +89,7 @@ public:
                     continue;
                 }
 
-                for (TreeNode *next: graph[cur])
+                for (TreeNode* next : graph[cur])
                     if (visited.find(next) == visited.end()) {
                         visited.insert(cur);
                         q.push(next);

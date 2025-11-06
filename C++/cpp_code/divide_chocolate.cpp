@@ -63,14 +63,14 @@ and if (condition passed) right = mid; else left = mid + 1;.
 */
 class Solution {
 public:
-    int maximizeSweetness(vector<int> &sweetness, int K) {
+    int maximizeSweetness(vector<int>& sweetness, int K) {
         int left = 1;
         int right = 1e9 / (K + 1);
         while (left < right) {
             int mid = (1 + left + right) / 2;
             int cur = 0;
             int cuts = 0;
-            for (int a: sweetness) {
+            for (int a : sweetness) {
                 cur += a;
                 if (cur >= mid) {
                     cur = 0;

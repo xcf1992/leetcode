@@ -43,7 +43,7 @@ using namespace std;
 class Solution {
 private:
     bool isGood(string& word, vector<int> count) {
-        for (char c: word) {
+        for (char c : word) {
             if (count[c - 'a'] <= 0) {
                 return false;
             }
@@ -51,16 +51,18 @@ private:
         }
         return true;
     }
+
 public:
     int countCharacters(vector<string>& words, string chars) {
         vector<int> count(26, 0);
-        for (char c: chars) {
+        for (char c : chars) {
             count[c - 'a'] += 1;
         }
         int result = 0;
-        for (string& word : words) if (isGood(word, count)) {
-            result += word.size();
-        }
+        for (string& word : words)
+            if (isGood(word, count)) {
+                result += word.size();
+            }
         return result;
     }
 };

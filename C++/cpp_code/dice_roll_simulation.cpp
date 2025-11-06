@@ -15,7 +15,9 @@ Since the answer may be too large, return it modulo 10^9 + 7.
 Example 1:
 Input: n = 2, rollMax = [1,1,2,2,2,3]
 Output: 34
-Explanation: There will be 2 rolls of die, if there are no constraints on the die, there are 6 * 6 = 36 possible combinations. In this case, looking at rollMax array, the numbers 1 and 2 appear at most once consecutively, therefore sequences (1,1) and (2,2) cannot occur, so the final answer is 36-2 = 34.
+Explanation: There will be 2 rolls of die, if there are no constraints on the die, there are 6 * 6 = 36 possible
+combinations. In this case, looking at rollMax array, the numbers 1 and 2 appear at most once consecutively, therefore
+sequences (1,1) and (2,2) cannot occur, so the final answer is 36-2 = 34.
 
 Example 2:
 Input: n = 2, rollMax = [1,1,1,1,1,1]
@@ -49,25 +51,18 @@ class Solution {
 private:
     int mod = 1e9 + 7;
 
-    int dfs(int n, int preNum, int preCount, vector<vector<vector<int> > > &memo, vector<int> &rollMax) {
+    int dfs(int n, int preNum, int preCount, vector<vector<vector<int>>>& memo, vector<int>& rollMax) {
         if (n == 0) {
             return 1;
         }
 
-        if (preNum != -1 and memo[n][preCount][preNum]
-        !=
-        0
-        )
-        {
+        if (preNum != -1 and memo[n][preCount][preNum] != 0) {
             return memo[n][preCount][preNum];
         }
 
         int count = 0;
         for (int cur = 0; cur < 6; ++cur) {
-            if (cur == preNum and preCount
-            +1 > rollMax[preNum]
-            )
-            {
+            if (cur == preNum and preCount + 1 > rollMax[preNum]) {
                 continue;
             }
             count = (count + dfs(n - 1, cur, cur == preNum ? preCount + 1 : 1, memo, rollMax)) % mod;
@@ -80,8 +75,8 @@ private:
     }
 
 public:
-    int dieSimulator(int n, vector<int> &rollMax) {
-        vector<vector<vector<int> > > memo(n + 1, vector<vector<int> >(16, vector<int>(6, 0)));
+    int dieSimulator(int n, vector<int>& rollMax) {
+        vector<vector<vector<int>>> memo(n + 1, vector<vector<int>>(16, vector<int>(6, 0)));
         return dfs(n, -1, 0, memo, rollMax);
     }
 };

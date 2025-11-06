@@ -54,15 +54,15 @@ using namespace std;
 
 class Solution {
 public:
-    int checkWays(vector<vector<int> > &pairs) {
-        unordered_map<int, unordered_set<int> > adj;
+    int checkWays(vector<vector<int>>& pairs) {
+        unordered_map<int, unordered_set<int>> adj;
         for (int i = 0; i < pairs.size(); i++) {
             adj[pairs[i][0]].emplace(pairs[i][1]);
             adj[pairs[i][1]].emplace(pairs[i][0]);
         }
 
-        priority_queue<pair<int, int> > q;
-        for (auto &[x, arr]: adj) {
+        priority_queue<pair<int, int>> q;
+        for (auto& [x, arr] : adj) {
             q.push({arr.size(), x});
         }
 
@@ -76,7 +76,7 @@ public:
             int u = 0;
             int usz = n + 1;
             if (!seen.empty()) {
-                for (auto x: adj[v]) {
+                for (auto x : adj[v]) {
                     if (adj[x].size() < usz && seen.count(x)) {
                         u = x;
                         usz = adj[x].size();
@@ -92,8 +92,7 @@ public:
                 continue;
             }
 
-
-            for (auto x: adj[v]) {
+            for (auto x : adj[v]) {
                 if (x == u) {
                     continue;
                 }

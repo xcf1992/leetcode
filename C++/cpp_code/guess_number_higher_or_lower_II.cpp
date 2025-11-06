@@ -54,7 +54,7 @@ which is max(dp[i][x-1], dp[x+1][j]).
 */
 class Solution {
 private:
-    int calculate(int start, int end, vector<vector<int> > &dp) {
+    int calculate(int start, int end, vector<vector<int>>& dp) {
         if (start >= end) {
             return 0;
         }
@@ -65,15 +65,15 @@ private:
 
         dp[start][end] = INT_MAX;
         for (int guess = start; guess <= end; ++guess) {
-            dp[start][end] = min(dp[start][end],
-                                 guess + max(calculate(start, guess - 1, dp), calculate(guess + 1, end, dp)));
+            dp[start][end] =
+                    min(dp[start][end], guess + max(calculate(start, guess - 1, dp), calculate(guess + 1, end, dp)));
         }
         return dp[start][end];
     }
 
 public:
     int getMoneyAmount(int n) {
-        vector<vector<int> > dp(n + 1, vector<int>(n + 1, 0));
+        vector<vector<int>> dp(n + 1, vector<int>(n + 1, 0));
         return calculate(1, n, dp);
     }
 };

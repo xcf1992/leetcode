@@ -48,7 +48,7 @@ class Solution {
 public:
     int worker[12] = {}, res = 0;
 
-    int dfs(vector<int> &jobs, int i, int k, int cur) {
+    int dfs(vector<int>& jobs, int i, int k, int cur) {
         if (cur >= res)
             return res;
         if (i == jobs.size())
@@ -64,7 +64,7 @@ public:
         return res;
     }
 
-    int minimumTimeRequired(vector<int> &jobs, int k) {
+    int minimumTimeRequired(vector<int>& jobs, int k) {
         if (k == jobs.size())
             return *max_element(begin(jobs), end(jobs));
         sort(begin(jobs), end(jobs), greater<int>());

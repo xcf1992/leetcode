@@ -35,7 +35,7 @@ using namespace std;
 
 class Solution {
 public:
-    int maxSubArrayLen(vector<int> &nums, int k) {
+    int maxSubArrayLen(vector<int>& nums, int k) {
         unordered_map<long long, long long> sumIndex;
         long long sum = 0;
         long long result = 0;

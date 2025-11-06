@@ -28,15 +28,15 @@ using namespace std;
 class Solution {
     // bucket sort
 public:
-    int arrayPairSum(vector<int> &nums) {
+    int arrayPairSum(vector<int>& nums) {
         int limit = 10000;
         vector<int> arr(20001, 0);
-        for (int num: nums) {
+        for (int num : nums) {
             arr[num + limit] += 1;
         }
 
         int result = 0;
-        int d = 0; // d means how many elements has been used in current bucket
+        int d = 0;  // d means how many elements has been used in current bucket
         for (int i = -10000; i <= 10000; ++i) {
             result += (arr[i + limit] + 1 - d) / 2 * i;
             d = (2 + arr[i + limit] - d) % 2;
@@ -47,7 +47,7 @@ public:
 
 class Solution1 {
 public:
-    int arrayPairSum(vector<int> &nums) {
+    int arrayPairSum(vector<int>& nums) {
         sort(nums.begin(), nums.end());
         int sum = 0;
         for (int i = 0; i < nums.size(); i += 2) {

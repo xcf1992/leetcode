@@ -85,8 +85,8 @@ cur = 1 + 3 + 6 ... + i + (1 + 2 + 3 + ... + j)
 We now try to find min j that cur >= n.
 
 while(cur < n) {
-	++j;
-	cur += j;
+    ++j;
+    cur += j;
 }
 For example:
 
@@ -94,7 +94,8 @@ If n = 14
 
 We first find that 10 = 1 + (1 + 2) + (1 + 2 + 3)
 
-Then we try to find min j that 1 + (1 + 2) + (1 + 2 + 3) + (1 + 2 + ... + j) >= n, like the way we build in picture above.
+Then we try to find min j that 1 + (1 + 2) + (1 + 2 + 3) + (1 + 2 + ... + j) >= n, like the way we build in picture
+above.
 
 In this case, 1 + (1 + 2) + (1 + 2 + 3) + (1 + 2 + 3) = 16 >= 14 = n, so j is 3
 
@@ -109,7 +110,8 @@ public:
             i += j;
             cur += i;
         }
-        if (cur == n) return i;
+        if (cur == n)
+            return i;
         cur -= i;
         i -= j;
         j = 0;

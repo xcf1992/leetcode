@@ -33,8 +33,8 @@ Example:
 Given m = 1, n = 1, return 9.
 
 Note:
-If try on ur android phone, 1-8 won’t actually touch 4 and 5 because each number is represented by dot … not the square as illustrated …
-so I guess the illustration should be corrected
+If try on ur android phone, 1-8 won’t actually touch 4 and 5 because each number is represented by dot … not the square
+as illustrated … so I guess the illustration should be corrected
 */
 #include <iostream>
 #include <string>
@@ -50,7 +50,7 @@ using namespace std;
 
 class Solution {
 private:
-    int dfs(vector<bool> &visited, vector<vector<int> > &skip, int curDigit, int remain) {
+    int dfs(vector<bool>& visited, vector<vector<int>>& skip, int curDigit, int remain) {
         if (remain == 0) {
             return 1;
         }
@@ -58,9 +58,7 @@ private:
         int result = 0;
         visited[curDigit] = true;
         for (int i = 1; i <= 9; i++) {
-            if (!visited[i] and(skip[curDigit][i] == 0 or visited[skip[curDigit][i]])
-            )
-            {
+            if (!visited[i] and (skip[curDigit][i] == 0 or visited[skip[curDigit][i]])) {
                 result += dfs(visited, skip, i, remain - 1);
             }
         }
@@ -70,7 +68,7 @@ private:
 
 public:
     int numberOfPatterns(int m, int n) {
-        vector<vector<int> > skip(10, vector<int>(10, 0));
+        vector<vector<int>> skip(10, vector<int>(10, 0));
         skip[1][3] = skip[3][1] = 2;
         skip[1][7] = skip[7][1] = 4;
         skip[3][9] = skip[9][3] = 6;
@@ -80,9 +78,9 @@ public:
         vector<bool> visited(10, false);
         int result = 0;
         for (int i = m; i <= n; i++) {
-            result += dfs(visited, skip, 1, i - 1) * 4; // 1, 3, 7, 9 are symmetric
-            result += dfs(visited, skip, 2, i - 1) * 4; // 2, 4, 6, 8 are symmetric
-            result += dfs(visited, skip, 5, i - 1); // 5
+            result += dfs(visited, skip, 1, i - 1) * 4;  // 1, 3, 7, 9 are symmetric
+            result += dfs(visited, skip, 2, i - 1) * 4;  // 2, 4, 6, 8 are symmetric
+            result += dfs(visited, skip, 5, i - 1);      // 5
         }
         return result;
     }

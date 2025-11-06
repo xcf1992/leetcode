@@ -16,8 +16,8 @@ Input:
 words = ["a", "banana", "app", "appl", "ap", "apply", "apple"]
 Output: "apple"
 Explanation:
-Both "apply" and "apple" can be built from other words in the dictionary. However, "apple" is lexicographically smaller than "apply".
-Note:
+Both "apply" and "apple" can be built from other words in the dictionary. However, "apple" is lexicographically smaller
+than "apply". Note:
 
 All the strings in the input will only contain lowercase letters.
 The length of words will be in the range [1, 1000].
@@ -37,17 +37,15 @@ using namespace std;
 
 class Solution {
 public:
-    string longestWord(vector<string> &words) {
+    string longestWord(vector<string>& words) {
         sort(words.begin(), words.end());
         unordered_set<string> prefix;
         string result = "";
-        for (string word: words) if (word.size() == 1 or
-        prefix.find(word.substr(0, word.size() - 1)) != prefix.end()
-        )
-        {
-            result = word.size() > result.size() ? word : result;
-            prefix.insert(word);
-        }
+        for (string word : words)
+            if (word.size() == 1 or prefix.find(word.substr(0, word.size() - 1)) != prefix.end()) {
+                result = word.size() > result.size() ? word : result;
+                prefix.insert(word);
+            }
         return result;
     }
 };

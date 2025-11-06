@@ -66,7 +66,7 @@ O(K) to create the returned list.
 */
 class Solution {
 public:
-    vector<int> findClosestElements(vector<int> &A, int k, int x) {
+    vector<int> findClosestElements(vector<int>& A, int k, int x) {
         int left = 0;
         int right = A.size() - k;
         while (left < right) {
@@ -83,7 +83,7 @@ public:
 
 class Solution1 {
 public:
-    vector<int> findClosestElements(vector<int> &arr, int k, int x) {
+    vector<int> findClosestElements(vector<int>& arr, int k, int x) {
         int left = 0;
         int right = arr.size() - 1;
         while (left < right) {
@@ -93,19 +93,16 @@ public:
             } else {
                 right = mid;
             }
-        } // left will point first number in arr >= x, could be replaced by left = lower_bound(arr.begin(), arr.end(), x) - arr.begin();
+        }  // left will point first number in arr >= x, could be replaced by left = lower_bound(arr.begin(), arr.end(),
+           // x) - arr.begin();
 
         int start = left - 1;
         int end = left;
         int temp = k;
         while (k > 0) {
-            if (start < 0 or(end < arr.size() and abs(arr[start] - x) > abs(arr[end] - x))
-            )
-            {
+            if (start < 0 or (end < arr.size() and abs(arr[start] - x) > abs(arr[end] - x))) {
                 end++;
-            }
-            else
-            {
+            } else {
                 start--;
             }
             k -= 1;

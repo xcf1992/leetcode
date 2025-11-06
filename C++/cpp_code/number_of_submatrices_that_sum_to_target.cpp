@@ -51,7 +51,8 @@ public:
         int result = 0;
         for (int col1 = 0; col1 < n; col1++) {
             for (int col2 = col1; col2 < n; ++col2) {
-                unordered_map<int, int> sumCount; // sumCount stores the occurences of sum, which is between col1 and col2, from row 0 to current row
+                unordered_map<int, int> sumCount;  // sumCount stores the occurences of sum, which is between col1 and
+                                                   // col2, from row 0 to current row
                 sumCount[0] = 1;
                 int sum = 0;
                 for (int row = 0; row < m; row++) {

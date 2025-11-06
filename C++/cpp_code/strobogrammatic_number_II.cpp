@@ -25,32 +25,17 @@ private:
     vector<char> digit{'0', '1', '6', '8', '9'};
     unordered_map<char, char> strobogrammatic = {{'9', '6'}, {'1', '1'}, {'8', '8'}, {'6', '9'}, {'0', '0'}};
 
-    void dfs(int n, int pos, vector<string> &result, string &temp) {
-        if ((n % 2 == 1 and pos
-        >
-        n / 2
-        )
-        or(n % 2 == 0 and pos > n / 2 - 1)
-        )
-        {
+    void dfs(int n, int pos, vector<string>& result, string& temp) {
+        if ((n % 2 == 1 and pos > n / 2) or (n % 2 == 0 and pos > n / 2 - 1)) {
             result.push_back(temp);
             return;
         }
 
-        for (char c: digit) {
-            if (pos == 0 and c
-            ==
-            '0'
-            )
-            {
+        for (char c : digit) {
+            if (pos == 0 and c == '0') {
                 continue;
             }
-            if (n % 2 == 1 and pos
-            ==
-            n / 2
-            and(c == '6' or c == '9')
-            )
-            {
+            if (n % 2 == 1 and pos == n / 2 and (c == '6' or c == '9')) {
                 continue;
             }
             temp[pos] = c;

@@ -9,9 +9,9 @@ You are given an integer n, an array languages, and an array friendships where:
 
 There are n languages numbered 1 through n,
 languages[i] is the set of languages the i​​​​​​th​​​​ user knows, and
-friendships[i] = [u​​​​​​i​​​, v​​​​​​i] denotes a friendship between the users u​​​​​​​​​​​i​​​​​ and vi.
-You can choose one language and teach it to some users
-so that all friends can communicate with each other. Return the minimum number of users you need to teach.
+friendships[i] = [u​​​​​​i​​​, v​​​​​​i] denotes a friendship between the users
+u​​​​​​​​​​​i​​​​​ and vi. You can choose one language and teach it to some users so
+that all friends can communicate with each other. Return the minimum number of users you need to teach.
 
 Note that friendships are not transitive,
 meaning if x is a friend of y and y is a friend of z,
@@ -61,19 +61,19 @@ we need to teach them speaking lanuage k.
 */
 class Solution {
 public:
-    int minimumTeachings(int n, vector<vector<int> > &languages, vector<vector<int> > &friendships) {
+    int minimumTeachings(int n, vector<vector<int>>& languages, vector<vector<int>>& friendships) {
         static const int BIT = 512;
         int res = friendships.size();
-        vector<bitset<BIT> > lan;
-        for (auto &l: languages) {
+        vector<bitset<BIT>> lan;
+        for (auto& l : languages) {
             lan.emplace_back();
-            for (auto n: l)
+            for (auto n : l)
                 lan.back().set(n);
         }
 
         for (int l = 1; l <= n; ++l) {
             unordered_set<int> s;
-            for (auto &f: friendships) {
+            for (auto& f : friendships) {
                 if ((lan[f[0] - 1] & lan[f[1] - 1]).any())
                     continue;
                 if (!lan[f[0] - 1].test(l))
@@ -81,7 +81,7 @@ public:
                 if (!lan[f[1] - 1].test(l))
                     s.insert(f[1]);
             }
-            res = min(res, (int) s.size());
+            res = min(res, (int)s.size());
         }
         return res;
     }

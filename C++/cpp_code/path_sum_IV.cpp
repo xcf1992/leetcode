@@ -54,12 +54,12 @@ using namespace std;
 
 class Solution {
 public:
-    int pathSum(vector<int> &nums) {
-        vector<vector<int> > tree(5, vector<int>(8, -1));
+    int pathSum(vector<int>& nums) {
+        vector<vector<int>> tree(5, vector<int>(8, -1));
         tree[0][0] = 0;
-        for (int n: nums) {
-            int i = n / 100; // i is 1 based index;
-            int j = (n % 100) / 10 - 1; // j used 0 based index;
+        for (int n : nums) {
+            int i = n / 100;             // i is 1 based index;
+            int j = (n % 100) / 10 - 1;  // j used 0 based index;
             int v = n % 10;
             tree[i][j] = tree[i - 1][j / 2] + v;
         }
@@ -71,9 +71,7 @@ public:
                     continue;
                 }
 
-                if (i == 4 or(tree[i + 1][j * 2] == -1 and tree[i + 1][j * 2 + 1] == -1)
-                )
-                {
+                if (i == 4 or (tree[i + 1][j * 2] == -1 and tree[i + 1][j * 2 + 1] == -1)) {
                     sum += tree[i][j];
                 }
             }

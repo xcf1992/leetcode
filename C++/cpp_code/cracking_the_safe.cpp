@@ -56,12 +56,12 @@ We reuse last n-1 digits of the input-so-far password as below:
 */
 class Solution {
 private:
-    bool dfs(string &result, int n, int k, int total, unordered_set<string> &visited) {
+    bool dfs(string& result, int n, int k, int total, unordered_set<string>& visited) {
         if (visited.size() == total) {
             return true;
         }
 
-        string prefix = result.substr(result.size() - n + 1, n - 1); // reuse last n - 1 digits
+        string prefix = result.substr(result.size() - n + 1, n - 1);  // reuse last n - 1 digits
         prefix.push_back('0');
         for (int i = 0; i < k; i++) {
             prefix.back() = '0' + i;

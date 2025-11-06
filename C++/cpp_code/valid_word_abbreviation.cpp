@@ -4,7 +4,8 @@
  A string such as "word" contains only the following valid abbreviations:
 
  ["word", "1ord", "w1rd", "wo1d", "wor1", "2rd", "w2d", "wo2", "1o1d", "1or1", "w1r1", "1o2", "2r1", "3d", "w3", "4"]
- Notice that only the above abbreviations are valid abbreviations of the string "word". Any other string is not a valid abbreviation of "word".
+ Notice that only the above abbreviations are valid abbreviations of the string "word". Any other string is not a valid
+ abbreviation of "word".
 
  Note:
  Assume s contains only lowercase letters and abbr contains only lowercase letters and digits.
@@ -36,17 +37,13 @@ public:
     bool validWordAbbreviation(string word, string abbr) {
         int pos = 0;
         int cur = 0;
-        while (cur < word.size() and pos<abbr.size()
-        )
-        {
+        while (cur < word.size() and pos < abbr.size()) {
             if (abbr[pos] == '0') {
                 return false;
             }
             if (isdigit(abbr[pos])) {
                 int start = pos;
-                while (pos < abbr.size() and isdigit(abbr[pos])
-                )
-                {
+                while (pos < abbr.size() and isdigit(abbr[pos])) {
                     pos += 1;
                 }
                 cur += stoi(abbr.substr(start, pos - start));
@@ -58,9 +55,6 @@ public:
                 pos += 1;
             }
         }
-        return cur == word.size()
-        and pos
-        ==
-        abbr.size();
+        return cur == word.size() and pos == abbr.size();
     }
 };

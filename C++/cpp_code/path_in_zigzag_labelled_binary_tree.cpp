@@ -14,7 +14,7 @@ return the labels in the path from the root of the tree to the node with that la
                                                                 1
                             3                                                                   2
         4                                           5                           6                               7
-15          14                                  13       12                 11      10                      9           8
+15          14                                  13       12                 11      10                      9 8
 
 Example 1:
 Input: label = 14

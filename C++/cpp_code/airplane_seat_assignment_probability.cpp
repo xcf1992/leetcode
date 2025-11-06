@@ -39,9 +39,10 @@ using namespace std;
 The main idea is:
 The probability of "nth person can get the nth seat" can be divided into 2 parts:
 
-The first person gets the first seat, then the nth person is guaranteed to get the nth seat. The probability of this situation is 1/n.
-The first person gets any other seat except the first one and the nth one, then the problem shrinks into a subproblem with size n-1. The probability of this situation is (n-2)/n.
-Therefore, P(N) = 1/n + (n-2)/n * P(N - 1)
+The first person gets the first seat, then the nth person is guaranteed to get the nth seat. The probability of this
+situation is 1/n. The first person gets any other seat except the first one and the nth one, then the problem shrinks
+into a subproblem with size n-1. The probability of this situation is (n-2)/n. Therefore, P(N) = 1/n + (n-2)/n * P(N -
+1)
 */
 class Solution {
 public:

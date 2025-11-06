@@ -51,8 +51,7 @@ public:
                     result = max(result, col[j]);
                     result = max(result, diag[i + j]);
                     result = max(result, antiDiag[i - j + n]);
-                }
-                else {
+                } else {
                     row = 0;
                     col[j] = 0;
                     diag[i + j] = 0;

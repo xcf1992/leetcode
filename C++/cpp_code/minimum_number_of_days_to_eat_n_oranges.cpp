@@ -68,15 +68,10 @@ private:
         }
 
         dp[n] = n;
-        if (n % 2 == 0 and n
-        %3 == 0
-        )
-        {
+        if (n % 2 == 0 and n % 3 == 0) {
             dp[n] = min(dp[n], 1 + dfs(n / 2));
             dp[n] = min(dp[n], 1 + dfs(n / 3));
-        }
-        else
-        if (n % 3 == 0) {
+        } else if (n % 3 == 0) {
             dp[n] = min(dp[n], 1 + dfs(n / 3));
             dp[n] = min(dp[n], 1 + dfs(n - 1));
         } else if (n % 2 == 0) {

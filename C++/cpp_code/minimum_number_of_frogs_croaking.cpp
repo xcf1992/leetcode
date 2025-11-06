@@ -56,7 +56,7 @@ class Solution {
 public:
     int minNumberOfFrogs(string croakOfFrogs) {
         int cnt[5] = {}, frogs = 0, max_frogs = 0;
-        for (auto ch: croakOfFrogs) {
+        for (auto ch : croakOfFrogs) {
             auto n = string("croak").find(ch);
             ++cnt[n];
             if (n == 0)

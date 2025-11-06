@@ -52,7 +52,7 @@ Then I check the condition cmax < A[i+2]
 */
 class Solution {
 public:
-    bool isIdealPermutation(vector<int> &A) {
+    bool isIdealPermutation(vector<int>& A) {
         int cmax = 0;
         int n = A.size();
         for (int i = 0; i < n - 2; ++i) {
@@ -67,7 +67,7 @@ public:
 
 class Solution1 {
 public:
-    bool isIdealPermutation(vector<int> &A) {
+    bool isIdealPermutation(vector<int>& A) {
         for (int i = 0; i < A.size(); i++)
             if (abs(i - A[i]) > 1) {
                 return false;

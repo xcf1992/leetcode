@@ -50,9 +50,7 @@ public:
         int start = 0;
         int end = 1;
         while (end <= n) {
-            while (end < n and(p[end - 1] - 'a' + 1) % 26 == (p[end] - 'a')
-            )
-            {
+            while (end < n and (p[end - 1] - 'a' + 1) % 26 == (p[end] - 'a')) {
                 end += 1;
             }
             while (start < end) {
@@ -63,7 +61,7 @@ public:
         }
 
         int result = 0;
-        for (int count: counts) {
+        for (int count : counts) {
             result += count;
         }
         return result;

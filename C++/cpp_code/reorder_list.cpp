@@ -23,21 +23,16 @@ using namespace std;
 
 class Solution {
 public:
-    void reorderList(ListNode *head) {
-        if (head == nullptr or
-        head->next == nullptr
-        or
-        head->next->next == nullptr
-        )
-        {
+    void reorderList(ListNode* head) {
+        if (head == nullptr or head->next == nullptr or head->next->next == nullptr) {
             return;
         }
 
-        ListNode *dummy1 = new ListNode(-1);
+        ListNode* dummy1 = new ListNode(-1);
         dummy1->next = head;
-        ListNode *fast = head;
-        ListNode *slow = head;
-        ListNode *pre = dummy1;
+        ListNode* fast = head;
+        ListNode* slow = head;
+        ListNode* pre = dummy1;
         while (fast != nullptr) {
             fast = fast->next;
             if (fast != nullptr) {
@@ -48,19 +43,19 @@ public:
         }
         pre->next = nullptr;
 
-        ListNode *dummy2 = new ListNode(-2);
-        ListNode *cur = slow;
+        ListNode* dummy2 = new ListNode(-2);
+        ListNode* cur = slow;
         while (cur != nullptr) {
-            ListNode *after = cur->next;
+            ListNode* after = cur->next;
             cur->next = dummy2->next;
             dummy2->next = cur;
             cur = after;
         }
 
-        ListNode *cur1 = dummy1->next;
-        ListNode *cur2 = dummy2->next;
+        ListNode* cur1 = dummy1->next;
+        ListNode* cur2 = dummy2->next;
         while (cur1->next != nullptr) {
-            ListNode *suc = cur1->next;
+            ListNode* suc = cur1->next;
             cur1->next = cur2;
             cur2 = cur2->next;
             cur1->next->next = suc;

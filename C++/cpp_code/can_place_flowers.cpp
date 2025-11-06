@@ -37,7 +37,7 @@ using namespace std;
 
 class Solution {
 public:
-    bool canPlaceFlowers(vector<int> &flowerbed, int n) {
+    bool canPlaceFlowers(vector<int>& flowerbed, int n) {
         if (n == 0) {
             return true;
         }
@@ -48,13 +48,7 @@ public:
 
         for (int i = 0; i < flowerbed.size(); i++)
             if (flowerbed[i] == 0) {
-                if ((i == 0 or flowerbed[i - 1]
-                ==
-                0
-                )
-                and(i == flowerbed.size() - 1 or flowerbed[i + 1] == 0)
-                )
-                {
+                if ((i == 0 or flowerbed[i - 1] == 0) and (i == flowerbed.size() - 1 or flowerbed[i + 1] == 0)) {
                     flowerbed[i] = 1;
                     n -= 1;
                 }
@@ -68,7 +62,7 @@ public:
 
 class Solution1 {
 private:
-    bool placeFlower(vector<int> &bed, int flower, int start) {
+    bool placeFlower(vector<int>& bed, int flower, int start) {
         if (flower <= 0) {
             return true;
         }
@@ -79,13 +73,7 @@ private:
 
         for (int i = start; i < bed.size(); i++) {
             if (bed[i] == 0) {
-                if ((i - 1 < 0 or bed[i - 1]
-                ==
-                0
-                )
-                and(i + 1 >= bed.size() or bed[i + 1] == 0)
-                )
-                {
+                if ((i - 1 < 0 or bed[i - 1] == 0) and (i + 1 >= bed.size() or bed[i + 1] == 0)) {
                     bed[i] = 1;
                     if (placeFlower(bed, flower - 1, i + 1)) {
                         return true;
@@ -99,7 +87,7 @@ private:
     }
 
 public:
-    bool canPlaceFlowers(vector<int> &flowerbed, int n) {
+    bool canPlaceFlowers(vector<int>& flowerbed, int n) {
         if (n == 0) {
             return true;
         }

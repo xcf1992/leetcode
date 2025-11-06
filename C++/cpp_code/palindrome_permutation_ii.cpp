@@ -32,12 +32,12 @@ using namespace std;
 
 class Solution {
 private:
-    void generate(int length, string cur, map<string, int> &letter, vector<string> &result) {
+    void generate(int length, string cur, map<string, int>& letter, vector<string>& result) {
         if (cur.size() == length) {
             result.push_back(cur);
         }
 
-        for (auto &it: letter) {
+        for (auto& it : letter) {
             if (it.second > 0) {
                 it.second -= 2;
                 generate(length, it.first + cur + it.first, letter, result);
@@ -49,12 +49,12 @@ private:
 public:
     vector<string> generatePalindromes(string s) {
         map<string, int> letter;
-        for (char c: s) {
+        for (char c : s) {
             letter[string(1, c)] += 1;
         }
 
         string odd = "";
-        for (auto &it: letter) {
+        for (auto& it : letter) {
             if (it.second % 2 == 1) {
                 if (odd.empty()) {
                     odd += it.first;

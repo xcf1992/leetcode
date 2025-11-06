@@ -38,7 +38,7 @@ using namespace std;
 
 class Solution {
 public:
-    int findKthPositive(vector<int> &arr, int k) {
+    int findKthPositive(vector<int>& arr, int k) {
         int result = 0;
         for (int i = 0; i < arr.size(); ++i) {
             int gap = arr[i] - result - 1;

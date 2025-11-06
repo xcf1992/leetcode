@@ -22,19 +22,11 @@ Input: N = 5, lamps = [[0,0],[4,4]], queries = [[1,1],[1,0]]
 Output: [1,0]
 Explanation:
 Before performing the first query we have both lamps [0,0] and [4,4] on.
-The grid representing which cells are lit looks like this, where [0,0] is the top left corner, and [4,4] is the bottom right corner:
-1 1 1 1 1
-1 1 0 0 1
-1 0 1 0 1
-1 0 0 1 1
-1 1 1 1 1
-Then the query at [1, 1] returns 1 because the cell is lit.  After this query, the lamp at [0, 0] turns off, and the grid now looks like this:
-1 0 0 0 1
-0 1 0 0 1
-0 0 1 0 1
-0 0 0 1 1
-1 1 1 1 1
-Before performing the second query we have only the lamp [4,4] on.  Now the query at [1,0] returns 0, because the cell is no longer lit.
+The grid representing which cells are lit looks like this, where [0,0] is the top left corner, and [4,4] is the bottom
+right corner: 1 1 1 1 1 1 1 0 0 1 1 0 1 0 1 1 0 0 1 1 1 1 1 1 1 Then the query at [1, 1] returns 1 because the cell is
+lit.  After this query, the lamp at [0, 0] turns off, and the grid now looks like this: 1 0 0 0 1 0 1 0 0 1 0 0 1 0 1 0
+0 0 1 1 1 1 1 1 1 Before performing the second query we have only the lamp [4,4] on.  Now the query at [1,0] returns 0,
+because the cell is no longer lit.
 
 Note:
 1 <= N <= 10^9
@@ -59,10 +51,10 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> gridIllumination(int N, vector<vector<int> > &lamps, vector<vector<int> > &queries) {
+    vector<int> gridIllumination(int N, vector<vector<int>>& lamps, vector<vector<int>>& queries) {
         unordered_map<int, int> row, col, diagonal, antiDiagonal;
-        unordered_map<int, unordered_set<int> > onLamps;
-        for (vector<int> &lamp: lamps) {
+        unordered_map<int, unordered_set<int>> onLamps;
+        for (vector<int>& lamp : lamps) {
             int r = lamp[0];
             int c = lamp[1];
             row[r] += 1;
@@ -73,20 +65,10 @@ public:
         }
 
         vector<int> result;
-        for (vector<int> &query: queries) {
+        for (vector<int>& query : queries) {
             int r = query[0];
             int c = query[1];
-            if (row[r] != 0 or col[c]
-            !=
-            0
-            or diagonal[r + c]
-            !=
-            0
-            or antiDiagonal[r - c]
-            !=
-            0
-            )
-            {
+            if (row[r] != 0 or col[c] != 0 or diagonal[r + c] != 0 or antiDiagonal[r - c] != 0) {
                 result.push_back(1);
                 for (int i = r - 1; i <= r + 1; ++i) {
                     for (int j = c - 1; j <= c + 1; ++j) {
@@ -98,9 +80,7 @@ public:
                         }
                     }
                 }
-            }
-            else
-            {
+            } else {
                 result.push_back(0);
             }
         }
@@ -111,10 +91,10 @@ public:
 // GET MLE after 4 months
 class Solution1 {
 public:
-    vector<int> gridIllumination(int N, vector<vector<int> > &lamps, vector<vector<int> > &queries) {
+    vector<int> gridIllumination(int N, vector<vector<int>>& lamps, vector<vector<int>>& queries) {
         vector<int> lampOn(lamps.size(), 1);
         vector<int> result;
-        for (vector<int> &query: queries) {
+        for (vector<int>& query : queries) {
             int row = query[0];
             int col = query[1];
 
@@ -122,21 +102,10 @@ public:
             for (int i = 0; i < lamps.size(); i++) {
                 int lRow = lamps[i][0];
                 int lCol = lamps[i][1];
-                if (lampOn[i] and(lRow == row or lCol == col or abs(lRow - row) == abs(lCol - col))
-                )
-                {
+                if (lampOn[i] and (lRow == row or lCol == col or abs(lRow - row) == abs(lCol - col))) {
                     found = 1;
                 }
-                if (row - 1 <= lRow and lRow
-                <=
-                row + 1
-                and col
-                -1 <= lCol
-                and lCol
-                <=
-                col + 1
-                )
-                {
+                if (row - 1 <= lRow and lRow <= row + 1 and col - 1 <= lCol and lCol <= col + 1) {
                     lampOn[i] = 0;
                 }
             }
@@ -152,18 +121,13 @@ private:
     vector<int> rDiff = vector<int>({1, -1, 0, 0, 1, 1, -1, -1});
     vector<int> cDiff = vector<int>({0, 0, 1, -1, 1, -1, 1, -1});
 
-    void turnOnOff(int row, int col, vector<vector<int> > &grids, int change) {
+    void turnOnOff(int row, int col, vector<vector<int>>& grids, int change) {
         grids[row][col] += change;
         int N = grids.size();
         for (int i = 0; i < rDiff.size(); i++) {
             int r = row + rDiff[i];
             int c = col + cDiff[i];
-            while (r >= 0 and c
-            >=
-            0
-            and r<N and c < N
-            )
-            {
+            while (r >= 0 and c >= 0 and r < N and c < N) {
                 grids[r][c] += change;
                 r += rDiff[i];
                 c += cDiff[i];
@@ -172,10 +136,10 @@ private:
     }
 
 public:
-    vector<int> gridIllumination(int N, vector<vector<int> > &lamps, vector<vector<int> > &queries) {
-        vector<vector<int> > grids(N, vector<int>(N, 0));
+    vector<int> gridIllumination(int N, vector<vector<int>>& lamps, vector<vector<int>>& queries) {
+        vector<vector<int>> grids(N, vector<int>(N, 0));
         unordered_set<int> lampPos;
-        for (vector<int> &lamp: lamps) {
+        for (vector<int>& lamp : lamps) {
             int row = lamp[0];
             int col = lamp[1];
             turnOnOff(row, col, grids, 1);
@@ -183,7 +147,7 @@ public:
         }
 
         vector<int> result;
-        for (vector<int> &query: queries) {
+        for (vector<int>& query : queries) {
             int row = query[0];
             int col = query[1];
             if (grids[row][col] > 0) {
@@ -195,12 +159,7 @@ public:
             for (int i = 0; i < rDiff.size(); i++) {
                 int r = row + rDiff[i];
                 int c = col + cDiff[i];
-                if (r >= 0 and c
-                >=
-                0
-                and r<N and c < N and lampPos.find(r * N + c) != lampPos.end()
-                )
-                {
+                if (r >= 0 and c >= 0 and r < N and c < N and lampPos.find(r * N + c) != lampPos.end()) {
                     turnOnOff(r, c, grids, -1);
                 }
             }

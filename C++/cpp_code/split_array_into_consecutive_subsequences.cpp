@@ -71,7 +71,7 @@ public:
             count[num] += 1;
         }
 
-        unordered_map<int, int> sub; // sub[i] counts the number of consecutive subsequences that ends at number i
+        unordered_map<int, int> sub;  // sub[i] counts the number of consecutive subsequences that ends at number i
         for (int num : nums) {
             if (count[num] == 0) {
                 continue;
@@ -81,13 +81,11 @@ public:
             if (sub[num - 1] > 0) {
                 sub[num - 1] -= 1;
                 sub[num] += 1;
-            }
-            else if (count[num + 1] > 0 and count[num + 2] > 0) {
+            } else if (count[num + 1] > 0 and count[num + 2] > 0) {
                 count[num + 1] -= 1;
                 count[num + 2] -= 1;
                 sub[num + 2] += 1;
-            }
-            else {
+            } else {
                 return false;
             }
         }

@@ -41,16 +41,13 @@ using namespace std;
 
 class Solution {
 private:
-    pair<double, double> traverse(TreeNode *root, double &result) {
+    pair<double, double> traverse(TreeNode* root, double& result) {
         if (root == nullptr) {
             return {0.0, 0.0};
         }
 
-        if (root->left == nullptr and
-        root->right == nullptr
-        )
-        {
-            result = max(result, (double) (root->val));
+        if (root->left == nullptr and root->right == nullptr) {
+            result = max(result, (double)(root->val));
             return {root->val, 1.0};
         }
 
@@ -64,7 +61,7 @@ private:
     }
 
 public:
-    double maximumAverageSubtree(TreeNode *root) {
+    double maximumAverageSubtree(TreeNode* root) {
         double result = 0.0;
         traverse(root, result);
         return result;

@@ -68,7 +68,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<string> getFolderNames(vector<string> &names) {
+    vector<string> getFolderNames(vector<string>& names) {
         unordered_set<string> s;
         unordered_map<string, int> m;
         vector<string> res(names.size());

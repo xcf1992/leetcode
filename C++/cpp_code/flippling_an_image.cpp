@@ -43,7 +43,7 @@ using namespace std;
 
 class Solution {
 private:
-    void change(vector<int> &row) {
+    void change(vector<int>& row) {
         int left = 0;
         int right = row.size() - 1;
         while (left <= right) {
@@ -58,14 +58,14 @@ private:
     }
 
 public:
-    vector<vector<int> > flipAndInvertImage(vector<vector<int> > &A) {
+    vector<vector<int>> flipAndInvertImage(vector<vector<int>>& A) {
         int m = A.size();
         if (m == 0) {
             return A;
         }
         int n = A[0].size();
 
-        for (vector<int> &row: A) {
+        for (vector<int>& row : A) {
             change(row);
         }
         return A;

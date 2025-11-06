@@ -51,14 +51,14 @@ using namespace std;
 
 class Solution {
 private:
-    int find(int num, vector<int> &friends) {
+    int find(int num, vector<int>& friends) {
         if (friends[num] != num) {
             friends[num] = find(friends[num], friends);
         }
         return friends[num];
     }
 
-    void unin(int num1, int num2, vector<int> &friends, vector<int> &count) {
+    void unin(int num1, int num2, vector<int>& friends, vector<int>& count) {
         int f1 = find(num1, friends);
         int f2 = find(num2, friends);
         if (f1 == f2) {
@@ -75,7 +75,7 @@ private:
     }
 
 public:
-    int findCircleNum(vector<vector<int> > &M) {
+    int findCircleNum(vector<vector<int>>& M) {
         int n = M.size();
         vector<int> friends(n, -1);
         iota(friends.begin(), friends.end(), 0);
@@ -99,19 +99,17 @@ public:
 
 class Solution1 {
 private:
-    void visit(vector<vector<int> > &M, vector<bool> &visited, int start) {
+    void visit(vector<vector<int>>& M, vector<bool>& visited, int start) {
         visited[start] = true;
         for (int i = 0; i < M[0].size(); i++) {
-            if (!visited[i] and M[start][i]
-            )
-            {
+            if (!visited[i] and M[start][i]) {
                 visit(M, visited, i);
             }
         }
     }
 
 public:
-    int findCircleNum(vector<vector<int> > &M) {
+    int findCircleNum(vector<vector<int>>& M) {
         vector<bool> visited(M.size(), false);
         int result = 0;
         for (int i = 0; i < M.size(); i++) {
@@ -119,9 +117,7 @@ public:
                 visited[i] = true;
                 result += 1;
                 for (int j = 0; j < M[0].size(); j++) {
-                    if (!visited[j] and M[i][j]
-                    )
-                    {
+                    if (!visited[j] and M[i][j]) {
                         visit(M, visited, j);
                     }
                 }

@@ -32,9 +32,8 @@ S will consist of lowercase letters and have length in range [1, 500].
 using namespace std;
 
 struct myComp {
-    bool operator()(pair<char, int> &a, pair<char, int> &b) {
-        return a.second < b.second
-        or(a.second == b.second and a.first < b.first);
+    bool operator()(pair<char, int>& a, pair<char, int>& b) {
+        return a.second < b.second or (a.second == b.second and a.first < b.first);
     }
 };
 
@@ -47,11 +46,11 @@ public:
         }
 
         vector<int> letter(26, 0);
-        for (char c: S) {
+        for (char c : S) {
             letter[c - 'a'] += 1;
         }
 
-        priority_queue<pair<char, int>, vector<pair<char, int> >, myComp> pq;
+        priority_queue<pair<char, int>, vector<pair<char, int>>, myComp> pq;
         for (int i = 0; i < 26; ++i)
             if (letter[i]) {
                 if (letter[i] * 2 > n + 1) {

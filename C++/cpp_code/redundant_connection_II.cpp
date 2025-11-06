@@ -79,16 +79,16 @@ So can1 is the answer in this case.
 */
 class Solution {
 private:
-    int find(vector<int> &parent, int node) {
+    int find(vector<int>& parent, int node) {
         return parent[node] == 0 ? node : find(parent, parent[node]);
     }
 
 public:
-    vector<int> findRedundantDirectedConnection(vector<vector<int> > &edges) {
+    vector<int> findRedundantDirectedConnection(vector<vector<int>>& edges) {
         int n = edges.size();
         vector<int> parent(n + 1, 0);
-        vector<vector<int> > result;
-        for (vector<int> &edge: edges) {
+        vector<vector<int>> result;
+        for (vector<int>& edge : edges) {
             if (parent[edge[1]] == 0) {
                 parent[edge[1]] = edge[0];
             } else {
@@ -101,7 +101,7 @@ public:
         for (int i = 0; i <= n; i++) {
             parent[i] = 0;
         }
-        for (vector<int> &edge: edges) {
+        for (vector<int>& edge : edges) {
             if (edge[1] == 0) {
                 continue;
             }
@@ -118,6 +118,6 @@ public:
             }
             parent[v] = pu;
         }
-        return result[1]; // return candidate occur last
+        return result[1];  // return candidate occur last
     }
 };

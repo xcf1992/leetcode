@@ -39,7 +39,7 @@ using namespace std;
 
 class Solution {
 public:
-    void duplicateZeros(vector<int> &arr) {
+    void duplicateZeros(vector<int>& arr) {
         int n = arr.size();
         int index = 0;
         for (int i = 0; i < n; ++i, ++index)
@@ -75,7 +75,7 @@ Expected
 */
 class Solution1 {
 public:
-    void duplicateZeros(vector<int> &arr) {
+    void duplicateZeros(vector<int>& arr) {
         int n = arr.size();
         if (n <= 1) {
             return;
@@ -92,11 +92,7 @@ public:
 
         int right = n - 1;
         int left = n - count - 1;
-        while (left >= 0 and count
-        >
-        0
-        )
-        {
+        while (left >= 0 and count > 0) {
             if (arr[left] == 0) {
                 arr[right] = 0;
                 right -= 1;

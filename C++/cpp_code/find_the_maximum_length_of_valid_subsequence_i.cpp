@@ -8,7 +8,8 @@ A subsequence sub of nums with length x is called valid if it satisfies:
 (sub[0] + sub[1]) % 2 == (sub[1] + sub[2]) % 2 == ... == (sub[x - 2] + sub[x - 1]) % 2.
 Return the length of the longest valid subsequence of nums.
 
-A subsequence is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.
+A subsequence is an array that can be derived from another array by deleting some or no elements without changing the
+order of the remaining elements.
 
 
 
@@ -65,7 +66,7 @@ using namespace std;
 
 class Solution {
 public:
-    int maximumLength(vector<int> &nums) {
+    int maximumLength(vector<int>& nums) {
         int even_cnt = 0;
         int odd_cnt = 0;
         for (int i = 0; i < nums.size(); i++) {
@@ -78,7 +79,7 @@ public:
 
         int even_dp = 0;
         int odd_dp = 0;
-        for (int cur: nums) {
+        for (int cur : nums) {
             if (cur % 2 == 0) {
                 even_dp = max(even_dp, odd_dp + 1);
             } else {

@@ -54,7 +54,7 @@ using namespace std;
 
 class Solution {
 public:
-    TreeNode *insertIntoBST(TreeNode *root, int val) {
+    TreeNode* insertIntoBST(TreeNode* root, int val) {
         if (root == nullptr) {
             return new TreeNode(val);
         }

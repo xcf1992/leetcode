@@ -70,9 +70,7 @@ Space O(N)
 class Solution {
 public:
     int maxEvents(vector<vector<int>>& events) {
-        sort(events.begin(), events.end(), [](vector<int>& a, vector<int>& b) {
-            return a[0] < b[0];
-        });
+        sort(events.begin(), events.end(), [](vector<int>& a, vector<int>& b) { return a[0] < b[0]; });
         priority_queue<int, vector<int>, greater<int>> pq;
         int n = events.size();
         int i = 0;

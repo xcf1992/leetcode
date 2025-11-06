@@ -48,7 +48,8 @@ using namespace std;
 /*
 Reference
 POJ: http://poj.org/problem?id=1981
-StackOverflow: https://stackoverflow.com/questions/3229459/algorithm-to-cover-maximal-number-of-points-with-one-circle-of-given-radius/3229582#3229582
+StackOverflow:
+https://stackoverflow.com/questions/3229459/algorithm-to-cover-maximal-number-of-points-with-one-circle-of-given-radius/3229582#3229582
 
 
 Plan

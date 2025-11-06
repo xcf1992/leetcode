@@ -63,7 +63,7 @@ These is are necessarily increasing as j (and primes[j]) increases, so this chec
 class Solution {
     // binary search
 private:
-    vector<int> under(double limit, vector<int> &A) {
+    vector<int> under(double limit, vector<int>& A) {
         int numer = 0;
         int denom = 1;
         int count = 0;
@@ -78,11 +78,7 @@ private:
             count += i + 1;
             // There are i+1 fractions: (primes[0], primes[j]),
             // (primes[1], primes[j]), ..., (primes[i], primes[j])
-            if (i >= 0 and numer *A[j]
-            <
-            denom * A[i]
-            )
-            {
+            if (i >= 0 and numer * A[j] < denom * A[i]) {
                 numer = A[i];
                 denom = A[j];
             }
@@ -91,7 +87,7 @@ private:
     }
 
 public:
-    vector<int> kthSmallestPrimeFraction(vector<int> &A, int K) {
+    vector<int> kthSmallestPrimeFraction(vector<int>& A, int K) {
         double left = 0;
         double right = 1;
         vector<int> result({0, 1});
@@ -119,11 +115,9 @@ public:
 class Solution1 {
     // 6.61%
 public:
-    vector<int> kthSmallestPrimeFraction(vector<int> &A, int K) {
-        auto cmp = [&A](auto &a, auto &b) {
-            return A[a.first] * A[b.second] > A[a.second] * A[b.first];
-        };
-        priority_queue<pair<int, int>, vector<pair<int, int> >, decltype(cmp)> pq(cmp);
+    vector<int> kthSmallestPrimeFraction(vector<int>& A, int K) {
+        auto cmp = [&A](auto& a, auto& b) { return A[a.first] * A[b.second] > A[a.second] * A[b.first]; };
+        priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(cmp)> pq(cmp);
 
         for (int i = 1; i < A.size(); i++) {
             pq.push({0, i});

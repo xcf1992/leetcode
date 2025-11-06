@@ -63,7 +63,7 @@ public:
         events[end] -= 1;
         int booked = 0;
         int result = 0;
-        for (auto &event: events) {
+        for (auto& event : events) {
             booked += event.second;
             result = max(result, booked);
         }
@@ -72,7 +72,7 @@ public:
 };
 
 /*
-* Your MyCalendarThree object will be instantiated and called as such:
-* MyCalendarThree obj = new MyCalendarThree();
-* int param_1 = obj.book(start,end);
-*/
+ * Your MyCalendarThree object will be instantiated and called as such:
+ * MyCalendarThree obj = new MyCalendarThree();
+ * int param_1 = obj.book(start,end);
+ */

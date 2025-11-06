@@ -151,10 +151,7 @@ public:
         dp[0] = 1.0;
         for (int i = 1; i < K + W; i++) {
             for (int j = 1; j <= W; j++) {
-                if (i - j >= 0 and i
-                -j < K
-                )
-                {
+                if (i - j >= 0 and i - j < K) {
                     dp[i] += probability * dp[i - j];
                 }
             }

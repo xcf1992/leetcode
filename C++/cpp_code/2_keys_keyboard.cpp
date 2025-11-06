@@ -68,7 +68,7 @@ public:
 class Solution {
 public:
     int minSteps(int n) {
-        //100%
+        // 100%
         if (n == 1) {
             return 0;
         }

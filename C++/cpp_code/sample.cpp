@@ -6,7 +6,7 @@
 #include <unordered_set>
 using namespace std;
 
-void duplicate(string &rock) {
+void duplicate(string& rock) {
     unordered_map<char, bool> line;
     for (int i = 0; i < rock.size(); i++) {
         if (line[rock[i]]) {
@@ -18,7 +18,7 @@ void duplicate(string &rock) {
     }
 }
 
-int gemStone(vector<string> &rocks) {
+int gemStone(vector<string>& rocks) {
     unordered_map<char, int> gems;
     int commons = 0;
     for (int i = 0; i < rocks.size(); i++) {

@@ -53,7 +53,7 @@ using namespace std;
 
 class Solution {
 public:
-    TreeNode *trimBST(TreeNode *root, int L, int R) {
+    TreeNode* trimBST(TreeNode* root, int L, int R) {
         if (root == nullptr) {
             return root;
         }

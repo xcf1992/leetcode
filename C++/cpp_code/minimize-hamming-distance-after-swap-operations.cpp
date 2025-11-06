@@ -68,30 +68,30 @@ if not: diff + 1
 
 */
 class UnionFind {
-    public:
+public:
     vector<int> parent, rank;
-    UnionFind(int n){
+    UnionFind(int n) {
         rank.resize(n, 0);
         parent.resize(n);
-        for(int i=0; i<n; i++){
+        for (int i = 0; i < n; i++) {
             parent[i] = i;
         }
     }
-    int find(int i){
-        if(parent[i] == i)
+    int find(int i) {
+        if (parent[i] == i)
             return i;
         return parent[i] = find(parent[i]);
     }
-    void Union(int x, int y){
+    void Union(int x, int y) {
         int px = find(x);
         int py = find(y);
 
-        if(px != py){
-            if(rank[px] > rank[py]){
+        if (px != py) {
+            if (rank[px] > rank[py]) {
                 parent[py] = px;
-            }else if(rank[px] < rank[py]){
+            } else if (rank[px] < rank[py]) {
                 parent[px] = py;
-            }else{
+            } else {
                 parent[py] = px;
                 rank[px]++;
             }
@@ -104,24 +104,24 @@ public:
         int n = source.size();
         int res = 0;
         UnionFind uf(n);
-        for(int i = 0; i<allowedSwaps.size(); i++){
+        for (int i = 0; i < allowedSwaps.size(); i++) {
             uf.Union(allowedSwaps[i][0], allowedSwaps[i][1]);
         }
-        unordered_map<int, unordered_map<int,int>> mp;
+        unordered_map<int, unordered_map<int, int>> mp;
 
-        for(int i=0; i<n; i++){
-            //parent
+        for (int i = 0; i < n; i++) {
+            // parent
             int pi = uf.find(i);
             mp[pi][source[i]]++;
         }
 
-        for(int i=0; i<n; i++){
+        for (int i = 0; i < n; i++) {
             int num = target[i];
-            //parent
+            // parent
             int pi = uf.find(i);
-            if(mp[pi][num] <= 0){
+            if (mp[pi][num] <= 0) {
                 res++;
-            }else{
+            } else {
                 mp[pi][num]--;
             }
         }

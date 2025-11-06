@@ -17,7 +17,8 @@ For example, [2,7,4] is a subsequence of [4,2,3,7,2,1,4] (the underlined element
 Example 1:
 Input: target = [5,1,3], arr = [9,4,2,3,4]
 Output: 2
-Explanation: You can add 5 and 1 in such a way that makes arr = [5,9,4,1,2,3,4], then target will be a subsequence of arr.
+Explanation: You can add 5 and 1 in such a way that makes arr = [5,9,4,1,2,3,4], then target will be a subsequence of
+arr.
 
 Example 2:
 Input: target = [6,4,8,1,3,2], arr = [4,7,6,2,3,8,6,1]
@@ -81,7 +82,7 @@ Space O(n)
 */
 class Solution {
 public:
- int minOperations(vector<int>& target, vector<int>& A) {
+    int minOperations(vector<int>& target, vector<int>& A) {
         unordered_map<int, int> h;
         int n = A.size();
         for (int i = 0; i < target.size(); ++i) {
@@ -90,7 +91,8 @@ public:
 
         vector<int> stack;
         for (int a : A) {
-            if (h.find(a) == h.end()) continue;
+            if (h.find(a) == h.end())
+                continue;
             if (stack.empty() || h[a] > stack.back()) {
                 stack.push_back(h[a]);
                 continue;

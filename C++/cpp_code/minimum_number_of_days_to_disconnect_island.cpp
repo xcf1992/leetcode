@@ -98,9 +98,9 @@ private:
         }
     }
 
-    int count_islands(vector<vector<int>> & grid) {
+    int count_islands(vector<vector<int>>& grid) {
         int count = 0;
-        vector<vector<int>> vis(n, vector<int> (m, 0));
+        vector<vector<int>> vis(n, vector<int>(m, 0));
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 if (!vis[i][j] and grid[i][j]) {
@@ -111,17 +111,18 @@ private:
         }
         return count;
     }
+
 public:
     int minDays(vector<vector<int>>& grid) {
         n = grid.size();
         m = grid[0].size();
-		// check for 0 ans
+        // check for 0 ans
         int islands = count_islands(grid);
         if (islands > 1 or islands == 0) {
             return 0;
         }
 
-        for (int i = 0 ; i < n; i ++) {
+        for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 if (grid[i][j]) {
                     grid[i][j] = 0;

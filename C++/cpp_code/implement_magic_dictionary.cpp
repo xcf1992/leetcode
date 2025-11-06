@@ -48,7 +48,7 @@ public:
 
     /* Build a dictionary through a list of words*/
     void buildDict(vector<string> dict) {
-        for (string word: dict) {
+        for (string word : dict) {
             magician.insert(word);
         }
     }
@@ -76,7 +76,7 @@ public:
 class TrieNode {
 private:
     bool isRoot;
-    vector<TrieNode *> nodes = vector<TrieNode *>(26, nullptr);
+    vector<TrieNode*> nodes = vector<TrieNode*>(26, nullptr);
 
 public:
     void insert(string word, int start) {
@@ -94,10 +94,7 @@ public:
 
     bool find(string word, int start, int modification) {
         if (start == word.size()) {
-            return isRoot
-            and modification
-            ==
-            1;
+            return isRoot and modification == 1;
         }
 
         if (modification > 1) {
@@ -105,12 +102,8 @@ public:
         }
 
         for (int i = 0; i < 26; i++) {
-            TrieNode *node = nodes[i];
-            if (node and node
-            ->
-            find(word, start + 1, modification + (i == word[start] - 'a' ? 0 : 1))
-            )
-            {
+            TrieNode* node = nodes[i];
+            if (node and node->find(word, start + 1, modification + (i == word[start] - 'a' ? 0 : 1))) {
                 return true;
             }
         }
@@ -120,7 +113,7 @@ public:
 
 class MagicDictionary1 {
 private:
-    TrieNode *root;
+    TrieNode* root;
 
 public:
     /* Initialize your data structure here.*/
@@ -130,7 +123,7 @@ public:
 
     /* Build a dictionary through a list of words*/
     void buildDict(vector<string> dict) {
-        for (string word: dict) {
+        for (string word : dict) {
             root->insert(word, 0);
         }
     }
@@ -142,8 +135,8 @@ public:
 };
 
 /*
-* Your MagicDictionary object will be instantiated and called as such:
-* MagicDictionary obj = new MagicDictionary();
-* obj.buildDict(dict);
-* bool param_2 = obj.search(word);
-*/
+ * Your MagicDictionary object will be instantiated and called as such:
+ * MagicDictionary obj = new MagicDictionary();
+ * obj.buildDict(dict);
+ * bool param_2 = obj.search(word);
+ */

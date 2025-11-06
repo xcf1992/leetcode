@@ -12,14 +12,15 @@ and each node of the tree has a label which is a lower-case character given in t
 The edges array is given on the form edges[i] = [ai, bi],
 which means there is an edge between nodes ai and bi in the tree.
 
-Return an array of size n where ans[i] is the number of nodes in the subtree of the ith node which have the same label as node i.
-A subtree of a tree T is the tree consisting of a node in T and all of its descendant nodes.
+Return an array of size n where ans[i] is the number of nodes in the subtree of the ith node which have the same label
+as node i. A subtree of a tree T is the tree consisting of a node in T and all of its descendant nodes.
 
 Example 1:
 Input: n = 7, edges = [[0,1],[0,2],[1,4],[1,5],[2,3],[2,6]], labels = "abaedcd"
 Output: [2,1,1,1,1,1,1]
-Explanation: Node 0 has label 'a' and its sub-tree has node 2 with label 'a' as well, thus the answer is 2. Notice that any node is part of its sub-tree.
-Node 1 has a label 'b'. The sub-tree of node 1 contains nodes 1,4 and 5, as nodes 4 and 5 have different labels than node 1, the answer is just 1 (the node itself).
+Explanation: Node 0 has label 'a' and its sub-tree has node 2 with label 'a' as well, thus the answer is 2. Notice that
+any node is part of its sub-tree. Node 1 has a label 'b'. The sub-tree of node 1 contains nodes 1,4 and 5, as nodes 4
+and 5 have different labels than node 1, the answer is just 1 (the node itself).
 
 Example 2:
 Input: n = 4, edges = [[0,1],[1,2],[0,3]], labels = "bbbb"
@@ -67,7 +68,7 @@ using namespace std;
 
 class Solution {
 private:
-    void dfs(int i, string &l, vector<vector<int>>& al, int cnt[], vector<int> &res) {
+    void dfs(int i, string& l, vector<vector<int>>& al, int cnt[], vector<int>& res) {
         if (res[i] == 0) {
             res[i] = 1;
             for (auto j : al[i]) {
@@ -79,12 +80,13 @@ private:
             res[i] = ++cnt[l[i] - 'a'];
         }
     }
+
 public:
     vector<int> countSubTrees(int n, vector<vector<int>>& edges, string labels) {
         vector<int> res(n);
         int cnt[26] = {};
         vector<vector<int>> al(n);
-        for (auto &e : edges) {
+        for (auto& e : edges) {
             al[e[0]].push_back(e[1]);
             al[e[1]].push_back(e[0]);
         }

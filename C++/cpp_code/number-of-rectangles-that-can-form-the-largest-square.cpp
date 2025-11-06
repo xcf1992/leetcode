@@ -48,7 +48,7 @@ public:
     int countGoodRectangles(vector<vector<int>>& rectangles) {
         int result = 0;
         int maxLen = 0;
-        for (vector<int> &rec : rectangles) {
+        for (vector<int>& rec : rectangles) {
             int curLen = min(rec[0], rec[1]);
             if (curLen < maxLen) {
                 continue;
@@ -56,8 +56,7 @@ public:
             if (curLen > maxLen) {
                 maxLen = curLen;
                 result = 1;
-            }
-            else {
+            } else {
                 result += 1;
             }
         }

@@ -1,6 +1,6 @@
 /*
 5083. Occurrences After Bigram
-Given words first and second, consider occurrences in some text of the form "first second third", 
+Given words first and second, consider occurrences in some text of the form "first second third",
 where second comes immediately after first, and third comes immediately after second.
 
 For each such occurrence, add "third" to the answer, and return the answer.
@@ -13,7 +13,7 @@ Example 2:
 
 Input: text = "we will we will rock you", first = "we", second = "will"
 Output: ["we","rock"]
- 
+
 
 Note:
 
@@ -54,11 +54,7 @@ public:
         vector<string> tokens = splitText(text);
         vector<string> result;
         for (int i = 2; i < tokens.size(); ++i) {
-            if (tokens[i - 2] == first and tokens[i - 1]
-            ==
-            second
-            )
-            {
+            if (tokens[i - 2] == first and tokens[i - 1] == second) {
                 result.push_back(tokens[i]);
             }
         }

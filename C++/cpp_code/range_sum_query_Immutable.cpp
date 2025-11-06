@@ -33,9 +33,9 @@ private:
     vector<int> sum;
 
 public:
-    NumArray(vector<int> &nums) {
+    NumArray(vector<int>& nums) {
         sum.push_back(0);
-        for (auto i: nums) {
+        for (auto i : nums) {
             sum.push_back(sum.back() + i);
         }
     }

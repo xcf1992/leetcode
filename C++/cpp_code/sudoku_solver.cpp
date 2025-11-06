@@ -36,23 +36,15 @@ using namespace std;
 
 class Solution {
 private:
-    bool isValid(int row, int col, vector<vector<char> > &board) {
+    bool isValid(int row, int col, vector<vector<char>>& board) {
         for (int i = 0; i != 9; i++) {
-            if (i != col and board[row][col]
-            ==
-            board[row][i]
-            )
-            {
+            if (i != col and board[row][col] == board[row][i]) {
                 return false;
             }
         }
 
         for (int i = 0; i != 9; i++) {
-            if (i != row and board[row][col]
-            ==
-            board[i][col]
-            )
-            {
+            if (i != row and board[row][col] == board[i][col]) {
                 return false;
             }
         }
@@ -63,13 +55,7 @@ private:
             for (int j = 0; j != 3; j++) {
                 int x = sRow + i;
                 int y = sCol + j;
-                if (x != row and y
-                !=
-                col and board[x][y]
-                ==
-                board[row][col]
-                )
-                {
+                if (x != row and y != col and board[x][y] == board[row][col]) {
                     return false;
                 }
             }
@@ -77,7 +63,7 @@ private:
         return true;
     }
 
-    bool dfs(vector<vector<char> > &board) {
+    bool dfs(vector<vector<char>>& board) {
         for (int i = 0; i != 9; i++) {
             for (int j = 0; j != 9; j++) {
                 if (board[i][j] != '.') {
@@ -85,9 +71,7 @@ private:
                 }
                 for (int k = 1; k <= 9; k++) {
                     board[i][j] = k + '0';
-                    if (isValid(i, j, board) and dfs(board)
-                    )
-                    {
+                    if (isValid(i, j, board) and dfs(board)) {
                         return true;
                     }
                 }
@@ -99,7 +83,7 @@ private:
     }
 
 public:
-    void solveSudoku(vector<vector<char> > &board) {
+    void solveSudoku(vector<vector<char>>& board) {
         dfs(board);
     }
 };

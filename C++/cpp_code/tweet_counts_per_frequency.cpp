@@ -29,11 +29,14 @@ Explanation
 TweetCounts tweetCounts = new TweetCounts();
 tweetCounts.recordTweet("tweet3", 0);
 tweetCounts.recordTweet("tweet3", 60);
-tweetCounts.recordTweet("tweet3", 10);                             // All tweets correspond to "tweet3" with recorded times at 0, 10 and 60.
-tweetCounts.getTweetCountsPerFrequency("minute", "tweet3", 0, 59); // return [2]. The frequency is per minute (60 seconds), so there is one interval of time: 1) [0, 60> - > 2 tweets.
-tweetCounts.getTweetCountsPerFrequency("minute", "tweet3", 0, 60); // return [2, 1]. The frequency is per minute (60 seconds), so there are two intervals of time: 1) [0, 60> - > 2 tweets, and 2) [60,61> - > 1 tweet.
-tweetCounts.recordTweet("tweet3", 120);                            // All tweets correspond to "tweet3" with recorded times at 0, 10, 60 and 120.
-tweetCounts.getTweetCountsPerFrequency("hour", "tweet3", 0, 210);  // return [4]. The frequency is per hour (3600 seconds), so there is one interval of time: 1) [0, 211> - > 4 tweets.
+tweetCounts.recordTweet("tweet3", 10);                             // All tweets correspond to "tweet3" with recorded
+times at 0, 10 and 60. tweetCounts.getTweetCountsPerFrequency("minute", "tweet3", 0, 59); // return [2]. The frequency
+is per minute (60 seconds), so there is one interval of time: 1) [0, 60> - > 2 tweets.
+tweetCounts.getTweetCountsPerFrequency("minute", "tweet3", 0, 60); // return [2, 1]. The frequency is per minute (60
+seconds), so there are two intervals of time: 1) [0, 60> - > 2 tweets, and 2) [60,61> - > 1 tweet.
+tweetCounts.recordTweet("tweet3", 120);                            // All tweets correspond to "tweet3" with recorded
+times at 0, 10, 60 and 120. tweetCounts.getTweetCountsPerFrequency("hour", "tweet3", 0, 210);  // return [4]. The
+frequency is per hour (3600 seconds), so there is one interval of time: 1) [0, 211> - > 4 tweets.
 
 Constraints:
 There will be at most 10000 operations considering both recordTweet and getTweetCountsPerFrequency.
@@ -56,7 +59,7 @@ using namespace std;
 
 class TweetCounts {
 private:
-    unordered_map<string, multiset<int> > tweets;
+    unordered_map<string, multiset<int>> tweets;
 
 public:
     TweetCounts() {
@@ -80,12 +83,7 @@ public:
             return result;
         }
 
-        for (auto t = target->second.lower_bound(startTime); t != target->second.end() and *t
-        <=
-        endTime;
-        ++t
-        )
-        {
+        for (auto t = target->second.lower_bound(startTime); t != target->second.end() and *t <= endTime; ++t) {
             result[(*t - startTime) / gap] += 1;
         }
         return result;
@@ -93,8 +91,8 @@ public:
 };
 
 /**
-* Your TweetCounts object will be instantiated and called as such:
-* TweetCounts* obj = new TweetCounts();
-* obj->recordTweet(tweetName,time);
-* vector<int> param_2 = obj->getTweetCountsPerFrequency(freq,tweetName,startTime,endTime);
-*/
+ * Your TweetCounts object will be instantiated and called as such:
+ * TweetCounts* obj = new TweetCounts();
+ * obj->recordTweet(tweetName,time);
+ * vector<int> param_2 = obj->getTweetCountsPerFrequency(freq,tweetName,startTime,endTime);
+ */

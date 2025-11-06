@@ -45,10 +45,10 @@ Now if a number is greater than c2, we can safely return true.
 */
 class Solution {
 public:
-    bool increasingTriplet(vector<int> &nums) {
+    bool increasingTriplet(vector<int>& nums) {
         int smallest = INT_MAX;
         int smaller = INT_MAX;
-        for (int n: nums) {
+        for (int n : nums) {
             if (n <= smallest) {
                 smallest = n;
             } else if (n <= smaller) {

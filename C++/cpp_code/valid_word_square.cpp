@@ -75,15 +75,11 @@ using namespace std;
 
 class Solution {
 public:
-    bool validWordSquare(vector<string> &words) {
+    bool validWordSquare(vector<string>& words) {
         int m = words.size();
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < words[i].size(); j++) {
-                if (j >= m or words[j]
-                .
-                size() <= i
-                )
-                {
+                if (j >= m or words[j].size() <= i) {
                     return false;
                 }
                 if (words[i][j] != words[j][i]) {

@@ -88,7 +88,7 @@ class DinnerPlates {
     // from god lee but it does not work, check back later
 public:
     int c;
-    map<int, vector<int> > m;
+    map<int, vector<int>> m;
     set<int> available;
 
     DinnerPlates(int capacity) {
@@ -131,7 +131,7 @@ public:
 class DinnerPlates1 {
     // 17.40%
 private:
-    vector<stack<int> > plates;
+    vector<stack<int>> plates;
     int limit = 0;
     map<int, int> count;
 
@@ -166,10 +166,7 @@ public:
 
         int result = plates.back().top();
         plates.back().pop();
-        while (!plates.empty() and
-        plates.back().empty()
-        )
-        {
+        while (!plates.empty() and plates.back().empty()) {
             count.erase(plates.size() - 1);
             plates.pop_back();
         }
@@ -200,9 +197,9 @@ public:
 };
 
 /*
-* Your DinnerPlates object will be instantiated and called as such:
-* DinnerPlates* obj = new DinnerPlates(capacity);
-* obj->push(val);
-* int param_2 = obj->pop();
-* int param_3 = obj->popAtStack(index);
-*/
+ * Your DinnerPlates object will be instantiated and called as such:
+ * DinnerPlates* obj = new DinnerPlates(capacity);
+ * obj->push(val);
+ * int param_2 = obj->pop();
+ * int param_3 = obj->popAtStack(index);
+ */

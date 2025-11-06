@@ -62,7 +62,7 @@ class Solution {
 public:
     int minFlips(string target) {
         int result = 0;
-        for (char c: target) {
+        for (char c : target) {
             char cur = '0' + (result % 2);
             if (cur != c) {
                 result += 1;

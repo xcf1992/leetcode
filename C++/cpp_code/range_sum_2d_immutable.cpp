@@ -42,15 +42,15 @@ using namespace std;
 
 class NumMatrix {
 private:
-    vector<vector<int> > sumMatrix;
+    vector<vector<int>> sumMatrix;
 
 public:
-    NumMatrix(vector<vector<int> > matrix) {
+    NumMatrix(vector<vector<int>> matrix) {
         int m = matrix.size();
         sumMatrix.resize(m, vector<int>());
         for (int i = 0; i < m; i++) {
             sumMatrix[i].push_back(0);
-            for (int num: matrix[i]) {
+            for (int num : matrix[i]) {
                 sumMatrix[i].push_back(sumMatrix[i].back() + num);
             }
         }
@@ -69,4 +69,4 @@ public:
  * Your NumMatrix object will be instantiated and called as such:
  * NumMatrix obj = new NumMatrix(matrix);
  * int param_1 = obj.sumRegion(row1,col1,row2,col2);
-*/
+ */

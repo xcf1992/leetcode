@@ -4,7 +4,8 @@
 On an infinite number line, the position of the i-th stone is given by stones[i].
 Call a stone an endpoint stone if it has the smallest or largest position.
 
-Each turn, you pick up an endpoint stone and move it to an unoccupied position so that it is no longer an endpoint stone.
+Each turn, you pick up an endpoint stone and move it to an unoccupied position so that it is no longer an endpoint
+stone.
 
 In particular, if the stones are at say, stones = [1,2,5],
 you cannot move the endpoint stone at position 5,
@@ -124,7 +125,7 @@ For case 1,2,3,4,10,
 */
 class Solution {
 public:
-    vector<int> numMovesStonesII(vector<int> &stones) {
+    vector<int> numMovesStonesII(vector<int>& stones) {
         sort(stones.begin(), stones.end());
 
         int n = stones.size();
@@ -137,14 +138,9 @@ public:
             }
 
             // j - i + 1 is the number of stones already in this interval
-            if (j - i + 1 == n - 1 and stones[j]
-            -stones[i] + 1 == n - 1
-            )
-            {
+            if (j - i + 1 == n - 1 and stones[j] - stones[i] + 1 == n - 1) {
                 minMove = min(minMove, 2);
-            }
-            else
-            {
+            } else {
                 minMove = min(minMove, n - (j - i + 1));
             }
         }

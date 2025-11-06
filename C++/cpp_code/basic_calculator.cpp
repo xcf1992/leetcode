@@ -38,23 +38,13 @@ using namespace std;
 
 class Solution {
 private:
-    int evaluate(string &s, int &i) {
+    int evaluate(string& s, int& i) {
         long res = 0;
         int positive = 1;
-        while (i < s.size() and s[i]
-        !=
-        ')'
-        )
-        {
-            if (s[i] == '+' or s[i]
-            ==
-            ' '
-            )
-            {
+        while (i < s.size() and s[i] != ')') {
+            if (s[i] == '+' or s[i] == ' ') {
                 i++;
-            }
-            else
-            if (s[i] == '-') {
+            } else if (s[i] == '-') {
                 i++;
                 positive = -1;
             } else if (s[i] == '(') {
@@ -63,9 +53,7 @@ private:
                 positive = 1;
             } else {
                 long num = 0;
-                while (i < s.size() and isdigit(s[i])
-                )
-                {
+                while (i < s.size() and isdigit(s[i])) {
                     num = num * 10 + s[i] - '0';
                     i += 1;
                 }

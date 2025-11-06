@@ -55,7 +55,7 @@ public:
         int len = words[0].size();
         for (int i = 0; i <= n - k * len; ++i) {
             unordered_map<string, int> find;
-            int j = 0; // j is number of words we have found so far in current substring
+            int j = 0;  // j is number of words we have found so far in current substring
             for (; j < k; ++j) {
                 string cur = s.substr(i + j * len, len);
                 if (count.find(cur) == count.end()) {

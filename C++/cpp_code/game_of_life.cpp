@@ -1,7 +1,8 @@
 /*
 289. Game of Life
 According to the Wikipedia's article:
-"The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970."
+"The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton
+Conway in 1970."
 
 Given a board with m by n cells,
 each cell has an initial state live (1) or dead (0).
@@ -39,8 +40,8 @@ Could you solve it in-place? Remember that the board needs to be updated at the 
 You cannot update some cells first and then use their updated values to update other cells.
 
 In this question, we represent the board using a 2D array.
- In principle, the board is infinite, which would cause problems when the active area encroaches the border of the array.
- How would you address these problems?
+ In principle, the board is infinite, which would cause problems when the active area encroaches the border of the
+array. How would you address these problems?
 */
 #include <iostream>
 #include <string>
@@ -78,8 +79,8 @@ One aspect of the problem is addressed by a great solution provided by Stefan Po
 So as mentioned before, it's quite possible that we have a gigantic matrix with a very few live cells.
 In that case it would be stupidity to save the entire board as is.
 
-If we have an extremely sparse matrix, it would make much more sense to actually save the location of only the live cells
-and then apply the 4 rules accordingly using only these live cells.
+If we have an extremely sparse matrix, it would make much more sense to actually save the location of only the live
+cells and then apply the 4 rules accordingly using only these live cells.
 
 Essentially, we obtain only the live cells from the entire board
 and then apply the different rules using only the live cells
@@ -89,10 +90,10 @@ The only problem with this solution would be when the entire board cannot fit in
 If that is indeed the case, then we would have to approach this problem in a different way.
 For that scenario, we assume that the contents of the matrix are stored in a file, one row at a time.
 
-In order for us to update a particular cell, we only have to look at its 8 neighbors which essentially lie in the row above and below it.
-So, for updating the cells of a row, we just need the row above and the row below.
-Thus, we read one row at a time from the file and at max we will have 3 rows in memory.
-We will keep discarding rows that are processed and then we will keep reading new rows from the file, one at a time.
+In order for us to update a particular cell, we only have to look at its 8 neighbors which essentially lie in the row
+above and below it. So, for updating the cells of a row, we just need the row above and the row below. Thus, we read one
+row at a time from the file and at max we will have 3 rows in memory. We will keep discarding rows that are processed
+and then we will keep reading new rows from the file, one at a time.
 
 @beagle's solution revolves around this idea and you can refer to the code in the discussion section for the same.
 It's important to note that there is no single solution for solving this problem.
@@ -103,7 +104,7 @@ https://leetcode.com/problems/game-of-life/discuss/73217/Infinite-board-solution
 */
 class Solution {
 public:
-    void gameOfLife(vector<vector<int> > &board) {
+    void gameOfLife(vector<vector<int>>& board) {
         int m = board.size();
         int n = board[0].size();
         for (int i = 0; i < m; i++) {
@@ -114,10 +115,7 @@ public:
                         count += board[x][y] & 1;
                     }
                 }
-                if (count == 3 or count
-                -board[i][j] == 3
-                )
-                {
+                if (count == 3 or count - board[i][j] == 3) {
                     board[i][j] |= 2;
                 }
             }

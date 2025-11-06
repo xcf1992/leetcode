@@ -80,6 +80,7 @@ using namespace std;
 class FindElements {
 private:
     unordered_set<int> values;
+
 public:
     FindElements(TreeNode* root) {
         if (root == nullptr) {
@@ -88,19 +89,19 @@ public:
 
         queue<TreeNode*> bfs;
         bfs.push(root);
-        root -> val = 0;
+        root->val = 0;
         while (!bfs.empty()) {
             TreeNode* cur = bfs.front();
-            values.insert(cur -> val);
+            values.insert(cur->val);
             bfs.pop();
 
-            if (cur -> left != nullptr) {
-                cur -> left -> val = 2 * (cur -> val) + 1;
-                bfs.push(cur -> left);
+            if (cur->left != nullptr) {
+                cur->left->val = 2 * (cur->val) + 1;
+                bfs.push(cur->left);
             }
-            if (cur -> right != nullptr) {
-                cur -> right -> val = 2 * (cur -> val) + 2;
-                bfs.push(cur -> right);
+            if (cur->right != nullptr) {
+                cur->right->val = 2 * (cur->val) + 2;
+                bfs.push(cur->right);
             }
         }
     }
@@ -110,7 +111,7 @@ public:
     }
 };
 /**
-* Your FindElements object will be instantiated and called as such:
-* FindElements* obj = new FindElements(root);
-* bool param_1 = obj->find(target);
-*/
+ * Your FindElements object will be instantiated and called as such:
+ * FindElements* obj = new FindElements(root);
+ * bool param_1 = obj->find(target);
+ */

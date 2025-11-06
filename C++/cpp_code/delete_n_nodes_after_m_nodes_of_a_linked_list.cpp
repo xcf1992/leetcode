@@ -2,7 +2,8 @@
 1474. Delete N Nodes After M Nodes of a Linked List
 https://leetcode.com/problems/delete-n-nodes-after-m-nodes-of-a-linked-list/
 
-Given the head of a linked list and two integers m and n. Traverse the linked list and remove some nodes in the following way:
+Given the head of a linked list and two integers m and n. Traverse the linked list and remove some nodes in the
+following way:
 
 Start with the head as the current node.
 Keep the first m nodes starting with the current node.
@@ -66,9 +67,8 @@ public:
         while (cur != nullptr) {
             for (int i = 1; i < m; ++i) {
                 if (cur != nullptr) {
-                    cur = cur -> next;
-                }
-                else {
+                    cur = cur->next;
+                } else {
                     break;
                 }
             }
@@ -77,18 +77,17 @@ public:
                 break;
             }
 
-            ListNode* trash = cur -> next;
+            ListNode* trash = cur->next;
             for (int i = 0; i < n; ++i) {
                 if (trash != nullptr) {
-                    trash = trash -> next;
-                }
-                else {
+                    trash = trash->next;
+                } else {
                     break;
                 }
             }
 
-            cur -> next = trash;
-            cur = cur -> next;
+            cur->next = trash;
+            cur = cur->next;
         }
         return head;
     }

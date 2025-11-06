@@ -21,7 +21,8 @@ Explanation: We use 1 worker to build 1 block in 1 time unit.
 Example 2:
 Input: blocks = [1,2], split = 5
 Output: 7
-Explanation: We split the worker into 2 workers in 5 time units then assign each of them to a block so the cost is 5 + max(1, 2) = 7.
+Explanation: We split the worker into 2 workers in 5 time units then assign each of them to a block so the cost is 5 +
+max(1, 2) = 7.
 
 Example 3:
 Input: blocks = [1,2,3], split = 1
@@ -48,7 +49,8 @@ Constraints:
 #include <numeric>
 using namespace std;
 /*
-huffman, https://leetcode.com/problems/minimum-time-to-build-blocks/discuss/387035/Python%3A-O(n-log-n)-using-Huffman's-Algorithm-(priority-queue)-with-explanation.
+huffman,
+https://leetcode.com/problems/minimum-time-to-build-blocks/discuss/387035/Python%3A-O(n-log-n)-using-Huffman's-Algorithm-(priority-queue)-with-explanation.
 
 We can model this entire question as a binary tree that we need to construct with a minimum max depth cost.
 Each of the blocks is a leaf node, with a cost of its face value.
@@ -96,9 +98,9 @@ Use priority queue to decide the order of merge.
 */
 class Solution {
 public:
-    int minBuildTime(vector<int> &blocks, int split) {
-        priority_queue<int, vector<int>, greater<int> > pq;
-        for (int b: blocks) {
+    int minBuildTime(vector<int>& blocks, int split) {
+        priority_queue<int, vector<int>, greater<int>> pq;
+        for (int b : blocks) {
             pq.push(b);
         }
 
@@ -116,7 +118,7 @@ public:
 class Solution1 {
     // 444ms, 14%
 private:
-    int dfs(int workers, int bCount, vector<int> &blocks, int split, vector<vector<int> > &dp) {
+    int dfs(int workers, int bCount, vector<int>& blocks, int split, vector<vector<int>>& dp) {
         if (bCount <= 0) {
             return 0;
         }
@@ -140,9 +142,9 @@ private:
     }
 
 public:
-    int minBuildTime(vector<int> &blocks, int split) {
+    int minBuildTime(vector<int>& blocks, int split) {
         int n = blocks.size();
-        vector<vector<int> > dp(n, vector<int>(n, INT_MAX));
+        vector<vector<int>> dp(n, vector<int>(n, INT_MAX));
         sort(blocks.begin(), blocks.end());
         return dfs(1, n, blocks, split, dp);
     }

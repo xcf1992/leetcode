@@ -61,7 +61,7 @@ using namespace std;
 
 class Solution {
 private:
-    int traverse(TreeNode *root, int &result) {
+    int traverse(TreeNode* root, int& result) {
         // return number of coins we should pass to parent
         if (root == nullptr) {
             return 0;
@@ -75,7 +75,7 @@ private:
     }
 
 public:
-    int distributeCoins(TreeNode *root) {
+    int distributeCoins(TreeNode* root) {
         int result = 0;
         traverse(root, result);
         return result;
@@ -84,7 +84,7 @@ public:
 
 class Solution1 {
 private:
-    void check(TreeNode *root, int &result) {
+    void check(TreeNode* root, int& result) {
         if (root == nullptr) {
             return;
         }
@@ -104,7 +104,7 @@ private:
     }
 
 public:
-    int distributeCoins(TreeNode *root) {
+    int distributeCoins(TreeNode* root) {
         int result = 0;
         check(root, result);
         return result;

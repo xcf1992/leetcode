@@ -15,8 +15,8 @@ Example 1:
 
 Input: transactions = ["alice,20,800,mtv","alice,50,100,beijing"]
 Output: ["alice,20,800,mtv","alice,50,100,beijing"]
-Explanation: The first transaction is invalid because the second transaction occurs within a difference of 60 minutes, have the same name and is in a different city. Similarly the second one is invalid too.
-Example 2:
+Explanation: The first transaction is invalid because the second transaction occurs within a difference of 60 minutes,
+have the same name and is in a different city. Similarly the second one is invalid too. Example 2:
 
 Input: transactions = ["alice,20,800,mtv","alice,50,1200,mtv"]
 Output: ["alice,50,1200,mtv"]
@@ -48,10 +48,10 @@ using namespace std;
 
 class Solution {
 private:
-    vector<string> split(string &transaction) {
+    vector<string> split(string& transaction) {
         vector<string> result;
         string cur = "";
-        for (char c: transaction) {
+        for (char c : transaction) {
             if (c == ',') {
                 result.push_back(cur);
                 cur = "";
@@ -64,7 +64,7 @@ private:
         return result;
     }
 
-    bool isValid(vector<string> &tran, vector<vector<string> > &trans) {
+    bool isValid(vector<string>& tran, vector<vector<string>>& trans) {
         if (stoi(tran[2]) > 1000) {
             return false;
         }
@@ -79,17 +79,17 @@ private:
     }
 
 public:
-    vector<string> invalidTransactions(vector<string> &transactions) {
-        unordered_map<string, vector<vector<string> > > peopleTrans;
-        for (string &transaction: transactions) {
+    vector<string> invalidTransactions(vector<string>& transactions) {
+        unordered_map<string, vector<vector<string>>> peopleTrans;
+        for (string& transaction : transactions) {
             vector<string> trans = split(transaction);
             peopleTrans[trans[0]].push_back(trans);
         }
 
         vector<string> result;
-        for (auto &it: peopleTrans) {
-            vector<vector<string> > trans = it.second;
-            for (vector<string> &tran: trans) {
+        for (auto& it : peopleTrans) {
+            vector<vector<string>> trans = it.second;
+            for (vector<string>& tran : trans) {
                 if (!isValid(tran, trans)) {
                     result.push_back(tran[4]);
                 }

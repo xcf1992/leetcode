@@ -52,7 +52,7 @@ public:
 
         vector<int> digit(10, 0);
         while (a > 1) {
-            int d = getDivisor(a); // get all possible factors from 9 to 2
+            int d = getDivisor(a);  // get all possible factors from 9 to 2
             if (d > 9) {
                 return 0;
             }

@@ -62,13 +62,13 @@ using namespace std;
 
 class Solution {
 private:
-    vector<vector<int> > dir = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+    vector<vector<int>> dir = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
     int M = 0;
     int N = 0;
 
-    int count(vector<vector<int> > &forest, int curR, int curC, int desR, int desC) {
-        queue<pair<int, int> > bfs;
-        vector<vector<bool> > visited(M, vector<bool>(N, false));
+    int count(vector<vector<int>>& forest, int curR, int curC, int desR, int desC) {
+        queue<pair<int, int>> bfs;
+        vector<vector<bool>> visited(M, vector<bool>(N, false));
         bfs.push({curR, curC});
         visited[curR][curC] = true;
 
@@ -80,23 +80,15 @@ private:
                 int col = bfs.front().second;
                 bfs.pop();
 
-                if (row == desR and col
-                ==
-                desC
-                )
-                {
+                if (row == desR and col == desC) {
                     return steps;
                 }
 
                 for (int k = 0; k < 4; k++) {
                     int nextR = row + dir[k][0];
                     int nextC = col + dir[k][1];
-                    if (nextC >= 0 and nextR
-                    >=
-                    0
-                    and nextC<N and nextR < M and !visited[nextR][nextC] and forest[nextR][nextC] != 0
-                    )
-                    {
+                    if (nextC >= 0 and nextR >= 0 and nextC < N and nextR < M and !visited[nextR][nextC] and
+                        forest[nextR][nextC] != 0) {
                         bfs.push({nextR, nextC});
                         visited[nextR][nextC] = true;
                     }
@@ -108,14 +100,14 @@ private:
     }
 
 public:
-    int cutOffTree(vector<vector<int> > &forest) {
+    int cutOffTree(vector<vector<int>>& forest) {
         M = forest.size();
         if (M == 0) {
             return -1;
         }
         N = forest[0].size();
 
-        vector<vector<int> > heights;
+        vector<vector<int>> heights;
         for (int i = 0; i < M; i++) {
             for (int j = 0; j < N; j++) {
                 if (forest[i][j] > 1) {
@@ -123,9 +115,7 @@ public:
                 }
             }
         }
-        sort(heights.begin(), heights.end(), [](vector<int> &a, vector<int> &b) {
-            return a[0] < b[0];
-        });
+        sort(heights.begin(), heights.end(), [](vector<int>& a, vector<int>& b) { return a[0] < b[0]; });
 
         int result = 0;
         int row = 0;

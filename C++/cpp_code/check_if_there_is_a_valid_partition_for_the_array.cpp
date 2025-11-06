@@ -7,8 +7,9 @@ We call a partition of the array valid if each of the obtained subarrays satisfi
 
 The subarray consists of exactly 2, equal elements. For example, the subarray [2,2] is good.
 The subarray consists of exactly 3, equal elements. For example, the subarray [4,4,4] is good.
-The subarray consists of exactly 3 consecutive increasing elements, that is, the difference between adjacent elements is 1. For example, the subarray [3,4,5] is good, but the subarray [1,3,5] is not.
-Return true if the array has at least one valid partition. Otherwise, return false.
+The subarray consists of exactly 3 consecutive increasing elements, that is, the difference between adjacent elements
+is 1. For example, the subarray [3,4,5] is good, but the subarray [1,3,5] is not. Return true if the array has at least
+one valid partition. Otherwise, return false.
 
 
 
@@ -47,7 +48,7 @@ using namespace std;
 
 class Solution {
 public:
-    bool validPartition(vector<int> &nums) {
+    bool validPartition(vector<int>& nums) {
         int n = nums.size();
         if (n <= 1) {
             return false;

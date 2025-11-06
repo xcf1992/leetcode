@@ -41,7 +41,7 @@ using namespace std;
 
 class Solution {
 public:
-    int twoSumLessThanK(vector<int> &A, int K) {
+    int twoSumLessThanK(vector<int>& A, int K) {
         sort(A.begin(), A.end());
 
         int i = 0;
@@ -60,12 +60,12 @@ public:
 };
 
 class Solution1 {
-    //40%
+    // 40%
 public:
-    int twoSumLessThanK(vector<int> &A, int K) {
+    int twoSumLessThanK(vector<int>& A, int K) {
         set<int> nums;
         int result = -1;
-        for (int a: A) {
+        for (int a : A) {
             int target = K - a;
             auto it = nums.lower_bound(target);
             if (it != nums.begin()) {

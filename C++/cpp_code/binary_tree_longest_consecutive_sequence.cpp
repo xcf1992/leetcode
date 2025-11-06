@@ -4,8 +4,8 @@ https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/
 
 Given a binary tree, find the length of the longest consecutive sequence path.
 
-The path refers to any sequence of nodes from some starting node to any node in the tree along the parent-child connections.
-The longest consecutive path need to be from parent to child (cannot be the reverse).
+The path refers to any sequence of nodes from some starting node to any node in the tree along the parent-child
+connections. The longest consecutive path need to be from parent to child (cannot be the reverse).
 
 Example 1:
 Input:
@@ -47,14 +47,11 @@ using namespace std;
 
 class Solution {
 private:
-    void traverse(TreeNode *root, TreeNode *pre, int &result, int length) {
+    void traverse(TreeNode* root, TreeNode* pre, int& result, int length) {
         if (root == nullptr) {
             return;
         }
-        if (pre != nullptr and
-        root->val != 1 + pre->val
-        )
-        {
+        if (pre != nullptr and root->val != 1 + pre->val) {
             length = 0;
         }
 
@@ -65,7 +62,7 @@ private:
     }
 
 public:
-    int longestConsecutive(TreeNode *root) {
+    int longestConsecutive(TreeNode* root) {
         int result = 0;
         traverse(root, nullptr, result, 0);
         return result;
@@ -74,7 +71,7 @@ public:
 
 class Solution2 {
 private:
-    int traverse(TreeNode *root, int &result) {
+    int traverse(TreeNode* root, int& result) {
         if (root == nullptr) {
             return 0;
         }
@@ -82,16 +79,10 @@ private:
         int l1 = traverse(root->left, result);
         int l2 = traverse(root->right, result);
 
-        if (root->left != nullptr and
-        root->left->val != root->val + 1
-        )
-        {
+        if (root->left != nullptr and root->left->val != root->val + 1) {
             l1 = 0;
         }
-        if (root->right != nullptr and
-        root->right->val != root->val + 1
-        )
-        {
+        if (root->right != nullptr and root->right->val != root->val + 1) {
             l2 = 0;
         }
         int l = max(l1, l2) + 1;
@@ -100,7 +91,7 @@ private:
     }
 
 public:
-    int longestConsecutive(TreeNode *root) {
+    int longestConsecutive(TreeNode* root) {
         int result = 0;
         traverse(root, result);
         return result;
@@ -109,7 +100,7 @@ public:
 
 class Solution1 {
 private:
-    int getLength(TreeNode *root, int preVal) {
+    int getLength(TreeNode* root, int preVal) {
         if (root == nullptr) {
             return 0;
         }
@@ -121,7 +112,7 @@ private:
     }
 
 public:
-    int longestConsecutive(TreeNode *root) {
+    int longestConsecutive(TreeNode* root) {
         if (root == nullptr) {
             return 0;
         }

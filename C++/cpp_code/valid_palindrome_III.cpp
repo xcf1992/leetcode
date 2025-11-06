@@ -35,14 +35,10 @@ private:
             return n;
         }
 
-        vector<vector<int> > dp(n, vector<int>(n, 1)); // it will be at least for a single letter
+        vector<vector<int>> dp(n, vector<int>(n, 1));  // it will be at least for a single letter
         for (int i = 0; i < n; ++i) {
             dp[i][i] = 1;
-            if (i + 1 < n and s[i]
-            ==
-            s[i + 1]
-            )
-            {
+            if (i + 1 < n and s[i] == s[i + 1]) {
                 dp[i][i + 1] = 2;
             }
         }

@@ -30,16 +30,16 @@ using namespace std;
 
 class Solution {
 private:
-    double calculate(vector<int> &a, vector<int> &b, vector<int> &c) {
+    double calculate(vector<int>& a, vector<int>& b, vector<int>& c) {
         return a[0] * b[1] + b[0] * c[1] + c[0] * a[1] - b[0] * a[1] - c[0] * b[1] - a[0] * c[1];
     }
 
 public:
-    double largestTriangleArea(vector<vector<int> > &points) {
+    double largestTriangleArea(vector<vector<int>>& points) {
         double result = 0.0;
-        for (vector<int> &a: points) {
-            for (vector<int> &b: points) {
-                for (vector<int> &c: points) {
+        for (vector<int>& a : points) {
+            for (vector<int>& b : points) {
+                for (vector<int>& c : points) {
                     result = max(result, abs(calculate(a, b, c)) * 0.5);
                 }
             }

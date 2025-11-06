@@ -54,7 +54,7 @@ so as to give a bound to the problem.
 class Solution {
     // bottom up
 public:
-    int combinationSum4(vector<int> &nums, int target) {
+    int combinationSum4(vector<int>& nums, int target) {
         int n = nums.size();
         if (n <= 0) {
             return 0;
@@ -63,7 +63,7 @@ public:
         vector<unsigned int> dp(target + 1, 0);
         dp[0] = 1;
         for (int i = 1; i <= target; ++i) {
-            for (int num: nums)
+            for (int num : nums)
                 if (i >= num) {
                     dp[i] += dp[i - num];
                 }
@@ -78,7 +78,7 @@ private:
     unordered_map<int, int> combination;
 
 public:
-    int combinationSum4(vector<int> &nums, int target) {
+    int combinationSum4(vector<int>& nums, int target) {
         if (target == 0) {
             return 1;
         }

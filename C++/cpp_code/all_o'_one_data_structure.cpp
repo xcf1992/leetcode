@@ -42,10 +42,10 @@ class Node {
 public:
     string key = "";
     int val = 0;
-    Node *prev = nullptr;
-    Node *next = nullptr;
+    Node* prev = nullptr;
+    Node* next = nullptr;
 
-    Node(string s, int v, Node *n, Node *p) {
+    Node(string s, int v, Node* n, Node* p) {
         key = s;
         val = v;
         next = n;
@@ -61,12 +61,9 @@ public:
         }
     }
 
-    bool add(Node *n) {
+    bool add(Node* n) {
         // return if n's value is smaller than current node value
-        if (n != nullptr and
-        n->val >= val
-        )
-        {
+        if (n != nullptr and n->val >= val) {
             n->next = next;
             n->prev = this;
             if (next != nullptr) {
@@ -75,10 +72,7 @@ public:
             next = n;
             return false;
         }
-        if (n != nullptr and
-        n->val < val
-        )
-        {
+        if (n != nullptr and n->val < val) {
             n->next = this;
             n->prev = prev;
             if (prev != nullptr) {
@@ -96,11 +90,8 @@ public:
 
     pair<bool, bool> increase() {
         val += 1;
-        while (next != nullptr and
-        next->val < val
-        )
-        {
-            Node *n = next;
+        while (next != nullptr and next->val < val) {
+            Node* n = next;
             if (prev != nullptr) {
                 prev->next = n;
             }
@@ -119,11 +110,8 @@ public:
 
     pair<bool, bool> decrement() {
         val -= 1;
-        if (prev != nullptr and
-        prev->val >= val
-        )
-        {
-            Node *p = prev;
+        if (prev != nullptr and prev->val >= val) {
+            Node* p = prev;
             if (next != nullptr) {
                 next->prev = p;
             }
@@ -143,11 +131,11 @@ public:
 
 class AllOne {
 private:
-    map<string, Node *> allOneMap;
-    Node *head = nullptr;
-    Node *tail = nullptr;
+    map<string, Node*> allOneMap;
+    Node* head = nullptr;
+    Node* tail = nullptr;
 
-    void replaceHeadTail(Node *n) {
+    void replaceHeadTail(Node* n) {
         if (n == nullptr) {
             return;
         }
@@ -155,19 +143,13 @@ private:
         pair<bool, bool> isHeadTail = n->isHeadTail();
         if (isHeadTail.first) {
             head = n;
-        } else if (n == head and
-        !isHeadTail.first
-        )
-        {
+        } else if (n == head and !isHeadTail.first) {
             head = n->prev;
         }
 
         if (isHeadTail.second) {
             tail = n;
-        } else if (n == tail and
-        !isHeadTail.second
-        )
-        {
+        } else if (n == tail and !isHeadTail.second) {
             tail = n->next;
         }
     }
@@ -180,7 +162,7 @@ public:
     /* Inserts a new key <Key> with value 1. Or increments an existing key by 1.*/
     void inc(string key) {
         if (allOneMap.find(key) == allOneMap.end()) {
-            Node *n = new Node(key, 1, head, nullptr);
+            Node* n = new Node(key, 1, head, nullptr);
             if (head != nullptr) {
                 if (head->add(n)) {
                     head = n;
@@ -238,4 +220,4 @@ public:
  * obj.dec(key);
  * string param_3 = obj.getMaxKey();
  * string param_4 = obj.getMinKey();
-*/
+ */

@@ -49,7 +49,7 @@ using namespace std;
 
 class Solution {
 public:
-    int numTeams(vector<int> &rating) {
+    int numTeams(vector<int>& rating) {
         int res = 0;
         for (auto i = 1; i < rating.size() - 1; ++i) {
             int less[2] = {};

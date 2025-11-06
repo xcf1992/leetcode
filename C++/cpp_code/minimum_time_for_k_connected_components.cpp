@@ -2,15 +2,19 @@
 https://leetcode.com/problems/minimum-time-for-k-connected-components/description/
 3608. Minimum Time for K Connected Components
 
-You are given an integer n and an undirected graph with n nodes labeled from 0 to n - 1. This is represented by a 2D array edges, where edges[i] = [ui, vi, timei] indicates an undirected edge between nodes ui and vi that can be removed at timei.
+You are given an integer n and an undirected graph with n nodes labeled from 0 to n - 1. This is represented by a 2D
+array edges, where edges[i] = [ui, vi, timei] indicates an undirected edge between nodes ui and vi that can be removed
+at timei.
 
 You are also given an integer k.
 
-Initially, the graph may be connected or disconnected. Your task is to find the minimum time t such that after removing all edges with time <= t, the graph contains at least k connected components.
+Initially, the graph may be connected or disconnected. Your task is to find the minimum time t such that after removing
+all edges with time <= t, the graph contains at least k connected components.
 
 Return the minimum time t.
 
-A connected component is a subgraph of a graph in which there exists a path between any two vertices, and no vertex of the subgraph shares an edge with a vertex outside of the subgraph.
+A connected component is a subgraph of a graph in which there exists a path between any two vertices, and no vertex of
+the subgraph shares an edge with a vertex outside of the subgraph.
 
 
 
@@ -80,7 +84,7 @@ using namespace std;
 
 class Solution {
 private:
-    int find_parent(int cur, vector<int> &parent) {
+    int find_parent(int cur, vector<int>& parent) {
         if (parent[cur] == -1) {
             return cur;
         }
@@ -89,15 +93,13 @@ private:
     }
 
 public:
-    int minTime(int n, vector<vector<int> > &edges, int k) {
-        sort(edges.begin(), edges.end(), [](const vector<int> &x, const vector<int> &y) {
-            return x[0] > y[0];
-        });
+    int minTime(int n, vector<vector<int>>& edges, int k) {
+        sort(edges.begin(), edges.end(), [](const vector<int>& x, const vector<int>& y) { return x[0] > y[0]; });
 
         vector<int> parent(n, -1);
         int cnt = n;
         int result = 0;
-        for (const vector<int> &e: edges) {
+        for (const vector<int>& e : edges) {
             int u = find_parent(e[0], parent);
             int v = find_parent(e[1], parent);
             if (u == v) {

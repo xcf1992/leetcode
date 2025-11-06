@@ -11,7 +11,8 @@ Return true if and only if it is possible to assign integers to variable names s
 Example 1:
 Input: ["a==b","b!=a"]
 Output: false
-Explanation: If we assign say, a = 1 and b = 1, then the first equation is satisfied, but not the second.  There is no way to assign the variables to satisfy both equations.
+Explanation: If we assign say, a = 1 and b = 1, then the first equation is satisfied, but not the second.  There is no
+way to assign the variables to satisfy both equations.
 
 Example 2:
 Input: ["b==a","a==b"]
@@ -55,25 +56,25 @@ using namespace std;
 
 class Solution {
 private:
-    int find(vector<int> &parent, int c) {
+    int find(vector<int>& parent, int c) {
         return parent[c] == c ? c : find(parent, parent[c]);
     }
 
 public:
-    bool equationsPossible(vector<string> &equations) {
+    bool equationsPossible(vector<string>& equations) {
         vector<int> parent(26, -1);
         // we do not use -1 directly, cause we may have thing like a==a, then find cannot be ended
         for (int i = 0; i < 26; i++) {
             parent[i] = i;
         }
 
-        for (string &equation: equations) {
+        for (string& equation : equations) {
             if (equation[1] == '=') {
                 parent[find(parent, equation[0] - 'a')] = find(parent, equation[3] - 'a');
             }
         }
 
-        for (string &equation: equations) {
+        for (string& equation : equations) {
             if (equation[1] == '!') {
                 if (find(parent, equation[0] - 'a') == find(parent, equation[3] - 'a')) {
                     return false;

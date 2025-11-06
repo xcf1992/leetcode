@@ -27,17 +27,16 @@
 #include <set>
 using namespace std;
 
-
 // Definition for a Node.
 class Node {
 public:
     int val = NULL;
-    vector<Node *> children;
+    vector<Node*> children;
 
     Node() {
     }
 
-    Node(int _val, vector<Node *> _children) {
+    Node(int _val, vector<Node*> _children) {
         val = _val;
         children = _children;
     }
@@ -45,19 +44,15 @@ public:
 
 class Solution {
 public:
-    vector<int> postorder(Node *root) {
-        stack<Node *> stk;
+    vector<int> postorder(Node* root) {
+        stack<Node*> stk;
         stk.push(root);
         vector<int> result;
-        while (!stk.empty() and root
-        !=
-        nullptr
-        )
-        {
-            Node *cur = stk.top();
+        while (!stk.empty() and root != nullptr) {
+            Node* cur = stk.top();
             stk.pop();
             result.push_back(cur->val);
-            for (Node *child: cur->children) {
+            for (Node* child : cur->children) {
                 stk.push(child);
             }
         }
@@ -68,12 +63,12 @@ public:
 
 class Solution1 {
 private:
-    void traversal(Node *root, vector<int> &result) {
+    void traversal(Node* root, vector<int>& result) {
         if (root == nullptr) {
             return;
         }
 
-        for (Node *child: root->children) {
+        for (Node* child : root->children) {
             traversal(child, result);
         }
         result.push_back(root->val);
@@ -81,7 +76,7 @@ private:
     }
 
 public:
-    vector<int> postorder(Node *root) {
+    vector<int> postorder(Node* root) {
         vector<int> result;
         return result;
     }

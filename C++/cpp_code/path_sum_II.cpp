@@ -36,30 +36,24 @@ using namespace std;
 
 class Solution {
 private:
-    void dfs(TreeNode *root, vector<int> &path, vector<vector<int> > &result, int sum) {
+    void dfs(TreeNode* root, vector<int>& path, vector<vector<int>>& result, int sum) {
         if (root == nullptr) {
             return;
         }
 
         path.push_back(root->val);
-        if (root->left == nullptr and
-        root->right == nullptr
-        and sum
-        ==
-        root->val
-        )
-        {
+        if (root->left == nullptr and root->right == nullptr and sum == root->val) {
             result.push_back(path);
         }
 
         dfs(root->left, path, result, sum - root->val);
         dfs(root->right, path, result, sum - root->val);
-        path.pop_back(); // when return to upper level pop current num
+        path.pop_back();  // when return to upper level pop current num
     }
 
 public:
-    vector<vector<int> > pathSum(TreeNode *root, int sum) {
-        vector<vector<int> > result;
+    vector<vector<int>> pathSum(TreeNode* root, int sum) {
+        vector<vector<int>> result;
         vector<int> path;
         dfs(root, path, result, sum);
         return result;

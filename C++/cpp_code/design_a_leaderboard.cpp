@@ -61,7 +61,7 @@ using namespace std;
 class Leaderboard {
 private:
     unordered_map<int, int> playerScore;
-    set<pair<int, int> > scores;
+    set<pair<int, int>> scores;
 
 public:
     Leaderboard() {
@@ -77,12 +77,7 @@ public:
 
     int top(int K) {
         int result = 0;
-        for (auto it = scores.rbegin(); K > 0 and it
-        !=
-        scores.rend();
-        it++
-        )
-        {
+        for (auto it = scores.rbegin(); K > 0 and it != scores.rend(); it++) {
             result += it->first;
             K -= 1;
         }

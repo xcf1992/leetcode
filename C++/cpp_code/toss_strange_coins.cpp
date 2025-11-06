@@ -35,13 +35,13 @@ using namespace std;
 
 class Solution {
 public:
-    double probabilityOfHeads(vector<double> &prob, int target) {
+    double probabilityOfHeads(vector<double>& prob, int target) {
         int n = prob.size();
         if (target > n) {
             return 0.0;
         }
 
-        vector<vector<double> > dp(n + 1, vector<double>(target + 1, 0.0));
+        vector<vector<double>> dp(n + 1, vector<double>(target + 1, 0.0));
         dp[0][0] = 1.0;
         for (int i = 1; i <= n; ++i) {
             dp[i][0] = (1.0 - prob[i - 1]) * dp[i - 1][0];

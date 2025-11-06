@@ -12,7 +12,8 @@ You may return the final list of trees in any order.
 
 Example 1:
 Input: 7
-Output: [[0,0,0,null,null,0,0,null,null,0,0],[0,0,0,null,null,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,null,null,null,null,0,0],[0,0,0,0,0,null,null,0,0]]
+Output:
+[[0,0,0,null,null,0,0,null,null,0,0],[0,0,0,null,null,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,null,null,null,null,0,0],[0,0,0,0,0,null,null,0,0]]
 Explanation:
 
 Note:
@@ -37,10 +38,10 @@ using namespace std;
 
 class Solution {
 private:
-    unordered_map<int, vector<TreeNode *> > memo;
+    unordered_map<int, vector<TreeNode*>> memo;
 
 public:
-    vector<TreeNode *> allPossibleFBT(int N) {
+    vector<TreeNode*> allPossibleFBT(int N) {
         if (N % 2 == 0) {
             return {};
         }
@@ -54,11 +55,11 @@ public:
         }
 
         for (int i = 1; i <= N - 2; i += 2) {
-            vector<TreeNode *> leftChildren = allPossibleFBT(i);
-            vector<TreeNode *> rightChildren = allPossibleFBT(N - 1 - i);
-            for (TreeNode *lc: leftChildren) {
-                for (TreeNode *rc: rightChildren) {
-                    TreeNode *root = new TreeNode(0);
+            vector<TreeNode*> leftChildren = allPossibleFBT(i);
+            vector<TreeNode*> rightChildren = allPossibleFBT(N - 1 - i);
+            for (TreeNode* lc : leftChildren) {
+                for (TreeNode* rc : rightChildren) {
+                    TreeNode* root = new TreeNode(0);
                     root->left = lc;
                     root->right = rc;
                     memo[N].push_back(root);
@@ -71,7 +72,7 @@ public:
 
 class Solution1 {
 public:
-    vector<TreeNode *> allPossibleFBT(int N) {
+    vector<TreeNode*> allPossibleFBT(int N) {
         if (N % 2 == 0) {
             return {};
         }
@@ -80,13 +81,13 @@ public:
             return {new TreeNode(0)};
         }
 
-        vector<TreeNode *> result;
+        vector<TreeNode*> result;
         for (int i = 1; i <= N - 1; i += 2) {
-            vector<TreeNode *> leftChildren = allPossibleFBT(i);
-            vector<TreeNode *> rightChildren = allPossibleFBT(N - 1 - i);
-            for (TreeNode *lc: leftChildren) {
-                for (TreeNode *rc: rightChildren) {
-                    TreeNode *root = new TreeNode(0);
+            vector<TreeNode*> leftChildren = allPossibleFBT(i);
+            vector<TreeNode*> rightChildren = allPossibleFBT(N - 1 - i);
+            for (TreeNode* lc : leftChildren) {
+                for (TreeNode* rc : rightChildren) {
+                    TreeNode* root = new TreeNode(0);
                     root->left = lc;
                     root->right = rc;
                     result.push_back(root);

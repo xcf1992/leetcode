@@ -64,10 +64,10 @@ using namespace std;
 */
 class Solution {
 public:
-    vector<int> fairCandySwap(vector<int> &A, vector<int> &B) {
+    vector<int> fairCandySwap(vector<int>& A, vector<int>& B) {
         unordered_set<int> candyA;
         int aSum = 0;
-        for (int a: A) {
+        for (int a : A) {
             aSum += a;
             candyA.insert(a);
         }
@@ -75,7 +75,7 @@ public:
         int bSum = accumulate(B.begin(), B.end(), 0);
         int gap = bSum - aSum;
         vector<int> result;
-        for (int b: B) {
+        for (int b : B) {
             int a = (2 * b - gap) / 2;
             if (candyA.find(a) != candyA.end()) {
                 result.push_back(a);

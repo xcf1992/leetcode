@@ -41,10 +41,10 @@ hp[i][j] represents the min hp needed at position (i, j)
 */
 class Solution {
 public:
-    int calculateMinimumHP(vector<vector<int> > &dungeon) {
+    int calculateMinimumHP(vector<vector<int>>& dungeon) {
         int m = dungeon.size();
         int n = dungeon[0].size();
-        vector<vector<int> > hp(m, vector<int>(n, INT_MAX));
+        vector<vector<int>> hp(m, vector<int>(n, INT_MAX));
 
         if (dungeon[m - 1][n - 1] >= 0) {
             hp[m - 1][n - 1] = 1;

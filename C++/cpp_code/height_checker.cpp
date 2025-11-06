@@ -3,7 +3,8 @@
  Students are asked to stand in non-decreasing order of heights for an annual photo.
 
  Return the minimum number of students not standing in the right positions.
- (This is the number of students that must move in order for all students to be standing in non-decreasing order of height.)
+ (This is the number of students that must move in order for all students to be standing in non-decreasing order of
+ height.)
 
  Example 1:
 
@@ -36,9 +37,9 @@ using namespace std;
 class Solution {
     // bucket sort
 public:
-    int heightChecker(vector<int> &heights) {
+    int heightChecker(vector<int>& heights) {
         vector<int> heightToFreq(101, 0);
-        for (int height: heights) {
+        for (int height : heights) {
             heightToFreq[height] += 1;
         }
 
@@ -59,7 +60,7 @@ public:
 
 class Solution1 {
 public:
-    int heightChecker(vector<int> &heights) {
+    int heightChecker(vector<int>& heights) {
         int result = 0;
         vector<int> temp = heights;
         sort(temp.begin(), temp.end());

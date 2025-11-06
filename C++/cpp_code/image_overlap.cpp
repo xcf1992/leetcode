@@ -83,7 +83,7 @@ No, it's wrong for simple test case [[0,1],[1,1]], [[1,1],[1,0]]
 */
 class Solution {
 public:
-    int largestOverlap(vector<vector<int> > &A, vector<vector<int> > &B) {
+    int largestOverlap(vector<vector<int>>& A, vector<vector<int>>& B) {
         int num = A.size();
         vector<int> a;
         vector<int> b;
@@ -100,14 +100,14 @@ public:
         }
 
         unordered_map<int, int> count;
-        for (int ait: a) {
-            for (int bit: b) {
+        for (int ait : a) {
+            for (int bit : b) {
                 count[ait - bit] += 1;
             }
         }
 
         int result = 0;
-        for (auto &c: count) {
+        for (auto& c : count) {
             result = max(result, c.second);
         }
         return result;

@@ -51,9 +51,9 @@ using namespace std;
 
 class Solution {
 public:
-    int kthLargestValue(vector<vector<int> > &matrix, int k) {
+    int kthLargestValue(vector<vector<int>>& matrix, int k) {
         int i, j, n = matrix.size(), m = matrix[0].size();
-        priority_queue<int, vector<int>, greater<int> > pq;
+        priority_queue<int, vector<int>, greater<int>> pq;
 
         // Step 1
         for (i = 0; i < n; i++) {

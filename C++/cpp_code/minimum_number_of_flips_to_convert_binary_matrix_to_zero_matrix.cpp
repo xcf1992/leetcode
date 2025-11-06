@@ -85,6 +85,7 @@ private:
         }
         return bitVec;
     }
+
 public:
     int minFlips(vector<vector<int>>& mat) {
         m = mat.size();

@@ -87,8 +87,8 @@ Space O(n)
 */
 class Solution {
 public:
-    int stoneGameVI(vector<int> &A, vector<int> &B) {
-        vector<vector<int> > C;
+    int stoneGameVI(vector<int>& A, vector<int>& B) {
+        vector<vector<int>> C;
         int n = A.size();
         for (int i = 0; i < n; ++i) {
             C.push_back({-A[i] - B[i], A[i], B[i]});

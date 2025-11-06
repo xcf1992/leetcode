@@ -35,7 +35,7 @@ using namespace std;
 
 class Solution {
 public:
-    int minCost(vector<vector<int> > &costs) {
+    int minCost(vector<vector<int>>& costs) {
         if (costs.empty()) {
             return 0;
         }
@@ -51,7 +51,7 @@ public:
         }
 
         int result = dp[0];
-        for (int cost: dp) {
+        for (int cost : dp) {
             result = min(result, cost);
         }
         return result;

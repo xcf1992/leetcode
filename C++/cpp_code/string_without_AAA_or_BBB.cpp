@@ -39,24 +39,14 @@ class Solution {
 public:
     string strWithout3a3b(int A, int B) {
         string result = "";
-        while (A > 0 or B
-        >
-        0
-        )
-        {
+        while (A > 0 or B > 0) {
             bool writeA = false;
             int n = result.size();
-            if (n >= 2 and result[n - 1]
-            ==
-            result[n - 2]
-            )
-            {
+            if (n >= 2 and result[n - 1] == result[n - 2]) {
                 if (result[n - 1] == 'b') {
                     writeA = true;
                 }
-            }
-            else
-            {
+            } else {
                 if (A >= B) {
                     writeA = A > 0;
                 }
@@ -78,11 +68,7 @@ class Solution1 {
 public:
     string strWithout3a3b(int A, int B) {
         string result = "";
-        while (A > 0 or B
-        >
-        0
-        )
-        {
+        while (A > 0 or B > 0) {
             if (A > B) {
                 if (result.back() == 'a') {
                     if (B > 0) {

@@ -55,22 +55,14 @@ class Solution {
 private:
     int maxSum = 0;
 
-    vector<int> postOrderTraverse(TreeNode *root) {
+    vector<int> postOrderTraverse(TreeNode* root) {
         if (root == nullptr) {
-            return {INT_MAX, INT_MIN, 0}; // {min, max, sum}, initialize min=MAX_VALUE, max=MIN_VALUE
+            return {INT_MAX, INT_MIN, 0};  // {min, max, sum}, initialize min=MAX_VALUE, max=MIN_VALUE
         }
 
         vector<int> lc = postOrderTraverse(root->left);
         vector<int> rc = postOrderTraverse(root->right);
-        if (!(!lc.empty() and
-        !rc.empty()
-        and
-        root->val > lc[1]
-        and
-        root->val < rc[0]
-        )
-        )
-        {
+        if (!(!lc.empty() and !rc.empty() and root->val > lc[1] and root->val < rc[0])) {
             // left and right child are not BST or current is not BST
             return {};
         }
@@ -81,7 +73,7 @@ private:
     }
 
 public:
-    int maxSumBST(TreeNode *root) {
+    int maxSumBST(TreeNode* root) {
         postOrderTraverse(root);
         return maxSum;
     }

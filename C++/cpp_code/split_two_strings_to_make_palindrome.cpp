@@ -70,14 +70,15 @@ If either s1 or s2 is palindrome, then return true.
 Then we do the same thing for b_suffix and a_prefix
 
 one of the 2 strings must be palindrome so that we can select that string itself
-either starting chars of str1 and ending chars of str2 must be same and also the in between part of the string must also be a palindrome(as written by the original commentor)
-(same as pt 2) starting chars of str2 and ending chars of str1 must be same and then the same check as in pt 2.
-Try writing a few examples with answer true and look at the 3 points above. You will get the intiution.
+either starting chars of str1 and ending chars of str2 must be same and also the in between part of the string must also
+be a palindrome(as written by the original commentor) (same as pt 2) starting chars of str2 and ending chars of str1
+must be same and then the same check as in pt 2. Try writing a few examples with answer true and look at the 3 points
+above. You will get the intiution.
 
 */
 class Solution {
 private:
-    bool isPa(string &s, int i, int j) {
+    bool isPa(string& s, int i, int j) {
         for (; i < j; ++i, --j) {
             if (s[i] != s[j]) {
                 return false;
@@ -86,7 +87,7 @@ private:
         return true;
     }
 
-    bool check(string &a, string &b) {
+    bool check(string& a, string& b) {
         for (int i = 0, j = a.size() - 1; i < j; ++i, --j) {
             if (a[i] != b[j]) {
                 // think about abedfg and abaaba

@@ -15,7 +15,8 @@ or return an empty string if it is impossible to reformat the string.
 Example 1:
 Input: s = "a0b1c2"
 Output: "0a1b2c"
-Explanation: No two adjacent characters have the same type in "0a1b2c". "a0b1c2", "0a1b2c", "0c2a1b" are also valid permutations.
+Explanation: No two adjacent characters have the same type in "0a1b2c". "a0b1c2", "0a1b2c", "0c2a1b" are also valid
+permutations.
 
 Example 2:
 Input: s = "leetcode"
@@ -55,7 +56,7 @@ using namespace std;
 
 class Solution {
 private:
-    string construct(vector<char> &v1, vector<char> &v2) {
+    string construct(vector<char>& v1, vector<char>& v2) {
         string result = "";
         result.push_back(v1[0]);
         for (int i = 0; i < v2.size(); ++i) {
@@ -71,7 +72,7 @@ public:
     string reformat(string s) {
         vector<char> number;
         vector<char> letter;
-        for (char c: s) {
+        for (char c : s) {
             if (isdigit(c)) {
                 number.push_back(c);
             } else {

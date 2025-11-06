@@ -61,7 +61,7 @@ https://leetcode.com/problems/number-of-matching-subsequences/discuss/117634/Eff
 */
 class Solution {
 private:
-    bool isSubsequence(vector<vector<int> > &position, string &word) {
+    bool isSubsequence(vector<vector<int>>& position, string& word) {
         if (position[word[0] - 'a'].empty()) {
             return false;
         }
@@ -78,14 +78,14 @@ private:
     }
 
 public:
-    int numMatchingSubseq(string S, vector<string> &words) {
-        vector<vector<int> > position(26, vector<int>());
+    int numMatchingSubseq(string S, vector<string>& words) {
+        vector<vector<int>> position(26, vector<int>());
         for (int i = 0; i < S.size(); i++) {
             position[S[i] - 'a'].push_back(i);
         }
 
         int result = 0;
-        for (string word: words)
+        for (string word : words)
             if (isSubsequence(position, word)) {
                 result += 1;
             }
@@ -95,18 +95,15 @@ public:
 
 class Solution1 {
 public:
-    int numMatchingSubseq(string S, vector<string> &words) {
-        vector<vector<int> > position(26, vector<int>());
+    int numMatchingSubseq(string S, vector<string>& words) {
+        vector<vector<int>> position(26, vector<int>());
         for (int i = 0; i < S.size(); i++) {
             position[S[i] - 'a'].push_back(i);
         }
 
         int result = 0;
-        for (string word: words) {
-            if (word.size() == 1 and
-            !position[word[0] - 'a'].empty()
-            )
-            {
+        for (string word : words) {
+            if (word.size() == 1 and !position[word[0] - 'a'].empty()) {
                 result += 1;
                 continue;
             }
@@ -121,7 +118,7 @@ public:
                     curPos = position[word[i] - 'a'].front();
                 } else {
                     bool find = false;
-                    for (int newPos: position[word[i] - 'a']) {
+                    for (int newPos : position[word[i] - 'a']) {
                         if (newPos > curPos) {
                             find = true;
                             curPos = newPos;

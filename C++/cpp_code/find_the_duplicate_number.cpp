@@ -44,7 +44,8 @@ So the meeting point of fast and slow has a offset (n*c-k)%c to point A
 
 To let slow reach point A we need slow to go another k points, so that (n*c-k+k)%c=0
 
-When finder goes from start point to A, the distance is k, slow goes the same distance, and we get the entrance of the circle.
+When finder goes from start point to A, the distance is k, slow goes the same distance, and we get the entrance of the
+circle.
 
 The entrance of circle has more than one in-pointers,
 this means at least two numbers at different indices in the array have same value,
@@ -52,7 +53,7 @@ the index of slow and finder is the duplicate number.
 */
 class Solution {
 public:
-    int findDuplicate(vector<int> &nums) {
+    int findDuplicate(vector<int>& nums) {
         int fast = 0;
         int slow = 0;
         do {

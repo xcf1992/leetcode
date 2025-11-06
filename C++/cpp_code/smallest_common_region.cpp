@@ -46,9 +46,9 @@ using namespace std;
 
 class Solution {
 public:
-    string findSmallestRegion(vector<vector<string> > &regions, string region1, string region2) {
+    string findSmallestRegion(vector<vector<string>>& regions, string region1, string region2) {
         unordered_map<string, string> parent;
-        for (vector<string> &region: regions) {
+        for (vector<string>& region : regions) {
             string largest = region[0];
             for (int i = 1; i < region.size(); ++i) {
                 parent[region[i]] = largest;

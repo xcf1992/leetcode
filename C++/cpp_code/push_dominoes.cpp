@@ -71,11 +71,7 @@ public:
         for (int i = n - 1; i >= 0; i--) {
             if (dominoes[i] == 'L') {
                 dis = 0;
-            } else if (i != n - 1 and dominoes[i + 1]
-            ==
-            'L'
-            )
-            {
+            } else if (i != n - 1 and dominoes[i + 1] == 'L') {
                 dis += 1;
                 if (dominoes[i] == '.') {
                     dominoes[i] = 'L';

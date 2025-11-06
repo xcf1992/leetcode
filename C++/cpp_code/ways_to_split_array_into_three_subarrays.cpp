@@ -74,7 +74,7 @@ The following picture demonstrate this approach for the [4,2,3,0,3,5,3,12] test 
 */
 class Solution {
 public:
-    int waysToSplit(vector<int> &nums) {
+    int waysToSplit(vector<int>& nums) {
         int res = 0;
         int sz = nums.size();
         partial_sum(begin(nums), end(nums), begin(nums));

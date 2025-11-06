@@ -2,11 +2,16 @@
 https://leetcode.com/problems/check-if-two-expression-trees-are-equivalent/
 1612. Check If Two Expression Trees are Equivalent
 
-A binary expression tree is a kind of binary tree used to represent arithmetic expressions. Each node of a binary expression tree has either zero or two children. Leaf nodes (nodes with 0 children) correspond to operands (variables), and internal nodes (nodes with two children) correspond to the operators. In this problem, we only consider the '+' operator (i.e. addition).
+A binary expression tree is a kind of binary tree used to represent arithmetic expressions. Each node of a binary
+expression tree has either zero or two children. Leaf nodes (nodes with 0 children) correspond to operands (variables),
+and internal nodes (nodes with two children) correspond to the operators. In this problem, we only consider the '+'
+operator (i.e. addition).
 
-You are given the roots of two binary expression trees, root1 and root2. Return true if the two binary expression trees are equivalent. Otherwise, return false.
+You are given the roots of two binary expression trees, root1 and root2. Return true if the two binary expression trees
+are equivalent. Otherwise, return false.
 
-Two binary expression trees are equivalent if they evaluate to the same value regardless of what the variables are set to.
+Two binary expression trees are equivalent if they evaluate to the same value regardless of what the variables are set
+to.
 
 
 
@@ -56,8 +61,8 @@ using namespace std;
 
 struct Node {
     char val;
-    Node *left;
-    Node *right;
+    Node* left;
+    Node* right;
 
     Node() : val(' '), left(nullptr), right(nullptr) {
     }
@@ -65,13 +70,13 @@ struct Node {
     Node(char x) : val(x), left(nullptr), right(nullptr) {
     }
 
-    Node(char x, Node *left, Node *right) : val(x), left(left), right(right) {
+    Node(char x, Node* left, Node* right) : val(x), left(left), right(right) {
     }
 };
 
 class Solution {
 private:
-    void parse(Node *root, unordered_map<char, int>& freq) {
+    void parse(Node* root, unordered_map<char, int>& freq) {
         if (root == nullptr) {
             return;
         }
@@ -83,8 +88,9 @@ private:
         parse(root->left, freq);
         parse(root->right, freq);
     }
+
 public:
-    bool checkEquivalence(Node *root1, Node *root2) {
+    bool checkEquivalence(Node* root1, Node* root2) {
         unordered_map<char, int> freq1;
         parse(root1, freq1);
         unordered_map<char, int> freq2;
@@ -93,7 +99,7 @@ public:
             return false;
         }
 
-        for (const auto &it : freq1) {
+        for (const auto& it : freq1) {
             if (freq2.find(it.first) == freq2.end()) {
                 return false;
             }

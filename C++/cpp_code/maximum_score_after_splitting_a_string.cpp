@@ -6,7 +6,8 @@ Given a string s of zeros and ones,
 return the maximum score after splitting the string into two non-empty substrings
 (i.e. left substring and right substring).
 
-The score after splitting a string is the number of zeros in the left substring plus the number of ones in the right substring.
+The score after splitting a string is the number of zeros in the left substring plus the number of ones in the right
+substring.
 
 Example 1:
 Input: s = "011101"
@@ -51,14 +52,14 @@ class Solution {
 public:
     int maxScore(string s) {
         int ones = 0;
-        for (const char &c: s) {
+        for (const char& c : s) {
             ones += c - '0';
         }
 
         s.pop_back();
         int zeros = 0;
         int result = 0;
-        for (const char &c: s) {
+        for (const char& c : s) {
             c == '0' ? zeros++ : ones--;
             result = max(result, zeros + ones);
         }

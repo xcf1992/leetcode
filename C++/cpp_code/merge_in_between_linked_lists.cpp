@@ -10,7 +10,8 @@ Build the result list and return its head.
 Example 1:
 Input: list1 = [0,1,2,3,4,5], a = 3, b = 4, list2 = [1000000,1000001,1000002]
 Output: [0,1,2,1000000,1000001,1000002,5]
-Explanation: We remove the nodes 3 and 4 and put the entire list2 in their place. The blue edges and nodes in the above figure indicate the result.
+Explanation: We remove the nodes 3 and 4 and put the entire list2 in their place. The blue edges and nodes in the above
+figure indicate the result.
 
 Example 2:
 Input: list1 = [0,1,2,3,4,5,6], a = 2, b = 5, list2 = [1000000,1000001,1000002,1000003,1000004]
@@ -54,11 +55,11 @@ using namespace std;
  */
 class Solution {
 public:
-    ListNode *mergeInBetween(ListNode *list1, int a, int b, ListNode *list2) {
-        ListNode *pre = new ListNode(-1);
+    ListNode* mergeInBetween(ListNode* list1, int a, int b, ListNode* list2) {
+        ListNode* pre = new ListNode(-1);
         pre->next = list1;
         int index = 0;
-        ListNode *cur = list1;
+        ListNode* cur = list1;
         while (index != a) {
             index += 1;
             pre = cur;
@@ -66,7 +67,8 @@ public:
         }
         pre->next = nullptr;
 
-        ListNode *suc = new ListNode(-1);;
+        ListNode* suc = new ListNode(-1);
+        ;
         suc = cur->next;
         while (index != b) {
             index += 1;

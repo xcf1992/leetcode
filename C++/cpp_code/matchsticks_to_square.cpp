@@ -41,7 +41,7 @@ using namespace std;
 
 class Solution {
 public:
-    bool makesquare(vector<int> &nums) {
+    bool makesquare(vector<int>& nums) {
         int n = nums.size();
         long sum = accumulate(nums.begin(), nums.end(), 0l);
         if (sum % 4) {
@@ -69,7 +69,7 @@ public:
                 continue;
             }
 
-            for (int usedMask: usedMasks)
+            for (int usedMask : usedMasks)
                 if ((usedMask & mask) == 0) {
                     // then they form a valid half subset whose sum is 2 * sideLen,
                     // that can be further partitioned into two equal subsets (usedMask and mask)
@@ -90,9 +90,9 @@ public:
 class Solution1 {
     // simple dfs but slow
 private:
-    bool valid(vector<int> &nums, int index, vector<int> &side, int length) {
+    bool valid(vector<int>& nums, int index, vector<int>& side, int length) {
         if (index >= nums.size()) {
-            for (int l: side) {
+            for (int l : side) {
                 if (l != length) {
                     return false;
                 }
@@ -113,14 +113,14 @@ private:
     }
 
 public:
-    bool makesquare(vector<int> &nums) {
+    bool makesquare(vector<int>& nums) {
         if (nums.size() < 4) {
             return false;
         }
 
         int sum = 0;
         int longest = 0;
-        for (int num: nums) {
+        for (int num : nums) {
             sum += num;
             longest = max(longest, num);
         }
@@ -135,7 +135,7 @@ public:
         }
 
         vector<int> side(4, 0);
-        sort(nums.rbegin(), nums.rend()); // trick here accelerate process time, cause longer stick will fail first
+        sort(nums.rbegin(), nums.rend());  // trick here accelerate process time, cause longer stick will fail first
         return valid(nums, 0, side, length);
     }
 };

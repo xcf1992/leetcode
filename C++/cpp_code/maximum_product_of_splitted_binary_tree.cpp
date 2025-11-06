@@ -50,7 +50,7 @@ class Solution {
 private:
     int MOD = 1e9 + 7;
 
-    void getSum(long &sum, TreeNode *root) {
+    void getSum(long& sum, TreeNode* root) {
         if (root == nullptr) {
             return;
         }
@@ -60,7 +60,7 @@ private:
         getSum(sum, root->right);
     }
 
-    int getMaxProduct(long sum, long &minGap, TreeNode *root) {
+    int getMaxProduct(long sum, long& minGap, TreeNode* root) {
         if (root == nullptr) {
             return 0;
         }
@@ -76,7 +76,7 @@ private:
     }
 
 public:
-    int maxProduct(TreeNode *root) {
+    int maxProduct(TreeNode* root) {
         long sum = 0;
         getSum(sum, root);
 

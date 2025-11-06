@@ -44,29 +44,25 @@ private:
     unordered_map<int, int> frequency;
     int mostFrequent = -1;
 
-    int getSum(TreeNode *root, vector<int> &result) {
+    int getSum(TreeNode* root, vector<int>& result) {
         if (root == nullptr) {
             return 0;
         }
 
         int sum = root->val + getSum(root->left, result) + getSum(root->right, result);
         frequency[sum] += 1;
-        if (mostFrequent == -1 or mostFrequent<frequency[sum]
-        )
-        {
+        if (mostFrequent == -1 or mostFrequent < frequency[sum]) {
             result.clear();
             result.push_back(sum);
             mostFrequent = frequency[sum];
-        }
-        else
-        if (mostFrequent == frequency[sum]) {
+        } else if (mostFrequent == frequency[sum]) {
             result.push_back(sum);
         }
         return sum;
     }
 
 public:
-    vector<int> findFrequentTreeSum(TreeNode *root) {
+    vector<int> findFrequentTreeSum(TreeNode* root) {
         vector<int> result;
         getSum(root, result);
         return result;

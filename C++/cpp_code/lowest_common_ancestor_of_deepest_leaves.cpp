@@ -47,11 +47,11 @@ class Solution {
 private:
     pair<TreeNode*, int> traverse(TreeNode* root) {
         if (root == nullptr) {
-            return {nullptr, 0}; // return the lca node and its height
+            return {nullptr, 0};  // return the lca node and its height
         }
 
-        pair<TreeNode*, int> left = traverse(root -> left);
-        pair<TreeNode*, int> right = traverse(root -> right);
+        pair<TreeNode*, int> left = traverse(root->left);
+        pair<TreeNode*, int> right = traverse(root->right);
         if (left.second > right.second) {
             return {left.first, left.second + 1};
         }
@@ -60,13 +60,14 @@ private:
         }
         return {root, left.second + 1};
     }
+
 public:
     TreeNode* lcaDeepestLeaves(TreeNode* root) {
         return traverse(root).first;
     }
 };
 
-class Solution1 { // 92.98% created by Chenfu
+class Solution1 {  // 92.98% created by Chenfu
 private:
     void traverse(TreeNode* root, vector<TreeNode*>& parent, unordered_set<TreeNode*>& leaves, int cur, int& height) {
         if (root == nullptr) {
@@ -81,15 +82,16 @@ private:
             leaves.insert(root);
         }
 
-        if (root -> left != nullptr) {
-            parent[root -> left -> val] = root;
+        if (root->left != nullptr) {
+            parent[root->left->val] = root;
         }
-        if (root -> right != nullptr) {
-            parent[root -> right -> val] = root;
+        if (root->right != nullptr) {
+            parent[root->right->val] = root;
         }
-        traverse(root -> left, parent, leaves, cur + 1, height);
-        traverse(root -> right, parent, leaves, cur + 1, height);
+        traverse(root->left, parent, leaves, cur + 1, height);
+        traverse(root->right, parent, leaves, cur + 1, height);
     }
+
 public:
     TreeNode* lcaDeepestLeaves(TreeNode* root) {
         vector<TreeNode*> parent(1001, nullptr);
@@ -100,7 +102,7 @@ public:
         while (leaves.size() > 1) {
             unordered_set<TreeNode*> newLeaves;
             for (auto it = leaves.begin(); it != leaves.end(); it++) {
-                newLeaves.insert(parent[(*it) -> val]);
+                newLeaves.insert(parent[(*it)->val]);
             }
             leaves = newLeaves;
         }

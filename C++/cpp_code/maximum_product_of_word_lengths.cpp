@@ -37,12 +37,12 @@ using namespace std;
 
 class Solution {
 public:
-    int maxProduct(vector<string> &words) {
+    int maxProduct(vector<string>& words) {
         int result = 0;
         int n = words.size();
         vector<int> mask(n, 0);
         for (int i = 0; i < n; i++) {
-            for (char c: words[i]) {
+            for (char c : words[i]) {
                 mask[i] |= 1 << (c - 'a');
             }
         }

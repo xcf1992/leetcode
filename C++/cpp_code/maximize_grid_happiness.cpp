@@ -25,7 +25,8 @@ We can put the introvert in cell (1,1) and put the extroverts in cells (1,3) and
 - Extrovert at (1,3) happiness: 40 (starting happiness) + (1 * 20) (1 neighbor) = 60
 - Extrovert at (2,3) happiness: 40 (starting happiness) + (1 * 20) (1 neighbor) = 60
 The grid happiness is 120 + 60 + 60 = 240.
-The above figure shows the grid in this example with each person's happiness. The introvert stays in the light green cell while the extroverts live on the light purple cells.
+The above figure shows the grid in this example with each person's happiness. The introvert stays in the light green
+cell while the extroverts live on the light purple cells.
 
 Example 2:
 Input: m = 3, n = 1, introvertsCount = 2, extrovertsCount = 1
@@ -68,9 +69,11 @@ OK, tracking people in the grid is costly, and you will get TLE if you do not us
 
 I saw several solutions that cheat on large test cases.
 
-Fortunately, to calculate the happiness balance - how placing a person subtracts or adds to the overall happiness - we only need to know last m cells we processed.
+Fortunately, to calculate the happiness balance - how placing a person subtracts or adds to the overall happiness - we
+only need to know last m cells we processed.
 
-We can use bit masks to track introverts and extroverts in the last m cells, and shift them as we go. Thus, we have here 5D DP:
+We can use bit masks to track introverts and extroverts in the last m cells, and shift them as we go. Thus, we have here
+5D DP:
 
 Position in the grid (p = i * m + j) -> up to 25.
 Remaining introverts -> up to 6.

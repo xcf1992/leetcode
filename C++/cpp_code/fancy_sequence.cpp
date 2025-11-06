@@ -20,7 +20,8 @@ If the index is greater or equal than the length of the sequence, return -1.
 
 Example 1:
 Input
-["Fancy", "append", "addAll", "append", "multAll", "getIndex", "addAll", "append", "multAll", "getIndex", "getIndex", "getIndex"]
+["Fancy", "append", "addAll", "append", "multAll", "getIndex", "addAll", "append", "multAll", "getIndex", "getIndex",
+"getIndex"]
 [[], [2], [3], [7], [2], [0], [3], [10], [2], [0], [1], [2]]
 Output
 [null, null, null, null, null, 10, null, null, null, 26, 34, 20]

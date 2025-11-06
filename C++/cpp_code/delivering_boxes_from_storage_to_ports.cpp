@@ -27,13 +27,11 @@ Example 1:
 Input: boxes = [[1,1],[2,1],[1,1]], portsCount = 2, maxBoxes = 3, maxWeight = 3
 Output: 4
 Explanation: The optimal strategy is as follows:
-- The ship takes all the boxes in the queue, goes to port 1, then port 2, then port 1 again, then returns to storage. 4 trips.
-So the total number of trips is 4.
-Note that the first and third boxes cannot be delivered together because the boxes need to be delivered in order (i.e. the second box needs to be delivered at port 2 before the third box).
-Example 2:
-Input: boxes = [[1,2],[3,3],[3,1],[3,1],[2,4]], portsCount = 3, maxBoxes = 3, maxWeight = 6
-Output: 6
-Explanation: The optimal strategy is as follows:
+- The ship takes all the boxes in the queue, goes to port 1, then port 2, then port 1 again, then returns to storage. 4
+trips. So the total number of trips is 4. Note that the first and third boxes cannot be delivered together because the
+boxes need to be delivered in order (i.e. the second box needs to be delivered at port 2 before the third box). Example
+2: Input: boxes = [[1,2],[3,3],[3,1],[3,1],[2,4]], portsCount = 3, maxBoxes = 3, maxWeight = 6 Output: 6 Explanation:
+The optimal strategy is as follows:
 - The ship takes the first box, goes to port 1, then returns to storage. 2 trips.
 - The ship takes the second, third and fourth boxes, goes to port 3, then returns to storage. 2 trips.
 - The ship takes the fifth box, goes to port 3, then returns to storage. 2 trips.
@@ -107,7 +105,7 @@ Space O(N)
 */
 class Solution {
 public:
-    int boxDelivering(vector<vector<int> > &A, int portsCount, int B, int W) {
+    int boxDelivering(vector<vector<int>>& A, int portsCount, int B, int W) {
         int n = A.size(), need = 0, j = 0, lastj = 0;
         vector<int> dp(n + 1, 200000);
         dp[0] = 0;

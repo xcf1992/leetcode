@@ -35,13 +35,13 @@ the water trapped depends upon the left_max,
 and similar is the case when left_max[i]>right_max[i] (from element 8 to 11).
 So, we can say that if there is a larger bar at one end (say right),
 we are assured that the water trapped would be dependant on height of bar in current direction (from left to right).
-As soon as we find the bar at other end (right) is smaller, we start iterating in opposite direction (from right to left).
-We must maintain left_max and right_max during the iteration,
-but now we can do it in one iteration using 2 pointers, switching between the two.
+As soon as we find the bar at other end (right) is smaller, we start iterating in opposite direction (from right to
+left). We must maintain left_max and right_max during the iteration, but now we can do it in one iteration using 2
+pointers, switching between the two.
 */
 class Solution {
 public:
-    int trap(vector<int> &height) {
+    int trap(vector<int>& height) {
         int n = height.size();
         int result = 0;
         int left = 0;
@@ -72,7 +72,7 @@ public:
 class Solution1 {
     // O(n) tiem and space
 public:
-    int trap(vector<int> &height) {
+    int trap(vector<int>& height) {
         int n = height.size();
         if (n < 2) {
             return 0;

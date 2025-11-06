@@ -37,13 +37,13 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int> > removeInterval(vector<vector<int> > &intervals, vector<int> &toBeRemoved) {
+    vector<vector<int>> removeInterval(vector<vector<int>>& intervals, vector<int>& toBeRemoved) {
         int n = intervals.size();
         if (n == 0) {
             return {};
         }
 
-        vector<vector<int> > result;
+        vector<vector<int>> result;
         int cur = 0;
         for (int i = 0; i < n; ++i, ++cur) {
             if (intervals[i][1] <= toBeRemoved[0]) {

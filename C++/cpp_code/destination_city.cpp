@@ -13,7 +13,8 @@ therefore, there will be exactly one destination city.
 Example 1:
 Input: paths = [["London","New York"],["New York","Lima"],["Lima","Sao Paulo"]]
 Output: "Sao Paulo"
-Explanation: Starting at "London" city you will reach "Sao Paulo" city which is the destination city. Your trip consist of: "London" -> "New York" -> "Lima" -> "Sao Paulo".
+Explanation: Starting at "London" city you will reach "Sao Paulo" city which is the destination city. Your trip consist
+of: "London" -> "New York" -> "Lima" -> "Sao Paulo".
 
 Example 2:
 Input: paths = [["B","C"],["D","B"],["C","A"]]
@@ -54,14 +55,14 @@ using namespace std;
 
 class Solution {
 public:
-    string destCity(vector<vector<string> > &paths) {
+    string destCity(vector<vector<string>>& paths) {
         unordered_set<string> out;
-        for (vector<string> &path: paths) {
+        for (vector<string>& path : paths) {
             out.insert(path[0]);
         }
 
         string result = "";
-        for (vector<string> &path: paths) {
+        for (vector<string>& path : paths) {
             if (out.count(path[1]) == 0) {
                 result = path[1];
                 break;

@@ -36,7 +36,7 @@ using namespace std;
 
 class Solution {
 public:
-    bool canDivideIntoSubsequences(vector<int> &nums, int K) {
+    bool canDivideIntoSubsequences(vector<int>& nums, int K) {
         int n = nums.size();
         int maxCount = 1;
         int cur = 1;

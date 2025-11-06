@@ -61,8 +61,8 @@ using namespace std;
 
 struct TreeNode {
     int val;
-    TreeNode *left;
-    TreeNode *right;
+    TreeNode* left;
+    TreeNode* right;
 
     TreeNode() : val(0), left(nullptr), right(nullptr) {
     }
@@ -70,7 +70,7 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {
     }
 
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {
+    TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {
     }
 };
 
@@ -92,12 +92,12 @@ public:
                 TreeNode* node = bfs.front().second;
                 bfs.pop();
 
-                column[pos].push_back({row, node -> val});
-                if (node -> left) {
-                    bfs.push({pos - 1, node -> left});
+                column[pos].push_back({row, node->val});
+                if (node->left) {
+                    bfs.push({pos - 1, node->left});
                 }
-                if (node -> right) {
-                    bfs.push({pos + 1, node -> right});
+                if (node->right) {
+                    bfs.push({pos + 1, node->right});
                 }
             }
             row += 1;

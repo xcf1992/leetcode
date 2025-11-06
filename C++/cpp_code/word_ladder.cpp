@@ -49,9 +49,9 @@ using namespace std;
 
 class Solution {
 public:
-    int ladderLength(string beginWord, string endWord, vector<string> &wordList) {
-        unordered_map<string, vector<string> > dict;
-        for (string &word: wordList) {
+    int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
+        unordered_map<string, vector<string>> dict;
+        for (string& word : wordList) {
             for (int i = 0; i < word.size(); ++i) {
                 string temp = word.substr(0, i) + "*" + word.substr(i + 1);
                 dict[temp].push_back(word);
@@ -75,7 +75,7 @@ public:
 
                 for (int i = 0; i < curWord.size(); ++i) {
                     string temp = curWord.substr(0, i) + "*" + curWord.substr(i + 1);
-                    for (string &nextWord: dict[temp]) {
+                    for (string& nextWord : dict[temp]) {
                         if (visited.find(nextWord) == visited.end()) {
                             bfs.push(nextWord);
                             visited.insert(nextWord);

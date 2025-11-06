@@ -36,21 +36,8 @@ class Solution {
 public:
     string removeVowels(string S) {
         string result = "";
-        for (char c: S) {
-            if (c != 'a' and c
-            !=
-            'e'
-            and c
-            !=
-            'i'
-            and c
-            !=
-            'o'
-            and c
-            !=
-            'u'
-            )
-            {
+        for (char c : S) {
+            if (c != 'a' and c != 'e' and c != 'i' and c != 'o' and c != 'u') {
                 result.push_back(c);
             }
         }

@@ -3,7 +3,8 @@
 https://leetcode.com/problems/swapping-nodes-in-a-linked-list/
 
 You are given the head of a linked list, and an integer k.
-Return the head of the linked list after swapping the values of the kth node from the beginning and the kth node from the end (the list is 1-indexed).
+Return the head of the linked list after swapping the values of the kth node from the beginning and the kth node from
+the end (the list is 1-indexed).
 
 Example 1:
 Input: head = [1,2,3,4,5], k = 2
@@ -45,7 +46,7 @@ using namespace std;
 
 class Solution {
 public:
-    ListNode *swapNodes(ListNode *head, int k) {
+    ListNode* swapNodes(ListNode* head, int k) {
         ListNode *n1 = nullptr, *n2 = nullptr;
         for (auto p = head; p != nullptr; p = p->next) {
             n2 = n2 == nullptr ? nullptr : n2->next;

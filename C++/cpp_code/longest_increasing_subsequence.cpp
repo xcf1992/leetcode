@@ -32,19 +32,20 @@ https://www.geeksforgeeks.org/longest-monotonically-increasing-subsequence-size-
 Basically we are trying to log longest increasing subsequence in lis
 if current num is bigger then current sequence we push it to the back
 if any number in current lis is bigger than current num we replace it with current num
-cause the size of lis is non-shrinking, which means it will always be the length of longest increasing subsequnce we ever seen
-so by replacing internal element with current num(which is smaller), we hope we can longer sequence after that.
+cause the size of lis is non-shrinking, which means it will always be the length of longest increasing subsequnce we
+ever seen so by replacing internal element with current num(which is smaller), we hope we can longer sequence after
+that.
 */
 class Solution {
 public:
-    int lengthOfLIS(vector<int> &nums) {
+    int lengthOfLIS(vector<int>& nums) {
         int n = nums.size();
         if (n <= 1) {
             return n;
         }
 
         vector<int> lis;
-        for (int num: nums) {
+        for (int num : nums) {
             auto it = lower_bound(lis.begin(), lis.end(), num);
             if (it == lis.end()) {
                 lis.push_back(num);
@@ -58,7 +59,7 @@ public:
 
 class Solution1 {
 public:
-    int lengthOfLIS(vector<int> &nums) {
+    int lengthOfLIS(vector<int>& nums) {
         int n = nums.size();
         if (n <= 1) {
             return n;

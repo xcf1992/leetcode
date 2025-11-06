@@ -43,7 +43,7 @@ using namespace std;
 
 class Solution {
 public:
-    int maxSatisfied(vector<int> &customers, vector<int> &grumpy, int X) {
+    int maxSatisfied(vector<int>& customers, vector<int>& grumpy, int X) {
         int n = customers.size();
         int satisfied = 0;
         for (int i = 0; i < n; ++i) {

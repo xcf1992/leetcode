@@ -13,7 +13,8 @@ it's still considered that every appeared number has the same number of ocurrenc
 Example 1:
 Input: nums = [2,2,1,1,5,3,3,5]
 Output: 7
-Explanation: For the subarray [2,2,1,1,5,3,3] of length 7, if we remove nums[4]=5, we will get [2,2,1,1,3,3], so that each number will appear exactly twice.
+Explanation: For the subarray [2,2,1,1,5,3,3] of length 7, if we remove nums[4]=5, we will get [2,2,1,1,3,3], so that
+each number will appear exactly twice.
 
 Example 2:
 Input: nums = [1,1,1,2,2,2,3,3,3,4,4,4,5]
@@ -75,7 +76,7 @@ Space O(K), where K = set(A).length
 */
 class Solution {
 public:
-    int maxEqualFreq(vector<int> &nums) {
+    int maxEqualFreq(vector<int>& nums) {
         int n = nums.size();
         if (n <= 1) {
             return n;
@@ -90,21 +91,11 @@ public:
             int curCount = ++count[num];
             freq[curCount] += 1;
 
-            if (freq[curCount] * curCount == i and i<n
-            )
-            {
+            if (freq[curCount] * curCount == i and i < n) {
                 result = i + 1;
             }
             int gap = i - freq[curCount] * curCount;
-            if ((gap == curCount + 1 or gap
-            ==
-            1
-            )
-            and freq[gap]
-            ==
-            1
-            )
-            {
+            if ((gap == curCount + 1 or gap == 1) and freq[gap] == 1) {
                 result = i;
             }
         }

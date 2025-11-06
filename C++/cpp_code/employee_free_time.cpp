@@ -26,7 +26,8 @@ Also, we wouldn't include intervals like [5, 5] in our answer, as they have zero
 Note:
 schedule and schedule[i] are lists with lengths in range [1, 50].
 0 <= schedule[i].start < schedule[i].end <= 10^8.
-NOTE: input types have been changed on June 17, 2019. Please reset to default code definition to get new method signature.
+NOTE: input types have been changed on June 17, 2019. Please reset to default code definition to get new method
+signature.
 */
 #include <iostream>
 #include <string>
@@ -54,25 +55,22 @@ struct Interval {
 
 class Solution {
 public:
-    vector<Interval *> employeeFreeTime(vector<vector<Interval *> > &schedules) {
+    vector<Interval*> employeeFreeTime(vector<vector<Interval*>>& schedules) {
         map<int, int> timeline;
-        for (auto &schedule: schedules) {
-            for (Interval *interval: schedule) {
+        for (auto& schedule : schedules) {
+            for (Interval* interval : schedule) {
                 timeline[interval->start] += 1;
                 timeline[interval->end] -= 1;
             }
         }
 
-        vector<Interval *> result;
+        vector<Interval*> result;
         int workers = 0;
-        for (pair<int, int> busy: timeline) {
+        for (pair<int, int> busy : timeline) {
             workers += busy.second;
             if (workers == 0) {
                 result.push_back(new Interval(busy.first, 0));
-            } else if (!result.empty() and
-            result.back()->end == 0
-            )
-            {
+            } else if (!result.empty() and result.back()->end == 0) {
                 result.back()->end = busy.first;
             }
         }
@@ -85,22 +83,21 @@ public:
 };
 
 class Solution1 {
-    //5.27%
+    // 5.27%
 public:
-    vector<Interval *> employeeFreeTime(vector<vector<Interval *> > &schedules) {
-        vector<Interval *> intervals;
-        for (vector<Interval *> schedule: schedules) {
-            for (Interval *it: schedule) {
+    vector<Interval*> employeeFreeTime(vector<vector<Interval*>>& schedules) {
+        vector<Interval*> intervals;
+        for (vector<Interval*> schedule : schedules) {
+            for (Interval* it : schedule) {
                 intervals.push_back(it);
             }
         }
 
-        sort(intervals.begin(), intervals.end(), [](Interval *a, Interval *b) {
-            return a->start < b->start
-            or(a->start == b->start and a->end < b->end);
+        sort(intervals.begin(), intervals.end(), [](Interval* a, Interval* b) {
+            return a->start < b->start or (a->start == b->start and a->end < b->end);
         });
 
-        vector<Interval *> result;
+        vector<Interval*> result;
         int end = intervals[0]->end;
         for (int i = 1; i < intervals.size(); ++i) {
             if (intervals[i]->start > end) {

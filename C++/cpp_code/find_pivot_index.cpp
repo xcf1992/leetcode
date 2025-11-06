@@ -49,7 +49,7 @@ using namespace std;
 
 class Solution {
 public:
-    int pivotIndex(vector<int> &nums) {
+    int pivotIndex(vector<int>& nums) {
         if (nums.size() < 3) {
             return -1;
         }

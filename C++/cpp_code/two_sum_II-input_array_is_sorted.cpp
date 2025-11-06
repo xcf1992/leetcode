@@ -33,7 +33,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> twoSum(vector<int> &numbers, int target) {
+    vector<int> twoSum(vector<int>& numbers, int target) {
         vector<int> result;
         int left = 1;
         int right = numbers.size();

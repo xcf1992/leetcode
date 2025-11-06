@@ -77,7 +77,7 @@ Complexity
 Time O(N^2)
 Space O(N^2)
 */
-class Solution1 { // bottom up dp
+class Solution1 {  // bottom up dp
 public:
     int minInsertions(string s) {
         int n = s.size();
@@ -91,7 +91,7 @@ public:
     }
 };
 
-class Solution { // top down dfs with memo
+class Solution {  // top down dfs with memo
 private:
     int dfs(string& s, int i, int j, vector<vector<int>>& memo) {
         if (i >= j) {
@@ -102,13 +102,16 @@ private:
             return memo[i][j];
         }
 
-        memo[i][j] = s[i] == s[j] ? dfs(s, i + 1, j - 1, memo) : 1 + min(dfs(s, i + 1, j, memo), dfs(s, i, j - 1, memo));
+        memo[i][j] =
+                s[i] == s[j] ? dfs(s, i + 1, j - 1, memo) : 1 + min(dfs(s, i + 1, j, memo), dfs(s, i, j - 1, memo));
         return memo[i][j];
     }
+
 public:
     int minInsertions(string s) {
         int n = s.size();
-        vector<vector<int>> memo(n, vector<int>(n, -1)); // memo[i][j] stores the length shortest non-palindrome subsequence of s[i..j]
+        vector<vector<int>> memo(
+                n, vector<int>(n, -1));  // memo[i][j] stores the length shortest non-palindrome subsequence of s[i..j]
         return dfs(s, 0, n - 1, memo);
     }
 };

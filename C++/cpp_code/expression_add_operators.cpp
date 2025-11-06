@@ -2,7 +2,8 @@
 282. Expression Add Operators
 
 Given a string that contains only digits 0-9 and a target value,
-return all possibilities to add binary operators (not unary) +, -, or * between the digits so they evaluate to the target value.
+return all possibilities to add binary operators (not unary) +, -, or * between the digits so they evaluate to the
+target value.
 
 Example 1:
 Input: num = "123", target = 6
@@ -45,12 +46,8 @@ private:
     // cv:  {long}   cumulative value so far.
     // pv:  {long}   previous operand value.
     // op:  {char}   previous operator used.
-    void dfs(vector<string> &result, string &num, int &target, string cur, int pos, long cv, long pv, char op) {
-        if (pos == num.size() and cv
-        ==
-        target
-        )
-        {
+    void dfs(vector<string>& result, string& num, int& target, string cur, int pos, long cv, long pv, char op) {
+        if (pos == num.size() and cv == target) {
             result.push_back(cur);
             return;
         }

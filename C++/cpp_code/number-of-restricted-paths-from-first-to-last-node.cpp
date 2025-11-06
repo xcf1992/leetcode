@@ -22,14 +22,10 @@ Since that number may be too large, return it modulo 109 + 7.
 Example 1:
 Input: n = 5, edges = [[1,2,3],[1,3,3],[2,3,1],[1,4,2],[5,2,2],[3,5,1],[5,4,10]]
 Output: 3
-Explanation: Each circle contains the node number in black and its distanceToLastNode value in blue. The three restricted paths are:
-1) 1 --> 2 --> 5
-2) 1 --> 2 --> 3 --> 5
-3) 1 --> 3 --> 5
-Example 2:
-Input: n = 7, edges = [[1,3,1],[4,1,2],[7,3,4],[2,5,3],[5,6,1],[6,7,2],[7,5,3],[2,6,4]]
-Output: 1
-Explanation: Each circle contains the node number in black and its distanceToLastNode value in blue. The only restricted path is 1 --> 3 --> 7.
+Explanation: Each circle contains the node number in black and its distanceToLastNode value in blue. The three
+restricted paths are: 1) 1 --> 2 --> 5 2) 1 --> 2 --> 3 --> 5 3) 1 --> 3 --> 5 Example 2: Input: n = 7, edges =
+[[1,3,1],[4,1,2],[7,3,4],[2,5,3],[5,6,1],[6,7,2],[7,5,3],[2,6,4]] Output: 1 Explanation: Each circle contains the node
+number in black and its distanceToLastNode value in blue. The only restricted path is 1 --> 3 --> 7.
 
 Constraints:
 1 <= n <= 2 * 104
@@ -79,8 +75,9 @@ Space: O(M + N)
 */
 class Solution {
 private:
-    // Declaring variables gloabally so that we don't need to pass every time in function and we can directly access in dfs function
-    unordered_map<int, vector<pair<int, int> > > m;
+    // Declaring variables gloabally so that we don't need to pass every time in function and we can directly access in
+    // dfs function
+    unordered_map<int, vector<pair<int, int>>> m;
     vector<int> dist;
     vector<int> dp;
 
@@ -102,8 +99,9 @@ private:
         }
         return dp[u] = ans;
     }
+
 public:
-    int countRestrictedPaths(int n, vector<vector<int> > &edges) {
+    int countRestrictedPaths(int n, vector<vector<int>>& edges) {
         vector<int> vis(n + 1, 0);
         dist.resize(n + 1, INT_MAX);
         dp.resize(n + 1, -1);
@@ -114,7 +112,7 @@ public:
             m[i[1]].push_back({i[0], i[2]});
         }
 
-        set<pair<int, int> > q;
+        set<pair<int, int>> q;
         q.insert({0, n});
         dist[n] = 0;
         while (!q.empty()) {

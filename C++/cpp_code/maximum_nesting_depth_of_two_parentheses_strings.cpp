@@ -70,17 +70,14 @@ public:
             if (seq[i] == '(') {
                 if (A < B) {
                     A += 1;
-                }
-                else {
+                } else {
                     B += 1;
                     result[i] = 1;
                 }
-            }
-            else {
+            } else {
                 if (A > B) {
                     A -= 1;
-                }
-                else {
+                } else {
                     B -= 1;
                     result[i] = 1;
                 }

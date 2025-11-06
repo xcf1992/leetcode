@@ -110,11 +110,11 @@ Notes: for the 1st bit of X, it could be 0 or 1.
    X = 1 1 0 1 0   ->  must be 0, and go to evaluate next bit
 So, all of number will be sum of (step one, two, four)
 */
-const int LEVEL = 16; // 1 <= nums[i] <= 20000
+const int LEVEL = 16;  // 1 <= nums[i] <= 20000
 
 struct TrieNode {
-    TrieNode *child[2]; // Stores binary represention of numbers
-    int cnt; // Stores count of elements present in a node
+    TrieNode* child[2];  // Stores binary represention of numbers
+    int cnt;             // Stores count of elements present in a node
     TrieNode() {
         child[0] = child[1] = nullptr;
         cnt = 0;
@@ -122,7 +122,7 @@ struct TrieNode {
 };
 
 // Function to insert a number into Trie
-void insertTrie(TrieNode *root, int n) {
+void insertTrie(TrieNode* root, int n) {
     // Traverse binary representation of X
     for (int i = LEVEL; i >= 0; i--) {
         // Stores ith bit of N
@@ -135,7 +135,7 @@ void insertTrie(TrieNode *root, int n) {
         // Update count of elements whose ith bit is x
         root->child[x]->cnt += 1;
 
-        //Go to next level
+        // Go to next level
         root = root->child[x];
     }
 }
@@ -143,13 +143,13 @@ void insertTrie(TrieNode *root, int n) {
 class Solution {
 private:
     // Count elements in Trie whose XOR with N less than K
-    int countSmallerPairs(TrieNode *root, int N, int K) {
+    int countSmallerPairs(TrieNode* root, int N, int K) {
         // Stores count of elements whose XOR with N less than K
         int cntPairs = 0;
         // Traverse binary representation of N and K in Trie
         for (int i = LEVEL; i >= 0 && root; i--) {
-            bool x = N & (1 << i); // Stores ith bit of N
-            bool y = K & (1 << i); // Stores ith bit of K
+            bool x = N & (1 << i);  // Stores ith bit of N
+            bool y = K & (1 << i);  // Stores ith bit of K
 
             // If the ith bit of K is 0
             if (y == 0) {
@@ -165,18 +165,18 @@ private:
                 // so that they can be xored to ZERO. so it would be smaller than K
                 cntPairs += root->child[x]->cnt;
             }
-            //go to another way for next bit count
+            // go to another way for next bit count
             root = root->child[1 - x];
         }
         return cntPairs;
     }
 
 public:
-    int countPairs(vector<int> &nums, int low, int high) {
-        TrieNode *root = new TrieNode();
+    int countPairs(vector<int>& nums, int low, int high) {
+        TrieNode* root = new TrieNode();
 
         int cnt = 0;
-        for (auto &num: nums) {
+        for (auto& num : nums) {
             cnt += countSmallerPairs(root, num, high + 1) - countSmallerPairs(root, num, low);
             insertTrie(root, num);
         }

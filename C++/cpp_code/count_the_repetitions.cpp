@@ -89,17 +89,13 @@ class Solution {
 public:
     int getMaxRepetitions(string s1, int n1, string s2, int n2) {
         int l1 = s1.size();
-        if (l1 == 0 or n1
-        ==
-        0
-        )
-        {
+        if (l1 == 0 or n1 == 0) {
             return 0;
         }
         int l2 = s2.size();
 
-        vector<int> nextIndexr(l2 + 1, 0); // nextIndex at start of each s1 block
-        vector<int> countr(l2 + 1, 0); // count of repititions till the present s1 block
+        vector<int> nextIndexr(l2 + 1, 0);  // nextIndex at start of each s1 block
+        vector<int> countr(l2 + 1, 0);      // count of repititions till the present s1 block
         int nextIndex = 0;
         int count = 0;
         for (int i = 0; i < n1; i++) {
@@ -117,7 +113,7 @@ public:
             nextIndexr[i] = nextIndex;
             for (int k = 0; k < i; k++)
                 if (nextIndexr[k] == nextIndex) {
-                    int prev_count = countr[k]; // count from [0, k]
+                    int prev_count = countr[k];  // count from [0, k]
                     int pattern_count = (countr[i] - countr[k]) * ((n1 - 1 - k) / (i - k));
                     int remain_count = countr[k + (n1 - 1 - k) % (i - k)] - countr[k];
                     return (prev_count + pattern_count + remain_count) / n2;

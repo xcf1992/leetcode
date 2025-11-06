@@ -82,9 +82,8 @@ public:
         }
         vector<int> sorted(hi - lo + 1);
         iota(begin(sorted), end(sorted), lo);
-        nth_element(begin(sorted), begin(sorted) + k - 1, end(sorted), [](int i, int j) {
-            return comp[i] == comp[j] ? i < j : comp[i] < comp[j];
-        });
+        nth_element(begin(sorted), begin(sorted) + k - 1, end(sorted),
+                    [](int i, int j) { return comp[i] == comp[j] ? i < j : comp[i] < comp[j]; });
         return sorted[k - 1];
     }
 };

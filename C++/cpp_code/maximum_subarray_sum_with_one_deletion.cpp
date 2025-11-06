@@ -62,7 +62,7 @@ So now at each index, it is just about looking at prev and next numbers from the
 */
 class Solution {
 public:
-    int maximumSum(vector<int> &arr) {
+    int maximumSum(vector<int>& arr) {
         int n = arr.size();
         if (n == 1) {
             return arr[0];

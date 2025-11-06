@@ -41,7 +41,7 @@ using namespace std;
 class MedianFinder {
 private:
     priority_queue<int> left;
-    priority_queue<int, vector<int>, greater<int> > right;
+    priority_queue<int, vector<int>, greater<int>> right;
 
 public:
     /* initialize your data structure here.*/
@@ -49,14 +49,9 @@ public:
     }
 
     void addNum(int num) {
-        if (left.empty() or
-        left.top() > num
-        )
-        {
+        if (left.empty() or left.top() > num) {
             left.push(num);
-        }
-        else
-        {
+        } else {
             right.push(num);
         }
 

@@ -77,7 +77,7 @@ Space O(1)
 */
 class Solution {
 public:
-    int maxSum(vector<int> &A, vector<int> &B) {
+    int maxSum(vector<int>& A, vector<int>& B) {
         int i = 0, j = 0;
         int n = A.size(), m = B.size();
         long a = 0, b = 0, mod = 1e9 + 7;

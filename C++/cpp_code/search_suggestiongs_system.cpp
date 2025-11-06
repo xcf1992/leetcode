@@ -3,9 +3,9 @@
 https://leetcode.com/problems/search-suggestions-system/
 
 Given an array of strings products and a string searchWord.
-We want to design a system that suggests at most three product names from products after each character of searchWord is typed.
-Suggested products should have common prefix with the searchWord.
-If there are more than three products with a common prefix return the three lexicographically minimums products.
+We want to design a system that suggests at most three product names from products after each character of searchWord is
+typed. Suggested products should have common prefix with the searchWord. If there are more than three products with a
+common prefix return the three lexicographically minimums products.
 
 Return list of lists of the suggested products after each character of searchWord is typed.
 
@@ -55,17 +55,17 @@ All characters of searchWord are lower-case English letters.
 using namespace std;
 
 struct TrieNode {
-    vector<TrieNode *> children = vector<TrieNode *>(26, nullptr);
+    vector<TrieNode*> children = vector<TrieNode*>(26, nullptr);
     set<string> words;
 };
 
 class Solution {
 private:
-    TrieNode *root = new TrieNode();
+    TrieNode* root = new TrieNode();
 
     void addWord(string word) {
-        TrieNode *cur = root;
-        for (char c: word) {
+        TrieNode* cur = root;
+        for (char c : word) {
             if (cur->children[c - 'a'] == nullptr) {
                 cur->children[c - 'a'] = new TrieNode();
             }
@@ -75,25 +75,22 @@ private:
     }
 
 public:
-    vector<vector<string> > suggestedProducts(vector<string> &products, string searchWord) {
-        for (string &product: products) {
+    vector<vector<string>> suggestedProducts(vector<string>& products, string searchWord) {
+        for (string& product : products) {
             addWord(product);
         }
 
         int n = searchWord.size();
-        vector<vector<string> > result(n);
-        TrieNode *cur = root;
+        vector<vector<string>> result(n);
+        TrieNode* cur = root;
         for (int i = 0; i < n; ++i) {
             char c = searchWord[i];
-            if (cur == nullptr or
-            cur->children[c - 'a'] == nullptr
-            )
-            {
+            if (cur == nullptr or cur->children[c - 'a'] == nullptr) {
                 break;
             }
 
             cur = cur->children[c - 'a'];
-            for (string word: cur->words) {
+            for (string word : cur->words) {
                 if (result[i].size() == 3) {
                     break;
                 }
@@ -106,9 +103,9 @@ public:
 
 class Solution2 {
 public:
-    vector<vector<string> > suggestedProducts(vector<string> &ps, string word) {
+    vector<vector<string>> suggestedProducts(vector<string>& ps, string word) {
         sort(begin(ps), end(ps));
-        vector<vector<string> > res(word.size());
+        vector<vector<string>> res(word.size());
         for (auto l = 1; l <= word.size(); ++l) {
             auto w = word.substr(0, l);
             auto it = lower_bound(begin(ps), end(ps), w);

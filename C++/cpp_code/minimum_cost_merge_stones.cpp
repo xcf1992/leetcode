@@ -68,8 +68,8 @@ so,We have 1 = n -m(K-1) ----> so we have
 
  During interview, this might be our first question, the follow-up may ask us what if we can merge x consecutive piles?
  Just like original problem.
- Now our sub problem becomes: we need to know the minimum cost of merging left part to x - 1 piles and right part to 1 pile.
- Our state has one more information to know, how many piles. So we add the field to our dp array.
+ Now our sub problem becomes: we need to know the minimum cost of merging left part to x - 1 piles and right part to 1
+pile. Our state has one more information to know, how many piles. So we add the field to our dp array.
 
  State: Minimum cost merging piles from i to j to k pile.
 
@@ -93,7 +93,7 @@ so,We have 1 = n -m(K-1) ----> so we have
 */
 class Solution {
 public:
-    int mergeStones(vector<int> &stones, int K) {
+    int mergeStones(vector<int>& stones, int K) {
         int n = stones.size();
         if ((n - 1) % (K - 1) != 0) {
             return -1;
@@ -104,7 +104,7 @@ public:
             prefix[i + 1] = prefix[i] + stones[i];
         }
 
-        vector<vector<int> > dp(n, vector<int>(n));
+        vector<vector<int>> dp(n, vector<int>(n));
         for (int m = K; m <= n; ++m) {
             for (int i = 0; i + m <= n; ++i) {
                 int j = i + m - 1;
@@ -123,19 +123,19 @@ public:
 
 class Solution1 {
 public:
-    int mergeStones(vector<int> &stones, int K) {
+    int mergeStones(vector<int>& stones, int K) {
         int n = stones.size();
         vector<int> sum(n, 0);
         for (int i = 0; i < n; i++) {
             sum[i] = i > 0 ? sum[i - 1] + stones[i] : 0;
         }
 
-        vector<vector<vector<int> > > dp(n, vector<vector<int> >(n, vector<int>(K + 1, INT_MAX)));
+        vector<vector<vector<int>>> dp(n, vector<vector<int>>(n, vector<int>(K + 1, INT_MAX)));
         for (int i = n - 1; i >= 0; i--) {
             for (int j = i; j < n; j++) {
                 for (int k = 1; k <= K; k++) {
                     if (j - i + 1 == k) {
-                        dp[i][j][k] = 0; // it is already k piles so we do not need to do merge at all
+                        dp[i][j][k] = 0;  // it is already k piles so we do not need to do merge at all
                     }
                 }
             }
@@ -146,24 +146,16 @@ public:
                 for (int k = 1; k <= K; k++) {
                     for (int m = i; m < j; m++) {
                         if (k > 1) {
-                            if (dp[i][m][1] == INT_MAX or dp[m + 1][j][k - 1]
-                            ==
-                            INT_MAX
-                            )
-                            {
+                            if (dp[i][m][1] == INT_MAX or dp[m + 1][j][k - 1] == INT_MAX) {
                                 continue;
                             }
                             dp[i][j][k] = min(dp[i][j][k], dp[i][m][1] + dp[m + 1][j][k - 1]);
                         } else {
-                            if (dp[i][m][1] == INT_MAX or dp[m + 1][j][K - 1]
-                            ==
-                            INT_MAX
-                            )
-                            {
+                            if (dp[i][m][1] == INT_MAX or dp[m + 1][j][K - 1] == INT_MAX) {
                                 continue;
                             }
-                            dp[i][j][1] = min(dp[i][j][1],
-                                              dp[i][m][1] + dp[m + 1][j][K - 1] + sum[j] - sum[i] + stones[i]);
+                            dp[i][j][1] =
+                                    min(dp[i][j][1], dp[i][m][1] + dp[m + 1][j][K - 1] + sum[j] - sum[i] + stones[i]);
                         }
                     }
                 }
@@ -176,7 +168,8 @@ public:
 /*
  Let's first think this problem in a simple way, what if we can only merge 2 adjacent piles into one pile?
 
- For given example [3,2,4,1], we will normally think this as a greedy problem, we always merge two relatively small piles.
+ For given example [3,2,4,1], we will normally think this as a greedy problem, we always merge two relatively small
+ piles.
  [[3, 2], 4, 1] -> [5, [4, 1]] -> [5, 5] -> [10](cost: 20).
 
  While one counterexample is [6,4,4,6],
@@ -185,14 +178,9 @@ public:
 
  What if we think this problem reversely, which two piles should we merge at the last step?
 
- We don't know which two piles to merge for now, but we can know the cost of that step, which is the sum of that two piles.
- [3 | 2, 4, 1]
- 3 + 7 = 10
- [3 , 2 | 4, 1]
- 5 + 5 = 10
- [3 , 2, 4 | 1]
- 9 + 1 = 10
- No matter how to split the two piles, the sum is always the sum of the two piles.
+ We don't know which two piles to merge for now, but we can know the cost of that step, which is the sum of that two
+ piles. [3 | 2, 4, 1] 3 + 7 = 10 [3 , 2 | 4, 1] 5 + 5 = 10 [3 , 2, 4 | 1] 9 + 1 = 10 No matter how to split the two
+ piles, the sum is always the sum of the two piles.
 
  Now the only thing that matters is how to get the minimum cost to split to two piles.
  So we need to know the minimum cost of merging left part to 1 pile,
@@ -209,7 +197,7 @@ public:
 class Solution2 {
     // solution when K == 2
 public:
-    int mergeStones(vector<int> &stones, int K) {
+    int mergeStones(vector<int>& stones, int K) {
         int n = stones.size();
         if (n <= 1) {
             return 0;
@@ -220,7 +208,7 @@ public:
             prefixSum[i] = prefixSum[i - 1] + stones[i - 1];
         }
 
-        vector<vector<int> > dp(n + 1, vector<int>(n + 1, INT_MAX));
+        vector<vector<int>> dp(n + 1, vector<int>(n + 1, INT_MAX));
         for (int i = 1; i <= n; i++) {
             dp[i][i] = 0;
         }

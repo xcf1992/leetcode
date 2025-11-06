@@ -32,14 +32,14 @@ using namespace std;
 
 class Solution {
 public:
-    int networkDelayTime(vector<vector<int> > &times, int N, int K) {
-        vector<vector<pair<int, int> > > distance(N + 1, vector<pair<int, int> >());
-        for (vector<int> &time: times) {
+    int networkDelayTime(vector<vector<int>>& times, int N, int K) {
+        vector<vector<pair<int, int>>> distance(N + 1, vector<pair<int, int>>());
+        for (vector<int>& time : times) {
             distance[time[0]].push_back({time[1], time[2]});
         }
 
         vector<int> delay(N + 1, INT_MAX);
-        queue<pair<int, int> > nodes;
+        queue<pair<int, int>> nodes;
         nodes.push(make_pair(K, 0));
         while (!nodes.empty()) {
             int curNode = nodes.front().first;
@@ -47,7 +47,7 @@ public:
             delay[curNode] = min(delay[curNode], curTime);
             nodes.pop();
 
-            for (pair<int, int> &next: distance[curNode]) {
+            for (pair<int, int>& next : distance[curNode]) {
                 if (delay[next.first] > curTime + next.second) {
                     nodes.push(make_pair(next.first, curTime + next.second));
                 }

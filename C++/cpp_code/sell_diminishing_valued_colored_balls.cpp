@@ -41,7 +41,8 @@ Output: 110
 Example 4:
 Input: inventory = [1000000000], orders = 1000000000
 Output: 21
-Explanation: Sell the 1st color 1000000000 times for a total value of 500000000500000000. 500000000500000000 modulo 109 + 7 = 21.
+Explanation: Sell the 1st color 1000000000 times for a total value of 500000000500000000. 500000000500000000 modulo 109
++ 7 = 21.
 
 Constraints:
 1 <= inventory.length <= 105
@@ -70,7 +71,7 @@ using namespace std;
 
 class Solution {
 public:
-    int maxProfit(vector<int> &inv, int orders) {
+    int maxProfit(vector<int>& inv, int orders) {
         long res = 0, colors = 1;
         sort(begin(inv), end(inv));
         for (int i = inv.size() - 1; i >= 0 && orders > 0; --i, ++colors) {

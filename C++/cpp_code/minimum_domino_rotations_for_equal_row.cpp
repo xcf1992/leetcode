@@ -15,7 +15,8 @@ Input: A = [2,1,2,4,2,2], B = [5,2,6,2,3,2]
 Output: 2
 Explanation:
 The first figure represents the dominoes as given by A and B: before we do any rotations.
-If we rotate the second and fourth dominoes, we can make every value in the top row equal to 2, as indicated by the second figure.
+If we rotate the second and fourth dominoes, we can make every value in the top row equal to 2, as indicated by the
+second figure.
 
 Example 2:
 Input: A = [3,5,1,2,3], B = [3,6,3,3,4]
@@ -56,14 +57,10 @@ Otherwise return -1.
 */
 class Solution {
 public:
-    int minDominoRotations(vector<int> &A, vector<int> &B) {
+    int minDominoRotations(vector<int>& A, vector<int>& B) {
         int n = A.size();
         for (int i = 0, a = 0, b = 0; i < n; ++i) {
-            if (A[i] != A[0] and B[i]
-            !=
-            A[0]
-            )
-            {
+            if (A[i] != A[0] and B[i] != A[0]) {
                 break;
             }
 
@@ -79,11 +76,7 @@ public:
         }
 
         for (int i = 0, a = 0, b = 0; i < n; ++i) {
-            if (A[i] != B[0] and B[i]
-            !=
-            B[0]
-            )
-            {
+            if (A[i] != B[0] and B[i] != B[0]) {
                 break;
             }
             if (A[i] != B[0]) {

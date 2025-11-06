@@ -33,7 +33,7 @@ using namespace std;
 
 class Solution {
 public:
-    int triangleNumber(vector<int> &nums) {
+    int triangleNumber(vector<int>& nums) {
         int n = nums.size();
         if (n < 3) {
             return 0;

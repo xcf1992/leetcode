@@ -40,40 +40,39 @@ Each node in the linked list has -1000 <= node.val <= 1000.
 #include <numeric>
 using namespace std;
 
-class Solution { // 89%
+class Solution {  // 89%
 public:
     ListNode* removeZeroSumSublists(ListNode* head) {
-        if (head == nullptr or (head -> next == nullptr and head -> val == 0)) {
+        if (head == nullptr or (head->next == nullptr and head->val == 0)) {
             return nullptr;
         }
 
         ListNode* dummy = new ListNode(0);
-        dummy -> next = head;
+        dummy->next = head;
         unordered_map<int, ListNode*> preSum;
         int curSum = 0;
         ListNode* curNode = dummy;
         while (curNode != nullptr) {
-            curSum += curNode -> val;
+            curSum += curNode->val;
             if (preSum.find(curSum) != preSum.end()) {
-                curNode = preSum[curSum] -> next;
-                int temp = curSum + curNode -> val;
+                curNode = preSum[curSum]->next;
+                int temp = curSum + curNode->val;
                 while (temp != curSum) {
                     preSum.erase(temp);
-                    curNode = curNode -> next;
-                    temp += curNode -> val;
+                    curNode = curNode->next;
+                    temp += curNode->val;
                 }
-                preSum[curSum] -> next = curNode -> next;
-            }
-            else {
+                preSum[curSum]->next = curNode->next;
+            } else {
                 preSum[curSum] = curNode;
             }
-            curNode = curNode -> next; // remember to move curnode forward
+            curNode = curNode->next;  // remember to move curnode forward
         }
-        return dummy -> next;
+        return dummy->next;
     }
 };
 
-class Solution1 { // 27%
+class Solution1 {  // 27%
 private:
     vector<ListNode*> find(ListNode* head) {
         if (head == nullptr) {
@@ -84,7 +83,7 @@ private:
         int curSum = 0;
         ListNode* curNode = head;
         while (curNode != nullptr) {
-            curSum += curNode -> val;
+            curSum += curNode->val;
             if (curSum == 0) {
                 return {curNode};
             }
@@ -93,32 +92,32 @@ private:
                 return {sum[curSum], curNode};
             }
             sum[curSum] = curNode;
-            curNode = curNode -> next;
+            curNode = curNode->next;
         }
         return {};
     }
+
 public:
     ListNode* removeZeroSumSublists(ListNode* head) {
-        if (head == nullptr or (head -> next == nullptr and head -> val == 0)) {
+        if (head == nullptr or (head->next == nullptr and head->val == 0)) {
             return nullptr;
         }
 
         ListNode* dummy = new ListNode(INT_MIN);
-        dummy -> next = head;
-        vector<ListNode*> target = find(dummy -> next);
+        dummy->next = head;
+        vector<ListNode*> target = find(dummy->next);
         while (!target.empty()) {
             if (target.size() == 1) {
-                dummy -> next = target[0] -> next;
-            }
-            else {
-                ListNode* cur = dummy -> next;
+                dummy->next = target[0]->next;
+            } else {
+                ListNode* cur = dummy->next;
                 while (cur != target[0]) {
-                    cur = cur -> next;
+                    cur = cur->next;
                 }
-                cur -> next = target[1] -> next;
+                cur->next = target[1]->next;
             }
-            target = find(dummy -> next);
+            target = find(dummy->next);
         }
-        return dummy -> next;
+        return dummy->next;
     }
 };

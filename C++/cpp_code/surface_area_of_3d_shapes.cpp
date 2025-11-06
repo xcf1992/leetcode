@@ -52,7 +52,7 @@ using namespace std;
 
 class Solution {
 public:
-    int surfaceArea(vector<vector<int> > &grid) {
+    int surfaceArea(vector<vector<int>>& grid) {
         int result = 0;
         for (int i = 0; i < grid.size(); i++) {
             for (int j = 0; j < grid[i].size(); j++) {

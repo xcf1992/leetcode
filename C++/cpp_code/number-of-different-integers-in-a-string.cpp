@@ -44,24 +44,19 @@ word consists of digits and lowercase English letters.
 #include <numeric>
 using namespace std;
 
-class Solution
-{
+class Solution {
 public:
-    int numDifferentIntegers(string word)
-    {
+    int numDifferentIntegers(string word) {
         int n = word.length();
         unordered_set<string> s;
         int i = 0;
-        while (i < n)
-        {
-            if (isdigit(word[i]) == false)
-            {
+        while (i < n) {
+            if (isdigit(word[i]) == false) {
                 i++;
                 continue;
             }
             string temp = "";
-            while (i < n && isdigit(word[i]))
-            {
+            while (i < n && isdigit(word[i])) {
                 temp += word[i];
                 i++;
             }

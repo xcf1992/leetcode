@@ -78,10 +78,10 @@ O(M + N)
     int leftMostColumnWithOne(BinaryMatrix &binaryMatrix) {
         //get the dimensions
 
-		int n = binaryMatrix.dimensions()[0];
+        int n = binaryMatrix.dimensions()[0];
         int m = binaryMatrix.dimensions()[1];
 
-		//go as much left as you can, and then go downwards.
+        //go as much left as you can, and then go downwards.
         int check = m-1;
         for(int i = 0;i<n;i++){
             while(check>=0 and binaryMatrix.get(i,check)==1){
@@ -96,7 +96,7 @@ private:
     int m = 0;
     int n = 0;
 
-    int findFirstOne(BinaryMatrix &binaryMatrix, int row) {
+    int findFirstOne(BinaryMatrix& binaryMatrix, int row) {
         int left = 0;
         int right = n - 1;
         while (left <= right) {
@@ -111,7 +111,7 @@ private:
     }
 
 public:
-    int leftMostColumnWithOne(BinaryMatrix &binaryMatrix) {
+    int leftMostColumnWithOne(BinaryMatrix& binaryMatrix) {
         vector<int> dimension = binaryMatrix.dimensions();
         m = dimension[0];
         n = dimension[1];

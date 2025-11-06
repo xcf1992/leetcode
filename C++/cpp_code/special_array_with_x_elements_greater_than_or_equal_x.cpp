@@ -64,7 +64,8 @@ public:
                     count++;
                 }
             }
-            if (count == i) return i;
+            if (count == i)
+                return i;
         }
         return -1;
     }

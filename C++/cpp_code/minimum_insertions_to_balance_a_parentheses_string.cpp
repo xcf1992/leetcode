@@ -15,7 +15,8 @@ Return the minimum number of insertions needed to make s balanced.
 Example 1:
 Input: s = "(()))"
 Output: 1
-Explanation: The second '(' has two matching '))', but the first '(' has only ')' matching. We need to to add one more ')' at the end of the string to be "(())))" which is balanced.
+Explanation: The second '(' has two matching '))', but the first '(' has only ')' matching. We need to to add one more
+')' at the end of the string to be "(())))" which is balanced.
 
 Example 2:
 Input: s = "())"
@@ -91,7 +92,9 @@ i=0, we have ( it means we need two right parenthesis (they are in pair) so.. ri
 i=1, again we have ( it means we need two right parenthesis (they are in pair) so.. right+=2 => res =0, right =4
 i=2, again we have ( it means we need two right parenthesis (they are in pair) so.. right+=2 => res =0, right =6
 i=3, we have ) we subtract one from right. so.. right-- => res =0, right =5
-i=4, we have ( but here right is odd so we need to make it even with right-- and increment res++ => res =1, right =4. Also, as we have got a left parenthesis then we need two right parenthesis (they are in pair) so.. right+=2 => res =1, right =6
+i=4, we have ( but here right is odd so we need to make it even with right-- and increment res++ => res =1, right =4.
+Also, as we have got a left parenthesis then we need two right parenthesis (they are in pair) so.. right+=2 => res =1,
+right =6
 
 finally ans is res + right => 1 +6 == 7
 
@@ -108,7 +111,7 @@ public:
     int minInsertions(string s) {
         int res = 0;
         int right = 0;
-        for (char &c: s) {
+        for (char& c : s) {
             if (c == '(') {
                 if (right % 2 > 0) {
                     right--;

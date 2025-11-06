@@ -34,7 +34,7 @@ using namespace std;
 // maybe is better to bfs to solve this question, then we do not need to do sort at last
 class Solution {
 private:
-    void dfs(vector<int> &result, int low, int high, int cur, int num) {
+    void dfs(vector<int>& result, int low, int high, int cur, int num) {
         if (num >= high) {
             return;
         }

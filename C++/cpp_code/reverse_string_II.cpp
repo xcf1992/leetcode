@@ -30,7 +30,7 @@ using namespace std;
 
 class Solution {
 private:
-    void reverse(string &s, int start, int k) {
+    void reverse(string& s, int start, int k) {
         if (start >= s.size()) {
             return;
         }

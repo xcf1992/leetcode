@@ -46,11 +46,11 @@ Then fill odd positions with remaining barcodes
 */
 class Solution {
 public:
-    vector<int> rearrangeBarcodes(vector<int> &barcodes) {
+    vector<int> rearrangeBarcodes(vector<int>& barcodes) {
         vector<int> count(10001, 0);
         int max_cnt = 0;
         int max_num = 0;
-        for (auto num: barcodes) {
+        for (auto num : barcodes) {
             max_cnt = max(max_cnt, ++count[num]);
             max_num = max_cnt == count[num] ? num : max_num;
         }
@@ -69,22 +69,21 @@ public:
 };
 
 struct myComp {
-    bool operator()(pair<int, int> &a, pair<int, int> &b) {
-        return a.second < b.second
-        or(a.second == b.second and a < b);
+    bool operator()(pair<int, int>& a, pair<int, int>& b) {
+        return a.second < b.second or (a.second == b.second and a < b);
     }
 };
 
 class Solution1 {
 public:
-    vector<int> rearrangeBarcodes(vector<int> &barcodes) {
+    vector<int> rearrangeBarcodes(vector<int>& barcodes) {
         unordered_map<int, int> count;
-        for (int code: barcodes) {
+        for (int code : barcodes) {
             count[code] += 1;
         }
 
-        priority_queue<pair<int, int>, vector<pair<int, int> >, myComp> pq;
-        for (auto &it: count) {
+        priority_queue<pair<int, int>, vector<pair<int, int>>, myComp> pq;
+        for (auto& it : count) {
             pq.push({it.first, it.second});
         }
 

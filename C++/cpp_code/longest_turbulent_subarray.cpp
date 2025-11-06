@@ -51,7 +51,7 @@ using namespace std;
 
 class Solution {
 public:
-    int maxTurbulenceSize(vector<int> &A) {
+    int maxTurbulenceSize(vector<int>& A) {
         int n = A.size();
         if (n <= 1) {
             return n;
@@ -79,7 +79,7 @@ public:
 
 class Solution1 {
 public:
-    int maxTurbulenceSize(vector<int> &A) {
+    int maxTurbulenceSize(vector<int>& A) {
         int n = A.size();
         if (n <= 1) {
             return n;
@@ -99,16 +99,10 @@ public:
         int result = 0;
         int cur = change[0] == 0 ? 0 : 1;
         for (int i = 1; i < change.size(); i++) {
-            if (change[i] == 0 or change[i]
-            ==
-            change[i - 1]
-            )
-            {
+            if (change[i] == 0 or change[i] == change[i - 1]) {
                 result = max(cur, result);
                 cur = change[i] == 0 ? 0 : 1;
-            }
-            else
-            {
+            } else {
                 cur += 1;
             }
         }

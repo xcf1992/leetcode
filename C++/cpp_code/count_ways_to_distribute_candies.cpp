@@ -2,13 +2,19 @@
 https://leetcode.com/problems/count-ways-to-distribute-candies/description/
 1692. Count Ways to Distribute Candies
 
-There are n unique candies (labeled 1 through n) and k bags. You are asked to distribute all the candies into the bags such that every bag has at least one candy.
+There are n unique candies (labeled 1 through n) and k bags. You are asked to distribute all the candies into the bags
+such that every bag has at least one candy.
 
-There can be multiple ways to distribute the candies. Two ways are considered different if the candies in one bag in the first way are not all in the same bag in the second way. The order of the bags and the order of the candies within each bag do not matter.
+There can be multiple ways to distribute the candies. Two ways are considered different if the candies in one bag in the
+first way are not all in the same bag in the second way. The order of the bags and the order of the candies within each
+bag do not matter.
 
-For example, (1), (2,3) and (2), (1,3) are considered different because candies 2 and 3 in the bag (2,3) in the first way are not in the same bag in the second way (they are split between the bags (2) and (1,3)). However, (1), (2,3) and (3,2), (1) are considered the same because the candies in each bag are all in the same bags in both ways.
+For example, (1), (2,3) and (2), (1,3) are considered different because candies 2 and 3 in the bag (2,3) in the first
+way are not in the same bag in the second way (they are split between the bags (2) and (1,3)). However, (1), (2,3) and
+(3,2), (1) are considered the same because the candies in each bag are all in the same bags in both ways.
 
-Given two integers, n and k, return the number of different ways to distribute the candies. As the answer may be too large, return it modulo 109 + 7.
+Given two integers, n and k, return the number of different ways to distribute the candies. As the answer may be too
+large, return it modulo 109 + 7.
 
 
 
@@ -90,7 +96,7 @@ class Solution {
 public:
     int waysToDistribute(int n, int k) {
         long long mod = 1e9 + 7;
-        vector<vector<long long> > dp(k + 1, vector<long long>(n + 1, 0));
+        vector<vector<long long>> dp(k + 1, vector<long long>(n + 1, 0));
         for (int i = 0; i <= k; i++) {
             dp[i][i] = 1;
         }

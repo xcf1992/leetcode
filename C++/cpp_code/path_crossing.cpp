@@ -45,7 +45,7 @@ public:
         int curY = 0;
         unordered_set<string> visited;
         visited.insert(to_string(curX) + "_" + to_string(curY));
-        for (char c: path) {
+        for (char c : path) {
             if (c == 'N') {
                 curY += 1;
             } else if (c == 'S') {

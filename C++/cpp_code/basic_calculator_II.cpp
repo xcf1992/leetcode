@@ -39,26 +39,19 @@ using namespace std;
 
 class Solution {
 private:
-    long parseNum(string &s, int &i) {
+    long parseNum(string& s, int& i) {
         long num = 0;
-        while (i < s.size() and isdigit(s[i])
-        )
-        {
+        while (i < s.size() and isdigit(s[i])) {
             num = num * 10 + (s[i] - '0');
             i += 1;
         }
         return num;
     }
 
-    int parseExp(string &s, int &i) {
+    int parseExp(string& s, int& i) {
         vector<int> nums;
         char op = '+';
-        for (; i < s.size() and op
-        !=
-        ')';
-        ++i
-        )
-        {
+        for (; i < s.size() and op != ')'; ++i) {
             // when op becomes ), we will still have ++i, and skip it and jump back to upper level
             if (s[i] == ' ') {
                 continue;
@@ -92,16 +85,7 @@ public:
 class Solution1 {
 private:
     bool isOpt(char c) {
-        return c == '+'
-        or c
-        ==
-        '-'
-        or c
-        ==
-        '*'
-        or c
-        ==
-        '/';
+        return c == '+' or c == '-' or c == '*' or c == '/';
     }
 
 public:
@@ -118,11 +102,7 @@ public:
             if (isdigit(s[i])) {
                 num = num * 10 + (s[i] - '0');
             }
-            if (isOpt(s[i]) or i
-            ==
-            n - 1
-            )
-            {
+            if (isOpt(s[i]) or i == n - 1) {
                 // we have to use if rather than elseif here, cause we want to go into it when i == n - 1
                 if (op == '+') {
                     stk.push_back(num);
@@ -151,16 +131,7 @@ public:
 class Solution2 {
 private:
     bool IsOpt(char ch) {
-        return ch == '+'
-        or ch
-        ==
-        '-'
-        or ch
-        ==
-        '*'
-        or ch
-        ==
-        '/';
+        return ch == '+' or ch == '-' or ch == '*' or ch == '/';
     }
 
     long Calc(long num1, long num2, char opt) {
@@ -176,7 +147,7 @@ private:
         return num1 / num2;
     }
 
-    void CalcTop(stack<long> &nums, stack<char> &opts) {
+    void CalcTop(stack<long>& nums, stack<char>& opts) {
         long num2 = nums.top();
         nums.pop();
 
@@ -200,21 +171,13 @@ public:
             } else if (IsOpt(s[i])) {
                 nums.push(num);
                 num = 0;
-                if (s[i] == '+' or s[i]
-                ==
-                '-'
-                )
-                {
+                if (s[i] == '+' or s[i] == '-') {
                     while (!opts.empty()) {
                         CalcTop(nums, opts);
                     }
-                }
-                else
-                {
+                } else {
                     // s[i] == '*' or s[i] == '/'
-                    while (!opts.empty() and(opts.top() == '*' or opts.top() == '/')
-                    )
-                    {
+                    while (!opts.empty() and (opts.top() == '*' or opts.top() == '/')) {
                         CalcTop(nums, opts);
                     }
                 }

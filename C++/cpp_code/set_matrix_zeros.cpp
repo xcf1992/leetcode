@@ -52,7 +52,7 @@ using namespace std;
 
 class Solution {
 public:
-    void setZeroes(vector<vector<int> > &matrix) {
+    void setZeroes(vector<vector<int>>& matrix) {
         int m = matrix.size();
         if (m == 0) {
             return;

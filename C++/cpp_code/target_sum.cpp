@@ -55,18 +55,16 @@ Find a subset P of nums such that sum(P) = (target + sum(nums)) / 2
 */
 class Solution {
 public:
-    int findTargetSumWays(vector<int> &nums, int S) {
+    int findTargetSumWays(vector<int>& nums, int S) {
         int sum = accumulate(nums.begin(), nums.end(), 0);
-        if (S > sum or S<-sum or(S + sum) % 2 == 1
-        )
-        {
+        if (S > sum or S < -sum or (S + sum) % 2 == 1) {
             return 0;
         }
 
         int newS = (sum + S) / 2;
         vector<int> dp(newS + 1, 0);
         dp[0] = 1;
-        for (int num: nums) {
+        for (int num : nums) {
             for (int i = newS; i >= num; i--) {
                 dp[i] += dp[i - num];
             }
@@ -92,16 +90,14 @@ Actually most of Sum problems can be treated as knapsack problem, hope it helps
 */
 class Solution1 {
 public:
-    int findTargetSumWays(vector<int> &nums, int S) {
+    int findTargetSumWays(vector<int>& nums, int S) {
         int sum = accumulate(nums.begin(), nums.end(), 0);
-        if (S > sum or S<-sum
-        )
-        {
+        if (S > sum or S < -sum) {
             return 0;
         }
 
         int n = nums.size();
-        vector<vector<int> > dp(n + 1, vector<int>(2 * sum + 1));
+        vector<vector<int>> dp(n + 1, vector<int>(2 * sum + 1));
         dp[0][sum] = 1;
         for (int i = 1; i <= n; i++) {
             int num = nums[i - 1];

@@ -49,10 +49,10 @@ public:
             count[i] = i;
             for (int j = 1; j <= i - 3; j++) {
                 /*
-                * we have i - j times of key press for copying and pasting,
-                * which can make original count[j] string to become length (i - j - 2) times longger
-                * so the total final length will be i - j - 1 times
-               */
+                 * we have i - j times of key press for copying and pasting,
+                 * which can make original count[j] string to become length (i - j - 2) times longger
+                 * so the total final length will be i - j - 1 times
+                 */
                 count[i] = max(count[i], count[j] * (i - j - 1));
             }
         }

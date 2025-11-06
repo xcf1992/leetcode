@@ -10,7 +10,8 @@ The first player A always places "X" characters, while the second player B alway
 The game ends when there are 3 of the same (non-empty) character filling any row, column, or diagonal.
 The game also ends if all squares are non-empty.
 No more moves can be played if the game is over.
-Given an array moves where each element is another array of size 2 corresponding to the row and column of the grid where they mark their respective character in the order in which A and B play.
+Given an array moves where each element is another array of size 2 corresponding to the row and column of the grid where
+they mark their respective character in the order in which A and B play.
 
 Return the winner of the game if it exists (A or B),
 in case the game ends in a draw return "Draw",
@@ -74,14 +75,14 @@ using namespace std;
 
 class Solution {
 public:
-    string tictactoe(vector<vector<int> > &moves) {
+    string tictactoe(vector<vector<int>>& moves) {
         int left = 9;
-        vector<vector<int> > rows(3, vector<int>(2, 0));
-        vector<vector<int> > cols(3, vector<int>(2, 0));
+        vector<vector<int>> rows(3, vector<int>(2, 0));
+        vector<vector<int>> cols(3, vector<int>(2, 0));
         vector<int> diag(2, 0);
         vector<int> antiDiag(2, 0);
         int player = 0;
-        for (vector<int> &move: moves) {
+        for (vector<int>& move : moves) {
             if (left == 0) {
                 break;
             }
@@ -96,17 +97,8 @@ public:
                 antiDiag[player] += 1;
             }
 
-            if (rows[move[0]][player] == 3 or cols[move[1]][player]
-            ==
-            3
-            or diag[player]
-            ==
-            3
-            or antiDiag[player]
-            ==
-            3
-            )
-            {
+            if (rows[move[0]][player] == 3 or cols[move[1]][player] == 3 or diag[player] == 3 or
+                antiDiag[player] == 3) {
                 return player == 0 ? "A" : "B";
             }
             player = 1 - player;

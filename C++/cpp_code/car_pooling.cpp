@@ -53,9 +53,9 @@ using namespace std;
 
 class Solution {
 public:
-    bool carPooling(vector<vector<int> > &trips, int capacity) {
+    bool carPooling(vector<vector<int>>& trips, int capacity) {
         vector<int> count(1001, 0);
-        for (vector<int> &trip: trips) {
+        for (vector<int>& trip : trips) {
             count[trip[1]] += trip[0];
             count[trip[2]] -= trip[0];
         }

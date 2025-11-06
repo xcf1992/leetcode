@@ -29,17 +29,13 @@ using namespace std;
 
 class Solution {
 public:
-    ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
-        if (l1 == nullptr or l2
-        ==
-        nullptr
-        )
-        {
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        if (l1 == nullptr or l2 == nullptr) {
             return l1 == nullptr ? l2 : l1;
         }
 
-        stack<ListNode *> number1, number2;
-        ListNode *current = l1;
+        stack<ListNode*> number1, number2;
+        ListNode* current = l1;
         while (current != nullptr) {
             number1.push(current);
             current = current->next;
@@ -51,14 +47,8 @@ public:
         }
 
         int carry = 0;
-        ListNode *head = nullptr;
-        while (!number1.empty() or
-        !number2.empty()
-        or carry
-        !=
-        0
-        )
-        {
+        ListNode* head = nullptr;
+        while (!number1.empty() or !number2.empty() or carry != 0) {
             int sum = carry;
             if (!number1.empty()) {
                 sum += number1.top()->val;
@@ -69,7 +59,7 @@ public:
                 number2.pop();
             }
 
-            ListNode *node = new ListNode(sum % 10);
+            ListNode* node = new ListNode(sum % 10);
             node->next = head;
             head = node;
             carry = sum / 10;

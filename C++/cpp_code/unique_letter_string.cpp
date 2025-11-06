@@ -80,7 +80,7 @@ public:
 
     int uniqueLetterString(string S) {
         int n = S.size();
-        vector<vector<int> > index(26, vector<int>(2, -1));
+        vector<vector<int>> index(26, vector<int>(2, -1));
         int result = 0;
         for (int i = 0; i < n; i++) {
             int letter = S[i] - 'A';
@@ -101,7 +101,7 @@ public:
 
     int uniqueLetterString(string S) {
         int n = S.size();
-        vector<vector<int> > index(26, vector<int>(2, -1));
+        vector<vector<int>> index(26, vector<int>(2, -1));
 
         int result = 0;
         for (int i = 0; i < n; i++) {
@@ -135,12 +135,8 @@ class Solution1 {
 private:
     int MOD = 1e9 + 7;
 
-    void count(string &S, int start, int end, int curUnique, int &result, vector<int> &letter) {
-        if (start >= S.size() or end
-        >=
-        S.size()
-        )
-        {
+    void count(string& S, int start, int end, int curUnique, int& result, vector<int>& letter) {
+        if (start >= S.size() or end >= S.size()) {
             return;
         }
 

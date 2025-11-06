@@ -92,6 +92,7 @@ private:
         }
         return max(result, find(s, k, left, end));
     }
+
 public:
     int longestSubstring(string s, int k) {
         return find(s, k, 0, s.size() - 1);

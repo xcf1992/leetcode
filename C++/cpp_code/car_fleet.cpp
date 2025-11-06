@@ -54,19 +54,18 @@ using namespace std;
 
 class Solution {
 public:
-    int carFleet(int target, vector<int> &position, vector<int> &speed) {
+    int carFleet(int target, vector<int>& position, vector<int>& speed) {
         int n = position.size();
         if (n == 0) {
             return 0;
         }
 
-        vector<pair<double, double> > car;
+        vector<pair<double, double>> car;
         for (int i = 0; i < n; i++) {
             car.push_back({position[i], speed[i]});
         }
-        sort(car.begin(), car.end(), [](pair<double, double> &a, pair<double, double> &b) {
-            return a.first < b.first;
-        });
+        sort(car.begin(), car.end(),
+             [](pair<double, double>& a, pair<double, double>& b) { return a.first < b.first; });
 
         int result = 1;
         double arrive = (target - car[n - 1].first) / car[n - 1].second;

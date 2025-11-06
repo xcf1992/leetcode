@@ -29,10 +29,8 @@ using namespace std;
 class Solution {
 public:
     int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
-        long a1 = (long) (C - A) * (D - B) + (long) (G - E) * (H - F);
-        if (G > A and E <C and H> B and F<D
-        )
-        {
+        long a1 = (long)(C - A) * (D - B) + (long)(G - E) * (H - F);
+        if (G > A and E < C and H > B and F < D) {
             return a1 - (min(C, G) - max(A, E)) * (min(D, H) - max(B, F));
         }
         return a1;

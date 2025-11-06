@@ -13,7 +13,9 @@ Example 1:
 Input: "abbaca"
 Output: "ca"
 Explanation:
-For example, in "abbaca" we could remove "bb" since the letters are adjacent and equal, and this is the only possible move.  The result of this move is that the string is "aaca", of which only "aa" is possible, so the final string is "ca".
+For example, in "abbaca" we could remove "bb" since the letters are adjacent and equal, and this is the only possible
+move.  The result of this move is that the string is "aaca", of which only "aa" is possible, so the final string is
+"ca".
 
 Note:
 1 <= S.length <= 20000
@@ -47,8 +49,7 @@ public:
         for (int pos = 1; pos < n; ++pos) {
             if (!result.empty() and result.back() == S[pos]) {
                 result.pop_back();
-            }
-            else {
+            } else {
                 result.push_back(S[pos]);
             }
         }

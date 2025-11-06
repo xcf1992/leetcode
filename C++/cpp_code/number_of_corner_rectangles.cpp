@@ -47,23 +47,21 @@ The number of 1s in the grid will be at most 6000.
 #include <stdio.h>
 using namespace std;
 
-// follow up https://leetcode.com/problems/number-of-corner-rectangles/discuss/188581/Google-follow-up-question.-A-general-case-solution.
+// follow up
+// https://leetcode.com/problems/number-of-corner-rectangles/discuss/188581/Google-follow-up-question.-A-general-case-solution.
 class Solution {
 public:
-    int countCornerRectangles(vector<vector<int> > &grid) {
+    int countCornerRectangles(vector<vector<int>>& grid) {
         int m = grid.size();
         int n = grid[0].size();
         int result = 0;
         for (int i = 0; i < m - 1; i++) {
             for (int j = i + 1; j < m; j++) {
                 int count = 0;
-                for (int k = 0; k < n; k++) if (grid[i][k] == 1 and grid[j][k]
-                ==
-                1
-                )
-                {
-                    count += 1;
-                }
+                for (int k = 0; k < n; k++)
+                    if (grid[i][k] == 1 and grid[j][k] == 1) {
+                        count += 1;
+                    }
                 result += count * (count - 1) / 2;
             }
         }

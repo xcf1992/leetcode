@@ -87,7 +87,8 @@ As you can see, it's all about how we fix the formula. Really hope that makes se
 
 /*
 For every digit in n (Suppose n = 240315, the digits are 2, 4, 0, 3, 1, 5)，
-I respectively count the number of digit 1 assuming the position of current digit is 1 and other digits of n is arbitrary.
+I respectively count the number of digit 1 assuming the position of current digit is 1 and other digits of n is
+arbitrary.
 
 For example, I select 3 in n as the current digit,
 and I suppose the position of 3 is 1.
@@ -123,9 +124,11 @@ Lets take an example, say n= 1234
 
 No of ’1’ in ones place = 1234/10 (corresponding to 1,11,21,...1221) + min(4,1)(corresponding to 1231) = 124
 
-No of ’1’ in tens place = (1234/100)*10 (corresponding to 10,11,12,...,110,111,...1119) + min(25,10)(corresponding to 1210,1211,...1219)=130
+No of ’1’ in tens place = (1234/100)*10 (corresponding to 10,11,12,...,110,111,...1119) + min(25,10)(corresponding to
+1210,1211,...1219)=130
 
-No of ’1’ in hundreds place = (1234/1000)*100 (corresponding to 100,101,102,...,199) + min(135,100)(corresponding to 1100,1101...1199)=200
+No of ’1’ in hundreds place = (1234/1000)*100 (corresponding to 100,101,102,...,199) + min(135,100)(corresponding to
+1100,1101...1199)=200
 
 No of ’1’ in thousands place = (1234/10000)*10000 + min(235,1000)(corresponding to 1000,1001,...1234)= 235
 

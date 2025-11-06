@@ -1,6 +1,8 @@
 /*
  1022. Sum of Root To Leaf Binary Numbers
- Given a binary tree, each node has value 0 or 1.  Each root-to-leaf path represents a binary number starting with the most significant bit.  For example, if the path is 0 -> 1 -> 1 -> 0 -> 1, then this could represent 01101 in binary, which is 13.
+ Given a binary tree, each node has value 0 or 1.  Each root-to-leaf path represents a binary number starting with the
+ most significant bit.  For example, if the path is 0 -> 1 -> 1 -> 0 -> 1, then this could represent 01101 in binary,
+ which is 13.
 
  For all leaves in the tree, consider the numbers represented by the path from the root to that leaf.
 
@@ -40,16 +42,13 @@ using namespace std;
 
 class Solution {
 private:
-    void traverse(TreeNode *root, string cur, int &sum) {
+    void traverse(TreeNode* root, string cur, int& sum) {
         if (root == nullptr) {
             return;
         }
 
         cur.push_back((root->val) + '0');
-        if (root->left == nullptr and
-        root->right == nullptr
-        )
-        {
+        if (root->left == nullptr and root->right == nullptr) {
             sum += stoi(cur, nullptr, 2);
             return;
         }
@@ -59,7 +58,7 @@ private:
     }
 
 public:
-    int sumRootToLeaf(TreeNode *root) {
+    int sumRootToLeaf(TreeNode* root) {
         int sum = 0;
         traverse(root, "", sum);
         return sum;

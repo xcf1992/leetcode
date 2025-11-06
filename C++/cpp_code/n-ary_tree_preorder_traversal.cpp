@@ -30,12 +30,12 @@ using namespace std;
 class Node {
 public:
     int val = NULL;
-    vector<Node *> children;
+    vector<Node*> children;
 
     Node() {
     }
 
-    Node(int _val, vector<Node *> _children) {
+    Node(int _val, vector<Node*> _children) {
         val = _val;
         children = _children;
     }
@@ -43,16 +43,16 @@ public:
 
 class Solution {
 public:
-    vector<int> preorder(Node *root) {
+    vector<int> preorder(Node* root) {
         vector<int> result;
         if (root == nullptr) {
             return result;
         }
 
-        stack<Node *> stk;
+        stack<Node*> stk;
         stk.push(root);
         while (!stk.empty()) {
-            Node *cur = stk.top();
+            Node* cur = stk.top();
             stk.pop();
             result.push_back(cur->val);
             for (int i = cur->children.size() - 1; i >= 0; i--) {
@@ -67,19 +67,19 @@ public:
 
 class Solution1 {
 private:
-    void travel(Node *root, vector<int> &result) {
+    void travel(Node* root, vector<int>& result) {
         if (root == nullptr) {
             return;
         }
 
         result.push_back(root->val);
-        for (Node *child: root->children) {
+        for (Node* child : root->children) {
             travel(child, result);
         }
     }
 
 public:
-    vector<int> preorder(Node *root) {
+    vector<int> preorder(Node* root) {
         vector<int> result;
         travel(root, result);
         return result;

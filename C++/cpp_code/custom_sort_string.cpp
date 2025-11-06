@@ -46,9 +46,7 @@ public:
             dict[S[i] - 'a'] = i;
         }
 
-        sort(T.begin(), T.end(), [&](char c1, char c2) {
-            return dict[c1 - 'a'] < dict[c2 - 'a'];
-        });
+        sort(T.begin(), T.end(), [&](char c1, char c2) { return dict[c1 - 'a'] < dict[c2 - 'a']; });
         return T;
     }
 };

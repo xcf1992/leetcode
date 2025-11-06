@@ -45,21 +45,18 @@ using namespace std;
 
 class Solution {
 public:
-    TreeNode *upsideDownBinaryTree(TreeNode *root) {
-        if (root == nullptr or
-        root->left == nullptr
-        )
-        {
+    TreeNode* upsideDownBinaryTree(TreeNode* root) {
+        if (root == nullptr or root->left == nullptr) {
             return root;
         }
 
-        TreeNode *lc = root->left;
-        TreeNode *rc = root->right;
+        TreeNode* lc = root->left;
+        TreeNode* rc = root->right;
         root->right = nullptr;
         root->left = nullptr;
 
-        TreeNode *newRoot = upsideDownBinaryTree(lc);
-        TreeNode *cur = newRoot;
+        TreeNode* newRoot = upsideDownBinaryTree(lc);
+        TreeNode* cur = newRoot;
         while (cur->right != nullptr) {
             cur = cur->right;
         }

@@ -49,17 +49,13 @@ using namespace std;
 
 class Solution {
 private:
-    pair<string, vector<int> > parse(string str) {
+    pair<string, vector<int>> parse(string str) {
         vector<int> count;
         string key = "";
         int prev = -1;
         int n = str.size();
         for (int i = 0; i < n; ++i) {
-            if (i == n - 1 or str[i]
-            !=
-            str[i + 1]
-            )
-            {
+            if (i == n - 1 or str[i] != str[i + 1]) {
                 key.push_back(str[i]);
                 count.push_back(i - prev);
                 prev = i;
@@ -68,7 +64,7 @@ private:
         return {key, count};
     }
 
-    bool check(pair<string, vector<int> > &s, pair<string, vector<int> > &word) {
+    bool check(pair<string, vector<int>>& s, pair<string, vector<int>>& word) {
         if (s.first != word.first) {
             return false;
         }
@@ -76,9 +72,7 @@ private:
         vector<int> sCount = s.second;
         vector<int> wCount = word.second;
         for (int i = 0; i < sCount.size(); ++i) {
-            if (sCount[i] < wCount[i] or(sCount[i] < 3 and sCount[i] != wCount[i])
-            )
-            {
+            if (sCount[i] < wCount[i] or (sCount[i] < 3 and sCount[i] != wCount[i])) {
                 return false;
             }
         }
@@ -86,16 +80,16 @@ private:
     }
 
 public:
-    int expressiveWords(string S, vector<string> &words) {
+    int expressiveWords(string S, vector<string>& words) {
         int n = words.size();
         if (n <= 0) {
             return 0;
         }
 
-        pair<string, vector<int> > s = parse(S);
+        pair<string, vector<int>> s = parse(S);
         int result = 0;
         for (int i = 0; i < n; ++i) {
-            pair<string, vector<int> > w = parse(words[i]);
+            pair<string, vector<int>> w = parse(words[i]);
             if (check(s, w)) {
                 result += 1;
             }
@@ -106,48 +100,30 @@ public:
 
 class Solution1 {
 private:
-    bool check(string &word, string S) {
+    bool check(string& word, string S) {
         int i = 0;
         int j = 0;
         int n = word.size();
         int m = S.size();
-        while (i < n and j<m
-        )
-        {
-            while (i < n and j<m and word[i] == S[j]
-            )
-            {
+        while (i < n and j < m) {
+            while (i < n and j < m and word[i] == S[j]) {
                 i++;
                 j++;
             }
-            while (j > 0 and S[j]
-            ==
-            S[j - 1]
-            )
-            {
+            while (j > 0 and S[j] == S[j - 1]) {
                 j++;
             }
-            if (j < 3 or S[j - 1]
-            !=
-            S[j - 2]
-            or S[j - 2]
-            !=
-            S[j - 3]
-            )
-            {
+            if (j < 3 or S[j - 1] != S[j - 2] or S[j - 2] != S[j - 3]) {
                 break;
             }
         }
-        return i == n
-        and j
-        ==
-        m;
+        return i == n and j == m;
     }
 
 public:
-    int expressiveWords(string S, vector<string> &words) {
+    int expressiveWords(string S, vector<string>& words) {
         int result = 0;
-        for (string &word: words) {
+        for (string& word : words) {
             result += check(word, S) ? 1 : 0;
         }
         return result;

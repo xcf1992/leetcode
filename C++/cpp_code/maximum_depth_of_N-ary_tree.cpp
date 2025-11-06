@@ -38,12 +38,12 @@ using namespace std;
 class Node {
 public:
     int val;
-    vector<Node *> children;
+    vector<Node*> children;
 
     Node() {
     }
 
-    Node(int _val, vector<Node *> _children) {
+    Node(int _val, vector<Node*> _children) {
         val = _val;
         children = _children;
     }
@@ -51,13 +51,13 @@ public:
 
 class Solution {
 public:
-    int maxDepth(Node *root) {
+    int maxDepth(Node* root) {
         if (root == nullptr) {
             return 0;
         }
 
         int depth = 1;
-        for (Node *child: root->children) {
+        for (Node* child : root->children) {
             depth = max(depth, maxDepth(child) + 1);
         }
         return depth;
@@ -66,20 +66,20 @@ public:
 
 class Solution1 {
 private:
-    int getDepth(Node *root, int depth) {
+    int getDepth(Node* root, int depth) {
         if (root == nullptr) {
             return depth;
         }
 
         int newDepth = 0;
-        for (Node *child: root->children) {
+        for (Node* child : root->children) {
             newDepth = max(newDepth, getDepth(child, depth));
         }
         return newDepth + 1;
     }
 
 public:
-    int maxDepth(Node *root) {
+    int maxDepth(Node* root) {
         return getDepth(root, 1);
     }
 };

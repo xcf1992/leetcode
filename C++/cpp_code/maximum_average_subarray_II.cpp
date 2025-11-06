@@ -92,7 +92,8 @@ it can never be satisfied with a larger value.
 
 To fulfil this, we make use of a prev variable which again stores the cumulative sums but,
 its current index(for cumulative sum) lies behind the current index for sum at an offset of k units.
-Thus, by finding the minimum out of prev and the last minimum value, we can easily find out the required minimum sum value.
+Thus, by finding the minimum out of prev and the last minimum value, we can easily find out the required minimum sum
+value.
 
 Every time after checking the possiblility with a new midmid value,
 at the end, we need to settle at some value as the average.
@@ -103,7 +104,7 @@ by making use of errorerror and continuing the process till errorerror becomes l
 */
 class Solution {
 private:
-    bool check(vector<int> &nums, double mid, int k) {
+    bool check(vector<int>& nums, double mid, int k) {
         double sum = 0.0;
         for (int i = 0; i < k; ++i) {
             sum += nums[i] - mid;
@@ -113,21 +114,21 @@ private:
         }
 
         /*
-        * min_sum represent the min prefix sum of the array.
-        * When there is no element, the prefix sum is 0.
-        * We enter this for-loop only if the cumulative sum of (sum[i] - mid)
-        * for the first k elements (i from 0 to k-1) is less than 0.
-        *
-        * That is, we need to check for cumulative sum of subarrays that do not necessarily start from 0
-        * and do not necessarily have length = k (the length can be >= k)
-        *
-        * When we enter this for-loop, we are at least at position k.
-        * To determine the answer we need to check cumulative sum of range 0 to k (k+1 elements) or 1 to k (k elements).
-        * i.e we need to check if sum(0..k) >= 0 or sum(0..k) - sum(0...0) >=0 ..
-        * if we can determine the minimum cumulative sum up to a position which is at least k away from our current position,
-        * then checking if sum(upto current position) - minimum >= 0 is a sufficient condition to determine
-        * whether it is possible to find a subarray whose average is mid.
-       */
+         * min_sum represent the min prefix sum of the array.
+         * When there is no element, the prefix sum is 0.
+         * We enter this for-loop only if the cumulative sum of (sum[i] - mid)
+         * for the first k elements (i from 0 to k-1) is less than 0.
+         *
+         * That is, we need to check for cumulative sum of subarrays that do not necessarily start from 0
+         * and do not necessarily have length = k (the length can be >= k)
+         *
+         * When we enter this for-loop, we are at least at position k.
+         * To determine the answer we need to check cumulative sum of range 0 to k (k+1 elements) or 1 to k (k
+         * elements). i.e we need to check if sum(0..k) >= 0 or sum(0..k) - sum(0...0) >=0 .. if we can determine the
+         * minimum cumulative sum up to a position which is at least k away from our current position, then checking if
+         * sum(upto current position) - minimum >= 0 is a sufficient condition to determine whether it is possible to
+         * find a subarray whose average is mid.
+         */
         double minSum = 0.0;
         double prev = 0.0;
         for (int i = k; i < nums.size(); ++i) {
@@ -142,12 +143,12 @@ private:
     }
 
 public:
-    double findMaxAverage(vector<int> &nums, int k) {
+    double findMaxAverage(vector<int>& nums, int k) {
         double max_val = INT_MIN;
         double min_val = INT_MAX;
-        for (int n: nums) {
-            max_val = max((int) max_val, n);
-            min_val = min((int) min_val, n);
+        for (int n : nums) {
+            max_val = max((int)max_val, n);
+            min_val = min((int)min_val, n);
         }
 
         while (max_val - min_val > 0.00001) {

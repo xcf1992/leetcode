@@ -59,13 +59,14 @@ private:
             return {root, depth - 1};
         }
 
-        pair<TreeNode*, int> leftSub = dfs(root -> left, depth + 1);
-        pair<TreeNode*, int> rightSub = dfs(root -> right, depth + 1);
+        pair<TreeNode*, int> leftSub = dfs(root->left, depth + 1);
+        pair<TreeNode*, int> rightSub = dfs(root->right, depth + 1);
         if (leftSub.second == rightSub.second) {
             return {root, leftSub.second};
         }
         return leftSub.second > rightSub.second ? leftSub : rightSub;
     }
+
 public:
     TreeNode* subtreeWithAllDeepest(TreeNode* root) {
         return dfs(root, 0).first;

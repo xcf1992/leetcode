@@ -14,7 +14,8 @@ Example 1:
                 9             1  4                  5
 Input: root = [6,7,8,2,7,1,3,9,null,1,4,null,null,null,5]
 Output: 18
-Explanation: The red nodes are the nodes with even-value grandparent while the blue nodes are the even-value grandparents.
+Explanation: The red nodes are the nodes with even-value grandparent while the blue nodes are the even-value
+grandparents.
 
 Constraints:
 The number of nodes in the tree is between 1 and 10^4.
@@ -40,12 +41,13 @@ private:
             return;
         }
 
-        if (grandParent != nullptr and (grandParent -> val) % 2 == 0) {
-            result += root -> val;
+        if (grandParent != nullptr and (grandParent->val) % 2 == 0) {
+            result += root->val;
         }
-        traverse(root -> left, root, parent, result);
-        traverse(root -> right, root, parent, result);
+        traverse(root->left, root, parent, result);
+        traverse(root->right, root, parent, result);
     }
+
 public:
     int sumEvenGrandparent(TreeNode* root) {
         int result = 0;

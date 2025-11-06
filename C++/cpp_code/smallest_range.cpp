@@ -34,17 +34,17 @@ And after you reset the code template, you'll see this point.
 using namespace std;
 
 struct myComp {
-    bool operator ()(vector<int> &a, vector<int> &b) {
+    bool operator()(vector<int>& a, vector<int>& b) {
         return a[2] > b[2];
     }
 };
 
 class Solution {
 public:
-    vector<int> smallestRange(vector<vector<int> > &nums) {
+    vector<int> smallestRange(vector<vector<int>>& nums) {
         int n = nums.size();
         int large = INT_MIN;
-        priority_queue<vector<int>, vector<vector<int> >, myComp> pq;
+        priority_queue<vector<int>, vector<vector<int>>, myComp> pq;
         for (int i = 0; i < n; i++) {
             large = max(large, nums[i][0]);
             pq.push({i, 0, nums[i][0]});

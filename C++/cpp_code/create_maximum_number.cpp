@@ -95,7 +95,7 @@ it is easy to solve problem if nums1.size() + nums2.size() == k
 */
 class Solution {
 private:
-    vector<int> mergeArray(vector<int> &nums1, vector<int> &nums2, int k) {
+    vector<int> mergeArray(vector<int>& nums1, vector<int>& nums2, int k) {
         vector<int> result(k);
         int idx1 = 0;
         int idx2 = 0;
@@ -112,7 +112,7 @@ private:
     }
 
     // return true if array1 >= array2
-    bool compareArray(vector<int> &nums1, vector<int> &nums2, int index1, int index2) {
+    bool compareArray(vector<int>& nums1, vector<int>& nums2, int index1, int index2) {
         int len1 = nums1.size() - index1;
         if (len1 <= 0) {
             return false;
@@ -133,8 +133,8 @@ private:
         return true;
     }
 
-    //get the largest k numbers when keeping the relative order
-    vector<int> maxSubArray(vector<int> &nums, int k) {
+    // get the largest k numbers when keeping the relative order
+    vector<int> maxSubArray(vector<int>& nums, int k) {
         if (k == 0) {
             return {};
         }
@@ -142,13 +142,7 @@ private:
         vector<int> result;
         int n = nums.size();
         for (int i = 0; i < n; i++) {
-            while (!result.empty() and nums[i]
-            >
-            result.back()
-            and n
-            -i + result.size() > k
-            )
-            {
+            while (!result.empty() and nums[i] > result.back() and n - i + result.size() > k) {
                 result.pop_back();
             }
             if (result.size() < k) {
@@ -159,7 +153,7 @@ private:
     }
 
 public:
-    vector<int> maxNumber(vector<int> &nums1, vector<int> &nums2, int k) {
+    vector<int> maxNumber(vector<int>& nums1, vector<int>& nums2, int k) {
         int n1 = nums1.size();
         int n2 = nums2.size();
         if (k == n1 + n2) {
@@ -167,17 +161,15 @@ public:
         }
 
         vector<int> result(k, 0);
-        for (int i = 0; i <= k; i++) if (i <= n1 and k
-        -i <= n2
-        )
-        {
-            vector<int> maxNums1 = maxSubArray(nums1, i);
-            vector<int> maxNums2 = maxSubArray(nums2, k - i);
-            vector<int> temp = mergeArray(maxNums1, maxNums2, k);
-            if (compareArray(temp, result, 0, 0)) {
-                result = temp;
+        for (int i = 0; i <= k; i++)
+            if (i <= n1 and k - i <= n2) {
+                vector<int> maxNums1 = maxSubArray(nums1, i);
+                vector<int> maxNums2 = maxSubArray(nums2, k - i);
+                vector<int> temp = mergeArray(maxNums1, maxNums2, k);
+                if (compareArray(temp, result, 0, 0)) {
+                    result = temp;
+                }
             }
-        }
         return result;
     }
 };

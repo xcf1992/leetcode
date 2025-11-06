@@ -26,25 +26,18 @@ using namespace std;
 
 class Solution {
 public:
-    ListNode *swapPairs(ListNode *head) {
-        if (head == nullptr or
-        head->next == nullptr
-        )
-        {
+    ListNode* swapPairs(ListNode* head) {
+        if (head == nullptr or head->next == nullptr) {
             return head;
         }
 
-        ListNode *dummy = new ListNode(-1);
+        ListNode* dummy = new ListNode(-1);
         dummy->next = head;
-        ListNode *first = head;
-        ListNode *second = head->next;
-        ListNode *pre = dummy;
-        while (first != nullptr and second
-        !=
-        nullptr
-        )
-        {
-            ListNode *suc = second->next;
+        ListNode* first = head;
+        ListNode* second = head->next;
+        ListNode* pre = dummy;
+        while (first != nullptr and second != nullptr) {
+            ListNode* suc = second->next;
             pre->next = second;
             second->next = first;
             first->next = suc;

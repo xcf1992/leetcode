@@ -15,7 +15,8 @@ Explanation: The target "abcbc" can be formed by "abc" and "bc", which are subse
 Example 2:
 Input: source = "abc", target = "acdbc"
 Output: -1
-Explanation: The target string cannot be constructed from the subsequences of source string due to the character "d" in target string.
+Explanation: The target string cannot be constructed from the subsequences of source string due to the character "d" in
+target string.
 
 Example 3:
 Input: source = "xyz", target = "xzyxz"
@@ -47,7 +48,7 @@ public:
         if (n == 0) {
             return -1;
         }
-        vector<vector<int> > dict(26);
+        vector<vector<int>> dict(26);
         for (int i = 0; i < n; i++) {
             dict[source[i] - 'a'].push_back(i);
         }

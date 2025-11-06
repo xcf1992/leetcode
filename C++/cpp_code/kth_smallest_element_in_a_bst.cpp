@@ -46,7 +46,7 @@ using namespace std;
 
 class Solution {
 private:
-    void find(TreeNode *root, int &k, int &result) {
+    void find(TreeNode* root, int& k, int& result) {
         if (root == nullptr) {
             return;
         }
@@ -65,7 +65,7 @@ private:
     }
 
 public:
-    int kthSmallest(TreeNode *root, int k) {
+    int kthSmallest(TreeNode* root, int k) {
         int result = -1;
         find(root, k, result);
         return result;

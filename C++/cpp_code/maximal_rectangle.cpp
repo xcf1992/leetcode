@@ -30,16 +30,16 @@ using namespace std;
 class Solution {
     // O(M * N)
 public:
-    int maximalRectangle(vector<vector<char> > &matrix) {
+    int maximalRectangle(vector<vector<char>>& matrix) {
         int m = matrix.size();
         if (m == 0) {
             return 0;
         }
         int n = matrix[0].size();
 
-        vector<int> height(n, 0); // store the height of current column
-        vector<int> left(n, 0); // store the left most column has the same height of col j
-        vector<int> right(n, n); // store the right most column has the same height of col j
+        vector<int> height(n, 0);  // store the height of current column
+        vector<int> left(n, 0);    // store the left most column has the same height of col j
+        vector<int> right(n, n);   // store the right most column has the same height of col j
         int result = 0;
         for (int i = 0; i < m; ++i) {
             int curLeft = 0;
@@ -47,18 +47,19 @@ public:
                 if (matrix[i][j] == '1') {
                     height[j] += 1;
                     /*
-                    * Consider what causes changes to the left bound of our rectangle.
-                    * Since all instances of zeros occurring in the row above the current one have already been factored into the current version of left,
-                    * the only thing that affects our left is if we encounter a zero in our current row.
-                    */
+                     * Consider what causes changes to the left bound of our rectangle.
+                     * Since all instances of zeros occurring in the row above the current one have already been
+                     * factored into the current version of left, the only thing that affects our left is if we
+                     * encounter a zero in our current row.
+                     */
                     left[j] = max(left[j], curLeft);
                 } else {
                     height[j] = 0;
                     /*
-                    * cur_left is one greater than rightmost occurrence of zero we have encountered.
-                    * When we "expand" the rectangle to the left, we know it can't expand past that point,
-                    * otherwise it'll run into the zero.
-                    */
+                     * cur_left is one greater than rightmost occurrence of zero we have encountered.
+                     * When we "expand" the rectangle to the left, we know it can't expand past that point,
+                     * otherwise it'll run into the zero.
+                     */
                     left[j] = 0;
                     curLeft = j + 1;
                 }
@@ -84,14 +85,14 @@ public:
 class Solution1 {
     // 50% O(M * N * N)
 public:
-    int maximalRectangle(vector<vector<char> > &matrix) {
+    int maximalRectangle(vector<vector<char>>& matrix) {
         int m = matrix.size();
         if (m == 0) {
             return 0;
         }
         int n = matrix[0].size();
         // consecutiveOne[i][j] means number of consecutive ones from matrix[i][j] to its left
-        vector<vector<int> > consecutiveOne(m, vector<int>(n, 0));
+        vector<vector<int>> consecutiveOne(m, vector<int>(n, 0));
         int result = 0;
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {

@@ -33,21 +33,15 @@ using namespace std;
 
 class Solution {
 public:
-    ListNode *oddEvenList(ListNode *head) {
-        if (head == nullptr or
-        head->next == nullptr
-        )
-        {
+    ListNode* oddEvenList(ListNode* head) {
+        if (head == nullptr or head->next == nullptr) {
             return head;
         }
 
-        ListNode *odd = head;
-        ListNode *even = head->next;
-        ListNode *evenHead = even;
-        while (even != nullptr and
-        even->next != nullptr
-        )
-        {
+        ListNode* odd = head;
+        ListNode* even = head->next;
+        ListNode* evenHead = even;
+        while (even != nullptr and even->next != nullptr) {
             odd->next = even->next;
             odd = odd->next;
 
@@ -61,22 +55,17 @@ public:
 
 class Solution1 {
 public:
-    ListNode *oddEvenList(ListNode *head) {
-        if (head == nullptr or
-        head->next == nullptr
-        or
-        head->next->next == nullptr
-        )
-        {
+    ListNode* oddEvenList(ListNode* head) {
+        if (head == nullptr or head->next == nullptr or head->next->next == nullptr) {
             return head;
         }
 
-        ListNode *oddCur = head;
-        ListNode *evenCur = head->next;
-        ListNode *cur = evenCur->next;
+        ListNode* oddCur = head;
+        ListNode* evenCur = head->next;
+        ListNode* cur = evenCur->next;
         int num = 3;
         while (cur != nullptr) {
-            ListNode *nextNode = cur->next;
+            ListNode* nextNode = cur->next;
 
             if (num % 2) {
                 evenCur->next = nextNode;

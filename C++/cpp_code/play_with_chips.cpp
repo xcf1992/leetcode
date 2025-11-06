@@ -15,7 +15,8 @@ Return the minimum cost needed to move all the chips to the same position (any p
 Example 1:
 Input: chips = [1,2,3]
 Output: 1
-Explanation: Second chip will be moved to positon 3 with cost 1. First chip will be moved to position 3 with cost 0. Total cost is 1.
+Explanation: Second chip will be moved to positon 3 with cost 1. First chip will be moved to position 3 with cost 0.
+Total cost is 1.
 
 Example 2:
 Input: chips = [2,2,2,3,3]
@@ -40,7 +41,7 @@ using namespace std;
 
 class Solution {
 public:
-    int minCostToMoveChips(vector<int> &chips) {
+    int minCostToMoveChips(vector<int>& chips) {
         int n = chips.size();
         if (n <= 1) {
             return 0;
@@ -48,7 +49,7 @@ public:
 
         int odd = 0;
         int even = 0;
-        for (int c: chips) {
+        for (int c : chips) {
             if (c % 2 == 0) {
                 even += 1;
             } else {

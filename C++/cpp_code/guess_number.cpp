@@ -49,11 +49,7 @@ public:
         for (int i = 0; i <= 9; ++i) {
             int matched = getMatchedCount(target, string(4, '0' + i));
             count[i] = matched;
-            if (count[i] == 0 and noMatched
-            ==
-            ""
-            )
-            {
+            if (count[i] == 0 and noMatched == "") {
                 noMatched = string(4, '0' + i);
             }
         }
@@ -63,12 +59,7 @@ public:
             if (count[i] != 0) {
                 string temp = result;
                 int curMatched = getMatchedCount(target, temp);
-                for (int k = 0; k < temp.size() and count[i]
-                >
-                0;
-                ++k
-                )
-                {
+                for (int k = 0; k < temp.size() and count[i] > 0; ++k) {
                     temp[k] = '0' + i;
                     int cur = getMatchedCount(target, temp);
                     if (cur == curMatched + 1) {

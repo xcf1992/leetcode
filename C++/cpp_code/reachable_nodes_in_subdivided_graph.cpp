@@ -71,14 +71,14 @@ Dijkstra + Fibonacci heap is O(N log N + E)
 */
 class Solution {
 public:
-    int reachableNodes(vector<vector<int> > &edges, int M, int N) {
-        unordered_map<int, unordered_map<int, int> > distance;
-        for (vector<int> &edge: edges) {
+    int reachableNodes(vector<vector<int>>& edges, int M, int N) {
+        unordered_map<int, unordered_map<int, int>> distance;
+        for (vector<int>& edge : edges) {
             distance[edge[0]][edge[1]] = edge[2];
             distance[edge[1]][edge[0]] = edge[2];
         }
 
-        priority_queue<pair<int, int> > pq;
+        priority_queue<pair<int, int>> pq;
         pq.push({M, 0});
         unordered_map<int, int> seen;
         while (!pq.empty()) {
@@ -90,20 +90,16 @@ public:
             }
 
             seen[cur] = moves;
-            for (auto &next: distance[cur]) {
+            for (auto& next : distance[cur]) {
                 int leftMoves = moves - next.second - 1;
-                if (seen.find(next.first) == seen.end() and leftMoves
-                >=
-                0
-                )
-                {
+                if (seen.find(next.first) == seen.end() and leftMoves >= 0) {
                     pq.push({leftMoves, next.first});
                 }
             }
         }
 
         int result = seen.size();
-        for (vector<int> &edge: edges) {
+        for (vector<int>& edge : edges) {
             int a = seen.find(edge[0]) == seen.end() ? 0 : seen[edge[0]];
             int b = seen.find(edge[1]) == seen.end() ? 0 : seen[edge[1]];
             result += min(a + b, edge[2]);
@@ -115,11 +111,11 @@ public:
 class Solution1 {
     // 5.06%
 public:
-    int reachableNodes(vector<vector<int> > edges, int M, int N) {
-        unordered_map<int, vector<int> > next;
-        unordered_map<int, unordered_map<int, int> > distance;
-        unordered_map<int, unordered_map<int, int> > used;
-        for (vector<int> &edge: edges) {
+    int reachableNodes(vector<vector<int>> edges, int M, int N) {
+        unordered_map<int, vector<int>> next;
+        unordered_map<int, unordered_map<int, int>> distance;
+        unordered_map<int, unordered_map<int, int>> used;
+        for (vector<int>& edge : edges) {
             int start = edge[0];
             int end = edge[1];
             next[start].push_back(end);
@@ -131,7 +127,7 @@ public:
         }
 
         unordered_map<int, int> visited;
-        queue<pair<int, int> > bfs;
+        queue<pair<int, int>> bfs;
         bfs.push({0, M});
         visited[0] = M;
         while (!bfs.empty()) {
@@ -139,7 +135,7 @@ public:
             int leftMove = bfs.front().second;
             bfs.pop();
 
-            for (int node: next[cur]) {
+            for (int node : next[cur]) {
                 if (leftMove >= distance[cur][node] + 1) {
                     used[cur][node] = distance[cur][node];
                     if (leftMove - distance[cur][node] - 1 > visited[node]) {

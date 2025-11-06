@@ -48,7 +48,7 @@ using namespace std;
 
 class Solution {
 private:
-    int getPathLenth(TreeNode *root, int &result, long pValue) {
+    int getPathLenth(TreeNode* root, int& result, long pValue) {
         if (root == nullptr) {
             return 0;
         }
@@ -60,12 +60,12 @@ private:
     }
 
 public:
-    int longestUnivaluePath(TreeNode *root) {
+    int longestUnivaluePath(TreeNode* root) {
         if (root == nullptr) {
             return 0;
         }
         int result = 0;
-        getPathLenth(root, result, (long) INT_MIN - 1);
+        getPathLenth(root, result, (long)INT_MIN - 1);
         return result - 1;
     }
 };

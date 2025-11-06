@@ -44,15 +44,15 @@ using namespace std;
 
 class BSTIterator {
 private:
-    stack<TreeNode *> stk;
+    stack<TreeNode*> stk;
 
 public:
-    BSTIterator(TreeNode *root) {
+    BSTIterator(TreeNode* root) {
         if (root == nullptr) {
             return;
         }
 
-        TreeNode *cur = root;
+        TreeNode* cur = root;
         while (cur != nullptr) {
             stk.push(cur);
             cur = cur->left;
@@ -66,7 +66,7 @@ public:
 
     /* @return the next smallest number*/
     int next() {
-        TreeNode *cur = stk.top();
+        TreeNode* cur = stk.top();
         stk.pop();
 
         int result = cur->val;
@@ -82,8 +82,8 @@ public:
 };
 
 /*
-* Your BSTIterator object will be instantiated and called as such:
-* BSTIterator* obj = new BSTIterator(root);
-* int param_1 = obj->next();
-* bool param_2 = obj->hasNext();
-*/
+ * Your BSTIterator object will be instantiated and called as such:
+ * BSTIterator* obj = new BSTIterator(root);
+ * int param_1 = obj->next();
+ * bool param_2 = obj->hasNext();
+ */

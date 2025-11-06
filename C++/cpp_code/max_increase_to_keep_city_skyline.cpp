@@ -51,7 +51,7 @@ using namespace std;
 
 class Solution {
 public:
-    int maxIncreaseKeepingSkyline(vector<vector<int> > &grid) {
+    int maxIncreaseKeepingSkyline(vector<vector<int>>& grid) {
         int m = grid.size();
         if (m == 0) {
             return 0;

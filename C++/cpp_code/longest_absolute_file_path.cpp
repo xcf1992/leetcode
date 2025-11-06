@@ -59,11 +59,7 @@ public:
         int start = 0;
         bool isFile = false;
         for (int i = 0; i < input.size(); i++) {
-            while (i < input.size() and input[i]
-            !=
-            '\n'
-            )
-            {
+            while (i < input.size() and input[i] != '\n') {
                 if (input[i] == '.') {
                     isFile = true;
                 }
@@ -102,11 +98,7 @@ public:
             }
 
             level = 0;
-            while (i < input.size() and input[i]
-            ==
-            '\t'
-            )
-            {
+            while (i < input.size() and input[i] == '\t') {
                 level += 1;
                 i += 1;
             }

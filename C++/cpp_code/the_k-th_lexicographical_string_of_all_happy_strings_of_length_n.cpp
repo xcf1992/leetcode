@@ -24,7 +24,8 @@ Explanation: There are only 3 happy strings of length 1.
 Example 3:
 Input: n = 3, k = 9
 Output: "cab"
-Explanation: There are 12 different happy string of length 3 ["aba", "abc", "aca", "acb", "bab", "bac", "bca", "bcb", "cab", "cac", "cba", "cbc"]. You will find the 9th string = "cab"
+Explanation: There are 12 different happy string of length 3 ["aba", "abc", "aca", "acb", "bab", "bac", "bca", "bcb",
+"cab", "cac", "cba", "cbc"]. You will find the 9th string = "cab"
 
 Example 4:
 Input: n = 2, k = 7
@@ -75,11 +76,12 @@ public:
                     break;
                 }
 
-                for (int c = 'a'; c <= 'c'; ++c) if (c != cur.back()) {
-                    string temp = cur;
-                    temp.push_back(c);
-                    bfs.push(temp);
-                }
+                for (int c = 'a'; c <= 'c'; ++c)
+                    if (c != cur.back()) {
+                        string temp = cur;
+                        temp.push_back(c);
+                        bfs.push(temp);
+                    }
             }
         }
         return result;

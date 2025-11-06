@@ -4,13 +4,18 @@ https://leetcode.com/problems/maximize-the-number-of-target-nodes-after-connecti
 
 There exist two undirected trees with n and m nodes, labeled from [0, n - 1] and [0, m - 1], respectively.
 
-You are given two 2D integer arrays edges1 and edges2 of lengths n - 1 and m - 1, respectively, where edges1[i] = [ai, bi] indicates that there is an edge between nodes ai and bi in the first tree and edges2[i] = [ui, vi] indicates that there is an edge between nodes ui and vi in the second tree.
+You are given two 2D integer arrays edges1 and edges2 of lengths n - 1 and m - 1, respectively, where edges1[i] = [ai,
+bi] indicates that there is an edge between nodes ai and bi in the first tree and edges2[i] = [ui, vi] indicates that
+there is an edge between nodes ui and vi in the second tree.
 
-Node u is target to node v if the number of edges on the path from u to v is even. Note that a node is always target to itself.
+Node u is target to node v if the number of edges on the path from u to v is even. Note that a node is always target to
+itself.
 
-Return an array of n integers answer, where answer[i] is the maximum possible number of nodes that are target to node i of the first tree if you had to connect one node from the first tree to another node in the second tree.
+Return an array of n integers answer, where answer[i] is the maximum possible number of nodes that are target to node i
+of the first tree if you had to connect one node from the first tree to another node in the second tree.
 
-Note that queries are independent from each other. That is, for every query you will remove the added edge before proceeding to the next query.
+Note that queries are independent from each other. That is, for every query you will remove the added edge before
+proceeding to the next query.
 
 
 
@@ -68,14 +73,14 @@ using namespace std;
 
 class Solution {
 private:
-    void build(vector<vector<int> > &edges, vector<vector<int> > &graph) {
-        for (const vector<int> &e: edges) {
+    void build(vector<vector<int>>& edges, vector<vector<int>>& graph) {
+        for (const vector<int>& e : edges) {
             graph[e[0]].push_back(e[1]);
             graph[e[1]].push_back(e[0]);
         }
     }
 
-    void count_target(vector<vector<int> > &graph, vector<int> &color_cnt, vector<int> &node_color) {
+    void count_target(vector<vector<int>>& graph, vector<int>& color_cnt, vector<int>& node_color) {
         int node_cnt = graph.size();
         queue<int> bfs;
         bfs.push(0);
@@ -91,7 +96,7 @@ private:
                 node_color[cur] = cur_color;
                 color_cnt[cur_color] += 1;
 
-                for (int nxt: graph[cur]) {
+                for (int nxt : graph[cur]) {
                     if (visited[nxt]) {
                         continue;
                     }
@@ -105,13 +110,13 @@ private:
     }
 
 public:
-    vector<int> maxTargetNodes(vector<vector<int> > &edges1, vector<vector<int> > &edges2) {
+    vector<int> maxTargetNodes(vector<vector<int>>& edges1, vector<vector<int>>& edges2) {
         int n = edges1.size() + 1;
         int m = edges2.size() + 1;
 
-        vector<vector<int> > graph1(n);
+        vector<vector<int>> graph1(n);
         build(edges1, graph1);
-        vector<vector<int> > graph2(m);
+        vector<vector<int>> graph2(m);
         build(edges2, graph2);
 
         vector<int> color_cnt1(n, 0);

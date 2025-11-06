@@ -77,10 +77,10 @@ public:
         }
 
         while (true) {
-            int num = pq.top(); // num should be equal to the sum of all values before replacing, rest + replaced
+            int num = pq.top();  // num should be equal to the sum of all values before replacing, rest + replaced
             pq.pop();
 
-            sum -= num; // now sum is equal to all values except the biggest number, rest
+            sum -= num;  // now sum is equal to all values except the biggest number, rest
             if (num == 1 or sum == 1) {
                 return true;
             }
@@ -89,8 +89,8 @@ public:
                 return false;
             }
 
-            num %= sum; // by doing the mod we can the number get replaced
-            sum += num; // we add the value back and continue to do another round
+            num %= sum;  // by doing the mod we can the number get replaced
+            sum += num;  // we add the value back and continue to do another round
             pq.push(num);
         }
     }

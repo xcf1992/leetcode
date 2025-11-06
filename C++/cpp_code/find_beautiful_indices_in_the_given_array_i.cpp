@@ -21,10 +21,10 @@ Example 1:
 Input: s = "isawsquirrelnearmysquirrelhouseohmy", a = "my", b = "squirrel", k = 15
 Output: [16,33]
 Explanation: There are 2 beautiful indices: [16,33].
-- The index 16 is beautiful as s[16..17] == "my" and there exists an index 4 with s[4..11] == "squirrel" and |16 - 4| <= 15.
-- The index 33 is beautiful as s[33..34] == "my" and there exists an index 18 with s[18..25] == "squirrel" and |33 - 18| <= 15.
-Thus we return [16,33] as the result.
-Example 2:
+- The index 16 is beautiful as s[16..17] == "my" and there exists an index 4 with s[4..11] == "squirrel" and |16 - 4|
+<= 15.
+- The index 33 is beautiful as s[33..34] == "my" and there exists an index 18 with s[18..25] == "squirrel" and |33 - 18|
+<= 15. Thus we return [16,33] as the result. Example 2:
 
 Input: s = "abcd", a = "a", b = "a", k = 4
 Output: [0]

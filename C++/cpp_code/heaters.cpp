@@ -1,6 +1,7 @@
 /*
  475. Heaters
- Winter is coming! Your first job during the contest is to design a standard heater with fixed warm radius to warm all the houses.
+ Winter is coming! Your first job during the contest is to design a standard heater with fixed warm radius to warm all
+ the houses.
 
  Now, you are given positions of houses and heaters on a horizontal line,
  find out minimum radius of heaters so that all houses could be covered by those heaters.
@@ -17,12 +18,14 @@
  Example 1:
  Input: [1,2,3],[2]
  Output: 1
- Explanation: The only heater was placed in the position 2, and if we use the radius 1 standard, then all the houses can be warmed.
+ Explanation: The only heater was placed in the position 2, and if we use the radius 1 standard, then all the houses can
+ be warmed.
 
  Example 2:
  Input: [1,2,3,4],[1,4]
  Output: 1
- Explanation: The two heater was placed in the position 1 and 4. We need to use radius 1 standard, then all the houses can be warmed.
+ Explanation: The two heater was placed in the position 1 and 4. We need to use radius 1 standard, then all the houses
+ can be warmed.
 */
 #include <iostream>
 #include <string>
@@ -39,10 +42,10 @@ using namespace std;
 
 class Solution {
 public:
-    int findRadius(vector<int> &houses, vector<int> &heaters) {
+    int findRadius(vector<int>& houses, vector<int>& heaters) {
         sort(heaters.begin(), heaters.end());
         int result = INT_MIN;
-        for (int house: houses) {
+        for (int house : houses) {
             int radius = INT_MAX;
             auto larger = lower_bound(heaters.begin(), heaters.end(), house);
             if (larger != heaters.end()) {
@@ -59,11 +62,11 @@ public:
 
 class Solution1 {
 public:
-    int findRadius(vector<int> &houses, vector<int> &heaters) {
+    int findRadius(vector<int>& houses, vector<int>& heaters) {
         int result = INT_MIN;
-        for (int house: houses) {
+        for (int house : houses) {
             int radius = INT_MAX;
-            for (int heater: heaters) {
+            for (int heater : heaters) {
                 radius = min(radius, abs(house - heater));
             }
             result = max(result, radius);

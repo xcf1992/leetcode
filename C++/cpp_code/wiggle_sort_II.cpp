@@ -67,7 +67,8 @@ I rewire it so that the first spot has index 5, the second spot has index 0, etc
 index:     5  0  6  1  7  2  8  3  9  4
 number:   11 18 14 17 10 19 13 16 12 15
 And 11 18 14 17 10 19 13 16 12 15 is perfectly wiggly.
-And the whole partitioning-to-wiggly-arrangement (everything after finding the median) only takes O(n) time and O(1) space.
+And the whole partitioning-to-wiggly-arrangement (everything after finding the median) only takes O(n) time and O(1)
+space.
 
 If the above description is unclear, maybe this explicit listing helps:
 
@@ -138,7 +139,7 @@ private:
     }
 
 public:
-    void wiggleSort(vector<int> &nums) {
+    void wiggleSort(vector<int>& nums) {
         int n = nums.size();
         auto midPtr = nums.begin() + n / 2;
         nth_element(nums.begin(), midPtr, nums.end());
@@ -167,7 +168,7 @@ public:
 // wrong for [4,5,5,6]
 class Solution1 {
 public:
-    void wiggleSort(vector<int> &nums) {
+    void wiggleSort(vector<int>& nums) {
         int n = nums.size();
         vector<int> temp = nums;
         sort(temp.begin(), temp.end());

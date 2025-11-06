@@ -39,8 +39,8 @@ using namespace std;
 What's the score after reversing a sub-array [L, R] ?
 It's the score without reversing it + abs(a[R] - a[L-1]) + abs(a[L] - a[R+1]) - abs(a[L] - a[L-1]) - abs(a[R] - a[R+1])
 How to maximize that formula given that abs(x - y) = max(x - y, y - x) ?
-This can be written as max(max(a[R] - a[L - 1], a[L - 1] - a[R]) + max(a[R + 1] - a[L], a[L] - a[R + 1]) - value(L) - value(R + 1)) over all L < R where value(i) = abs(a[i] - a[i-1])
-This can be divided into 4 cases.
+This can be written as max(max(a[R] - a[L - 1], a[L - 1] - a[R]) + max(a[R + 1] - a[L], a[L] - a[R + 1]) - value(L) -
+value(R + 1)) over all L < R where value(i) = abs(a[i] - a[i-1]) This can be divided into 4 cases.
 
 -=-=-=-=-=-=-=-=
 
@@ -62,16 +62,26 @@ This will improve (max2 - min2) * 2
 
 -=-=
 
-Here is my attempt to explain the core logic of the algorithm i.e. trying to find the optimal subarray whose edges are not 0 or length - 1 and reversing which gives us the largest total sum (or gives maximum bump to the default sum).
+Here is my attempt to explain the core logic of the algorithm i.e. trying to find the optimal subarray whose edges are
+not 0 or length - 1 and reversing which gives us the largest total sum (or gives maximum bump to the default sum).
 
-First, reversing any non-edgy subarray will result in modifying 2 continuous pairs e.g if array is a,b,...,c,d, reversing {b...c} results in a,c,...,b,d, only pairs (a,b) and (c,d) are impacted.
+First, reversing any non-edgy subarray will result in modifying 2 continuous pairs e.g if array is a,b,...,c,d,
+reversing {b...c} results in a,c,...,b,d, only pairs (a,b) and (c,d) are impacted.
 
-Now, if the 2 pairs are non-overlapping, (max of one pair < min of other pair) then they are not utilizing the range which is between them in the sum e.g. given a < b < c < d , then the range not used is (c - b). So, greater the difference between the range, greater opportunity we are missing to add it to the overall sum. So first we have to find out the 2 pairs with maximal difference.
+Now, if the 2 pairs are non-overlapping, (max of one pair < min of other pair) then they are not utilizing the range
+which is between them in the sum e.g. given a < b < c < d , then the range not used is (c - b). So, greater the
+difference between the range, greater opportunity we are missing to add it to the overall sum. So first we have to find
+out the 2 pairs with maximal difference.
 
-Now, after finding the pairs, no matter in what way you make them overlapping, you will always get benefit of 2*(c - b). To see how, lets arrange the 4 numbers in a number line with a < b < c < d. The maximum sum we can get out of them is (b - a) + 2*(c - b) + (d - c). Lets take examples of 2 ways we can make the range overlapping
-a. Swapping c and b: Since c > b ,and earlier contribution was (b - a), we have changed the contribution to (c - a) i.e (c - b) more. Similarly, other pair has also increased the contribution by (c - b) (as we have reduced the subtracting value). So total 2*(c - b)
-b. Suppose the numbers are b > a < c < d where (c,d are also less than b). Swapping c and a means we have reduced the total contribution of first pair to (c - b) but the contribution of second pair now is (d - c) + (b - a) + (c - b) (as now a is the smallest of all).
-So no matter how the 2 pairs are arranged in the number line if you make them overlap by swapping any element of the 2 pairs, the contribution will always be increased by 2*(max of min pair - min of max pair).
+Now, after finding the pairs, no matter in what way you make them overlapping, you will always get benefit of 2*(c - b).
+To see how, lets arrange the 4 numbers in a number line with a < b < c < d. The maximum sum we can get out of them is (b
+- a) + 2*(c - b) + (d - c). Lets take examples of 2 ways we can make the range overlapping a. Swapping c and b: Since c
+> b ,and earlier contribution was (b - a), we have changed the contribution to (c - a) i.e (c - b) more. Similarly,
+other pair has also increased the contribution by (c - b) (as we have reduced the subtracting value). So total 2*(c - b)
+b. Suppose the numbers are b > a < c < d where (c,d are also less than b). Swapping c and a means we have reduced the
+total contribution of first pair to (c - b) but the contribution of second pair now is (d - c) + (b - a) + (c - b) (as
+now a is the smallest of all). So no matter how the 2 pairs are arranged in the number line if you make them overlap by
+swapping any element of the 2 pairs, the contribution will always be increased by 2*(max of min pair - min of max pair).
 */
 class Solution {
 public:

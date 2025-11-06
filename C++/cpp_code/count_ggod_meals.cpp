@@ -2,11 +2,13 @@
 1711. Count Good Meals
 https://leetcode.com/problems/count-good-meals/
 
-A good meal is a meal that contains exactly two different food items with a sum of deliciousness equal to a power of two.
+A good meal is a meal that contains exactly two different food items with a sum of deliciousness equal to a power of
+two.
 
 You can pick any two different foods to make a good meal.
-Given an array of integers deliciousness where deliciousness[i] is the deliciousness of the i​​​​​​th​​​​​​​​ item of food,
-return the number of different good meals you can make from this list modulo 109 + 7.
+Given an array of integers deliciousness where deliciousness[i] is the deliciousness of the
+i​​​​​​th​​​​​​​​ item of food, return the number of different good meals you can make from
+this list modulo 109 + 7.
 
 Note that items with different indices are considered different even if they have the same deliciousness value.
 
@@ -43,7 +45,7 @@ using namespace std;
 
 class Solution {
 public:
-    int countPairs(vector<int> &deliciousness) {
+    int countPairs(vector<int>& deliciousness) {
         int M = 1000000007;
         int n = deliciousness.size();
         if (n == 1) {
@@ -57,11 +59,11 @@ public:
         int ans = 0;
         for (int i = 1; i < n; i++) {
             for (int p = 0; p <= 21; p++) {
-                if ((int) pow(2, p) > 2 * deliciousness[i]) {
+                if ((int)pow(2, p) > 2 * deliciousness[i]) {
                     break;
                 }
 
-                int target = (int) pow(2, p) - deliciousness[i];
+                int target = (int)pow(2, p) - deliciousness[i];
                 if (cnt.find(target) != cnt.end()) {
                     ans += cnt[target] % M;
                     ans %= M;

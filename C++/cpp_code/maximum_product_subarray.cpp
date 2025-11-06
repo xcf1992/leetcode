@@ -27,11 +27,11 @@ Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
 #include <queue>
 #include <stack>
 #include <stdio.h>
-using namespace std;
+        using namespace std;
 
 class Solution {
 public:
-    int maxProduct(vector<int> &nums) {
+    int maxProduct(vector<int>& nums) {
         int curMax = nums[0];
         int curMin = nums[0];
         int result = nums[0];

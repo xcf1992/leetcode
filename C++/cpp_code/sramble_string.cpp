@@ -24,8 +24,8 @@ bool isScramble(string s1, string s2) {
     }
 
     vector<bool> row(s1.size(), false);
-    vector<vector<bool> > matrix(s1.size(), row);
-    vector<vector<vector<bool> > > cube(s1.size(), matrix);
+    vector<vector<bool>> matrix(s1.size(), row);
+    vector<vector<vector<bool>>> cube(s1.size(), matrix);
 
     for (int k = 0; k != s1.size(); k++) {
         for (int i = 0; i != s1.size() - k; i++) {
@@ -36,13 +36,8 @@ bool isScramble(string s1, string s2) {
                     }
                 } else {
                     for (int l = 0; l != k; l++) {
-                        if ((cube.at(i).at(j).at(l) and
-                        cube.at(i + l + 1).at(j + l + 1).at(k - l - 1)
-                        )
-                        or
-                                (cube.at(i).at(j + k - l).at(l) and cube.at(i + l + 1).at(j).at(k - l - 1))
-                        )
-                        {
+                        if ((cube.at(i).at(j).at(l) and cube.at(i + l + 1).at(j + l + 1).at(k - l - 1)) or
+                            (cube.at(i).at(j + k - l).at(l) and cube.at(i + l + 1).at(j).at(k - l - 1))) {
                             cube.at(i).at(j).at(k) = true;
                             break;
                         }

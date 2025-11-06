@@ -61,7 +61,7 @@ using namespace std;
 
 class RLEIterator {
 private:
-    queue<pair<int, int> > que;
+    queue<pair<int, int>> que;
 
 public:
     RLEIterator(vector<int> A) {

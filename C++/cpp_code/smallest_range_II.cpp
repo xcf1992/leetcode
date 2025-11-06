@@ -1,6 +1,7 @@
 /*
 910. Smallest Range II
-Given an array A of integers, for each integer A[i] we need to choose either x = -K or x = K, and add x to A[i] (only once).
+Given an array A of integers, for each integer A[i] we need to choose either x = -K or x = K, and add x to A[i] (only
+once).
 
 After this process, we have some array B.
 
@@ -74,11 +75,12 @@ Which is first half + K, second half - K in a sorting array.
 
 all the elements to be added 2K must be the left continuous part of the array ([True, ..., True, False, ... False]).
 It can be proved that if in the best solution there are some elements added by 0 between the ones added by 2K,
-we can add 2K to them, and this operation will not make the solution worse. Then we can find where the split it is in one pass.
+we can add 2K to them, and this operation will not make the solution worse. Then we can find where the split it is in
+one pass.
 */
 class Solution {
 public:
-    int smallestRangeII(vector<int> &A, int K) {
+    int smallestRangeII(vector<int>& A, int K) {
         sort(A.begin(), A.end());
         int curMax = A.back();
         int curMin = A.front();
@@ -94,10 +96,10 @@ public:
 
 class Solution1 {
 public:
-    int smallestRangeII(vector<int> &A, int K) {
+    int smallestRangeII(vector<int>& A, int K) {
         int curMin = INT_MAX;
         int curMax = INT_MIN;
-        for (int num: A) {
+        for (int num : A) {
             curMin = min(num, curMin);
             curMax = max(num, curMax);
         }
@@ -106,17 +108,11 @@ public:
             curMax = max(curMin + K, curMax - K);
         }
         int result = curMax - curMin;
-        for (int num: A) {
-            if (num + K <= curMax and num
-            +K >= curMin
-            )
-            {
+        for (int num : A) {
+            if (num + K <= curMax and num + K >= curMin) {
                 continue;
             }
-            if (num - K <= curMax and num
-            -K >= curMin
-            )
-            {
+            if (num - K <= curMax and num - K >= curMin) {
                 continue;
             }
             int newMin = num - K;
@@ -125,11 +121,7 @@ public:
                 curMin = newMax;
             } else if (newMin > curMax) {
                 curMax = newMin;
-            } else if (newMin < curMin and newMax
-            >
-            curMax
-            )
-            {
+            } else if (newMin < curMin and newMax > curMax) {
                 if (newMax - curMin > curMax - newMin) {
                     curMin = newMin;
                 } else {

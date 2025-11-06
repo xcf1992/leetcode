@@ -23,7 +23,8 @@ Example 1:
 Input: S = "0.(52)", T = "0.5(25)"
 Output: true
 Explanation:
-Because "0.(52)" represents 0.52525252..., and "0.5(25)" represents 0.52525252525..... , the strings represent the same number.
+Because "0.(52)" represents 0.52525252..., and "0.5(25)" represents 0.52525252525..... , the strings represent the same
+number.
 
 Example 2:
 Input: S = "0.1666(6)", T = "0.166(66)"

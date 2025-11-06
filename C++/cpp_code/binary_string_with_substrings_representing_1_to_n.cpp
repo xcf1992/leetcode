@@ -104,6 +104,7 @@ private:
         reverse(result.begin(), result.end());
         return result;
     }
+
 public:
     bool queryString(string S, int N) {
         for (int i = N; i > N / 2; --i) {

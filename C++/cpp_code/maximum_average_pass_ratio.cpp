@@ -23,10 +23,8 @@ Answers within 10-5 of the actual answer will be accepted.
 Example 1:
 Input: classes = [[1,2],[3,5],[2,2]], extraStudents = 2
 Output: 0.78333
-Explanation: You can assign the two extra students to the first class. The average pass ratio will be equal to (3/4 + 3/5 + 2/2) / 3 = 0.78333.
-Example 2:
-Input: classes = [[2,4],[3,9],[4,5],[2,10]], extraStudents = 4
-Output: 0.53485
+Explanation: You can assign the two extra students to the first class. The average pass ratio will be equal to (3/4 +
+3/5 + 2/2) / 3 = 0.78333. Example 2: Input: classes = [[2,4],[3,9],[4,5],[2,10]], extraStudents = 4 Output: 0.53485
 
 Constraints:
 1 <= classes.length <= 105
@@ -52,18 +50,18 @@ using namespace std;
 
 struct cmp {
     bool operator()(pair<int, int> a, pair<int, int> b) {
-        double ad = (a.first + 1) / (double) (a.second + 1) - (a.first) / (double) a.second;
-        double bd = (b.first + 1) / (double) (b.second + 1) - (b.first) / (double) b.second;
+        double ad = (a.first + 1) / (double)(a.second + 1) - (a.first) / (double)a.second;
+        double bd = (b.first + 1) / (double)(b.second + 1) - (b.first) / (double)b.second;
         return ad < bd;
     }
 };
 
 class Solution {
 public:
-    double maxAverageRatio(vector<vector<int> > &classes, int extraStudents) {
+    double maxAverageRatio(vector<vector<int>>& classes, int extraStudents) {
         double acc = 0.0;
-        priority_queue<pair<int, int>, vector<pair<int, int> >, cmp> que;
-        for (vector<int> i: classes) {
+        priority_queue<pair<int, int>, vector<pair<int, int>>, cmp> que;
+        for (vector<int> i : classes) {
             que.push(make_pair(i[0], i[1]));
         }
 
@@ -79,9 +77,9 @@ public:
         while (!que.empty()) {
             pair<int, int> cur = que.top();
             que.pop();
-            acc += cur.first / (double) cur.second;
+            acc += cur.first / (double)cur.second;
         }
 
-        return acc / (double) classes.size();
+        return acc / (double)classes.size();
     }
 };

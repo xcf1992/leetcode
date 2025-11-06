@@ -2,7 +2,9 @@
 https://leetcode.com/problems/number-of-unique-flavors-after-sharing-k-candies/
 2107. Number of Unique Flavors After Sharing K Candies
 
-You are given a 0-indexed integer array candies, where candies[i] represents the flavor of the ith candy. Your mom wants you to share these candies with your little sister by giving her k consecutive candies, but you want to keep as many flavors of candies as possible.
+You are given a 0-indexed integer array candies, where candies[i] represents the flavor of the ith candy. Your mom wants
+you to share these candies with your little sister by giving her k consecutive candies, but you want to keep as many
+flavors of candies as possible.
 
 Return the maximum number of unique flavors of candy you can keep after sharing with your sister.
 

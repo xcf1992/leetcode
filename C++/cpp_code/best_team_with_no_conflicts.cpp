@@ -23,7 +23,8 @@ Explanation: You can choose all the players.
 Example 2:
 Input: scores = [4,5,6,5], ages = [2,1,2,1]
 Output: 16
-Explanation: It is best to choose the last 3 players. Notice that you are allowed to choose multiple people of the same age.
+Explanation: It is best to choose the last 3 players. Notice that you are allowed to choose multiple people of the same
+age.
 
 Example 3:
 Input: scores = [1,2,3,5], ages = [8,9,10,1]
@@ -54,16 +55,15 @@ using namespace std;
 
 class Solution {
 public:
-    int bestTeamScore(vector<int> &scores, vector<int> &ages) {
+    int bestTeamScore(vector<int>& scores, vector<int>& ages) {
         const int n = scores.size();
-        vector<pair<int, int> > arr(n, {0, 0});
+        vector<pair<int, int>> arr(n, {0, 0});
         for (int i = 0; i < n; ++i) {
             arr[i].first = ages[i];
             arr[i].second = scores[i];
         }
-        sort(arr.begin(), arr.end(), [](pair<int, int> &a, pair<int, int> &b) {
-            return a.first < b.first
-            or(a.first == b.first and a.second < b.second);
+        sort(arr.begin(), arr.end(), [](pair<int, int>& a, pair<int, int>& b) {
+            return a.first < b.first or (a.first == b.first and a.second < b.second);
         });
 
         vector<int> dp(n, 0);

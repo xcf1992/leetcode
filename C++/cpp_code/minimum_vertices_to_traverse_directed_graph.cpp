@@ -15,10 +15,11 @@ using namespace std;
 
 class Solution {
 private:
-    void dfs(unordered_set<int>& result, vector<unordered_set<int>>& graph, unordered_set<int>& visited, unordered_set<int>& curPath, int cur, int start) {
+    void dfs(unordered_set<int>& result, vector<unordered_set<int>>& graph, unordered_set<int>& visited,
+             unordered_set<int>& curPath, int cur, int start) {
         curPath.insert(cur);
         visited.insert(cur);
-        for (int nxt: graph[cur]) {
+        for (int nxt : graph[cur]) {
             if (result.find(nxt) != result.end() and nxt != start) {
                 result.erase(cur);
             }
@@ -27,6 +28,7 @@ private:
             }
         }
     }
+
 public:
     vector<int> getMinimumVetricesCount(vector<vector<int>>& edges, int n) {
         vector<unordered_set<int>> graph(n);

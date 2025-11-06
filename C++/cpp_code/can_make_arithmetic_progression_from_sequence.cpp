@@ -12,7 +12,8 @@ otherwise, return false.
 Example 1:
 Input: arr = [3,5,1]
 Output: true
-Explanation: We can reorder the elements as [1,3,5] or [5,3,1] with differences 2 and -2 respectively, between each consecutive elements.
+Explanation: We can reorder the elements as [1,3,5] or [5,3,1] with differences 2 and -2 respectively, between each
+consecutive elements.
 
 Example 2:
 Input: arr = [1,2,4]

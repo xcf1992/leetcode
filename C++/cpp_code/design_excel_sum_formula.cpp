@@ -54,7 +54,8 @@ Set(1, "A", 2);
 // 3 0 0 0
 
 Sum(3, "C", ["A1", "A1:B2"]);
-// set C(3,"C") to be the sum of value at C(1,"A") and the values sum of the rectangle range whose top-left cell is C(1,"A") and bottom-right cell is C(2,"B"). Return 4.
+// set C(3,"C") to be the sum of value at C(1,"A") and the values sum of the rectangle range whose top-left cell is
+C(1,"A") and bottom-right cell is C(2,"B"). Return 4.
 //   A B C
 // 1 2 0 0
 // 2 0 0 0
@@ -70,7 +71,8 @@ Set(2, "B", 2);
 Note:
 You could assume that there won't be any circular sum reference. For example, A1 = sum(B1) and B1 = sum(A1).
 The test cases are using double-quotes to represent a character.
-Please remember to RESET your class variables declared in class Excel, as static/class variables are persisted across multiple test cases. Please see here for more details.
+Please remember to RESET your class variables declared in class Excel, as static/class variables are persisted across
+multiple test cases. Please see here for more details.
 */
 #include <iostream>
 #include <string>
@@ -95,7 +97,7 @@ struct Cell {
 
 class Excel {
 private:
-    vector<vector<Cell *> > sheet;
+    vector<vector<Cell*>> sheet;
     int M = 0;
     int N = 0;
 
@@ -108,7 +110,7 @@ private:
         return (row - 1) * N + col;
     }
 
-    void addPosToFormula(unordered_map<int, int> &formula, string pos) {
+    void addPosToFormula(unordered_map<int, int>& formula, string pos) {
         int topLeft = posToInt(pos.substr(0, pos.find(':')));
         int botRight = posToInt(pos.substr(pos.find(':') + 1));
 
@@ -128,17 +130,13 @@ public:
         sheet.clear();
         M = H;
         N = W - 'A' + 1;
-        sheet.resize(M, vector<Cell *>(N, nullptr));
+        sheet.resize(M, vector<Cell*>(N, nullptr));
     }
 
     void set(int r, char c, int v) {
         int row = r - 1;
         int col = c - 'A';
-        if (row < 0 or row
-        >=
-        M or col<0 or col >= N
-        )
-        {
+        if (row < 0 or row >= M or col < 0 or col >= N) {
             return;
         }
 
@@ -152,11 +150,7 @@ public:
     int get(int r, char c) {
         int row = r - 1;
         int col = c - 'A';
-        if (row < 0 or row
-        >=
-        M or col<0 or col >= N or sheet[row][col] == nullptr
-        )
-        {
+        if (row < 0 or row >= M or col < 0 or col >= N or sheet[row][col] == nullptr) {
             return 0;
         }
 
@@ -165,7 +159,7 @@ public:
         }
 
         int sum = 0;
-        for (auto &form: sheet[row][col]->formula) {
+        for (auto& form : sheet[row][col]->formula) {
             int pos = form.first;
             int times = form.second;
             sum += times * get(1 + pos / N, 'A' + pos % N);
@@ -176,11 +170,7 @@ public:
     int sum(int r, char c, vector<string> strs) {
         int row = r - 1;
         int col = c - 'A';
-        if (row < 0 or row
-        >=
-        M or col<0 or col >= N
-        )
-        {
+        if (row < 0 or row >= M or col < 0 or col >= N) {
             return 0;
         }
 
@@ -190,7 +180,7 @@ public:
 
         sheet[row][col]->isFormula = true;
         sheet[row][col]->formula.clear();
-        for (string &str: strs) {
+        for (string& str : strs) {
             if (str.find(':') == string::npos) {
                 int pos = posToInt(str);
                 sheet[row][col]->formula[pos] += 1;
@@ -203,9 +193,9 @@ public:
 };
 
 /*
-* Your Excel object will be instantiated and called as such:
-* Excel* obj = new Excel(H, W);
-* obj->set(r,c,v);
-* int param_2 = obj->get(r,c);
-* int param_3 = obj->sum(r,c,strs);
-*/
+ * Your Excel object will be instantiated and called as such:
+ * Excel* obj = new Excel(H, W);
+ * obj->set(r,c,v);
+ * int param_2 = obj->get(r,c);
+ * int param_3 = obj->sum(r,c,strs);
+ */

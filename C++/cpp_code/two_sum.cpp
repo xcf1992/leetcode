@@ -27,7 +27,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> twoSum(vector<int> &numbers, int target) {
+    vector<int> twoSum(vector<int>& numbers, int target) {
         vector<int> result;
         unordered_map<int, int> indexes;
         for (int i = 0; i < numbers.size(); i++) {

@@ -31,7 +31,7 @@ using namespace std;
 
 class Solution {
 private:
-    bool check(string &s, bool &skip, int left, int right) {
+    bool check(string& s, bool& skip, int left, int right) {
         if (left >= right) {
             return true;
         }
@@ -45,8 +45,7 @@ private:
         }
 
         skip = true;
-        return check(s, skip, left + 1, right)
-        or check(s, skip, left, right - 1);
+        return check(s, skip, left + 1, right) or check(s, skip, left, right - 1);
     }
 
 public:

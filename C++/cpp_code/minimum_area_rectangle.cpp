@@ -40,9 +40,9 @@ using namespace std;
 // Time complexity is n^2
 class Solution {
 public:
-    int minAreaRect(vector<vector<int> > &points) {
-        map<int, vector<int> > x2Points;
-        for (vector<int> &point: points) {
+    int minAreaRect(vector<vector<int>>& points) {
+        map<int, vector<int>> x2Points;
+        for (vector<int>& point : points) {
             x2Points[point[0]].push_back(point[1]);
         }
 

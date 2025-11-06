@@ -60,7 +60,7 @@ using namespace std;
 
 class Solution {
 public:
-    int waysToMakeFair(vector<int> &nums) {
+    int waysToMakeFair(vector<int>& nums) {
         vector<int> rest(2, 0);
         for (int i = 0; i < nums.size(); i++) {
             rest[i % 2] += nums[i];

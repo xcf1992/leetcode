@@ -46,10 +46,10 @@ remove num from seen_twice
 */
 class Solution {
 public:
-    int singleNumber(vector<int> &nums) {
+    int singleNumber(vector<int>& nums) {
         int seenOnce = 0;
         int seenTwice = 0;
-        for (int num: nums) {
+        for (int num : nums) {
             seenOnce = ~seenTwice & (seenOnce ^ num);
             seenTwice = ~seenOnce & (seenTwice ^ num);
         }
@@ -59,14 +59,14 @@ public:
 
 class Solution1 {
 public:
-    int singleNumber(vector<int> &nums) {
+    int singleNumber(vector<int>& nums) {
         int n = nums.size();
         if (n == 1) {
             return nums[0];
         }
 
         vector<int> bits(32, 0);
-        for (int num: nums) {
+        for (int num : nums) {
             for (int j = 0; j < 32; j++) {
                 bits[j] += (num >> j) & 1;
             }

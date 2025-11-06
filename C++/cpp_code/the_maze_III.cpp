@@ -35,7 +35,8 @@ Output: "lul"
 Explanation: There are two shortest ways for the ball to drop into the hole.
 The first way is left -> up -> left, represented by "lul".
 The second way is up -> left, represented by 'ul'.
-Both ways have shortest distance 6, but the first way is lexicographically smaller because 'l' < 'u'. So the output is "lul".
+Both ways have shortest distance 6, but the first way is lexicographically smaller because 'l' < 'u'. So the output is
+"lul".
 
 Example 2:
 Input 1: a maze represented by a 2D array
@@ -76,16 +77,11 @@ class Solution {
 private:
     int M = 0;
     int N = 0;
-    map<char, vector<int> > move = {
-        {'d', {1, 0}},
-        {'l', {0, -1}},
-        {'r', {0, 1}},
-        {'u', {-1, 0}}
-    };
+    map<char, vector<int>> move = {{'d', {1, 0}}, {'l', {0, -1}}, {'r', {0, 1}}, {'u', {-1, 0}}};
 
-    void dfs(vector<vector<int> > &maze, vector<int> ball, vector<int> &hole, string &path, string &directions,
-             vector<vector<int> > &distance, map<char, vector<int> > &move) {
-        for (auto &it: move) {
+    void dfs(vector<vector<int>>& maze, vector<int> ball, vector<int>& hole, string& path, string& directions,
+             vector<vector<int>>& distance, map<char, vector<int>>& move) {
+        for (auto& it : move) {
             char d = it.first;
             int xDiff = it.second[0];
             int yDiff = it.second[1];
@@ -95,38 +91,22 @@ private:
             bool drop = false;
 
             path.push_back(d);
-            while (curX + xDiff < M and curX
-            +xDiff >= 0
-            and curY
-            +yDiff < N
-            and curY
-            +yDiff >= 0
-            and maze[curX + xDiff][curY + yDiff]
-            !=
-            1
-            )
-            {
+            while (curX + xDiff < M and curX + xDiff >= 0 and curY + yDiff < N and curY + yDiff >= 0 and
+                   maze[curX + xDiff][curY + yDiff] != 1) {
                 curX += xDiff;
                 curY += yDiff;
                 length += 1;
-                if (curX == hole[0] and curY
-                ==
-                hole[1]
-                )
-                {
+                if (curX == hole[0] and curY == hole[1]) {
                     if (distance[hole[0]][hole[1]] > distance[ball[0]][ball[1]] + length) {
                         distance[hole[0]][hole[1]] = distance[ball[0]][ball[1]] + length;
                         directions = path;
-                    } // cause we use d l u r, so the first met result will always better than later ones with the same length
+                    }  // cause we use d l u r, so the first met result will always better than later ones with the same
+                       // length
                     drop = true;
                     break;
                 }
             }
-            if (!drop and distance[curX][curY]
-            >
-            distance[ball[0]][ball[1]] + length
-            )
-            {
+            if (!drop and distance[curX][curY] > distance[ball[0]][ball[1]] + length) {
                 distance[curX][curY] = distance[ball[0]][ball[1]] + length;
                 dfs(maze, {curX, curY}, hole, path, directions, distance, move);
             }
@@ -135,11 +115,11 @@ private:
     }
 
 public:
-    string findShortestWay(vector<vector<int> > &maze, vector<int> &ball, vector<int> &hole) {
+    string findShortestWay(vector<vector<int>>& maze, vector<int>& ball, vector<int>& hole) {
         M = maze.size();
         N = maze[0].size();
 
-        vector<vector<int> > distance(M, vector<int>(N, INT_MAX));
+        vector<vector<int>> distance(M, vector<int>(N, INT_MAX));
         distance[ball[0]][ball[1]] = 0;
 
         string directions = "";

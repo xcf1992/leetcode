@@ -90,20 +90,18 @@ if p[j - 1] == '*' and the pattern repeats for at least 1 times.
  *      1) "x*" repeats 0 time and matches empty: f[i][j - 2]
  *      2) "x*" repeats >= 1 times and matches "x*x": s[i - 1] == x and f[i - 1][j]
  * '.' matches any single character
-*/
+ */
 class Solution {
 public:
     bool isMatch(string s, string p) {
         int m = s.size();
         int n = p.size();
-        vector<vector<bool> > dp(m + 1, vector<bool>(n + 1, false));
+        vector<vector<bool>> dp(m + 1, vector<bool>(n + 1, false));
 
         dp[0][0] = true;
         for (int j = 1; j <= n; j++) {
             if (p[j - 1] == '*') {
-                if (dp[0][j - 1] or(j > 1 and dp[0][j - 2])
-                )
-                {
+                if (dp[0][j - 1] or (j > 1 and dp[0][j - 2])) {
                     dp[0][j] = true;
                 }
             }
@@ -112,20 +110,12 @@ public:
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
                 if (p[j - 1] != '*') {
-                    dp[i][j] = dp[i - 1][j - 1]
-                    and(s[i - 1] == p[j - 1] or p[j - 1] == '.');
+                    dp[i][j] = dp[i - 1][j - 1] and (s[i - 1] == p[j - 1] or p[j - 1] == '.');
                 } else {
-                    if (s[i - 1] != p[j - 2] and p[j - 2]
-                    !=
-                    '.'
-                    )
-                    {
+                    if (s[i - 1] != p[j - 2] and p[j - 2] != '.') {
                         dp[i][j] = dp[i][j - 2];
-                    }
-                    else
-                    {
-                        dp[i][j] = dp[i][j - 2]
-                        or dp[i][j - 1] or dp[i - 1][j];
+                    } else {
+                        dp[i][j] = dp[i][j - 2] or dp[i][j - 1] or dp[i - 1][j];
                     }
                 }
             }

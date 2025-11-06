@@ -71,7 +71,8 @@ But it's wrong, look at the (n-1) A case, we do A for (n-1) times, then do two R
 then the situation is the same as dp[i-2^(n-1)+1].
 This can be larger than the actual min operations since, there may be redundant R operations,
 we can combine RR operation with the remaining (2^(n-1)-1) to i path.
-So we use m to go backward between the two R operations and count the remaining (2^(n-1)-2^m) to i path to include the combining situation.
+So we use m to go backward between the two R operations and count the remaining (2^(n-1)-2^m) to i path to include the
+combining situation.
 
 For example: target = 5
 
@@ -112,7 +113,7 @@ class Solution1 {
 public:
     int racecar(int target) {
         unordered_set<string> memo;
-        queue<vector<int> > bfs; // {curPos, speed}
+        queue<vector<int>> bfs;  // {curPos, speed}
         bfs.push({0, 1});
         memo.insert("0_1");
         int result = 0;

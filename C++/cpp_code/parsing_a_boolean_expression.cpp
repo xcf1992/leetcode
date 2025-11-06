@@ -47,7 +47,7 @@ using namespace std;
 
 class Solution {
 private:
-    bool parse(string &expression, int &pos) {
+    bool parse(string& expression, int& pos) {
         int n = expression.size();
         if (pos >= n) {
             return true;
@@ -55,31 +55,14 @@ private:
 
         char op = ' ';
         vector<bool> vals;
-        while (pos < n and expression[pos]
-        !=
-        ')'
-        )
-        {
-            if (expression[pos] == '!' or expression[pos]
-            ==
-            '&'
-            or expression[pos]
-            ==
-            '|'
-            )
-            {
+        while (pos < n and expression[pos] != ')') {
+            if (expression[pos] == '!' or expression[pos] == '&' or expression[pos] == '|') {
                 if (op == ' ') {
                     op = expression[pos];
                 } else {
                     vals.push_back(parse(expression, pos));
                 }
-            }
-            else
-            if (expression[pos] == 't' or expression[pos]
-            ==
-            'f'
-            )
-            {
+            } else if (expression[pos] == 't' or expression[pos] == 'f') {
                 vals.push_back('t' == expression[pos]);
             }
             pos += 1;
@@ -114,30 +97,12 @@ class Solution1 {
 public:
     bool parseBoolExpr(string expr) {
         stack<char> val, op;
-        for (char ch: expr) {
-            if (ch == 't' or ch
-            ==
-            'f'
-            or ch
-            ==
-            '('
-            )
-            {
+        for (char ch : expr) {
+            if (ch == 't' or ch == 'f' or ch == '(') {
                 val.push(ch);
-            }
-            else
-            if (ch == '&' or ch
-            ==
-            '|'
-            or ch
-            ==
-            '!'
-            )
-            {
+            } else if (ch == '&' or ch == '|' or ch == '!') {
                 op.push(ch);
-            }
-            else
-            if (ch == ')') {
+            } else if (ch == ')') {
                 char p = op.top();
                 op.pop();
                 bool v = (val.top() == 't');
@@ -150,18 +115,16 @@ public:
                 while (val.top() != '(') {
                     // Keep popping the values till the top element is (
                     if (p == '&') {
-                        v = v
-                        and(val.top() == 't');
+                        v = v and (val.top() == 't');
                     } else {
-                        v = v
-                        or(val.top() == 't');
+                        v = v or (val.top() == 't');
                     }
                     val.pop();
                 }
-                val.pop(); // This pop is needed to pop the (
+                val.pop();  // This pop is needed to pop the (
                 val.push(v ? 't' : 'f');
             }
         }
-        return val.top() == 't'; // Return the final result by converting it to a bool value
+        return val.top() == 't';  // Return the final result by converting it to a bool value
     }
 };

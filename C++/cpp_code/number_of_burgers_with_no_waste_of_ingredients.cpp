@@ -15,7 +15,8 @@ If it is not possible to make the remaining tomatoSlices and cheeseSlices equal 
 Example 1:
 Input: tomatoSlices = 16, cheeseSlices = 7
 Output: [1,6]
-Explantion: To make one jumbo burger and 6 small burgers we need 4*1 + 2*6 = 16 tomato and 1 + 6 = 7 cheese. There will be no remaining ingredients.
+Explantion: To make one jumbo burger and 6 small burgers we need 4*1 + 2*6 = 16 tomato and 1 + 6 = 7 cheese. There will
+be no remaining ingredients.
 
 Example 2:
 Input: tomatoSlices = 17, cheeseSlices = 4
@@ -25,7 +26,8 @@ Explantion: There will be no way to use all ingredients to make small and jumbo 
 Example 3:
 Input: tomatoSlices = 4, cheeseSlices = 17
 Output: []
-Explantion: Making 1 jumbo burger there will be 16 cheese remaining and making 2 small burgers there will be 15 cheese remaining.
+Explantion: Making 1 jumbo burger there will be 16 cheese remaining and making 2 small burgers there will be 15 cheese
+remaining.
 
 Example 4:
 Input: tomatoSlices = 0, cheeseSlices = 0

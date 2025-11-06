@@ -1,8 +1,10 @@
 /*
 A and B will claim a number num1 and num2
  1. Then they will start to count number, one at a time, they can decide which one they give this number to.
- 2. A starts first, he can choose give this number to himself or B. But the sum of numbers each one get can not exceed the number they claim at first.
- 3. If anyone can not count any number anymore, he lose. Thus if after anyone's turn, the sum of the numbers each one get equals the number they claim, then he wins.
+ 2. A starts first, he can choose give this number to himself or B. But the sum of numbers each one get can not exceed
+the number they claim at first.
+ 3. If anyone can not count any number anymore, he lose. Thus if after anyone's turn, the sum of the numbers each one
+get equals the number they claim, then he wins.
  4. A and B can only pick number from fibonacci sequence: 1, 2, 3, 5, 8, ...
 
  Input:
@@ -74,7 +76,7 @@ using namespace std;
 */
 class Solution {
 private:
-    bool firstOneWin(int num, unordered_map<int, bool> &dp, unordered_set<int> &fibonacci) {
+    bool firstOneWin(int num, unordered_map<int, bool>& dp, unordered_set<int>& fibonacci) {
         if (dp.find(num) != dp.end()) {
             return dp[num];
         }

@@ -58,42 +58,29 @@ public:
     void setInteger(int value);
 
     // Set this NestedInteger to hold a nested list and adds a nested integer to it.
-    void add(const NestedInteger &ni);
+    void add(const NestedInteger& ni);
 
     // Return the nested list that this NestedInteger holds, if it holds a nested list
     // The result is undefined if this NestedInteger holds a single integer
-    const vector<NestedInteger> &getList() const;
+    const vector<NestedInteger>& getList() const;
 };
 
 class Solution {
 private:
-    NestedInteger parse(string s, int &pos) {
+    NestedInteger parse(string s, int& pos) {
         NestedInteger result;
         int n = s.size();
-        while (s[pos] != ']' and pos<n
-        )
-        {
+        while (s[pos] != ']' and pos < n) {
             if (s[pos] == '[') {
                 pos += 1;
                 result.add(parse(s, pos));
                 pos += 1;
-                if (pos < n and s[pos]
-                ==
-                ','
-                )
-                {
+                if (pos < n and s[pos] == ',') {
                     pos += 1;
                 }
             } else {
                 string num = "";
-                while (pos < n and s[pos]
-                !=
-                ']'
-                and s[pos]
-                !=
-                ','
-                )
-                {
+                while (pos < n and s[pos] != ']' and s[pos] != ',') {
                     // cannot use isdigit, cause we may have negative number here
                     num.push_back(s[pos]);
                     pos += 1;

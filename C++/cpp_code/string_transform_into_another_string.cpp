@@ -81,23 +81,19 @@ public:
 
         unordered_map<char, char> transform;
         for (int i = 0; i < str1.size(); ++i) {
-            if (transform.find(str1[i]) != transform.end() and transform[str1[i]]
-            !=
-            str2[i]
-            )
-            {
+            if (transform.find(str1[i]) != transform.end() and transform[str1[i]] != str2[i]) {
                 return false;
             }
             transform[str1[i]] = str2[i];
         }
         /*
-        * consider the case from abcd -> bcda
-        * we can transform each letter from back
-        * so str1 will become acda, without any problem
-        * but when it comes to transform a -> b, we have letter a both front and back
-        * so it would require we transform a -> x(some other letter not used yet)
-        * and then transform x -> b
-        */
+         * consider the case from abcd -> bcda
+         * we can transform each letter from back
+         * so str1 will become acda, without any problem
+         * but when it comes to transform a -> b, we have letter a both front and back
+         * so it would require we transform a -> x(some other letter not used yet)
+         * and then transform x -> b
+         */
         return unordered_set(str2.begin(), str2.end()).size() < 26;
     }
 };

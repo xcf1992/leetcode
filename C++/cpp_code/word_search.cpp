@@ -35,13 +35,13 @@ using namespace std;
 
 class Solution {
 private:
-    vector<vector<char> > board;
+    vector<vector<char>> board;
     int row_cnt = 0;
     int col_cnt = 0;
     int rowOffsets[4] = {0, 1, 0, -1};
     int colOffsets[4] = {1, 0, -1, 0};
 
-    bool backtrack(int row, int col, const string &word, int index) {
+    bool backtrack(int row, int col, const string& word, int index) {
         if (index >= word.size()) {
             return true;
         }
@@ -63,7 +63,7 @@ private:
     }
 
 public:
-    bool exist(vector<vector<char> > &board, string word) {
+    bool exist(vector<vector<char>>& board, string word) {
         this->board = board;
         row_cnt = board.size();
         col_cnt = board[0].size();

@@ -21,32 +21,22 @@ using namespace std;
 
 class Solution {
 private:
-    void addString(string s, vector<string> &result, int pos, string cur) {
+    void addString(string s, vector<string>& result, int pos, string cur) {
         if (pos == s.size()) {
             result.push_back(cur);
             return;
         }
 
         cur.push_back(s[pos]);
-        if (s[pos] >= '0' and s[pos]
-        <=
-        '9'
-        )
-        {
+        if (s[pos] >= '0' and s[pos] <= '9') {
             addString(s, result, pos + 1, cur);
             return;
         }
 
         addString(s, result, pos + 1, cur);
-        if (s[pos] >= 'a' and s[pos]
-        <=
-        'z'
-        )
-        {
+        if (s[pos] >= 'a' and s[pos] <= 'z') {
             cur.back() = 'A' + s[pos] - 'a';
-        }
-        else
-        {
+        } else {
             cur.back() = 'a' + s[pos] - 'A';
         }
         addString(s, result, pos + 1, cur);

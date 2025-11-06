@@ -48,7 +48,7 @@ using namespace std;
 
 class Solution {
 public:
-    int maxAscendingSum(vector<int> &nums) {
+    int maxAscendingSum(vector<int>& nums) {
         int result = 0;
         int sum = nums[0];
         for (int i = 1; i < nums.size(); ++i) {

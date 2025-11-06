@@ -15,7 +15,8 @@ Dishes can be prepared in any order and the chef can discard some dishes to get 
 Example 1:
 Input: satisfaction = [-1,-8,0,5,-9]
 Output: 14
-Explanation: After Removing the second and last dish, the maximum total Like-time coefficient will be equal to (-1*1 + 0*2 + 5*3 = 14). Each dish is prepared in one unit of time.
+Explanation: After Removing the second and last dish, the maximum total Like-time coefficient will be equal to (-1*1 +
+0*2 + 5*3 = 14). Each dish is prepared in one unit of time.
 
 Example 2:
 Input: satisfaction = [4,3,2]
@@ -72,7 +73,7 @@ Space O(1)
 */
 class Solution {
 public:
-    int maxSatisfaction(vector<int> &A) {
+    int maxSatisfaction(vector<int>& A) {
         sort(A.begin(), A.end());
         int res = 0, total = 0, n = A.size();
         for (int i = n - 1; i >= 0 && A[i] > -total; --i) {

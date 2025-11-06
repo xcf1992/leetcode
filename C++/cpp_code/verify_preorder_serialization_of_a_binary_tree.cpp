@@ -12,7 +12,8 @@ If it is a null node, we record using a sentinel value such as #.
  4   1  #  6
 / \ / \   / \
 # # # #   # #
-For example, the above binary tree can be serialized to the string "9,3,4,#,#,1,#,#,2,#,6,#,#", where # represents a null node.
+For example, the above binary tree can be serialized to the string "9,3,4,#,#,1,#,#,2,#,6,#,#", where # represents a
+null node.
 
 Given a string of comma separated values,
 verify whether it is a correct preorder traversal serialization of a binary tree.
@@ -20,7 +21,8 @@ Find an algorithm without reconstructing the tree.
 
 Each comma separated value in the string must be either an integer or a character '#' representing null pointer.
 
-You may assume that the input format is always valid, for example it could never contain two consecutive commas such as "1,,3".
+You may assume that the input format is always valid, for example it could never contain two consecutive commas such as
+"1,,3".
 
 Example 1:
 
@@ -72,14 +74,14 @@ private:
             if (c == ',') {
                 result.push_back(cur);
                 cur = "";
-            }
-            else {
+            } else {
                 cur.push_back(c);
             }
         }
         result.push_back(cur);
         return result;
     }
+
 public:
     bool isValidSerialization(string preorder) {
         vector<string> token = split(preorder);
@@ -95,8 +97,7 @@ public:
                     stk.pop();
                 }
                 stk.push("#");
-            }
-            else {
+            } else {
                 stk.push(token[pos]);
             }
             pos += 1;
@@ -105,7 +106,7 @@ public:
     }
 };
 
-class Solution1 { // too slow
+class Solution1 {  // too slow
 private:
     void verify(string preorder, int& pos) {
         if (pos >= preorder.size()) {
@@ -125,6 +126,7 @@ private:
         pos++;
         verify(preorder, pos);
     }
+
 public:
     bool isValidSerialization(string preorder) {
         int pos = 0;

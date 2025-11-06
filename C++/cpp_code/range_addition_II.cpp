@@ -49,13 +49,13 @@ using namespace std;
 
 class Solution {
 public:
-    int maxCount(int m, int n, vector<vector<int> > &ops) {
+    int maxCount(int m, int n, vector<vector<int>>& ops) {
         if (ops.empty()) {
             return m * n;
         }
         int l = m;
         int w = n;
-        for (auto op: ops) {
+        for (auto op : ops) {
             l = min(l, op[0]);
             w = min(w, op[1]);
         }

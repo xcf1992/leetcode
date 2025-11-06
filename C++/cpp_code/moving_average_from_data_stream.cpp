@@ -38,14 +38,14 @@ public:
         if (window.size() < length) {
             window.push(val);
             sum += val;
-            return sum / (double) window.size();
+            return sum / (double)window.size();
         }
 
         sum -= window.front();
         window.pop();
         sum += val;
         window.push(val);
-        return sum / (double) length;
+        return sum / (double)length;
     }
 };
 
@@ -53,7 +53,7 @@ public:
  * Your MovingAverage object will be instantiated and called as such:
  * MovingAverage obj = new MovingAverage(size);
  * double param_1 = obj.next(val);
-*/
+ */
 
 int main() {
     Solution s;

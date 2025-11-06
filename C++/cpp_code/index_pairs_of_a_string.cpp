@@ -22,7 +22,8 @@
  1 <= text.length <= 100
  1 <= words.length <= 20
  1 <= words[i].length <= 50
- Return the pairs [i,j] in sorted order (i.e. sort them by their first coordinate in case of ties sort them by their second coordinate).
+ Return the pairs [i,j] in sorted order (i.e. sort them by their first coordinate in case of ties sort them by their
+ second coordinate).
 */
 
 #include <iostream>
@@ -42,9 +43,9 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int> > indexPairs(string text, vector<string> &words) {
-        vector<vector<int> > result;
-        for (string &word: words) {
+    vector<vector<int>> indexPairs(string text, vector<string>& words) {
+        vector<vector<int>> result;
+        for (string& word : words) {
             int cur = 0;
             int len = word.size() - 1;
             int pos = text.find(word, cur);
@@ -53,10 +54,8 @@ public:
                 pos = text.find(word, pos + 1);
             }
         }
-        sort(result.begin(), result.end(), [](vector<int> &a, vector<int> &b) {
-            return a[0] < b[0]
-            or(a[0] == b[0] and a[1] < b[1]);
-        });
+        sort(result.begin(), result.end(),
+             [](vector<int>& a, vector<int>& b) { return a[0] < b[0] or (a[0] == b[0] and a[1] < b[1]); });
         return result;
     }
 };

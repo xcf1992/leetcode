@@ -90,7 +90,8 @@ private:
         return grid[row][col] != '#';
     }
 
-    bool canWalk(vector<vector<char>>& grid, int sr, int sc, int er, int ec) { // check if a man can walk from (sr, sc) to (er, ec)
+    bool canWalk(vector<vector<char>>& grid, int sr, int sc, int er,
+                 int ec) {  // check if a man can walk from (sr, sc) to (er, ec)
         vector<vector<bool>> memo(m, vector<bool>(n, false));
         return dfs(grid, sr, sc, er, ec, memo);
     }
@@ -116,6 +117,7 @@ private:
         }
         return false;
     }
+
 public:
     int minPushBox(vector<vector<char>>& grid) {
         m = grid.size();
@@ -127,17 +129,15 @@ public:
             for (int j = 0; j < n; ++j) {
                 if (grid[i][j] == 'B') {
                     box = i * n + j;
-                }
-                else if (grid[i][j] == 'T') {
+                } else if (grid[i][j] == 'T') {
                     target = i * n + j;
-                }
-                else if (grid[i][j] == 'S') {
+                } else if (grid[i][j] == 'S') {
                     player = i * n + j;
                 }
             }
         }
 
-        set<pair<int, int>> visited; // player-box
+        set<pair<int, int>> visited;  // player-box
         queue<pair<int, int>> bfs;
         vector<vector<int>> walk(m, vector<int>(n, 0));
         visited.insert({player, box});
@@ -154,19 +154,18 @@ public:
                     return result;
                 }
 
-                grid[curBox / n][curBox % n] = '#'; // mark box as obstacle
+                grid[curBox / n][curBox % n] = '#';  // mark box as obstacle
                 for (int k = 1; k < diff.size(); ++k) {
                     int nexBoxR = curBox / n + diff[k];
                     int nexBoxC = curBox % n + diff[k - 1];
                     int nexPlayerR = curBox / n - diff[k];
                     int nexPlayerC = curBox % n - diff[k - 1];
-                    if (isValid(grid, nexBoxR, nexBoxC) and
-                        isValid(grid, nexPlayerR, nexPlayerC) and
+                    if (isValid(grid, nexBoxR, nexBoxC) and isValid(grid, nexPlayerR, nexPlayerC) and
                         visited.find({nexPlayerR * n + nexPlayerC, nexBoxR * n + nexBoxC}) == visited.end() and
                         canWalk(grid, player / n, player % n, nexPlayerR, nexPlayerC)) {
-                            visited.insert({nexPlayerR * n + nexPlayerC, nexBoxR * n + nexBoxC});
-                            bfs.push({nexPlayerR * n + nexPlayerC, nexBoxR * n + nexBoxC});
-                        }
+                        visited.insert({nexPlayerR * n + nexPlayerC, nexBoxR * n + nexBoxC});
+                        bfs.push({nexPlayerR * n + nexPlayerC, nexBoxR * n + nexBoxC});
+                    }
                 }
                 grid[curBox / n][curBox % n] = '.';
             }

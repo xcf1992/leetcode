@@ -52,7 +52,8 @@ This is because once a remainder has a duplicate, the next remainder will be in 
 as the previous remainder determines the next_mod, i.e., next_mod = (10 * prev_mod + 1) % K.
 Therefore, we will never see remainder==0.
 A simple example is when K is 6. Once we see 1111 % 6 = 1,
-we immediately know 11111 % 6 will be 5, since 1 % 6 = 1 and 11 % 6 = 5. Therefore, there will be no such number that is divisible by 6.
+we immediately know 11111 % 6 will be 5, since 1 % 6 = 1 and 11 % 6 = 5. Therefore, there will be no such number that is
+divisible by 6.
 
 1 % 6 = 1
 11 % 6 = 5
@@ -65,10 +66,7 @@ Also, it is easy to see that for any number whose last digit is not in {1, 3, 7,
 class Solution {
 public:
     int smallestRepunitDivByK(int K) {
-        if (K % 2 == 0 or K
-        %5 == 0
-        )
-        {
+        if (K % 2 == 0 or K % 5 == 0) {
             return -1;
         }
         int r = 0;

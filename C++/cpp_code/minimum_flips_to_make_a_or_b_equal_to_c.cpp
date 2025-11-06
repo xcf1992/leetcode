@@ -44,14 +44,7 @@ class Solution {
 public:
     int minFlips(int a, int b, int c) {
         int result = 0;
-        while (a != 0 or b
-        !=
-        0
-        or c
-        !=
-        0
-        )
-        {
+        while (a != 0 or b != 0 or c != 0) {
             int d1 = (a & 1);
             a >>= 1;
             int d2 = (b & 1);

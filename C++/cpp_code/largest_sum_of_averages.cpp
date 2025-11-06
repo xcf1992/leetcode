@@ -48,7 +48,8 @@ Let dp(i, k) be the best score partioning A[i:] into at most K parts.
 If the first group we partition A[i:] into ends before j,
 then our candidate partition has score average(i, j) + dp(j, k-1)),
 where average(i, j) = (A[i] + A[i+1] + ... + A[j-1]) / (j - i) (floating point division).
-We take the highest score of these, keeping in mind we don't necessarily need to partition - dp(i, k) can also be just average(i, N).
+We take the highest score of these, keeping in mind we don't necessarily need to partition - dp(i, k) can also be just
+average(i, N).
 
 In total, our recursion in the general case is dp(i, k) = max(average(i, N), max_{j > i}(average(i, j) + dp(j, k-1))).
 
@@ -62,17 +63,13 @@ and the inner-most loop performs the calculation max_{j > i}(average(i, j) + dp(
 */
 class Solution {
 public:
-    double largestSumOfAverages(vector<int> &A, int K) {
+    double largestSumOfAverages(vector<int>& A, int K) {
         int n = A.size();
-        if (n == 0 or K
-        ==
-        0
-        )
-        {
+        if (n == 0 or K == 0) {
             return 0;
         }
 
-        vector<vector<double> > dp(K + 1, vector<double>(n, 0.0));
+        vector<vector<double>> dp(K + 1, vector<double>(n, 0.0));
         vector<int> preSum;
         preSum.push_back(A[0]);
         for (int i = 1; i < n; i++) {

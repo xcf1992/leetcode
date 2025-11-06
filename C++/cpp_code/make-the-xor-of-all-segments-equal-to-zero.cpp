@@ -7,7 +7,8 @@ The XOR of a segment [left, right]
 where left <= right is the XOR of all the elements with indices between left and right,
 inclusive: nums[left] XOR nums[left+1] XOR ... XOR nums[right].
 
-Return the minimum number of elements to change in the array such that the XOR of all segments of size k​​​​​​ is equal to zero.
+Return the minimum number of elements to change in the array such that the XOR of all segments of size
+k​​​​​​ is equal to zero.
 
 Example 1:
 Input: nums = [1,2,0,3,0], k = 1
@@ -43,26 +44,26 @@ Constraints:
 using namespace std;
 /*
 First K length subarray:
-						a1^a2^a3^.....^ak=0 ;
+                        a1^a2^a3^.....^ak=0 ;
 
 Second K length subarray :
-					    a2^a3^a4^....^ak+1=0 ;
+                        a2^a3^a4^....^ak+1=0 ;
 
 On combining both :
-						a1^(a2^a3^....^ak)^(a2^a3^....^ak)^a[k+1] =0
-						a1^a[k+1]=0
+                        a1^(a2^a3^....^ak)^(a2^a3^....^ak)^a[k+1] =0
+                        a1^a[k+1]=0
 Therefore it is easy to see that for any i and j :
 
-						a[i%k]^a[j%k] = 0 ;
-					->  a[i%k]=a[j%k] ;
+                        a[i%k]^a[j%k] = 0 ;
+                    ->  a[i%k]=a[j%k] ;
 
 Hence, a[1] = a[k+1] = a[2k+1] = ...
-	   a[2] = a[k+2] = a[2k+2] = ...
-	   a[3] = a[k+3] = a[2k+3] = ...
-	   .
-	   .
-	   .
-	   a[k] = a[2k] = a[3k] = ...
+       a[2] = a[k+2] = a[2k+2] = ...
+       a[3] = a[k+3] = a[2k+3] = ...
+       .
+       .
+       .
+       a[k] = a[2k] = a[3k] = ...
 
 So we just need to obtain the first k length subarray and the rest would be determined by it.
 
@@ -86,12 +87,9 @@ dp[i][j] : minimum number of changes required in first i elements such that the 
 
 For any a[i], we can either convert it to one of the element from set S[i] or to any other number less than 1025
 */
-class Solution
-{
+class Solution {
 public:
-    int minChanges(vector<int> &nums, int k)
-    {
-
+    int minChanges(vector<int>& nums, int k) {
         int freq[k][1025];
         memset(freq, 0, sizeof freq);
 
@@ -105,29 +103,27 @@ public:
                 dp[i][j] = 1e9 + 5;
 
         dp[0][0] = 0;
-        int prevMin = 0; // it stores the min changes done till now, to obtain any xor value
+        int prevMin = 0;  // it stores the min changes done till now, to obtain any xor value
         int n = nums.size();
 
-        for (int i = 0; i < k; i++)
-        { // iterate through each a[i]
+        for (int i = 0; i < k; i++) {  // iterate through each a[i]
 
             // changing a[i] to one of the values from the Set S[i]
 
-            for (int j = 0; j < 1025; j++) // the previous xor value till (i-1)th element
+            for (int j = 0; j < 1025; j++)  // the previous xor value till (i-1)th element
 
-                for (int z = i; z < n; z += k) // convert a[i] to any value from set S[i] (nums[z])
+                for (int z = i; z < n; z += k)  // convert a[i] to any value from set S[i] (nums[z])
 
                     if ((j ^ nums[z]) < 1025)
-                        //int(ceil((n-i)*1.0/k)) : count of elements in set S[i]
-                        dp[i + 1][j ^ nums[z]] = min(dp[i + 1][j ^ nums[z]], dp[i][j] + int(ceil((n - i) * 1.0 / k)) - freq[i][nums[z]]);
+                        // int(ceil((n-i)*1.0/k)) : count of elements in set S[i]
+                        dp[i + 1][j ^ nums[z]] =
+                                min(dp[i + 1][j ^ nums[z]], dp[i][j] + int(ceil((n - i) * 1.0 / k)) - freq[i][nums[z]]);
 
             int prevMin2 = 1e9 + 5;
 
             // Change a[i] to any other value so as to get the xor value = j
 
-            for (int j = 0; j < 1025; j++)
-            {
-
+            for (int j = 0; j < 1025; j++) {
                 // prevMin is the min change done till i-1 elements
 
                 // we are changing a[i] to a value such that the overall xor value is now equal to j
@@ -137,7 +133,7 @@ public:
                 prevMin2 = min(prevMin2, dp[i + 1][j]);
             }
 
-            prevMin = prevMin2; // update prevMin for next iteration
+            prevMin = prevMin2;  // update prevMin for next iteration
         }
         return dp[k][0];
     }

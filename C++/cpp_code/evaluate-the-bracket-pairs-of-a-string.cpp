@@ -73,9 +73,9 @@ using namespace std;
 
 class Solution {
 public:
-    string evaluate(string s, vector<vector<string> > &k) {
+    string evaluate(string s, vector<vector<string>>& k) {
         unordered_map<string, string> m;
-        for (vector<string> temp: k) {
+        for (vector<string> temp : k) {
             m[temp[0]] = temp[1];
         }
 

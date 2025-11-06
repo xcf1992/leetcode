@@ -61,12 +61,12 @@ So overall O(log(n)^2).
 */
 class Solution {
 private:
-    int getHeight(TreeNode *root) {
+    int getHeight(TreeNode* root) {
         return root == nullptr ? -1 : 1 + getHeight(root->left);
     }
 
 public:
-    int countNodes(TreeNode *root) {
+    int countNodes(TreeNode* root) {
         int h = getHeight(root);
         if (h < 0) {
             return 0;
@@ -82,26 +82,25 @@ public:
 
 class Solution1 {
 public:
-    int countNodes(TreeNode *root) {
+    int countNodes(TreeNode* root) {
         if (root == nullptr) {
             return 0;
         }
 
         int leftHeight = 1;
-        TreeNode *leftC = root->left;
+        TreeNode* leftC = root->left;
         while (leftC != nullptr) {
             leftC = leftC->left;
             leftHeight += 1;
         }
 
         int rightHeight = 1;
-        TreeNode *rightC = root->right;
+        TreeNode* rightC = root->right;
         while (rightC != nullptr) {
             rightC = rightC->right;
             rightHeight += 1;
         }
-        return leftHeight == rightHeight
-                   ? pow(2, leftHeight) - 1
-                   : 1 + countNodes(root->left) + countNodes(root->right);
+        return leftHeight == rightHeight ? pow(2, leftHeight) - 1
+                                         : 1 + countNodes(root->left) + countNodes(root->right);
     }
 };

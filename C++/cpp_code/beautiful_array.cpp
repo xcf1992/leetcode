@@ -106,12 +106,12 @@ public:
         vector<int> result(1, 1);
         while (result.size() < N) {
             vector<int> temp;
-            for (int i: result) {
+            for (int i : result) {
                 if (i * 2 - 1 <= N) {
                     temp.push_back(i * 2 - 1);
                 }
             }
-            for (int i: result) {
+            for (int i : result) {
                 if (i * 2 <= N) {
                     temp.push_back(i * 2);
                 }
@@ -167,7 +167,7 @@ public:
 */
 class Solution {
 private:
-    vector<int> getArray(int N, unordered_map<int, vector<int> > &memo) {
+    vector<int> getArray(int N, unordered_map<int, vector<int>>& memo) {
         if (N == 1) {
             return {1};
         }
@@ -178,10 +178,10 @@ private:
 
         vector<int> beautifulArray(N, 0);
         int i = 0;
-        for (int num: getArray((N + 1) / 2, memo)) {
+        for (int num : getArray((N + 1) / 2, memo)) {
             beautifulArray[i++] = 2 * num - 1;
         }
-        for (int num: getArray(N / 2, memo)) {
+        for (int num : getArray(N / 2, memo)) {
             beautifulArray[i++] = 2 * num;
         }
         memo[N] = beautifulArray;
@@ -190,7 +190,7 @@ private:
 
 public:
     vector<int> beautifulArray(int N) {
-        unordered_map<int, vector<int> > memo;
+        unordered_map<int, vector<int>> memo;
         return getArray(N, memo);
     }
 };

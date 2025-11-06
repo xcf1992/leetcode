@@ -53,28 +53,18 @@ public:
         int j = T.size() - 1;
         int countS = 0;
         int countT = 0;
-        while (i >= 0 or j
-        >=
-        0
-        )
-        {
-            while (i >= 0 and(S[i] == '#' or countS > 0)
-            )
-            {
+        while (i >= 0 or j >= 0) {
+            while (i >= 0 and (S[i] == '#' or countS > 0)) {
                 countS += S[i] == '#' ? 1 : -1;
                 i -= 1;
             }
 
-            while (j >= 0 and(T[j] == '#' or countT > 0)
-            )
-            {
+            while (j >= 0 and (T[j] == '#' or countT > 0)) {
                 countT += T[j] == '#' ? 1 : -1;
                 j -= 1;
             }
 
-            if (i < 0 or j<0
-            )
-            {
+            if (i < 0 or j < 0) {
                 return i == j;
             }
 
@@ -91,7 +81,7 @@ class Solution1 {
 public:
     bool backspaceCompare(string S, string T) {
         string s = "";
-        for (char c: S) {
+        for (char c : S) {
             if (c == '#') {
                 if (!s.empty()) {
                     s.pop_back();
@@ -102,7 +92,7 @@ public:
         }
 
         string t = "";
-        for (char c: T) {
+        for (char c : T) {
             if (c == '#') {
                 if (!t.empty()) {
                     t.pop_back();

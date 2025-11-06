@@ -66,12 +66,11 @@ public:
                 neg++;  // number of negatives in  current frame means (frame excluding zero)
             }
             if (neg == 1 && firstneg == -2) {
-                firstneg = i;   // init firstneg cnt neg;
+                firstneg = i;  // init firstneg cnt neg;
             }
             if (neg % 2 == 0) {
-                res = max(res, i - framestart);  //if curr cnt neg is framestart;
-            }
-            else {
+                res = max(res, i - framestart);  // if curr cnt neg is framestart;
+            } else {
                 res = max(res, i - firstneg);  // first firstneg after last zero;
             }
         }

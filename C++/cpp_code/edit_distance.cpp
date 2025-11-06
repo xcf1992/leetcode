@@ -45,7 +45,7 @@ public:
             return abs(m - n);
         }
 
-        vector<vector<int> > dp(m + 1, vector<int>(n + 1, 0));
+        vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
         for (int i = 1; i <= m; i++) {
             dp[i][0] = i;
         }

@@ -38,13 +38,13 @@ using namespace std;
 
 class Solution {
 public:
-    TreeNode *invertTree(TreeNode *root) {
+    TreeNode* invertTree(TreeNode* root) {
         if (root == nullptr) {
             return root;
         }
 
-        TreeNode *lc = root->left;
-        TreeNode *rc = root->right;
+        TreeNode* lc = root->left;
+        TreeNode* rc = root->right;
         root->left = invertTree(rc);
         root->right = invertTree(lc);
         return root;

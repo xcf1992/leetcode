@@ -2,8 +2,9 @@
 459. Repeated Substring Pattern
 https://leetcode.com/problems/repeated-substring-pattern/
 
-Given a non-empty string check if it can be constructed by taking a substring of it and appending multiple copies of the substring together.
-You may assume the given string consists of lowercase English letters only and its length will not exceed 10000.
+Given a non-empty string check if it can be constructed by taking a substring of it and appending multiple copies of the
+substring together. You may assume the given string consists of lowercase English letters only and its length will not
+exceed 10000.
 
 Example 1:
 Input: "abab"
@@ -37,10 +38,7 @@ public:
     bool repeatedSubstringPattern(string s) {
         int length = s.size();
         for (int i = 1; i <= s.size() / 2; i++) {
-            if (s[i] != s[0] or length
-            %i != 0
-            )
-            {
+            if (s[i] != s[0] or length % i != 0) {
                 continue;
             }
 

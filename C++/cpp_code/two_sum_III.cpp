@@ -39,12 +39,10 @@ public:
 
     /* Find if there exists any pair of numbers which sum is equal to the value.*/
     bool find(int value) {
-        for (auto &el: count) if (count.find(value - el.first) != end(count) and(
-            value - el.first != el.first or el.second > 1)
-        )
-        {
-            return true;
-        }
+        for (auto& el : count)
+            if (count.find(value - el.first) != end(count) and (value - el.first != el.first or el.second > 1)) {
+                return true;
+            }
         return false;
     }
 };

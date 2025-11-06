@@ -33,9 +33,9 @@ Output: false
 using namespace std;
 
 class Solution {
-    //dp[i] means if we can break first i characters in string s into words
+    // dp[i] means if we can break first i characters in string s into words
 public:
-    bool wordBreak(string s, vector<string> &wordDict) {
+    bool wordBreak(string s, vector<string>& wordDict) {
         int n = s.size();
         set<string> dict(wordDict.begin(), wordDict.end());
         vector<bool> dp(n + 1, false);

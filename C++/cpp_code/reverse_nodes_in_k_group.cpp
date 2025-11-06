@@ -34,43 +34,33 @@ using namespace std;
 
 class Solution {
 private:
-    void reverse(ListNode *head, ListNode *tail) {
+    void reverse(ListNode* head, ListNode* tail) {
         if (head == tail) {
             return;
         }
 
-        ListNode *suc = head->next;
+        ListNode* suc = head->next;
         reverse(suc, tail);
         suc->next = head;
     }
 
 public:
-    ListNode *reverseKGroup(ListNode *head, int k) {
-        if (head == nullptr or
-        head->next == nullptr
-        or k
-        ==
-        1
-        )
-        {
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        if (head == nullptr or head->next == nullptr or k == 1) {
             return head;
         }
 
-        ListNode *dummy = new ListNode(-1);
+        ListNode* dummy = new ListNode(-1);
         dummy->next = head;
-        ListNode *tail = head;
-        ListNode *pre = dummy;
+        ListNode* tail = head;
+        ListNode* pre = dummy;
         int len = 1;
         while (tail != nullptr) {
             tail = tail->next;
             len += 1;
-            if (len == k and tail
-            !=
-            nullptr
-            )
-            {
-                ListNode *curHead = pre->next;
-                ListNode *suc = tail->next;
+            if (len == k and tail != nullptr) {
+                ListNode* curHead = pre->next;
+                ListNode* suc = tail->next;
                 reverse(curHead, tail);
                 curHead->next = suc;
                 pre->next = tail;

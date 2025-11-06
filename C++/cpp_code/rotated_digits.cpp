@@ -46,49 +46,18 @@ public:
         vector<int> dp(N + 1, 0);
         int result = 0;
         for (int i = 0; i <= N; ++i) {
-            if (i == 0 or i
-            ==
-            1
-            or i
-            ==
-            8
-            )
-            {
-                dp[i] = 1; // rotated same
-            }
-            else
-            if (i == 2 or i
-            ==
-            5
-            or i
-            ==
-            6
-            or i
-            ==
-            9
-            )
-            {
+            if (i == 0 or i == 1 or i == 8) {
+                dp[i] = 1;  // rotated same
+            } else if (i == 2 or i == 5 or i == 6 or i == 9) {
                 // rotated differently
                 dp[i] = 2;
                 result += 1;
-            }
-            else
-            if (i >= 10) {
+            } else if (i >= 10) {
                 int left = dp[i / 10];
                 int right = dp[i % 10];
-                if (left == 1 and right
-                ==
-                1
-                )
-                {
+                if (left == 1 and right == 1) {
                     dp[i] = 1;
-                }
-                else
-                if (left >= 1 and right
-                >=
-                1
-                )
-                {
+                } else if (left >= 1 and right >= 1) {
                     dp[i] = 2;
                     result += 1;
                 }
@@ -105,18 +74,18 @@ public:
  * which instead keeps track of such information cumulatively. For example,
  * differentRotation[7] = 3 means 3 numbers in the range of [0,7] are new numbers, namely,
  * the new numbers post-rotation 2,5, and 6.
-*/
+ */
 class Solution {
 private:
-    int type[10] = {0, 0, 1, 2, 2, 1, 1, 2, 0, 1}; // 'Same' 'New' or 'Invalid' numbers
-    int differentRotations[10] = {0, 0, 1, 1, 1, 2, 3, 3, 3, 4}; // Cumulative: New number
-    int validRotations[10] = {1, 2, 3, 3, 3, 4, 5, 5, 6, 7}; // Cumulative: Valid number
-    int sameRotations[10] = {1, 2, 2, 2, 2, 2, 2, 2, 3, 3}; // Cumulative: Same number
+    int type[10] = {0, 0, 1, 2, 2, 1, 1, 2, 0, 1};                // 'Same' 'New' or 'Invalid' numbers
+    int differentRotations[10] = {0, 0, 1, 1, 1, 2, 3, 3, 3, 4};  // Cumulative: New number
+    int validRotations[10] = {1, 2, 3, 3, 3, 4, 5, 5, 6, 7};      // Cumulative: Valid number
+    int sameRotations[10] = {1, 2, 2, 2, 2, 2, 2, 2, 3, 3};       // Cumulative: Same number
 
     // Counts the good numbers in the range of [000..0, X00..0] where str[0] = X. Implements
     // dynamic programming to indicate if a new number has been seen.
     int countRotations(string str, bool isNewNumber) {
-        int digit = str[0] - '0'; // Converts char to int (see ASCII Table mathematics)
+        int digit = str[0] - '0';  // Converts char to int (see ASCII Table mathematics)
         if (str.length() == 1) {
             return isNewNumber ? validRotations[digit] : differentRotations[digit];
         }
@@ -150,9 +119,10 @@ public:
     }
 };
 
-
 /*
- X is a good number if after rotating each digit individually by 180 degrees, we get a valid number that is different from X. A number is valid if each digit remains a digit after rotation. 0, 1, and 8 rotate to themselves; 2 and 5 rotate to each other; 6 and 9 rotate to each other, and the rest of the numbers do not rotate to any other number.
+ X is a good number if after rotating each digit individually by 180 degrees, we get a valid number that is different
+ from X. A number is valid if each digit remains a digit after rotation. 0, 1, and 8 rotate to themselves; 2 and 5
+ rotate to each other; 6 and 9 rotate to each other, and the rest of the numbers do not rotate to any other number.
 
  Now given a positive number N, how many numbers X from 1 to N are good?
 
@@ -178,8 +148,8 @@ public:
         int result = 0;
         int length = num.size();
         int digit = num[0] - '0';
-        result += (goodSame[digit - 1] + goodDiff[digit - 1]) * pow(7, length - 1) - goodSame[digit - 1] * pow(
-            3, length - 1);
+        result += (goodSame[digit - 1] + goodDiff[digit - 1]) * pow(7, length - 1) -
+                  goodSame[digit - 1] * pow(3, length - 1);
         bool allSame = true;
 
         if (digitType[digit] == 2) {

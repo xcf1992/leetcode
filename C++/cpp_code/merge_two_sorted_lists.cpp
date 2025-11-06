@@ -25,12 +25,8 @@ using namespace std;
 class Solution {
     // recursive
 public:
-    ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
-        if (l1 == nullptr or l2
-        ==
-        nullptr
-        )
-        {
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        if (l1 == nullptr or l2 == nullptr) {
             return l1 == nullptr ? l2 : l1;
         }
 
@@ -45,30 +41,18 @@ public:
 class Solution1 {
     // iterative
 public:
-    ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
-        if (l1 == nullptr or l2
-        ==
-        nullptr
-        )
-        {
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        if (l1 == nullptr or l2 == nullptr) {
             return l1 == nullptr ? l2 : l1;
         }
 
-        ListNode *dummy = new ListNode(-1);
-        ListNode *pre = dummy;
-        while (l1 != nullptr or l2
-        !=
-        nullptr
-        )
-        {
-            if (l1 == nullptr or(l2 != nullptr and l1->val > l2->val)
-            )
-            {
+        ListNode* dummy = new ListNode(-1);
+        ListNode* pre = dummy;
+        while (l1 != nullptr or l2 != nullptr) {
+            if (l1 == nullptr or (l2 != nullptr and l1->val > l2->val)) {
                 pre->next = l2;
                 l2 = l2->next;
-            }
-            else
-            {
+            } else {
                 pre->next = l1;
                 l1 = l1->next;
             }

@@ -37,10 +37,10 @@ using namespace std;
 
 class Solution {
 private:
-    pair<int, int> getSubTreeSum(vector<vector<int> > &child, vector<int> &parent, vector<int> &value, int root) {
+    pair<int, int> getSubTreeSum(vector<vector<int>>& child, vector<int>& parent, vector<int>& value, int root) {
         int sum = value[root];
         int count = 1;
-        for (int next: child[root]) {
+        for (int next : child[root]) {
             pair<int, int> subSum = getSubTreeSum(child, parent, value, next);
             sum += subSum.first;
             count += subSum.second;
@@ -53,8 +53,8 @@ private:
     }
 
 public:
-    int deleteTreeNodes(int nodes, vector<int> &parent, vector<int> &value) {
-        vector<vector<int> > child(nodes);
+    int deleteTreeNodes(int nodes, vector<int>& parent, vector<int>& value) {
+        vector<vector<int>> child(nodes);
         for (int i = 0; i < parent.size(); ++i)
             if (parent[i] != -1) {
                 child[parent[i]].push_back(i);

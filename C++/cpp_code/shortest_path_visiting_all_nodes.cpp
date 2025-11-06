@@ -46,10 +46,10 @@ which can be solved with a breadth-first search.
 class Solution {
     // BFS
 public:
-    int shortestPathLength(vector<vector<int> > &graph) {
+    int shortestPathLength(vector<vector<int>>& graph) {
         int n = graph.size();
-        vector<vector<int> > distance(1 << n, vector<int>(n, INT_MAX));
-        queue<pair<int, int> > bfs;
+        vector<vector<int>> distance(1 << n, vector<int>(n, INT_MAX));
+        queue<pair<int, int>> bfs;
         for (int i = 0; i < n; ++i) {
             bfs.push({1 << i, i});
             distance[1 << i][i] = 0;
@@ -65,7 +65,7 @@ public:
                 return dis;
             }
 
-            for (int nxt: graph[cur]) {
+            for (int nxt : graph[cur]) {
                 int newState = state | (1 << nxt);
                 if (dis + 1 < distance[newState][nxt]) {
                     distance[newState][nxt] = dis + 1;
@@ -91,21 +91,20 @@ public:
 };
 
 struct PathHash {
-    std::size_t operator()(const Path &path) const {
+    std::size_t operator()(const Path& path) const {
         return 97 * path.bitmask + 71 * path.node;
     }
 };
 
 struct PathComp {
-    bool operator()(const Path &a, const Path &b) const {
-        return (a.node == b.node)
-        and(a.bitmask == b.bitmask);
+    bool operator()(const Path& a, const Path& b) const {
+        return (a.node == b.node) and (a.bitmask == b.bitmask);
     }
 };
 
 class Solution {
 public:
-    int shortestPathLength(vector<vector<int> > &graph) {
+    int shortestPathLength(vector<vector<int>>& graph) {
         int n = graph.size();
         unordered_set<Path, PathHash, PathComp> visited;
         queue<Path> bfs;
@@ -122,7 +121,7 @@ public:
                 return cur.cost;
             }
 
-            for (int next: graph[cur.node]) {
+            for (int next : graph[cur.node]) {
                 int mask = (cur.bitmask | 1 << next);
                 Path tuple = Path(next, cur.cost + 1, mask);
                 if (visited.find(tuple) == visited.end()) {

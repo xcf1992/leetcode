@@ -30,7 +30,8 @@ Note:
 The string may contain any possible characters out of 256 valid ascii characters.
 Your algorithm should be generalized enough to work on any possible characters.
 Do not use class member/global/static variables to store states. Your encode and decode algorithms should be stateless.
-Do not rely on any library method such as eval or serialize methods. You should implement your own encode/decode algorithm.
+Do not rely on any library method such as eval or serialize methods. You should implement your own encode/decode
+algorithm.
 */
 #include <iostream>
 #include <sstream>
@@ -51,14 +52,14 @@ using namespace std;
 class Codec {
 public:
     // Encodes a list of strings to a single string.
-    string encode(vector<string> &strs) {
+    string encode(vector<string>& strs) {
         if (strs.empty()) {
             return "";
         }
 
         string result = "";
-        for (string s: strs) {
-            for (char c: s) {
+        for (string s : strs) {
+            for (char c : s) {
                 if (c == '#') {
                     result += "$#";
                 } else if (c == '$') {
@@ -105,11 +106,11 @@ public:
 class Codec1 {
 public:
     // Encodes a list of strings to a single string.
-    string encode(vector<string> &strs) {
+    string encode(vector<string>& strs) {
         string result = "$";
-        for (string str: strs) {
+        for (string str : strs) {
             result += "#";
-            for (char c: str) {
+            for (char c : str) {
                 if (c == '#') {
                     result += "##";
                 } else if (c == '$') {
@@ -131,29 +132,17 @@ public:
         for (int i = 0; i < s.size(); i++) {
             char letter = s[i];
             if (letter == '#') {
-                if (i + 1 < s.size() and s[i + 1]
-                ==
-                '#'
-                )
-                {
+                if (i + 1 < s.size() and s[i + 1] == '#') {
                     cur += letter;
                     i++;
-                }
-                else
-                {
+                } else {
                     cur = "";
                 }
             } else if (letter == '$') {
-                if (i + 1 < s.size() and s[i + 1]
-                ==
-                '$'
-                )
-                {
+                if (i + 1 < s.size() and s[i + 1] == '$') {
                     cur += letter;
                     i++;
-                }
-                else
-                {
+                } else {
                     if (met) {
                         result.push_back(cur);
                     }

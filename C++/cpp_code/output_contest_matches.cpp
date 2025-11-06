@@ -27,10 +27,9 @@ Example 2:
 Input: 4
 Output: ((1,4),(2,3))
 Explanation:
-In the first round, we pair the team 1 and 4, the team 2 and 3 together, as we need to make the strong team and weak team together.
-And we got (1,4),(2,3).
-In the second round, the winners of (1,4) and (2,3) need to play again to generate the final winner, so you need to add the paratheses outside them.
-And we got the final answer ((1,4),(2,3)).
+In the first round, we pair the team 1 and 4, the team 2 and 3 together, as we need to make the strong team and weak
+team together. And we got (1,4),(2,3). In the second round, the winners of (1,4) and (2,3) need to play again to
+generate the final winner, so you need to add the paratheses outside them. And we got the final answer ((1,4),(2,3)).
 
 Example 3:
 Input: 8

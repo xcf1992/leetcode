@@ -78,7 +78,7 @@ public:
             ++memo[max(l, r) + limit + 1];
         }
         int ans = N, curr = N;
-        for (int i = 2; i <= limit*2; ++i) {
+        for (int i = 2; i <= limit * 2; ++i) {
             curr += memo[i];
             ans = min(ans, curr);
         }

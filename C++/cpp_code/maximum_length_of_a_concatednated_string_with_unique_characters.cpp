@@ -54,6 +54,7 @@ private:
         }
         return mask;
     }
+
 public:
     int maxLength(vector<string>& arr) {
         vector<bitset<26>> dp = {bitset<26>()};

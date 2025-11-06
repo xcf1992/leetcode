@@ -25,14 +25,15 @@ Output: 3
 Explanation: At time point 1, Teemo starts attacking Ashe and makes Ashe be poisoned.
 This poisoned status will last 2 seconds until the end of time point 2.
 However, at the beginning of time point 2, Teemo attacks Ashe again who is already in poisoned status.
-Since the poisoned status won't add up together, though the second poisoning attack will still work at time point 2, it will stop at the end of time point 3.
-So you finally need to output 3.
+Since the poisoned status won't add up together, though the second poisoning attack will still work at time point 2, it
+will stop at the end of time point 3. So you finally need to output 3.
 
 
 Note:
 
 You may assume the length of given time series array won't exceed 10000.
-You may assume the numbers in the Teemo's attacking time series and his poisoning time duration per attacking are non-negative integers, which won't exceed 10,000,000.
+You may assume the numbers in the Teemo's attacking time series and his poisoning time duration per attacking are
+non-negative integers, which won't exceed 10,000,000.
 */
 #include <iostream>
 #include <string>
@@ -48,10 +49,10 @@ using namespace std;
 
 class Solution {
 public:
-    int findPoisonedDuration(vector<int> &timeSeries, int duration) {
+    int findPoisonedDuration(vector<int>& timeSeries, int duration) {
         int result = 0;
         int stopTime = 0;
-        for (int time: timeSeries) {
+        for (int time : timeSeries) {
             if (time >= stopTime) {
                 result += duration;
             } else {
@@ -65,7 +66,7 @@ public:
 
 class Solution1 {
 public:
-    int findPoisonedDuration(vector<int> &timeSeries, int duration) {
+    int findPoisonedDuration(vector<int>& timeSeries, int duration) {
         if (timeSeries.empty()) {
             return 0;
         }

@@ -21,8 +21,8 @@
 
  Input: [[2,1,1],[0,1,1],[1,0,1]]
  Output: -1
- Explanation:  The orange in the bottom left corner (row 2, column 0) is never rotten, because rotting only happens 4-directionally.
- Example 3:
+ Explanation:  The orange in the bottom left corner (row 2, column 0) is never rotten, because rotting only happens
+ 4-directionally. Example 3:
 
  Input: [[0,2]]
  Output: 0
@@ -52,7 +52,7 @@ using namespace std;
 
 class Solution {
 public:
-    int orangesRotting(vector<vector<int> > &grid) {
+    int orangesRotting(vector<vector<int>>& grid) {
         int fresh = 0;
         int m = grid.size();
         int n = grid[0].size();
@@ -71,11 +71,7 @@ public:
 
         int time = 0;
         vector<int> diff({0, 1, 0, -1, 0});
-        while (!bfs.empty() and fresh
-        !=
-        0
-        )
-        {
+        while (!bfs.empty() and fresh != 0) {
             int curSize = bfs.size();
             for (int i = 0; i < curSize; i++) {
                 int row = bfs.front() / n;
@@ -85,12 +81,8 @@ public:
                 for (int i = 1; i < diff.size(); ++i) {
                     int nRow = row + diff[i];
                     int nCol = col + diff[i - 1];
-                    if (nRow < m and nRow
-                    >=
-                    0
-                    and nCol<n and nCol >= 0 and grid[nRow][nCol] == 1 and !visited[nRow * n + nCol]
-                    )
-                    {
+                    if (nRow < m and nRow >= 0 and nCol < n and nCol >= 0 and grid[nRow][nCol] == 1 and
+                        !visited[nRow * n + nCol]) {
                         grid[nRow][nCol] = 2;
                         visited[nRow * n + nCol] = true;
                         fresh -= 1;

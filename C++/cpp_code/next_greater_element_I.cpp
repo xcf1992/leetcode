@@ -63,16 +63,12 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> nextGreaterElement(vector<int> &findNums, vector<int> &nums) {
+    vector<int> nextGreaterElement(vector<int>& findNums, vector<int>& nums) {
         unordered_map<int, int> nextGreaterNum;
         stack<int> bigger;
-        for (int num: nums) {
+        for (int num : nums) {
             nextGreaterNum[num] = -1;
-            while (!bigger.empty() and num
-            >
-            bigger.top()
-            )
-            {
+            while (!bigger.empty() and num > bigger.top()) {
                 nextGreaterNum[bigger.top()] = num;
                 bigger.pop();
             }
@@ -80,7 +76,7 @@ public:
         }
 
         vector<int> result;
-        for (int num: findNums) {
+        for (int num : findNums) {
             result.push_back(nextGreaterNum[num]);
         }
         return result;

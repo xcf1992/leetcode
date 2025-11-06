@@ -29,13 +29,15 @@ The median is 3.
 Example 1:
 Input: arr = [1,2,3,4,5], k = 2
 Output: [5,1]
-Explanation: Median is 3, the elements of the array sorted by the strongest are [5,1,4,2,3]. The strongest 2 elements are [5, 1]. [1, 5] is also accepted answer.
-Please note that although |5 - 3| == |1 - 3| but 5 is stronger than 1 because 5 > 1.
+Explanation: Median is 3, the elements of the array sorted by the strongest are [5,1,4,2,3]. The strongest 2 elements
+are [5, 1]. [1, 5] is also accepted answer. Please note that although |5 - 3| == |1 - 3| but 5 is stronger than 1
+because 5 > 1.
 
 Example 2:
 Input: arr = [1,1,3,5,5], k = 2
 Output: [5,5]
-Explanation: Median is 3, the elements of the array sorted by the strongest are [5,5,1,1,3]. The strongest 2 elements are [5, 5].
+Explanation: Median is 3, the elements of the array sorted by the strongest are [5,5,1,1,3]. The strongest 2 elements
+are [5, 5].
 
 Example 3:
 Input: arr = [6,7,11,7,6,8], k = 5
@@ -72,7 +74,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> getStrongest(vector<int> &arr, int k) {
+    vector<int> getStrongest(vector<int>& arr, int k) {
         int n = arr.size();
         sort(arr.begin(), arr.end());
         int med = arr[(n - 1) / 2];

@@ -1,6 +1,7 @@
 /*
 283. Move Zeroes
-Given an array nums, write a function to move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+Given an array nums, write a function to move all 0's to the end of it while maintaining the relative order of the
+non-zero elements.
 
 Example:
 
@@ -25,7 +26,7 @@ using namespace std;
 
 class Solution {
 public:
-    void moveZeroes(vector<int> &nums) {
+    void moveZeroes(vector<int>& nums) {
         int n = nums.size();
         int zeroP = 0;
         int notZeroP = 0;
@@ -52,7 +53,7 @@ Expected
 */
 class Solution1 {
 public:
-    void moveZeroes(vector<int> &nums) {
+    void moveZeroes(vector<int>& nums) {
         int n = nums.size();
         if (n <= 1) {
             return;

@@ -125,7 +125,8 @@ P(result = k)
 = P(rand49() = k in the 1st iteration) +
 P(rand49() > 40 in the 1st iteration) * P(rand49() = k in the 2nd iteration) +
 P(rand49() > 40 in the 1st iteration) * P(rand49() > 40 in the 2nd iteration) * P(rand49() = k in the 3rd iteration) +
-P(rand49() > 40 in the 1st iteration) * P(rand49() > 40 in the 2nd iteration) * P(rand49() > 40 in the 3rd iteration) * P(rand49() = k in the 4th iteration) +
+P(rand49() > 40 in the 1st iteration) * P(rand49() > 40 in the 2nd iteration) * P(rand49() > 40 in the 3rd iteration) *
+P(rand49() = k in the 4th iteration) +
 ...
 = (1/49) + (9/49) * (1/49) + (9/49)^2 * (1/49) + (9/49)^3 * (1/49) + ...
 = (1/49) * [1 + (9/49) + (9/49)^2 + (9/49)^3 + ... ]

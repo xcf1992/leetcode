@@ -63,7 +63,7 @@ public:
 
         int result = 0;
         int curMax = INT_MIN;
-        for (auto &it: count) {
+        for (auto& it : count) {
             if (it.second > curMax) {
                 curMax = it.second;
                 result = 1;

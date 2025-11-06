@@ -52,7 +52,7 @@ using namespace std;
 
 class Solution {
 private:
-    void update(int &result, int sum, int lower, int upper) {
+    void update(int& result, int sum, int lower, int upper) {
         if (sum < lower) {
             result -= 1;
         }
@@ -62,7 +62,7 @@ private:
     }
 
 public:
-    int dietPlanPerformance(vector<int> &calories, int k, int lower, int upper) {
+    int dietPlanPerformance(vector<int>& calories, int k, int lower, int upper) {
         int n = calories.size();
         if (k > n) {
             return 0;

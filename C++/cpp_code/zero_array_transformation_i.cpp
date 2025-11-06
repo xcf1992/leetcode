@@ -10,7 +10,8 @@ Select a subset of indices within the range [li, ri] in nums.
 Decrement the values at the selected indices by 1.
 A Zero Array is an array where all elements are equal to 0.
 
-Return true if it is possible to transform nums into a Zero Array after processing all the queries sequentially, otherwise return false.
+Return true if it is possible to transform nums into a Zero Array after processing all the queries sequentially,
+otherwise return false.
 
 
 
@@ -65,10 +66,10 @@ using namespace std;
 
 class Solution {
 public:
-    bool isZeroArray(vector<int> &nums, vector<vector<int> > &queries) {
+    bool isZeroArray(vector<int>& nums, vector<vector<int>>& queries) {
         int n = nums.size();
         vector<int> prefix_sum(n + 1, 0);
-        for (vector<int> &query: queries) {
+        for (vector<int>& query : queries) {
             prefix_sum[query[0]] += 1;
             prefix_sum[query[1] + 1] -= 1;
         }

@@ -38,7 +38,8 @@ sum(pieces[i].length) == arr.length
 1 <= pieces[i].length <= arr.length
 1 <= arr[i], pieces[i][j] <= 100
 The integers in arr are distinct.
-The integers in pieces are distinct (i.e., If we flatten pieces in a 1D array, all the integers in this array are distinct).
+The integers in pieces are distinct (i.e., If we flatten pieces in a 1D array, all the integers in this array are
+distinct).
 */
 #include <iostream>
 #include <string>
@@ -64,7 +65,7 @@ public:
             st[pieces[i][0]] = i;
         }
 
-        for (int i = 0; i < arr.size(); ) {
+        for (int i = 0; i < arr.size();) {
             if (!st.count(arr[i])) {
                 return false;
             }

@@ -3,8 +3,8 @@
 https://leetcode.com/problems/richest-customer-wealth/
 
 You are given an m x n integer grid accounts
-where accounts[i][j] is the amount of money the i​​​​​​​​​​​th​​​​ customer has in the j​​​​​​​​​​​th​​​​ bank.
-Return the wealth that the richest customer has.
+where accounts[i][j] is the amount of money the i​​​​​​​​​​​th​​​​ customer has in the
+j​​​​​​​​​​​th​​​​ bank. Return the wealth that the richest customer has.
 
 A customer's wealth is the amount of money they have in all their bank accounts.
 The richest customer is the customer that has the maximum wealth.
@@ -58,9 +58,9 @@ using namespace std;
 
 class Solution {
 public:
-    int maximumWealth(vector<vector<int> > &accounts) {
+    int maximumWealth(vector<vector<int>>& accounts) {
         int result = 0;
-        for (vector<int> &customer: accounts) {
+        for (vector<int>& customer : accounts) {
             int wealth = accumulate(customer.begin(), customer.end(), 0);
             result = max(result, wealth);
         }

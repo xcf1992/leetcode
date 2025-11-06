@@ -41,16 +41,12 @@ using namespace std;
 
 class Codec {
 private:
-    TreeNode *myDeserialize(string &data, int &pos) {
+    TreeNode* myDeserialize(string& data, int& pos) {
         int n = data.size();
         int i = pos;
         bool found = false;
         for (; i < n; i++) {
-            if (data[i] == ',' or data[i]
-            ==
-            ']'
-            )
-            {
+            if (data[i] == ',' or data[i] == ']') {
                 break;
             }
             if (data[i] == '[') {
@@ -59,14 +55,12 @@ private:
             }
         }
 
-        if (i == pos and i<n
-        )
-        {
+        if (i == pos and i < n) {
             return nullptr;
         }
 
         int val = stoi(data.substr(pos, i - pos));
-        TreeNode *node = new TreeNode(val);
+        TreeNode* node = new TreeNode(val);
         if (i == n) {
             return node;
         }
@@ -84,7 +78,7 @@ private:
 
 public:
     // Encodes a tree to a single string.
-    string serialize(TreeNode *root) {
+    string serialize(TreeNode* root) {
         if (!root) {
             return "";
         }
@@ -92,7 +86,7 @@ public:
     }
 
     // Decodes your encoded data to tree.
-    TreeNode *deserialize(string data) {
+    TreeNode* deserialize(string data) {
         if (data.empty()) {
             return nullptr;
         }

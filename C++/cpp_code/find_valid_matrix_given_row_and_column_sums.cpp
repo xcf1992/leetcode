@@ -3,9 +3,9 @@
 https://leetcode.com/problems/find-valid-matrix-given-row-and-column-sums/
 
 You are given two arrays rowSum and colSum of non-negative integers
-where rowSum[i] is the sum of the elements in the ith row and colSum[j] is the sum of the elements of the jth column of a 2D matrix.
-In other words, you do not know the elements of the matrix,
-but you do know the sums of each row and column.
+where rowSum[i] is the sum of the elements in the ith row and colSum[j] is the sum of the elements of the jth column of
+a 2D matrix. In other words, you do not know the elements of the matrix, but you do know the sums of each row and
+column.
 
 Find any matrix of non-negative integers of size rowSum.length x colSum.length
 that satisfies the rowSum and colSum requirements.
@@ -71,7 +71,7 @@ public:
         int m = row.size(), n = col.size();
         vector<vector<int>> A(m, vector<int>(n, 0));
         for (int i = 0; i < m; ++i) {
-            for (int j = 0 ; j < n; ++j) {
+            for (int j = 0; j < n; ++j) {
                 A[i][j] = min(row[i], col[j]);
                 row[i] -= A[i][j];
                 col[j] -= A[i][j];

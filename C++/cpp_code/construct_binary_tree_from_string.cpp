@@ -1,7 +1,8 @@
 /*
  You need to construct a binary tree from a string consisting of parenthesis and integers.
 
- The whole input represents a binary tree. It contains an integer followed by zero, one or two pairs of parenthesis. The integer represents the root's value and a pair of parenthesis contains a child binary tree with the same structure.
+ The whole input represents a binary tree. It contains an integer followed by zero, one or two pairs of parenthesis. The
+ integer represents the root's value and a pair of parenthesis contains a child binary tree with the same structure.
 
  You always start to construct the left child node of the parent first if it exists.
 
@@ -35,17 +36,13 @@ using namespace std;
 
 class Solution {
 private:
-    TreeNode *build(string &s, int &cur) {
+    TreeNode* build(string& s, int& cur) {
         int pos = cur;
-        while (isdigit(s[cur]) or s[cur]
-        ==
-        '-'
-        )
-        {
+        while (isdigit(s[cur]) or s[cur] == '-') {
             cur += 1;
         }
 
-        TreeNode *root = new TreeNode(stoi(s.substr(pos, cur - pos)));
+        TreeNode* root = new TreeNode(stoi(s.substr(pos, cur - pos)));
         if (s[cur] == '(') {
             cur += 1;
             root->left = build(s, cur);
@@ -60,7 +57,7 @@ private:
     }
 
 public:
-    TreeNode *str2tree(string s) {
+    TreeNode* str2tree(string s) {
         int cur = 0;
         return s.empty() ? nullptr : build(s, cur);
     }

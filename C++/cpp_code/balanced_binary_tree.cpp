@@ -41,8 +41,8 @@ using namespace std;
 
 struct TreeNode {
     int val;
-    TreeNode *left;
-    TreeNode *right;
+    TreeNode* left;
+    TreeNode* right;
 
     TreeNode() : val(0), left(nullptr), right(nullptr) {
     }
@@ -50,20 +50,17 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {
     }
 
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {
+    TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {
     }
 };
 
 class Solution {
 private:
-    int getHeight(TreeNode *root, bool &result) {
+    int getHeight(TreeNode* root, bool& result) {
         if (root == nullptr) {
             return 0;
         }
-        if (root->left == nullptr and
-        root->right == nullptr
-        )
-        {
+        if (root->left == nullptr and root->right == nullptr) {
             return 1;
         }
 
@@ -76,7 +73,7 @@ private:
     }
 
 public:
-    bool isBalanced(TreeNode *root) {
+    bool isBalanced(TreeNode* root) {
         bool result = true;
         getHeight(root, result);
         return result;

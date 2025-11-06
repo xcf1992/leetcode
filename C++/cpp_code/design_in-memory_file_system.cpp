@@ -30,9 +30,10 @@ Explanation:
 filesystem
 
 Note:
-You can assume all file or directory paths are absolute paths which begin with / and do not end with / except that the path is just "/".
-You can assume that all operations will be passed valid parameters and users will not attempt to retrieve file content or list a directory or file that does not exist.
-You can assume that all directory names and file names only contain lower-case letters, and same names won't exist in the same directory.
+You can assume all file or directory paths are absolute paths which begin with / and do not end with / except that the
+path is just "/". You can assume that all operations will be passed valid parameters and users will not attempt to
+retrieve file content or list a directory or file that does not exist. You can assume that all directory names and file
+names only contain lower-case letters, and same names won't exist in the same directory.
 */
 #include <iostream>
 #include <string>
@@ -51,12 +52,12 @@ using namespace std;
 struct TrieNode {
     bool isFile = false;
     string content = "";
-    map<string, TrieNode *> children;
+    map<string, TrieNode*> children;
 };
 
 class FileSystem {
 private:
-    TrieNode *root;
+    TrieNode* root;
 
     vector<string> splitString(string path) {
         path = path.substr(1);
@@ -78,8 +79,8 @@ public:
     vector<string> ls(string path) {
         vector<string> paths = splitString(path);
 
-        TrieNode *cur = root;
-        for (string &p: paths) {
+        TrieNode* cur = root;
+        for (string& p : paths) {
             cur = cur->children[p];
         }
 
@@ -88,7 +89,7 @@ public:
         }
 
         vector<string> result;
-        for (auto &p: cur->children) {
+        for (auto& p : cur->children) {
             result.push_back(p.first);
         }
         return result;
@@ -96,8 +97,8 @@ public:
 
     void mkdir(string path) {
         vector<string> paths = splitString(path);
-        TrieNode *cur = root;
-        for (string &p: paths) {
+        TrieNode* cur = root;
+        for (string& p : paths) {
             if (cur->children[p] == nullptr) {
                 cur->children[p] = new TrieNode();
             }
@@ -107,8 +108,8 @@ public:
 
     void addContentToFile(string filePath, string content) {
         vector<string> paths = splitString(filePath);
-        TrieNode *cur = root;
-        for (string &p: paths) {
+        TrieNode* cur = root;
+        for (string& p : paths) {
             if (cur->children[p] == nullptr) {
                 cur->children[p] = new TrieNode();
             }
@@ -120,8 +121,8 @@ public:
 
     string readContentFromFile(string filePath) {
         vector<string> paths = splitString(filePath);
-        TrieNode *cur = root;
-        for (string &p: paths) {
+        TrieNode* cur = root;
+        for (string& p : paths) {
             cur = cur->children[p];
         }
         return cur->content;

@@ -33,13 +33,13 @@ class Solution {
 public:
     int longestPalindrome(string s) {
         vector<int> count(256, 0);
-        for (char c: s) {
+        for (char c : s) {
             count[c] += 1;
         }
 
         int result = 0;
         int odds = 0;
-        for (int num: count) {
+        for (int num : count) {
             odds += num & 1;
         }
         return s.size() - odds + (odds > 0 ? 1 : 0);

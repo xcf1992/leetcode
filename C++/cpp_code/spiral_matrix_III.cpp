@@ -21,7 +21,8 @@ Output: [[0,0],[0,1],[0,2],[0,3]]
 Example 2:
 
 Input: R = 5, C = 6, r0 = 1, c0 = 4
-Output: [[1,4],[1,5],[2,5],[2,4],[2,3],[1,3],[0,3],[0,4],[0,5],[3,5],[3,4],[3,3],[3,2],[2,2],[1,2],[0,2],[4,5],[4,4],[4,3],[4,2],[4,1],[3,1],[2,1],[1,1],[0,1],[4,0],[3,0],[2,0],[1,0],[0,0]]
+Output:
+[[1,4],[1,5],[2,5],[2,4],[2,3],[1,3],[0,3],[0,4],[0,5],[3,5],[3,4],[3,3],[3,2],[2,2],[1,2],[0,2],[4,5],[4,4],[4,3],[4,2],[4,1],[3,1],[2,1],[1,1],[0,1],[4,0],[3,0],[2,0],[1,0],[0,0]]
 
 Note:
 
@@ -52,8 +53,8 @@ private:
     vector<int> cDiff = {1, 0, -1, 0};
 
 public:
-    vector<vector<int> > spiralMatrixIII(int R, int C, int r0, int c0) {
-        vector<vector<int> > result;
+    vector<vector<int>> spiralMatrixIII(int R, int C, int r0, int c0) {
+        vector<vector<int>> result;
         result.push_back({r0, c0});
         vector<int> cur({r0, c0});
         int direction = 0;
@@ -62,24 +63,11 @@ public:
             for (int i = 0; i < step; i++) {
                 cur[0] += rDiff[direction];
                 cur[1] += cDiff[direction];
-                if (cur[0] >= 0 and cur[0]
-                <
-                R and cur[1]
-                >=
-                0
-                and cur[1]
-                <
-                C
-                )
-                {
+                if (cur[0] >= 0 and cur[0] < R and cur[1] >= 0 and cur[1] < C) {
                     result.push_back(cur);
                 }
             }
-            if (direction == 1 or direction
-            ==
-            3
-            )
-            {
+            if (direction == 1 or direction == 3) {
                 step += 1;
             }
             direction = (direction + 1) % 4;

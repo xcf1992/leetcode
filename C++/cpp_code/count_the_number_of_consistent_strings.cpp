@@ -48,16 +48,16 @@ using namespace std;
 
 class Solution {
 public:
-    int countConsistentStrings(string allowed, vector<string> &words) {
+    int countConsistentStrings(string allowed, vector<string>& words) {
         vector<int> letter(26, 0);
-        for (char c: allowed) {
+        for (char c : allowed) {
             letter[c - 'a'] = 1;
         }
 
         int result = 0;
-        for (string &w: words) {
+        for (string& w : words) {
             bool allAllowed = 1;
-            for (char c: w) {
+            for (char c : w) {
                 if (letter[c - 'a'] == 0) {
                     allAllowed = 0;
                     break;

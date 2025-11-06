@@ -27,7 +27,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> productExceptSelf(vector<int> &nums) {
+    vector<int> productExceptSelf(vector<int>& nums) {
         int n = nums.size();
         if (n == 0) {
             return {};

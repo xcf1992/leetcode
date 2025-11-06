@@ -81,13 +81,13 @@ Space O(height) for recursion
 
 =============================
 https://leetcode.com/problems/binary-tree-coloring-game/discuss/350692/c%2B%2B0ms-modular-beats-100-(both-time-and-memory)-with-algo-and-image
-The second player will pick y as either left child, right child or parent (depending on which one has max nodes in their vicinity) of the node picked by first player.
-If the no of nodes available for second player is greater than first, he wins
-Note : Equal case will never arise since n is odd
+The second player will pick y as either left child, right child or parent (depending on which one has max nodes in their
+vicinity) of the node picked by first player. If the no of nodes available for second player is greater than first, he
+wins Note : Equal case will never arise since n is odd
 */
 class Solution {
 private:
-    int count(TreeNode *root, int x, int &lCount, int &rCount) {
+    int count(TreeNode* root, int x, int& lCount, int& rCount) {
         if (root == nullptr) {
             return 0;
         }
@@ -102,7 +102,7 @@ private:
     }
 
 public:
-    bool btreeGameWinningMove(TreeNode *root, int n, int x) {
+    bool btreeGameWinningMove(TreeNode* root, int n, int x) {
         int lCount = 0;
         int rCount = 0;
         count(root, x, lCount, rCount);

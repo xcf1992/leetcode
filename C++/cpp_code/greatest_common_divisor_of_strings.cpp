@@ -98,9 +98,7 @@ public:
         int n2 = str2.size();
         for (int i = n2; i >= 1; i--) {
             string temp = str2.substr(0, i);
-            if (divisable(str1, temp) and divisable(str2, temp)
-            )
-            {
+            if (divisable(str1, temp) and divisable(str2, temp)) {
                 return temp;
             }
         }

@@ -43,7 +43,7 @@ To fix this:
 */
 class Solution {
 public:
-    int findMin(vector<int> &num) {
+    int findMin(vector<int>& num) {
         int left = 0;
         int right = num.size() - 1;
         while (left < right) {
@@ -54,15 +54,9 @@ public:
                 right = mid;
             } else {
                 // when num[mid] and num[hi] are same, fixed
-                if (right != 0 and num[right]
-                >=
-                num[right - 1]
-                )
-                {
+                if (right != 0 and num[right] >= num[right - 1]) {
                     right -= 1;
-                }
-                else
-                {
+                } else {
                     return num[right];
                 }
             }

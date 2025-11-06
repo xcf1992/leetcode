@@ -28,7 +28,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<string> summaryRanges(vector<int> &nums) {
+    vector<string> summaryRanges(vector<int>& nums) {
         int n = nums.size();
         if (n == 0) {
             return {};

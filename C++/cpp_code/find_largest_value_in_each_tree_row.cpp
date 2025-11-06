@@ -28,7 +28,7 @@ using namespace std;
 class Solution {
     // dfs
 private:
-    void dfs(int depth, TreeNode *root, vector<int> &result) {
+    void dfs(int depth, TreeNode* root, vector<int>& result) {
         if (root == nullptr) {
             return;
         }
@@ -43,7 +43,7 @@ private:
     }
 
 public:
-    vector<int> largestValues(TreeNode *root) {
+    vector<int> largestValues(TreeNode* root) {
         vector<int> result;
         dfs(0, root, result);
         return result;
@@ -53,19 +53,19 @@ public:
 class Solution1 {
     // bfs
 public:
-    vector<int> largestValues(TreeNode *root) {
+    vector<int> largestValues(TreeNode* root) {
         if (root == nullptr) {
             return {};
         }
 
         vector<int> result;
-        queue<TreeNode *> row;
+        queue<TreeNode*> row;
         row.push(root);
         while (!row.empty()) {
             int max_value = INT_MIN;
             int curSize = row.size();
             for (int i = 0; i < curSize; ++i) {
-                TreeNode *current = row.front();
+                TreeNode* current = row.front();
                 row.pop();
 
                 max_value = max(max_value, current->val);

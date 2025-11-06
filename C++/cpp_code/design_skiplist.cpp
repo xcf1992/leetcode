@@ -63,9 +63,9 @@ using namespace std;
 
 struct Node {
     int val;
-    Node *next;
-    Node *pre;
-    Node *down;
+    Node* next;
+    Node* pre;
+    Node* down;
 
     Node(int v = 0) {
         val = v;
@@ -77,7 +77,7 @@ struct Node {
 
 class Skiplist {
 private:
-    Node *head = nullptr;
+    Node* head = nullptr;
     int layers = 0;
 
 public:
@@ -90,18 +90,12 @@ public:
             return false;
         }
 
-        Node *cur = head;
+        Node* cur = head;
         while (cur != nullptr) {
-            while (cur->next != nullptr and
-            cur->next->val < target
-            )
-            {
+            while (cur->next != nullptr and cur->next->val < target) {
                 cur = cur->next;
             }
-            if (cur->next != nullptr and
-            cur->next->val == target
-            )
-            {
+            if (cur->next != nullptr and cur->next->val == target) {
                 return true;
             }
             cur = cur->down;
@@ -110,13 +104,10 @@ public:
     }
 
     void add(int num) {
-        Node *cur = head;
-        vector<Node *> path(layers, nullptr);
+        Node* cur = head;
+        vector<Node*> path(layers, nullptr);
         for (int i = layers - 1; i >= 0; --i) {
-            while (cur->next != nullptr and
-            cur->next->val < num
-            )
-            {
+            while (cur->next != nullptr and cur->next->val < num) {
                 cur = cur->next;
             }
             path[i] = cur;
@@ -126,7 +117,7 @@ public:
         for (int i = 0; i <= path.size(); ++i) {
             cur = new Node(num);
             if (i == path.size()) {
-                Node *last = head;
+                Node* last = head;
                 head = new Node(-1);
                 head->down = last;
                 head->next = cur;
@@ -152,18 +143,12 @@ public:
     }
 
     bool erase(int num) {
-        Node *cur = head;
+        Node* cur = head;
         for (int i = layers - 1; i >= 0; --i) {
-            while (cur->next != nullptr and
-            cur->next->val < num
-            )
-            {
+            while (cur->next != nullptr and cur->next->val < num) {
                 cur = cur->next;
             }
-            if (cur->next != nullptr and
-            cur->next->val == num
-            )
-            {
+            if (cur->next != nullptr and cur->next->val == num) {
                 cur = cur->next;
                 while (cur != nullptr) {
                     cur->pre->next = cur->next;
@@ -173,9 +158,7 @@ public:
                     cur = cur->down;
                 }
                 return true;
-            }
-            else
-            {
+            } else {
                 cur = cur->down;
                 if (cur == nullptr) {
                     return false;
@@ -187,9 +170,9 @@ public:
 };
 
 /*
-* Your Skiplist object will be instantiated and called as such:
-* Skiplist* obj = new Skiplist();
-* bool param_1 = obj->search(target);
-* obj->add(num);
-* bool param_3 = obj->erase(num);
-*/
+ * Your Skiplist object will be instantiated and called as such:
+ * Skiplist* obj = new Skiplist();
+ * bool param_1 = obj->search(target);
+ * obj->add(num);
+ * bool param_3 = obj->erase(num);
+ */

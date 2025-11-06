@@ -20,11 +20,9 @@ The largest submatrix of 1s, in bold, has an area of 3.
 Example 3:
 Input: matrix = [[1,1,0],[1,0,1]]
 Output: 2
-Explanation: Notice that you must rearrange entire columns, and there is no way to make a submatrix of 1s larger than an area of 2.
-Example 4:
-Input: matrix = [[0,0],[0,0]]
-Output: 0
-Explanation: As there are no 1s, no submatrix of 1s can be formed and the area is 0.
+Explanation: Notice that you must rearrange entire columns, and there is no way to make a submatrix of 1s larger than an
+area of 2. Example 4: Input: matrix = [[0,0],[0,0]] Output: 0 Explanation: As there are no 1s, no submatrix of 1s can be
+formed and the area is 0.
 
 Constraints:
 m == matrix.length
@@ -51,7 +49,7 @@ using namespace std;
 // https://leetcode.com/problems/largest-submatrix-with-rearrangements/discuss/1020710/C%2B%2B-Clean-and-Clear-With-Intuitive-Pictures-O(m-*-n-*-logn)
 class Solution {
 public:
-    int largestSubmatrix(vector<vector<int> > &matrix) {
+    int largestSubmatrix(vector<vector<int>>& matrix) {
         int m = matrix.size(), n = matrix[0].size();
         int ans = 0;
         vector<int> height(n, 0);

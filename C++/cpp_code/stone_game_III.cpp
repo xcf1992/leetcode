@@ -23,20 +23,23 @@ if they end the game with the same score.
 Example 1:
 Input: values = [1,2,3,7]
 Output: "Bob"
-Explanation: Alice will always lose. Her best move will be to take three piles and the score become 6. Now the score of Bob is 7 and Bob wins.
+Explanation: Alice will always lose. Her best move will be to take three piles and the score become 6. Now the score of
+Bob is 7 and Bob wins.
 
 Example 2:
 Input: values = [1,2,3,-9]
 Output: "Alice"
 Explanation: Alice must choose all the three piles at the first move to win and leave Bob with negative score.
-If Alice chooses one pile her score will be 1 and the next move Bob's score becomes 5. The next move Alice will take the pile with value = -9 and lose.
-If Alice chooses two piles her score will be 3 and the next move Bob's score becomes 3. The next move Alice will take the pile with value = -9 and also lose.
-Remember that both play optimally so here Alice will choose the scenario that makes her win.
+If Alice chooses one pile her score will be 1 and the next move Bob's score becomes 5. The next move Alice will take the
+pile with value = -9 and lose. If Alice chooses two piles her score will be 3 and the next move Bob's score becomes 3.
+The next move Alice will take the pile with value = -9 and also lose. Remember that both play optimally so here Alice
+will choose the scenario that makes her win.
 
 Example 3:
 Input: values = [1,2,3,6]
 Output: "Tie"
-Explanation: Alice cannot win this game. She can end the game in a draw if she decided to choose all the first three piles, otherwise she will lose.
+Explanation: Alice cannot win this game. She can end the game in a draw if she decided to choose all the first three
+piles, otherwise she will lose.
 
 Example 4:
 Input: values = [1,2,3,-1,-2,-3,7]
@@ -81,7 +84,7 @@ Space O(N)
 */
 class Solution {
 public:
-    string stoneGameIII(vector<int> &A) {
+    string stoneGameIII(vector<int>& A) {
         int n = A.size();
         vector<int> dp(n, -1e9);
         for (int i = n - 1; i >= 0; --i) {

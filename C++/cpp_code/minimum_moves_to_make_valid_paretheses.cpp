@@ -70,7 +70,7 @@ public:
         }
 
         string result = "";
-        for (char c: s) {
+        for (char c : s) {
             if (c != '*') {
                 result.push_back(c);
             }

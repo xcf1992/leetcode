@@ -48,7 +48,7 @@ So the maximum interval is i - seen[score - 1]
 */
 class Solution {
 public:
-    int longestWPI(vector<int> &hours) {
+    int longestWPI(vector<int>& hours) {
         int n = hours.size();
         int result = 0;
         int diff = 0;

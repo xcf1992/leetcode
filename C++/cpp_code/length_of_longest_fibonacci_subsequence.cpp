@@ -8,9 +8,8 @@ X_i + X_{i+1} = X_{i+2} for all i + 2 <= n
 Given a strictly increasing array A of positive integers forming a sequence,
 find the length of the longest fibonacci-like subsequence of A.  If one does not exist, return 0.
 
-(Recall that a subsequence is derived from another sequence A by deleting any number of elements (including none) from A,
-without changing the order of the remaining elements.
-For example, [3, 5, 8] is a subsequence of [3, 4, 5, 6, 7, 8].)
+(Recall that a subsequence is derived from another sequence A by deleting any number of elements (including none) from
+A, without changing the order of the remaining elements. For example, [3, 5, 8] is a subsequence of [3, 4, 5, 6, 7, 8].)
 
 Example 1:
 Input: [1,2,3,4,5,6,7,8]
@@ -53,7 +52,7 @@ In Python, I use value as key.
 */
 class Solution {
 public:
-    int lenLongestFibSubseq(vector<int> &A) {
+    int lenLongestFibSubseq(vector<int>& A) {
         int n = A.size();
         if (n < 3) {
             return 0;
@@ -65,18 +64,13 @@ public:
         }
 
         int result = 0;
-        vector<vector<int> > dp(n, vector<int>(n, 0));
+        vector<vector<int>> dp(n, vector<int>(n, 0));
         for (int j = 0; j < n; ++j) {
             for (int i = 0; i < j; ++i) {
                 int diff = A[j] - A[i];
-                if (diff < A[i] and
-                index.find(diff) != index.end()
-                )
-                {
+                if (diff < A[i] and index.find(diff) != index.end()) {
                     dp[i][j] = dp[index[diff]][i] + 1;
-                }
-                else
-                {
+                } else {
                     dp[i][j] = 2;
                 }
                 result = max(result, dp[i][j]);
@@ -88,7 +82,7 @@ public:
 
 class Solution1 {
 public:
-    int lenLongestFibSubseq(vector<int> &A) {
+    int lenLongestFibSubseq(vector<int>& A) {
         int n = A.size();
         if (n < 3) {
             return 0;

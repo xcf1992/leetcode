@@ -32,18 +32,18 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> rightSideView(TreeNode *root) {
+    vector<int> rightSideView(TreeNode* root) {
         if (root == nullptr) {
             return {};
         }
 
         vector<int> result;
-        queue<TreeNode *> bfs;
+        queue<TreeNode*> bfs;
         bfs.push(root);
         while (!bfs.empty()) {
             int curSize = bfs.size();
             for (int i = 0; i < curSize; ++i) {
-                TreeNode *cur = bfs.front();
+                TreeNode* cur = bfs.front();
                 bfs.pop();
 
                 if (i == curSize - 1) {

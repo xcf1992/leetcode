@@ -6,7 +6,8 @@ Given a string s, return the last substring of s in lexicographical order.
 Example 1:
 Input: "abab"
 Output: "bab"
-Explanation: The substrings are ["a", "ab", "aba", "abab", "b", "ba", "bab"]. The lexicographically maximum substring is "bab".
+Explanation: The substrings are ["a", "ab", "aba", "abab", "b", "ba", "bab"]. The lexicographically maximum substring is
+"bab".
 
 Example 2:
 Input: "leetcode"
@@ -28,7 +29,8 @@ s contains only lowercase English letters.
 #include <stdio.h>
 using namespace std;
 /*
-possible suffix array solution https://www.hackerearth.com/practice/data-structures/advanced-data-structures/suffix-arrays/tutorial/
+possible suffix array solution
+https://www.hackerearth.com/practice/data-structures/advanced-data-structures/suffix-arrays/tutorial/
 */
 class Solution {
 public:
@@ -51,12 +53,7 @@ public:
                 // If s[i] != s[j] or j == ori_i, then tie is broken
                 // Otherwise we keep compare the next character
                 int look_back_i = i;
-                while (i < n and s[i]
-                ==
-                s[j]
-                and j<ori_i
-                )
-                {
+                while (i < n and s[i] == s[j] and j < ori_i) {
                     if (s[i] == s[maxIndex]) {
                         look_back_i = i;
                     }
@@ -64,19 +61,13 @@ public:
                     j++;
                 }
                 // If the max_str is larger than cur_str, then we don't update max_str
-                if (j == ori_i or i
-                ==
-                n or s[j]
-                >
-                s[i]
-                )
-                {
+                if (j == ori_i or i == n or s[j] > s[i]) {
                     continue;
                 }
                 // update max_str
                 maxIndex = ori_i;
                 if (look_back_i != ori_i) {
-                    i = look_back_i; // we need to come back and check from the same character we met in the middle
+                    i = look_back_i;  // we need to come back and check from the same character we met in the middle
                 }
                 continue;
             }
@@ -98,11 +89,7 @@ public:
         vector<int> subs(26, -1);
         for (int i = 0; i < n; ++i) {
             string sub = s.substr(i);
-            if (subs[s[i] - 'a'] == -1 or sub
-            >
-            s.substr(subs[s[i] - 'a'])
-            )
-            {
+            if (subs[s[i] - 'a'] == -1 or sub > s.substr(subs[s[i] - 'a'])) {
                 subs[s[i] - 'a'] = i;
             }
         }

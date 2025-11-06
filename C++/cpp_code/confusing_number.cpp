@@ -37,7 +37,8 @@ We get an invalid number after rotating 25.
 Note:
 
 0 <= N <= 10^9
-After the rotation we can ignore leading zeros, for example if after rotation we have 0008 then this number is considered as just 8.
+After the rotation we can ignore leading zeros, for example if after rotation we have 0008 then this number is
+considered as just 8.
 */
 #include <iostream>
 #include <string>
@@ -61,20 +62,12 @@ public:
         string num = to_string(N);
         int left = 0;
         int right = num.size() - 1;
-        while (right >= left and num[right]
-        ==
-        '0'
-        )
-        {
+        while (right >= left and num[right] == '0') {
             right -= 1;
         }
 
         while (left <= right) {
-            if (rotate[num[left] - '0'] == -1 or rotate[num[right] - '0']
-            ==
-            -1
-            )
-            {
+            if (rotate[num[left] - '0'] == -1 or rotate[num[right] - '0'] == -1) {
                 return false;
             }
 

@@ -33,7 +33,7 @@ using namespace std;
 
 class Solution {
 public:
-    bool judgePoint24(vector<int> &nums) {
+    bool judgePoint24(vector<int>& nums) {
         sort(nums.begin(), nums.end());
         do {
             if (valid(nums)) {
@@ -44,50 +44,33 @@ public:
     }
 
 private:
-    bool valid(vector<int> &nums) {
+    bool valid(vector<int>& nums) {
         double a = nums[0], b = nums[1], c = nums[2], d = nums[3];
-        if (valid(a + b, c, d) or valid(a - b, c, d) or valid(a * b, c, d) or valid(a / b, c, d)
-        )
-        {
+        if (valid(a + b, c, d) or valid(a - b, c, d) or valid(a * b, c, d) or valid(a / b, c, d)) {
             return true;
         }
-        if (valid(a, b + c, d) or valid(a, b - c, d) or valid(a, b * c, d) or valid(a, b / c, d)
-        )
-        {
+        if (valid(a, b + c, d) or valid(a, b - c, d) or valid(a, b * c, d) or valid(a, b / c, d)) {
             return true;
         }
-        if (valid(a, b, c + d) or valid(a, b, c - d) or valid(a, b, c * d) or valid(a, b, c / d)
-        )
-        {
+        if (valid(a, b, c + d) or valid(a, b, c - d) or valid(a, b, c * d) or valid(a, b, c / d)) {
             return true;
         }
         return false;
     }
 
     bool valid(double a, double b, double c) {
-        if (valid(a + b, c) or valid(a - b, c) or valid(a * b, c) or(b != 0 and valid(a / b, c))
-        )
-        {
+        if (valid(a + b, c) or valid(a - b, c) or valid(a * b, c) or (b != 0 and valid(a / b, c))) {
             return true;
         }
-        if (valid(a, b + c) or valid(a, b - c) or valid(a, b * c) or(c != 0 and valid(a, b / c))
-        )
-        {
+        if (valid(a, b + c) or valid(a, b - c) or valid(a, b * c) or (c != 0 and valid(a, b / c))) {
             return true;
         }
         return false;
     }
 
     bool valid(double a, double b) {
-        if (abs(a + b - 24.0) < 0.0001 or abs(a - b - 24.0)
-        <
-        0.0001
-        or abs(a * b - 24.0)
-        <
-        0.0001
-        or(b != 0 and abs(a / b - 24.0) < 0.0001)
-        )
-        {
+        if (abs(a + b - 24.0) < 0.0001 or abs(a - b - 24.0) < 0.0001 or abs(a * b - 24.0) < 0.0001 or
+            (b != 0 and abs(a / b - 24.0) < 0.0001)) {
             return true;
         }
         return false;

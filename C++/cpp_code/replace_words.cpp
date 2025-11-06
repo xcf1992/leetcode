@@ -38,7 +38,7 @@ using namespace std;
 
 struct TrieNode {
     bool isRoot;
-    vector<TrieNode *> children = vector<TrieNode *>(26, nullptr);
+    vector<TrieNode*> children = vector<TrieNode*>(26, nullptr);
 
     TrieNode(bool r = false) : isRoot(r) {
     }
@@ -46,7 +46,7 @@ struct TrieNode {
 
 class Trie {
 private:
-    TrieNode *root = nullptr;
+    TrieNode* root = nullptr;
 
 public:
     Trie() {
@@ -54,8 +54,8 @@ public:
     }
 
     void insert(string word) {
-        TrieNode *cur = root;
-        for (char c: word) {
+        TrieNode* cur = root;
+        for (char c : word) {
             int index = c - 'a';
             if (cur->children[index] == nullptr) {
                 cur->children[index] = new TrieNode();
@@ -66,7 +66,7 @@ public:
     }
 
     string getRoot(string word) {
-        TrieNode *cur = root;
+        TrieNode* cur = root;
         for (int i = 0; i < word.size(); ++i) {
             int index = word[i] - 'a';
             if (cur->children[index] == nullptr) {
@@ -99,9 +99,9 @@ private:
     }
 
 public:
-    string replaceWords(vector<string> &dict, string sentence) {
+    string replaceWords(vector<string>& dict, string sentence) {
         Trie trie;
-        for (string word: dict) {
+        for (string word : dict) {
             trie.insert(word);
         }
 

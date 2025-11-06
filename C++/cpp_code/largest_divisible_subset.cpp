@@ -31,7 +31,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> largestDivisibleSubset(vector<int> &nums) {
+    vector<int> largestDivisibleSubset(vector<int>& nums) {
         int n = nums.size();
         sort(nums.begin(), nums.end());
 
@@ -40,14 +40,11 @@ public:
         int maxCount = 0;
         int index = -1;
         for (int i = 0; i < n; ++i) {
-            for (int j = i - 1; j >= 0; --j) if (nums[i] % nums[j] == 0 and dp[i]
-            <
-            dp[j] + 1
-            )
-            {
-                dp[i] = dp[j] + 1;
-                pre[i] = j;
-            }
+            for (int j = i - 1; j >= 0; --j)
+                if (nums[i] % nums[j] == 0 and dp[i] < dp[j] + 1) {
+                    dp[i] = dp[j] + 1;
+                    pre[i] = j;
+                }
 
             if (dp[i] > maxCount) {
                 maxCount = dp[i];

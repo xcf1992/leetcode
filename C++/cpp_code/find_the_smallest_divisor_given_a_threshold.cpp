@@ -67,8 +67,7 @@ public:
             }
             if (sum > threshold) {
                 left = mid + 1;
-            }
-            else {
+            } else {
                 right = mid;
             }
         }

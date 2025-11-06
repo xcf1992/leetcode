@@ -13,7 +13,8 @@ Input: [9,6,4,2,3,5,7,0,1]
 Output: 8
 
 Note:
-Your algorithm should run in linear runtime complexity. Could you implement it using only constant extra space complexity?
+Your algorithm should run in linear runtime complexity. Could you implement it using only constant extra space
+complexity?
 */
 #include <iostream>
 #include <string>
@@ -29,7 +30,7 @@ using namespace std;
 
 class Solution {
 public:
-    int missingNumber(vector<int> &nums) {
+    int missingNumber(vector<int>& nums) {
         int n = nums.size();
         int result = n;
         for (int i = 0; i < n; i++) {

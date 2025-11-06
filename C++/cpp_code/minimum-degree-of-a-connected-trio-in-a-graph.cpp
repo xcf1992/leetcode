@@ -55,8 +55,7 @@ public:
         vector<vector<int>> am(n + 1, vector<int>(n + 1));
         vector<int> cnt(n + 1);
         int res = INT_MAX;
-        for (auto &e : edges)
-        {
+        for (auto& e : edges) {
             am[min(e[0], e[1])][max(e[0], e[1])] = 1;
             ++cnt[e[0]];
             ++cnt[e[1]];

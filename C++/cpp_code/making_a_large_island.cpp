@@ -49,15 +49,13 @@ private:
     vector<int> dc = {0, -1, 0, 1};
     int N = 0;
 
-    int getArea(vector<vector<int> > &grid, int r, int c, int index) {
+    int getArea(vector<vector<int>>& grid, int r, int c, int index) {
         int area = 1;
         grid[r][c] = index;
         for (int i = 0; i < 4; i++) {
             int nr = r + dr[i];
             int nc = c + dc[i];
-            if (nr < 0 or nc<0 or nr >= N or nc >= N
-            )
-            {
+            if (nr < 0 or nc < 0 or nr >= N or nc >= N) {
                 continue;
             }
             if (grid[nr][nc] == 1) {
@@ -69,7 +67,7 @@ private:
     }
 
 public:
-    int largestIsland(vector<vector<int> > &grid) {
+    int largestIsland(vector<vector<int>>& grid) {
         N = grid.size();
         if (N == 0) {
             return 0;
@@ -96,9 +94,7 @@ public:
                     for (int i = 0; i < 4; i++) {
                         int nr = r + dr[i];
                         int nc = c + dc[i];
-                        if (nr < 0 or nc<0 or nr >= N or nc >= N
-                        )
-                        {
+                        if (nr < 0 or nc < 0 or nr >= N or nc >= N) {
                             continue;
                         }
                         if (grid[nr][nc] > 1) {
@@ -106,7 +102,7 @@ public:
                         }
                     }
                     int temp = 1;
-                    for (int i: visited) {
+                    for (int i : visited) {
                         temp += area[i];
                     }
                     result = max(result, temp);

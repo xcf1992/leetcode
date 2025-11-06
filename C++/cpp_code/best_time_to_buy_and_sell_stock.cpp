@@ -28,10 +28,10 @@ using namespace std;
 
 class Solution {
 public:
-    int maxProfit(vector<int> &prices) {
+    int maxProfit(vector<int>& prices) {
         int result = 0;
         int curMin = INT_MAX;
-        for (int price: prices) {
+        for (int price : prices) {
             curMin = min(curMin, price);
             result = max(result, price - curMin);
         }
@@ -41,7 +41,7 @@ public:
 
 class Solution1 {
 public:
-    int maxProfit(vector<int> &prices) {
+    int maxProfit(vector<int>& prices) {
         int n = prices.size();
         if (n <= 1) {
             return 0;

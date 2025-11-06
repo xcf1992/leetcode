@@ -37,7 +37,7 @@ using namespace std;
 
 class Solution {
 public:
-    int minCostII(vector<vector<int> > &costs) {
+    int minCostII(vector<vector<int>>& costs) {
         int n = costs.size();
         if (n == 0) {
             return 0;

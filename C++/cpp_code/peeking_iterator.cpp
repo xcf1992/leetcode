@@ -33,12 +33,12 @@ using namespace std;
 
 class Iterator {
     struct Data;
-    Data *data;
+    Data* data;
 
 public:
-    Iterator(const vector<int> &nums);
+    Iterator(const vector<int>& nums);
 
-    Iterator(const Iterator &iter);
+    Iterator(const Iterator& iter);
 
     virtual ~Iterator();
 
@@ -55,7 +55,7 @@ private:
     bool m_hasnext;
 
 public:
-    PeekingIterator(const vector<int> &nums) : Iterator(nums) {
+    PeekingIterator(const vector<int>& nums) : Iterator(nums) {
         m_hasnext = Iterator::hasNext();
         if (m_hasnext) {
             m_next = Iterator::next();

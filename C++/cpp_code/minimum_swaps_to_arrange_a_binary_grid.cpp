@@ -44,16 +44,11 @@ using namespace std;
 
 class Solution {
 public:
-    int minSwaps(vector<vector<int> > &grid) {
+    int minSwaps(vector<vector<int>>& grid) {
         const int n = grid.size();
-        vector<int> tail0(n, 0); //t[i]: tailing zero count for i-th row
+        vector<int> tail0(n, 0);  // t[i]: tailing zero count for i-th row
         for (int i = 0; i < n; i++) {
-            for (int j = n - 1; j >= 0 and grid[i][j]
-            ==
-            0;
-            --j
-            )
-            {
+            for (int j = n - 1; j >= 0 and grid[i][j] == 0; --j) {
                 tail0[i]++;
             }
         }
@@ -61,23 +56,19 @@ public:
         int ans = 0;
         for (int i = 0; i < n; i++) {
             int k = i;
-            int req = n - 1 - i; // desired tailing zero count
-            while (k < n and tail0[k]
-            <
-            req
-            )
-            {
-                k++; // greedily find first swaping candidate and log the result into k. Note1
+            int req = n - 1 - i;  // desired tailing zero count
+            while (k < n and tail0[k] < req) {
+                k++;  // greedily find first swaping candidate and log the result into k. Note1
             }
             if (k == n) {
-                return -1; // k is out of range. Fail in searching
+                return -1;  // k is out of range. Fail in searching
             }
 
-            //Core part of the question: moving up k-th row up, moving down [i, k-1
-            //Part 1: move k-th row up to i-th row
-            ans += k - i; // accumulate the operation cost of moving k to i
+            // Core part of the question: moving up k-th row up, moving down [i, k-1
+            // Part 1: move k-th row up to i-th row
+            ans += k - i;  // accumulate the operation cost of moving k to i
 
-            //Part 2: move the rest involved row downward by offset 1
+            // Part 2: move the rest involved row downward by offset 1
             while (k > i) {
                 // simulate swaping operation of two adjacent rows in range of [i, k-1 ]
                 tail0[k] = tail0[k - 1];
@@ -90,5 +81,7 @@ public:
 
 /*Note 1: why dose greedy approach work?
 Recall the row scanning is performed one by one from row 0, which ask most tailing 0;
-Suppose, current row (i-th row) asks for a row with at least 4 zeros, and the neaerst downward row (j-th) has 5 tailing zeros. You can greedily but aslo safely choose it as candidate. any rows after than i-th row will ask for less than 4 tailing rows. So you greedy approach will cause no trouble at all.
+Suppose, current row (i-th row) asks for a row with at least 4 zeros, and the neaerst downward row (j-th) has 5 tailing
+zeros. You can greedily but aslo safely choose it as candidate. any rows after than i-th row will ask for less than 4
+tailing rows. So you greedy approach will cause no trouble at all.
 */

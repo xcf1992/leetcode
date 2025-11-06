@@ -89,18 +89,19 @@ private:
     }
 
     string rotate(string curr, int k) {
-         k = k % curr.size();
+        k = k % curr.size();
         reverse(curr.begin(), curr.end());
         reverse(curr.begin(), curr.begin() + k);
         reverse(curr.begin() + k, curr.end());
         return curr;
     }
+
 public:
     string findLexSmallestString(string s, int a, int b) {
-        queue<string>q;
-        vector<string>st;
-        vector<string>vect;
-        set<string>visited;
+        queue<string> q;
+        vector<string> st;
+        vector<string> vect;
+        set<string> visited;
         visited.insert(s);
         q.push(s);
         while (!q.empty()) {
@@ -114,7 +115,7 @@ public:
                 visited.insert(one);
             }
 
-            string two = rotate(curr,b);
+            string two = rotate(curr, b);
             if (visited.find(two) == visited.end()) {
                 q.push(two);
                 visited.insert(two);

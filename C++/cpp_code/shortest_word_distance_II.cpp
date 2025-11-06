@@ -35,7 +35,7 @@ using namespace std;
 
 class WordDistance {
 private:
-    unordered_map<string, vector<int> > wordMap;
+    unordered_map<string, vector<int>> wordMap;
 
 public:
     WordDistance(vector<string> words) {
@@ -61,7 +61,7 @@ public:
 };
 
 /*
-* Your WordDistance object will be instantiated and called as such:
-* WordDistance obj = new WordDistance(words);
-* int param_1 = obj.shortest(word1,word2);
-*/
+ * Your WordDistance object will be instantiated and called as such:
+ * WordDistance obj = new WordDistance(words);
+ * int param_1 = obj.shortest(word1,word2);
+ */

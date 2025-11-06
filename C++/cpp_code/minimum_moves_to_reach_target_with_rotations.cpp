@@ -32,7 +32,8 @@ Input: grid = [[0,0,0,0,0,1],
                [0,1,1,0,0,0]]
 Output: 11
 Explanation:
-One possible solution is [right, right, rotate clockwise, right, down, down, down, down, rotate counterclockwise, right, down].
+One possible solution is [right, right, rotate clockwise, right, down, down, down, down, rotate counterclockwise, right,
+down].
 
 Example 2:
 Input: grid = [[0,0,1,1,1,1],
@@ -90,13 +91,15 @@ private:
     }
 
     bool canRotate(vector<vector<int>>& grid, int row, int col) {
-        return row < n - 1 and col < n - 1 and (grid[row][col + 1] & 1) == 0 and (grid[row + 1][col] & 1) == 0 and (grid[row + 1][col + 1] & 1) == 0;
+        return row < n - 1 and col < n - 1 and (grid[row][col + 1] & 1) == 0 and (grid[row + 1][col] & 1) == 0 and
+               (grid[row + 1][col + 1] & 1) == 0;
     }
+
 public:
     int minimumMoves(vector<vector<int>>& grid) {
         n = grid.size();
         queue<vector<int>> bfs;
-        bfs.push({0, 0, 0}); // tail pos and isVertical
+        bfs.push({0, 0, 0});  // tail pos and isVertical
         int result = 0;
         while (!bfs.empty()) {
             int curSize = bfs.size();

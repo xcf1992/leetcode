@@ -17,7 +17,9 @@ X X X X
 X X X X
 X O X X
 Explanation:
-Surrounded regions shouldn’t be on the border, which means that any 'O' on the border of the board are not flipped to 'X'. Any 'O' that is not on the border and it is not connected to an 'O' on the border will be flipped to 'X'. Two cells are connected if they are adjacent cells connected horizontally or vertically.
+Surrounded regions shouldn’t be on the border, which means that any 'O' on the border of the board are not flipped to
+'X'. Any 'O' that is not on the border and it is not connected to an 'O' on the border will be flipped to 'X'. Two cells
+are connected if they are adjacent cells connected horizontally or vertically.
 */
 #include <iostream>
 #include <string>
@@ -33,10 +35,8 @@ private:
     int m = 0;
     int n = 0;
 
-    void dfs(vector<vector<char> > &board, int row, int col) {
-        if (row < 0 or col<0 or row >= m or col >= n
-        )
-        {
+    void dfs(vector<vector<char>>& board, int row, int col) {
+        if (row < 0 or col < 0 or row >= m or col >= n) {
             return;
         }
         if (board[row][col] != 'O') {
@@ -52,7 +52,7 @@ private:
     }
 
 public:
-    void solve(vector<vector<char> > &board) {
+    void solve(vector<vector<char>>& board) {
         m = board.size();
         if (m == 0) {
             return;

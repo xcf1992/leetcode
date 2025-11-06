@@ -62,7 +62,7 @@ using namespace std;
 */
 class ValidWordAbbr {
 private:
-    unordered_map<string, unordered_set<string> > abbreviation;
+    unordered_map<string, unordered_set<string>> abbreviation;
 
     string getAbbrev(string word) {
         if (word.size() <= 2) {
@@ -73,7 +73,7 @@ private:
 
 public:
     ValidWordAbbr(vector<string> dictionary) {
-        for (string word: dictionary) {
+        for (string word : dictionary) {
             abbreviation[getAbbrev(word)].insert(word);
         }
     }
@@ -91,7 +91,7 @@ public:
 };
 
 /*
-* Your ValidWordAbbr object will be instantiated and called as such:
-* ValidWordAbbr obj = new ValidWordAbbr(dictionary);
-* bool param_1 = obj.isUnique(word);
-*/
+ * Your ValidWordAbbr object will be instantiated and called as such:
+ * ValidWordAbbr obj = new ValidWordAbbr(dictionary);
+ * bool param_1 = obj.isUnique(word);
+ */

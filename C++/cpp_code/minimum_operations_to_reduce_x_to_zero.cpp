@@ -3,8 +3,8 @@
 https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
 
 You are given an integer array nums and an integer x.
-In one operation, you can either remove the leftmost or the rightmost element from the array nums and subtract its value from x.
-Note that this modifies the array for future operations.
+In one operation, you can either remove the leftmost or the rightmost element from the array nums and subtract its value
+from x. Note that this modifies the array for future operations.
 
 Return the minimum number of operations to reduce x to exactly 0 if it's possible, otherwise, return -1.
 
@@ -20,7 +20,8 @@ Output: -1
 Example 3:
 Input: nums = [3,2,20,1,1,3], x = 10
 Output: 5
-Explanation: The optimal solution is to remove the last three elements and the first two elements (5 operations in total) to reduce x to zero.
+Explanation: The optimal solution is to remove the last three elements and the first two elements (5 operations in
+total) to reduce x to zero.
 
 Constraints:
 1 <= nums.length <= 105
@@ -55,7 +56,7 @@ To do so, we can use a hashmap where we will store the rolling sum.
 */
 class Solution {
 public:
-    int minOperations(vector<int> &nums, int x) {
+    int minOperations(vector<int>& nums, int x) {
         unordered_map<int, int> left;
         int res = INT_MAX;
         for (auto l = 0, sum = 0; l < nums.size() && sum <= x; ++l) {
@@ -65,7 +66,7 @@ public:
         for (int r = nums.size() - 1, sum = 0; r >= 0 && sum <= x; --r) {
             auto it = left.find(x - sum);
             if (it != end(left) && r + 1 >= it->second) {
-                res = min(res, (int) nums.size() - r - 1 + it->second);
+                res = min(res, (int)nums.size() - r - 1 + it->second);
             }
             sum += nums[r];
         }

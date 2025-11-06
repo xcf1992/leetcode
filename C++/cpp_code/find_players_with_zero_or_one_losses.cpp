@@ -2,7 +2,8 @@
 https://leetcode.com/problems/find-players-with-zero-or-one-losses/
 2225. Find Players With Zero or One Losses
 
-You are given an integer array matches where matches[i] = [winneri, loseri] indicates that the player winneri defeated player loseri in a match.
+You are given an integer array matches where matches[i] = [winneri, loseri] indicates that the player winneri defeated
+player loseri in a match.
 
 Return a list answer of size 2 where:
 
@@ -59,7 +60,7 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> findWinners(vector<vector<int>>& matches) {
-        map<int,int> loss_cnt;
+        map<int, int> loss_cnt;
         for (const vector<int>& match : matches) {
             int winner = match[0];
             int loser = match[1];

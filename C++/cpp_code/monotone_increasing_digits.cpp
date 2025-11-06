@@ -3,7 +3,8 @@
 
 Given a non-negative integer N,
 find the largest number that is less than or equal to N with monotone increasing digits.
-(Recall that an integer has monotone increasing digits if and only if each pair of adjacent digits x and y satisfy x <= y.)
+(Recall that an integer has monotone increasing digits if and only if each pair of adjacent digits x and y satisfy x <=
+y.)
 
 Example 1:
 Input: N = 10
@@ -66,16 +67,10 @@ public:
         string num = to_string(N);
         int len = num.size();
         int pos = 1;
-        while (pos < len and num[pos - 1]
-        <=
-        num[pos]
-        )
-        {
+        while (pos < len and num[pos - 1] <= num[pos]) {
             pos += 1;
         }
-        while (pos > 0 and pos <len and num[pos - 1]> num[pos]
-        )
-        {
+        while (pos > 0 and pos < len and num[pos - 1] > num[pos]) {
             num[pos - 1] -= 1;
             pos -= 1;
         }
@@ -102,11 +97,7 @@ public:
             return N;
         }
 
-        while (i >= 1 and num[i - 1]
-        ==
-        num[i]
-        )
-        {
+        while (i >= 1 and num[i - 1] == num[i]) {
             i--;
         }
 
@@ -117,7 +108,7 @@ public:
         } while (i < num.size());
 
         int result = 0;
-        for (char c: num) {
+        for (char c : num) {
             result = result * 10 + c - '0';
         }
         return result;

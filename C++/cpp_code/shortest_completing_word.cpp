@@ -11,7 +11,8 @@ Here, for letters we ignore case. For example, "P" on the licensePlate still mat
 It is guaranteed an answer exists. If there are multiple answers, return the one that occurs first in the array.
 
 The license plate might have the same letter occurring multiple times.
-For example, given a licensePlate of "PP", the word "pair" does not complete the licensePlate, but the word "supper" does.
+For example, given a licensePlate of "PP", the word "pair" does not complete the licensePlate, but the word "supper"
+does.
 
 Example 1:
 Input: licensePlate = "1s3 PSt", words = ["step", "steps", "stripe", "stepple"]
@@ -49,11 +50,7 @@ private:
     bool complete(string word, unordered_map<char, int> letters, int plateSize) {
         for (int i = 0; i < word.size(); i++) {
             char letter = tolower(word[i]);
-            if (letters.find(letter) != letters.end() and letters[letter]
-            >
-            0
-            )
-            {
+            if (letters.find(letter) != letters.end() and letters[letter] > 0) {
                 plateSize -= 1;
                 letters[letter] -= 1;
             }
@@ -62,7 +59,7 @@ private:
     }
 
 public:
-    string shortestCompletingWord(string licensePlate, vector<string> &words) {
+    string shortestCompletingWord(string licensePlate, vector<string>& words) {
         unordered_map<char, int> letters;
         int plateSize = 0;
         for (int i = 0; i < licensePlate.size(); i++) {
@@ -75,13 +72,9 @@ public:
 
         int maxLength = -1;
         string result = "";
-        for (string &word: words) {
+        for (string& word : words) {
             if (complete(word, letters, plateSize)) {
-                if (maxLength == -1 or maxLength
-                >
-                word.size()
-                )
-                {
+                if (maxLength == -1 or maxLength > word.size()) {
                     maxLength = word.size();
                     result = word;
                 }

@@ -63,9 +63,7 @@ private:
         int b = 1;
         while (b < bn) {
             if ((mask & b) == 0) {
-                while (b < bn and(mask & b) == 0
-                )
-                {
+                while (b < bn and (mask & b) == 0) {
                     b <<= 1;
                 }
             } else {
@@ -79,9 +77,10 @@ private:
     // DFS backtracking
     void dfs(int bit, int mask) {
         int len = abbrLen(mask);
-        if (len >= minlen) return;
+        if (len >= minlen)
+            return;
         bool match = true;
-        for (auto d: dict) {
+        for (auto d : dict) {
             if ((mask & d) == 0) {
                 match = false;
                 break;
@@ -92,11 +91,12 @@ private:
             minab = mask;
         } else
             for (int b = bit; b < bn; b <<= 1)
-                if (cand & b) dfs(b << 1, mask + b);
+                if (cand & b)
+                    dfs(b << 1, mask + b);
     }
 
 public:
-    string minAbbreviation(string target, vector<string> &dictionary) {
+    string minAbbreviation(string target, vector<string>& dictionary) {
         n = target.size();
         bn = 1 << n;
         cand = 0;
@@ -104,9 +104,10 @@ public:
         string res;
 
         // Preprocessing with bit manipulation
-        for (auto w: dictionary) {
+        for (auto w : dictionary) {
             int word = 0;
-            if (w.size() != n) continue;
+            if (w.size() != n)
+                continue;
             for (int i = n - 1, bit = 1; i >= 0; --i, bit <<= 1) {
                 if (target[i] != w[i]) {
                     word += bit;
@@ -120,10 +121,12 @@ public:
         // Reconstruct abbreviation from bit sequence
         for (int i = n - 1, pre = i; i >= 0; --i, minab >>= 1) {
             if (minab & 1) {
-                if (pre - i > 0) res = to_string(pre - i) + res;
+                if (pre - i > 0)
+                    res = to_string(pre - i) + res;
                 pre = i - 1;
                 res = target[i] + res;
-            } else if (i == 0) res = to_string(pre - i + 1) + res;
+            } else if (i == 0)
+                res = to_string(pre - i + 1) + res;
         }
         return res;
     }

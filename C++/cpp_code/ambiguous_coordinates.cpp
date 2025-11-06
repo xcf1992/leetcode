@@ -81,8 +81,8 @@ public:
         vector<string> result;
         for (int i = 2; i < S.size() - 1; i++) {
             // i starts from 2 because the first and last character is ()
-            for (string &x: construct(S.substr(1, i - 1))) {
-                for (string &y: construct(S.substr(i, S.size() - 1 - i))) {
+            for (string& x : construct(S.substr(1, i - 1))) {
+                for (string& y : construct(S.substr(i, S.size() - 1 - i))) {
                     result.push_back("(" + x + ", " + y + ")");
                 }
             }

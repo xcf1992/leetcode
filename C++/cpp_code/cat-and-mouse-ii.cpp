@@ -15,11 +15,10 @@ There is only one of each character 'C', 'M', and 'F' in grid.
 Mouse and Cat play according to the following rules:
 
 Mouse moves first, then they take turns to move.
-During each turn, Cat and Mouse can jump in one of the four directions (left, right, up, down). They cannot jump over the wall nor outside of the grid.
-catJump, mouseJump are the maximum lengths Cat and Mouse can jump at a time, respectively. Cat and Mouse can jump less than the maximum length.
-Staying in the same position is allowed.
-Mouse can jump over Cat.
-The game can end in 4 ways:
+During each turn, Cat and Mouse can jump in one of the four directions (left, right, up, down). They cannot jump over
+the wall nor outside of the grid. catJump, mouseJump are the maximum lengths Cat and Mouse can jump at a time,
+respectively. Cat and Mouse can jump less than the maximum length. Staying in the same position is allowed. Mouse can
+jump over Cat. The game can end in 4 ways:
 
 If Cat occupies the same position as Mouse, Cat wins.
 If Cat reaches the food first, Cat wins.
@@ -82,53 +81,66 @@ public:
 
     bool dp(int nturn, int cx, int cy, int mx, int my) {
         if (nturn % 2 == 1) {
-            //mouse turn
-            if (mx == cx && my == cy) return false; //mouse is caught by the cat, losing position for the mouse
-            if (nturn >= 70) return false; //mouse can't win, it used many moves and it couldnt get the food
-            if (v[mx][my] == 'F') return true; //winner position, mouse got the food
-            if (v[cx][cy] == 'F') return false; //losing position, cat got the food
+            // mouse turn
+            if (mx == cx && my == cy)
+                return false;  // mouse is caught by the cat, losing position for the mouse
+            if (nturn >= 70)
+                return false;  // mouse can't win, it used many moves and it couldnt get the food
+            if (v[mx][my] == 'F')
+                return true;  // winner position, mouse got the food
+            if (v[cx][cy] == 'F')
+                return false;  // losing position, cat got the food
         } else {
-            //cat turn
-            if (mx == cx && my == cy) return true; //cat captured the mouse, winner position
-            if (nturn >= 70) return true; //winner position for the cat, nice block ;)
-            if (v[mx][my] == 'F') return false; // losing position, mouse got the food
-            if (v[cx][cy] == 'F') return true; //winner position, cat got the food
+            // cat turn
+            if (mx == cx && my == cy)
+                return true;  // cat captured the mouse, winner position
+            if (nturn >= 70)
+                return true;  // winner position for the cat, nice block ;)
+            if (v[mx][my] == 'F')
+                return false;  // losing position, mouse got the food
+            if (v[cx][cy] == 'F')
+                return true;  // winner position, cat got the food
         }
 
-        if (memo[nturn][cx][cy][mx][my] != -1) return memo[nturn][cx][cy][mx][my];
+        if (memo[nturn][cx][cy][mx][my] != -1)
+            return memo[nturn][cx][cy][mx][my];
         bool win = false;
 
         if (nturn % 2 == 1) {
-            //mouse turn
+            // mouse turn
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j <= mj; j++) {
                     int Mx = mx + j * di[i];
                     int My = my + j * dj[i];
                     if (Mx >= 0 && Mx < R && My >= 0 && My < C && v[Mx][My] != '#') {
                         if (dp(nturn + 1, cx, cy, Mx, My) == 0) {
-                            //If there is any move that causes the next player to lose then I am in a winning position.
+                            // If there is any move that causes the next player to lose then I am in a winning position.
                             win = true;
                             break;
                         }
-                    } else break;
+                    } else
+                        break;
                 }
-                if (win)break;
+                if (win)
+                    break;
             }
         } else {
-            //cat turn
+            // cat turn
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j <= cj; j++) {
                     int Cx = cx + j * di[i];
                     int Cy = cy + j * dj[i];
                     if (Cx >= 0 && Cx < R && Cy >= 0 && Cy < C && v[Cx][Cy] != '#') {
                         if (dp(nturn + 1, Cx, Cy, mx, my) == 0) {
-                            //If there is any move that causes the next player to lose then I am in a winning position.
+                            // If there is any move that causes the next player to lose then I am in a winning position.
                             win = true;
                             break;
                         }
-                    } else break;
+                    } else
+                        break;
                 }
-                if (win)break;
+                if (win)
+                    break;
             }
         }
 
@@ -136,7 +148,7 @@ public:
         return win;
     }
 
-    bool canMouseWin(vector<string> &_v, int _cj, int _mj) {
+    bool canMouseWin(vector<string>& _v, int _cj, int _mj) {
         memset(memo, -1, sizeof(memo));
         v = _v;
         cj = _cj;

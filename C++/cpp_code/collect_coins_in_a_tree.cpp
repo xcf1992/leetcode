@@ -19,11 +19,11 @@ Note that if you pass an edge several times, you need to count it into the answe
 Example 1:
 Input: coins = [1,0,0,0,0,1], edges = [[0,1],[1,2],[2,3],[3,4],[4,5]]
 Output: 2
-Explanation: Start at vertex 2, collect the coin at vertex 0, move to vertex 3, collect the coin at vertex 5 then move back to vertex 2.
-Example 2:
-Input: coins = [0,0,0,1,1,0,0,1], edges = [[0,1],[0,2],[1,3],[1,4],[2,5],[5,6],[5,7]]
+Explanation: Start at vertex 2, collect the coin at vertex 0, move to vertex 3, collect the coin at vertex 5 then move
+back to vertex 2. Example 2: Input: coins = [0,0,0,1,1,0,0,1], edges = [[0,1],[0,2],[1,3],[1,4],[2,5],[5,6],[5,7]]
 Output: 2
-Explanation: Start at vertex 0, collect the coins at vertices 4 and 3, move to vertex 2,  collect the coin at vertex 7, then move back to vertex 0.
+Explanation: Start at vertex 0, collect the coins at vertices 4 and 3, move to vertex 2,  collect the coin at vertex 7,
+then move back to vertex 0.
 
 Constraints:
 n == coins.length
@@ -60,11 +60,11 @@ public:
     // remove the nodes from which teh coins can be collected by from another nodes ,without traversing them
     // it is basically we can remove two layer of leaf nodes
 
-    int collectTheCoins(vector<int> &coins, vector<vector<int> > &edges) {
+    int collectTheCoins(vector<int>& coins, vector<vector<int>>& edges) {
         int n = coins.size();
-        vector<vector<int> > adj(n);
+        vector<vector<int>> adj(n);
         vector<int> deg(n);
-        for (auto edge: edges) {
+        for (auto edge : edges) {
             int u = edge[0];
             int v = edge[1];
             adj[u].push_back(v);
@@ -84,8 +84,8 @@ public:
         while (!leaves.empty()) {
             int u = leaves.front();
             leaves.pop();
-            deg[u] = 0; // we removed the node
-            for (auto v: adj[u]) {
+            deg[u] = 0;  // we removed the node
+            for (auto v : adj[u]) {
                 if (deg[v] > 0) {
                     deg[v]--;
                     if (deg[v] == 1 && coins[v] == 0) {
@@ -108,7 +108,7 @@ public:
                 int u = leaves.front();
                 leaves.pop();
                 deg[u] = 0;
-                for (auto v: adj[u]) {
+                for (auto v : adj[u]) {
                     if (deg[v] > 0) {
                         deg[v]--;
                     }
@@ -117,8 +117,8 @@ public:
         }
 
         // count remaining edges
-        int cnt = 0; // number of edges
-        for (auto e: edges) {
+        int cnt = 0;  // number of edges
+        for (auto e : edges) {
             if (deg[e[0]] > 0 && deg[e[1]] > 0) {
                 cnt++;
             }

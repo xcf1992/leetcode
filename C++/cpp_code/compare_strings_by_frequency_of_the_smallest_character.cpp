@@ -17,7 +17,8 @@ Explanation: On the first query we have f("cbd") = 1, f("zaaaz") = 3 so f("cbd")
 Example 2:
 Input: queries = ["bbb","cc"], words = ["a","aa","aaa","aaaa"]
 Output: [1,2]
-Explanation: On the first query only f("bbb") < f("aaaa"). On the second query both f("aaa") and f("aaaa") are both > f("cc").
+Explanation: On the first query only f("bbb") < f("aaaa"). On the second query both f("aaa") and f("aaaa") are both >
+f("cc").
 
 Constraints:
 1 <= queries.length <= 2000
@@ -41,17 +42,19 @@ class Solution {
 private:
     int getFrequency(string str) {
         vector<int> letter(26, 0);
-        for (char c: str) {
+        for (char c : str) {
             letter[c - 'a'] += 1;
         }
 
         int result = 0;
-        for (int i = 0; i < 26; ++i) if (letter[i] != 0) {
-            result = letter[i];
-            break;
-        }
+        for (int i = 0; i < 26; ++i)
+            if (letter[i] != 0) {
+                result = letter[i];
+                break;
+            }
         return result;
     }
+
 public:
     vector<int> numSmallerByFrequency(vector<string>& queries, vector<string>& words) {
         vector<int> frequency(2001, 0);
@@ -69,8 +72,7 @@ public:
             int freq = getFrequency(queries[i]);
             if (freq >= 2000) {
                 result[i] = 0;
-            }
-            else {
+            } else {
                 result[i] = frequency[freq + 1];
             }
         }

@@ -46,9 +46,7 @@ public:
         int remain = n;
         int step = 2;
         while (remain > 1) {
-            if (moveForward or remain %2 == 1
-            )
-            {
+            if (moveForward or remain % 2 == 1) {
                 head += step / 2;
             }
             remain /= 2;

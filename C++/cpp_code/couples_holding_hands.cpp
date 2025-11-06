@@ -44,7 +44,7 @@ using namespace std;
 // https://leetcode.com/problems/couples-holding-hands/discuss/336706/The-general-mathematical-idea%3A-permutation-graph-and-graph-decomposition.
 class Solution {
 public:
-    int minSwapsCouples(vector<int> &row) {
+    int minSwapsCouples(vector<int>& row) {
         int n = row.size();
         vector<int> pos(n, 0);
         for (int i = 0; i < n; i++) {
@@ -76,7 +76,7 @@ the sum of number of couches in each component minus 1 will be the number of swa
 */
 class Solution1 {
 private:
-    int find(vector<int> &parent, int num) {
+    int find(vector<int>& parent, int num) {
         if (parent[num] != num) {
             parent[num] = find(parent, parent[num]);
         }
@@ -84,7 +84,7 @@ private:
     }
 
 public:
-    int minSwapsCouples(vector<int> &row) {
+    int minSwapsCouples(vector<int>& row) {
         int n = row.size();
         vector<int> couch(n, 0);
         for (int i = 0; i < n; ++i) {

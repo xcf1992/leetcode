@@ -99,7 +99,7 @@ https://www.geeksforgeeks.org/divide-the-array-in-k-segments-such-that-the-sum-o
 */
 class Solution {
 public:
-    int minDifficulty(vector<int> &jobDifficulty, int d) {
+    int minDifficulty(vector<int>& jobDifficulty, int d) {
         int inf = 1e9 + 7;
         int n = jobDifficulty.size();
         if (n < d) {

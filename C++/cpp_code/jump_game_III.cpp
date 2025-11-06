@@ -51,12 +51,8 @@ using namespace std;
 
 class Solution {
 private:
-    bool dfs(vector<int> &memo, vector<int> &arr, int index) {
-        if (index < 0 or index
-        >=
-        arr.size()
-        )
-        {
+    bool dfs(vector<int>& memo, vector<int>& arr, int index) {
+        if (index < 0 or index >= arr.size()) {
             return false;
         }
         if (arr[index] == 0) {
@@ -67,16 +63,14 @@ private:
         }
 
         memo[index] = 0;
-        if (dfs(memo, arr, index + arr[index]) or dfs(memo, arr, index - arr[index])
-        )
-        {
+        if (dfs(memo, arr, index + arr[index]) or dfs(memo, arr, index - arr[index])) {
             memo[index] = 1;
         }
         return memo[index];
     }
 
 public:
-    bool canReach(vector<int> &arr, int start) {
+    bool canReach(vector<int>& arr, int start) {
         int n = arr.size();
         vector<int> memo(n, -1);
         return dfs(memo, arr, start);

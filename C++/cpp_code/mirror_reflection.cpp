@@ -53,10 +53,7 @@ The mathematical answer is k = p / gcd(p, q).
 class Solution {
 public:
     int mirrorReflection(int p, int q) {
-        while (p % 2 == 0 and q
-        %2 == 0
-        )
-        {
+        while (p % 2 == 0 and q % 2 == 0) {
             p /= 2;
             q /= 2;
         }

@@ -129,9 +129,9 @@ using namespace std;
 
 class Solution {
 public:
-    void printResult(vector<int> &originalH, vector<int> &finalH) {
+    void printResult(vector<int>& originalH, vector<int>& finalH) {
         int maxHeight = finalH[0];
-        for (int height: finalH) {
+        for (int height : finalH) {
             maxHeight = max(maxHeight, height);
         }
 
@@ -150,37 +150,21 @@ public:
         }
     }
 
-    vector<int> pourWater(vector<int> &heights, int V, int K) {
+    vector<int> pourWater(vector<int>& heights, int V, int K) {
         int n = heights.size();
         for (int i = 0; i < V; i++) {
             int pos = K;
-            while (pos - 1 >= 0 and heights[pos - 1]
-            <=
-            heights[pos]
-            )
-            {
+            while (pos - 1 >= 0 and heights[pos - 1] <= heights[pos]) {
                 pos -= 1;
             }
-            while (pos + 1 <= K and heights[pos + 1]
-            ==
-            heights[pos]
-            )
-            {
+            while (pos + 1 <= K and heights[pos + 1] == heights[pos]) {
                 pos += 1;
             }
             if (pos == K) {
-                while (pos + 1 <= n - 1 and heights[pos + 1]
-                <=
-                heights[pos]
-                )
-                {
+                while (pos + 1 <= n - 1 and heights[pos + 1] <= heights[pos]) {
                     pos += 1;
                 }
-                while (pos - 1 >= K and heights[pos - 1]
-                ==
-                heights[pos]
-                )
-                {
+                while (pos - 1 >= K and heights[pos - 1] == heights[pos]) {
                     pos -= 1;
                 }
             }

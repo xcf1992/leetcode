@@ -59,11 +59,9 @@ public:
             int num = reader.get(mid);
             if (target == num) {
                 return mid;
-            }
-            else if (target < num) {
+            } else if (target < num) {
                 right = mid - 1;
-            }
-            else {
+            } else {
                 left = mid + 1;
             }
         }

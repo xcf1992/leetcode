@@ -36,7 +36,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> sortedSquares(vector<int> &A) {
+    vector<int> sortedSquares(vector<int>& A) {
         int n = A.size();
         vector<int> result;
         int left = 0;

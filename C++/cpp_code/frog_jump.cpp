@@ -53,12 +53,12 @@ using namespace std;
 class Solution {
     // dp
 public:
-    bool canCross(vector<int> &stones) {
+    bool canCross(vector<int>& stones) {
         int n = stones.size();
-        unordered_map<int, unordered_set<int> > reach;
+        unordered_map<int, unordered_set<int>> reach;
         reach[stones.front()].insert(0);
-        for (int pos: stones) {
-            for (int k: reach[pos]) {
+        for (int pos : stones) {
+            for (int k : reach[pos]) {
                 for (int step = max(1, k - 1); step <= k + 1; ++step) {
                     reach[pos + step].insert(step);
                 }
@@ -71,7 +71,7 @@ public:
 class Solution1 {
     // dfs with memo
 private:
-    bool check(int cur, int end, int lastJump, unordered_set<string> &visited, unordered_set<int> &stone) {
+    bool check(int cur, int end, int lastJump, unordered_set<string>& visited, unordered_set<int>& stone) {
         if (cur == end) {
             return true;
         }
@@ -86,9 +86,7 @@ private:
         }
 
         for (int i = lastJump - 1; i <= lastJump + 1; i++) {
-            if (i > 0 and check(cur + i, end, i, visited, stone)
-            )
-            {
+            if (i > 0 and check(cur + i, end, i, visited, stone)) {
                 return true;
             }
         }
@@ -97,7 +95,7 @@ private:
     }
 
 public:
-    bool canCross(vector<int> &stones) {
+    bool canCross(vector<int>& stones) {
         unordered_set<int> s(stones.begin(), stones.end());
         unordered_set<string> visited;
         return check(stones.front(), stones.back(), 0, visited, s);

@@ -17,9 +17,10 @@ and the jth value of answer is true if there is a path for queries[j] is true, a
 Example 1:
 Input: n = 3, edgeList = [[0,1,2],[1,2,4],[2,0,8],[1,0,16]], queries = [[0,1,2],[0,2,5]]
 Output: [false,true]
-Explanation: The above figure shows the given graph. Note that there are two overlapping edges between 0 and 1 with distances 2 and 16.
-For the first query, between 0 and 1 there is no path where each distance is less than 2, thus we return false for this query.
-For the second query, there is a path (0 -> 1 -> 2) of two edges with distances less than 5, thus we return true for this query.
+Explanation: The above figure shows the given graph. Note that there are two overlapping edges between 0 and 1 with
+distances 2 and 16. For the first query, between 0 and 1 there is no path where each distance is less than 2, thus we
+return false for this query. For the second query, there is a path (0 -> 1 -> 2) of two edges with distances less than
+5, thus we return true for this query.
 
 Example 2:
 Input: n = 5, edgeList = [[0,1,10],[1,2,5],[2,3,9],[3,4,13]], queries = [[0,4,14],[1,4,13]]
@@ -106,25 +107,25 @@ public:
 
 class Solution {
 public:
-    vector<bool> distanceLimitedPathsExist(int n, vector<vector<int>> &edgeList, vector<vector<int>> &queries) {
+    vector<bool> distanceLimitedPathsExist(int n, vector<vector<int>>& edgeList, vector<vector<int>>& queries) {
         DSU dsu(n);
 
-        //Add query indices to help with organizing/ordering results.
+        // Add query indices to help with organizing/ordering results.
         for (int i = 0; i < queries.size(); i++)
             queries[i].push_back(i);
 
-        //Sort inputs
-        sort(queries.begin(), queries.end(), [](auto &l, auto &r) { return l[2] < r[2]; });
-        sort(edgeList.begin(), edgeList.end(), [](auto &l, auto &r) { return l.back() < r.back(); });
+        // Sort inputs
+        sort(queries.begin(), queries.end(), [](auto& l, auto& r) { return l[2] < r[2]; });
+        sort(edgeList.begin(), edgeList.end(), [](auto& l, auto& r) { return l.back() < r.back(); });
 
         int i = 0;
         vector<bool> result(queries.size());
-        for (vector<int> &q : queries) {
+        for (vector<int>& q : queries) {
             // Two pointer approach. Join the edges till their weight is less than the current query.
             while (i < edgeList.size() && edgeList[i][2] < q[2])
                 dsu.Union(edgeList[i][0], edgeList[i++][1]);
 
-            //If parents are same we know that their is a path.
+            // If parents are same we know that their is a path.
             result[q.back()] = dsu.Find(q[0]) == dsu.Find(q[1]);
         }
         return result;

@@ -56,8 +56,8 @@ the program will search a lot of unnecessary paths,
 such as C->B->D->AA, D->B->C->AA.
 
 Therefore, I designed the memoization matrix to be memo[l][r][k],
-the largest number we can get using lth to rth (inclusive) boxes with k same colored boxes as rth box appended at the end.
-Example, memo[l][r][3] represents the solution for this setting: [b_l, ..., b_r, A,A,A] with b_r==A.
+the largest number we can get using lth to rth (inclusive) boxes with k same colored boxes as rth box appended at the
+end. Example, memo[l][r][3] represents the solution for this setting: [b_l, ..., b_r, A,A,A] with b_r==A.
 
 The transition function is to find the maximum among all b_i == b_r for i=l,...,r-1:
 
@@ -119,7 +119,7 @@ we've made use of calculatePoints function which is simply a recursive function 
 */
 class Solution {
 private:
-    int dfs(vector<int> &boxes, vector<vector<vector<int> > > &memo, int l, int r, int k) {
+    int dfs(vector<int>& boxes, vector<vector<vector<int>>>& memo, int l, int r, int k) {
         if (l > r) {
             return 0;
         }
@@ -127,11 +127,7 @@ private:
             return memo[l][r][k];
         }
 
-        while (l < r and boxes[r - 1]
-        ==
-        boxes[r]
-        )
-        {
+        while (l < r and boxes[r - 1] == boxes[r]) {
             r -= 1;
             k += 1;
         }
@@ -145,9 +141,9 @@ private:
     }
 
 public:
-    int removeBoxes(vector<int> &boxes) {
+    int removeBoxes(vector<int>& boxes) {
         int n = boxes.size();
-        vector<vector<vector<int> > > memo(100, vector<vector<int> >(100, vector<int>(100, 0)));
+        vector<vector<vector<int>>> memo(100, vector<vector<int>>(100, vector<int>(100, 0)));
         return dfs(boxes, memo, 0, n - 1, 0);
     }
 };

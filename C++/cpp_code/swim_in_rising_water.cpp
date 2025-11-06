@@ -56,7 +56,7 @@ We always walk in the smallest one that is 4-directionally adjacent to ones we'v
 When we reach the target, the largest number we've visited so far is the answer.
 */
 struct myComp {
-    bool operator()(vector<int> &a, vector<int> &b) {
+    bool operator()(vector<int>& a, vector<int>& b) {
         return a[2] > b[2];
     }
 };
@@ -66,11 +66,11 @@ private:
     vector<int> diff = {0, 1, 0, -1, 0};
 
 public:
-    int swimInWater(vector<vector<int> > &grid) {
+    int swimInWater(vector<vector<int>>& grid) {
         int n = grid.size();
-        priority_queue<vector<int>, vector<vector<int> >, myComp> pq;
-        pq.push({0, 0, grid[0][0]}); // {row, col, height}
-        vector<vector<int> > visited(n, vector<int>(n, 0));
+        priority_queue<vector<int>, vector<vector<int>>, myComp> pq;
+        pq.push({0, 0, grid[0][0]});  // {row, col, height}
+        vector<vector<int>> visited(n, vector<int>(n, 0));
         visited[0][0] = 1;
         int result = 0;
         while (!pq.empty()) {
@@ -117,17 +117,15 @@ private:
     vector<int> diff = {0, 1, 0, -1, 0};
 
     // so dp[i][j] stores the best elevation path we have visited so far from start to current spot
-    void dfs(vector<vector<int> > &grid, int row, int col, int elevation, vector<vector<int> > &dp) {
-        if (row < 0 or col<0 or row >= n or col >= n
-        )
-        {
+    void dfs(vector<vector<int>>& grid, int row, int col, int elevation, vector<vector<int>>& dp) {
+        if (row < 0 or col < 0 or row >= n or col >= n) {
             return;
         }
         if (elevation >= dp[row][col]) {
             /*
-            * if the new elevation is larger than current dp value
-            * which means the path is worse than previous one we have visited before
-            */
+             * if the new elevation is larger than current dp value
+             * which means the path is worse than previous one we have visited before
+             */
             return;
         }
 
@@ -139,9 +137,9 @@ private:
     }
 
 public:
-    int swimInWater(vector<vector<int> > &grid) {
+    int swimInWater(vector<vector<int>>& grid) {
         n = grid.size();
-        vector<vector<int> > dp(n, vector<int>(n, INT_MAX));
+        vector<vector<int>> dp(n, vector<int>(n, INT_MAX));
         dfs(grid, 0, 0, 0, dp);
         return dp[n - 1][n - 1];
     }

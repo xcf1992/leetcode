@@ -25,13 +25,11 @@ public:
             return 0;
         }
 
-        vector<vector<int> > isPalindrome(n, vector<int>(n, false));
-        vector<int> dp(n, n); // we need at most n cuts, to cut the string into single letters
+        vector<vector<int>> isPalindrome(n, vector<int>(n, false));
+        vector<int> dp(n, n);  // we need at most n cuts, to cut the string into single letters
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j <= i; ++j) {
-                if (s[j] == s[i] and(j + 1 >= i - 1 or isPalindrome[j + 1][i - 1])
-                )
-                {
+                if (s[j] == s[i] and (j + 1 >= i - 1 or isPalindrome[j + 1][i - 1])) {
                     isPalindrome[j][i] = true;
                     dp[i] = j == 0 ? 0 : min(dp[i], dp[j - 1] + 1);
                 }

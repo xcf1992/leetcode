@@ -55,8 +55,10 @@ Isolated items (-1) can be put into separate groups to make the solution simpler
 class Graph {
     unordered_map<int, vector<int>> adj;
     unordered_map<int, int> indegree;
+
 public:
-    Graph() {}
+    Graph() {
+    }
 
     Graph(int n) {
         for (int i = 0; i < n; ++i) {
@@ -77,9 +79,10 @@ public:
 
     vector<int> sort() {
         queue<int> q;
-        for (const auto& p : indegree) if (p.second == 0) {
-            q.push(p.first);
-        }
+        for (const auto& p : indegree)
+            if (p.second == 0) {
+                q.push(p.first);
+            }
 
         vector<int> result;
         while (!q.empty()) {
@@ -87,7 +90,7 @@ public:
             q.pop();
 
             result.push_back(cur);
-            for (const auto & next : adj[cur]) {
+            for (const auto& next : adj[cur]) {
                 indegree[next] -= 1;
                 if (indegree[next] == 0) {
                     q.push(next);
@@ -105,8 +108,7 @@ public:
         for (int i = 0; i < n; ++i) {
             if (group[i] >= 0) {
                 groupItems[group[i]].push_back(i);
-            }
-            else { // Isolated items are put into separate groups.
+            } else {  // Isolated items are put into separate groups.
                 group[i] = m;
                 groupItems[m].push_back(i);
             }
@@ -122,10 +124,9 @@ public:
             int curGroup = group[i];
             for (const int& item : beforeItems[i]) {
                 int beforeGroup = group[item];
-                if (curGroup == beforeGroup) { // BeforeItem is in the same group, add edge in the graph of that group.
+                if (curGroup == beforeGroup) {  // BeforeItem is in the same group, add edge in the graph of that group.
                     groupItemGraphs[curGroup].addEdge(item, i);
-                }
-                else { // BeforeItem is in a different group, add edge in the graph of groups.
+                } else {  // BeforeItem is in a different group, add edge in the graph of groups.
                     groupGraph.addEdge(beforeGroup, curGroup);
                 }
             }

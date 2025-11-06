@@ -4,7 +4,8 @@ https://leetcode.com/problems/ways-to-express-an-integer-as-sum-of-powers/
 
 Given two positive integers n and x.
 
-Return the number of ways n can be expressed as the sum of the xth power of unique positive integers, in other words, the number of sets of unique integers [n1, n2, ..., nk] where n = n1x + n2x + ... + nkx.
+Return the number of ways n can be expressed as the sum of the xth power of unique positive integers, in other words,
+the number of sets of unique integers [n1, n2, ..., nk] where n = n1x + n2x + ... + nkx.
 
 Since the result can be very large, return it modulo 109 + 7.
 
@@ -54,6 +55,7 @@ from the first i integers such that the sum of their x-th powers is j.
 class Solution {
 private:
     long long mod = 1e9 + 7;
+
 public:
     int numberOfWays(int n, int x) {
         vector<vector<long long>> dp(n + 1, vector<long long>(n + 1));

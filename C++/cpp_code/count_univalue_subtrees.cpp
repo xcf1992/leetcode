@@ -31,21 +31,18 @@ using namespace std;
 
 class Solution {
 private:
-    int count(TreeNode *root, int &result) {
+    int count(TreeNode* root, int& result) {
         int left = root->val;
         if (root->left != nullptr) {
             left = count(root->left, result);
         }
 
-        int right = root->val; // we have to do this in case one of the child is null while another is not
+        int right = root->val;  // we have to do this in case one of the child is null while another is not
         if (root->right != nullptr) {
             right = count(root->right, result);
         }
 
-        if (root->val == left and
-        root->val == right
-        )
-        {
+        if (root->val == left and root->val == right) {
             result += 1;
             return root->val;
         }
@@ -53,7 +50,7 @@ private:
     }
 
 public:
-    int countUnivalSubtrees(TreeNode *root) {
+    int countUnivalSubtrees(TreeNode* root) {
         if (root == nullptr) {
             return 0;
         }

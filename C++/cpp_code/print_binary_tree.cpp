@@ -14,7 +14,8 @@ and print the right subtree in the right-bottom part.
 
 The left-bottom part and the right-bottom part should have the same size.
 Even if one subtree is none while the other is not,
-you don't need to print anything for the none subtree but still need to leave the space as large as that for the other subtree.
+you don't need to print anything for the none subtree but still need to leave the space as large as that for the other
+subtree.
 
 However, if two subtrees are none,
 then you don't need to leave space for both of them.
@@ -75,19 +76,15 @@ using namespace std;
 
 class Solution {
 private:
-    int getDepth(TreeNode *root) {
+    int getDepth(TreeNode* root) {
         if (root == nullptr) {
             return 0;
         }
         return max(getDepth(root->left), getDepth(root->right)) + 1;
     }
 
-    void print(TreeNode *root, vector<vector<string> > &result, int begin, int end, int row) {
-        if (root == nullptr or begin
-        >
-        end
-        )
-        {
+    void print(TreeNode* root, vector<vector<string>>& result, int begin, int end, int row) {
+        if (root == nullptr or begin > end) {
             return;
         }
 
@@ -98,10 +95,10 @@ private:
     }
 
 public:
-    vector<vector<string> > printTree(TreeNode *root) {
+    vector<vector<string>> printTree(TreeNode* root) {
         int depth = getDepth(root);
         int width = pow(2, depth) - 1;
-        vector<vector<string> > result(depth, vector<string>(width, ""));
+        vector<vector<string>> result(depth, vector<string>(width, ""));
         print(root, result, 0, width, 0);
         return result;
     }

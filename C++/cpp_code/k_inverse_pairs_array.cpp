@@ -43,9 +43,11 @@ dp[n][k] denotes the number of arrays that have k inverse pairs for array compos
 we can establish the recursive relationship between dp[n][k] and dp[n-1][i]:
 
 if we put n as the last number then all the k inverse pair should come from the first n-1 numbers
-if we put n as the second last number then there's 1 inverse pair involves n so the rest k-1 comes from the first n-1 numbers
+if we put n as the second last number then there's 1 inverse pair involves n so the rest k-1 comes from the first n-1
+numbers
 ...
-if we put n as the first number then there's n-1 inverse pairs involve n so the rest k-(n-1) comes from the first n-1 numbers
+if we put n as the first number then there's n-1 inverse pairs involve n so the rest k-(n-1) comes from the first n-1
+numbers
 
 dp[n][k] = dp[n-1][k] + dp[n-1][k-1] + dp[n-1][k-2] + ... + dp[n-1][k+1-n+1] + dp[n-1][k-n+1]
 
@@ -66,20 +68,14 @@ private:
 
 public:
     int kInversePairs(int n, int k) {
-        if (k > n * (n - 1) / 2 or k<0
-        )
-        {
+        if (k > n * (n - 1) / 2 or k < 0) {
             return 0;
         }
-        if (k == 0 or k
-        ==
-        n * (n - 1) / 2
-        )
-        {
+        if (k == 0 or k == n * (n - 1) / 2) {
             return 1;
         }
 
-        vector<vector<long> > dp(n + 1, vector<long>(k + 1, 0));
+        vector<vector<long>> dp(n + 1, vector<long>(k + 1, 0));
         dp[2][0] = 1;
         dp[2][1] = 1;
         for (int i = 3; i <= n; ++i) {

@@ -38,12 +38,12 @@ using namespace std;
 class Node {
 public:
     int val;
-    vector<Node *> neighbors;
+    vector<Node*> neighbors;
 
     Node() {
     }
 
-    Node(int _val, vector<Node *> _neighbors) {
+    Node(int _val, vector<Node*> _neighbors) {
         val = _val;
         neighbors = _neighbors;
     }
@@ -51,22 +51,22 @@ public:
 
 class Solution {
 private:
-    Node *clone(Node *original, unordered_map<int, Node *> &visited) {
+    Node* clone(Node* original, unordered_map<int, Node*>& visited) {
         if (visited.find(original->val) != visited.end()) {
             return visited[original->val];
         }
 
-        Node *copy = new Node(original->val, {});
+        Node* copy = new Node(original->val, {});
         visited[copy->val] = copy;
-        for (Node *next: original->neighbors) {
+        for (Node* next : original->neighbors) {
             copy->neighbors.push_back(clone(next, visited));
         }
         return copy;
     }
 
 public:
-    Node *cloneGraph(Node *node) {
-        unordered_map<int, Node *> visited;
+    Node* cloneGraph(Node* node) {
+        unordered_map<int, Node*> visited;
         return clone(node, visited);
     }
 };

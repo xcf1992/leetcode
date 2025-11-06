@@ -21,7 +21,8 @@ ghosts = [[1, 0], [0, 3]]
 target = [0, 1]
 Output: true
 Explanation:
-You can directly reach the destination (0, 1) at time 1, while the ghosts located at (1, 0) or (0, 3) have no way to catch up with you.
+You can directly reach the destination (0, 1) at time 1, while the ghosts located at (1, 0) or (0, 3) have no way to
+catch up with you.
 
 Example 2:
 Input:
@@ -58,9 +59,9 @@ using namespace std;
 
 class Solution {
 public:
-    bool escapeGhosts(vector<vector<int> > &ghosts, vector<int> &target) {
+    bool escapeGhosts(vector<vector<int>>& ghosts, vector<int>& target) {
         int distance = abs(target[0]) + abs(target[1]);
-        for (vector<int> &ghost: ghosts) {
+        for (vector<int>& ghost : ghosts) {
             if (distance >= abs(ghost[0] - target[0]) + abs(ghost[1] - target[1])) {
                 return false;
             }

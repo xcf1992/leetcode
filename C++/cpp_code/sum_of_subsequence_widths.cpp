@@ -53,7 +53,7 @@ private:
     int mod = 1e9 + 7;
 
 public:
-    int sumSubseqWidths(vector<int> &A) {
+    int sumSubseqWidths(vector<int>& A) {
         int n = A.size();
         sort(A.begin(), A.end());
 
@@ -75,7 +75,8 @@ public:
 /*
 1. We sort the array.
 2. We loop from smallest to largest number.
-3. For each number we calculate in how many subsequences we can have when we pick minimum and maximum, A[i] and A[j] in the code, the number will be pow(2, j - i - 1)
+3. For each number we calculate in how many subsequences we can have when we pick minimum and maximum, A[i] and A[j] in
+the code, the number will be pow(2, j - i - 1)
 
 It seems I have passed other cases, but failed at:
 [5,69,89,92,31,16,25,45,63,40,16,56,24,40,75,82,40,12,50,62,92,44,67,38,92,22,91,24,26,21,100,42,23,56,64,43,95,76,84,79,89,4,16,94,16,77,92,9,30,13]
@@ -87,7 +88,7 @@ private:
     int mod = 1e9 + 7;
 
 public:
-    int sumSubseqWidths(vector<int> &A) {
+    int sumSubseqWidths(vector<int>& A) {
         sort(A.begin(), A.end());
         long result = 0;
         for (int i = 0; i < A.size(); i++) {

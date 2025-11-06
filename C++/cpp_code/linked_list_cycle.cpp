@@ -40,11 +40,8 @@ using namespace std;
 
 class Solution {
 public:
-    bool hasCycle(ListNode *head) {
-        if (head == nullptr or
-        head->next == nullptr
-        )
-        {
+    bool hasCycle(ListNode* head) {
+        if (head == nullptr or head->next == nullptr) {
             return false;
         }
 
@@ -52,13 +49,9 @@ public:
             return true;
         }
 
-        ListNode *slow = head;
-        ListNode *fast = slow->next;
-        while (slow != fast and fast
-        !=
-        nullptr
-        )
-        {
+        ListNode* slow = head;
+        ListNode* fast = slow->next;
+        while (slow != fast and fast != nullptr) {
             fast = fast->next;
             if (fast != nullptr) {
                 slow = slow->next;

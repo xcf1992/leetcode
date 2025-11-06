@@ -90,34 +90,24 @@ private:
     vector<int> rDiff = {0, 0, 1, -1};
     vector<int> cDiff = {1, -1, 0, 0};
 
-    bool search(vector<int> &source, vector<int> &target, unordered_map<int, unordered_map<int, bool> > &blocked) {
-        unordered_map<int, unordered_map<int, bool> > visited;
+    bool search(vector<int>& source, vector<int>& target, unordered_map<int, unordered_map<int, bool>>& blocked) {
+        unordered_map<int, unordered_map<int, bool>> visited;
         visited[source[0]][source[1]] = true;
-        queue<pair<int, int> > bfs;
+        queue<pair<int, int>> bfs;
         bfs.push({source[0], source[1]});
         int area = 1;
         while (!bfs.empty()) {
             int r = bfs.front().first;
             int c = bfs.front().second;
             bfs.pop();
-            if ((r == target[0] and c
-            ==
-            target[1]
-            )
-            or area
-            ==
-            20000
-            )
-            {
+            if ((r == target[0] and c == target[1]) or area == 20000) {
                 return true;
             }
 
             for (int i = 0; i < 4; ++i) {
                 int nr = r + rDiff[i];
                 int nc = c + cDiff[i];
-                if (nr >= 0 and nr<length and nc >= 0 and nc < length and !visited[nr][nc] and !blocked[nr][nc]
-                )
-                {
+                if (nr >= 0 and nr < length and nc >= 0 and nc < length and !visited[nr][nc] and !blocked[nr][nc]) {
                     area += 1;
                     bfs.push({nr, nc});
                     visited[nr][nc] = true;
@@ -128,12 +118,11 @@ private:
     }
 
 public:
-    bool isEscapePossible(vector<vector<int> > &blocked, vector<int> &source, vector<int> &target) {
-        unordered_map<int, unordered_map<int, bool> > blocks;
-        for (vector<int> &b: blocked) {
+    bool isEscapePossible(vector<vector<int>>& blocked, vector<int>& source, vector<int>& target) {
+        unordered_map<int, unordered_map<int, bool>> blocks;
+        for (vector<int>& b : blocked) {
             blocks[b[0]][b[1]] = true;
         }
-        return search(source, target, blocks)
-        and search(target, source, blocks);
+        return search(source, target, blocks) and search(target, source, blocks);
     }
 };

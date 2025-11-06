@@ -45,18 +45,16 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int> > kClosest(vector<vector<int> > &points, int K) {
-        vector<pair<int, int> > pts;
+    vector<vector<int>> kClosest(vector<vector<int>>& points, int K) {
+        vector<pair<int, int>> pts;
         for (int i = 0; i < points.size(); i++) {
-            vector<int> &point = points[i];
+            vector<int>& point = points[i];
             pts.push_back({point[0] * point[0] + point[1] * point[1], i});
         }
 
-        sort(pts.begin(), pts.end(), [](pair<int, int> &a, pair<int, int> &b) {
-            return a.first < b.first;
-        });
+        sort(pts.begin(), pts.end(), [](pair<int, int>& a, pair<int, int>& b) { return a.first < b.first; });
 
-        vector<vector<int> > result;
+        vector<vector<int>> result;
         for (int i = 0; i < K; i++) {
             result.push_back(points[pts[i].second]);
         }

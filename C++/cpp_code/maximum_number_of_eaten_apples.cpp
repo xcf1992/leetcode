@@ -17,7 +17,8 @@ Output: 7
 Explanation: You can eat 7 apples:
 - On the first day, you eat an apple that grew on the first day.
 - On the second day, you eat an apple that grew on the second day.
-- On the third day, you eat an apple that grew on the second day. After this day, the apples that grew on the third day rot.
+- On the third day, you eat an apple that grew on the second day. After this day, the apples that grew on the third day
+rot.
 - On the fourth to the seventh days, you eat apples that grew on the fourth day.
 Example 2:
 Input: apples = [3,0,0,0,0,2], days = [3,0,0,0,0,2]
@@ -52,17 +53,14 @@ using namespace std;
 
 class Solution {
 public:
-    typedef pair<int, int> P; // {last date before expiration, number of apples}
-    int eatenApples(vector<int> &apples, vector<int> &days) {
+    typedef pair<int, int> P;  // {last date before expiration, number of apples}
+    int eatenApples(vector<int>& apples, vector<int>& days) {
         int ans = 0;
         int n = apples.size();
         // min heap, the pair with the smallest expiration date is on the top
-        priority_queue<P, vector<P>, greater<P> > que;
+        priority_queue<P, vector<P>, greater<P>> que;
         int i = 0;
-        while (i < n or
-        que.size() > 0
-        )
-        {
+        while (i < n or que.size() > 0) {
             // add today's apples
             if (i < n && apples[i] > 0) {
                 que.push({i + days[i] - 1, apples[i]});

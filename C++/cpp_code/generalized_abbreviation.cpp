@@ -26,7 +26,7 @@ using namespace std;
 
 class Solution {
 private:
-    void generate(vector<string> &result, int cur, int preNum, string abbreviation, string &word) {
+    void generate(vector<string>& result, int cur, int preNum, string abbreviation, string& word) {
         if (cur >= word.size()) {
             if (preNum != 0) {
                 abbreviation += to_string(preNum);
@@ -92,7 +92,7 @@ public:
 
 class Solution2 {
 private:
-    void dfs(vector<string> &result, string word, int pos, string cur, int count) {
+    void dfs(vector<string>& result, string word, int pos, string cur, int count) {
         if (pos == word.size()) {
             if (count > 0) {
                 cur += to_string(count);

@@ -63,18 +63,14 @@ public:
         long long resVal = stoll(result);
         long long diff = abs(resVal - orgVal);
 
-        long long scale = (long long) pow(10, n.size() / 2);
+        long long scale = (long long)pow(10, n.size() / 2);
         // candidate #2 (ex: 123xx -> 12221, 123xxx -> 122221, 100xx -> 9999)
         string smaller = makePalindromic(to_string((orgVal / scale) * scale - 1));
         // candidate #3 (ex: 123xx -> 12421, 123xxx -> 124421, 99xx -> 10001)
         string bigger = makePalindromic(to_string((orgVal / scale) * scale + scale));
 
         long long smallerVal = stoll(smaller);
-        if (diff == 0 or abs(orgVal - smallerVal)
-        <=
-        diff
-        )
-        {
+        if (diff == 0 or abs(orgVal - smallerVal) <= diff) {
             result = smaller;
             diff = abs(orgVal - smallerVal);
         }
@@ -92,7 +88,7 @@ class Solution1 {
 private:
     long long getNum(string n) {
         long long result = 0;
-        for (char c: n) {
+        for (char c : n) {
             result = result * 10 + (c - '0');
         }
         return result;
@@ -156,11 +152,7 @@ public:
                 }
                 onlyNine = false;
             } else {
-                if (left != 0 and n[left]
-                !=
-                '0'
-                )
-                {
+                if (left != 0 and n[left] != '0') {
                     allZero = false;
                 }
                 if (n[left] != '9') {
@@ -181,10 +173,7 @@ public:
         if (allZero) {
             // 10001 should be changed to 9999
             if (temp.front() == '1') {
-                if (temp.back() == '0' or
-                temp.back() == '1'
-                )
-                {
+                if (temp.back() == '0' or temp.back() == '1') {
                     return string(n.size() - 1, '9');
                 }
             }

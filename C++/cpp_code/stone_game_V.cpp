@@ -19,9 +19,11 @@ Return the maximum score that Alice can obtain.
 Example 1:
 Input: stoneValue = [6,2,3,4,5,5]
 Output: 18
-Explanation: In the first round, Alice divides the row to [6,2,3], [4,5,5]. The left row has the value 11 and the right row has value 14. Bob throws away the right row and Alice's score is now 11.
-In the second round Alice divides the row to [6], [2,3]. This time Bob throws away the left row and Alice's score becomes 16 (11 + 5).
-The last round Alice has only one choice to divide the row which is [2], [3]. Bob throws away the right row and Alice's score is now 18 (16 + 2). The game ends because only one stone is remaining in the row.
+Explanation: In the first round, Alice divides the row to [6,2,3], [4,5,5]. The left row has the value 11 and the right
+row has value 14. Bob throws away the right row and Alice's score is now 11. In the second round Alice divides the row
+to [6], [2,3]. This time Bob throws away the left row and Alice's score becomes 16 (11 + 5). The last round Alice has
+only one choice to divide the row which is [2], [3]. Bob throws away the right row and Alice's score is now 18 (16 + 2).
+The game ends because only one stone is remaining in the row.
 
 Example 2:
 Input: stoneValue = [7,7,7,7,7,7,7]
@@ -55,14 +57,15 @@ If the sum of right row is less recur on the right row.
 If the sum of both rows are equal we try recuring on both the partitions and chose the one with maximum result.
 Now simply repeat the steps for the new row
 Do this until there is only 1 stone left.
-We can see that there are recalculations of selected row when we perform the previous 3 steps. Thus we memoize on the row represented by i,j i.e row start and row end.
+We can see that there are recalculations of selected row when we perform the previous 3 steps. Thus we memoize on the
+row represented by i,j i.e row start and row end.
 */
 class Solution {
 private:
     vector<int> prefixSum;
-    vector<vector<int> > memo;
+    vector<vector<int>> memo;
 
-    int dp(vector<int> &stoneValue, int i, int j) {
+    int dp(vector<int>& stoneValue, int i, int j) {
         if (i == j) {
             return 0;
         }
@@ -90,7 +93,7 @@ private:
     }
 
 public:
-    int stoneGameV(vector<int> &stoneValue) {
+    int stoneGameV(vector<int>& stoneValue) {
         int n = stoneValue.size();
         memo.resize(n, vector<int>(n, -1));
         prefixSum.resize(n + 1, 0);

@@ -54,9 +54,8 @@ private:
     multimap<string, int> timeToId;
     string low = "2000:00:00:00:00:00";
     string high = "2017:12:31:23:59:59";
-    unordered_map<string, int> digits = {
-        {"Year", 4}, {"Month", 7}, {"Day", 10}, {"Hour", 13}, {"Minute", 16}, {"Second", 19}
-    };
+    unordered_map<string, int> digits = {{"Year", 4},  {"Month", 7},   {"Day", 10},
+                                         {"Hour", 13}, {"Minute", 16}, {"Second", 19}};
 
 public:
     LogSystem() {
@@ -80,8 +79,8 @@ public:
 };
 
 /*
-* Your LogSystem object will be instantiated and called as such:
-* LogSystem obj = new LogSystem();
-* obj.put(id,timestamp);
-* vector<int> param_2 = obj.retrieve(s,e,gra);
-*/
+ * Your LogSystem object will be instantiated and called as such:
+ * LogSystem obj = new LogSystem();
+ * obj.put(id,timestamp);
+ * vector<int> param_2 = obj.retrieve(s,e,gra);
+ */

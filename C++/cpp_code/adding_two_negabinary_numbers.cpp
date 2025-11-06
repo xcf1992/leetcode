@@ -40,21 +40,14 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> addNegabinary(vector<int> &arr1, vector<int> &arr2) {
+    vector<int> addNegabinary(vector<int>& arr1, vector<int>& arr2) {
         vector<int> result;
         int n1 = arr1.size();
         int n2 = arr2.size();
         int add = 0;
         int p1 = n1 - 1;
         int p2 = n2 - 1;
-        while (p1 >= 0 or p2
-        >=
-        0
-        or add
-        !=
-        0
-        )
-        {
+        while (p1 >= 0 or p2 >= 0 or add != 0) {
             if (p1 >= 0) {
                 add += arr1[p1];
                 p1 -= 1;
@@ -67,10 +60,7 @@ public:
             add = -(add >> 1);
         }
 
-        while (result.size() > 1 and
-        result.back() == 0
-        )
-        {
+        while (result.size() > 1 and result.back() == 0) {
             result.pop_back();
         }
         reverse(result.begin(), result.end());

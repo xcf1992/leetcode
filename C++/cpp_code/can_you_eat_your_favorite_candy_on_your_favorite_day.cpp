@@ -78,7 +78,7 @@ else false
 */
 class Solution {
 public:
-    vector<bool> canEat(vector<int> &candies, vector<vector<int> > &queries) {
+    vector<bool> canEat(vector<int>& candies, vector<vector<int>>& queries) {
         int n = candies.size();
         vector<long long> prefix(n + 1, 0);
         for (int i = 1; i < n + 1; ++i) {
@@ -86,7 +86,7 @@ public:
         }
 
         vector<bool> result;
-        for (auto &query: queries) {
+        for (auto& query : queries) {
             long long type = query[0];
             long long day = query[1];
             long long cap = query[2];

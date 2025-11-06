@@ -34,16 +34,16 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> preorderTraversal(TreeNode *root) {
+    vector<int> preorderTraversal(TreeNode* root) {
         if (root == nullptr) {
             return {};
         }
 
         vector<int> result;
-        stack<TreeNode *> stk;
+        stack<TreeNode*> stk;
         stk.push(root);
         while (!stk.empty()) {
-            TreeNode *cur = stk.top();
+            TreeNode* cur = stk.top();
             stk.pop();
 
             result.push_back(cur->val);

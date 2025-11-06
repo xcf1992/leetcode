@@ -42,7 +42,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> maxSlidingWindow(vector<int> &nums, int k) {
+    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
         int n = nums.size();
         if (n == 0) {
             return {};
@@ -50,11 +50,7 @@ public:
 
         deque<int> window;
         for (int i = 0; i < k; i++) {
-            while (!window.empty() and nums[i]
-            >=
-            nums[window.back()]
-            )
-            {
+            while (!window.empty() and nums[i] >= nums[window.back()]) {
                 window.pop_back();
             }
             window.push_back(i);
@@ -63,17 +59,10 @@ public:
         vector<int> result;
         result.push_back(nums[window.front()]);
         for (int i = k; i < nums.size(); i++) {
-            while (!window.empty() and nums[i]
-            >=
-            nums[window.back()]
-            )
-            {
+            while (!window.empty() and nums[i] >= nums[window.back()]) {
                 window.pop_back();
             }
-            if (!window.empty() and i
-            -window.front() >= k
-            )
-            {
+            if (!window.empty() and i - window.front() >= k) {
                 window.pop_front();
             }
             window.push_back(i);

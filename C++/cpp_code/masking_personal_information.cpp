@@ -118,10 +118,7 @@ private:
 
 public:
     string maskPII(string S) {
-        if (S.find('@') != string::npos and
-        S.find('.') != string::npos
-        )
-        {
+        if (S.find('@') != string::npos and S.find('.') != string::npos) {
             return maskEmail(S);
         }
         return maskPhoneNumber(S);

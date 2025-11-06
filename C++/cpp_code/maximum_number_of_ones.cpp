@@ -67,17 +67,13 @@ public:
         }
 
         vector<int> values;
-        for (auto &it: count) {
+        for (auto& it : count) {
             values.push_back(it.second);
         }
         sort(values.begin(), values.end());
 
         int result = 0;
-        for (int i = 0; i < maxOnes and
-        !values.empty();
-        ++i
-        )
-        {
+        for (int i = 0; i < maxOnes and !values.empty(); ++i) {
             result += values.back();
             values.pop_back();
         }

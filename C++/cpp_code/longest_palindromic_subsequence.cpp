@@ -39,7 +39,7 @@ public:
             return n;
         }
 
-        vector<vector<int> > dp(n, vector<int>(n));
+        vector<vector<int>> dp(n, vector<int>(n));
         for (int len = 1; len <= n; len++) {
             for (int left = 0; left + len - 1 < n; left++) {
                 int right = left + len - 1;
@@ -49,8 +49,8 @@ public:
                     dp[left][right] = s[left] == s[right] ? 2 : 1;
                 } else {
                     int temp = s[left] == s[right] ? 2 : 0;
-                    dp[left][right] = max(dp[left + 1][right - 1] + temp,
-                                          max(dp[left + 1][right], dp[left][right - 1]));
+                    dp[left][right] =
+                            max(dp[left + 1][right - 1] + temp, max(dp[left + 1][right], dp[left][right - 1]));
                 }
             }
         }

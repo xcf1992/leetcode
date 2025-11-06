@@ -40,34 +40,22 @@ using namespace std;
 
 class Solution {
 public:
-    int thirdMax(vector<int> &nums) {
-        long biggest = (long) INT_MIN - 1;
-        long bigger = (long) INT_MIN - 1;
-        long big = (long) INT_MIN - 1;
-        for (long num: nums) {
+    int thirdMax(vector<int>& nums) {
+        long biggest = (long)INT_MIN - 1;
+        long bigger = (long)INT_MIN - 1;
+        long big = (long)INT_MIN - 1;
+        for (long num : nums) {
             if (num > biggest) {
                 big = bigger;
                 bigger = biggest;
                 biggest = num;
-            } else if (num != biggest and num
-            >
-            bigger
-            )
-            {
+            } else if (num != biggest and num > bigger) {
                 big = bigger;
                 bigger = num;
-            }
-            else
-            if (num != biggest and num
-            !=
-            bigger and num
-            >
-            big
-            )
-            {
+            } else if (num != biggest and num != bigger and num > big) {
                 big = num;
             }
         }
-        return big == (long) INT_MIN - 1 ? biggest : big;
+        return big == (long)INT_MIN - 1 ? biggest : big;
     }
 };

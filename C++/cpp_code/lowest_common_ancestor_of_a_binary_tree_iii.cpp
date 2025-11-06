@@ -12,7 +12,8 @@ class Node {
     public Node right;
     public Node parent;
 }
-According to the definition of LCA on Wikipedia: "The lowest common ancestor of two nodes p and q in a tree T is the lowest node that has both p and q as descendants (where we allow a node to be a descendant of itself)."
+According to the definition of LCA on Wikipedia: "The lowest common ancestor of two nodes p and q in a tree T is the
+lowest node that has both p and q as descendants (where we allow a node to be a descendant of itself)."
 
 
 
@@ -73,7 +74,7 @@ public:
 
 class Solution {
 public:
-    Node* lowestCommonAncestor(Node* p, Node * q) {
+    Node* lowestCommonAncestor(Node* p, Node* q) {
         unordered_set<Node*> parents;
         Node* cur = p;
         while (cur != nullptr) {

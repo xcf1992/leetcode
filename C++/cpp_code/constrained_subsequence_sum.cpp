@@ -97,11 +97,12 @@ I recall this problem
             # 3. So, if dp[i] is larger than some old values, we can discard them safely.
             # 4. As a result, the length of `deque` is not necessarily `k`
 
-we do not need the value of A[i - k] when computing dp[i+1] in the next iteration, because `j - i <= k` has to be satisfied.
+we do not need the value of A[i - k] when computing dp[i+1] in the next iteration, because `j - i <= k` has to be
+satisfied.
 */
 class Solution {
 public:
-    int constrainedSubsetSum(vector<int> &A, int k) {
+    int constrainedSubsetSum(vector<int>& A, int k) {
         deque<int> q;
         int res = A[0];
         for (int i = 0; i < A.size(); ++i) {

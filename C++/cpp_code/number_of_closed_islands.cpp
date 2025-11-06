@@ -50,10 +50,8 @@ private:
     int n = 0;
     vector<int> diff = {0, 1, 0, -1, 0};
 
-    void dfs(int row, int col, vector<vector<int> > &grid) {
-        if (row < 0 or col<0 or row >= m or col >= n or grid[row][col] == 1
-        )
-        {
+    void dfs(int row, int col, vector<vector<int>>& grid) {
+        if (row < 0 or col < 0 or row >= m or col >= n or grid[row][col] == 1) {
             return;
         }
 
@@ -64,7 +62,7 @@ private:
     }
 
 public:
-    int closedIsland(vector<vector<int> > &grid) {
+    int closedIsland(vector<vector<int>>& grid) {
         m = grid.size();
         if (m == 0) {
             return 0;

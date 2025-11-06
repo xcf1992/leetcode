@@ -16,8 +16,8 @@ This continues until none of the queue students want to take the top sandwich an
 
 You are given two integer arrays students
 and sandwiches where sandwiches[i] is the type of the i​​​​​​th sandwich in the stack
-(i = 0 is the top of the stack) and students[j] is the preference of the j​​​​​​th student in the initial queue
-(j = 0 is the front of the queue). Return the number of students that are unable to eat.
+(i = 0 is the top of the stack) and students[j] is the preference of the j​​​​​​th student in the initial
+queue (j = 0 is the front of the queue). Return the number of students that are unable to eat.
 
 Example 1:
 Input: students = [1,1,0,0], sandwiches = [0,1,0,1]
@@ -60,9 +60,9 @@ using namespace std;
 
 class Solution {
 public:
-    int countStudents(vector<int> &A, vector<int> &B) {
+    int countStudents(vector<int>& A, vector<int>& B) {
         int count[] = {0, 0}, n = A.size(), k;
-        for (int a: A)
+        for (int a : A)
             count[a]++;
         for (k = 0; k < n && count[B[k]] > 0; ++k)
             count[B[k]]--;

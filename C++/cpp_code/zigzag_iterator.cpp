@@ -37,10 +37,10 @@ using namespace std;
 
 class ZigzagIterator {
 private:
-    queue<pair<vector<int>::iterator, vector<int>::iterator> > zigZag;
+    queue<pair<vector<int>::iterator, vector<int>::iterator>> zigZag;
 
 public:
-    ZigzagIterator(vector<int> &v1, vector<int> &v2) {
+    ZigzagIterator(vector<int>& v1, vector<int>& v2) {
         if (!v1.empty()) {
             zigZag.push({v1.begin(), v1.end()});
         }

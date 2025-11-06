@@ -35,7 +35,7 @@ The values of preorder are distinct.
 #include "extra_data_types.hpp"
 using namespace std;
 
-class Solution { // iterative same process as 255. Verify Preorder Sequence in Binary Search Tree
+class Solution {  // iterative same process as 255. Verify Preorder Sequence in Binary Search Tree
 public:
     TreeNode* bstFromPreorder(vector<int>& preorder) {
         if (preorder.empty()) {
@@ -47,16 +47,15 @@ public:
         stk.push(root);
         for (int i = 1; i < preorder.size(); ++i) {
             TreeNode* node = new TreeNode(preorder[i]);
-            if (!stk.empty() and stk.top() -> val > node -> val) {
-                stk.top() -> left = node;
-            }
-            else {
+            if (!stk.empty() and stk.top()->val > node->val) {
+                stk.top()->left = node;
+            } else {
                 TreeNode* parent = nullptr;
-                while (!stk.empty() and stk.top() -> val < node -> val) {
+                while (!stk.empty() and stk.top()->val < node->val) {
                     parent = stk.top();
                     stk.pop();
                 }
-                parent -> right = node;
+                parent->right = node;
             }
             stk.push(node);
         }
@@ -64,7 +63,7 @@ public:
     }
 };
 
-class Solution2 { // recursive only loop once
+class Solution2 {  // recursive only loop once
 private:
     TreeNode* construct(vector<int>& preorder, int& pos, int minVal, int maxVal) {
         if (pos >= preorder.size()) {
@@ -78,10 +77,11 @@ private:
 
         TreeNode* root = new TreeNode(value);
         pos += 1;
-        root -> left = construct(preorder, pos, minVal, value);
-        root -> right = construct(preorder, pos, value, maxVal);
+        root->left = construct(preorder, pos, minVal, value);
+        root->right = construct(preorder, pos, value, maxVal);
         return root;
     }
+
 public:
     TreeNode* bstFromPreorder(vector<int>& preorder) {
         int pos = 0;
@@ -89,7 +89,7 @@ public:
     }
 };
 
-class Solution1 { // simple recursive
+class Solution1 {  // simple recursive
 private:
     TreeNode* construct(int start, int end, vector<int> num) {
         if (start >= end) {
@@ -102,10 +102,11 @@ private:
         while (r < end and num[r] < num[start]) {
             r += 1;
         }
-        root -> left = construct(l, r, num);
-        root -> right = construct(r, end, num);
+        root->left = construct(l, r, num);
+        root->right = construct(r, end, num);
         return root;
     }
+
 public:
     TreeNode* bstFromPreorder(vector<int>& preorder) {
         return construct(0, preorder.size(), preorder);

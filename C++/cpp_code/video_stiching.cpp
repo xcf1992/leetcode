@@ -62,16 +62,12 @@ using namespace std;
 class Solution {
     // dp
 public:
-    int videoStitching(vector<vector<int> > &clips, int T) {
+    int videoStitching(vector<vector<int>>& clips, int T) {
         vector<int> dp(T + 1, T + 1);
         dp[0] = 0;
         for (int i = 1; i <= T; i++) {
-            for (vector<int> &clip: clips) {
-                if (clip[0] <= i and clip[1]
-                >=
-                i
-                )
-                {
+            for (vector<int>& clip : clips) {
+                if (clip[0] <= i and clip[1] >= i) {
                     dp[i] = min(dp[i], dp[clip[0]] + 1);
                 }
             }
@@ -86,10 +82,8 @@ public:
 class Solution1 {
     // greedy
 public:
-    int videoStitching(vector<vector<int> > &clips, int T) {
-        sort(clips.begin(), clips.end(), [](vector<int> &a, vector<int> &b) {
-            return a[0] < b[0];
-        });
+    int videoStitching(vector<vector<int>>& clips, int T) {
+        sort(clips.begin(), clips.end(), [](vector<int>& a, vector<int>& b) { return a[0] < b[0]; });
 
         int result = 0;
         int end = 0;
@@ -100,11 +94,7 @@ public:
             }
 
             int maxEnd = end;
-            while (cur < clips.size() and clips[cur][0]
-            <=
-            end
-            )
-            {
+            while (cur < clips.size() and clips[cur][0] <= end) {
                 maxEnd = max(maxEnd, clips[cur][1]);
                 cur += 1;
             }

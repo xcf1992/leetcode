@@ -69,7 +69,7 @@ using namespace std;
 class Solution {
 private:
     // use TreeNode*& target, to make sure found targe node is passed outside, TreeNode* target won't work
-    void traverse(vector<TreeNode *> &parent, TreeNode *&target, int k, TreeNode *root) {
+    void traverse(vector<TreeNode*>& parent, TreeNode*& target, int k, TreeNode* root) {
         if (root->val == k) {
             target = root;
             return;
@@ -87,54 +87,39 @@ private:
     }
 
 public:
-    int findClosestLeaf(TreeNode *root, int k) {
-        vector<TreeNode *> parent(1001, nullptr);
-        TreeNode *target = nullptr;
+    int findClosestLeaf(TreeNode* root, int k) {
+        vector<TreeNode*> parent(1001, nullptr);
+        TreeNode* target = nullptr;
         traverse(parent, target, k, root);
-        if (target->left == nullptr and
-        target->right == nullptr
-        )
-        {
+        if (target->left == nullptr and target->right == nullptr) {
             return k;
         }
 
-        queue<TreeNode *> bfs;
+        queue<TreeNode*> bfs;
         unordered_set<int> visited;
         visited.insert(target->val);
         bfs.push(target);
         while (!bfs.empty()) {
             int count = bfs.size();
             for (int i = 0; i < count; i++) {
-                TreeNode *cur = bfs.front();
+                TreeNode* cur = bfs.front();
                 bfs.pop();
 
-                if (cur->left == nullptr and
-                cur->right == nullptr
-                )
-                {
+                if (cur->left == nullptr and cur->right == nullptr) {
                     return cur->val;
                 }
 
-                if (cur->left != nullptr and
-                visited.find(cur->left->val) == visited.end()
-                )
-                {
+                if (cur->left != nullptr and visited.find(cur->left->val) == visited.end()) {
                     bfs.push(cur->left);
                     visited.insert(cur->left->val);
                 }
 
-                if (cur->right != nullptr and
-                visited.find(cur->right->val) == visited.end()
-                )
-                {
+                if (cur->right != nullptr and visited.find(cur->right->val) == visited.end()) {
                     bfs.push(cur->right);
                     visited.insert(cur->right->val);
                 }
 
-                if (parent[cur->val] != nullptr and
-                visited.find(parent[cur->val]->val) == visited.end()
-                )
-                {
+                if (parent[cur->val] != nullptr and visited.find(parent[cur->val]->val) == visited.end()) {
                     bfs.push(parent[cur->val]);
                     visited.insert(parent[cur->val]->val);
                 }

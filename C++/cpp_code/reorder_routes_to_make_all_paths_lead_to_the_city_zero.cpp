@@ -50,7 +50,7 @@ using namespace std;
 
 class Solution {
 private:
-    int dfs(vector<vector<int>> &al, vector<bool> &visited, int from) {
+    int dfs(vector<vector<int>>& al, vector<bool>& visited, int from) {
         auto change = 0;
         visited[from] = true;
         for (auto to : al[from])
@@ -58,10 +58,11 @@ private:
                 change += dfs(al, visited, abs(to)) + (to > 0);
         return change;
     }
+
 public:
     int minReorder(int n, vector<vector<int>>& connections) {
         vector<vector<int>> al(n);
-        for (auto &c : connections) {
+        for (auto& c : connections) {
             al[c[0]].push_back(c[1]);
             al[c[1]].push_back(-c[0]);
         }
@@ -69,7 +70,7 @@ public:
     }
 };
 
-class Solution1 { // TLE
+class Solution1 {  // TLE
 public:
     int minReorder(int n, vector<vector<int>>& connections) {
         vector<vector<int>> canReach(n, vector<int>(n, 0));
@@ -87,17 +88,18 @@ public:
             int cur = bfs.front();
             bfs.pop();
 
-            for (int i = 0; i < n; ++i) if (i != cur and !visited[i]) {
-                if (canReach[cur][i] == 0) {
-                    continue;
-                }
+            for (int i = 0; i < n; ++i)
+                if (i != cur and !visited[i]) {
+                    if (canReach[cur][i] == 0) {
+                        continue;
+                    }
 
-                if (canReach[cur][i] == 1) {
-                    result += 1;
+                    if (canReach[cur][i] == 1) {
+                        result += 1;
+                    }
+                    bfs.push(i);
+                    visited[i] = true;
                 }
-                bfs.push(i);
-                visited[i] = true;
-            }
         }
         return result;
     }

@@ -62,47 +62,48 @@ class Solution {
 private:
     long long sti(string str) {
         reverse(str.begin(), str.end());
-        long long ans=0, base=1;
+        long long ans = 0, base = 1;
         for (int i = 0; i < str.size(); i++) {
             ans += (str[i] - '0') * base;
             base *= 10;
         }
         return ans;
     }
+
 public:
     int maxDiff(int num) {
         string a = to_string(num);
-        int ind=0;
-        //Maximizing the Integer value;
-        //Starting from the first left, we move towards right till we get an Integer which is not 9, and we replace that with 9
-        //Thereby, the number becomes Maximal
-        while(a[ind]=='9')
+        int ind = 0;
+        // Maximizing the Integer value;
+        // Starting from the first left, we move towards right till we get an Integer which is not 9, and we replace
+        // that with 9 Thereby, the number becomes Maximal
+        while (a[ind] == '9')
             ind++;
-        //We store the character
+        // We store the character
         char c = a[ind];
-        for(int i=ind; i<a.size(); i++)
-            if(a[i]==c)
-                a[i]='9';
-        //Store this value in a variable;
+        for (int i = ind; i < a.size(); i++)
+            if (a[i] == c)
+                a[i] = '9';
+        // Store this value in a variable;
         long long ans = sti(a);
         string b = to_string(num);
-        ind=0;
-        //Since, we are to minimize the integer now
-        //We traverse from left and ignore 1 and 0 from left;
-        while(b[ind]=='1' || b[ind]=='0')
+        ind = 0;
+        // Since, we are to minimize the integer now
+        // We traverse from left and ignore 1 and 0 from left;
+        while (b[ind] == '1' || b[ind] == '0')
             ind++;
-        //We store the character
+        // We store the character
         c = b[ind];
-        for (int i=ind; i<b.size(); i++) {
-            if(b[i]==c) {
-                if(ind==0) //Since, integer cannot have leading zeroes, if ind==0, we replace the digits with 1;
-                    b[i]='1';
-                else // Else, we replace occurence of the digit with 0;
-                    b[i]='0';
+        for (int i = ind; i < b.size(); i++) {
+            if (b[i] == c) {
+                if (ind == 0)  // Since, integer cannot have leading zeroes, if ind==0, we replace the digits with 1;
+                    b[i] = '1';
+                else  // Else, we replace occurence of the digit with 0;
+                    b[i] = '0';
             }
         }
-        //Subtract the value from previous maximal value;
-        ans=ans-sti(b);
+        // Subtract the value from previous maximal value;
+        ans = ans - sti(b);
         return ans;
     }
 };

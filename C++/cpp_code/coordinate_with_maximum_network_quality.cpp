@@ -71,19 +71,19 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> bestCoordinate(vector<vector<int> > &towers, int radius) {
+    vector<int> bestCoordinate(vector<vector<int>>& towers, int radius) {
         int x = -1;
         int y = -1;
 
         int max = INT_MIN;
 
-        //for every tower
+        // for every tower
         for (int i = 0; i < towers.size(); i++) {
-            //check for everyother tower including itself
+            // check for everyother tower including itself
 
             int sumquality = 0;
 
-            //calculate total quality
+            // calculate total quality
             for (int j = 0; j < towers.size(); j++) {
                 double dist = (towers[j][0] - towers[i][0]) * (towers[j][0] - towers[i][0]) +
                               (towers[j][1] - towers[i][1]) * (towers[j][1] - towers[i][1]);
@@ -93,7 +93,7 @@ public:
                     sumquality += towers[j][2] / (dist + 1);
                 }
             }
-            //cout << sumquality << endl ;
+            // cout << sumquality << endl ;
 
             if (sumquality == max) {
                 if (towers[i][0] < x || towers[i][0] == x && towers[i][1] < y) {

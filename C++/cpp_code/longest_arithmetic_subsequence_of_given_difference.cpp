@@ -37,7 +37,7 @@ Constraints:
 #include <stdio.h>
 using namespace std;
 
-class Solution { // TLE
+class Solution {  // TLE
 public:
     int longestSubsequence(vector<int>& arr, int difference) {
         int n = arr.size();
@@ -50,8 +50,7 @@ public:
         for (int num : arr) {
             if (dp.find(num - difference) == dp.end()) {
                 dp[num] = 1;
-            }
-            else {
+            } else {
                 dp[num] = dp[num - difference] + 1;
             }
             result = max(result, dp[num]);
@@ -60,7 +59,7 @@ public:
     }
 };
 
-class Solution1 { // TLE
+class Solution1 {  // TLE
 public:
     int longestSubsequence(vector<int>& arr, int difference) {
         int n = arr.size();

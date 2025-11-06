@@ -43,7 +43,7 @@ using namespace std;
 class Solution {
 public:
     int minElements(vector<int>& A, int limit, int goal) {
-        long sum = accumulate(A.begin(), A.end(), 0L),  diff = abs(goal - sum);
+        long sum = accumulate(A.begin(), A.end(), 0L), diff = abs(goal - sum);
         return (diff + limit - 1) / limit;
     }
 };

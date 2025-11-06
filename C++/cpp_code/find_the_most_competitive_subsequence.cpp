@@ -16,7 +16,8 @@ because the first position they differ is at the final number, and 4 is less tha
 Example 1:
 Input: nums = [3,5,2,6], k = 2
 Output: [2,6]
-Explanation: Among the set of every possible subsequence: {[3,5], [3,2], [3,6], [5,2], [5,6], [2,6]}, [2,6] is the most competitive.
+Explanation: Among the set of every possible subsequence: {[3,5], [3,2], [3,6], [5,2], [5,6], [2,6]}, [2,6] is the most
+competitive.
 
 Example 2:
 Input: nums = [2,4,3,3,5,4,9,6], k = 4
@@ -67,7 +68,7 @@ Space O(k)
 */
 class Solution {
 public:
-    vector<int> mostCompetitive(vector<int> &A, int k) {
+    vector<int> mostCompetitive(vector<int>& A, int k) {
         vector<int> stack;
         for (int i = 0; i < A.size(); ++i) {
             while (!stack.empty() && stack.back() > A[i] && stack.size() - 1 + A.size() - i >= k) {

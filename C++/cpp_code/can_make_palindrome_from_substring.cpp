@@ -53,9 +53,9 @@ using namespace std;
 class Solution {
     // 14
 public:
-    vector<bool> canMakePaliQueries(string s, vector<vector<int> > &queries) {
+    vector<bool> canMakePaliQueries(string s, vector<vector<int>>& queries) {
         int len = s.size();
-        vector<vector<int> > count;
+        vector<vector<int>> count;
         vector<int> temp(26, 0);
         count.push_back(temp);
         for (int i = 0; i < len; ++i) {

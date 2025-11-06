@@ -26,14 +26,14 @@ using namespace std;
 
 class Solution {
 public:
-    int longestConsecutive(vector<int> &nums) {
+    int longestConsecutive(vector<int>& nums) {
         unordered_set<int> count;
-        for (int k: nums) {
+        for (int k : nums) {
             count.insert(k);
         }
 
         int result = 0;
-        for (int k: nums) {
+        for (int k : nums) {
             if (count.find(k) == count.end()) {
                 continue;
             }

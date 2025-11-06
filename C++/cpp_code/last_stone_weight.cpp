@@ -48,9 +48,9 @@ struct myComp {
 
 class Solution {
 public:
-    int lastStoneWeight(vector<int> &stones) {
+    int lastStoneWeight(vector<int>& stones) {
         priority_queue<int, vector<int>, myComp> pq;
-        for (int stone: stones) {
+        for (int stone : stones) {
             pq.push(stone);
         }
 

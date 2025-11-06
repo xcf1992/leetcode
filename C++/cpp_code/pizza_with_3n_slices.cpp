@@ -16,7 +16,8 @@ Return the maximum possible sum of slice sizes which you can have.
 Example 1:
 Input: slices = [1,2,3,4,5,6]
 Output: 10
-Explanation: Pick pizza slice of size 4, Alice and Bob will pick slices with size 3 and 5 respectively. Then Pick slices with size 6, finally Alice and Bob will pick slice of size 2 and 1 respectively. Total = 4 + 6.
+Explanation: Pick pizza slice of size 4, Alice and Bob will pick slices with size 3 and 5 respectively. Then Pick slices
+with size 6, finally Alice and Bob will pick slice of size 2 and 1 respectively. Total = 4 + 6.
 
 Example 2:
 Input: slices = [8,9,8,6,1,1]
@@ -87,16 +88,20 @@ Note that dfs can be compressed to one line but too long.
 A little more explanation for other bros not as smart as lee..(like me )
 
 why circle = 0 in recursive is ok..which mean do not need to consider the circle anymore in the dp progress..?
-The target is equal to find the max sum sequence sized n//3 and each element is not adjacent...order is not important and when they are not adjacent, it is always possible to find a legal order to take.
+The target is equal to find the max sum sequence sized n//3 and each element is not adjacent...order is not important
+and when they are not adjacent, it is always possible to find a legal order to take.
 
-for example.... [x1, x2, x3, x4, x5,x6,x7,x8,x9]...the task is to pick 3 of them... assume x2..x7..x9 is larger than anyone...so x2+x7+x9 must be the answer
-In the above function, we take x9 and dp [x2,x3,x4,x5,x6,x7]...this is obvious....then we take x7 and dp[x2, x3, x4,x5]...someone may think..oh no..when x7 is taken..we should delete x2 also...this is not ok...actually this is just not ok in this taking order...first x9, next x7...x2 is impossible....however...first x2, next x7 or x9....it is legal.
+for example.... [x1, x2, x3, x4, x5,x6,x7,x8,x9]...the task is to pick 3 of them... assume x2..x7..x9 is larger than
+anyone...so x2+x7+x9 must be the answer In the above function, we take x9 and dp [x2,x3,x4,x5,x6,x7]...this is
+obvious....then we take x7 and dp[x2, x3, x4,x5]...someone may think..oh no..when x7 is taken..we should delete x2
+also...this is not ok...actually this is just not ok in this taking order...first x9, next x7...x2 is
+impossible....however...first x2, next x7 or x9....it is legal.
 */
 class Solution {
 private:
     unordered_map<string, int> memo;
 
-    int dp(vector<int> &slices, int start, int end, int n, int cycle) {
+    int dp(vector<int>& slices, int start, int end, int n, int cycle) {
         string key = to_string(start) + "$" + to_string(end) + "$" + to_string(n) + "$" + to_string(cycle);
         if (memo.find(key) != memo.end()) {
             return memo[key];
@@ -116,14 +121,13 @@ private:
             return memo[key];
         }
 
-        int res = max(dp(slices, start + cycle, end - 2, n - 1, 0) + slices[end],
-                      dp(slices, start, end - 1, n, 0));
+        int res = max(dp(slices, start + cycle, end - 2, n - 1, 0) + slices[end], dp(slices, start, end - 1, n, 0));
         memo[key] = res;
         return memo[key];
     }
 
 public:
-    int maxSizeSlices(vector<int> &slices) {
+    int maxSizeSlices(vector<int>& slices) {
         int n = slices.size();
         return dp(slices, 0, n - 1, n / 3, 1);
     }

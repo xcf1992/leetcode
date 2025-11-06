@@ -52,22 +52,21 @@ using namespace std;
 
 class Solution {
 private:
-    int longestPalindromeSubseq(string s, vector<vector<int> > &dp)
-    {
+    int longestPalindromeSubseq(string s, vector<vector<int>>& dp) {
         for (int len = 1; len <= s.size(); ++len) {
             for (int i = 0; i + len <= s.size(); ++i) {
-                dp[i][i + len] = s[i] == s[i + len - 1] ?
-                                            dp[i + 1][i + len - 1] + (len == 1 ? 1 : 2) :
-                                            max(dp[i][i + len - 1], dp[i + 1][i + len]);
+                dp[i][i + len] = s[i] == s[i + len - 1] ? dp[i + 1][i + len - 1] + (len == 1 ? 1 : 2)
+                                                        : max(dp[i][i + len - 1], dp[i + 1][i + len]);
             }
         }
         return dp[0][s.size()];
     }
+
 public:
     int longestPalindrome(string w1, string w2) {
         int sz = w1.size() + w2.size();
         int res = 0;
-        vector<vector<int> > dp(sz + 1, vector<int>(sz + 1));
+        vector<vector<int>> dp(sz + 1, vector<int>(sz + 1));
 
         longestPalindromeSubseq(w1 + w2, dp);
 

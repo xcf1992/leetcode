@@ -39,8 +39,8 @@ After removing the comments from the source code, return the source code in the 
 
 Example 1:
 Input:
-source = ["/ *Test program * /", "int main()", "{ ", "  // variable declaration ", "int a, b, c;", "/ * This is a test", "   multiline  ", "   comment for ", "   testing * /", "a = b + c;", "}"]
-The line by line code is visualized as below:
+source = ["/ *Test program * /", "int main()", "{ ", "  // variable declaration ", "int a, b, c;", "/ * This is a test",
+"   multiline  ", "   comment for ", "   testing * /", "a = b + c;", "}"] The line by line code is visualized as below:
 / *Test program * /
 int main()
 {
@@ -69,7 +69,9 @@ Example 2:
 Input:
 source = ["a/ *comment", "line", "more_comment* /b"]
 Output: ["ab"]
-Explanation: The original source string is "a/ *comment\nline\nmore_comment* /b", where we have bolded the newline characters.  After deletion, the implicit newline characters are deleted, leaving the string "ab", which when delimited by newline characters becomes ["ab"].
+Explanation: The original source string is "a/ *comment\nline\nmore_comment* /b", where we have bolded the newline
+characters.  After deletion, the implicit newline characters are deleted, leaving the string "ab", which when delimited
+by newline characters becomes ["ab"].
 
 Note:
 The length of source is in the range [1, 100].
@@ -94,62 +96,27 @@ using namespace std;
 
 class Solution {
 public:
-    vector<string> removeComments(vector<string> &source) {
+    vector<string> removeComments(vector<string>& source) {
         vector<string> result;
         bool inComment = false;
         string line = "";
         for (int i = 0; i < source.size(); i++) {
             for (int j = 0; j < source[i].size(); j++) {
-                if (!inComment and source[i][j]
-                ==
-                '/'
-                and j
-                +1 < source[i].size()
-                and source[i][j + 1]
-                ==
-                '/'
-                )
-                {
+                if (!inComment and source[i][j] == '/' and j + 1 < source[i].size() and source[i][j + 1] == '/') {
                     break;
-                }
-                else
-                if (!inComment and source[i][j]
-                ==
-                '/'
-                and j
-                +1 < source[i].size()
-                and source[i][j + 1]
-                ==
-                '*'
-                )
-                {
+                } else if (!inComment and source[i][j] == '/' and j + 1 < source[i].size() and
+                           source[i][j + 1] == '*') {
                     inComment = true;
                     j += 1;
-                }
-                else
-                if (inComment and source[i][j]
-                ==
-                '*'
-                and j
-                +1 < source[i].size()
-                and source[i][j + 1]
-                ==
-                '/'
-                )
-                {
+                } else if (inComment and source[i][j] == '*' and j + 1 < source[i].size() and source[i][j + 1] == '/') {
                     inComment = false;
                     j += 1;
-                }
-                else
-                if (!inComment) {
+                } else if (!inComment) {
                     line.push_back(source[i][j]);
                 }
             }
 
-            if (!inComment and
-            !line.empty()
-            )
-            {
+            if (!inComment and !line.empty()) {
                 result.push_back(line);
                 line = "";
             }

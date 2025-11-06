@@ -40,7 +40,7 @@ public:
             return dividend;
         }
         if (divisor == -1) {
-            long result = 0 - (long) dividend;
+            long result = 0 - (long)dividend;
             return result > INT_MAX ? INT_MAX : result;
         }
 

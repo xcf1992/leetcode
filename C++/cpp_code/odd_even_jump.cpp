@@ -28,23 +28,26 @@ Example 1:
 Input: [10,13,12,14,15]
 Output: 2
 Explanation:
-From starting index i = 0, we can jump to i = 2 (since A[2] is the smallest among A[1], A[2], A[3], A[4] that is greater or equal to A[0]), then we can't jump any more.
-From starting index i = 1 and i = 2, we can jump to i = 3, then we can't jump any more.
-From starting index i = 3, we can jump to i = 4, so we've reached the end.
-From starting index i = 4, we've reached the end already.
-In total, there are 2 different starting indexes (i = 3, i = 4) where we can reach the end with some number of jumps.
-Example 2:
+From starting index i = 0, we can jump to i = 2 (since A[2] is the smallest among A[1], A[2], A[3], A[4] that is greater
+or equal to A[0]), then we can't jump any more. From starting index i = 1 and i = 2, we can jump to i = 3, then we can't
+jump any more. From starting index i = 3, we can jump to i = 4, so we've reached the end. From starting index i = 4,
+we've reached the end already. In total, there are 2 different starting indexes (i = 3, i = 4) where we can reach the
+end with some number of jumps. Example 2:
 
 Input: [2,3,1,1,4]
 Output: 3
 Explanation:
 From starting index i = 0, we make jumps to i = 1, i = 2, i = 3:
 
-During our 1st jump (odd numbered), we first jump to i = 1 because A[1] is the smallest value in (A[1], A[2], A[3], A[4]) that is greater than or equal to A[0].
+During our 1st jump (odd numbered), we first jump to i = 1 because A[1] is the smallest value in (A[1], A[2], A[3],
+A[4]) that is greater than or equal to A[0].
 
-During our 2nd jump (even numbered), we jump from i = 1 to i = 2 because A[2] is the largest value in (A[2], A[3], A[4]) that is less than or equal to A[1].  A[3] is also the largest value, but 2 is a smaller index, so we can only jump to i = 2 and not i = 3.
+During our 2nd jump (even numbered), we jump from i = 1 to i = 2 because A[2] is the largest value in (A[2], A[3], A[4])
+that is less than or equal to A[1].  A[3] is also the largest value, but 2 is a smaller index, so we can only jump to i
+= 2 and not i = 3.
 
-During our 3rd jump (odd numbered), we jump from i = 2 to i = 3 because A[3] is the smallest value in (A[3], A[4]) that is greater than or equal to A[2].
+During our 3rd jump (odd numbered), we jump from i = 2 to i = 3 because A[3] is the smallest value in (A[3], A[4]) that
+is greater than or equal to A[2].
 
 We can't jump from i = 3 to i = 4, so the starting index i = 0 is not good.
 
@@ -53,8 +56,8 @@ From starting index i = 1, we jump to i = 4, so we reach the end.
 From starting index i = 2, we jump to i = 3, and then we can't jump anymore.
 From starting index i = 3, we jump to i = 4, so we reach the end.
 From starting index i = 4, we are already at the end.
-In total, there are 3 different starting indexes (i = 1, i = 3, i = 4) where we can reach the end with some number of jumps.
-Example 3:
+In total, there are 3 different starting indexes (i = 1, i = 3, i = 4) where we can reach the end with some number of
+jumps. Example 3:
 
 Input: [5,1,3,4,2]
 Output: 3
@@ -83,13 +86,13 @@ using namespace std;
 
 class Solution {
 public:
-    int oddEvenJumps(vector<int> &A) {
+    int oddEvenJumps(vector<int>& A) {
         int n = A.size();
         vector<int> oddNext(n, -1);
         vector<int> evenNext(n, -1);
         map<int, int> numIndex;
         for (int i = n - 1; i >= 0; i--) {
-            auto it = numIndex.lower_bound(A[i]); // >= A[i]
+            auto it = numIndex.lower_bound(A[i]);  // >= A[i]
             if (it != numIndex.end()) {
                 oddNext[i] = it->second;
             }

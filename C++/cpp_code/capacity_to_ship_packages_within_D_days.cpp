@@ -20,7 +20,8 @@ A ship capacity of 15 is the minimum to ship all the packages in 5 days like thi
 3rd day: 8
 4th day: 9
 5th day: 10
-Note that the cargo must be shipped in the order given, so using a ship of capacity 14 and splitting the packages into parts like (2, 3, 4, 5), (1, 6, 7), (8), (9), (10) is not allowed.
+Note that the cargo must be shipped in the order given, so using a ship of capacity 14 and splitting the packages into
+parts like (2, 3, 4, 5), (1, 6, 7), (8), (9), (10) is not allowed.
 
 Example 2:
 Input: weights = [3,2,2,4,1,4], D = 3
@@ -61,10 +62,10 @@ using namespace std;
 
 class Solution {
 public:
-    int shipWithinDays(vector<int> &weights, int D) {
+    int shipWithinDays(vector<int>& weights, int D) {
         int left = 0;
         int right = 0;
-        for (int w: weights) {
+        for (int w : weights) {
             left = max(left, w);
             right += w;
         }
@@ -73,7 +74,7 @@ public:
             int mid = left + (right - left) / 2;
             int bags = 1;
             int cur = 0;
-            for (int w: weights) {
+            for (int w : weights) {
                 if (cur + w > mid) {
                     bags += 1;
                     cur = w;

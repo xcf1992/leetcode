@@ -52,9 +52,7 @@ public:
 
         string result = "";
         int count = 0;
-        while (num != 0 and count<8
-        )
-        {
+        while (num != 0 and count < 8) {
             // use != 0, in order to transform negative number
             result.push_back(HEX[num & 0xf]);
             num >>= 4;

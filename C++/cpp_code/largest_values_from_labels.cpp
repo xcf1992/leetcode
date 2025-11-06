@@ -49,15 +49,15 @@ Note:
 using namespace std;
 
 struct myComp {
-    bool operator()(pair<int, int> &a, pair<int, int> &b) {
+    bool operator()(pair<int, int>& a, pair<int, int>& b) {
         return a.second < b.second;
     }
 };
 
 class Solution {
 public:
-    int largestValsFromLabels(vector<int> &values, vector<int> &labels, int num_wanted, int use_limit) {
-        priority_queue<pair<int, int>, vector<pair<int, int> >, myComp> maxHeap;
+    int largestValsFromLabels(vector<int>& values, vector<int>& labels, int num_wanted, int use_limit) {
+        priority_queue<pair<int, int>, vector<pair<int, int>>, myComp> maxHeap;
         int n = values.size();
         for (int i = 0; i < n; ++i) {
             maxHeap.push({labels[i], values[i]});
@@ -65,10 +65,7 @@ public:
 
         int result = 0;
         unordered_map<int, int> used;
-        while (num_wanted > 0 and
-        !maxHeap.empty()
-        )
-        {
+        while (num_wanted > 0 and !maxHeap.empty()) {
             pair<int, int> cur = maxHeap.top();
             maxHeap.pop();
             if (used[cur.first] < use_limit) {

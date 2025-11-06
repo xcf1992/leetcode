@@ -41,20 +41,18 @@ using namespace std;
 
 class Solution {
 private:
-    vector<int> count(TreeNode *root) {
+    vector<int> count(TreeNode* root) {
         if (root == nullptr) {
             // cause when we do compare, we use current node value to compare with left Max, and right min
             // so we need to assign max to be INT_MIN and min to INT_MAX to make a leaf node always a BST
-            return {INT_MAX, INT_MIN, 0}; // min, max, count
+            return {INT_MAX, INT_MIN, 0};  // min, max, count
         }
 
         vector<int> leftSub = count(root->left);
         vector<int> rightSub = count(root->right);
-        if (root->val > leftSub[1] and
-        root->val < rightSub[0]
-        )
-        {
-            // we cannot return {leftSub[0], rightSub[1], ...} here, because the leaf node case, we need return the actual root val as return values
+        if (root->val > leftSub[1] and root->val < rightSub[0]) {
+            // we cannot return {leftSub[0], rightSub[1], ...} here, because the leaf node case, we need return the
+            // actual root val as return values
             return {min(root->val, leftSub[0]), max(root->val, rightSub[1]), leftSub[2] + 1 + rightSub[2]};
         }
         // current and further tree should be invalid BST
@@ -64,7 +62,7 @@ private:
     }
 
 public:
-    int largestBSTSubtree(TreeNode *root) {
+    int largestBSTSubtree(TreeNode* root) {
         return count(root)[2];
     }
 };

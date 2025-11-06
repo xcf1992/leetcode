@@ -38,17 +38,17 @@ using namespace std;
 
 class Solution {
 public:
-    bool isNStraightHand(vector<int> &hand, int W) {
+    bool isNStraightHand(vector<int>& hand, int W) {
         if (hand.size() % W != 0) {
             return false;
         }
 
         map<int, int> count;
-        for (int card: hand) {
+        for (int card : hand) {
             count[card] += 1;
         }
 
-        for (auto c: count)
+        for (auto c : count)
             if (c.second > 0) {
                 for (int i = 1; i < W; i++) {
                     if (count.find(c.first + i) == count.end()) {

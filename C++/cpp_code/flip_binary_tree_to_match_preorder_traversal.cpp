@@ -13,7 +13,8 @@ Call such a sequence of N values the voyage of the tree.
 then preorder-traverse the left child,
 then preorder-traverse the right child.)
 
-Our goal is to flip the least number of nodes in the tree so that the voyage of the tree matches the voyage we are given.
+Our goal is to flip the least number of nodes in the tree so that the voyage of the tree matches the voyage we are
+given.
 
 If we can do so, then return a list of the values of all nodes flipped.
 You may return the answer in any order.
@@ -60,7 +61,7 @@ Note:
 #include "extra_data_types.hpp"
 using namespace std;
 
-class Solution { // iterative with stace
+class Solution {  // iterative with stace
 public:
     vector<int> flipMatchVoyage(TreeNode* root, vector<int>& voyage) {
         vector<int> result;
@@ -74,45 +75,45 @@ public:
                 continue;
             }
 
-            if (cur -> val != voyage[pos]) {
+            if (cur->val != voyage[pos]) {
                 return vector<int>{-1};
             }
 
             pos += 1;
-            if (cur -> right != nullptr and cur -> right -> val == voyage[pos]) {
-                if (cur -> left != nullptr) {
-                    result.push_back(cur -> val);
+            if (cur->right != nullptr and cur->right->val == voyage[pos]) {
+                if (cur->left != nullptr) {
+                    result.push_back(cur->val);
                 }
-                stk.push(cur -> left);
-                stk.push(cur -> right);
-            }
-            else {
-                stk.push(cur -> right);
-                stk.push(cur -> left);
+                stk.push(cur->left);
+                stk.push(cur->right);
+            } else {
+                stk.push(cur->right);
+                stk.push(cur->left);
             }
         }
         return result;
     }
 };
 
-class Solution1 { // recursive
+class Solution1 {  // recursive
 private:
     bool traversal(TreeNode* root, vector<int>& voyage, vector<int>& result, int& cur) {
         if (root == nullptr) {
             return true;
         }
 
-        if (root -> val != voyage[cur]) {
+        if (root->val != voyage[cur]) {
             return false;
         }
 
         cur += 1;
-        if (root -> left != nullptr and root -> left -> val != voyage[cur]) {
-            result.push_back(root -> val);
-            return traversal(root -> right, voyage, result, cur) and traversal(root -> left, voyage, result, cur);
+        if (root->left != nullptr and root->left->val != voyage[cur]) {
+            result.push_back(root->val);
+            return traversal(root->right, voyage, result, cur) and traversal(root->left, voyage, result, cur);
         }
-        return traversal(root -> left, voyage, result, cur) and traversal(root -> right, voyage, result, cur);
+        return traversal(root->left, voyage, result, cur) and traversal(root->right, voyage, result, cur);
     }
+
 public:
     vector<int> flipMatchVoyage(TreeNode* root, vector<int>& voyage) {
         vector<int> result;
@@ -128,7 +129,7 @@ private:
             return true;
         }
 
-        if (root -> val != voyage[cur]) {
+        if (root->val != voyage[cur]) {
             return false;
         }
 
@@ -137,20 +138,21 @@ private:
             return true;
         }
 
-        if (root -> left != nullptr) {
-            if (root -> left -> val != voyage[cur]) {
-                if (root -> right == nullptr or root -> right -> val != voyage[cur]) {
+        if (root->left != nullptr) {
+            if (root->left->val != voyage[cur]) {
+                if (root->right == nullptr or root->right->val != voyage[cur]) {
                     return false;
                 }
-                swap(root -> left, root -> right);
-                result.push_back(root -> val);
+                swap(root->left, root->right);
+                result.push_back(root->val);
             }
-            if (!traversal(root -> left, voyage, result, cur)) {
+            if (!traversal(root->left, voyage, result, cur)) {
                 return false;
             }
         }
-        return traversal(root -> right, voyage, result, cur);
+        return traversal(root->right, voyage, result, cur);
     }
+
 public:
     vector<int> flipMatchVoyage(TreeNode* root, vector<int>& voyage) {
         vector<int> result;

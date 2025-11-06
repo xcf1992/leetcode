@@ -2,13 +2,14 @@
  558. Quad Tree Intersection
  A quadtree is a tree data in which each internal node has exactly four children:
  topLeft, topRight, bottomLeft and bottomRight.
- Quad trees are often used to partition a two-dimensional space by recursively subdividing it into four quadrants or regions.
+ Quad trees are often used to partition a two-dimensional space by recursively subdividing it into four quadrants or
+ regions.
 
  We want to store True/False information in our quad tree.
  The quad tree is used to represent a N * N boolean grid.
- For each node, it will be subdivided into four children nodes until the values in the region it represents are all the same.
- Each node has another two boolean attributes : isLeaf and val. isLeaf is true if and only if the node is a leaf node.
- The val attribute for a leaf node contains the value of the region it represents.
+ For each node, it will be subdivided into four children nodes until the values in the region it represents are all the
+ same. Each node has another two boolean attributes : isLeaf and val. isLeaf is true if and only if the node is a leaf
+ node. The val attribute for a leaf node contains the value of the region it represents.
 
  For example, below are two quad trees A and B:
 
@@ -47,7 +48,8 @@
  bottomRight: F
 
 
- Your task is to implement a function that will take two quadtrees and return a quadtree that represents the logical OR (or union) of the two trees.
+ Your task is to implement a function that will take two quadtrees and return a quadtree that represents the logical OR
+ (or union) of the two trees.
 
  A:                 B:                 C (A or B):
  +-------+-------+  +-------+---+---+  +-------+-------+
@@ -84,15 +86,15 @@ class Node {
 public:
     bool val;
     bool isLeaf;
-    Node *topLeft;
-    Node *topRight;
-    Node *bottomLeft;
-    Node *bottomRight;
+    Node* topLeft;
+    Node* topRight;
+    Node* bottomLeft;
+    Node* bottomRight;
 
     Node() {
     }
 
-    Node(bool _val, bool _isLeaf, Node *_topLeft, Node *_topRight, Node *_bottomLeft, Node *_bottomRight) {
+    Node(bool _val, bool _isLeaf, Node* _topLeft, Node* _topRight, Node* _bottomLeft, Node* _bottomRight) {
         val = _val;
         isLeaf = _isLeaf;
         topLeft = _topLeft;
@@ -104,58 +106,27 @@ public:
 
 class Solution {
 private:
-    bool isLeaf(Node *node) {
-        Node *topLeft = node->topLeft;
-        Node *topRight = node->topRight;
-        Node *botLeft = node->bottomLeft;
-        Node *botRight = node->bottomRight;
+    bool isLeaf(Node* node) {
+        Node* topLeft = node->topLeft;
+        Node* topRight = node->topRight;
+        Node* botLeft = node->bottomLeft;
+        Node* botRight = node->bottomRight;
 
-        if (topLeft == nullptr and topRight
-        ==
-        nullptr
-        and botLeft
-        ==
-        nullptr
-        and botRight
-        ==
-        nullptr
-        )
-        {
+        if (topLeft == nullptr and topRight == nullptr and botLeft == nullptr and botRight == nullptr) {
             return true;
         }
 
-        if (topLeft->isLeaf and
-        topRight->isLeaf
-        and
-        botRight->isLeaf
-        and
-        botLeft->isLeaf
-        and(
-            (topLeft->val and topRight->val and botLeft->val and botRight->val)
-        or
-        !(topLeft->val
-        or
-        topRight->val
-        or
-        botLeft->val
-        or
-        botRight->val
-        )
-        )
-        )
-        {
+        if (topLeft->isLeaf and topRight->isLeaf and botRight->isLeaf and botLeft->isLeaf and
+            ((topLeft->val and topRight->val and botLeft->val and botRight->val) or
+             !(topLeft->val or topRight->val or botLeft->val or botRight->val))) {
             return true;
         }
         return false;
     }
 
 public:
-    Node *intersect(Node *quadTree1, Node *quadTree2) {
-        if (quadTree1 == nullptr or quadTree1
-        ==
-        nullptr
-        )
-        {
+    Node* intersect(Node* quadTree1, Node* quadTree2) {
+        if (quadTree1 == nullptr or quadTree1 == nullptr) {
             return quadTree1 == nullptr ? quadTree2 : quadTree1;
         }
 

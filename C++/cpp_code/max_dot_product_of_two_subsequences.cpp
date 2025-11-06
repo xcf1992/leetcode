@@ -51,10 +51,10 @@ Similar problem: 1035. Uncrossed Lines
 */
 class Solution {
 public:
-    int maxDotProduct(vector<int> &A, vector<int> &B) {
+    int maxDotProduct(vector<int>& A, vector<int>& B) {
         int n = A.size();
         int m = B.size();
-        vector<vector<int> > dp(n, vector<int>(m, 0));
+        vector<vector<int>> dp(n, vector<int>(m, 0));
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < m; ++j) {
                 dp[i][j] = A[i] * B[j];

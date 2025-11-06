@@ -65,9 +65,10 @@ Explanation:
 Note:
 
 The range of the input matrix's height and width is [1,50].
-The click position will only be an unrevealed square ('M' or 'E'), which also means the input board contains at least one clickable square.
-The input board won't be a stage when game is over (some mines have been revealed).
-For simplicity, not mentioned rules should be ignored in this problem. For example, you don't need to reveal all the unrevealed mines when the game is over, consider any cases that you will win the game or flag any squares.
+The click position will only be an unrevealed square ('M' or 'E'), which also means the input board contains at least
+one clickable square. The input board won't be a stage when game is over (some mines have been revealed). For
+simplicity, not mentioned rules should be ignored in this problem. For example, you don't need to reveal all the
+unrevealed mines when the game is over, consider any cases that you will win the game or flag any squares.
 */
 #include <iostream>
 #include <string>
@@ -83,32 +84,21 @@ using namespace std;
 
 class Solution {
 private:
-    bool validClick(vector<vector<char> > &board, int r, int c) {
-        return r >= 0
-        and c
-        >=
-        0
-        and r<board.size() and c < board[0].size();
+    bool validClick(vector<vector<char>>& board, int r, int c) {
+        return r >= 0 and c >= 0 and r < board.size() and c < board[0].size();
     }
 
-    void dfs(vector<vector<char> > &board, int r, int c) {
-        if (!validClick(board, r, c) or board[r][c]
-        !=
-        'E'
-        )
-        {
+    void dfs(vector<vector<char>>& board, int r, int c) {
+        if (!validClick(board, r, c) or board[r][c] != 'E') {
             return;
         }
 
         int count = 0;
         for (int i = r - 1; i <= r + 1; ++i) {
-            for (int j = c - 1; j <= c + 1; ++j) if (validClick(board, i, j) and board[i][j]
-            ==
-            'M'
-            )
-            {
-                count += 1;
-            }
+            for (int j = c - 1; j <= c + 1; ++j)
+                if (validClick(board, i, j) and board[i][j] == 'M') {
+                    count += 1;
+                }
         }
 
         if (count > 0) {
@@ -125,7 +115,7 @@ private:
     }
 
 public:
-    vector<vector<char> > updateBoard(vector<vector<char> > &board, vector<int> &click) {
+    vector<vector<char>> updateBoard(vector<vector<char>>& board, vector<int>& click) {
         int r = click[0];
         int c = click[1];
         if (board[r][c] == 'M') {

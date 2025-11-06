@@ -31,7 +31,7 @@ using namespace std;
 class Solution {
     // O(nlogn)
 public:
-    int minSubArrayLen(int s, vector<int> &nums) {
+    int minSubArrayLen(int s, vector<int>& nums) {
         int n = nums.size();
         vector<int> preSum(n + 1, 0);
         for (int i = 0; i < n; i++) {
@@ -64,7 +64,7 @@ This algorithm is of O(n) time.
 class Solution1 {
     // O(n)
 public:
-    int minSubArrayLen(int s, vector<int> &nums) {
+    int minSubArrayLen(int s, vector<int>& nums) {
         int n = nums.size();
         int result = n + 1;
         int left = 0;
@@ -83,7 +83,7 @@ public:
 
 class Solution2 {
 public:
-    int minSubArrayLen(int s, vector<int> &nums) {
+    int minSubArrayLen(int s, vector<int>& nums) {
         int n = nums.size();
         vector<int> preSum(n + 1, 0);
         for (int i = 0; i < n; i++) {
@@ -99,10 +99,7 @@ public:
         for (int i = 1; i <= n; ++i) {
             if (preSum[i] >= s) {
                 result = min(result, i);
-                while (!que.empty() and preSum[i]
-                -preSum[que.front()] >= s
-                )
-                {
+                while (!que.empty() and preSum[i] - preSum[que.front()] >= s) {
                     result = min(result, i - que.front());
                     que.pop();
                 }

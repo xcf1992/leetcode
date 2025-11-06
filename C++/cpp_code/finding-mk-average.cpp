@@ -14,11 +14,13 @@ Calculate the average value for the rest of the elements rounded down to the nea
 Implement the MKAverage class:
 MKAverage(int m, int k) Initializes the MKAverage object with an empty stream and the two integers m and k.
 void addElement(int num) Inserts a new element num into the stream.
-int calculateMKAverage() Calculates and returns the MKAverage for the current stream rounded down to the nearest integer.
+int calculateMKAverage() Calculates and returns the MKAverage for the current stream rounded down to the nearest
+integer.
 
 Example 1:
 Input
-["MKAverage", "addElement", "addElement", "calculateMKAverage", "addElement", "calculateMKAverage", "addElement", "addElement", "addElement", "calculateMKAverage"]
+["MKAverage", "addElement", "addElement", "calculateMKAverage", "addElement", "calculateMKAverage", "addElement",
+"addElement", "addElement", "calculateMKAverage"]
 [[3, 1], [3], [1], [], [10], [], [5], [5], [5], []]
 Output
 [null, null, null, -1, null, 3, null, null, null, 5]

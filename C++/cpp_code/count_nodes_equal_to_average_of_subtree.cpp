@@ -2,7 +2,8 @@
 https://leetcode.com/problems/count-nodes-equal-to-average-of-subtree
 2265. Count Nodes Equal to Average of Subtree
 
-Given the root of a binary tree, return the number of nodes where the value of the node is equal to the average of the values in its subtree.
+Given the root of a binary tree, return the number of nodes where the value of the node is equal to the average of the
+values in its subtree.
 
 Note:
 
@@ -50,8 +51,8 @@ using namespace std;
 
 struct TreeNode {
     int val;
-    TreeNode *left;
-    TreeNode *right;
+    TreeNode* left;
+    TreeNode* right;
 
     TreeNode() : val(0), left(nullptr), right(nullptr) {
     }
@@ -59,13 +60,13 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {
     }
 
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {
+    TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {
     }
 };
 
 class Solution {
 private:
-    vector<int> traverse(TreeNode *root, int &result) {
+    vector<int> traverse(TreeNode* root, int& result) {
         if (root == nullptr) {
             return vector<int>(2, 0);
         }
@@ -91,7 +92,7 @@ private:
     }
 
 public:
-    int averageOfSubtree(TreeNode *root) {
+    int averageOfSubtree(TreeNode* root) {
         int result = 0;
         traverse(root, result);
         return result;

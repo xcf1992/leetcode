@@ -6,8 +6,8 @@ Given a non-empty binary tree,
 find the maximum path sum.
 
 For this problem,
-a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent-child connections.
-The path must contain at least one node and does not need to go through the root.
+a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent-child
+connections. The path must contain at least one node and does not need to go through the root.
 
 Example 1:
 Input: [1,2,3]
@@ -36,7 +36,7 @@ using namespace std;
 
 class Solution {
 private:
-    int getSum(TreeNode *root, int &result) {
+    int getSum(TreeNode* root, int& result) {
         if (root == nullptr) {
             return 0;
         }
@@ -49,7 +49,7 @@ private:
     }
 
 public:
-    int maxPathSum(TreeNode *root) {
+    int maxPathSum(TreeNode* root) {
         int result = INT_MIN;
         getSum(root, result);
         return result;

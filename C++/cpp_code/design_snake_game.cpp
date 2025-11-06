@@ -68,7 +68,7 @@ private:
     int W;
     int H;
     int score;
-    vector<vector<int> > f;
+    vector<vector<int>> f;
 
 public:
     /* Initialize your data structure here.
@@ -76,7 +76,7 @@ public:
      @param height - screen height
      @param food - A list of food positions
      E.g food = [[1,1], [1,0]] means the first food is positioned at [1,1], the second is at [1,0].*/
-    SnakeGame(int width, int height, vector<vector<int> > food) {
+    SnakeGame(int width, int height, vector<vector<int>> food) {
         W = width;
         H = height;
         score = 0;
@@ -103,9 +103,7 @@ public:
             curW += 1;
         }
 
-        if (curW < 0 or curH<0 or curW >= W or curH >= H
-        )
-        {
+        if (curW < 0 or curH < 0 or curW >= W or curH >= H) {
             return -1;
         }
 
@@ -119,14 +117,7 @@ public:
 
         snake.insert(snake.begin(), next);
         visited.insert(next);
-        if (score < f.size() and curH
-        ==
-        f[score][0]
-        and curW
-        ==
-        f[score][1]
-        )
-        {
+        if (score < f.size() and curH == f[score][0] and curW == f[score][1]) {
             score += 1;
             snake.push_back(tail);
             visited.insert(tail);
@@ -136,7 +127,7 @@ public:
 };
 
 /*
-* Your SnakeGame object will be instantiated and called as such:
-* SnakeGame obj = new SnakeGame(width, height, food);
-* int param_1 = obj.move(direction);
-*/
+ * Your SnakeGame object will be instantiated and called as such:
+ * SnakeGame obj = new SnakeGame(width, height, food);
+ * int param_1 = obj.move(direction);
+ */

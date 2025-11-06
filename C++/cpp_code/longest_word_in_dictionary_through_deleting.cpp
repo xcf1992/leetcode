@@ -50,6 +50,7 @@ private:
         }
         return tPtr == target.size();
     }
+
 public:
     string findLongestWord(string s, vector<string>& d) {
         string result = "";
@@ -57,8 +58,7 @@ public:
             if (isSubsequence(word, s)) {
                 if (word.size() > result.size()) {
                     result = word;
-                }
-                else if (word.size() == result.size() and word < result) {
+                } else if (word.size() == result.size() and word < result) {
                     result = word;
                 }
             }

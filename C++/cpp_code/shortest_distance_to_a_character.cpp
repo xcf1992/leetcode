@@ -1,5 +1,6 @@
 /*
- Given a string S and a character C, return an array of integers representing the shortest distance from the character C in the string.
+ Given a string S and a character C, return an array of integers representing the shortest distance from the character C
+ in the string.
 
  Example 1:
 
@@ -40,11 +41,7 @@ public:
         int cur = 0;
         vector<int> result;
         for (int i = 0; i < S.size(); i++) {
-            while (cur < pos.size() - 1 and abs(i - pos[cur])
-            >
-            abs(i - pos[cur + 1])
-            )
-            {
+            while (cur < pos.size() - 1 and abs(i - pos[cur]) > abs(i - pos[cur + 1])) {
                 cur += 1;
             }
             result.push_back(abs(i - pos[cur]));

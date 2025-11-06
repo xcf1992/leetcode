@@ -2,9 +2,11 @@
 https://leetcode.com/problems/minimum-cost-path-with-edge-reversals/
 3650. Minimum Cost Path with Edge Reversals
 
-You are given a directed, weighted graph with n nodes labeled from 0 to n - 1, and an array edges where edges[i] = [ui, vi, wi] represents a directed edge from node ui to node vi with cost wi.
+You are given a directed, weighted graph with n nodes labeled from 0 to n - 1, and an array edges where edges[i] = [ui,
+vi, wi] represents a directed edge from node ui to node vi with cost wi.
 
-Each node ui has a switch that can be used at most once: when you arrive at ui and have not yet used its switch, you may activate it on one of its incoming edges vi → ui reverse that edge to ui → vi and immediately traverse it.
+Each node ui has a switch that can be used at most once: when you arrive at ui and have not yet used its switch, you may
+activate it on one of its incoming edges vi → ui reverse that edge to ui → vi and immediately traverse it.
 
 The reversal is only valid for that single move, and using a reversed edge costs 2 * wi.
 
@@ -58,17 +60,17 @@ edges[i] = [ui, vi, wi]
 using namespace std;
 
 struct myComp {
-    bool operator()(const pair<int, int> &a, const pair<int, int> &b) {
+    bool operator()(const pair<int, int>& a, const pair<int, int>& b) {
         return a.first > b.first;
     }
 };
 
 class Solution {
 public:
-    int minCost(int n, vector<vector<int> > &edges) {
+    int minCost(int n, vector<vector<int>>& edges) {
         const int INF = INT_MAX / 2;
-        vector<vector<pair<int, int> > > graph(n);
-        for (auto &edge: edges) {
+        vector<vector<pair<int, int>>> graph(n);
+        for (auto& edge : edges) {
             int from = edge[0], to = edge[1], cost = edge[2];
             graph[from].push_back({to, cost});
             graph[to].push_back({from, cost * 2});
@@ -77,7 +79,7 @@ public:
         vector<int> distance(n, INF);
         distance[0] = 0;
 
-        priority_queue<pair<int, int>, vector<pair<int, int> >, myComp> bfs;
+        priority_queue<pair<int, int>, vector<pair<int, int>>, myComp> bfs;
         bfs.push({0, 0});
         while (!bfs.empty()) {
             int dis = bfs.top().first;
@@ -88,7 +90,7 @@ public:
                 continue;
             }
 
-            for (const pair<int, int> &nxt: graph[from]) {
+            for (const pair<int, int>& nxt : graph[from]) {
                 int to = nxt.first;
                 int cost = nxt.second;
                 if (distance[to] > distance[from] + cost) {

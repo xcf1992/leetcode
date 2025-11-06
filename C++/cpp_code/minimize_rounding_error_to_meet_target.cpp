@@ -2,8 +2,8 @@
 1058. Minimize Rounding Error to Meet Target
 
 Given an array of prices [p1,p2...,pn] and a target,
-round each price pi to Roundi(pi) so that the rounded array [Round1(p1),Round2(p2)...,Roundn(pn)] sums to the given target.
-Each operation Roundi(pi) could be either Floor(pi) or Ceil(pi).
+round each price pi to Roundi(pi) so that the rounded array [Round1(p1),Round2(p2)...,Roundn(pn)] sums to the given
+target. Each operation Roundi(pi) could be either Floor(pi) or Ceil(pi).
 
 Return the string "-1"
 if the rounded array is impossible to sum to target.
@@ -44,12 +44,12 @@ using namespace std;
 
 class Solution {
 public:
-    string minimizeError(vector<string> &prices, int target) {
+    string minimizeError(vector<string>& prices, int target) {
         double floorS = 0.0;
         double ceilS = 0.0;
         int integer = 0;
-        priority_queue<double, vector<double>, greater<double> > floorErr, ceilErr;
-        for (string &p: prices) {
+        priority_queue<double, vector<double>, greater<double>> floorErr, ceilErr;
+        for (string& p : prices) {
             double price = stod(p);
             floorS += floor(price);
             ceilS += ceil(price);
@@ -61,13 +61,11 @@ public:
             ceilErr.push(ceil(price) - price);
         }
 
-        if (target > ceilS or target<floorS
-        )
-        {
+        if (target > ceilS or target < floorS) {
             return "-1";
         }
 
-        int floorCount = (int) ceilS - target;
+        int floorCount = (int)ceilS - target;
         int ceilCount = prices.size() - integer - floorCount;
         double result = 0.0;
         while (floorCount > 0) {
@@ -81,6 +79,6 @@ public:
             ceilCount -= 1;
         }
         string resultStr = to_string(result);
-        return resultStr.substr(0, resultStr.size() - 3); // erase last 3 zeros
+        return resultStr.substr(0, resultStr.size() - 3);  // erase last 3 zeros
     }
 };

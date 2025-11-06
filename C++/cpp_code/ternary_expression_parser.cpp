@@ -60,24 +60,19 @@ public:
         stack<char> stk;
         for (int i = expression.size() - 1; i >= 0; i--) {
             char c = expression[i];
-            if (!stk.empty() and
-            stk.top() == '?'
-            )
-            {
-                stk.pop(); // pop ?
-                char left = stk.top(); // get left val
-                stk.pop(); // pop left val
-                stk.pop(); // pop :
-                char right = stk.top(); // get right val
-                stk.pop(); // pop right val
+            if (!stk.empty() and stk.top() == '?') {
+                stk.pop();               // pop ?
+                char left = stk.top();   // get left val
+                stk.pop();               // pop left val
+                stk.pop();               // pop :
+                char right = stk.top();  // get right val
+                stk.pop();               // pop right val
                 if (c == 'T') {
                     stk.push(left);
                 } else {
                     stk.push(right);
                 }
-            }
-            else
-            {
+            } else {
                 stk.push(c);
             }
         }

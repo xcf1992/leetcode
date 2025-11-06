@@ -51,17 +51,18 @@ private:
             return;
         }
 
-        int curVal = node -> val;
+        int curVal = node->val;
         result = max(result, max(abs(curVal - curMax), abs(curVal - curMin)));
         curMax = max(curMax, curVal);
         curMin = min(curMin, curVal);
-        getMaxDiff(node -> left, curMin, curMax, result);
-        getMaxDiff(node -> right, curMin, curMax, result);
+        getMaxDiff(node->left, curMin, curMax, result);
+        getMaxDiff(node->right, curMin, curMax, result);
     }
+
 public:
     int maxAncestorDiff(TreeNode* root) {
         int result = INT_MIN;
-        getMaxDiff(root, root -> val, root -> val, result);
+        getMaxDiff(root, root->val, root->val, result);
         return result;
     }
 };

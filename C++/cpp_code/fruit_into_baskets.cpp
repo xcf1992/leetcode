@@ -62,7 +62,7 @@ using namespace std;
 
 class Solution {
 public:
-    int totalFruit(vector<int> &tree) {
+    int totalFruit(vector<int>& tree) {
         int result = 0;
         int typ1 = -1;
         int typ2 = -1;

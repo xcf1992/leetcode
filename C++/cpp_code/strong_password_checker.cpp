@@ -57,15 +57,11 @@ using namespace std;
 
  Repeating characters:
  for repeating characters,
- all three operations are allowed but the positions where they can be applied are limited within the repeating characters.
- For example, to fix "aaaaa", we can do one replacement (replace the middle 'a')
- or two insertions (one after the second 'a' and one after the fourth 'a')
- or three deletions (delete any of the three 'a's).
- So the possible changes are
- (replace, repeating characters),
- (insert, repeating characters),
- (delete, repeating characters).
- (Note however the "power" of each operation for fixing the problem are different
+ all three operations are allowed but the positions where they can be applied are limited within the repeating
+characters. For example, to fix "aaaaa", we can do one replacement (replace the middle 'a') or two insertions (one after
+the second 'a' and one after the fourth 'a') or three deletions (delete any of the three 'a's). So the possible changes
+are (replace, repeating characters), (insert, repeating characters), (delete, repeating characters). (Note however the
+"power" of each operation for fixing the problem are different
  -- replacement is the strongest while deletion is the weakest.)
 
  All right, what's next?
@@ -134,21 +130,15 @@ using namespace std;
 
  How do we reconcile it?
  The trick is that for a sequence of repeating characters of length k (k >= 3),
- instead of turning it all the way into a sequence of length 2 (so as to fix the repeating character problem) by the change (delete, any position),
- we will first reduce its length to (3m + 2),
- where (3m + 2) is the largest integer of the form yet no more than k.
- That is to say, if k is a multiple of 3,
- we apply once such change so its length will become (k - 1);
- else if k is a multiple of 3 plus 1,
- we apply twice such change to cut its length down to (k - 2),
- provided we have more such changes to spare
- (be careful here as we need at least two changes
-  but the remaining available changes may be less than that,
-  so we should stick to the smaller one: 2 or the remaining available changes).
-The reason is that the optimal change (replace, repeating characters) for the third problem will be most "powerful"
-when the total length of the repeating characters is of this form.
-Of course, if we still have more changes (delete, any position) to do after that,
-then we are free to turn the repeating sequence all the way into a sequence of length 2.
+ instead of turning it all the way into a sequence of length 2 (so as to fix the repeating character problem) by the
+change (delete, any position), we will first reduce its length to (3m + 2), where (3m + 2) is the largest integer of the
+form yet no more than k. That is to say, if k is a multiple of 3, we apply once such change so its length will become (k
+- 1); else if k is a multiple of 3 plus 1, we apply twice such change to cut its length down to (k - 2), provided we
+have more such changes to spare (be careful here as we need at least two changes but the remaining available changes may
+be less than that, so we should stick to the smaller one: 2 or the remaining available changes). The reason is that the
+optimal change (replace, repeating characters) for the third problem will be most "powerful" when the total length of
+the repeating characters is of this form. Of course, if we still have more changes (delete, any position) to do after
+that, then we are free to turn the repeating sequence all the way into a sequence of length 2.
 
  Here is the java program based on the above analyses.
  Both time and space complexity is O(n).
@@ -165,34 +155,18 @@ public:
         int n = s.size();
         vector<int> arr(n);
         for (int i = 0; i < n;) {
-            if (s[i] >= 'a' and s[i]
-            <=
-            'z'
-            )
-            {
+            if (s[i] >= 'a' and s[i] <= 'z') {
                 a = 0;
             }
-            if (s[i] >= 'A' and s[i]
-            <=
-            'Z'
-            )
-            {
+            if (s[i] >= 'A' and s[i] <= 'Z') {
                 A = 0;
             }
-            if (s[i] >= '0' and s[i]
-            <=
-            '9'
-            )
-            {
+            if (s[i] >= '0' and s[i] <= '9') {
                 d = 0;
             }
 
             int j = i;
-            while (i < n and s[j]
-            ==
-            s[i]
-            )
-            {
+            while (i < n and s[j] == s[i]) {
                 i += 1;
             }
             arr[j] = i - j;
@@ -206,16 +180,8 @@ public:
             int left_over = 0;
             result += over_len;
             for (int k = 1; k < 3; k++) {
-                for (int i = 0; i < n and over_len
-                >
-                0;
-                ++i
-                )
-                {
-                    if (arr[i] < 3 or arr[i]
-                    %3 != (k - 1)
-                    )
-                    {
+                for (int i = 0; i < n and over_len > 0; ++i) {
+                    if (arr[i] < 3 or arr[i] % 3 != (k - 1)) {
                         continue;
                     }
                     arr[i] -= min(over_len, k);
@@ -224,11 +190,7 @@ public:
             }
 
             for (int i = 0; i < n; ++i) {
-                if (arr[i] >= 3 and over_len
-                >
-                0
-                )
-                {
+                if (arr[i] >= 3 and over_len > 0) {
                     int need = arr[i] - 2;
                     arr[i] -= over_len;
                     over_len -= need;
@@ -249,10 +211,12 @@ public:
 
  res denotes the minimum changes;
  a, A and d are the number of missing lowercase letters, uppercase letters and digits, respectively;
- arr is an integer array whose element will be the number of repeating characters starting at the corresponding position in the string.
+ arr is an integer array whose element will be the number of repeating characters starting at the corresponding position
+ in the string.
 
  In the following loop we fill in the values for a, A, d and arr to identify the problems for each condition.
- The total number of missing characters total_missing will be the summation of a, A, d and fixing this problem takes at least total_missing changes.
+ The total number of missing characters total_missing will be the summation of a, A, d and fixing this problem takes at
+ least total_missing changes.
 
  We then distinguish the two cases when the string is too short or too long.
  If it is too short, we pad its length to at least 6

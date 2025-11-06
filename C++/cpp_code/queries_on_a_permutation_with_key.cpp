@@ -16,11 +16,11 @@ Example 1:
 Input: queries = [3,1,2,1], m = 5
 Output: [2,1,2,1]
 Explanation: The queries are processed as follow:
-For i=0: queries[i]=3, P=[1,2,3,4,5], position of 3 in P is 2, then we move 3 to the beginning of P resulting in P=[3,1,2,4,5].
-For i=1: queries[i]=1, P=[3,1,2,4,5], position of 1 in P is 1, then we move 1 to the beginning of P resulting in P=[1,3,2,4,5].
-For i=2: queries[i]=2, P=[1,3,2,4,5], position of 2 in P is 2, then we move 2 to the beginning of P resulting in P=[2,1,3,4,5].
-For i=3: queries[i]=1, P=[2,1,3,4,5], position of 1 in P is 1, then we move 1 to the beginning of P resulting in P=[1,2,3,4,5].
-Therefore, the array containing the result is [2,1,2,1].
+For i=0: queries[i]=3, P=[1,2,3,4,5], position of 3 in P is 2, then we move 3 to the beginning of P resulting in
+P=[3,1,2,4,5]. For i=1: queries[i]=1, P=[3,1,2,4,5], position of 1 in P is 1, then we move 1 to the beginning of P
+resulting in P=[1,3,2,4,5]. For i=2: queries[i]=2, P=[1,3,2,4,5], position of 2 in P is 2, then we move 2 to the
+beginning of P resulting in P=[2,1,3,4,5]. For i=3: queries[i]=1, P=[2,1,3,4,5], position of 1 in P is 1, then we move 1
+to the beginning of P resulting in P=[1,2,3,4,5]. Therefore, the array containing the result is [2,1,2,1].
 
 Example 2:
 Input: queries = [4,1,2,2], m = 4
@@ -51,7 +51,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> processQueries(vector<int> &queries, int m) {
+    vector<int> processQueries(vector<int>& queries, int m) {
         vector<int> s;
         for (int i = 1; i <= m; i++) {
             s.push_back(i);

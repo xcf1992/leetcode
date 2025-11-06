@@ -79,7 +79,7 @@ class Solution2 {
 private:
     unordered_map<string, int> memo;
 
-    int dfs(string &cur, string &target) {
+    int dfs(string& cur, string& target) {
         if (memo.find(cur) != memo.end()) {
             return memo[cur];
         }
@@ -149,7 +149,7 @@ public:
                     return step;
                 }
 
-                for (string next: neighbors(cur, B)) {
+                for (string next : neighbors(cur, B)) {
                     if (visited.find(next) == visited.end()) {
                         visited.insert(next);
                         bfs.push(next);

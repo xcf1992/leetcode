@@ -24,7 +24,8 @@ Input: [ [1,2], [2,3] ]
 Output: 0
 
 Explanation: You don't need to remove any of the intervals since they're already non-overlapping.
-NOTE: input types have been changed on April 15, 2019. Please reset to default code definition to get new method signature.
+NOTE: input types have been changed on April 15, 2019. Please reset to default code definition to get new method
+signature.
 */
 #include <iostream>
 #include <string>
@@ -40,15 +41,13 @@ using namespace std;
 
 class Solution {
 public:
-    int eraseOverlapIntervals(vector<vector<int> > &intervals) {
+    int eraseOverlapIntervals(vector<vector<int>>& intervals) {
         if (intervals.size() == 0) {
             return 0;
         }
 
-        sort(intervals.begin(), intervals.end(), [](vector<int> &a, vector<int> &b) {
-            return a[1] < b[1]
-            or(a[1] == b[1] and a[0] < b[0]);
-        });
+        sort(intervals.begin(), intervals.end(),
+             [](vector<int>& a, vector<int>& b) { return a[1] < b[1] or (a[1] == b[1] and a[0] < b[0]); });
 
         int result = 1;
         int preEnd = intervals[0][1];
@@ -65,16 +64,14 @@ public:
 // dp[i] means how many intervals we can keep from intervals[0] ~ intervals[i], both included
 class Solution1 {
 public:
-    int eraseOverlapIntervals(vector<vector<int> > &intervals) {
+    int eraseOverlapIntervals(vector<vector<int>>& intervals) {
         int n = intervals.size();
         if (n <= 1) {
             return 0;
         }
 
-        sort(intervals.begin(), intervals.end(), [](vector<int> &a, vector<int> &b) {
-            return a[0] < b[0]
-            or(a[0] == b[0] and a[1] < b[1]);
-        });
+        sort(intervals.begin(), intervals.end(),
+             [](vector<int>& a, vector<int>& b) { return a[0] < b[0] or (a[0] == b[0] and a[1] < b[1]); });
 
         vector<int> dp(n, 0);
         dp[0] = 1;

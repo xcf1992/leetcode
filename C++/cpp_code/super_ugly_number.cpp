@@ -30,7 +30,7 @@ using namespace std;
 
 class Solution {
 public:
-    int nthSuperUglyNumber(int n, vector<int> &primes) {
+    int nthSuperUglyNumber(int n, vector<int>& primes) {
         vector<int> result;
         result.push_back(1);
 

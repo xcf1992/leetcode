@@ -39,7 +39,7 @@ using namespace std;
 
 class Solution {
 public:
-    int numberOfArithmeticSlices(vector<int> &A) {
+    int numberOfArithmeticSlices(vector<int>& A) {
         int n = A.size();
         vector<int> dp(n, 0);
         int result = 0;
@@ -55,7 +55,7 @@ public:
 
 class Solution1 {
 public:
-    int numberOfArithmeticSlices(vector<int> &A) {
+    int numberOfArithmeticSlices(vector<int>& A) {
         int result = 0;
         int count = 0;
         for (int i = 2; i < A.size(); ++i) {

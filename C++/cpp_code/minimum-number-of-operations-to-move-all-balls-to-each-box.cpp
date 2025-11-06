@@ -19,10 +19,8 @@ Output: [1,1,3]
 Explanation: The answer for each box is as follows:
 1) First box: you will have to move one ball from the second box to the first box in one operation.
 2) Second box: you will have to move one ball from the first box to the second box in one operation.
-3) Third box: you will have to move one ball from the first box to the third box in two operations, and move one ball from the second box to the third box in one operation.
-Example 2:
-Input: boxes = "001011"
-Output: [11,8,5,4,3,4]
+3) Third box: you will have to move one ball from the first box to the third box in two operations, and move one ball
+from the second box to the third box in one operation. Example 2: Input: boxes = "001011" Output: [11,8,5,4,3,4]
 
 Constraints:
 n == boxes.length
@@ -53,20 +51,20 @@ public:
 
         vector<int> left(n, 0);
         int count = boxes[0] - '0';
-        for (int i = 1 ; i < n ; i++) {
+        for (int i = 1; i < n; i++) {
             left[i] = left[i - 1] + count;
             count += boxes[i] - '0';
         }
 
         vector<int> right(n, 0);
         count = boxes[n - 1] - '0';
-        for(int i = n - 2 ; i >=0 ; i--){
+        for (int i = n - 2; i >= 0; i--) {
             right[i] = right[i + 1] + count;
             count += boxes[i] - '0';
         }
 
         vector<int> result(n, 0);
-        for(int i = 0 ; i < n ; i++) {
+        for (int i = 0; i < n; i++) {
             result[i] = left[i] + right[i];
         }
         return result;

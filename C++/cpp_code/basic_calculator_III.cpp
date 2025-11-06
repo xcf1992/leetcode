@@ -39,26 +39,19 @@ using namespace std;
 
 class Solution {
 private:
-    long parseNum(string &s, int &i) {
+    long parseNum(string& s, int& i) {
         long num = 0;
-        while (i < s.size() and isdigit(s[i])
-        )
-        {
+        while (i < s.size() and isdigit(s[i])) {
             num = num * 10 + (s[i] - '0');
             i += 1;
         }
         return num;
     }
 
-    int parseExp(string &s, int &i) {
+    int parseExp(string& s, int& i) {
         vector<int> nums;
         char op = '+';
-        for (; i < s.size() and op
-        !=
-        ')';
-        ++i
-        )
-        {
+        for (; i < s.size() and op != ')'; ++i) {
             // when op becomes ), we will still have ++i, and skip it and jump back to upper level
             if (s[i] == ' ') {
                 continue;

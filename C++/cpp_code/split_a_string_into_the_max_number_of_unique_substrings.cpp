@@ -13,7 +13,8 @@ A substring is a contiguous sequence of characters within a string.
 Example 1:
 Input: s = "ababccc"
 Output: 5
-Explanation: One way to split maximally is ['a', 'b', 'ab', 'c', 'cc']. Splitting like ['a', 'b', 'a', 'b', 'c', 'cc'] is not valid as you have 'a' and 'b' multiple times.
+Explanation: One way to split maximally is ['a', 'b', 'ab', 'c', 'cc']. Splitting like ['a', 'b', 'a', 'b', 'c', 'cc']
+is not valid as you have 'a' and 'b' multiple times.
 
 Example 2:
 Input: s = "aba"
@@ -46,8 +47,9 @@ using namespace std;
 class Solution {
 private:
     unordered_set<string> memo;
+
 public:
-    int maxUniqueSplit(string &s, int start = 0) {
+    int maxUniqueSplit(string& s, int start = 0) {
         if (start == s.size()) {
             return 0;
         }

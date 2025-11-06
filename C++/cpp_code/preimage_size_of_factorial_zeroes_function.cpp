@@ -57,9 +57,9 @@ will be given by the number of factor 5 in x minus 1
 (note it’s the number of factor minus 1, not x, and is equivalent to the number of factor 5 in x/5).
 
 Let K = numOfTrailingZeros(x), then K will jump whenever x is an integer multiple of 5
-(this is a direct result of the fact that the number of factor 5 in x! will change whenever x is an integer multiple of 5).
-The step of the jump will be given by the number of factor 5 in x (no factorial).
-For example, K will jump by 1 step at x = 5, 10, 15, 20, but by 2 steps at 25, as demonstrated in the following plot:
+(this is a direct result of the fact that the number of factor 5 in x! will change whenever x is an integer multiple of
+5). The step of the jump will be given by the number of factor 5 in x (no factorial). For example, K will jump by 1 step
+at x = 5, 10, 15, 20, but by 2 steps at 25, as demonstrated in the following plot:
 */
 class Solution {
 private:
@@ -71,6 +71,7 @@ private:
         }
         return count;
     }
+
 public:
     int preimageSizeFZF(long K) {
         long left = 0;
@@ -81,11 +82,9 @@ public:
 
             if (count == K) {
                 return 5;
-            }
-            else if (count > K) {
+            } else if (count > K) {
                 right = mid - 1;
-            }
-            else {
+            } else {
                 left = mid + 1;
             }
         }
@@ -127,13 +126,13 @@ private:
 
             if (count <= K) {
                 left = mid + 1;
-            }
-            else {
+            } else {
                 right = mid - 1;
             }
         }
         return left;
     }
+
 public:
     int preimageSizeFZF(int K) {
         int result = 0;

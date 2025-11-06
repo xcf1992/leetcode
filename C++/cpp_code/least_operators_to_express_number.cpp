@@ -15,8 +15,8 @@ It's not allowed to use the unary negation operator (-).
 For example, "x - x" is a valid expression as it only uses subtraction,
 but "-x + x" is not because it uses negation.
 
-We would like to write an expression with the least number of operators such that the expression equals the given target.
-Return the least number of expressions used.
+We would like to write an expression with the least number of operators such that the expression equals the given
+target. Return the least number of expressions used.
 
 Example 1:
 Input: x = 3, target = 19
@@ -76,8 +76,8 @@ However, since the new target is divisible by x, there is no point to use x^0,
 as we would have to use at least x of them to do the same work as one use of x^1,
 which is a strictly higher cost.
 
-Again, in a similar way, we have r_2 = target2(mod x^2), and we must either subtract r_2 /(x x^1's), or add x - r_2 /(x x^1's).
-This will form a new remaining target3, and so on.
+Again, in a similar way, we have r_2 = target2(mod x^2), and we must either subtract r_2 /(x x^1's), or add x - r_2 /(x
+x^1's). This will form a new remaining target3, and so on.
 
 As a concrete example, say x = 5, target = 123. We either add 2 or subtract 3.
 This leaves us with a target of 120 or 125.
@@ -92,7 +92,8 @@ Let's calculate dp(i, target) using a top down dp. Here, i will be the exponent 
 and target will be the remaining target, already divided by x^i
 
 From here, the recursion is straightforward: r = target(mod x),
-and we either subtract rr blocks or add (x-r) of them. The base cases are easily deduced - see the code for more details.
+and we either subtract rr blocks or add (x-r) of them. The base cases are easily deduced - see the code for more
+details.
 
 pos the number of operations needed to get y % (x ^ (k+1))
 neg the number of operations needed to get x ^ (k + 1) - y % (x ^ (k + 1))
@@ -156,11 +157,11 @@ public:
         int l = INT_MAX;
         int r = INT_MAX;
         if (sums - target < target) {
-            l = leastOpsExpressTarget(x, sums - target) + times; // using subtract
+            l = leastOpsExpressTarget(x, sums - target) + times;  // using subtract
         }
         r = leastOpsExpressTarget(x, target - (sums / x)) + times - 1;
         // using add, cause we only need sum/x, so times - 1
-        memo[target] = min(l, r) + 1; // No matter +/- used, one more operator is add
+        memo[target] = min(l, r) + 1;  // No matter +/- used, one more operator is add
         return memo[target];
     }
 };

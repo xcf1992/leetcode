@@ -40,7 +40,7 @@ using namespace std;
 
 class Solution {
 private:
-    bool check(int N, vector<int> &firstWin) {
+    bool check(int N, vector<int>& firstWin) {
         if (firstWin[N] == 0) {
             return false;
         }
@@ -50,10 +50,7 @@ private:
         }
 
         for (int i = 1; i <= sqrt(N); i++) {
-            if (N % i == 0 and
-            !check(N - i, firstWin)
-            )
-            {
+            if (N % i == 0 and !check(N - i, firstWin)) {
                 firstWin[N] = 1;
                 return true;
             }

@@ -1,7 +1,9 @@
 /*
- A rectangle is represented as a list [x1, y1, x2, y2], where (x1, y1) are the coordinates of its bottom-left corner, and (x2, y2) are the coordinates of its top-right corner.
+ A rectangle is represented as a list [x1, y1, x2, y2], where (x1, y1) are the coordinates of its bottom-left corner,
+ and (x2, y2) are the coordinates of its top-right corner.
 
- Two rectangles overlap if the area of their intersection is positive.  To be clear, two rectangles that only touch at the corner or edges do not overlap.
+ Two rectangles overlap if the area of their intersection is positive.  To be clear, two rectangles that only touch at
+ the corner or edges do not overlap.
 
  Given two rectangles, return whether they overlap.
 
@@ -34,59 +36,27 @@ using namespace std;
 
 class Solution {
 public:
-    bool isRectangleOverlap(vector<int> &rec1, vector<int> &rec2) {
-        if (rec2[0] >= rec1[2] or rec2[1]
-        >=
-        rec1[3]
-        )
-        {
+    bool isRectangleOverlap(vector<int>& rec1, vector<int>& rec2) {
+        if (rec2[0] >= rec1[2] or rec2[1] >= rec1[3]) {
             return false;
         }
-        if (rec2[0] < rec1[2] and rec2[0]
-        >=
-        rec1[0]
-        and rec2[1]
-        <
-        rec1[3]
-        and rec2[1]
-        >=
-        rec1[1]
-        )
-        {
+        if (rec2[0] < rec1[2] and rec2[0] >= rec1[0] and rec2[1] < rec1[3] and rec2[1] >= rec1[1]) {
             return true;
         }
-        if (rec2[0] >= rec1[0] and rec2[0]
-        <
-        rec1[2]
-        and rec2[1]
-        <
-        rec1[1]
-        )
-        {
+        if (rec2[0] >= rec1[0] and rec2[0] < rec1[2] and rec2[1] < rec1[1]) {
             if (rec2[3] > rec1[1]) {
                 return true;
             }
             return false;
         }
-        if (rec2[0] < rec1[0] and rec2[1]
-        >=
-        rec1[1]
-        and rec2[1]
-        <
-        rec2[3]
-        )
-        {
+        if (rec2[0] < rec1[0] and rec2[1] >= rec1[1] and rec2[1] < rec2[3]) {
             if (rec2[2] > rec1[0]) {
                 return true;
             }
             return false;
         }
 
-        if (rec2[2] > rec1[0] and rec2[3]
-        >
-        rec1[1]
-        )
-        {
+        if (rec2[2] > rec1[0] and rec2[3] > rec1[1]) {
             return true;
         }
         return false;

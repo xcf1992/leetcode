@@ -3,8 +3,9 @@
 https://leetcode.com/problems/linked-list-in-binary-tree/
 
 Given a binary tree root and a linked list with head as the first node.
-Return True if all the elements in the linked list starting from the head correspond to some downward path connected in the binary tree otherwise return False.
-In this context downward path means a path that starts at some node and goes downwards.
+Return True if all the elements in the linked list starting from the head correspond to some downward path connected in
+the binary tree otherwise return False. In this context downward path means a path that starts at some node and goes
+downwards.
 
 Example 1:
                         1
@@ -50,26 +51,24 @@ using namespace std;
 
 class Solution {
 private:
-    bool dfs(ListNode *head, TreeNode *root) {
+    bool dfs(ListNode* head, TreeNode* root) {
         if (head == nullptr) {
             return true;
         }
         if (root == nullptr) {
             return false;
         }
-        return root->val == head->val
-        and(dfs(head->next, root->left) or dfs(head->next, root->right));
+        return root->val == head->val and (dfs(head->next, root->left) or dfs(head->next, root->right));
     }
 
 public:
-    bool isSubPath(ListNode *head, TreeNode *root) {
+    bool isSubPath(ListNode* head, TreeNode* root) {
         if (head == nullptr) {
             return true;
         }
         if (root == nullptr) {
             return false;
         }
-        return dfs(head, root)
-        or isSubPath(head, root->left) or isSubPath(head, root->right);
+        return dfs(head, root) or isSubPath(head, root->left) or isSubPath(head, root->right);
     }
 };

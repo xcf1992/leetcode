@@ -10,7 +10,6 @@
 #include <stdio.h>
 using namespace std;
 
-
 class Solution {
 private:
     char map[255] = {0};

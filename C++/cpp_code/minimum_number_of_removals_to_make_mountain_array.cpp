@@ -7,7 +7,8 @@ arr.length >= 3
 There exists some index i (0-indexed) with 0 < i < arr.length - 1 such that:
 arr[0] < arr[1] < ... < arr[i - 1] < arr[i]
 arr[i] > arr[i + 1] > ... > arr[arr.length - 1]
-Given an integer array nums​​​, return the minimum number of elements to remove to make nums​​​ a mountain array.
+Given an integer array nums​​​, return the minimum number of elements to remove to make nums​​​ a mountain
+array.
 
 Example 1:
 Input: nums = [1,3,1]
@@ -56,15 +57,16 @@ See my latest update in repo LeetCode
 
 Solution 1. Three passes O(NlogN)
 Intuition
-Assume we pick A[i] as the peak of the mountain, then we are looking for the longest increasing subsequence to the left of A[i],
-and the longest decreasing subsequence to the right of A[i].
+Assume we pick A[i] as the peak of the mountain, then we are looking for the longest increasing subsequence to the left
+of A[i], and the longest decreasing subsequence to the right of A[i].
 
 We can reuse the O(NlogN) time binary search solution to 300. Longest Increasing Subsequence (Medium).
 
 For the binary search solution to problem 300, please checkout my explanation.
 
 Algorithm
-Let a[i] be the length of the longest increasing subsequence in A[0..(i-1)], and b[i] be the length of the longest decreasing subsequence in A[(i+1)..(N-1)].
+Let a[i] be the length of the longest increasing subsequence in A[0..(i-1)], and b[i] be the length of the longest
+decreasing subsequence in A[(i+1)..(N-1)].
 
 We can scan from left to right to set the a[i] values, and scan from right to left to set the b[i] values.
 
@@ -84,14 +86,13 @@ public:
     int minimumMountainRemovals(vector<int>& A) {
         int N = A.size();
         vector<int> a(N), b(N), v;
-        for (int i = 0 ; i < N; ++i) {
+        for (int i = 0; i < N; ++i) {
             int x = A[i];
             auto it = lower_bound(begin(v), end(v), x);
             a[i] = it - begin(v);
             if (it != end(v)) {
                 *it = x;
-            }
-            else {
+            } else {
                 v.push_back(x);
             }
         }
@@ -99,12 +100,11 @@ public:
         v.clear();
         for (int i = N - 1; i >= 0; --i) {
             int x = A[i];
-            auto it = lower_bound(begin(v), end(v), x) ;
+            auto it = lower_bound(begin(v), end(v), x);
             b[i] = it - begin(v);
             if (it != end(v)) {
                 *it = x;
-            }
-            else {
+            } else {
                 v.push_back(x);
             }
         }

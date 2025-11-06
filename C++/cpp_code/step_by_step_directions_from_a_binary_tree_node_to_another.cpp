@@ -6,9 +6,12 @@ Topics
 conpanies icon
 Companies
 Hint
-You are given the root of a binary tree with n nodes. Each node is uniquely assigned a value from 1 to n. You are also given an integer startValue representing the value of the start node s, and a different integer destValue representing the value of the destination node t.
+You are given the root of a binary tree with n nodes. Each node is uniquely assigned a value from 1 to n. You are also
+given an integer startValue representing the value of the start node s, and a different integer destValue representing
+the value of the destination node t.
 
-Find the shortest path starting from node s and ending at node t. Generate step-by-step directions of such path as a string consisting of only the uppercase letters 'L', 'R', and 'U'. Each letter indicates a specific direction:
+Find the shortest path starting from node s and ending at node t. Generate step-by-step directions of such path as a
+string consisting of only the uppercase letters 'L', 'R', and 'U'. Each letter indicates a specific direction:
 
 'L' means to go from a node to its left child node.
 'R' means to go from a node to its right child node.
@@ -56,8 +59,8 @@ using namespace std;
 
 struct TreeNode {
     int val;
-    TreeNode *left;
-    TreeNode *right;
+    TreeNode* left;
+    TreeNode* right;
 
     TreeNode() : val(0), left(nullptr), right(nullptr) {
     }
@@ -65,13 +68,13 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {
     }
 
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {
+    TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {
     }
 };
 
 class Solution {
 private:
-    TreeNode* lowest_common_ancestor(TreeNode *root, int startValue, int destValue) {
+    TreeNode* lowest_common_ancestor(TreeNode* root, int startValue, int destValue) {
         if (root == nullptr || root->val == startValue || root->val == destValue) {
             return root;
         }
@@ -109,7 +112,7 @@ private:
     }
 
 public:
-    string getDirections(TreeNode *root, int startValue, int destValue) {
+    string getDirections(TreeNode* root, int startValue, int destValue) {
         TreeNode* lca_root = lowest_common_ancestor(root, startValue, destValue);
         string start_path = "";
         find_path(lca_root, startValue, start_path);
@@ -119,6 +122,5 @@ public:
 
         string rst(start_path.size(), 'U');
         return rst + dest_path;
-
     }
 };

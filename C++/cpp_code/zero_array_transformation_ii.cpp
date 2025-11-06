@@ -10,7 +10,8 @@ Decrement the value at each index in the range [li, ri] in nums by at most vali.
 The amount by which each value is decremented can be chosen independently for each index.
 A Zero Array is an array with all its elements equal to 0.
 
-Return the minimum possible non-negative value of k, such that after processing the first k queries in sequence, nums becomes a Zero Array. If no such k exists, return -1.
+Return the minimum possible non-negative value of k, such that after processing the first k queries in sequence, nums
+becomes a Zero Array. If no such k exists, return -1.
 
 
 
@@ -69,22 +70,36 @@ using namespace std;
 
 /*
 Intuition
-In our previous approach, we used binary search to determine how many queries were needed to turn nums into a zero array. This allowed us to efficiently process a subset of queries, applying them to a difference array, and then checking if nums had become all zeros. While this was an improvement over a naive approach, there was still an inefficiency: we were iterating over queries twice: once for binary search and again while applying updates.
+In our previous approach, we used binary search to determine how many queries were needed to turn nums into a zero
+array. This allowed us to efficiently process a subset of queries, applying them to a difference array, and then
+checking if nums had become all zeros. While this was an improvement over a naive approach, there was still an
+inefficiency: we were iterating over queries twice: once for binary search and again while applying updates.
 
-To optimize further, we can change our perspective on how we traverse the data. Instead of iterating through queries, we can iterate directly through nums, using it as the main loop. This means that as we process each element in nums, we dynamically apply only the necessary queries at the right moment. The key challenge, then, is finding an efficient way to apply queries while moving through nums.
+To optimize further, we can change our perspective on how we traverse the data. Instead of iterating through queries, we
+can iterate directly through nums, using it as the main loop. This means that as we process each element in nums, we
+dynamically apply only the necessary queries at the right moment. The key challenge, then, is finding an efficient way
+to apply queries while moving through nums.
 
-This is where a line sweep approach comes into play. Line sweeping is a technique that processes an array incrementally, maintaining only the relevant updates at each step. Instead of processing all queries upfront, we maintain an active set of queries and update nums only when necessary. Here, the difference array helps us track how nums is being modified, while queries provide the updates at specific points.
+This is where a line sweep approach comes into play. Line sweeping is a technique that processes an array incrementally,
+maintaining only the relevant updates at each step. Instead of processing all queries upfront, we maintain an active set
+of queries and update nums only when necessary. Here, the difference array helps us track how nums is being modified,
+while queries provide the updates at specific points.
 
-We start at index 0 of nums and check if it can be turned into 0 with the queries we have processed so far. If it cannot be zeroed out, we process additional queries to apply their effects. The key observation is that at any index i in nums, a query [left, right, val] can fall into three possible cases:
+We start at index 0 of nums and check if it can be turned into 0 with the queries we have processed so far. If it cannot
+be zeroed out, we process additional queries to apply their effects. The key observation is that at any index i in nums,
+a query [left, right, val] can fall into three possible cases:
 
 If i < left, the query affects a later part of nums, so we store it for later processing.
 If left ≤ i ≤ right, the query is immediately relevant and should be applied.
 If right < i, the query is no longer useful for the current index and can be ignored.
-For example, if we're at index 4 in nums and the current query accesses the range [0,2], we do not need to process that query and can simply move on to the next query.
+For example, if we're at index 4 in nums and the current query accesses the range [0,2], we do not need to process that
+query and can simply move on to the next query.
 
-Otherwise, we continue to the next element of nums. We repeat this process until we reach the end of either nums or queries, where we then return either k or -1, respectively.
+Otherwise, we continue to the next element of nums. We repeat this process until we reach the end of either nums or
+queries, where we then return either k or -1, respectively.
 
-Through this process, we only have to iterate through both nums and queries at most once each while skipping over unnecessary queries.
+Through this process, we only have to iterate through both nums and queries at most once each while skipping over
+unnecessary queries.
 
 Algorithm
 Initialize:
@@ -93,19 +108,17 @@ sum to 0 to track the cumulative sum of updates applied up to a given index
 k to 0 to represent the number of queries used.
 differenceArray as a vector of integers set to size n + 1 to apply range updates.
 Iterate through nums. For each index:
-If sum + differenceArray[index] is less than nums[index], meaning more operations need to be applied at the current index:
-Increase k by 1.
-If k is greater than the size of queries, return -1, since we processed all the queries without reaching a zero array.
-Initialize left, right, and val to the respective values of the current query.
-If right is greater than or equal to index:
-Increment differenceArray[max(left, index)] by val to update the start of the range.
+If sum + differenceArray[index] is less than nums[index], meaning more operations need to be applied at the current
+index: Increase k by 1. If k is greater than the size of queries, return -1, since we processed all the queries without
+reaching a zero array. Initialize left, right, and val to the respective values of the current query. If right is
+greater than or equal to index: Increment differenceArray[max(left, index)] by val to update the start of the range.
 Decrement differenceArray[right + 1] by val to update the end of the range.
 Increment sum by differenceArray[index].
 Return k.
  */
 class Solution {
 public:
-    int minZeroArray(vector<int> &nums, vector<vector<int> > &queries) {
+    int minZeroArray(vector<int>& nums, vector<vector<int>>& queries) {
         int n = nums.size();
         int sum = 0;
         int res = 0;
@@ -133,7 +146,7 @@ public:
 
 class Solution1 {
 private:
-    bool valid(vector<int> &nums, vector<int> &prefix_sum) {
+    bool valid(vector<int>& nums, vector<int>& prefix_sum) {
         int sum = 0;
         for (int i = 0; i < nums.size(); i++) {
             sum += prefix_sum[i];
@@ -144,7 +157,7 @@ private:
         return true;
     }
 
-    vector<int> build_prefix_sum(vector<int> &nums, vector<vector<int> > &queries, int cnt) {
+    vector<int> build_prefix_sum(vector<int>& nums, vector<vector<int>>& queries, int cnt) {
         int n = nums.size();
         vector<int> prefix_sum(n + 1, 0);
         for (int j = 0; j < cnt; j++) {
@@ -155,7 +168,7 @@ private:
     }
 
 public:
-    int minZeroArray(vector<int> &nums, vector<vector<int> > &queries) {
+    int minZeroArray(vector<int>& nums, vector<vector<int>>& queries) {
         int left = 0;
         int right = queries.size();
 

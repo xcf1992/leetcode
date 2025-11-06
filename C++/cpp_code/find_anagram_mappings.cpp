@@ -14,8 +14,8 @@ A = [12, 28, 46, 32, 50]
 B = [50, 12, 32, 46, 28]
 We should return
 [1, 4, 3, 2, 0]
-as P[0] = 1 because the 0th element of A appears at B[1], and P[1] = 4 because the 1st element of A appears at B[4], and so on.
-Note:
+as P[0] = 1 because the 0th element of A appears at B[1], and P[1] = 4 because the 1st element of A appears at B[4], and
+so on. Note:
 
 A, B have equal lengths in range [1, 100].
 A[i], B[i] are integers in range [0, 10^5].
@@ -34,13 +34,13 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> anagramMappings(vector<int> &A, vector<int> &B) {
+    vector<int> anagramMappings(vector<int>& A, vector<int>& B) {
         vector<int> result;
         unordered_map<int, int> pos;
         for (int i = 0; i < B.size(); i++) {
             pos[B[i]] = i;
         }
-        for (int num: A) {
+        for (int num : A) {
             result.push_back(pos[num]);
         }
         return result;

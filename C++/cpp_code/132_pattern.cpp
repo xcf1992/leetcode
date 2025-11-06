@@ -81,11 +81,12 @@ i = 6, nums = [ 9, 11, 8, 9, 10, 7, 9 ], S1 candidate = 9, S3 candidate = None, 
 i = 5, nums = [ 9, 11, 8, 9, 10, 7, 9 ], S1 candidate = 7, S3 candidate = None, Stack = [9]
 i = 4, nums = [ 9, 11, 8, 9, 10, 7, 9 ], S1 candidate = 10, S3 candidate = None, Stack = [9,7]
 i = 3, nums = [ 9, 11, 8, 9, 10, 7, 9 ], S1 candidate = 9, S3 candidate = 9, Stack = [10]
-i = 2, nums = [ 9, 11, 8, 9, 10, 7, 9 ], S1 candidate = 8, S3 candidate = 9, Stack = [10,9] We have 8<9, sequence (8,10,9) found!
+i = 2, nums = [ 9, 11, 8, 9, 10, 7, 9 ], S1 candidate = 8, S3 candidate = 9, Stack = [10,9] We have 8<9, sequence
+(8,10,9) found!
 */
 class Solution {
 public:
-    bool find132pattern(vector<int> &nums) {
+    bool find132pattern(vector<int>& nums) {
         stack<int> s3stk;
         int s2 = INT_MIN;
         for (int i = nums.size() - 1; i >= 0; i--) {
@@ -93,10 +94,7 @@ public:
                 return true;
             }
 
-            while (!s3stk.empty() and
-            s3stk.top() < nums[i]
-            )
-            {
+            while (!s3stk.empty() and s3stk.top() < nums[i]) {
                 s2 = s3stk.top();
                 s3stk.pop();
             }

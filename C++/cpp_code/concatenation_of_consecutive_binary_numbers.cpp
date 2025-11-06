@@ -2,7 +2,8 @@
 1680. Concatenation of Consecutive Binary Numbers
 https://leetcode.com/problems/concatenation-of-consecutive-binary-numbers/
 
-Given an integer n, return the decimal value of the binary string formed by concatenating the binary representations of 1 to n in order, modulo 109 + 7.
+Given an integer n, return the decimal value of the binary string formed by concatenating the binary representations of
+1 to n in order, modulo 109 + 7.
 
 Example 1:
 Input: n = 1
@@ -44,7 +45,7 @@ using namespace std;
 class Solution {
 public:
     int concatenatedBinary(int n) {
-        long ans = 0, mod = 1e9+7;
+        long ans = 0, mod = 1e9 + 7;
         for (int i = 1; i <= n; ++i) {
             int len = 0;
             for (int j = i; j != 0; j >>= 1) {

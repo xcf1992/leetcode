@@ -24,8 +24,9 @@ Example 1:
 Input: grid = [[1,1,1,1],[2,2,2,2],[1,1,1,1],[2,2,2,2]]
 Output: 3
 Explanation: You will start at point (0, 0).
-The path to (3, 3) is as follows. (0, 0) --> (0, 1) --> (0, 2) --> (0, 3) change the arrow to down with cost = 1 --> (1, 3) --> (1, 2) --> (1, 1) --> (1, 0) change the arrow to down with cost = 1 --> (2, 0) --> (2, 1) --> (2, 2) --> (2, 3) change the arrow to down with cost = 1 --> (3, 3)
-The total cost = 3.
+The path to (3, 3) is as follows. (0, 0) --> (0, 1) --> (0, 2) --> (0, 3) change the arrow to down with cost = 1 --> (1,
+3) --> (1, 2) --> (1, 1) --> (1, 0) change the arrow to down with cost = 1 --> (2, 0) --> (2, 1) --> (2, 2) --> (2, 3)
+change the arrow to down with cost = 1 --> (3, 3) The total cost = 3.
 
 Example 2:
 Input: grid = [[1,1,3],[3,2,2],[1,1,4]]
@@ -88,7 +89,7 @@ Space O(NM)
 */
 class Solution {
 private:
-    int dir[4][2] = {{0, 1}, {0, -1}, {1, 0}, { -1, 0}};
+    int dir[4][2] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
     int m = 0;
     int n = 0;
 
@@ -102,6 +103,7 @@ private:
         int nextDir = grid[r][c] - 1;
         dfs(grid, r + dir[nextDir][0], c + dir[nextDir][1], dp, cost, q);
     }
+
 public:
     int minCost(vector<vector<int>>& grid) {
         m = grid.size();

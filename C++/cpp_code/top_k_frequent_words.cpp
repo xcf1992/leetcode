@@ -39,29 +39,26 @@ Try to solve it in O(n log k) time and O(n) extra space.
 using namespace std;
 
 struct Comp {
-    bool operator()(const pair<string, int> &a, const pair<string, int> &b) {
+    bool operator()(const pair<string, int>& a, const pair<string, int>& b) {
         return b.second > a.second || (a.second == b.second && b.first < a.first);
     }
 };
 
 class Solution {
 public:
-    vector<string> topKFrequent(vector<string> &words, int k) {
+    vector<string> topKFrequent(vector<string>& words, int k) {
         unordered_map<string, int> frequency;
-        for (string word: words) {
+        for (string word : words) {
             frequency[word] += 1;
         }
 
-        priority_queue<pair<string, int>, vector<pair<string, int> >, Comp> sortWords;
-        for (const auto &freq: frequency) {
+        priority_queue<pair<string, int>, vector<pair<string, int>>, Comp> sortWords;
+        for (const auto& freq : frequency) {
             sortWords.push(freq);
         }
 
         vector<string> result;
-        while (result.size() < k and
-        !sortWords.empty()
-        )
-        {
+        while (result.size() < k and !sortWords.empty()) {
             result.push_back(sortWords.top().first);
             sortWords.pop();
         }

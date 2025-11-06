@@ -71,10 +71,7 @@ For other, we consider only palindrome with odd dights.
 class Solution {
 private:
     bool isPrime(int num) {
-        if (num < 2 or num
-        %2 == 0
-        )
-        {
+        if (num < 2 or num % 2 == 0) {
             return num == 2;
         }
         for (int i = 3; i * i <= num; i++)
@@ -86,11 +83,7 @@ private:
 
 public:
     int primePalindrome(int N) {
-        if (N >= 8 and N
-        <=
-        11
-        )
-        {
+        if (N >= 8 and N <= 11) {
             return 11;
         }
 
@@ -98,9 +91,7 @@ public:
             string cur = to_string(i);
             reverse(cur.begin(), cur.end());
             int candidate = stoi(to_string(i) + cur.substr(1));
-            if (candidate >= N and isPrime(candidate)
-            )
-            {
+            if (candidate >= N and isPrime(candidate)) {
                 return candidate;
             }
         }

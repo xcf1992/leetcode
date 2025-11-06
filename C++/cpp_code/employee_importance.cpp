@@ -56,16 +56,16 @@ public:
 
 class Solution {
 private:
-    int dfs(vector<Employee *> employees, unordered_map<int, int> index, int id) {
+    int dfs(vector<Employee*> employees, unordered_map<int, int> index, int id) {
         int result = employees[index[id]]->importance;
-        for (int sub: employees[index[id]]->subordinates) {
+        for (int sub : employees[index[id]]->subordinates) {
             result += dfs(employees, index, sub);
         }
         return result;
     }
 
 public:
-    int getImportance(vector<Employee *> employees, int id) {
+    int getImportance(vector<Employee*> employees, int id) {
         unordered_map<int, int> index;
         for (int i = 0; i < employees.size(); i++) {
             index[employees[i]->id] = i;

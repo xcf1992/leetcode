@@ -72,7 +72,7 @@ using namespace std;
 
 class Solution1 {
 private:
-    void dfs(int &result, unordered_map<int, int> &index, int height, int pos, TreeNode *root) {
+    void dfs(int& result, unordered_map<int, int>& index, int height, int pos, TreeNode* root) {
         if (root == nullptr) {
             return;
         }
@@ -88,7 +88,7 @@ private:
     }
 
 public:
-    int widthOfBinaryTree(TreeNode *root) {
+    int widthOfBinaryTree(TreeNode* root) {
         int result = 0;
         unordered_map<int, int> index;
         dfs(result, index, 0, 0, root);
@@ -98,13 +98,13 @@ public:
 
 class Solution {
 public:
-    int widthOfBinaryTree(TreeNode *root) {
+    int widthOfBinaryTree(TreeNode* root) {
         if (root == nullptr) {
             return 0;
         }
 
         int result = 1;
-        queue<pair<int, TreeNode *> > row;
+        queue<pair<int, TreeNode*>> row;
         row.push({0, root});
         while (!row.empty()) {
             int left = INT_MAX;
@@ -112,7 +112,7 @@ public:
             int curSize = row.size();
             for (int i = 0; i < curSize; ++i) {
                 int pos = row.front().first;
-                TreeNode *node = row.front().second;
+                TreeNode* node = row.front().second;
                 row.pop();
 
                 left = min(left, pos);

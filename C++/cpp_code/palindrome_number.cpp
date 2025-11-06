@@ -80,11 +80,7 @@ public:
         }
 
         int temp = x;
-        while (times != 0 and times
-        !=
-        1
-        )
-        {
+        while (times != 0 and times != 1) {
             int a = x % 10;
             int b = temp / hehe;
 

@@ -73,23 +73,21 @@ then we know the subarray nums[0, i - 1] will be exactly the same as subarray nu
 and the subarray nums[j + 1, n - 1] exactly the same as nums_sorted[j + 1, n - 1].
 In this case just suppose we have nums[i] == nums_sorted[i] and nums[j] == nums_sorted[j],
 let’s see what will happen.
-Since the subarrays nums[i, n - 1] and nums_sorted[i, n - 1] contain exactly the same elements (though the order may be different),
-then the minimum element of the former will be the same as the latter.
-Since nums_sorted[i, n - 1] is sorted in ascending order,
-we will have min[i] = nums_sorted[i] = nums[i],
-which contradicts the assumption that nums[i] != min[i].
-Similarly we can show that nums[j] == nums_sorted[j] implies nums[j] == max[j],
-which contradicts the assumption that nums[j] != max[j].
+Since the subarrays nums[i, n - 1] and nums_sorted[i, n - 1] contain exactly the same elements (though the order may be
+different), then the minimum element of the former will be the same as the latter. Since nums_sorted[i, n - 1] is sorted
+in ascending order, we will have min[i] = nums_sorted[i] = nums[i], which contradicts the assumption that nums[i] !=
+min[i]. Similarly we can show that nums[j] == nums_sorted[j] implies nums[j] == max[j], which contradicts the assumption
+that nums[j] != max[j].
 
-Finding the smallest index i such that nums[i] != min[i] and the largest index j such that nums[j] != max[j] can be done in one-pass,
-as shown below.
-Note that we don’t really need arrays to hold values for min[r] and max[l],
-by taking advantage of the recurrence relation min[r] = Math.min(min[r + 1], nums[r]) and max[l] = Math.max(max[l - 1], nums[l]).
-Also we initialized the indices i and j such that correct results will be returned even if the input array is already sorted (which requires initially j - i + 1 = 0).
+Finding the smallest index i such that nums[i] != min[i] and the largest index j such that nums[j] != max[j] can be done
+in one-pass, as shown below. Note that we don’t really need arrays to hold values for min[r] and max[l], by taking
+advantage of the recurrence relation min[r] = Math.min(min[r + 1], nums[r]) and max[l] = Math.max(max[l - 1], nums[l]).
+Also we initialized the indices i and j such that correct results will be returned even if the input array is already
+sorted (which requires initially j - i + 1 = 0).
 */
 class Solution {
 public:
-    int findUnsortedSubarray(vector<int> &nums) {
+    int findUnsortedSubarray(vector<int>& nums) {
         int n = nums.size();
         if (n <= 1) {
             return 0;
@@ -117,7 +115,7 @@ public:
 
 class Solution1 {
 public:
-    int findUnsortedSubarray(vector<int> &nums) {
+    int findUnsortedSubarray(vector<int>& nums) {
         if (nums.size() <= 1) {
             return 0;
         }

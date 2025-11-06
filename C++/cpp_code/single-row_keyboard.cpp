@@ -51,7 +51,7 @@ public:
 
         int result = 0;
         int cur = 0;
-        for (char c: word) {
+        for (char c : word) {
             result += abs(pos[c - 'a'] - cur);
             cur = pos[c - 'a'];
         }

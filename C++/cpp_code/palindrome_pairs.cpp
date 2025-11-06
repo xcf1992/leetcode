@@ -45,8 +45,8 @@ find the palindrome word candidate except "" itself, and add pair("", palindrome
 
 Main logic part. Partition the word into left and right, and see
 1) if there exists a candidate in map equals the left side of current word,
-and right side of current word is palindrome, so concatenate(current word, candidate) forms a pair: left | right | candidate.
-2) same for checking the right side of current word: candidate | left | right.
+and right side of current word is palindrome, so concatenate(current word, candidate) forms a pair: left | right |
+candidate. 2) same for checking the right side of current word: candidate | left | right.
 */
 class Solution {
 private:
@@ -66,7 +66,7 @@ private:
     }
 
 public:
-    vector<vector<int> > palindromePairs(vector<string> &words) {
+    vector<vector<int>> palindromePairs(vector<string>& words) {
         unordered_map<string, int> dict;
         for (int i = 0; i < words.size(); i++) {
             string key = words[i];
@@ -74,26 +74,18 @@ public:
             dict[key] = i;
         }
 
-        vector<vector<int> > result;
+        vector<vector<int>> result;
         for (int i = 0; i < words.size(); i++) {
             for (int j = 0; j < words[i].size(); j++) {
                 string left = words[i].substr(0, j);
                 string right = words[i].substr(j);
-                if (dict.find(left) != dict.end() and isPalindrome(right) and dict[left]
-                !=
-                i
-                )
-                {
+                if (dict.find(left) != dict.end() and isPalindrome(right) and dict[left] != i) {
                     result.push_back({i, dict[left]});
                     if (left == "") {
                         result.push_back({dict[left], i});
                     }
                 }
-                if (dict.find(right) != dict.end() and isPalindrome(left) and dict[right]
-                !=
-                i
-                )
-                {
+                if (dict.find(right) != dict.end() and isPalindrome(left) and dict[right] != i) {
                     result.push_back({dict[right], i});
                 }
             }
@@ -123,8 +115,8 @@ private:
     }
 
 public:
-    vector<vector<int> > palindromePairs(vector<string> &words) {
-        vector<vector<int> > result;
+    vector<vector<int>> palindromePairs(vector<string>& words) {
+        vector<vector<int>> result;
         for (int i = 0; i < words.size(); i++) {
             for (int j = i + 1; j < words.size(); j++) {
                 if (isPalindrome(words[i] + words[j])) {

@@ -6,7 +6,8 @@ You are given three arrays username,
 timestamp and website of the same length N
 where the ith tuple means that the user with name username[i] visited the website website[i] at time timestamp[i].
 
-A 3-sequence is a list of not necessarily different websites of length 3 sorted in ascending order by the time of their visits.
+A 3-sequence is a list of not necessarily different websites of length 3 sorted in ascending order by the time of their
+visits.
 
 Find the 3-sequence visited at least once by the largest number of users.
 If there is more than one solution,
@@ -20,10 +21,9 @@ No user visits two websites at the same time.
 
 Example 1:
 
-Input: username = ["joe","joe","joe","james","james","james","james","mary","mary","mary"], timestamp = [1,2,3,4,5,6,7,8,9,10], website = ["home","about","career","home","cart","maps","home","home","about","career"]
-Output: ["home","about","career"]
-Explanation:
-The tuples in this example are:
+Input: username = ["joe","joe","joe","james","james","james","james","mary","mary","mary"], timestamp =
+[1,2,3,4,5,6,7,8,9,10], website = ["home","about","career","home","cart","maps","home","home","about","career"] Output:
+["home","about","career"] Explanation: The tuples in this example are:
 ["joe", 1, "home"]
 ["joe", 2, "about"]
 ["joe", 3, "career"]
@@ -76,22 +76,21 @@ private:
     }
 
 public:
-    vector<string> mostVisitedPattern(vector<string> &username, vector<int> &timestamp, vector<string> &website) {
-        unordered_map<string, vector<pair<int, string> > > visit;
+    vector<string> mostVisitedPattern(vector<string>& username, vector<int>& timestamp, vector<string>& website) {
+        unordered_map<string, vector<pair<int, string>>> visit;
         for (int i = 0; i < username.size(); ++i) {
             visit[username[i]].push_back({timestamp[i], website[i]});
         }
 
         unordered_map<string, int> count;
-        for (auto &it: visit) {
-            vector<pair<int, string> > timeWeb = it.second;
+        for (auto& it : visit) {
+            vector<pair<int, string>> timeWeb = it.second;
             if (timeWeb.size() < 3) {
                 continue;
             }
 
-            sort(timeWeb.begin(), timeWeb.end(), [](pair<int, string> &a, pair<int, string> &b) {
-                return a.first < b.first;
-            });
+            sort(timeWeb.begin(), timeWeb.end(),
+                 [](pair<int, string>& a, pair<int, string>& b) { return a.first < b.first; });
             int n = timeWeb.size();
             unordered_set<string> webPattern;
             for (int i = 0; i < n; ++i) {
@@ -101,23 +100,21 @@ public:
                     }
                 }
             }
-            for (string pattern: webPattern) {
+            for (string pattern : webPattern) {
                 count[pattern] += 1;
             }
         }
 
         vector<string> result;
         int maxVisit = 0;
-        for (auto &it: count) {
+        for (auto& it : count) {
             if (it.second > maxVisit) {
                 maxVisit = it.second;
                 result = splitWeb(it.first);
             } else if (it.second == maxVisit) {
                 vector<string> cur = splitWeb(it.first);
-                if (result[0] > cur[0] or(result[0] == cur[0] and result[1] > cur[1])
-                or(result[0] == cur[0] and result[1] == cur[1] and result[2] > cur[2])
-                )
-                {
+                if (result[0] > cur[0] or (result[0] == cur[0] and result[1] > cur[1]) or
+                    (result[0] == cur[0] and result[1] == cur[1] and result[2] > cur[2])) {
                     result = cur;
                 }
             }

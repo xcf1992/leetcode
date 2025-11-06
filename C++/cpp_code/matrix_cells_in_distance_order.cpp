@@ -1,11 +1,14 @@
 /*
  1030. Matrix Cells in Distance Order
 
- We are given a matrix with R rows and C columns has cells with integer coordinates (r, c), where 0 <= r < R and 0 <= c < C.
+ We are given a matrix with R rows and C columns has cells with integer coordinates (r, c), where 0 <= r < R and 0 <= c
+ < C.
 
  Additionally, we are given a cell in that matrix with coordinates (r0, c0).
 
- Return the coordinates of all cells in the matrix, sorted by their distance from (r0, c0) from smallest distance to largest distance.  Here, the distance between two cells (r1, c1) and (r2, c2) is the Manhattan distance, |r1 - r2| + |c1 - c2|.  (You may return the answer in any order that satisfies this condition.)
+ Return the coordinates of all cells in the matrix, sorted by their distance from (r0, c0) from smallest distance to
+ largest distance.  Here, the distance between two cells (r1, c1) and (r2, c2) is the Manhattan distance, |r1 - r2| +
+ |c1 - c2|.  (You may return the answer in any order that satisfies this condition.)
 
 
 
@@ -57,11 +60,11 @@ private:
     vector<int> dy{1, -1, 0, 0};
 
 public:
-    vector<vector<int> > allCellsDistOrder(int R, int C, int r0, int c0) {
-        vector<vector<int> > result;
-        queue<vector<int> > bfs;
+    vector<vector<int>> allCellsDistOrder(int R, int C, int r0, int c0) {
+        vector<vector<int>> result;
+        queue<vector<int>> bfs;
         bfs.push({r0, c0});
-        vector<vector<bool> > visited(R, vector<bool>(C, false));
+        vector<vector<bool>> visited(R, vector<bool>(C, false));
         visited[r0][c0] = true;
         while (!bfs.empty()) {
             int curSize = bfs.size();
@@ -73,12 +76,7 @@ public:
                 for (int j = 0; j < 4; ++j) {
                     int nr = cur[0] + dx[j];
                     int nc = cur[1] + dy[j];
-                    if (nr >= 0 and nc
-                    >=
-                    0
-                    and nr<R and nc < C and !visited[nr][nc]
-                    )
-                    {
+                    if (nr >= 0 and nc >= 0 and nr < R and nc < C and !visited[nr][nc]) {
                         bfs.push({nr, nc});
                         visited[nr][nc] = true;
                     }

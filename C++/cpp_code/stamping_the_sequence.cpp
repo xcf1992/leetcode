@@ -71,15 +71,13 @@ where N is the length of target and M is the length of stamp
 */
 class Solution {
 private:
-    int remove(string &target, string stamp) {
+    int remove(string& target, string stamp) {
         int n = target.size();
         for (int i = 0; i < n; i++) {
             int pos = i;
             int j = 0;
             bool matched = false;
-            while (j < stamp.size() and pos<target.size() and(target[pos] == stamp[j] or target[pos] == '*')
-            )
-            {
+            while (j < stamp.size() and pos < target.size() and (target[pos] == stamp[j] or target[pos] == '*')) {
                 if (target[pos] == stamp[j]) {
                     matched = true;
                 }
@@ -87,9 +85,7 @@ private:
                 j += 1;
             }
 
-            if (j == stamp.size() and matched
-            )
-            {
+            if (j == stamp.size() and matched) {
                 for (int k = 0; k < stamp.size(); k++) {
                     target[i + k] = '*';
                 }
@@ -131,7 +127,8 @@ we will try '*bc' and 'ab*', and so on. Now, turn by turn:
 '****cbc' ? '**c' = [2]
 '*****bc' ? '*bc' = [4]
 
-still too slow https://leetcode.com/problems/stamping-the-sequence/discuss/285844/C%2B%2B-Very-Short-No-extra-space-(except-for-answer)-Beats-100100-(16ms-9mb)
+still too slow
+https://leetcode.com/problems/stamping-the-sequence/discuss/285844/C%2B%2B-Very-Short-No-extra-space-(except-for-answer)-Beats-100100-(16ms-9mb)
 */
 class Solution1 {
 public:
@@ -147,8 +144,8 @@ public:
             for (int sz = sLen; sz > 0; --sz) {
                 // the stamp should at least have one letter
                 for (int preStar = 0; preStar + sz <= sLen; ++preStar) {
-                    string curStamp = string(preStar, '*') + stamp.substr(preStar, sz) + string(
-                                          sLen - preStar - sz, '*');
+                    string curStamp =
+                            string(preStar, '*') + stamp.substr(preStar, sz) + string(sLen - preStar - sz, '*');
                     auto pos = target.find(curStamp);
                     while (pos != string::npos) {
                         result.push_back(pos);

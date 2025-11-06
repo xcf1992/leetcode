@@ -17,12 +17,14 @@ otherwise, it does not have any apple.
 Example 1:
 Input: n = 7, edges = [[0,1],[0,2],[1,4],[1,5],[2,3],[2,6]], hasApple = [false,false,true,false,true,true,false]
 Output: 8
-Explanation: The figure above represents the given tree where red vertices have an apple. One optimal path to collect all apples is shown by the green arrows.
+Explanation: The figure above represents the given tree where red vertices have an apple. One optimal path to collect
+all apples is shown by the green arrows.
 
 Example 2:
 Input: n = 7, edges = [[0,1],[0,2],[1,4],[1,5],[2,3],[2,6]], hasApple = [false,false,true,false,false,true,false]
 Output: 6
-Explanation: The figure above represents the given tree where red vertices have an apple. One optimal path to collect all apples is shown by the green arrows.
+Explanation: The figure above represents the given tree where red vertices have an apple. One optimal path to collect
+all apples is shown by the green arrows.
 
 Example 3:
 Input: n = 7, edges = [[0,1],[0,2],[1,4],[1,5],[2,3],[2,6]], hasApple = [false,false,false,false,false,false,false]
@@ -66,6 +68,7 @@ private:
         }
         return (result != 0 or hasApple[root]) ? result : 0;
     }
+
 public:
     int minTime(int n, vector<vector<int>>& edges, vector<bool>& hasApple) {
         adjList.resize(n);

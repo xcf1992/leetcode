@@ -29,17 +29,14 @@ using namespace std;
 
 class Solution {
 public:
-    ListNode *deleteDuplicates(ListNode *head) {
-        if (head == nullptr or
-        head->next == nullptr
-        )
-        {
+    ListNode* deleteDuplicates(ListNode* head) {
+        if (head == nullptr or head->next == nullptr) {
             return head;
         }
 
-        ListNode *current = head;
+        ListNode* current = head;
         while (current->next != nullptr) {
-            ListNode *suc = current->next;
+            ListNode* suc = current->next;
             if (current->val == suc->val) {
                 current->next = suc->next;
                 delete suc;

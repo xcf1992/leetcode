@@ -52,15 +52,15 @@ public:
     int subarrayBitwiseORs(vector<int> arr) {
         unordered_set<int> res;
         unordered_set<int> cur;
-        for (int i: arr) {
+        for (int i : arr) {
             unordered_set<int> cur2;
             cur2.insert(i);
-            for (int j: cur) {
+            for (int j : cur) {
                 cur2.insert(i | j);
             }
 
             cur = cur2;
-            for (int j: cur) {
+            for (int j : cur) {
                 res.insert(j);
             }
         }
@@ -70,7 +70,7 @@ public:
 
 class Solution1 {
 public:
-    int subarrayBitwiseORs(vector<int> &A) {
+    int subarrayBitwiseORs(vector<int>& A) {
         unordered_set<int> cur, result;
         cur.insert(A[0]);
         result.insert(A[0]);
@@ -78,7 +78,7 @@ public:
             unordered_set<int> cur2;
             cur2.insert(A[i]);
             result.insert(A[i]);
-            for (int num: cur) {
+            for (int num : cur) {
                 cur2.insert(num | A[i]);
                 result.insert(num | A[i]);
             }

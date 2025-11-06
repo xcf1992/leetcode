@@ -45,16 +45,13 @@ public:
         for (auto& it : count) {
             numCount.push_back({it.second, it.first});
         }
-        sort(numCount.begin(), numCount.end(), [](vector<int>& a, vector<int>& b) {
-            return a[0] > b[0];
-        });
+        sort(numCount.begin(), numCount.end(), [](vector<int>& a, vector<int>& b) { return a[0] > b[0]; });
 
         for (int i = numCount.size() - 1; i >= 0; --i) {
             if (k >= numCount.back()[0]) {
                 k -= numCount.back()[0];
                 numCount.pop_back();
-            }
-            else {
+            } else {
                 break;
             }
         }

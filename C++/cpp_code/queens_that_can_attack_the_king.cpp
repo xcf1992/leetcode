@@ -24,8 +24,9 @@ Input: queens = [[0,0],[1,1],[2,2],[3,4],[3,5],[4,4],[4,5]], king = [3,3]
 Output: [[2,2],[3,4],[4,4]]
 
 Example 3:
-Input: queens = [[5,6],[7,7],[2,1],[0,7],[1,6],[5,1],[3,7],[0,3],[4,0],[1,2],[6,3],[5,0],[0,4],[2,2],[1,1],[6,4],[5,4],[0,0],[2,6],[4,5],[5,2],[1,4],[7,5],[2,3],[0,5],[4,2],[1,0],[2,7],[0,1],[4,6],[6,1],[0,6],[4,3],[1,7]], king = [3,4]
-Output: [[2,3],[1,4],[1,6],[3,7],[4,3],[5,4],[4,5]]
+Input: queens =
+[[5,6],[7,7],[2,1],[0,7],[1,6],[5,1],[3,7],[0,3],[4,0],[1,2],[6,3],[5,0],[0,4],[2,2],[1,1],[6,4],[5,4],[0,0],[2,6],[4,5],[5,2],[1,4],[7,5],[2,3],[0,5],[4,2],[1,0],[2,7],[0,1],[4,6],[6,1],[0,6],[4,3],[1,7]],
+king = [3,4] Output: [[2,3],[1,4],[1,6],[3,7],[4,3],[5,4],[4,5]]
 
 Constraints:
 1 <= queens.length <= 63
@@ -51,25 +52,18 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int> > queensAttacktheKing(vector<vector<int> > &queens, vector<int> &king) {
-        vector<vector<bool> > grid(9, vector<bool>(9, false));
-        for (vector<int> &queen: queens) {
+    vector<vector<int>> queensAttacktheKing(vector<vector<int>>& queens, vector<int>& king) {
+        vector<vector<bool>> grid(9, vector<bool>(9, false));
+        for (vector<int>& queen : queens) {
             grid[queen[0]][queen[1]] = true;
         }
 
-        vector<vector<int> > result;
-        vector<vector<int> > moves({{0, 1}, {0, -1}, {1, 0}, {-1, 0}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}});
+        vector<vector<int>> result;
+        vector<vector<int>> moves({{0, 1}, {0, -1}, {1, 0}, {-1, 0}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}});
         for (int i = 0; i < moves.size(); ++i) {
             int kr = king[0];
             int kc = king[1];
-            while (kr + moves[i][0] >= 0 and kc
-            +moves[i][1] >= 0
-            and kr
-            +moves[i][0] < 8
-            and kc
-            +moves[i][1] < 8
-            )
-            {
+            while (kr + moves[i][0] >= 0 and kc + moves[i][1] >= 0 and kr + moves[i][0] < 8 and kc + moves[i][1] < 8) {
                 kr += moves[i][0];
                 kc += moves[i][1];
                 if (grid[kr][kc]) {
@@ -85,16 +79,12 @@ public:
 // wrong: consider that some black queen will block others to attack
 class Solution1 {
 public:
-    vector<vector<int> > queensAttacktheKing(vector<vector<int> > &queens, vector<int> &king) {
-        vector<vector<int> > result;
+    vector<vector<int>> queensAttacktheKing(vector<vector<int>>& queens, vector<int>& king) {
+        vector<vector<int>> result;
         int kr = king[0];
         int kc = king[1];
-        for (vector<int> &queen: queens) {
-            if (queen[0] == kr or queen[1]
-            ==
-            kc
-            )
-            {
+        for (vector<int>& queen : queens) {
+            if (queen[0] == kr or queen[1] == kc) {
                 result.push_back(queen);
             }
             if (kr + kc == queen[0] + queen[1]) {

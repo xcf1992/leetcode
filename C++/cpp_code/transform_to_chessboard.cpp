@@ -116,7 +116,7 @@ class Solution {
 private:
     int N = 0;
 
-    bool isValid(vector<vector<int> > &board) {
+    bool isValid(vector<vector<int>>& board) {
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++)
                 if (board[0][0] ^ board[0][j] ^ board[i][0] ^ board[i][j] == 1) {
@@ -127,14 +127,14 @@ private:
     }
 
 public:
-    int movesToChessboard(vector<vector<int> > &board) {
+    int movesToChessboard(vector<vector<int>>& board) {
         N = board.size();
         if (!isValid(board)) {
             return -1;
         }
 
         int rowSum = 0;
-        int rowSwap = 0; // the numebr of swaps needed to make row become 1010101... or 01010101....
+        int rowSwap = 0;  // the numebr of swaps needed to make row become 1010101... or 01010101....
         int colSum = 0;
         int colSwap = 0;
         for (int i = 0; i < N; i++) {
@@ -145,17 +145,7 @@ public:
             colSwap += board[0][i] == i % 2;
         }
 
-        if (N / 2 > rowSum or rowSum
-        >
-        (N + 1) / 2
-        or N
-        /
-        2 > colSum
-        or colSum
-        >
-        (N + 1) / 2
-        )
-        {
+        if (N / 2 > rowSum or rowSum > (N + 1) / 2 or N / 2 > colSum or colSum > (N + 1) / 2) {
             return -1;
         }
 
@@ -171,14 +161,14 @@ public:
             colSwap = min(colSwap, N - colSwap);
         }
         /*
-        * One swap can change 2 numbers.
-        * For example, you want to swap [000111] into [010101].
-        * It only takes 1 swap to fix 2 misplaced numbers.
-        *
-        * row + col are the number we need to change.
-        * By every swap, we can change 2 cols or 2 rows.
-        * Does it make more sense?
-        */
+         * One swap can change 2 numbers.
+         * For example, you want to swap [000111] into [010101].
+         * It only takes 1 swap to fix 2 misplaced numbers.
+         *
+         * row + col are the number we need to change.
+         * By every swap, we can change 2 cols or 2 rows.
+         * Does it make more sense?
+         */
         return (rowSwap + colSwap) / 2;
     }
 };

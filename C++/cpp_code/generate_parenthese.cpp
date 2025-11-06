@@ -22,7 +22,7 @@ using namespace std;
 
 class Solution {
 private:
-    void generate(vector<string> &result, string &parenthesis, int cnt, int left, int right) {
+    void generate(vector<string>& result, string& parenthesis, int cnt, int left, int right) {
         if (parenthesis.size() == cnt * 2) {
             result.push_back(parenthesis);
             return;

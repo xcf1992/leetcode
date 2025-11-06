@@ -51,7 +51,7 @@ using namespace std;
 
 class Solution {
 public:
-    int countSquares(vector<vector<int> > &matrix) {
+    int countSquares(vector<vector<int>>& matrix) {
         int m = matrix.size();
         if (m == 0) {
             return 0;
@@ -59,7 +59,7 @@ public:
         int n = matrix[0].size();
 
         int result = 0;
-        vector<vector<int> > maxLen(m, vector<int>(n, 0));
+        vector<vector<int>> maxLen(m, vector<int>(n, 0));
         for (int i = 0; i < m; ++i)
             if (matrix[i][0] == 1) {
                 maxLen[i][0] = 1;

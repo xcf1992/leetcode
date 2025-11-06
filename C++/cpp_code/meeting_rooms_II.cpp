@@ -31,24 +31,18 @@ using namespace std;
 
 class Solution {
 public:
-    int minMeetingRooms(vector<vector<int> > &intervals) {
-        sort(intervals.begin(), intervals.end(), [](vector<int> &i, vector<int> &j) {
-            return i[0] < j[0];
-        });
+    int minMeetingRooms(vector<vector<int>>& intervals) {
+        sort(intervals.begin(), intervals.end(), [](vector<int>& i, vector<int>& j) { return i[0] < j[0]; });
 
-        priority_queue<int, vector<int>, greater<int> > min_heap;
+        priority_queue<int, vector<int>, greater<int>> min_heap;
         int result = 0;
-        for (vector<int> &interval: intervals) {
-            while (!min_heap.empty() and interval[0]
-            >=
-            min_heap.top()
-            )
-            {
+        for (vector<int>& interval : intervals) {
+            while (!min_heap.empty() and interval[0] >= min_heap.top()) {
                 // some meetings have ended already
                 min_heap.pop();
             }
             min_heap.push(interval[1]);
-            result = max(result, (int) min_heap.size());
+            result = max(result, (int)min_heap.size());
         }
         return result;
     }
@@ -56,7 +50,7 @@ public:
 
 class Solution1 {
 public:
-    int minMeetingRooms(vector<vector<int> > &intervals) {
+    int minMeetingRooms(vector<vector<int>>& intervals) {
         size_t n = intervals.size();
         if (n <= 1) {
             return n;
@@ -64,7 +58,7 @@ public:
 
         vector<int> i_start;
         vector<int> i_end;
-        for (vector<int> &in: intervals) {
+        for (vector<int>& in : intervals) {
             i_start.push_back(in[0]);
             i_end.push_back(in[1]);
         }
@@ -72,7 +66,7 @@ public:
         sort(i_end.begin(), i_end.end());
 
         int result = 0;
-        for (int cur: i_start) {
+        for (int cur : i_start) {
             int start_cnt = upper_bound(i_start.begin(), i_start.end(), cur) - i_start.begin();
             int end_cnt = upper_bound(i_end.begin(), i_end.end(), cur) - i_end.begin();
             result = max(result, start_cnt - end_cnt);

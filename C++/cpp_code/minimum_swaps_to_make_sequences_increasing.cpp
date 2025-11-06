@@ -122,13 +122,11 @@ public:
         for (int i = 1; i < A.size(); i++) {
             if (A[i - 1] >= B[i] or B[i - 1] >= A[i]) {
                 exchange += 1;
-            }
-            else if (A[i - 1] >= A[i] or B[i - 1] >= B[i]) {
+            } else if (A[i - 1] >= A[i] or B[i - 1] >= B[i]) {
                 int temp = exchange;
                 exchange = fix + 1;
                 fix = temp;
-            }
-            else {
+            } else {
                 int minSwap = min(exchange, fix);
                 exchange = minSwap + 1;
                 fix = minSwap;

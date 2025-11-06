@@ -45,7 +45,7 @@ public:
             return false;
         }
 
-        for (auto i: factor) {
+        for (auto i : factor) {
             while (num % i == 0) {
                 num /= i;
             }

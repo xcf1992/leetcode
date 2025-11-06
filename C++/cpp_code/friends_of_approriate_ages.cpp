@@ -51,9 +51,9 @@ using namespace std;
 
 class Solution {
 public:
-    int numFriendRequests(vector<int> &ages) {
+    int numFriendRequests(vector<int>& ages) {
         vector<int> people(121, 0);
-        for (int age: ages) {
+        for (int age : ages) {
             people[age] += 1;
         }
 

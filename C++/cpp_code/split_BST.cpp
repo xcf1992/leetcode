@@ -53,12 +53,8 @@ using namespace std;
 
 class Solution {
 private:
-    void insert(TreeNode *root, TreeNode *node) {
-        if (root == nullptr or node
-        ==
-        nullptr
-        )
-        {
+    void insert(TreeNode* root, TreeNode* node) {
+        if (root == nullptr or node == nullptr) {
             return;
         }
 
@@ -79,22 +75,22 @@ private:
     }
 
 public:
-    vector<TreeNode *> splitBST(TreeNode *root, int V) {
+    vector<TreeNode*> splitBST(TreeNode* root, int V) {
         if (root == nullptr) {
             return {nullptr, nullptr};
         }
 
         if (root->val <= V) {
-            TreeNode *rightChild = root->right;
+            TreeNode* rightChild = root->right;
             root->right = nullptr;
-            vector<TreeNode *> rightSplit = splitBST(rightChild, V);
+            vector<TreeNode*> rightSplit = splitBST(rightChild, V);
             insert(root, rightSplit[0]);
             return {root, rightSplit[1]};
         }
 
-        TreeNode *leftChild = root->left;
+        TreeNode* leftChild = root->left;
         root->left = nullptr;
-        vector<TreeNode *> leftSplit = splitBST(leftChild, V);
+        vector<TreeNode*> leftSplit = splitBST(leftChild, V);
         insert(root, leftSplit[1]);
         return {leftSplit[0], root};
     }
@@ -102,8 +98,8 @@ public:
 
 class Solution1 {
 private:
-    void insert(TreeNode *root, TreeNode *cur) {
-        TreeNode *newPos = root;
+    void insert(TreeNode* root, TreeNode* cur) {
+        TreeNode* newPos = root;
         while (true) {
             if (cur->val > newPos->val) {
                 if (newPos->right != nullptr) {
@@ -123,7 +119,7 @@ private:
         }
     }
 
-    void split(vector<TreeNode *> &result, TreeNode *cur, int V) {
+    void split(vector<TreeNode*>& result, TreeNode* cur, int V) {
         if (cur == nullptr) {
             return;
         }
@@ -134,7 +130,7 @@ private:
             } else {
                 insert(result[0], cur);
             }
-            TreeNode *next = cur->left;
+            TreeNode* next = cur->left;
             cur->left = nullptr;
             split(result, next, V);
         } else {
@@ -143,15 +139,15 @@ private:
             } else {
                 insert(result[1], cur);
             }
-            TreeNode *next = cur->right;
+            TreeNode* next = cur->right;
             cur->right = nullptr;
             split(result, next, V);
         }
     }
 
 public:
-    vector<TreeNode *> splitBST(TreeNode *root, int V) {
-        vector<TreeNode *> result(2, nullptr);
+    vector<TreeNode*> splitBST(TreeNode* root, int V) {
+        vector<TreeNode*> result(2, nullptr);
         split(result, root, V);
         return result;
     }

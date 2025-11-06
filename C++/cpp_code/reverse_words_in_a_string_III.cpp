@@ -27,7 +27,7 @@ using namespace std;
 
 class Solution {
 private:
-    void reverse(string &word, int begin, int end) {
+    void reverse(string& word, int begin, int end) {
         while (begin < end) {
             swap(word[begin], word[end]);
             begin++;
@@ -45,11 +45,7 @@ public:
         int start = 0;
         int end = 0;
         while (end <= n) {
-            if (end == n or s[end]
-            ==
-            ' '
-            )
-            {
+            if (end == n or s[end] == ' ') {
                 reverse(s, start, end - 1);
                 start = end + 1;
             }

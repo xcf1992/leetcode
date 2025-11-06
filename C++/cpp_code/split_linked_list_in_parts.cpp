@@ -22,16 +22,17 @@ root = [1, 2, 3], k = 5
 Output: [[1],[2],[3],[],[]]
 Explanation:
 The input and each element of the output are ListNodes, not arrays.
-For example, the input root has root.val = 1, root.next.val = 2, \root.next.next.val = 3, and root.next.next.next = null.
-The first element output[0] has output[0].val = 1, output[0].next = null.
-The last element output[4] is null, but it's string representation as a ListNode is [].
+For example, the input root has root.val = 1, root.next.val = 2, \root.next.next.val = 3, and root.next.next.next =
+null. The first element output[0] has output[0].val = 1, output[0].next = null. The last element output[4] is null, but
+it's string representation as a ListNode is [].
 
 Example 2:
 Input:
 root = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], k = 3
 Output: [[1, 2, 3, 4], [5, 6, 7], [8, 9, 10]]
 Explanation:
-The input has been split into consecutive parts with size difference at most 1, and earlier parts are a larger size than the later parts.
+The input has been split into consecutive parts with size difference at most 1, and earlier parts are a larger size than
+the later parts.
 
 Note:
 The length of root will be in the range [0, 1000].
@@ -53,11 +54,11 @@ using namespace std;
 
 class Solution {
 public:
-    vector<ListNode *> splitListToParts(ListNode *root, int k) {
-        vector<ListNode *> result(k, nullptr);
+    vector<ListNode*> splitListToParts(ListNode* root, int k) {
+        vector<ListNode*> result(k, nullptr);
 
         int length = 0;
-        ListNode *cur = root;
+        ListNode* cur = root;
         while (cur != nullptr) {
             length += 1;
             cur = cur->next;
@@ -67,25 +68,16 @@ public:
         int segment = length / k;
         int extra = length % k;
         int index = 0;
-        ListNode *pre = nullptr;
+        ListNode* pre = nullptr;
         while (cur != nullptr) {
             result[index] = cur;
             index += 1;
 
-            for (int i = 0; i < segment and cur
-            !=
-            nullptr;
-            ++i
-            )
-            {
+            for (int i = 0; i < segment and cur != nullptr; ++i) {
                 pre = cur;
                 cur = cur->next;
             }
-            if (cur != nullptr and extra
-            !=
-            0
-            )
-            {
+            if (cur != nullptr and extra != 0) {
                 pre = cur;
                 cur = cur->next;
                 extra -= 1;

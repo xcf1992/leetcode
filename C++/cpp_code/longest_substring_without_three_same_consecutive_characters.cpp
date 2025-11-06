@@ -27,8 +27,7 @@ public:
         for (int i = 2; i < n; ++i) {
             if (s[i] != s[i - 1] or s[i] != s[i - 2]) {
                 cur += 1;
-            }
-            else {
+            } else {
                 result = max(result, cur);
                 cur = 2;
             }

@@ -49,13 +49,7 @@ e.g. "100010" should return false
 class Solution1 {
 private:
     bool check(string num1, string num2, string num) {
-        if ((num1.size() > 1 and num1[0]
-        ==
-        '0'
-        )
-        or(num2.size() > 1 and num2[0] == '0')
-        )
-        {
+        if ((num1.size() > 1 and num1[0] == '0') or (num2.size() > 1 and num2[0] == '0')) {
             return false;
         }
 
@@ -64,11 +58,7 @@ private:
             return true;
         }
 
-        if (num.size() <= sum.size() or sum
-        !=
-        num.substr(0, sum.size())
-        )
-        {
+        if (num.size() <= sum.size() or sum != num.substr(0, sum.size())) {
             return false;
         }
         return check(num2, sum, num.substr(sum.size()));
@@ -79,14 +69,7 @@ private:
         int i = n.size() - 1;
         int j = m.size() - 1;
         int carry = 0;
-        while (i >= 0 or j
-        >=
-        0
-        or carry
-        >
-        0
-        )
-        {
+        while (i >= 0 or j >= 0 or carry > 0) {
             int sum = carry;
             if (i >= 0) {
                 sum += n[i] - '0';
@@ -120,18 +103,10 @@ public:
 class Solution1 {
 private:
     bool isValid(string num1, string num2, string num3) {
-        if (num1.size() > 1 and num1[0]
-        ==
-        '0'
-        )
-        {
+        if (num1.size() > 1 and num1[0] == '0') {
             return false;
         }
-        if (num2.size() > 1 and num2[0]
-        ==
-        '0'
-        )
-        {
+        if (num2.size() > 1 and num2[0] == '0') {
             return false;
         }
 
@@ -140,11 +115,7 @@ private:
             return true;
         }
 
-        if (num3.size() <= sum.size() or sum
-        !=
-        num3.substr(0, sum.size())
-        )
-        {
+        if (num3.size() <= sum.size() or sum != num3.substr(0, sum.size())) {
             return false;
         }
         return isValid(num2, sum, num3.substr(sum.size()));

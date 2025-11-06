@@ -37,7 +37,7 @@ Space - O(n)
 */
 class Solution {
 public:
-    int maxSumSubmatrix(vector<vector<int> > &matrix, int k) {
+    int maxSumSubmatrix(vector<vector<int>>& matrix, int k) {
         int m = matrix.size();
         if (m == 0) {
             return 0;
@@ -58,7 +58,7 @@ public:
                 set<int> s;
                 s.insert(0);
                 int curSum = 0;
-                for (int row: rowSum) {
+                for (int row : rowSum) {
                     curSum += row;
                     auto it = s.lower_bound(curSum - k);
                     // *it >= curSum - k --> curSum - *it <= k

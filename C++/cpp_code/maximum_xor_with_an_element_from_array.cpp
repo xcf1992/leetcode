@@ -59,12 +59,11 @@ We use a two pointer approach to make sure only elements that do not exceed m_i 
 Putting these thoughts together, we arrive at the solution below. Please refer to the code for more details.
 */
 
-
 class Solution {
 private:
     class TreeNode {
     public:
-        TreeNode *next[2];
+        TreeNode* next[2];
 
         TreeNode() {
             next[0] = nullptr;
@@ -72,7 +71,7 @@ private:
         };
     };
 
-    TreeNode *buildTree(vector<int> &nums) {
+    TreeNode* buildTree(vector<int>& nums) {
         TreeNode *root = new TreeNode(), *cur;
         int n = nums.size();
         for (int i = 0; i < n; i++) {
@@ -89,7 +88,7 @@ private:
         return root;
     }
 
-    int dfs(TreeNode *root, int x, int limit, int value, int height) {
+    int dfs(TreeNode* root, int x, int limit, int value, int height) {
         if (value > limit) {
             return -1;
         }
@@ -115,10 +114,10 @@ private:
     }
 
 public:
-    vector<int> maximizeXor(vector<int> &nums, vector<vector<int> > &queries) {
+    vector<int> maximizeXor(vector<int>& nums, vector<vector<int>>& queries) {
         vector<int> ans;
-        TreeNode *root = buildTree(nums);
-        for (const vector<int> &query: queries) {
+        TreeNode* root = buildTree(nums);
+        for (const vector<int>& query : queries) {
             int tmp = dfs(root, query[0], query[1], 0, 31);
             ans.push_back(tmp);
         }

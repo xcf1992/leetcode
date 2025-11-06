@@ -47,16 +47,11 @@ private:
     vector<int> cmoves = vector<int>({0, 0, 1, -1});
 
     bool isValid(int row, int col) {
-        return row >= 0
-        and row<M and col >= 0 and col < N;
+        return row >= 0 and row < M and col >= 0 and col < N;
     }
 
-    void paint(int row, int col, int color, vector<vector<int> > &A, queue<pair<int, int> > &bfs) {
-        if (isValid(row, col) and A[row][col]
-        ==
-        1
-        )
-        {
+    void paint(int row, int col, int color, vector<vector<int>>& A, queue<pair<int, int>>& bfs) {
+        if (isValid(row, col) and A[row][col] == 1) {
             A[row][col] = color;
             if (color == 2) {
                 bfs.push({row, col});
@@ -69,12 +64,12 @@ private:
     }
 
 public:
-    int shortestBridge(vector<vector<int> > &A) {
+    int shortestBridge(vector<vector<int>>& A) {
         M = A.size();
         N = A[0].size();
 
         int color = 2;
-        queue<pair<int, int> > bfs;
+        queue<pair<int, int>> bfs;
         for (int i = 0; i < M; i++) {
             for (int j = 0; j < N; j++) {
                 if (A[i][j] == 1) {

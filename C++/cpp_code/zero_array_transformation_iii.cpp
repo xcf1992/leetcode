@@ -10,7 +10,8 @@ Decrement the value at each index in the range [li, ri] in nums by at most 1.
 The amount by which the value is decremented can be chosen independently for each index.
 A Zero Array is an array with all its elements equal to 0.
 
-Return the maximum number of elements that can be removed from queries, such that nums can still be converted to a zero array using the remaining queries. If it is not possible to convert nums to a zero array, return -1.
+Return the maximum number of elements that can be removed from queries, such that nums can still be converted to a zero
+array using the remaining queries. If it is not possible to convert nums to a zero array, return -1.
 
 
 
@@ -72,11 +73,8 @@ using namespace std;
 
 class Solution {
 public:
-    int maxRemoval(vector<int> &nums, vector<vector<int> > &queries) {
-        sort(queries.begin(), queries.end(),
-             [](const vector<int> &a, const vector<int> &b) {
-                 return a[0] < b[0];
-             });
+    int maxRemoval(vector<int>& nums, vector<vector<int>>& queries) {
+        sort(queries.begin(), queries.end(), [](const vector<int>& a, const vector<int>& b) { return a[0] < b[0]; });
 
         // default is a max-heap with larger val at the top
         priority_queue<int> max_heap;

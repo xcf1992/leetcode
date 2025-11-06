@@ -31,20 +31,12 @@ using namespace std;
 
 class Solution {
 private:
-    void dfs(vector<vector<int> > &result, vector<int> combination, int k, int target, int start) {
-        if (k == 0 and target
-        ==
-        0
-        )
-        {
+    void dfs(vector<vector<int>>& result, vector<int> combination, int k, int target, int start) {
+        if (k == 0 and target == 0) {
             result.push_back(combination);
             return;
         }
-        if (start > target or k
-        <=
-        0
-        )
-        {
+        if (start > target or k <= 0) {
             return;
         }
 
@@ -56,8 +48,8 @@ private:
     }
 
 public:
-    vector<vector<int> > combinationSum3(int k, int n) {
-        vector<vector<int> > result;
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<vector<int>> result;
         vector<int> combination;
         dfs(result, combination, k, n, 1);
         return result;

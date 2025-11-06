@@ -22,7 +22,8 @@
  Output:
  ["9001 discuss.leetcode.com", "9001 leetcode.com", "9001 com"]
  Explanation:
- We only have one website domain: "discuss.leetcode.com". As discussed above, the subdomain "leetcode.com" and "com" will also be visited. So they will all be visited 9001 times.
+ We only have one website domain: "discuss.leetcode.com". As discussed above, the subdomain "leetcode.com" and "com"
+ will also be visited. So they will all be visited 9001 times.
 
  Example 2:
  Input:
@@ -30,7 +31,8 @@
  Output:
  ["901 mail.com","50 yahoo.com","900 google.mail.com","5 wiki.org","5 org","1 intel.mail.com","951 com"]
  Explanation:
- We will visit "google.mail.com" 900 times, "yahoo.com" 50 times, "intel.mail.com" once and "wiki.org" 5 times. For the subdomains, we will visit "mail.com" 900 + 1 = 901 times, "com" 900 + 50 + 1 = 951 times, and "org" 5 times.
+ We will visit "google.mail.com" 900 times, "yahoo.com" 50 times, "intel.mail.com" once and "wiki.org" 5 times. For the
+ subdomains, we will visit "mail.com" 900 + 1 = 901 times, "com" 900 + 50 + 1 = 951 times, and "org" 5 times.
 
  Notes:
 
@@ -54,9 +56,9 @@ using namespace std;
 
 class Solution {
 public:
-    vector<string> subdomainVisits(vector<string> &cpdomains) {
+    vector<string> subdomainVisits(vector<string>& cpdomains) {
         unordered_map<string, int> visitCount;
-        for (string cpdomain: cpdomains) {
+        for (string cpdomain : cpdomains) {
             int pos = cpdomain.find(" ");
             int count = stoi(cpdomain.substr(0, pos));
             string domain = cpdomain.substr(pos + 1);
@@ -71,7 +73,7 @@ public:
         }
 
         vector<string> result;
-        for (auto &it: visitCount) {
+        for (auto& it : visitCount) {
             result.push_back(to_string(it.second) + " " + it.first);
         }
         return result;

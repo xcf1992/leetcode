@@ -49,7 +49,7 @@ public:
 
         int result = 0;
         int count = 0;
-        for (char c: s) {
+        for (char c : s) {
             count += c == 'L' ? 1 : -1;
             if (count == 0) {
                 result += 1;

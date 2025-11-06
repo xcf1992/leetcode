@@ -25,19 +25,12 @@ public:
     string minWindow(string s, string t) {
         int m = s.size();
         int n = t.size();
-        if (m == 0 or n
-        ==
-        0
-        or n
-        >
-        m
-        )
-        {
+        if (m == 0 or n == 0 or n > m) {
             return "";
         }
 
         unordered_map<char, int> count;
-        for (char c: t) {
+        for (char c : t) {
             count[c] += 1;
         }
 
@@ -46,17 +39,14 @@ public:
         int start = 0;
         int end = 0;
         int required = n;
-        while (end <= m and start
-        <=
-        m
-        )
-        {
+        while (end <= m and start <= m) {
             if (required > 0) {
                 if (end == m) {
                     break;
                 }
 
-                count[s[end]] -= 1; // should not use count.find(s[i]) != count.end() to check, cause for cases like bba
+                count[s[end]] -=
+                        1;  // should not use count.find(s[i]) != count.end() to check, cause for cases like bba
                 if (count[s[end]] >= 0) {
                     required -= 1;
                 }

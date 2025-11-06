@@ -46,15 +46,9 @@ public:
 
     void push(int x) {
         elements.push(x);
-        if (maxElements.empty() or x
-        >=
-        maxElements.top()
-        )
-        {
+        if (maxElements.empty() or x >= maxElements.top()) {
             maxElements.push(x);
-        }
-        else
-        {
+        } else {
             maxElements.push(maxElements.top());
         }
     }
@@ -94,11 +88,11 @@ public:
 };
 
 /*
-* Your MaxStack object will be instantiated and called as such:
-* MaxStack obj = new MaxStack();
-* obj.push(x);
-* int param_2 = obj.pop();
-* int param_3 = obj.top();
-* int param_4 = obj.peekMax();
-* int param_5 = obj.popMax();
-*/
+ * Your MaxStack object will be instantiated and called as such:
+ * MaxStack obj = new MaxStack();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.top();
+ * int param_4 = obj.peekMax();
+ * int param_5 = obj.popMax();
+ */

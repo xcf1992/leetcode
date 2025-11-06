@@ -60,7 +60,7 @@ using namespace std;
 
 class Solution {
 public:
-    int minAbsoluteSumDiff(vector<int> &n1, vector<int> &n2) {
+    int minAbsoluteSumDiff(vector<int>& n1, vector<int>& n2) {
         long res = 0, gain = 0;
         set<int> s(begin(n1), end(n1));
         for (int i = 0; i < n1.size(); ++i) {

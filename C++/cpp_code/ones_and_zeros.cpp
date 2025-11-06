@@ -41,16 +41,16 @@ class Solution {
 private:
     vector<int> count(string num) {
         vector<int> result(2, 0);
-        for (char c: num) {
+        for (char c : num) {
             result[c - '0'] += 1;
         }
         return result;
     }
 
 public:
-    int findMaxForm(vector<string> &strs, int m, int n) {
-        vector<vector<int> > dp(m + 1, vector<int>(n + 1, 0));
-        for (string num: strs) {
+    int findMaxForm(vector<string>& strs, int m, int n) {
+        vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
+        for (string num : strs) {
             vector<int> digit = count(num);
             for (int i = m; i >= digit[0]; i--) {
                 for (int j = n; j >= digit[1]; j--) {
@@ -67,24 +67,20 @@ class Solution1 {
 private:
     vector<int> count(string num) {
         vector<int> result(2, 0);
-        for (char c: num) {
+        for (char c : num) {
             result[c - '0'] += 1;
         }
         return result;
     }
 
 public:
-    int findMaxForm(vector<string> &strs, int m, int n) {
-        vector<vector<int> > dp(m + 1, vector<int>(n + 1, 0));
+    int findMaxForm(vector<string>& strs, int m, int n) {
+        vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
         for (int i = 0; i <= m; ++i) {
             for (int j = 0; j <= n; ++j) {
-                for (string str: strs) {
+                for (string str : strs) {
                     vector<int> digit = count(str);
-                    if (i >= digit[0] and j
-                    >=
-                    digit[1]
-                    )
-                    {
+                    if (i >= digit[0] and j >= digit[1]) {
                         dp[i][j] = max(dp[i][j], 1 + dp[i - digit[0]][j - digit[1]]);
                     }
                 }

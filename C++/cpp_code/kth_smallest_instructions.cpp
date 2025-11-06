@@ -13,7 +13,8 @@ Multiple instructions will lead Bob to destination.
 For example, if destination is (2, 3), both "HHHVV" and "HVHVH" are valid instructions.
 
 However, Bob is very picky.
-Bob has a lucky number k, and he wants the kth lexicographically smallest instructions that will lead him to destination. k is 1-indexed.
+Bob has a lucky number k, and he wants the kth lexicographically smallest instructions that will lead him to
+destination. k is 1-indexed.
 
 Given an integer array destination and an integer k,
 return the kth lexicographically smallest instructions that will take Bob to destination.
@@ -55,13 +56,15 @@ using namespace std;
 /*
 Given destination: (row, column), we will have column H and row V in the result.
 
-Let's denote h = column, v = row meaning the number of H and V left to pick, respectively. The result is of length h + v.
+Let's denote h = column, v = row meaning the number of H and V left to pick, respectively. The result is of length h +
+v.
 
 We pick the character one by one for the result.
 
 For the first character, if we pick H, the rest of characters can form c = nCr(h - 1 + v, v) combinations.
 
-If k <= c, it means that the result is one of these c combinations. So we should pick H here. We append H to the result and --h.
+If k <= c, it means that the result is one of these c combinations. So we should pick H here. We append H to the result
+and --h.
 
 Otherwise, we should pick V instead, and do --v and k -= c (skip these c combinations).
 
@@ -78,7 +81,7 @@ private:
     }
 
 public:
-    string kthSmallestPath(vector<int> &A, int k) {
+    string kthSmallestPath(vector<int>& A, int k) {
         int h = A[1];
         int v = A[0];
         int N = h + v;

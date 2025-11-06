@@ -3,10 +3,9 @@
 https://leetcode.com/problems/count-substrings-that-differ-by-one-character/
 
 Given two strings s and t,
-find the number of ways you can choose a non-empty substring of s and replace a single character by a different character
-such that the resulting substring is a substring of t.
-In other words,
-find the number of substrings in s that differ from some substring in t by exactly one character.
+find the number of ways you can choose a non-empty substring of s and replace a single character by a different
+character such that the resulting substring is a substring of t. In other words, find the number of substrings in s that
+differ from some substring in t by exactly one character.
 
 For example, the underlined substrings in "computer" and "computation" only differ by the 'e'/'a',
 so this is a valid way.
@@ -83,9 +82,10 @@ private:
         }
         return res;
     }
+
 public:
     int countSubstrings(string s, string t) {
-        int res = 0 ;
+        int res = 0;
         for (int i = 0; i < s.length(); ++i) {
             res += helper(s, t, i, 0);
         }

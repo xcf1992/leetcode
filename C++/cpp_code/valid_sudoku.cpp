@@ -81,7 +81,7 @@ private:
         return true;
     }
 
-    bool checkRows(vector<vector<char> > &board) {
+    bool checkRows(vector<vector<char>>& board) {
         for (int i = 0; i != n; i++) {
             if (!isValid(board[i])) {
                 return false;
@@ -90,7 +90,7 @@ private:
         return true;
     }
 
-    bool checkColumns(vector<vector<char> > &board) {
+    bool checkColumns(vector<vector<char>>& board) {
         for (int j = 0; j < n; ++j) {
             vector<char> values;
             for (int i = 0; i < n; ++i) {
@@ -103,7 +103,7 @@ private:
         return true;
     }
 
-    bool checkSubboxes(vector<vector<char> > &board) {
+    bool checkSubboxes(vector<vector<char>>& board) {
         for (int i = 0; i < n; i += 3) {
             for (int j = 0; j < n; j += 3) {
                 vector<char> values;
@@ -121,9 +121,8 @@ private:
     }
 
 public:
-    bool isValidSudoku(vector<vector<char> > &board) {
+    bool isValidSudoku(vector<vector<char>>& board) {
         n = board.size();
-        return checkRows(board)
-        and checkColumns(board) and checkSubboxes(board);
+        return checkRows(board) and checkColumns(board) and checkSubboxes(board);
     }
 };

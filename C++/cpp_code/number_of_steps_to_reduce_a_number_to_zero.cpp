@@ -48,7 +48,7 @@ using namespace std;
 
 class Solution {
 public:
-    int numberOfSteps (int num) {
+    int numberOfSteps(int num) {
         if (num == 0) {
             return 0;
         }

@@ -104,7 +104,7 @@ B[i] can help us make the subarray length shorter and sum bigger. So no need to 
 */
 class Solution {
 public:
-    int shortestSubarray(vector<int> &A, int K) {
+    int shortestSubarray(vector<int>& A, int K) {
         int n = A.size();
         vector<int> preSum(n + 1, 0);
         for (int i = 0; i < n; i++) {
@@ -114,22 +114,15 @@ public:
         int result = n + 1;
         deque<int> monoQ;
         for (int i = 0; i <= n; i++) {
-            while (!monoQ.empty() and preSum[i]
-            -preSum[monoQ.front()] >= K
-            )
-            {
+            while (!monoQ.empty() and preSum[i] - preSum[monoQ.front()] >= K) {
                 result = min(result, i - monoQ.front());
                 monoQ.pop_front();
             }
             /*
-            * if with i >= monoQ.back() and preSum[i] <= preSum[monoQ.back()]
-            * then it will always better to pick i to have a shorter subarray
-            */
-            while (!monoQ.empty() and preSum[i]
-            <=
-            preSum[monoQ.back()]
-            )
-            {
+             * if with i >= monoQ.back() and preSum[i] <= preSum[monoQ.back()]
+             * then it will always better to pick i to have a shorter subarray
+             */
+            while (!monoQ.empty() and preSum[i] <= preSum[monoQ.back()]) {
                 monoQ.pop_back();
             }
             monoQ.push_back(i);

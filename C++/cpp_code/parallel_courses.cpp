@@ -53,10 +53,10 @@ using namespace std;
 class Solution {
     // bfs 72.3%
 public:
-    int minimumSemesters(int N, vector<vector<int> > &relations) {
+    int minimumSemesters(int N, vector<vector<int>>& relations) {
         vector<int> preCount(N, 0);
-        vector<unordered_set<int> > learnAfter(N);
-        for (vector<int> &relation: relations) {
+        vector<unordered_set<int>> learnAfter(N);
+        for (vector<int>& relation : relations) {
             preCount[relation[1] - 1] += 1;
             learnAfter[relation[0] - 1].insert(relation[1] - 1);
         }
@@ -79,7 +79,7 @@ public:
             for (int i = 0; i < curSize; ++i) {
                 int cur = bfs.front();
                 bfs.pop();
-                for (int nxt: learnAfter[cur]) {
+                for (int nxt : learnAfter[cur]) {
                     preCount[nxt] -= 1;
                     if (preCount[nxt] == 0) {
                         bfs.push(nxt);
@@ -95,10 +95,10 @@ public:
 class Solution1 {
     // 36.6%
 public:
-    int minimumSemesters(int N, vector<vector<int> > &relations) {
+    int minimumSemesters(int N, vector<vector<int>>& relations) {
         vector<int> preCount(N, 0);
-        vector<unordered_set<int> > learnAfter(N);
-        for (vector<int> &relation: relations) {
+        vector<unordered_set<int>> learnAfter(N);
+        for (vector<int>& relation : relations) {
             preCount[relation[1] - 1] += 1;
             learnAfter[relation[0] - 1].insert(relation[1] - 1);
         }
@@ -119,8 +119,8 @@ public:
                 break;
             }
 
-            for (int c: complelted) {
-                for (int nxt: learnAfter[c]) {
+            for (int c : complelted) {
+                for (int nxt : learnAfter[c]) {
                     preCount[nxt] -= 1;
                 }
             }

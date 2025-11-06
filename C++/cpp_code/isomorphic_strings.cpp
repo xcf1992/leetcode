@@ -50,11 +50,7 @@ public:
                 t2s[t[i]] = s[i];
             }
 
-            if (s2t[s[i]] != t[i] or t2s[t[i]]
-            !=
-            s[i]
-            )
-            {
+            if (s2t[s[i]] != t[i] or t2s[t[i]] != s[i]) {
                 return false;
             }
         }

@@ -7,10 +7,9 @@ return the earliest time slot that works for both of them and is of duration dur
 
 If there is no common time slot that satisfies the requirements, return an empty array.
 
-The format of a time slot is an array of two elements [start, end] representing an inclusive time range from start to end.
-It is guaranteed that no two availability slots of the same person intersect with each other.
-That is, for any two time slots [start1, end1] and [start2, end2] of the same person,
-either start1 > end2 or start2 > end1.
+The format of a time slot is an array of two elements [start, end] representing an inclusive time range from start to
+end. It is guaranteed that no two availability slots of the same person intersect with each other. That is, for any two
+time slots [start1, end1] and [start2, end2] of the same person, either start1 > end2 or start2 > end1.
 
 Example 1:
 Input: slots1 = [[10,50],[60,120],[140,210]], slots2 = [[0,15],[60,70]], duration = 8
@@ -43,30 +42,20 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> minAvailableDuration(vector<vector<int> > &slots1, vector<vector<int> > &slots2, int duration) {
+    vector<int> minAvailableDuration(vector<vector<int>>& slots1, vector<vector<int>>& slots2, int duration) {
         int n1 = slots1.size();
         int n2 = slots2.size();
-        if (n1 == 0 or n2
-        ==
-        0
-        )
-        {
+        if (n1 == 0 or n2 == 0) {
             return {};
         }
 
-        sort(slots1.begin(), slots1.end(), [](vector<int> &a, vector<int> &b) {
-            return a[0] < b[0];
-        });
-        sort(slots2.begin(), slots2.end(), [](vector<int> &a, vector<int> &b) {
-            return a[0] < b[0];
-        });
+        sort(slots1.begin(), slots1.end(), [](vector<int>& a, vector<int>& b) { return a[0] < b[0]; });
+        sort(slots2.begin(), slots2.end(), [](vector<int>& a, vector<int>& b) { return a[0] < b[0]; });
 
         int i = 0;
         int j = 0;
         vector<int> result;
-        while (i < n1 and j<n2
-        )
-        {
+        while (i < n1 and j < n2) {
             int start = max(slots1[i][0], slots2[j][0]);
             int end = min(slots1[i][1], slots2[j][1]);
             if (end - start >= duration) {

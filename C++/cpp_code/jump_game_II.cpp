@@ -33,7 +33,7 @@ using namespace std;
 
 class Solution {
 public:
-    int jump(vector<int> &nums) {
+    int jump(vector<int>& nums) {
         int n = nums.size();
         if (n <= 1) {
             return 0;

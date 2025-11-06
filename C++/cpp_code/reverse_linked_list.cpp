@@ -29,18 +29,15 @@ using namespace std;
 class Solution {
     // iterative
 public:
-    ListNode *reverseList(ListNode *head) {
-        if (head == nullptr or
-        head->next == nullptr
-        )
-        {
+    ListNode* reverseList(ListNode* head) {
+        if (head == nullptr or head->next == nullptr) {
             return head;
         }
 
-        ListNode *prev = nullptr;
-        ListNode *cur = head;
+        ListNode* prev = nullptr;
+        ListNode* cur = head;
         while (cur != nullptr) {
-            ListNode *suc = cur->next;
+            ListNode* suc = cur->next;
             cur->next = prev;
             prev = cur;
             cur = suc;
@@ -52,15 +49,12 @@ public:
 class Solution1 {
     // recursive
 public:
-    ListNode *reverseList(ListNode *head) {
-        if (head == nullptr or
-        head->next == nullptr
-        )
-        {
+    ListNode* reverseList(ListNode* head) {
+        if (head == nullptr or head->next == nullptr) {
             return head;
         }
 
-        ListNode *reverseHead = reverseList(head->next);
+        ListNode* reverseHead = reverseList(head->next);
         head->next->next = head;
         head->next = nullptr;
         return reverseHead;

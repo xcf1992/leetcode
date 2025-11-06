@@ -39,15 +39,18 @@ S contains only lowercase letters.
 using namespace std;
 /*
 Even though the final code for this problem is very short, it is not very intuitive to find the answer.
-In the solution below, we'll focus on finding all subsequences (including empty ones), and subtract the empty subsequence at the end.
+In the solution below, we'll focus on finding all subsequences (including empty ones), and subtract the empty
+subsequence at the end.
 
 Let's try for a dynamic programming solution.
 In order to not repeat work, our goal is to phrase the current problem in terms of the answer to previous problems.
-A typical idea will be to try to count the number of states dp[k] (distinct subsequences) that use letters S[0], S[1], ..., S[k].
+A typical idea will be to try to count the number of states dp[k] (distinct subsequences) that use letters S[0], S[1],
+..., S[k].
 
 Naively, for say, S = "abcx", we have dp[k] = dp[k-1] * 2.
 This is because for dp[2] which counts ("", "a", "b", "c", "ab", "ac", "bc", "abc"),
-dp[3] counts all of those, plus all of those with the x ending, like ("x", "ax", "bx", "cx", "abx", "acx", "bcx", "abcx").
+dp[3] counts all of those, plus all of those with the x ending, like ("x", "ax", "bx", "cx", "abx", "acx", "bcx",
+"abcx").
 
 However, for something like S = "abab", let's play around with it. We have:
 
@@ -85,6 +88,6 @@ public:
             dp[i] %= mod;
             last[cur] = i;
         }
-        return (dp[n] - 1 + mod) % mod; // remove empty string result
+        return (dp[n] - 1 + mod) % mod;  // remove empty string result
     }
 };

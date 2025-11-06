@@ -2,17 +2,27 @@
 https://leetcode.com/problems/design-an-expression-tree-with-evaluate-function/
 1628. Design an Expression Tree With Evaluate Function
 
-Given the postfix tokens of an arithmetic expression, build and return the binary expression tree that represents this expression.
+Given the postfix tokens of an arithmetic expression, build and return the binary expression tree that represents this
+expression.
 
-Postfix notation is a notation for writing arithmetic expressions in which the operands (numbers) appear before their operators. For example, the postfix tokens of the expression 4*(5-(7+2)) are represented in the array postfix = ["4","5","7","2","+","-","*"].
+Postfix notation is a notation for writing arithmetic expressions in which the operands (numbers) appear before their
+operators. For example, the postfix tokens of the expression 4*(5-(7+2)) are represented in the array postfix =
+["4","5","7","2","+","-","*"].
 
-The class Node is an interface you should use to implement the binary expression tree. The returned tree will be tested using the evaluate function, which is supposed to evaluate the tree's value. You should not remove the Node class; however, you can modify it as you wish, and you can define other classes to implement it if needed.
+The class Node is an interface you should use to implement the binary expression tree. The returned tree will be tested
+using the evaluate function, which is supposed to evaluate the tree's value. You should not remove the Node class;
+however, you can modify it as you wish, and you can define other classes to implement it if needed.
 
-A binary expression tree is a kind of binary tree used to represent arithmetic expressions. Each node of a binary expression tree has either zero or two children. Leaf nodes (nodes with 0 children) correspond to operands (numbers), and internal nodes (nodes with two children) correspond to the operators '+' (addition), '-' (subtraction), '*' (multiplication), and '/' (division).
+A binary expression tree is a kind of binary tree used to represent arithmetic expressions. Each node of a binary
+expression tree has either zero or two children. Leaf nodes (nodes with 0 children) correspond to operands (numbers),
+and internal nodes (nodes with two children) correspond to the operators '+' (addition), '-' (subtraction), '*'
+(multiplication), and '/' (division).
 
-It's guaranteed that no subtree will yield a value that exceeds 109 in absolute value, and all the operations are valid (i.e., no division by zero).
+It's guaranteed that no subtree will yield a value that exceeds 109 in absolute value, and all the operations are valid
+(i.e., no division by zero).
 
-Follow up: Could you design the expression tree such that it is more modular? For example, is your design able to support additional operators without making changes to your existing evaluate implementation?
+Follow up: Could you design the expression tree such that it is more modular? For example, is your design able to
+support additional operators without making changes to your existing evaluate implementation?
 
 
 
@@ -62,25 +72,29 @@ using namespace std;
 
 class Node {
 public:
-    virtual ~Node () {};
+    virtual ~Node() {};
     virtual int evaluate() const = 0;
+
 protected:
     // define your fields here
 };
 
 class NumNode : public Node {
 public:
-    NumNode (int val) : val_(val){}
+    NumNode(int val) : val_(val) {
+    }
     int evaluate() const {
         return val_;
     }
+
 private:
     int val_;
 };
 
 class OpNode : public Node {
 public:
-    OpNode(Node* left, Node* right, string& op) : left_(left), right_(right), op_(op) {}
+    OpNode(Node* left, Node* right, string& op) : left_(left), right_(right), op_(op) {
+    }
     int evaluate() const {
         int left_val = left_->evaluate();
         int right_val = right_->evaluate();
@@ -97,6 +111,7 @@ public:
         }
         return left_val + right_val;
     }
+
 private:
     Node* left_;
     Node* right_;

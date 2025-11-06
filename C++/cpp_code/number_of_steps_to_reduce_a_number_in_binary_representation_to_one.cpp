@@ -58,8 +58,7 @@ public:
                 // 1 + 0 = 1 odd, need  two steps (add 1 and divided by 2), (carry = 0)
                 carry = 1;
                 res += 2;
-            }
-            else {
+            } else {
                 // 0 + 0 = 0 even, need one step(divided by 2), (carry = 0)
                 // 1 + 1 = 0 even, need one step(divided by 2), (carry = 1 ,  carry keeps 1 in next round.)
                 res += 1;

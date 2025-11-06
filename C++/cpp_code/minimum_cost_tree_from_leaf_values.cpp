@@ -7,7 +7,8 @@ consider all binary trees such that:
   Each node has either 0 or 2 children;
   The values of arr corresultpond to the values of each leaf in an in-order traversal of the tree.
   (Recall that a node is a leaf if and only if it has 0 children.)
-  The value of each non-leaf node is equal to the product of the largest leaf value in its left and right subtree resultpectively.
+  The value of each non-leaf node is equal to the product of the largest leaf value in its left and right subtree
+resultpectively.
 
 Among all possible binary trees considered,
 return the smallest possible sum of the values of each non-leaf node.
@@ -93,16 +94,17 @@ Space O(N) for stack in the worst cases
 */
 class Solution {
 public:
-    int mctFromLeafValues(vector<int> &arr) {
+    int mctFromLeafValues(vector<int>& arr) {
         int n = arr.size();
         int result = 0;
         vector<int> stk = {INT_MAX};
-        for (int a: arr) {
+        for (int a : arr) {
             while (stk.back() <= a) {
                 int mid = stk.back();
                 stk.pop_back();
-                // because is a inorder traversal sequence, so we can only choose node to the left and right, and as close as possible
-                result += mid * min(stk.back(), a); // current stk.back is on the left of mid, while a is on the right
+                // because is a inorder traversal sequence, so we can only choose node to the left and right, and as
+                // close as possible
+                result += mid * min(stk.back(), a);  // current stk.back is on the left of mid, while a is on the right
             }
             stk.push_back(a);
         }
@@ -117,9 +119,9 @@ public:
 class Solution1 {
     // dp
 public:
-    int mctFromLeafValues(vector<int> &arr) {
+    int mctFromLeafValues(vector<int>& arr) {
         int n = arr.size();
-        vector<vector<int> > maximum(n, vector<int>(n, INT_MIN));
+        vector<vector<int>> maximum(n, vector<int>(n, INT_MIN));
         for (int i = 0; i < n; ++i) {
             maximum[i][i] = arr[i];
             for (int j = i + 1; j < n; ++j) {
@@ -127,7 +129,7 @@ public:
             }
         }
 
-        vector<vector<int> > dp(n, vector<int>(n, INT_MAX));
+        vector<vector<int>> dp(n, vector<int>(n, INT_MAX));
         for (int i = 0; i < n; ++i) {
             dp[i][i] = 0;
             if (i > 0) {

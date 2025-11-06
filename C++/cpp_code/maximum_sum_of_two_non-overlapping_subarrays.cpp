@@ -7,9 +7,8 @@ return the maximum preSum of elements in two non-overlapping (contiguous) subarr
 which have lengths L and M.
 (For clarification, the L-length subarray could occur before or after the M-length subarray.)
 
-Formally, return the largest V for which V = (A[i] + A[i+1] + ... + A[i+L-1]) + (A[j] + A[j+1] + ... + A[j+M-1]) and either:
-0 <= i < i + L - 1 < j < j + M - 1 < A.length, or
-0 <= j < j + M - 1 < i < i + L - 1 < A.length.
+Formally, return the largest V for which V = (A[i] + A[i+1] + ... + A[i+L-1]) + (A[j] + A[j+1] + ... + A[j+M-1]) and
+either: 0 <= i < i + L - 1 < j < j + M - 1 < A.length, or 0 <= j < j + M - 1 < i < i + L - 1 < A.length.
 
 Example 1:
 Input: A = [0,6,5,2,2,5,1,9,4], L = 1, M = 2
@@ -57,8 +56,8 @@ public:
         }
 
         int result = preSum[L + M];
-        int Lmax = preSum[L]; // max preSum of contiguous L elements before the last M elements.
-        int Mmax = preSum[M]; // max preSum of contiguous M elements before the last L elements.
+        int Lmax = preSum[L];  // max preSum of contiguous L elements before the last M elements.
+        int Mmax = preSum[M];  // max preSum of contiguous M elements before the last L elements.
         for (int i = L + M + 1; i <= n; ++i) {
             Lmax = max(Lmax, preSum[i - M] - preSum[i - L - M]);
             Mmax = max(Mmax, preSum[i - L] - preSum[i - L - M]);
@@ -114,6 +113,7 @@ private:
         }
         return result;
     }
+
 public:
     int maxSumTwoNoOverlap(vector<int>& A, int L, int M) {
         return max(getMaxSum(A, L, M), getMaxSum(A, M, L));

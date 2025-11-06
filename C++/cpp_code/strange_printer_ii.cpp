@@ -66,10 +66,10 @@ class Solution {
 public:
     vector<vi> pos;
 
-    bool isPrintable(vector<vector<int> > &arr) {
+    bool isPrintable(vector<vector<int>>& arr) {
         int n = arr.size();
         int m = arr[0].size();
-        pos = vector<vector<int> >(61, {n, m, 0, 0});
+        pos = vector<vector<int>>(61, {n, m, 0, 0});
         unordered_set<int> colors;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
@@ -83,7 +83,7 @@ public:
         }
         while (!colors.empty()) {
             unordered_set<int> colors2;
-            for (int v: colors) {
+            for (int v : colors) {
                 if (!test(v, arr)) {
                     colors2.insert(v);
                 }
@@ -96,7 +96,7 @@ public:
         return true;
     }
 
-    bool test(int c, vector<vi> &arr) {
+    bool test(int c, vector<vi>& arr) {
         for (int i = pos[c][0]; i <= pos[c][2]; i++) {
             for (int j = pos[c][1]; j <= pos[c][3]; j++) {
                 if (arr[i][j] > 0 && arr[i][j] != c) {

@@ -55,7 +55,7 @@ class Solution {
 private:
     int n = 0;
 
-    int getMaxStone(vector<vector<int> > &dp, vector<int> &preSum, int start, int M) {
+    int getMaxStone(vector<vector<int>>& dp, vector<int>& preSum, int start, int M) {
         if (start >= n) {
             return 0;
         }
@@ -78,7 +78,7 @@ private:
     }
 
 public:
-    int stoneGameII(vector<int> &piles) {
+    int stoneGameII(vector<int>& piles) {
         n = piles.size();
         if (n == 0) {
             return 0;
@@ -90,11 +90,11 @@ public:
         }
 
         /*
-        * dp[i][j]
-        * the max stones the first player can get
-        * start with stone[i] (0-based), and with M = j
-        */
-        vector<vector<int> > dp(n, vector<int>(2 * n, INT_MIN));
+         * dp[i][j]
+         * the max stones the first player can get
+         * start with stone[i] (0-based), and with M = j
+         */
+        vector<vector<int>> dp(n, vector<int>(2 * n, INT_MIN));
         return getMaxStone(dp, preSum, 0, 1);
     }
 };

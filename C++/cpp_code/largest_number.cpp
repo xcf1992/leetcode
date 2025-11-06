@@ -23,7 +23,7 @@ using namespace std;
 
 class Solution {
 public:
-    string largestNumber(vector<int> &num) {
+    string largestNumber(vector<int>& num) {
         if (num.empty()) {
             return "";
         }
@@ -33,9 +33,7 @@ public:
             allNum.push_back(to_string(num[i]));
         }
 
-        sort(allNum.begin(), allNum.end(), [](string &a, string &b) {
-            return a + b < b + a;
-        });
+        sort(allNum.begin(), allNum.end(), [](string& a, string& b) { return a + b < b + a; });
         if (allNum.back() == "0") {
             return "0";
         }

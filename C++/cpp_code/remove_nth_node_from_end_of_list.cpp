@@ -32,17 +32,13 @@ using namespace std;
 
 class Solution {
 public:
-    ListNode *removeNthFromEnd(ListNode *head, int n) {
-        ListNode *dummy = new ListNode(-1);
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode* dummy = new ListNode(-1);
         dummy->next = head;
-        ListNode *pre = dummy;
-        ListNode *cur = head;
+        ListNode* pre = dummy;
+        ListNode* cur = head;
         int step = 0;
-        while (step < n and cur
-        !=
-        nullptr
-        )
-        {
+        while (step < n and cur != nullptr) {
             step += 1;
             cur = cur->next;
         }

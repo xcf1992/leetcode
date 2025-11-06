@@ -63,6 +63,7 @@ private:
         }
         return false;
     }
+
 public:
     int maxSideLength(vector<vector<int>>& mat, int threshold) {
         m = mat.size();
@@ -84,8 +85,7 @@ public:
             int mid = left + (right - left) / 2;
             if (check(mid, threshold, preSum)) {
                 left = mid + 1;
-            }
-            else {
+            } else {
                 right = mid - 1;
             }
         }

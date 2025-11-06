@@ -39,7 +39,7 @@ using namespace std;
 
 class Solution {
 private:
-    TreeNode *construct(int start, int end, vector<int> &nums) {
+    TreeNode* construct(int start, int end, vector<int>& nums) {
         if (start >= end) {
             return nullptr;
         }
@@ -51,14 +51,14 @@ private:
             }
         }
 
-        TreeNode *root = new TreeNode(nums[maxIndex]);
+        TreeNode* root = new TreeNode(nums[maxIndex]);
         root->left = construct(start, maxIndex, nums);
         root->right = construct(maxIndex + 1, end, nums);
         return root;
     }
 
 public:
-    TreeNode *constructMaximumBinaryTree(vector<int> &nums) {
+    TreeNode* constructMaximumBinaryTree(vector<int>& nums) {
         return construct(0, nums.size(), nums);
     }
 };
@@ -66,13 +66,13 @@ public:
 // We scan numbers from left to right, build the tree one node by one step;
 class Solution1 {
 private:
-    TreeNode *insert(TreeNode *root, int num) {
+    TreeNode* insert(TreeNode* root, int num) {
         if (root == nullptr) {
-            TreeNode *newRoot = new TreeNode(num);
+            TreeNode* newRoot = new TreeNode(num);
             return newRoot;
         }
         if (num > root->val) {
-            TreeNode *newRoot = new TreeNode(num);
+            TreeNode* newRoot = new TreeNode(num);
             newRoot->left = root;
             return newRoot;
         }
@@ -81,9 +81,9 @@ private:
     }
 
 public:
-    TreeNode *constructMaximumBinaryTree(vector<int> &nums) {
-        TreeNode *root = nullptr;
-        for (int num: nums) {
+    TreeNode* constructMaximumBinaryTree(vector<int>& nums) {
+        TreeNode* root = nullptr;
+        for (int num : nums) {
             root = insert(root, num);
         }
         return root;

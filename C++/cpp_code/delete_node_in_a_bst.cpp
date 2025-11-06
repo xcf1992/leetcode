@@ -49,11 +49,8 @@ using namespace std;
 
 class Solution {
 private:
-    TreeNode *findTarget(TreeNode *root, TreeNode *&prev, int key) {
-        if (root == nullptr or
-        root->val == key
-        )
-        {
+    TreeNode* findTarget(TreeNode* root, TreeNode*& prev, int key) {
+        if (root == nullptr or root->val == key) {
             return root;
         }
 
@@ -64,12 +61,8 @@ private:
         return findTarget(root->left, prev, key);
     }
 
-    void insertNode(TreeNode *root, TreeNode *node) {
-        if (root == nullptr or node
-        ==
-        nullptr
-        )
-        {
+    void insertNode(TreeNode* root, TreeNode* node) {
+        if (root == nullptr or node == nullptr) {
             return;
         }
 
@@ -90,12 +83,12 @@ private:
     }
 
 public:
-    TreeNode *deleteNode(TreeNode *root, int key) {
-        TreeNode *fake = new TreeNode(INT_MAX);
+    TreeNode* deleteNode(TreeNode* root, int key) {
+        TreeNode* fake = new TreeNode(INT_MAX);
         fake->left = root;
 
-        TreeNode *prev = fake;
-        TreeNode *target = findTarget(root, prev, key);
+        TreeNode* prev = fake;
+        TreeNode* target = findTarget(root, prev, key);
         if (target == nullptr) {
             return root;
         }

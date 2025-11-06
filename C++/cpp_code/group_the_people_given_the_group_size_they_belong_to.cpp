@@ -41,13 +41,13 @@ class Solution {
 public:
     vector<vector<int>> groupThePeople(vector<int>& groupSizes) {
         unordered_map<int, vector<int>> group;
-        for (int i = 0; i < groupSizes.size(); ++i){
+        for (int i = 0; i < groupSizes.size(); ++i) {
             group[groupSizes[i]].push_back(i);
         }
 
         vector<vector<int>> result;
         for (auto& it : group) {
-            for (auto curr = it.second.begin(); curr != it.second.end(); curr += it.first){
+            for (auto curr = it.second.begin(); curr != it.second.end(); curr += it.first) {
                 result.push_back(vector<int>(curr, curr + it.first));
             }
         }

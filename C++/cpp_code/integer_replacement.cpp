@@ -64,7 +64,7 @@ public:
         if (n % 2 == 0) {
             cache[n] = 1 + integerReplacement(n / 2);
         } else {
-            cache[n] = 1 + min(integerReplacement(n - 1), 1 + integerReplacement(((long) n + 1) / 2));
+            cache[n] = 1 + min(integerReplacement(n - 1), 1 + integerReplacement(((long)n + 1) / 2));
         }
         return cache[n];
     }

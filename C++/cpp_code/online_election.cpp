@@ -12,13 +12,11 @@ Votes cast at time t will count towards our query.
 In the case of a tie, the most recent vote (among tied candidates) wins.
 
 Example 1:
-Input: ["TopVotedCandidate","q","q","q","q","q","q"], [[[0,1,1,0,0,1,0],[0,5,10,15,20,25,30]],[3],[12],[25],[15],[24],[8]]
-Output: [null,0,1,1,0,0,1]
-Explanation:
-At time 3, the votes are [0], and 0 is leading.
-At time 12, the votes are [0,1,1], and 1 is leading.
-At time 25, the votes are [0,1,1,0,0,1], and 1 is leading (as ties go to the most recent vote.)
-This continues for 3 more queries at time 15, 24, and 8.
+Input: ["TopVotedCandidate","q","q","q","q","q","q"],
+[[[0,1,1,0,0,1,0],[0,5,10,15,20,25,30]],[3],[12],[25],[15],[24],[8]] Output: [null,0,1,1,0,0,1] Explanation: At time 3,
+the votes are [0], and 0 is leading. At time 12, the votes are [0,1,1], and 1 is leading. At time 25, the votes are
+[0,1,1,0,0,1], and 1 is leading (as ties go to the most recent vote.) This continues for 3 more queries at time 15, 24,
+and 8.
 
 Note:
 1 <= persons.length = times.length <= 5000
@@ -46,18 +44,14 @@ private:
     map<int, int> topVote;
 
 public:
-    TopVotedCandidate(vector<int> &persons, vector<int> &times) {
+    TopVotedCandidate(vector<int>& persons, vector<int>& times) {
         unordered_map<int, int> count;
         int lead = -1;
         for (int i = 0; i < persons.size(); ++i) {
             int person = persons[i];
             int time = times[i];
             count[person] += 1;
-            if (lead == -1 or count[person]
-            >=
-            count[lead]
-            )
-            {
+            if (lead == -1 or count[person] >= count[lead]) {
                 lead = person;
                 topVote[time] = lead;
             }
@@ -82,13 +76,9 @@ public:
         for (int i = 0; i < n; i++) {
             topVote[times[i]] = persons[i];
         }
-        for (auto &it: topVote) {
+        for (auto& it : topVote) {
             count[it.second] += 1;
-            if (lead == -1 or count[it.second]
-            >=
-            count[lead]
-            )
-            {
+            if (lead == -1 or count[it.second] >= count[lead]) {
                 lead = it.second;
             }
             topVote[it.first] = lead;
@@ -106,4 +96,4 @@ public:
  * Your TopVotedCandidate object will be instantiated and called as such:
  * TopVotedCandidate obj = new TopVotedCandidate(persons, times);
  * int param_1 = obj.q(t);
-*/
+ */

@@ -38,32 +38,22 @@ using namespace std;
 
 class Solution {
 public:
-    bool isUnivalTree(TreeNode *root) {
+    bool isUnivalTree(TreeNode* root) {
         if (root == nullptr) {
             return true;
         }
 
-        if (root->left == nullptr and
-        root->right == nullptr
-        )
-        {
+        if (root->left == nullptr and root->right == nullptr) {
             return true;
         }
 
-        if (root->left != nullptr and
-        root->val != root->left->val
-        )
-        {
+        if (root->left != nullptr and root->val != root->left->val) {
             return false;
         }
 
-        if (root->right != nullptr and
-        root->val != root->right->val
-        )
-        {
+        if (root->right != nullptr and root->val != root->right->val) {
             return false;
         }
-        return isUnivalTree(root->left)
-        and isUnivalTree(root->right);
+        return isUnivalTree(root->left) and isUnivalTree(root->right);
     }
 };

@@ -48,17 +48,16 @@ using namespace std;
 
 class Solution {
 private:
-    vector<string> code = {
-        ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.",
-        "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."
-    };
+    vector<string> code = {".-",   "-...", "-.-.", "-..",  ".",   "..-.", "--.",  "....", "..",
+                           ".---", "-.-",  ".-..", "--",   "-.",  "---",  ".--.", "--.-", ".-.",
+                           "...",  "-",    "..-",  "...-", ".--", "-..-", "-.--", "--.."};
 
 public:
-    int uniqueMorseRepresentations(vector<string> &words) {
+    int uniqueMorseRepresentations(vector<string>& words) {
         unordered_set<string> transformations;
-        for (string word: words) {
+        for (string word : words) {
             string transformation = "";
-            for (char c: word) {
+            for (char c : word) {
                 transformation += code[c - 'a'];
             }
             transformations.insert(transformation);

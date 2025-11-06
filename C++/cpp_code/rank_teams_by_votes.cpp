@@ -20,15 +20,15 @@ Return a string of all teams sorted by the ranking system.
 Example 1:
 Input: votes = ["ABC","ACB","ABC","ACB","ACB"]
 Output: "ACB"
-Explanation: Team A was ranked first place by 5 voters. No other team was voted as first place so team A is the first team.
-Team B was ranked second by 2 voters and was ranked third by 3 voters.
-Team C was ranked second by 3 voters and was ranked third by 2 voters.
-As most of the voters ranked C second, team C is the second team and team B is the third.
+Explanation: Team A was ranked first place by 5 voters. No other team was voted as first place so team A is the first
+team. Team B was ranked second by 2 voters and was ranked third by 3 voters. Team C was ranked second by 3 voters and
+was ranked third by 2 voters. As most of the voters ranked C second, team C is the second team and team B is the third.
 
 Example 2:
 Input: votes = ["WXYZ","XYZW"]
 Output: "XWYZ"
-Explanation: X is the winner due to tie-breaking rule. X has same votes as W for the first position but X has one vote as second position while W doesn't have any votes as second position.
+Explanation: X is the winner due to tie-breaking rule. X has same votes as W for the first position but X has one vote
+as second position while W doesn't have any votes as second position.
 
 Example 3:
 Input: votes = ["ZMNAGUEDSJYLBOPHRQICWFXTVK"]
@@ -72,19 +72,19 @@ using namespace std;
 
 class Solution {
 public:
-    string rankTeams(vector<string> &votes) {
-        vector<vector<int> > rank(26, vector<int>(27, 0));
+    string rankTeams(vector<string>& votes) {
+        vector<vector<int>> rank(26, vector<int>(27, 0));
         for (int i = 0; i < 26; ++i) {
             rank[i][0] = i;
         }
 
-        for (string &vote: votes) {
+        for (string& vote : votes) {
             for (int i = 0; i < vote.size(); ++i) {
                 rank[vote[i] - 'A'][i + 1] += 1;
             }
         }
 
-        sort(rank.begin(), rank.end(), [](vector<int> &a, vector<int> &b) {
+        sort(rank.begin(), rank.end(), [](vector<int>& a, vector<int>& b) {
             for (int i = 1; i <= 26; ++i) {
                 if (a[i] < b[i]) {
                     return false;

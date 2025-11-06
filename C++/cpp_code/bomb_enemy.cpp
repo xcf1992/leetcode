@@ -51,14 +51,14 @@ public:
 
 class Solution {
 public:
-    int maxKilledEnemies(vector<vector<char> > &grid) {
+    int maxKilledEnemies(vector<vector<char>>& grid) {
         int m = grid.size();
         if (m == 0) {
             return 0;
         }
         int n = grid[0].size();
 
-        vector<vector<Enemy> > killedEnemy(m, vector<Enemy>(n, Enemy()));
+        vector<vector<Enemy>> killedEnemy(m, vector<Enemy>(n, Enemy()));
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (grid[i][j] != 'W') {
@@ -67,14 +67,10 @@ public:
                 }
 
                 if (grid[m - i - 1][n - j - 1] != 'W') {
-                    killedEnemy[m - i - 1][n - j - 1].down =
-                            (i == 0 ? 0 : killedEnemy[m - i][n - j - 1].down) + (grid[m - i - 1][n - j - 1] == 'E'
-                                ? 1
-                                : 0);
-                    killedEnemy[m - i - 1][n - j - 1].right =
-                            (j == 0 ? 0 : killedEnemy[m - i - 1][n - j].right) + (grid[m - i - 1][n - j - 1] == 'E'
-                                ? 1
-                                : 0);
+                    killedEnemy[m - i - 1][n - j - 1].down = (i == 0 ? 0 : killedEnemy[m - i][n - j - 1].down) +
+                                                             (grid[m - i - 1][n - j - 1] == 'E' ? 1 : 0);
+                    killedEnemy[m - i - 1][n - j - 1].right = (j == 0 ? 0 : killedEnemy[m - i - 1][n - j].right) +
+                                                              (grid[m - i - 1][n - j - 1] == 'E' ? 1 : 0);
                 }
             }
         }

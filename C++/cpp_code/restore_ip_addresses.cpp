@@ -24,12 +24,8 @@ using namespace std;
 
 class Solution {
 private:
-    void dfs(string s, vector<string> &result, int start, int step, string ip) {
-        if (s.size() < start or step
-        >
-        4
-        )
-        {
+    void dfs(string s, vector<string>& result, int start, int step, string ip) {
+        if (s.size() < start or step > 4) {
             return;
         }
 
@@ -41,15 +37,9 @@ private:
             return;
         }
 
-        for (int len = 1; len <= 3 and start
-        +len <= s.size();
-        ++len
-        )
-        {
+        for (int len = 1; len <= 3 and start + len <= s.size(); ++len) {
             string tip = s.substr(start, len);
-            if (len == 1 or(tip[0] != '0' and stoi(tip) <= 255)
-            )
-            {
+            if (len == 1 or (tip[0] != '0' and stoi(tip) <= 255)) {
                 dfs(s, result, start + len, step + 1, ip + "." + tip);
             }
         }
@@ -57,12 +47,7 @@ private:
 
 public:
     vector<string> restoreIpAddresses(string s) {
-        if (s.empty() or
-        s.size() > 3 * 4
-        or
-        s.size() < 4
-        )
-        {
+        if (s.empty() or s.size() > 3 * 4 or s.size() < 4) {
             return {};
         }
 

@@ -12,8 +12,8 @@ then the root itself is left boundary or right boundary.
 Note this definition only applies to the input binary tree,
 and not applies to any subtrees.
 
-The left-most node is defined as a leaf node you could reach when you always firstly travel to the left subtree if exists.
-If not, travel to the right subtree. Repeat until you reach a leaf node.
+The left-most node is defined as a leaf node you could reach when you always firstly travel to the left subtree if
+exists. If not, travel to the right subtree. Repeat until you reach a leaf node.
 
 The right-most node is also defined by the same way with left and right exchanged.
 
@@ -68,15 +68,12 @@ using namespace std;
 
 class Solution {
 private:
-    void getLeftPath(TreeNode *root, vector<int> &leftPath, bool boundary) {
+    void getLeftPath(TreeNode* root, vector<int>& leftPath, bool boundary) {
         if (root == nullptr) {
             return;
         }
 
-        if (root->left == nullptr and
-        root->right == nullptr
-        )
-        {
+        if (root->left == nullptr and root->right == nullptr) {
             leftPath.push_back(root->val);
             return;
         }
@@ -88,15 +85,12 @@ private:
         getLeftPath(root->right, leftPath, boundary and root->left == nullptr);
     }
 
-    void getRightPath(TreeNode *root, vector<int> &rightPath, bool boundary) {
+    void getRightPath(TreeNode* root, vector<int>& rightPath, bool boundary) {
         if (root == nullptr) {
             return;
         }
 
-        if (root->left == nullptr and
-        root->right == nullptr
-        )
-        {
+        if (root->left == nullptr and root->right == nullptr) {
             rightPath.push_back(root->val);
             return;
         }
@@ -109,7 +103,7 @@ private:
     }
 
 public:
-    vector<int> boundaryOfBinaryTree(TreeNode *root) {
+    vector<int> boundaryOfBinaryTree(TreeNode* root) {
         if (root == nullptr) {
             return {};
         }
@@ -122,10 +116,10 @@ public:
 
         vector<int> result;
         result.push_back(root->val);
-        for (int i: leftPath) {
+        for (int i : leftPath) {
             result.push_back(i);
         }
-        for (int i: rightPath) {
+        for (int i : rightPath) {
             result.push_back(i);
         }
         return result;

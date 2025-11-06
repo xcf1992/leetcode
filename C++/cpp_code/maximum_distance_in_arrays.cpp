@@ -35,7 +35,7 @@ using namespace std;
 
 class Solution {
 public:
-    int maxDistance(vector<vector<int> > &arrays) {
+    int maxDistance(vector<vector<int>>& arrays) {
         int minVal = arrays[0].front();
         int maxVal = arrays[0].back();
         int result = INT_MIN;

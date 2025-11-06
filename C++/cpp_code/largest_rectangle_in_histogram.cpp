@@ -51,17 +51,13 @@ The following example will clarify the process further:
 */
 class Solution {
 public:
-    int largestRectangleArea(vector<int> &heights) {
+    int largestRectangleArea(vector<int>& heights) {
         stack<int> stk;
         stk.push(-1);
         int result = 0;
         int n = heights.size();
         for (int i = 0; i < n; ++i) {
-            while (stk.top() != -1 and heights[i]
-            <
-            heights[stk.top()]
-            )
-            {
+            while (stk.top() != -1 and heights[i] < heights[stk.top()]) {
                 int cur = stk.top();
                 stk.pop();
                 result = max(result, heights[cur] * (i - stk.top() - 1));
@@ -80,7 +76,7 @@ public:
 // wrong answer [4,2,0,3,2,4,3,4]
 class Solution1 {
 public:
-    int largestRectangleArea(vector<int> &heights) {
+    int largestRectangleArea(vector<int>& heights) {
         int n = heights.size();
         if (n <= 0) {
             return 0;

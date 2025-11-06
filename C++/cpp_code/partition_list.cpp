@@ -25,18 +25,15 @@ using namespace std;
 
 class Solution {
 public:
-    ListNode *partition(ListNode *head, int x) {
-        if (head == nullptr or
-        head->next == nullptr
-        )
-        {
+    ListNode* partition(ListNode* head, int x) {
+        if (head == nullptr or head->next == nullptr) {
             return head;
         }
 
-        ListNode *smaller = new ListNode(-1);
-        ListNode *first = smaller;
-        ListNode *greater = new ListNode(-1);
-        ListNode *second = greater;
+        ListNode* smaller = new ListNode(-1);
+        ListNode* first = smaller;
+        ListNode* greater = new ListNode(-1);
+        ListNode* second = greater;
         while (head != nullptr) {
             if (head->val < x) {
                 first->next = head;

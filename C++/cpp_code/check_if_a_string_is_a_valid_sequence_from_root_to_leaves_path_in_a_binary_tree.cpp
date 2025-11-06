@@ -58,20 +58,21 @@ private:
         if (root == nullptr) {
             return false;
         }
-        
-        if (root -> val != arr[index]) {
+
+        if (root->val != arr[index]) {
             return false;
         }
 
-        if (root -> left == nullptr and root -> right == nullptr) {
+        if (root->left == nullptr and root->right == nullptr) {
             return index == arr.size() - 1;
         }
 
         if (index == arr.size() - 1) {
             return false;
         }
-        return check(root -> left, arr, index + 1) or check(root -> right, arr, index + 1);
+        return check(root->left, arr, index + 1) or check(root->right, arr, index + 1);
     }
+
 public:
     bool isValidSequence(TreeNode* root, vector<int>& arr) {
         if (root == nullptr) {

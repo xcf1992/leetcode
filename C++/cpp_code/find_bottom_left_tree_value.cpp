@@ -42,9 +42,9 @@ You may assume the tree (i.e., the given root node) is not NULL.
 using namespace std;
 
 class Solution {
-    //dfs
+    // dfs
 private:
-    void dfs(TreeNode *root, int height, int &longest, int &result) {
+    void dfs(TreeNode* root, int height, int& longest, int& result) {
         if (root == nullptr) {
             return;
         }
@@ -59,7 +59,7 @@ private:
     }
 
 public:
-    int findBottomLeftValue(TreeNode *root) {
+    int findBottomLeftValue(TreeNode* root) {
         int result = 0;
         int longest = 0;
         dfs(root, 0, longest, result);
@@ -68,23 +68,20 @@ public:
 };
 
 class Solution {
-    //bfs
+    // bfs
 public:
-    int findBottomLeftValue(TreeNode *root) {
-        queue<TreeNode *> row1;
-        queue<TreeNode *> row2;
+    int findBottomLeftValue(TreeNode* root) {
+        queue<TreeNode*> row1;
+        queue<TreeNode*> row2;
         int result = root->val;
 
         row1.push(root);
 
-        while (!row1.empty() or
-        !row2.empty()
-        )
-        {
+        while (!row1.empty() or !row2.empty()) {
             if (row2.empty()) {
                 result = row1.front()->val;
                 while (!row1.empty()) {
-                    TreeNode *left_most = row1.front();
+                    TreeNode* left_most = row1.front();
                     if (left_most->left != nullptr) {
                         row2.push(left_most->left);
                     }
@@ -96,7 +93,7 @@ public:
             } else {
                 result = row2.front()->val;
                 while (!row2.empty()) {
-                    TreeNode *left_most = row2.front();
+                    TreeNode* left_most = row2.front();
                     if (left_most->left != nullptr) {
                         row1.push(left_most->left);
                     }

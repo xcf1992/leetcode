@@ -17,7 +17,8 @@ Input: n = 3, wells = [1,2,2], pipes = [[1,2,1],[2,3,1]]
 Output: 3
 Explanation:
 The image shows the costs of connecting houses using pipes.
-The best strategy is to build a well in the first house with cost 1 and connect the other houses to it with cost 2 so the total cost is 3.
+The best strategy is to build a well in the first house with cost 1 and connect the other houses to it with cost 2 so
+the total cost is 3.
 
 Constraints:
 1 <= n <= 10000
@@ -58,17 +59,17 @@ private:
         }
         return parent[p];
     }
+
 public:
     int minCostToSupplyWater(int n, vector<int>& wells, vector<vector<int>>& pipes) {
         vector<int> parent(n + 1, 0);
         for (int i = 1; i <= n; ++i) {
             parent[i] = i;
-            pipes.push_back({0, i, wells[i - 1]}); // 0 is the virtual node we used to represent build well in house i - 1
+            pipes.push_back(
+                    {0, i, wells[i - 1]});  // 0 is the virtual node we used to represent build well in house i - 1
         }
 
-        sort(pipes.begin(), pipes.end(), [](vector<int>& p1, vector<int>& p2) {
-            return p1[2] < p2[2];
-        });
+        sort(pipes.begin(), pipes.end(), [](vector<int>& p1, vector<int>& p2) { return p1[2] < p2[2]; });
 
         int result = 0;
         int count = n;

@@ -48,7 +48,7 @@ even if there aren't any.
 #include <numeric>
 using namespace std;
 
-//https://stackoverflow.com/questions/5837572/generate-a-random-point-within-a-circle-uniformly/50746409#50746409
+// https://stackoverflow.com/questions/5837572/generate-a-random-point-within-a-circle-uniformly/50746409#50746409
 class Solution {
 private:
     double r;
@@ -65,8 +65,8 @@ public:
     }
 
     vector<double> randPoint() {
-        double theta = 2 * pi * (double) rand() / RAND_MAX;
-        double radius = sqrt((double) rand() / RAND_MAX) * r;
+        double theta = 2 * pi * (double)rand() / RAND_MAX;
+        double radius = sqrt((double)rand() / RAND_MAX) * r;
         double x = radius * cos(theta);
         double y = radius * sin(theta);
         return {x + x_c, y + y_c};
@@ -77,7 +77,7 @@ public:
  * Your Solution object will be instantiated and called as such:
  * Solution obj = new Solution(radius, x_center, y_center);
  * vector<double> param_1 = obj.randPoint();
-*/
+ */
 
 /*
 class Solution {

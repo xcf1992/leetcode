@@ -2,8 +2,8 @@
 1446. Consecutive Characters
 https://leetcode.com/problems/consecutive-characters/
 
-Given a string s, the power of the string is the maximum length of a non-empty substring that contains only one unique character.
-Return the power of the string.
+Given a string s, the power of the string is the maximum length of a non-empty substring that contains only one unique
+character. Return the power of the string.
 
 Example 1:
 Input: s = "leetcode"
@@ -53,11 +53,7 @@ public:
         int right = 0;
         int result = 0;
         while (right < s.size()) {
-            while (right < s.size() and s[left]
-            ==
-            s[right]
-            )
-            {
+            while (right < s.size() and s[left] == s[right]) {
                 right += 1;
             }
             result = max(result, right - left);

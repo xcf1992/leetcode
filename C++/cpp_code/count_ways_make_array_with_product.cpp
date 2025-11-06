@@ -19,10 +19,8 @@ Output: [4,1,50734910]
 Explanation: Each query is independent.
 [2,6]: There are 4 ways to fill an array of size 2 that multiply to 6: [1,6], [2,3], [3,2], [6,1].
 [5,1]: There is 1 way to fill an array of size 5 that multiply to 1: [1,1,1,1,1].
-[73,660]: There are 1050734917 ways to fill an array of size 73 that multiply to 660. 1050734917 modulo 109 + 7 = 50734910.
-Example 2:
-Input: queries = [[1,1],[2,2],[3,3],[4,4],[5,5]]
-Output: [1,2,3,10,5]
+[73,660]: There are 1050734917 ways to fill an array of size 73 that multiply to 660. 1050734917 modulo 109 + 7 =
+50734910. Example 2: Input: queries = [[1,1],[2,2],[3,3],[4,4],[5,5]] Output: [1,2,3,10,5]
 
 Constraints:
 1 <= queries.length <= 104
@@ -50,7 +48,7 @@ public:
     int spf[10001], mod = 1e9 + 7, MAXN = 10001;
 
     void sieve() {
-        spf[1] = 1; // spf[i] = smallest prime factor of i
+        spf[1] = 1;  // spf[i] = smallest prime factor of i
         for (int i = 2; i < MAXN; i++)
             spf[i] = i;
         for (int i = 4; i < MAXN; i += 2)
@@ -58,7 +56,7 @@ public:
         for (int i = 3; i * i < MAXN; i++) {
             if (spf[i] == i) {
                 // i is prime
-                for (int j = i * i; j < 10001; j += i) // mark all multiples of i
+                for (int j = i * i; j < 10001; j += i)  // mark all multiples of i
                     if (spf[j] == j)
                         spf[j] = i;
             }
@@ -67,32 +65,32 @@ public:
 
     vector<int> get_factors(int x) {
         vector<int> res;
-        unordered_map<int, int> frqs; // a bit unnecessary but easier to code;
+        unordered_map<int, int> frqs;  // a bit unnecessary but easier to code;
         while (x != 1) {
-            frqs[spf[x]]++; // frqs[i] = how many times the prime factor i occurs in x
+            frqs[spf[x]]++;  // frqs[i] = how many times the prime factor i occurs in x
             x = x / spf[x];
         }
-        for (auto p: frqs)
-            res.push_back(p.second); // return the frequencies
+        for (auto p : frqs)
+            res.push_back(p.second);  // return the frequencies
         return res;
     }
 
-    vector<int> waysToFillArray(vector<vector<int> > &queries) {
+    vector<int> waysToFillArray(vector<vector<int>>& queries) {
         vector<int> res;
         sieve();
-        long choose[10050][33] = {0}; // choose[i][j] = i Choose j
+        long choose[10050][33] = {0};  // choose[i][j] = i Choose j
         for (int j = 0; j != 10050; ++j)
-            choose[j][0] = 1; // 1 way to choose 0 things
+            choose[j][0] = 1;  // 1 way to choose 0 things
         for (int n = 1; n != 10050; ++n) {
             for (int r = 1; r != 33; ++r) {
                 choose[n][r] = (choose[n - 1][r - 1] + choose[n - 1][r]) % mod;
             }
         }
-        for (auto &q: queries) {
+        for (auto& q : queries) {
             int n = q[0], k = q[1];
             auto frqs = get_factors(k);
             long curr = 1;
-            for (int f: frqs) {
+            for (int f : frqs) {
                 // each factor occurs f times, and these are indistinguishable but the buckets are distinguishable;
                 // thus we use stars and bars formula
                 curr = (curr * choose[n + f - 1][f]) % mod;

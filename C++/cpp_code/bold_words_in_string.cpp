@@ -32,10 +32,10 @@ using namespace std;
 
 class Solution {
 public:
-    string boldWords(vector<string> &words, string S) {
+    string boldWords(vector<string>& words, string S) {
         int n = S.size();
         vector<bool> marked(n, false);
-        for (string &word: words) {
+        for (string& word : words) {
             string temp = S;
             size_t pos = temp.find(word);
             while (pos != string::npos) {
@@ -49,15 +49,11 @@ public:
 
         string result = "";
         for (int i = 0; i < S.size(); i++) {
-            if (marked[i] and(i == 0 or !marked[i - 1])
-            )
-            {
+            if (marked[i] and (i == 0 or !marked[i - 1])) {
                 result += "<b>";
             }
             result.push_back(S[i]);
-            if (marked[i] and(i == S.size() - 1 or !marked[i + 1])
-            )
-            {
+            if (marked[i] and (i == S.size() - 1 or !marked[i + 1])) {
                 result += "</b>";
             }
         }

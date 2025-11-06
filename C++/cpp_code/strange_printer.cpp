@@ -64,9 +64,9 @@ This case we can reduce our turns to dp[start][start + k] + dp[start + k + 1][st
 */
 class Solution {
     /*
-    * I suggest to do this treatment, before go directly DP.
-    * Shorten the original string, like reduce aaabbb to ab.
-    */
+     * I suggest to do this treatment, before go directly DP.
+     * Shorten the original string, like reduce aaabbb to ab.
+     */
     string polish(string s) {
         int pos = 0;
         string result = "";
@@ -89,7 +89,7 @@ public:
 
         s = polish(s);
         n = s.size();
-        vector<vector<int> > dp(n, vector<int>(n, 0));
+        vector<vector<int>> dp(n, vector<int>(n, 0));
         for (int i = 0; i < n; i++) {
             dp[i][i] = 1;
         }
@@ -99,8 +99,8 @@ public:
                 dp[start][start + len] = len + 1;
                 for (int k = 0; k < len; k++) {
                     int temp = dp[start][start + k] + dp[start + k + 1][start + len];
-                    dp[start][start + len] = min(dp[start][start + len],
-                                                 s[start + k] == s[start + len] ? temp - 1 : temp);
+                    dp[start][start + len] =
+                            min(dp[start][start + len], s[start + k] == s[start + len] ? temp - 1 : temp);
                 }
             }
         }

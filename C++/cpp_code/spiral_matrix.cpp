@@ -32,20 +32,20 @@ using namespace std;
 
 class Solution {
 private:
-    vector<vector<int> > diff{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    vector<vector<int>> diff{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
 public:
-    vector<int> spiralOrder(vector<vector<int> > &matrix) {
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
         int m = matrix.size();
         if (m == 0) {
             return {};
         }
         int n = matrix[0].size();
 
-        vector<int> steps{n, m - 1}; // steps we can take during current move
-        int direction = 0; // index of direction.
+        vector<int> steps{n, m - 1};  // steps we can take during current move
+        int direction = 0;            // index of direction.
         int curR = 0;
-        int curC = -1; // initial position
+        int curC = -1;  // initial position
         vector<int> result;
         while (steps[direction % 2] > 0) {
             for (int i = 0; i < steps[direction % 2]; ++i) {

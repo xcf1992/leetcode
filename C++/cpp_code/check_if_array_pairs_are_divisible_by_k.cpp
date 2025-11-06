@@ -19,7 +19,8 @@ Explanation: Pairs are (1,6),(2,5) and(3,4).
 Example 3:
 Input: arr = [1,2,3,4,5,6], k = 10
 Output: false
-Explanation: You can try all possible pairs to see that there is no way to divide arr into 3 pairs each with sum divisible by 10.
+Explanation: You can try all possible pairs to see that there is no way to divide arr into 3 pairs each with sum
+divisible by 10.
 
 Example 4:
 Input: arr = [-10,10], k = 2
@@ -52,9 +53,9 @@ using namespace std;
 
 class Solution {
 public:
-    bool canArrange(vector<int> &arr, int k) {
+    bool canArrange(vector<int>& arr, int k) {
         vector<int> count(k, 0);
-        for (int num: arr) {
+        for (int num : arr) {
             int left = ((num % k) + k) % k;
             count[left] += 1;
         }

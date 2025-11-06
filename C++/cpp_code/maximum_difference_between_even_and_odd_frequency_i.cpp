@@ -4,7 +4,8 @@ https://leetcode.com/problems/maximum-difference-between-even-and-odd-frequency-
 
 You are given a string s consisting of lowercase English letters.
 
-Your task is to find the maximum difference diff = freq(a1) - freq(a2) between the frequency of characters a1 and a2 in the string such that:
+Your task is to find the maximum difference diff = freq(a1) - freq(a2) between the frequency of characters a1 and a2 in
+the string such that:
 
 a1 has an odd frequency in the string.
 a2 has an even frequency in the string.
@@ -71,8 +72,7 @@ public:
             }
             if (cnt % 2 == 0) {
                 min_even = min(min_even, cnt);
-            }
-            else {
+            } else {
                 max_odd = max(max_odd, cnt);
             }
         }

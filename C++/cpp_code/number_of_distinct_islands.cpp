@@ -54,16 +54,14 @@ private:
     int m = 0;
     int n = 0;
 
-    void dfs(int x, int y, char index, string &island, vector<vector<int> > &grid, vector<vector<bool> > &visited,
-             map<char, pair<int, int> > &direction) {
+    void dfs(int x, int y, char index, string& island, vector<vector<int>>& grid, vector<vector<bool>>& visited,
+             map<char, pair<int, int>>& direction) {
         for (auto it = direction.begin(); it != direction.end(); ++it) {
             char dir = it->first;
             pair<int, int> diff = it->second;
             int row = x + diff.first;
             int col = y + diff.second;
-            if (row >= m or row<0 or col >= n or col < 0 or grid[row][col] == 0 or visited[row][col]
-            )
-            {
+            if (row >= m or row < 0 or col >= n or col < 0 or grid[row][col] == 0 or visited[row][col]) {
                 continue;
             }
 
@@ -75,26 +73,24 @@ private:
     }
 
 public:
-    int numDistinctIslands(vector<vector<int> > &grid) {
+    int numDistinctIslands(vector<vector<int>>& grid) {
         m = grid.size();
         if (m == 0) {
             return 0;
         }
         n = grid[0].size();
 
-        map<char, pair<int, int> > direction;
+        map<char, pair<int, int>> direction;
         direction['d'] = {-1, 0};
         direction['u'] = {1, 0};
         direction['r'] = {0, 1};
         direction['l'] = {0, -1};
 
         unordered_set<string> shape;
-        vector<vector<bool> > visited(m, vector<bool>(n, false));
+        vector<vector<bool>> visited(m, vector<bool>(n, false));
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if (grid[i][j] == 0 or visited[i][j]
-                )
-                {
+                if (grid[i][j] == 0 or visited[i][j]) {
                     continue;
                 }
 

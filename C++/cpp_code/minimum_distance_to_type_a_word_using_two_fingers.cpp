@@ -104,10 +104,11 @@ private:
         if (dp[left][right][pos] == -1) {
             int to = word[pos] - 'A';
             dp[left][right][pos] = min(getDistance(left, to) + dfs(word, pos + 1, to, right, dp),
-                getDistance(right, to) + dfs(word, pos + 1, left, to, dp));
+                                       getDistance(right, to) + dfs(word, pos + 1, left, to, dp));
         }
         return dp[left][right][pos];
     }
+
 public:
     int minimumDistance(string word) {
         int n = word.size();

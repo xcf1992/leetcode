@@ -58,17 +58,17 @@ First sort the events in ascending order according to starting time and if equal
 Now start traversing the events, at each event we have two options:
 
 Skip this event and move to next event, no change in profit.
-Attend this event add its profit and move to next such event whose starting time is greater than the ending time of this event.
-Compare the profits made by these two choices and return the maximum value of the two.
+Attend this event add its profit and move to next such event whose starting time is greater than the ending time of this
+event. Compare the profits made by these two choices and return the maximum value of the two.
 */
 class Solution {
 private:
-    int solve(vector<vector<int>>&dp, vector<vector<int>>& events, int n, int pos, int k) {
-        if(pos >= n || k == 0) {
+    int solve(vector<vector<int>>& dp, vector<vector<int>>& events, int n, int pos, int k) {
+        if (pos >= n || k == 0) {
             return 0;
         }
 
-        if(dp[pos][k] != -1) {
+        if (dp[pos][k] != -1) {
             return dp[pos][k];
         }
 
@@ -80,9 +80,9 @@ private:
             }
         }
 
-       return dp[pos][k] = max(solve(dp, events, n, pos+1, k), events[pos][2] + solve(dp, events, n, i, k-1));
-
+        return dp[pos][k] = max(solve(dp, events, n, pos + 1, k), events[pos][2] + solve(dp, events, n, i, k - 1));
     }
+
 public:
     int maxValue(vector<vector<int>>& events, int k) {
         int n = events.size();

@@ -3,7 +3,8 @@
 https://leetcode.com/problems/smallest-string-with-swaps/
 
 You are given a string s,
-and an array of pairs of indices in the string pairs where pairs[i] = [a, b] indicates 2 indices(0-indexed) of the string.
+and an array of pairs of indices in the string pairs where pairs[i] = [a, b] indicates 2 indices(0-indexed) of the
+string.
 
 You can swap the characters at any pair of indices in the given pairs any number of times.
 Return the lexicographically smallest string that s can be changed to after using the swaps.
@@ -53,7 +54,7 @@ using namespace std;
 
 class Solution {
 private:
-    int find(int num, vector<int> &parent) {
+    int find(int num, vector<int>& parent) {
         if (parent[num] == -1) {
             return num;
         }
@@ -62,10 +63,10 @@ private:
     }
 
 public:
-    string smallestStringWithSwaps(string s, vector<vector<int> > &pairs) {
+    string smallestStringWithSwaps(string s, vector<vector<int>>& pairs) {
         int n = s.size();
         vector<int> parent(n, -1);
-        for (vector<int> &pair: pairs) {
+        for (vector<int>& pair : pairs) {
             int pu = find(pair[0], parent);
             int pv = find(pair[1], parent);
             if (pu != pv) {
@@ -73,15 +74,16 @@ public:
             }
         }
 
-        vector<vector<int> > component(n);
+        vector<vector<int>> component(n);
         for (int i = 0; i < n; ++i) {
-            component[find(i, parent)].push_back(i); // the sequence of id in each component will be in increasing order
+            component[find(i, parent)].push_back(
+                    i);  // the sequence of id in each component will be in increasing order
         }
 
-        for (vector<int> &c: component)
+        for (vector<int>& c : component)
             if (!c.empty()) {
                 string temp = "";
-                for (int id: c) {
+                for (int id : c) {
                     temp += s[id];
                 }
                 sort(temp.begin(), temp.end());

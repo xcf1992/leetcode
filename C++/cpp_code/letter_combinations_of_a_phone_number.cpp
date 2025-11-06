@@ -32,21 +32,21 @@ using namespace std;
 
 class Solution {
 private:
-    vector<string> dfs(string &digits, int start, int end, unordered_map<char, string> &phone) {
+    vector<string> dfs(string& digits, int start, int end, unordered_map<char, string>& phone) {
         if (start > end) {
             return {};
         }
 
         vector<string> result;
         if (start == end) {
-            for (char c: phone[digits[start]]) {
+            for (char c : phone[digits[start]]) {
                 result.push_back(string(1, c));
             }
             return result;
         }
 
-        for (string combin: dfs(digits, start, end - 1, phone)) {
-            for (char c: phone[digits[end]]) {
+        for (string combin : dfs(digits, start, end - 1, phone)) {
+            for (char c : phone[digits[end]]) {
                 combin.push_back(c);
                 result.push_back(combin);
                 combin.pop_back();

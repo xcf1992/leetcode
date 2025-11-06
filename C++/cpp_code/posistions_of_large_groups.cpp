@@ -3,7 +3,8 @@
 
  For example, a string like S = "abbxxxxzyy" has the groups "a", "bb", "xxxx", "z" and "yy".
 
- Call a group large if it has 3 or more characters.  We would like the starting and ending positions of every large group.
+ Call a group large if it has 3 or more characters.  We would like the starting and ending positions of every large
+ group.
 
  The final answer should be in lexicographic order.
 
@@ -43,20 +44,16 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int> > largeGroupPositions(string S) {
+    vector<vector<int>> largeGroupPositions(string S) {
         if (S.size() < 3) {
             return {};
         }
 
-        vector<vector<int> > result;
+        vector<vector<int>> result;
         int start = 0;
         int end = 1;
         while (end < S.size()) {
-            while (end < S.size() and S[end]
-            ==
-            S[start]
-            )
-            {
+            while (end < S.size() and S[end] == S[start]) {
                 end += 1;
             }
 

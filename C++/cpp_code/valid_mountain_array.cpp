@@ -45,7 +45,7 @@ using namespace std;
 
 class Solution {
 private:
-    bool isDecreasing(vector<int> &A, int start) {
+    bool isDecreasing(vector<int>& A, int start) {
         if (start >= A.size() - 1) {
             return false;
         }
@@ -59,7 +59,7 @@ private:
     }
 
 public:
-    bool validMountainArray(vector<int> &A) {
+    bool validMountainArray(vector<int>& A) {
         if (A.size() < 3) {
             return false;
         }

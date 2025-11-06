@@ -27,7 +27,8 @@ Explanation: As shown you can start at cell (0, 0) and visit all the cells of th
 Example 2:
 Input: grid = [[1,2,1],[1,2,1]]
 Output: false
-Explanation: As shown you the street at cell (0, 0) is not connected with any street of any other cell and you will get stuck at cell (0, 0)
+Explanation: As shown you the street at cell (0, 0) is not connected with any street of any other cell and you will get
+stuck at cell (0, 0)
 
 Example 3:
 Input: grid = [[1,1,2]]
@@ -63,20 +64,18 @@ using namespace std;
 
 class Solution {
 public:
-    bool hasValidPath(vector<vector<int> > &grid) {
-        vector<vector<vector<int> > > directs({
-            {{0, -1}, {0, 1}},
-            {{-1, 0}, {1, 0}},
-            {{0, -1}, {1, 0}},
-            {{0, 1}, {1, 0}},
-            {{0, -1}, {-1, 0}},
-            {{0, 1}, {-1, 0}}
-        });
+    bool hasValidPath(vector<vector<int>>& grid) {
+        vector<vector<vector<int>>> directs({{{0, -1}, {0, 1}},
+                                             {{-1, 0}, {1, 0}},
+                                             {{0, -1}, {1, 0}},
+                                             {{0, 1}, {1, 0}},
+                                             {{0, -1}, {-1, 0}},
+                                             {{0, 1}, {-1, 0}}});
 
         int m = grid.size();
         int n = grid[0].size();
-        vector<vector<bool> > visited(m, vector<bool>(n, false));
-        queue<vector<int> > bfs;
+        vector<vector<bool>> visited(m, vector<bool>(n, false));
+        queue<vector<int>> bfs;
         bfs.push({0, 0});
         visited[0][0] = true;
         while (!bfs.empty()) {
@@ -86,25 +85,18 @@ public:
             int row = cur[0];
             int col = cur[1];
             int type = grid[row][col] - 1;
-            for (auto &dir: directs[type]) {
+            for (auto& dir : directs[type]) {
                 int nr = row + dir[0];
                 int nc = col + dir[1];
-                if (nr < 0 or nr
-                >=
-                m or nc<0 or nc >= n or visited[nr][nc]
-                )
-                {
+                if (nr < 0 or nr >= m or nc < 0 or nc >= n or visited[nr][nc]) {
                     continue;
                 }
 
-                for (auto &backDir: directs[grid[nr][nc] - 1])
-                    if (nr + backDir[0] == row and nc
-                +backDir[1] == col
-                )
-                {
-                    visited[nr][nc] = true;
-                    bfs.push({nr, nc});
-                }
+                for (auto& backDir : directs[grid[nr][nc] - 1])
+                    if (nr + backDir[0] == row and nc + backDir[1] == col) {
+                        visited[nr][nc] = true;
+                        bfs.push({nr, nc});
+                    }
             }
         }
         return visited[m - 1][n - 1];

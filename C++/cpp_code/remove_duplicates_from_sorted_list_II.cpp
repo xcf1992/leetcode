@@ -30,28 +30,19 @@ using namespace std;
 
 class Solution {
 public:
-    ListNode *deleteDuplicates(ListNode *head) {
-        if (head == nullptr or
-        head->next == nullptr
-        )
-        {
+    ListNode* deleteDuplicates(ListNode* head) {
+        if (head == nullptr or head->next == nullptr) {
             return head;
         }
 
-        ListNode *dummy = new ListNode(-1);
+        ListNode* dummy = new ListNode(-1);
         dummy->next = head;
-        ListNode *pre = dummy;
-        ListNode *cur = head;
-        while (cur != nullptr and
-        cur->next != nullptr
-        )
-        {
-            ListNode *suc = cur->next;
+        ListNode* pre = dummy;
+        ListNode* cur = head;
+        while (cur != nullptr and cur->next != nullptr) {
+            ListNode* suc = cur->next;
             if (suc->val == cur->val) {
-                while (suc != nullptr and
-                suc->val == cur->val
-                )
-                {
+                while (suc != nullptr and suc->val == cur->val) {
                     suc = suc->next;
                 }
                 pre->next = suc;

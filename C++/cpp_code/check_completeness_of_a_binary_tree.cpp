@@ -15,7 +15,8 @@ Example 1:
       4   5           6
 Input: [1,2,3,4,5,6]
 Output: true
-Explanation: Every level before the last is full (ie. levels with node-values {1} and {2, 3}), and all nodes in the last level ({4, 5, 6}) are as far left as possible.
+Explanation: Every level before the last is full (ie. levels with node-values {1} and {2, 3}), and all nodes in the last
+level ({4, 5, 6}) are as far left as possible.
 
 Example 2:
                 1
@@ -52,28 +53,20 @@ there should not be any node after we met an empty one.
 */
 class Solution {
 public:
-    bool isCompleteTree(TreeNode *root) {
+    bool isCompleteTree(TreeNode* root) {
         if (root == nullptr) {
             return true;
         }
 
-        vector<TreeNode *> bfs;
+        vector<TreeNode*> bfs;
         bfs.push_back(root);
         int count = 0;
-        while (count < bfs.size() and bfs[count]
-        !=
-        nullptr
-        )
-        {
+        while (count < bfs.size() and bfs[count] != nullptr) {
             bfs.push_back(bfs[count]->left);
             bfs.push_back(bfs[count]->right);
             count += 1;
         }
-        while (count < bfs.size() and bfs[count]
-        ==
-        nullptr
-        )
-        {
+        while (count < bfs.size() and bfs[count] == nullptr) {
             count += 1;
         }
         return count == bfs.size();
@@ -82,12 +75,12 @@ public:
 
 class Solution1 {
 public:
-    bool isCompleteTree(TreeNode *root) {
+    bool isCompleteTree(TreeNode* root) {
         if (root == nullptr) {
             return true;
         }
 
-        queue<TreeNode *> bfs;
+        queue<TreeNode*> bfs;
         bfs.push(root);
         int level = 0;
         while (!bfs.empty()) {
@@ -99,21 +92,18 @@ public:
 
             if (lastLevel) {
                 while (!bfs.empty()) {
-                    TreeNode *node = bfs.front();
+                    TreeNode* node = bfs.front();
                     bfs.pop();
-                    if (node->left != nullptr or
-                    node->right != nullptr
-                    )
-                    {
+                    if (node->left != nullptr or node->right != nullptr) {
                         return false;
                     }
                 }
                 return true;
             }
 
-            bool completed = false; // means we should have already checked all the nodes in next level
+            bool completed = false;  // means we should have already checked all the nodes in next level
             for (int i = 0; i < curSize; i++) {
-                TreeNode *node = bfs.front();
+                TreeNode* node = bfs.front();
                 bfs.pop();
                 if (!completed) {
                     if (node->left == nullptr) {
@@ -132,10 +122,7 @@ public:
                         completed = true;
                     }
                 } else {
-                    if (node->left != nullptr or
-                    node->right != nullptr
-                    )
-                    {
+                    if (node->left != nullptr or node->right != nullptr) {
                         return false;
                     }
                 }

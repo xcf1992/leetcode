@@ -47,7 +47,7 @@ public:
         size_t n = grid.size();
         size_t m = grid[0].size();
         size_t left = -1;
-        size_t right = - 1;
+        size_t right = -1;
         size_t top = -1;
         size_t bottom = -1;
         for (size_t i = 0; i < n; i++) {

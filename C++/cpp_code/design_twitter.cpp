@@ -71,8 +71,8 @@ struct Tweet {
 
 class Twitter {
 private:
-    unordered_map<int, unordered_set<int> > iFollow;
-    unordered_map<int, vector<Tweet> > tweets;
+    unordered_map<int, unordered_set<int>> iFollow;
+    unordered_map<int, vector<Tweet>> tweets;
     int curTime = 0;
 
 public:
@@ -87,29 +87,24 @@ public:
     }
 
     /*
-    * Retrieve the 10 most recent tweet ids in the user's news feed.
-    * Each item in the news feed must be posted by users who the user followed or by the user herself.
-    * Tweets must be ordered from most recent to least recent.
-    */
+     * Retrieve the 10 most recent tweet ids in the user's news feed.
+     * Each item in the news feed must be posted by users who the user followed or by the user herself.
+     * Tweets must be ordered from most recent to least recent.
+     */
     vector<int> getNewsFeed(int userId) {
-        auto comp = [](Tweet &a, Tweet &b) {
-            return a.time < b.time;
-        };
+        auto comp = [](Tweet& a, Tweet& b) { return a.time < b.time; };
         priority_queue<Tweet, vector<Tweet>, decltype(comp)> maxHeap(comp);
 
         unordered_set<int> users(iFollow[userId]);
         users.insert(userId);
-        for (int user: users) {
-            for (Tweet t: tweets[user]) {
+        for (int user : users) {
+            for (Tweet t : tweets[user]) {
                 maxHeap.push(t);
             }
         }
 
         vector<int> result;
-        while (!maxHeap.empty() and
-        result.size() < 10
-        )
-        {
+        while (!maxHeap.empty() and result.size() < 10) {
             result.push_back(maxHeap.top().id);
             maxHeap.pop();
         }
@@ -137,4 +132,4 @@ public:
  * vector<int> param_2 = obj.getNewsFeed(userId);
  * obj.follow(followerId,followeeId);
  * obj.unfollow(followerId,followeeId);
-*/
+ */

@@ -87,6 +87,6 @@ public:
                 dp[j] = min(dp[j], dp[max(0, i - ranges[i])] + 1);
             }
         }
-        return dp[n]  < n + 2 ? dp[n] : -1;
+        return dp[n] < n + 2 ? dp[n] : -1;
     }
 };

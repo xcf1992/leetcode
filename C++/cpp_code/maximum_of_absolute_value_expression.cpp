@@ -58,7 +58,7 @@ a1,b1 / b1,b2对应的符号分别是
 */
 class Solution {
 public:
-    int maxAbsValExpr(vector<int> &arr1, vector<int> &arr2) {
+    int maxAbsValExpr(vector<int>& arr1, vector<int>& arr2) {
         int n = arr1.size();
         int result = INT_MIN;
         for (int a = -1; a <= 1; a += 2) {

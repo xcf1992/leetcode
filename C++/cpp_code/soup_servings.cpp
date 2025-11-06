@@ -24,7 +24,9 @@ Example:
 Input: N = 50
 Output: 0.625
 Explanation:
-If we choose the first two operations, A will become empty first. For the third operation, A and B will become empty at the same time. For the fourth operation, B will become empty first. So the total probability of A becoming empty first plus half the probability that A and B become empty at the same time, is 0.25 * (1 + 1 + 0.5 + 0) = 0.625.
+If we choose the first two operations, A will become empty first. For the third operation, A and B will become empty at
+the same time. For the fourth operation, B will become empty first. So the total probability of A becoming empty first
+plus half the probability that A and B become empty at the same time, is 0.25 * (1 + 1 + 0.5 + 0) = 0.625.
 
 Notes:
 
@@ -48,7 +50,7 @@ using namespace std;
 
 class Solution {
 private:
-    unordered_map<int, unordered_map<int, double> > memo;
+    unordered_map<int, unordered_map<int, double>> memo;
 
     double serve(int leftA, int leftB) {
         if (leftA == 0) {
@@ -63,18 +65,14 @@ private:
             return 0.0;
         }
 
-        if (memo.find(leftA) != memo.end() and memo[leftA]
-        .
-        find(leftB) != memo[leftA].end()
-        )
-        {
+        if (memo.find(leftA) != memo.end() and memo[leftA].find(leftB) != memo[leftA].end()) {
             return memo[leftA][leftB];
         }
 
-        memo[leftA][leftB] += 0.25 * (serve(leftA - min(leftA, 100), leftB) +
-                                      serve(leftA - min(leftA, 75), leftB - min(leftB, 25)) +
-                                      serve(leftA - min(leftA, 50), leftB - min(leftB, 50)) +
-                                      serve(leftA - min(leftA, 25), leftB - min(leftB, 75)));
+        memo[leftA][leftB] +=
+                0.25 * (serve(leftA - min(leftA, 100), leftB) + serve(leftA - min(leftA, 75), leftB - min(leftB, 25)) +
+                        serve(leftA - min(leftA, 50), leftB - min(leftB, 50)) +
+                        serve(leftA - min(leftA, 25), leftB - min(leftB, 75)));
         return memo[leftA][leftB];
     }
 

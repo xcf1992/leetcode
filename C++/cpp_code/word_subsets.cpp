@@ -55,20 +55,20 @@ using namespace std;
 
 class Solution {
 public:
-    vector<string> wordSubsets(vector<string> &A, vector<string> &B) {
+    vector<string> wordSubsets(vector<string>& A, vector<string>& B) {
         vector<int> maxLetter(26, 0);
-        for (string wordB: B) {
+        for (string wordB : B) {
             vector<int> letterCount(26, 0);
-            for (char c: wordB) {
+            for (char c : wordB) {
                 letterCount[c - 'a'] += 1;
                 maxLetter[c - 'a'] = max(maxLetter[c - 'a'], letterCount[c - 'a']);
             }
         }
 
         vector<string> result;
-        for (string wordA: A) {
+        for (string wordA : A) {
             vector<int> letterCount(26, 0);
-            for (char c: wordA) {
+            for (char c : wordA) {
                 letterCount[c - 'a'] += 1;
             }
 
@@ -90,15 +90,15 @@ public:
 // Time limit exceed
 class Solution1 {
 private:
-    void countLetter(string &word, unordered_map<string, vector<int> > &count) {
+    void countLetter(string& word, unordered_map<string, vector<int>>& count) {
         count[word] = vector<int>(26, 0);
-        for (char c: word) {
+        for (char c : word) {
             count[word][c - 'a'] += 1;
         }
     }
 
-    bool isSubset(string &wordA, string &wordB, unordered_map<string, vector<int> > &countA,
-                  unordered_map<string, vector<int> > &countB) {
+    bool isSubset(string& wordA, string& wordB, unordered_map<string, vector<int>>& countA,
+                  unordered_map<string, vector<int>>& countB) {
         for (int i = 0; i < countB[wordB].size(); i++) {
             if (countA[wordA][i] < countB[wordB][i]) {
                 return false;
@@ -108,21 +108,21 @@ private:
     }
 
 public:
-    vector<string> wordSubsets(vector<string> &A, vector<string> &B) {
-        unordered_map<string, vector<int> > countA;
-        for (string wordA: A) {
+    vector<string> wordSubsets(vector<string>& A, vector<string>& B) {
+        unordered_map<string, vector<int>> countA;
+        for (string wordA : A) {
             countLetter(wordA, countA);
         }
 
-        unordered_map<string, vector<int> > countB;
-        for (string wordB: B) {
+        unordered_map<string, vector<int>> countB;
+        for (string wordB : B) {
             countLetter(wordB, countB);
         }
 
         vector<string> result;
-        for (string wordA: A) {
+        for (string wordA : A) {
             bool isUniversal = true;
-            for (string wordB: B) {
+            for (string wordB : B) {
                 if (!isSubset(wordA, wordB, countA, countB)) {
                     isUniversal = false;
                     break;

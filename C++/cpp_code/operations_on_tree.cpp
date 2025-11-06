@@ -2,22 +2,25 @@
 https://leetcode.com/problems/operations-on-tree/description/?envType=problem-list-v2&envId=tree
 1993. Operations on Tree
 
-You are given a tree with n nodes numbered from 0 to n - 1 in the form of a parent array parent where parent[i] is the parent of the ith node. The root of the tree is node 0, so parent[0] = -1 since it has no parent. You want to design a data structure that allows users to lock, unlock, and upgrade nodes in the tree.
+You are given a tree with n nodes numbered from 0 to n - 1 in the form of a parent array parent where parent[i] is the
+parent of the ith node. The root of the tree is node 0, so parent[0] = -1 since it has no parent. You want to design a
+data structure that allows users to lock, unlock, and upgrade nodes in the tree.
 
 The data structure should support the following functions:
 
-Lock: Locks the given node for the given user and prevents other users from locking the same node. You may only lock a node using this function if the node is unlocked.
-Unlock: Unlocks the given node for the given user. You may only unlock a node using this function if it is currently locked by the same user.
-Upgrade: Locks the given node for the given user and unlocks all of its descendants regardless of who locked it. You may only upgrade a node if all 3 conditions are true:
-The node is unlocked,
-It has at least one locked descendant (by any user), and
-It does not have any locked ancestors.
-Implement the LockingTree class:
+Lock: Locks the given node for the given user and prevents other users from locking the same node. You may only lock a
+node using this function if the node is unlocked. Unlock: Unlocks the given node for the given user. You may only unlock
+a node using this function if it is currently locked by the same user. Upgrade: Locks the given node for the given user
+and unlocks all of its descendants regardless of who locked it. You may only upgrade a node if all 3 conditions are
+true: The node is unlocked, It has at least one locked descendant (by any user), and It does not have any locked
+ancestors. Implement the LockingTree class:
 
 LockingTree(int[] parent) initializes the data structure with the parent array.
-lock(int num, int user) returns true if it is possible for the user with id user to lock the node num, or false otherwise. If it is possible, the node num will become locked by the user with id user.
-unlock(int num, int user) returns true if it is possible for the user with id user to unlock the node num, or false otherwise. If it is possible, the node num will become unlocked.
-upgrade(int num, int user) returns true if it is possible for the user with id user to upgrade the node num, or false otherwise. If it is possible, the node num will be upgraded.
+lock(int num, int user) returns true if it is possible for the user with id user to lock the node num, or false
+otherwise. If it is possible, the node num will become locked by the user with id user. unlock(int num, int user)
+returns true if it is possible for the user with id user to unlock the node num, or false otherwise. If it is possible,
+the node num will become unlocked. upgrade(int num, int user) returns true if it is possible for the user with id user
+to upgrade the node num, or false otherwise. If it is possible, the node num will be upgraded.
 
 
 Example 1:
@@ -70,15 +73,15 @@ using namespace std;
 class LockingTree {
 private:
     int n;
-    unordered_map<int, vector<int> > children;
-    vector<vector<int> > node;
+    unordered_map<int, vector<int>> children;
+    vector<vector<int>> node;
 
 public:
-    LockingTree(vector<int> &parent) {
+    LockingTree(vector<int>& parent) {
         n = parent.size();
         node.resize(n, vector<int>(2, -1));
 
-        node[0][0] = -1; // the root
+        node[0][0] = -1;  // the root
         for (int i = 0; i < n; i++) {
             node[i][0] = parent[i];
             children[parent[i]].push_back(i);
@@ -122,12 +125,12 @@ public:
     }
 
 private:
-    void check_children_locked(int cur, bool &locked) {
+    void check_children_locked(int cur, bool& locked) {
         if (children.find(cur) == children.end() || children[cur].size() == 0) {
             return;
         }
 
-        for (int &child: children[cur]) {
+        for (int& child : children[cur]) {
             if (node[child][1] != -1) {
                 locked = true;
                 return;
@@ -153,7 +156,7 @@ private:
             return;
         }
 
-        for (int &child: children[cur]) {
+        for (int& child : children[cur]) {
             node[child][1] = -1;
             unlock_children(child);
         }

@@ -58,7 +58,7 @@ public:
         int curY = 0;
         vector<int> diffX({0, 1, 0, -1});
         vector<int> diffY({1, 0, -1, 0});
-        for (char c: instructions) {
+        for (char c : instructions) {
             if (c == 'G') {
                 curX += diffX[face];
                 curY += diffY[face];
@@ -69,11 +69,7 @@ public:
             }
         }
 
-        if (curX == 0 and curY
-        ==
-        0
-        )
-        {
+        if (curX == 0 and curY == 0) {
             return true;
         }
         return face != 0;

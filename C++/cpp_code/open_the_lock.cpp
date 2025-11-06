@@ -46,7 +46,8 @@ Output: -1
 Note:
 The length of deadends will be in the range [1, 500].
 target will not be in the list deadends.
-Every string in deadends and the string target will be a string of 4 digits from the 10,000 possibilities '0000' to '9999'.
+Every string in deadends and the string target will be a string of 4 digits from the 10,000 possibilities '0000' to
+'9999'.
 */
 #include <iostream>
 #include <string>
@@ -76,12 +77,9 @@ private:
     }
 
 public:
-    int openLock(vector<string> &deadends, string target) {
+    int openLock(vector<string>& deadends, string target) {
         unordered_set<string> des(deadends.begin(), deadends.end());
-        if (des.find("0000") != des.end() or
-        des.find(target) != des.end()
-        )
-        {
+        if (des.find("0000") != des.end() or des.find(target) != des.end()) {
             return -1;
         }
 
@@ -101,11 +99,8 @@ public:
                 }
 
                 vector<string> nextStrings = open(curStr);
-                for (string nextStr: nextStrings) {
-                    if (des.find(nextStr) == des.end() and
-                    visited.find(nextStr) == visited.end()
-                    )
-                    {
+                for (string nextStr : nextStrings) {
+                    if (des.find(nextStr) == des.end() and visited.find(nextStr) == visited.end()) {
                         visited.insert(nextStr);
                         bfs.push(nextStr);
                     }

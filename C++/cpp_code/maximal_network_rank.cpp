@@ -14,7 +14,8 @@ Given the integer n and the array roads, return the maximal network rank of the 
 Example 1:
 Input: n = 4, roads = [[0,1],[0,3],[1,2],[1,3]]
 Output: 4
-Explanation: The network rank of cities 0 and 1 is 4 as there are 4 roads that are connected to either 0 or 1. The road between 0 and 1 is only counted once.
+Explanation: The network rank of cities 0 and 1 is 4 as there are 4 roads that are connected to either 0 or 1. The road
+between 0 and 1 is only counted once.
 
 Example 2:
 Input: n = 5, roads = [[0,1],[0,3],[1,2],[1,3],[2,3],[2,4]]
@@ -51,20 +52,20 @@ using namespace std;
 
 class Solution {
 public:
-    int maximalNetworkRank(int n, vector<vector<int> > &roads) {
-        vector<vector<bool> > connected(n, vector<bool>(n, false));
+    int maximalNetworkRank(int n, vector<vector<int>>& roads) {
+        vector<vector<bool>> connected(n, vector<bool>(n, false));
         vector<int> cnts(n, 0);
-        for (auto &r: roads) {
+        for (auto& r : roads) {
             cnts[r[0]]++;
             cnts[r[1]]++;
             connected[r[0]][r[1]] = true;
-            connected[r[1]][r[0]] = true; // cache if i and j directly connected
+            connected[r[1]][r[0]] = true;  // cache if i and j directly connected
         }
 
         int res = 0;
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
-                res = max(res, cnts[i] + cnts[j] - (connected[i][j] ? 1 : 0)); // loop all pairs
+                res = max(res, cnts[i] + cnts[j] - (connected[i][j] ? 1 : 0));  // loop all pairs
             }
         }
         return res;

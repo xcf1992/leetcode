@@ -77,23 +77,24 @@ private:
             return from == to;
         }
 
-        if (visited[from] == -1) { // if from is visited, it must be a true case
+        if (visited[from] == -1) {  // if from is visited, it must be a true case
             return true;
         }
 
-        if (visited[from] == 1) { // if from is visiting, it comes again, it means a loop
+        if (visited[from] == 1) {  // if from is visiting, it comes again, it means a loop
             return false;
         }
 
-        visited[from] = 1; //set to visiting
+        visited[from] = 1;  // set to visiting
         for (int next : connect[from]) {
             if (!dfs(connect, next, to, visited)) {
                 return false;
             }
         }
-        visited[from] = -1; //set to visited
+        visited[from] = -1;  // set to visited
         return true;
     }
+
 public:
     bool leadsToDestination(int n, vector<vector<int>>& edges, int source, int destination) {
         vector<vector<int>> connect(n);

@@ -75,7 +75,7 @@ public:
     }
 };
 
-class Solution1 { // 20%
+class Solution1 {  // 20%
 private:
     bool findDuplicate(string& result, char c, int k) {
         if (result.size() < k - 1) {
@@ -89,6 +89,7 @@ private:
         }
         return false;
     }
+
 public:
     string removeDuplicates(string s, int k) {
         int n = s.size();

@@ -31,10 +31,10 @@ using namespace std;
 
 class Solution {
 public:
-    int minMoves(vector<int> &nums) {
+    int minMoves(vector<int>& nums) {
         long sum = 0;
         int minNum = INT_MAX;
-        for (int num: nums) {
+        for (int num : nums) {
             sum += num;
             minNum = min(minNum, num);
         }

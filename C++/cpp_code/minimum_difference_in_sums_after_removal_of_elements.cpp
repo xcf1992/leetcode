@@ -5,7 +5,8 @@ https://leetcode.com/problems/minimum-difference-in-sums-after-removal-of-elemen
 
 You are given a 0-indexed integer array nums consisting of 3 * n elements.
 
-You are allowed to remove any subsequence of elements of size exactly n from nums. The remaining 2 * n elements will be divided into two equal parts:
+You are allowed to remove any subsequence of elements of size exactly n from nums. The remaining 2 * n elements will be
+divided into two equal parts:
 
 The first n elements belonging to the first part and their sum is sumfirst.
 The next n elements belonging to the second part and their sum is sumsecond.
@@ -31,10 +32,11 @@ Example 2:
 
 Input: nums = [7,9,5,8,1,3]
 Output: 1
-Explanation: Here n = 2. So we must remove 2 elements and divide the remaining array into two parts containing two elements each.
-If we remove nums[2] = 5 and nums[3] = 8, the resultant array will be [7,9,1,3]. The difference in sums will be (7+9) - (1+3) = 12.
-To obtain the minimum difference, we should remove nums[1] = 9 and nums[4] = 1. The resultant array becomes [7,5,8,3]. The difference in sums of the two parts is (7+5) - (8+3) = 1.
-It can be shown that it is not possible to obtain a difference smaller than 1.
+Explanation: Here n = 2. So we must remove 2 elements and divide the remaining array into two parts containing two
+elements each. If we remove nums[2] = 5 and nums[3] = 8, the resultant array will be [7,9,1,3]. The difference in sums
+will be (7+9) - (1+3) = 12. To obtain the minimum difference, we should remove nums[1] = 9 and nums[4] = 1. The
+resultant array becomes [7,5,8,3]. The difference in sums of the two parts is (7+5) - (8+3) = 1. It can be shown that it
+is not possible to obtain a difference smaller than 1.
 
 
 Constraints:
@@ -56,18 +58,18 @@ nums.length == 3 * n
 #include <map>
 using namespace std;
 /*
-We need to split the array into three equal parts such that the difference between the sum of the left k smallest elements and the right k largest elements is minimized.
-We need a max-heap to track the k smallest elements from the left.
-We need a min-heap to track the k largest elements from the right.
+We need to split the array into three equal parts such that the difference between the sum of the left k smallest
+elements and the right k largest elements is minimized. We need a max-heap to track the k smallest elements from the
+left. We need a min-heap to track the k largest elements from the right.
  */
 class Solution {
 public:
-    long long minimumDifference(vector<int> &nums) {
+    long long minimumDifference(vector<int>& nums) {
         int n = nums.size();
         int k = n / 3;
 
         vector<long long> left_min(n);
-        priority_queue<int, vector<int>, less<int> > max_heap;
+        priority_queue<int, vector<int>, less<int>> max_heap;
         long long left_sum = 0;
         for (int i = 0; i < k; i++) {
             max_heap.push(nums[i]);
@@ -84,7 +86,7 @@ public:
         }
 
         vector<long long> right_max(n);
-        priority_queue<int, vector<int>, greater<int> > min_heap;
+        priority_queue<int, vector<int>, greater<int>> min_heap;
         long long right_sum = 0;
         for (int i = n - 1; i >= 2 * k; i--) {
             min_heap.push(nums[i]);

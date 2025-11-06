@@ -24,7 +24,7 @@ using namespace std;
 
 class Solution {
 private:
-    void generate(vector<vector<int> > &result, vector<int> permutation, map<int, int> &count, int length) {
+    void generate(vector<vector<int>>& result, vector<int> permutation, map<int, int>& count, int length) {
         if (permutation.size() == length) {
             result.push_back(permutation);
             return;
@@ -41,13 +41,13 @@ private:
     }
 
 public:
-    vector<vector<int> > permuteUnique(vector<int> &nums) {
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
         map<int, int> count;
-        for (int num: nums) {
+        for (int num : nums) {
             count[num] += 1;
         }
 
-        vector<vector<int> > result;
+        vector<vector<int>> result;
         vector<int> permutation;
         generate(result, permutation, count, nums.size());
         return result;
@@ -56,7 +56,7 @@ public:
 
 class Solution1 {
 private:
-    void generate(vector<int> &num, vector<int> &visit, vector<int> &solution, vector<vector<int> > &result) {
+    void generate(vector<int>& num, vector<int>& visit, vector<int>& solution, vector<vector<int>>& result) {
         if (solution.size() == num.size()) {
             result.push_back(solution);
             return;
@@ -64,14 +64,7 @@ private:
 
         for (int i = 0; i < num.size(); i++) {
             if (visit[i] == 0) {
-                if (i > 0 and num[i - 1]
-                ==
-                num[i]
-                and visit[i - 1]
-                ==
-                0
-                )
-                {
+                if (i > 0 and num[i - 1] == num[i] and visit[i - 1] == 0) {
                     continue;
                 }
 
@@ -85,9 +78,9 @@ private:
     }
 
 public:
-    vector<vector<int> > permuteUnique(vector<int> &num) {
+    vector<vector<int>> permuteUnique(vector<int>& num) {
         vector<int> solution;
-        vector<vector<int> > result;
+        vector<vector<int>> result;
         vector<int> visit(num.size(), 0);
 
         sort(num.begin(), num.end());
@@ -98,18 +91,14 @@ public:
 
 class Solution2 {
 private:
-    void generate(vector<int> num, int start, vector<vector<int> > &result) {
+    void generate(vector<int> num, int start, vector<vector<int>>& result) {
         if (start == num.size()) {
             result.push_back(num);
             return;
         }
 
         for (int i = start; i < num.size(); i++) {
-            if (i != start and num[i]
-            ==
-            num[start]
-            )
-            {
+            if (i != start and num[i] == num[start]) {
                 continue;
             }
 
@@ -119,8 +108,8 @@ private:
     }
 
 public:
-    vector<vector<int> > permuteUnique(vector<int> &num) {
-        vector<vector<int> > result;
+    vector<vector<int>> permuteUnique(vector<int>& num) {
+        vector<vector<int>> result;
         sort(num.begin(), num.end());
         generate(num, 0, result);
         return result;

@@ -36,21 +36,20 @@ cache.get(4);       // returns 4
 using namespace std;
 
 struct CacheNode {
-    CacheNode *pre;
-    CacheNode *next;
+    CacheNode* pre;
+    CacheNode* next;
     int key;
     int val;
 
-    CacheNode(int k, int v) : key(k), val(v), pre(nullptr), next(nullptr) {
-    };
+    CacheNode(int k, int v) : key(k), val(v), pre(nullptr), next(nullptr) {};
 };
 
 class LRUCache {
 private:
-    unordered_map<int, CacheNode *> memo;
+    unordered_map<int, CacheNode*> memo;
     int cap;
     int size;
-    CacheNode *head;
+    CacheNode* head;
 
 public:
     LRUCache(int capacity) {
@@ -70,7 +69,7 @@ public:
             return -1;
         }
 
-        CacheNode *cur = memo[key];
+        CacheNode* cur = memo[key];
         cur->pre->next = cur->next;
         cur->next->pre = cur->pre;
 
@@ -87,13 +86,13 @@ public:
         }
 
         if (memo.find(key) != memo.end()) {
-            CacheNode *cur = memo[key];
+            CacheNode* cur = memo[key];
             cur->val = value;
             get(key);
             return;
         }
 
-        CacheNode *newNode = new CacheNode(key, value);
+        CacheNode* newNode = new CacheNode(key, value);
         memo[key] = newNode;
         size += 1;
 
@@ -103,7 +102,7 @@ public:
         head->next = newNode;
         if (size > cap) {
             size -= 1;
-            CacheNode *removed = head->pre;
+            CacheNode* removed = head->pre;
             removed->pre->next = head;
             head->pre = removed->pre;
             memo.erase(removed->key);

@@ -8,7 +8,8 @@ each cell is 0 (representing sea) or 1 (representing land)
 A move consists of walking from one land square 4-directionally to another land square,
 or off the boundary of the grid.
 
-Return the number of land squares in the grid for which we cannot walk off the boundary of the grid in any number of moves.
+Return the number of land squares in the grid for which we cannot walk off the boundary of the grid in any number of
+moves.
 
 Example 1:
 Input: [[0,0,0,0],[1,0,1,0],[0,1,1,0],[0,0,0,0]]
@@ -48,10 +49,8 @@ private:
     int M = 0;
     int N = 0;
 
-    void change(int row, int col, vector<vector<int> > &A) {
-        if (row < 0 or col<0 or row >= M or col >= N
-        )
-        {
+    void change(int row, int col, vector<vector<int>>& A) {
+        if (row < 0 or col < 0 or row >= M or col >= N) {
             return;
         }
 
@@ -67,7 +66,7 @@ private:
     }
 
 public:
-    int numEnclaves(vector<vector<int> > &A) {
+    int numEnclaves(vector<vector<int>>& A) {
         M = A.size();
         N = A[0].size();
 

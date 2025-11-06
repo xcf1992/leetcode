@@ -49,9 +49,9 @@ using namespace std;
 
 class Solution {
 public:
-    bool validUtf8(vector<int> &data) {
+    bool validUtf8(vector<int>& data) {
         int count = 0;
-        for (int c: data) {
+        for (int c : data) {
             if (count == 0) {
                 if ((c >> 5) == 0b110) {
                     count = 1;

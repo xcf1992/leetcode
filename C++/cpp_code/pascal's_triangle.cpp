@@ -30,12 +30,12 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int> > generate(int numRows) {
+    vector<vector<int>> generate(int numRows) {
         if (numRows == 0) {
             return {};
         }
 
-        vector<vector<int> > result;
+        vector<vector<int>> result;
         result.push_back({1});
         for (int i = 1; i < numRows; ++i) {
             vector<int> cur;

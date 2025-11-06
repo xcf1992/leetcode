@@ -31,12 +31,12 @@ class Solution {
 public:
     bool canPermutePalindrome(string s) {
         unordered_map<char, int> letter;
-        for (char c: s) {
+        for (char c : s) {
             letter[c] += 1;
         }
 
         int odd = 0;
-        for (auto &it: letter)
+        for (auto& it : letter)
             if (it.second % 2 == 1) {
                 odd += 1;
             }

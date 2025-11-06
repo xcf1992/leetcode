@@ -31,7 +31,7 @@ using namespace std;
 
 class Solution {
 public:
-    int maxSubArray(vector<int> &nums) {
+    int maxSubArray(vector<int>& nums) {
         if (nums.empty()) {
             return 0;
         }

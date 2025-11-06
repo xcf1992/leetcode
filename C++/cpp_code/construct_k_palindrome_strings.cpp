@@ -75,12 +75,12 @@ class Solution {
 public:
     bool canConstruct(string s, int k) {
         vector<int> count(26, 0);
-        for (char &c: s) {
+        for (char& c : s) {
             count[c - 'a'] += 1;
         }
 
         int odd = 0;
-        for (int n: count) {
+        for (int n : count) {
             odd += n % 2 == 1;
         }
         return odd <= k && k <= s.size();

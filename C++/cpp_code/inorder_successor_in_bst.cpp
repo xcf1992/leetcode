@@ -36,7 +36,7 @@ using namespace std;
 
 class Solution {
 private:
-    TreeNode *leftMostNode(TreeNode *root) {
+    TreeNode* leftMostNode(TreeNode* root) {
         while (root->left) {
             root = root->left;
         }
@@ -44,18 +44,14 @@ private:
     }
 
 public:
-    TreeNode *inorderSuccessor(TreeNode *root, TreeNode *p) {
+    TreeNode* inorderSuccessor(TreeNode* root, TreeNode* p) {
         if (p->right) {
             return leftMostNode(p->right);
         }
 
-        TreeNode *suc = nullptr;
-        TreeNode *cur = root;
-        while (cur and cur
-        ->
-        val != p->val
-        )
-        {
+        TreeNode* suc = nullptr;
+        TreeNode* cur = root;
+        while (cur and cur->val != p->val) {
             if (p->val < cur->val) {
                 suc = cur;
                 cur = cur->left;

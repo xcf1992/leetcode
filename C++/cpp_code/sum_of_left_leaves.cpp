@@ -13,22 +13,15 @@ using namespace std;
 
 class Solution {
 public:
-    int sumOfLeftLeaves(TreeNode *root) {
+    int sumOfLeftLeaves(TreeNode* root) {
         if (root == nullptr) {
             return 0;
         }
 
         int leftValue = 0;
-        if (root->left != nullptr and
-        root->left->left == nullptr
-        and
-        root->left->right == nullptr
-        )
-        {
+        if (root->left != nullptr and root->left->left == nullptr and root->left->right == nullptr) {
             leftValue = root->left->val;
-        }
-        else
-        {
+        } else {
             leftValue = sumOfLeftLeaves(root->left);
         }
 

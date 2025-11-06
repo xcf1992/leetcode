@@ -19,7 +19,8 @@ but in that case, exactly two people have to sit on each side of the aisle.
 Example 1:
 Input: n = 3, reservedSeats = [[1,2],[1,3],[1,8],[2,6],[3,1],[3,10]]
 Output: 4
-Explanation: The figure above shows the optimal allocation for four families, where seats mark with blue are already reserved and contiguous seats mark with orange are for one family.
+Explanation: The figure above shows the optimal allocation for four families, where seats mark with blue are already
+reserved and contiguous seats mark with orange are for one family.
 
 Example 2:
 Input: n = 2, reservedSeats = [[2,1],[1,8],[2,6]]
@@ -52,16 +53,16 @@ using namespace std;
 
 class Solution {
 public:
-    int maxNumberOfFamilies(int n, vector<vector<int> > &reservedSeats) {
+    int maxNumberOfFamilies(int n, vector<vector<int>>& reservedSeats) {
         int ans = n * 2;
 
         unordered_map<int, char> m;
 
-        for (auto r: reservedSeats)
+        for (auto r : reservedSeats)
             if (r[1] > 1 && r[1] < 10)
                 m[r[0]] |= 1 << (r[1] - 2);
 
-        for (auto seats: m) {
+        for (auto seats : m) {
             bool p1 = !(seats.second & 0b11110000);
             bool p2 = !(seats.second & 0b00111100);
             bool p3 = !(seats.second & 0b00001111);

@@ -3,14 +3,16 @@
 A virus is spreading rapidly, and your task is to quarantine the infected area by installing walls.
 
 The world is modeled as a 2-D array of cells, where 0 represents uninfected cells,
-and 1 represents cells contaminated with the virus. A wall (and only one wall) can be installed between any two 4-directionally adjacent cells, on the shared boundary.
+and 1 represents cells contaminated with the virus. A wall (and only one wall) can be installed between any two
+4-directionally adjacent cells, on the shared boundary.
 
 Every night, the virus spreads to all neighboring cells in all four directions unless blocked by a wall.
 Resources are limited. Each day, you can install walls around only one region --
 the affected area (continuous block of infected cells) that threatens the most uninfected cells the following night.
 There will never be a tie.
 
-Can you save the day? If so, what is the number of walls required? If not, and the world becomes fully infected, return the number of walls used.
+Can you save the day? If so, what is the number of walls required? If not, and the world becomes fully infected, return
+the number of walls used.
 
 Example 1:
 Input: grid =
@@ -47,7 +49,8 @@ Explanation: The region on the left only builds two new walls.
 Note:
 The number of rows and columns of grid will each be in the range [1, 50].
 Each grid[i][j] will be either 0 or 1.
-Throughout the described process, there is always a contiguous viral region that will infect strictly more uncontaminated squares in the next round.
+Throughout the described process, there is always a contiguous viral region that will infect strictly more
+uncontaminated squares in the next round.
 */
 #include <iostream>
 #include <string>
@@ -73,21 +76,17 @@ private:
     int m = 0;
     int n = 0;
 
-    int process(vector<vector<int> > &grid) {
+    int process(vector<vector<int>>& grid) {
         int count = 0;
         int result = 0;
         int color = -1;
         int row = -1;
         int col = -1;
-        vector<vector<int> > visited(m, vector<int>(n, 0));
+        vector<vector<int>> visited(m, vector<int>(n, 0));
 
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if (grid[i][j] == 1 and visited[i][j]
-                ==
-                0
-                )
-                {
+                if (grid[i][j] == 1 and visited[i][j] == 0) {
                     int walls = 0;
                     int area = dfs(grid, visited, i, j, color, walls);
                     if (area > count) {
@@ -103,14 +102,10 @@ private:
 
         buildWall(grid, row, col);
 
-        visited = vector<vector<int> >(m, vector<int>(n, 0));
+        visited = vector<vector<int>>(m, vector<int>(n, 0));
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if (grid[i][j] == 1 and visited[i][j]
-                ==
-                0
-                )
-                {
+                if (grid[i][j] == 1 and visited[i][j] == 0) {
                     spread(grid, visited, i, j);
                 }
             }
@@ -118,10 +113,8 @@ private:
         return result;
     }
 
-    int dfs(vector<vector<int> > &grid, vector<vector<int> > &visited, int row, int col, int color, int &walls) {
-        if (row < 0 or col<0 or row >= m or col >= n or visited[row][col] == 1 or grid[row][col] == -1
-        )
-        {
+    int dfs(vector<vector<int>>& grid, vector<vector<int>>& visited, int row, int col, int color, int& walls) {
+        if (row < 0 or col < 0 or row >= m or col >= n or visited[row][col] == 1 or grid[row][col] == -1) {
             return 0;
         }
 
@@ -143,10 +136,8 @@ private:
         return affected_area;
     }
 
-    void buildWall(vector<vector<int> > &grid, int row, int col) {
-        if (row < 0 or col<0 or row >= m or col >= n or grid[row][col] != 1
-        )
-        {
+    void buildWall(vector<vector<int>>& grid, int row, int col) {
+        if (row < 0 or col < 0 or row >= m or col >= n or grid[row][col] != 1) {
             return;
         }
         grid[row][col] = -1;
@@ -157,10 +148,8 @@ private:
         buildWall(grid, row, col - 1);
     }
 
-    void spread(vector<vector<int> > &grid, vector<vector<int> > &visited, int row, int col) {
-        if (row < 0 or col<0 or row >= m or col >= n or visited[row][col]
-        )
-        {
+    void spread(vector<vector<int>>& grid, vector<vector<int>>& visited, int row, int col) {
+        if (row < 0 or col < 0 or row >= m or col >= n or visited[row][col]) {
             return;
         }
 
@@ -177,7 +166,7 @@ private:
     }
 
 public:
-    int containVirus(vector<vector<int> > &grid) {
+    int containVirus(vector<vector<int>>& grid) {
         int m = grid.size();
         int n = grid[0].size();
 

@@ -57,7 +57,7 @@ using namespace std;
 
 class Solution {
 public:
-    int numTimesAllBlue(vector<int> &light) {
+    int numTimesAllBlue(vector<int>& light) {
         int n = light.size();
         int result = 0;
         int right = 0;

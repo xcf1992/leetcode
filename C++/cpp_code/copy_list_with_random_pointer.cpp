@@ -31,13 +31,13 @@ using namespace std;
 class Node {
 public:
     int val;
-    Node *next;
-    Node *random;
+    Node* next;
+    Node* random;
 
     Node() {
     }
 
-    Node(int _val, Node *_next, Node *_random) {
+    Node(int _val, Node* _next, Node* _random) {
         val = _val;
         next = _next;
         random = _random;
@@ -46,15 +46,15 @@ public:
 
 class Solution {
 public:
-    Node *copyRandomList(Node *head) {
+    Node* copyRandomList(Node* head) {
         if (head == nullptr) {
             return nullptr;
         }
 
-        Node *cur = head;
+        Node* cur = head;
         while (cur != nullptr) {
-            Node *suc = cur->next;
-            Node *copied = new Node(cur->val, nullptr, nullptr);
+            Node* suc = cur->next;
+            Node* copied = new Node(cur->val, nullptr, nullptr);
             cur->next = copied;
             copied->next = suc;
             cur = suc;
@@ -68,12 +68,12 @@ public:
             cur = cur->next->next;
         }
 
-        Node *newHead = head->next;
+        Node* newHead = head->next;
         cur = head;
-        Node *cur2 = head->next;
+        Node* cur2 = head->next;
         while (cur != nullptr) {
-            Node *suc = cur2->next;
-            Node *suc2 = nullptr;
+            Node* suc = cur2->next;
+            Node* suc2 = nullptr;
             if (suc != nullptr) {
                 suc2 = suc->next;
             }

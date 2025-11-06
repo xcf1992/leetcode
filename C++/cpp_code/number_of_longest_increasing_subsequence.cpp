@@ -53,8 +53,7 @@ public:
                 }
                 if (length[j] + 1 == length[i]) {
                     count[i] += count[j];
-                }
-                else if (length[j] + 1 > length[i]) {
+                } else if (length[j] + 1 > length[i]) {
                     length[i] = length[j] + 1;
                     count[i] = count[j];
                 }

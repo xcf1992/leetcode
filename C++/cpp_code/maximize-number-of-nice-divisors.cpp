@@ -50,9 +50,9 @@ using namespace std;
 The total number of good divisors will be the product of the amount of each type of prime factor.
 In order to maximize this product, each prime number's frequency must not exceed 3.
 If input is divisible by 3, answer is simply pow(3,primeFactors/3);
-If primeFactors gives remainder 1, then maximization will require us to having 2 prime numbers in frequency two each, as 2 * 2> 3 * 1
-If primeFactors gives remainder 2, then one prime number will have to have a frequency equal to two.
-In order to preven TLE, we write an optimised power function, optimised using binary search.
+If primeFactors gives remainder 1, then maximization will require us to having 2 prime numbers in frequency two each, as
+2 * 2> 3 * 1 If primeFactors gives remainder 2, then one prime number will have to have a frequency equal to two. In
+order to preven TLE, we write an optimised power function, optimised using binary search.
 */
 class Solution {
 private:

@@ -40,24 +40,11 @@ public:
             if (c == 'P') {
                 continue;
             }
-            if (c == 'A' and++
-            absent > 1
-            )
-            {
+            if (c == 'A' and ++absent > 1) {
                 return false;
             }
             // we need to add s[i] == L here cause it may happen cur is A and absent < 1
-            if (i > 1 and s[i]
-            ==
-            'L'
-            and s[i - 1]
-            ==
-            'L'
-            and s[i - 2]
-            ==
-            'L'
-            )
-            {
+            if (i > 1 and s[i] == 'L' and s[i - 1] == 'L' and s[i - 2] == 'L') {
                 return false;
             }
         }

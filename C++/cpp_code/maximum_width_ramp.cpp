@@ -50,21 +50,20 @@ We can keep track of the minimum of all indexes previously written as m.
 */
 class Solution {
 public:
-    int maxWidthRamp(vector<int> &A) {
+    int maxWidthRamp(vector<int>& A) {
         int n = A.size();
-        vector<pair<int, int> > indexedA;
+        vector<pair<int, int>> indexedA;
         for (int i = 0; i < n; i++) {
             indexedA.push_back({i, A[i]});
         }
 
-        sort(indexedA.begin(), indexedA.end(), [](pair<int, int> &a, pair<int, int> &b) {
-            return a.second < b.second
-            or(a.second == b.second and a.first < b.first);
+        sort(indexedA.begin(), indexedA.end(), [](pair<int, int>& a, pair<int, int>& b) {
+            return a.second < b.second or (a.second == b.second and a.first < b.first);
         });
 
         int result = 0;
         int minIndex = n;
-        for (pair<int, int> &cur: indexedA) {
+        for (pair<int, int>& cur : indexedA) {
             result = max(result, cur.first - minIndex);
             minIndex = min(minIndex, cur.first);
         }

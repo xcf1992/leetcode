@@ -19,7 +19,8 @@
 
  Input: tickets = [["JFK","SFO"],["JFK","ATL"],["SFO","ATL"],["ATL","JFK"],["ATL","SFO"]]
  Output: ["JFK","ATL","JFK","SFO","ATL","SFO"]
- Explanation: Another possible reconstruction is ["JFK","SFO","ATL","JFK","ATL","SFO"]. But it is larger in lexical order.
+ Explanation: Another possible reconstruction is ["JFK","SFO","ATL","JFK","ATL","SFO"]. But it is larger in lexical
+ order.
 */
 #include <iostream>
 #include <sstream>
@@ -38,7 +39,7 @@ using namespace std;
 
 class Solution {
 private:
-    void dfs(map<string, multiset<string> > &flights, vector<string> &result, string cur) {
+    void dfs(map<string, multiset<string>>& flights, vector<string>& result, string cur) {
         while (flights.find(cur) != flights.end() && flights[cur].size() > 0) {
             string next = *flights[cur].begin();
             flights[cur].erase(flights[cur].begin());
@@ -48,9 +49,9 @@ private:
     }
 
 public:
-    vector<string> findItinerary(vector<vector<string> > tickets) {
-        map<string, multiset<string> > flights;
-        for (vector<string> &t: tickets) {
+    vector<string> findItinerary(vector<vector<string>> tickets) {
+        map<string, multiset<string>> flights;
+        for (vector<string>& t : tickets) {
             flights[t[0]].insert(t[1]);
         }
 

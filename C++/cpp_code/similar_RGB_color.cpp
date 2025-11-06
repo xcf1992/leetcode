@@ -37,7 +37,8 @@
 using namespace std;
 
 /*
- Find corresponding index, i.e. value/17 or value/17+1. This is because “11” or “33” or “bb” are simply 1*17, 3*17, and 11*17.
+ Find corresponding index, i.e. value/17 or value/17+1. This is because “11” or “33” or “bb” are simply 1*17, 3*17, and
+ 11*17.
 */
 class Solution {
 private:

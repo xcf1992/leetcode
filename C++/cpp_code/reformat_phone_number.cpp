@@ -108,7 +108,7 @@ class Solution {
 public:
     string reformatNumber(string number) {
         string purified = "";
-        for (char c: number) {
+        for (char c : number) {
             if (isdigit(c)) {
                 purified.push_back(c);
             }
@@ -121,11 +121,7 @@ public:
             result += purified.substr(i * 3, 3);
             result.push_back('-');
         }
-        if (left == 0 or left
-        ==
-        1
-        )
-        {
+        if (left == 0 or left == 1) {
             result.pop_back();
         }
         if (left == 2) {

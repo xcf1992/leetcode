@@ -61,19 +61,19 @@ using namespace std;
 
 class Solution {
 public:
-    string alienOrder(vector<string> &words) {
+    string alienOrder(vector<string>& words) {
         if (words.empty()) {
             return "";
         }
 
         unordered_map<char, int> indegree;
-        for (string word: words) {
-            for (char c: word) {
+        for (string word : words) {
+            for (char c : word) {
                 indegree[c] = 0;
             }
         }
 
-        unordered_map<char, unordered_set<char> > graph;
+        unordered_map<char, unordered_set<char>> graph;
         for (int i = 0; i < words.size() - 1; i++) {
             string cur = words[i];
             string nex = words[i + 1];
@@ -89,7 +89,7 @@ public:
         }
 
         queue<char> bfs;
-        for (auto &it: indegree) {
+        for (auto& it : indegree) {
             if (it.second == 0) {
                 bfs.push(it.first);
             }
@@ -102,7 +102,7 @@ public:
 
             result.push_back(cur);
             if (graph[cur].size() != 0) {
-                for (char c: graph[cur]) {
+                for (char c : graph[cur]) {
                     indegree[c] -= 1;
                     if (indegree[c] == 0) {
                         bfs.push(c);

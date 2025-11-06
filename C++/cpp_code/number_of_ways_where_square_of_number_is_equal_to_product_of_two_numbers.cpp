@@ -51,7 +51,7 @@ using namespace std;
 
 class Solution {
 private:
-    int count(vector<int> &A, vector<int> &B) {
+    int count(vector<int>& A, vector<int>& B) {
         int ans = 0;
         unordered_map<int, int> m;
         for (int n : B) {
@@ -59,21 +59,21 @@ private:
         }
         for (int a : A) {
             long target = (long)a * a;
-            for (auto &[b, cnt] : m) {
+            for (auto& [b, cnt] : m) {
                 if (target % b || m.count(target / b) == 0) {
                     continue;
                 }
-                
+
                 if (target / b == b) {
                     ans += m[b] * (m[b] - 1);
-                }
-                else {
+                } else {
                     ans += m[b] * m[target / b];
                 }
             }
         }
         return ans / 2;
     }
+
 public:
     int numTriplets(vector<int>& A, vector<int>& B) {
         return count(A, B) + count(B, A);

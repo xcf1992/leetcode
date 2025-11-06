@@ -2,9 +2,11 @@
 https://leetcode.com/problems/maximum-tastiness-of-candy-basket/
 2517. Maximum Tastiness of Candy Basket
 
-You are given an array of positive integers price where price[i] denotes the price of the ith candy and a positive integer k.
+You are given an array of positive integers price where price[i] denotes the price of the ith candy and a positive
+integer k.
 
-The store sells baskets of k distinct candies. The tastiness of a candy basket is the smallest absolute difference of the prices of any two candies in the basket.
+The store sells baskets of k distinct candies. The tastiness of a candy basket is the smallest absolute difference of
+the prices of any two candies in the basket.
 
 Return the maximum tastiness of a candy basket.
 
@@ -55,7 +57,7 @@ using namespace std;
 
 class Solution {
 private:
-    bool valid(vector<int> &price, int k, int gap) {
+    bool valid(vector<int>& price, int k, int gap) {
         int cnt = 1;
         int last_price = price[0];
         for (int i = 1; i < price.size(); i++) {
@@ -73,7 +75,7 @@ private:
     }
 
 public:
-    int maximumTastiness(vector<int> &price, int k) {
+    int maximumTastiness(vector<int>& price, int k) {
         sort(price.begin(), price.end());
 
         int n = price.size();

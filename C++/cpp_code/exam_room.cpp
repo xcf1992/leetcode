@@ -62,7 +62,7 @@ public:
         }
 
         int pos = 0;
-        int index = 0; // the index of seats where we will insert the new student
+        int index = 0;  // the index of seats where we will insert the new student
         int distance = seats[0];
         if (num - 1 - seats.back() > distance) {
             pos = num - 1;
@@ -71,10 +71,8 @@ public:
         }
 
         for (int i = 0; i < seats.size() - 1; i++) {
-            if ((seats[i + 1] - seats[i]) / 2 > distance or(
-                (seats[i + 1] - seats[i]) / 2 == distance and(seats[i + 1] + seats[i]) / 2 < pos)
-            )
-            {
+            if ((seats[i + 1] - seats[i]) / 2 > distance or
+                ((seats[i + 1] - seats[i]) / 2 == distance and (seats[i + 1] + seats[i]) / 2 < pos)) {
                 distance = (seats[i + 1] - seats[i]) / 2;
                 pos = seats[i] + distance;
                 index = i + 1;
@@ -124,9 +122,7 @@ public:
                 } else if (next == -1) {
                     next = i;
                     int newSeat = pre + (next - pre) / 2;
-                    if (pos == -1 or distance<min(newSeat - pre, next - newSeat)
-                    )
-                    {
+                    if (pos == -1 or distance < min(newSeat - pre, next - newSeat)) {
                         pos = newSeat;
                         distance = min(newSeat - pre, next - newSeat);
                     }
@@ -161,4 +157,4 @@ public:
  * ExamRoom obj = new ExamRoom(N);
  * int param_1 = obj.seat();
  * obj.leave(p);
-*/
+ */

@@ -2,9 +2,12 @@
 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-ii/description/
 1644. Lowest Common Ancestor of a Binary Tree II
 
-Given the root of a binary tree, return the lowest common ancestor (LCA) of two given nodes, p and q. If either node p or q does not exist in the tree, return null. All values of the nodes in the tree are unique.
+Given the root of a binary tree, return the lowest common ancestor (LCA) of two given nodes, p and q. If either node p
+or q does not exist in the tree, return null. All values of the nodes in the tree are unique.
 
-According to the definition of LCA on Wikipedia: "The lowest common ancestor of two nodes p and q in a binary tree T is the lowest node that has both p and q as descendants (where we allow a node to be a descendant of itself)". A descendant of a node x is a node y that is on the path from node x to some leaf node.
+According to the definition of LCA on Wikipedia: "The lowest common ancestor of two nodes p and q in a binary tree T is
+the lowest node that has both p and q as descendants (where we allow a node to be a descendant of itself)". A descendant
+of a node x is a node y that is on the path from node x to some leaf node.
 
 
 
@@ -54,8 +57,8 @@ Follow up: Can you find the LCA traversing the tree, without checking nodes exis
 using namespace std;
 struct TreeNode {
     int val;
-    TreeNode *left;
-    TreeNode *right;
+    TreeNode* left;
+    TreeNode* right;
 
     TreeNode() : val(0), left(nullptr), right(nullptr) {
     }
@@ -63,7 +66,7 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {
     }
 
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {
+    TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {
     }
 };
 
@@ -76,10 +79,9 @@ private:
         }
 
         vector<int> res(2, 0);
-        if (r -> val == lv) {
+        if (r->val == lv) {
             res[0] = 1;
-        }
-        else if (r -> val == rv) {
+        } else if (r->val == rv) {
             res[1] = 1;
         }
 
@@ -97,8 +99,9 @@ private:
         }
         return res;
     }
+
 public:
-    TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q) {
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         found(root, p->val, q->val);
         return rst;
     }

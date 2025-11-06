@@ -30,7 +30,9 @@ Explanation: The optimal way of connecting the groups is:
 2--C
 3--A
 This results in a total cost of 4.
-Note that there are multiple points connected to point 2 in the first group and point A in the second group. This does not matter as there is no limit to the number of points that can be connected. We only care about the minimum total cost.
+Note that there are multiple points connected to point 2 in the first group and point A in the second group. This does
+not matter as there is no limit to the number of points that can be connected. We only care about the minimum total
+cost.
 
 Example 3:
 Input: cost = [[2, 5, 1], [3, 4, 7], [8, 1, 2], [6, 2, 4], [3, 8, 8]]
@@ -57,23 +59,28 @@ size1 >= size2
 #include <map>
 using namespace std;
 /*
-Explanation: dp[i][mask] = represents the state of the first i of group 1 being connected, with mask representing which nodes of group 2 have been covered already by previous steps in the DFS (mask[k] = 1 if node k in group 2 has been connected)
-So we must calculate how to cover the rest [i+1, n) of group 1
-At the end, there is a clever optimization: we look at what hasn't been covered in group 2 and connect it to group 1 using its cheapest edge
+Explanation: dp[i][mask] = represents the state of the first i of group 1 being connected, with mask representing which
+nodes of group 2 have been covered already by previous steps in the DFS (mask[k] = 1 if node k in group 2 has been
+connected) So we must calculate how to cover the rest [i+1, n) of group 1 At the end, there is a clever optimization: we
+look at what hasn't been covered in group 2 and connect it to group 1 using its cheapest edge
 
 Please correct me if l understood any of this wrong @votrubac
 
-Edit: even after reading this solution, I couldn't understand how anyone could have arrived at this. But alas, I have an explanation.
+Edit: even after reading this solution, I couldn't understand how anyone could have arrived at this. But alas, I have an
+explanation.
 
 The most brute force way would be to try all options for all nodes = O(N^M*M^N).
-But once we have all the Group 1 matches, it's easy to see each Group 2 node can be matched greedily using its precalculated minimum edge = O(N^M*M).
-We can optimize this by only connecting the nodes in Group 2 that weren't already connected by anything in Group 1. There are 2^M possible states for which Group 2 nodes have been connected, and we are likely to encounter each many times from all possible connections of Group 1, so we can calculate/memorize this result for the end (when all of Group 1 has been connected) = O(N^M*2^M).
-However, we can memoize this at each step in connecting Group 1, which brings us to N2^M possible states, each taking M time to calculate = O(NM*2^M)
+But once we have all the Group 1 matches, it's easy to see each Group 2 node can be matched greedily using its
+precalculated minimum edge = O(N^M*M). We can optimize this by only connecting the nodes in Group 2 that weren't already
+connected by anything in Group 1. There are 2^M possible states for which Group 2 nodes have been connected, and we are
+likely to encounter each many times from all possible connections of Group 1, so we can calculate/memorize this result
+for the end (when all of Group 1 has been connected) = O(N^M*2^M). However, we can memoize this at each step in
+connecting Group 1, which brings us to N2^M possible states, each taking M time to calculate = O(NM*2^M)
 */
 class Solution {
 public:
     int dp[13][4096] = {};
-    int dfs(vector<vector<int>>& cost, vector<int> &min_sz2, int i, int mask) {
+    int dfs(vector<vector<int>>& cost, vector<int>& min_sz2, int i, int mask) {
         if (dp[i][mask])
             return dp[i][mask] - 1;
         int res = i >= cost.size() ? 0 : INT_MAX;

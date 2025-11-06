@@ -101,16 +101,15 @@ public:
         string result = "";
         for (int i = n - 1; i >= 0; --i) {
             K %= len;
-            if (K == 0 and isalpha(S[i])
-            )
-            {
+            if (K == 0 and isalpha(S[i])) {
                 result = string(1, S[i]);
                 break;
             }
             if (isdigit(S[i])) {
                 len /= S[i] - '0';
             } else {
-                len -= 1;;
+                len -= 1;
+                ;
             }
         }
         return result;
@@ -136,7 +135,7 @@ class Solution2 {
 public:
     string decodeAtIndex(string S, int K) {
         string decoded = "";
-        for (char c: S) {
+        for (char c : S) {
             if (decoded.size() >= K) {
                 break;
             }

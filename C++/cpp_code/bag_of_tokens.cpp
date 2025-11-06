@@ -49,7 +49,7 @@ then we can get point from left and get power from right until nothing can be ch
 */
 class Solution {
 public:
-    int bagOfTokensScore(vector<int> &tokens, int P) {
+    int bagOfTokensScore(vector<int>& tokens, int P) {
         sort(tokens.begin(), tokens.end());
         int power = P;
         int point = 0;
@@ -57,11 +57,7 @@ public:
         int left = 0;
         int right = tokens.size() - 1;
         while (left <= right) {
-            if (power < tokens[left] and point
-            <=
-            0
-            )
-            {
+            if (power < tokens[left] and point <= 0) {
                 break;
             }
 

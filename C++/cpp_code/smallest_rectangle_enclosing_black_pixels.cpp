@@ -56,6 +56,7 @@ private:
         dfs(image, x, y - 1);
         dfs(image, x, y + 1);
     }
+
 public:
     int minArea(vector<vector<char>>& image, int x, int y) {
         m = image.size();

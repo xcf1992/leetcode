@@ -36,7 +36,7 @@ using namespace std;
 
 class Solution {
     // slow faster than 9.71%
-    bool isValid(vector<int> &cur, int n) {
+    bool isValid(vector<int>& cur, int n) {
         for (int i = 0; i < n; ++i) {
             for (int j = i + 1; j < n; ++j) {
                 if (abs(i - j) == abs(cur[i] - cur[j])) {

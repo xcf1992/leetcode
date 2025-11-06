@@ -2,10 +2,9 @@
 967. Numbers With Same Consecutive Differences
 https://leetcode.com/problems/numbers-with-same-consecutive-differences/
 
-Return all non-negative integers of length N such that the absolute difference between every two consecutive digits is K.
-Note that every number in the answer must not have leading zeros except for the number 0 itself.
-For example, 01 has one leading zero and is invalid, but 0 is valid.
-You may return the answer in any order.
+Return all non-negative integers of length N such that the absolute difference between every two consecutive digits is
+K. Note that every number in the answer must not have leading zeros except for the number 0 itself. For example, 01 has
+one leading zero and is invalid, but 0 is valid. You may return the answer in any order.
 
 Example 1:
 Input: N = 3, K = 7
@@ -53,7 +52,7 @@ public:
                 if (last + K <= 9) {
                     temp.push_back(num * 10 + last + K);
                 }
-                if (K != 0 and last - K >= 0) { // if K == 0, we should not count it twice
+                if (K != 0 and last - K >= 0) {  // if K == 0, we should not count it twice
                     temp.push_back(num * 10 + last - K);
                 }
             }

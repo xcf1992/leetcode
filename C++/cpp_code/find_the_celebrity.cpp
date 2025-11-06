@@ -50,9 +50,7 @@ public:
         }
 
         for (int i = 0; i < n; i++) {
-            if (i != celerity and(!knows(i, celerity) or knows(celerity, i))
-            )
-            {
+            if (i != celerity and (!knows(i, celerity) or knows(celerity, i))) {
                 return -1;
             }
         }

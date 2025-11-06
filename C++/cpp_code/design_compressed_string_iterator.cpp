@@ -1,13 +1,16 @@
 /*
- Design and implement a data structure for a compressed string iterator. It should support the following operations: next and hasNext.
+ Design and implement a data structure for a compressed string iterator. It should support the following operations:
+ next and hasNext.
 
- The given compressed string will be in the form of each letter followed by a positive integer representing the number of this letter existing in the original uncompressed string.
+ The given compressed string will be in the form of each letter followed by a positive integer representing the number
+ of this letter existing in the original uncompressed string.
 
- next() - if the original string still has uncompressed characters, return the next letter; Otherwise return a white space.
- hasNext() - Judge whether there is any letter needs to be uncompressed.
+ next() - if the original string still has uncompressed characters, return the next letter; Otherwise return a white
+ space. hasNext() - Judge whether there is any letter needs to be uncompressed.
 
  Note:
- Please remember to RESET your class variables declared in StringIterator, as static/class variables are persisted across multiple test cases. Please see here for more details.
+ Please remember to RESET your class variables declared in StringIterator, as static/class variables are persisted
+ across multiple test cases. Please see here for more details.
 
  Example:
 
@@ -51,9 +54,7 @@ private:
             c = s[pos];
             pos += 1;
             int start = pos;
-            while (pos < s.size() and isdigit(s[pos])
-            )
-            {
+            while (pos < s.size() and isdigit(s[pos])) {
                 pos += 1;
             }
             count = stoi(s.substr(start, pos - start));
@@ -95,4 +96,4 @@ public:
  * StringIterator obj = new StringIterator(compressedString);
  * char param_1 = obj.next();
  * bool param_2 = obj.hasNext();
-*/
+ */

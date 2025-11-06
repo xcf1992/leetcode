@@ -44,14 +44,12 @@ using namespace std;
 
 class Solution {
 private:
-    void search(TreeNode *root, int &minVal, int &result) {
+    void search(TreeNode* root, int& minVal, int& result) {
         if (root == nullptr) {
             return;
         }
 
-        if (root->val > minVal and(result == -1 or root->val < result)
-        )
-        {
+        if (root->val > minVal and (result == -1 or root->val < result)) {
             result = root->val;
             return;
         }
@@ -63,7 +61,7 @@ private:
     }
 
 public:
-    int findSecondMinimumValue(TreeNode *root) {
+    int findSecondMinimumValue(TreeNode* root) {
         if (root == nullptr) {
             return -1;
         }

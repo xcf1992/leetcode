@@ -3,10 +3,9 @@
 https://leetcode.com/problems/string-to-integer-atoi/
 
 Implement atoi which converts a string to an integer.
-The function first discards as many whitespace characters as necessary until the first non-whitespace character is found.
-Then, starting from this character,
-takes an optional initial plus or minus sign followed by as many numerical digits as possible,
-and interprets them as a numerical value.
+The function first discards as many whitespace characters as necessary until the first non-whitespace character is
+found. Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical
+digits as possible, and interprets them as a numerical value.
 
 The string can contain additional characters after those that form the integral number,
 which are ignored and have no effect on the behavior of this function.
@@ -76,11 +75,7 @@ public:
         }
 
         bool negative = false;
-        if (str[ptr] == '+' or str[ptr]
-        ==
-        '-'
-        )
-        {
+        if (str[ptr] == '+' or str[ptr] == '-') {
             if (str[ptr] == '-') {
                 negative = true;
             }
@@ -88,11 +83,7 @@ public:
         }
 
         long long result = 0;
-        while (str[ptr] <= '9' and str[ptr]
-        >=
-        '0'
-        )
-        {
+        while (str[ptr] <= '9' and str[ptr] >= '0') {
             int digit = str[ptr] - '0';
             result = result * 10 + digit;
             if (result > INT_MAX) {

@@ -2,9 +2,14 @@
 https://leetcode.com/problems/selling-pieces-of-wood/description/
 2312. Selling Pieces of Wood
 
-You are given two integers m and n that represent the height and width of a rectangular piece of wood. You are also given a 2D integer array prices, where prices[i] = [hi, wi, pricei] indicates you can sell a rectangular piece of wood of height hi and width wi for pricei dollars.
+You are given two integers m and n that represent the height and width of a rectangular piece of wood. You are also
+given a 2D integer array prices, where prices[i] = [hi, wi, pricei] indicates you can sell a rectangular piece of wood
+of height hi and width wi for pricei dollars.
 
-To cut a piece of wood, you must make a vertical or horizontal cut across the entire height or width of the piece to split it into two smaller pieces. After cutting a piece of wood into some number of smaller pieces, you can sell pieces according to prices. You may sell multiple pieces of the same shape, and you do not have to sell all the shapes. The grain of the wood makes a difference, so you cannot rotate a piece to swap its height and width.
+To cut a piece of wood, you must make a vertical or horizontal cut across the entire height or width of the piece to
+split it into two smaller pieces. After cutting a piece of wood into some number of smaller pieces, you can sell pieces
+according to prices. You may sell multiple pieces of the same shape, and you do not have to sell all the shapes. The
+grain of the wood makes a difference, so you cannot rotate a piece to swap its height and width.
 
 Return the maximum money you can earn after cutting an m x n piece of wood.
 
@@ -80,9 +85,9 @@ Space O(mn)
  */
 class Solution {
 public:
-    long long sellingWood(const int M, const int N, const vector<vector<int> > &prices) {
+    long long sellingWood(const int M, const int N, const vector<vector<int>>& prices) {
         long long dp[201][201] = {0};
-        for (const auto &v: prices) {
+        for (const auto& v : prices) {
             dp[v[0]][v[1]] = v[2];
         }
 

@@ -65,17 +65,17 @@ using namespace std;
 /*
 Idea : Two thing's Need to check
 
-Frequency of Char need's to be same there both of string as we can do Transform every occurrence of one existing character into another existing character
-All the unique char which there in String1 need's to there as well In string2
+Frequency of Char need's to be same there both of string as we can do Transform every occurrence of one existing
+character into another existing character All the unique char which there in String1 need's to there as well In string2
 let's See One example :
 
 String 1 = "aabaacczp"        String 2="bbzbbaacp"
 Frequency in string1 :                         Frequency in string2 :
-	   a -> 4                                              b->4
-		b->1                                                a->2
-		c->2                                                z->1
-		z->1                                                c->1
-		p->1                                                p->1
+       a -> 4                                              b->4
+        b->1                                                a->2
+        c->2                                                z->1
+        z->1                                                c->1
+        p->1                                                p->1
 
 see in String 1 count array ->   1, 1, 1, 2, 4 =>sorted order
 and in String 2 count array ->   1, 1, 1, 2, 4 =>sorted order
@@ -87,20 +87,17 @@ public:
     bool closeStrings(string word1, string word2) {
         vector<int> cnt1(26, 0), cnt2(26, 0);
         set<char> s1, s2;
-        for (char c: word1) {
+        for (char c : word1) {
             cnt1[c - 'a'] += 1;
             s1.insert(c);
         }
-        for (char c: word2) {
+        for (char c : word2) {
             cnt2[c - 'a'] += 1;
             s2.insert(c);
         }
 
         sort(cnt1.begin(), cnt1.end());
         sort(cnt2.begin(), cnt2.end());
-        return cnt1 == cnt2
-        and s1
-        ==
-        s2;
+        return cnt1 == cnt2 and s1 == s2;
     }
 };

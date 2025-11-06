@@ -20,13 +20,15 @@ Output: [[0,1],[2,3,4,5]]
 Explanation: The figure above describes the graph.
 The following figure shows all the possible MSTs:
 
-Notice that the two edges 0 and 1 appear in all MSTs, therefore they are critical edges, so we return them in the first list of the output.
-The edges 2, 3, 4, and 5 are only part of some MSTs, therefore they are considered pseudo-critical edges. We add them to the second list of the output.
+Notice that the two edges 0 and 1 appear in all MSTs, therefore they are critical edges, so we return them in the first
+list of the output. The edges 2, 3, 4, and 5 are only part of some MSTs, therefore they are considered pseudo-critical
+edges. We add them to the second list of the output.
 
 Example 2:
 Input: n = 4, edges = [[0,1,1],[1,2,1],[2,3,1],[0,3,1]]
 Output: [[],[0,1,2,3]]
-Explanation: We can observe that since all 4 edges have equal weight, choosing any 3 edges from the given 4 will yield an MST. Therefore all 4 edges are pseudo-critical.
+Explanation: We can observe that since all 4 edges have equal weight, choosing any 3 edges from the given 4 will yield
+an MST. Therefore all 4 edges are pseudo-critical.
 
 Constraints:
 2 <= n <= 100
@@ -70,20 +72,26 @@ public:
     UnionFind(int n) {
         rank = vector<int>(n, 1);
         f.resize(n);
-        for (int i = 0; i < n; ++i) f[i] = i;
+        for (int i = 0; i < n; ++i)
+            f[i] = i;
     }
 
     int Find(int x) {
-        if (x == f[x]) return x;
-        else return f[x] = Find(f[x]);
+        if (x == f[x])
+            return x;
+        else
+            return f[x] = Find(f[x]);
     }
 
     void Union(int x, int y) {
         int fx = Find(x), fy = Find(y);
-        if (fx == fy) return;
-        if (rank[fx] > rank[fy]) swap(fx, fy);
+        if (fx == fy)
+            return;
+        if (rank[fx] > rank[fy])
+            swap(fx, fy);
         f[fx] = fy;
-        if (rank[fx] == rank[fy]) rank[fy]++;
+        if (rank[fx] == rank[fy])
+            rank[fy]++;
     }
 
 private:
@@ -96,9 +104,7 @@ public:
         for (int i = 0; i < edges.size(); ++i) {
             edges[i].push_back(i);
         }
-        sort(edges.begin(), edges.end(), [](const vector<int>& a, const vector<int>& b) {
-            return a[2] < b[2];
-        });
+        sort(edges.begin(), edges.end(), [](const vector<int>& a, const vector<int>& b) { return a[2] < b[2]; });
         int origin_mst = GetMST(n, edges, -1);
         vector<int> critical, non_critical;
         for (int i = 0; i < edges.size(); ++i) {
@@ -120,14 +126,17 @@ private:
             uf.Union(edges[pre_edge][0], edges[pre_edge][1]);
         }
         for (int i = 0; i < edges.size(); ++i) {
-            if (i == blockedge) continue;
+            if (i == blockedge)
+                continue;
             const auto& edge = edges[i];
-            if (uf.Find(edge[0]) == uf.Find(edge[1])) continue;
+            if (uf.Find(edge[0]) == uf.Find(edge[1]))
+                continue;
             uf.Union(edge[0], edge[1]);
             weight += edge[2];
         }
         for (int i = 0; i < n; ++i) {
-            if (uf.Find(i) != uf.Find(0)) return 1e9+7;
+            if (uf.Find(i) != uf.Find(0))
+                return 1e9 + 7;
         }
         return weight;
     }

@@ -40,7 +40,7 @@ using namespace std;
 
 class Solution {
 public:
-    bool isBoomerang(vector<vector<int> > &points) {
+    bool isBoomerang(vector<vector<int>>& points) {
         vector<int> p1 = points[0];
         vector<int> p2 = points[1];
         vector<int> p3 = points[2];

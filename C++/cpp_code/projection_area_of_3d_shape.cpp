@@ -60,7 +60,7 @@ using namespace std;
 
 class Solution {
 public:
-    int projectionArea(vector<vector<int> > &grid) {
+    int projectionArea(vector<vector<int>>& grid) {
         int res = 0;
         int n = grid.size();
 
@@ -85,7 +85,7 @@ public:
 
 class Solution1 {
 public:
-    int projectionArea(vector<vector<int> > &grid) {
+    int projectionArea(vector<vector<int>>& grid) {
         int res = 0;
         int n = grid.size();
 
@@ -107,7 +107,8 @@ public:
 
         for (int i = 0; i < n; ++i)
             for (int j = 0; j < n; ++j)
-                if (grid[i][j]) res++;
+                if (grid[i][j])
+                    res++;
 
         return res;
     }

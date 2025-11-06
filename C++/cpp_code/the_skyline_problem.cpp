@@ -1,9 +1,9 @@
 /*
 218. The Skyline Problem
 
-A city's result is the outer contour of the silhouette formed by all the buildings in that city when viewed from a distance.
-Now suppose you are given the locations and height of all the buildings as shown on a cityscape photo (Figure A),
-write a program to output the result formed by these buildings collectively (Figure B).
+A city's result is the outer contour of the silhouette formed by all the buildings in that city when viewed from a
+distance. Now suppose you are given the locations and height of all the buildings as shown on a cityscape photo (Figure
+A), write a program to output the result formed by these buildings collectively (Figure B).
 
 Buildings Skyline Contour
 The geometric information of each building is represented by a triplet of integers [Li, Ri, Hi],
@@ -22,7 +22,8 @@ where the rightmost building ends,
 is merely used to mark the termination of the result, and always has zero height.
 Also, the ground in between any two adjacent buildings should be considered part of the result contour.
 
-For instance, the result in Figure B should be represented as:[ [2 10], [3 15], [7 12], [12 0], [15 10], [20 8], [24, 0] ].
+For instance, the result in Figure B should be represented as:[ [2 10], [3 15], [7 12], [12 0], [15 10], [20 8], [24, 0]
+].
 
 Notes:
 The number of buildings in any input list is guaranteed to be in the range [0, 10000].
@@ -49,25 +50,25 @@ Special thanks to @stellari for adding this problem, creating these two awesome 
 using namespace std;
 
 struct myComp {
-    bool operator()(pair<int, int> &p1, pair<int, int> &p2) {
+    bool operator()(pair<int, int>& p1, pair<int, int>& p2) {
         return p1.second < p2.second;
     }
 };
 
 class Solution {
 public:
-    vector<vector<int> > getSkyline(vector<vector<int> > &buildings) {
+    vector<vector<int>> getSkyline(vector<vector<int>>& buildings) {
         set<int> points;
-        for (vector<int> &building: buildings) {
+        for (vector<int>& building : buildings) {
             points.insert(building[0]);
             points.insert(building[1]);
         }
 
-        vector<vector<int> > result;
-        priority_queue<pair<int, int>, vector<pair<int, int> >, myComp> pq;
+        vector<vector<int>> result;
+        priority_queue<pair<int, int>, vector<pair<int, int>>, myComp> pq;
         int cur = 0;
         int lastHeight = 0;
-        for (int point: points) {
+        for (int point : points) {
             // push in all buildings starts before point
             while (cur < buildings.size() && buildings[cur][0] <= point) {
                 pq.push({buildings[cur][1], buildings[cur][2]});
@@ -75,10 +76,7 @@ public:
             }
 
             // pops out building ends before current point
-            while (!pq.empty() and
-            pq.top().first <= point
-            )
-            {
+            while (!pq.empty() and pq.top().first <= point) {
                 pq.pop();
             }
 

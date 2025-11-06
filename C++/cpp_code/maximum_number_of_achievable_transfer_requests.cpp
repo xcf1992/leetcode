@@ -6,7 +6,8 @@ We have n buildings numbered from 0 to n - 1.
 Each building has a number of employees.
 It's transfer season, and some employees want to change the building they reside in.
 
-You are given an array requests where requests[i] = [fromi, toi] represents an employee's request to transfer from building fromi to building toi.
+You are given an array requests where requests[i] = [fromi, toi] represents an employee's request to transfer from
+building fromi to building toi.
 
 All buildings are full, so a list of requests is achievable only if for each building,
 the net change in employee transfers is zero.
@@ -67,30 +68,31 @@ using namespace std;
 class Solution {
 private:
     void recur(vector<vector<int>>& requests, vector<int>& capacity, int reqId, int reqProcessed, int& maxRequests) {
-        if (reqId == requests.size()) { //Base case: Processed all the requests, wind up.
-            for (auto c: capacity) { //Check if all the buildings are balanced ( 0 incoming-0 outgoing)
+        if (reqId == requests.size()) {  // Base case: Processed all the requests, wind up.
+            for (auto c : capacity) {    // Check if all the buildings are balanced ( 0 incoming-0 outgoing)
                 if (c != 0) {
                     return;
                 }
             }
-            //All the building are balanced, check and update max Req.
-			maxRequests = max(maxRequests, reqProcessed);
+            // All the building are balanced, check and update max Req.
+            maxRequests = max(maxRequests, reqProcessed);
             return;
         }
 
-        //Check without processing this request.
+        // Check without processing this request.
         recur(requests, capacity, reqId + 1, reqProcessed, maxRequests);
 
-        //Check with processing this request.
-        //Update incoming and outgoing building requests.
+        // Check with processing this request.
+        // Update incoming and outgoing building requests.
         capacity[requests[reqId][0]]--;
         capacity[requests[reqId][1]]++;
-       	recur(requests, capacity, reqId+1, reqProcessed+1, maxRequests);
+        recur(requests, capacity, reqId + 1, reqProcessed + 1, maxRequests);
 
-        //Rollback the changes.
+        // Rollback the changes.
         capacity[requests[reqId][0]]++;
         capacity[requests[reqId][1]]--;
     }
+
 public:
     int maximumRequests(int n, vector<vector<int>>& requests) {
         vector<int> capacity(n, 0);

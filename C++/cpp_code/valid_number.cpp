@@ -51,14 +51,14 @@ class Solution {
 public:
     bool isNumber(string str) {
         while (str[0] == ' ') {
-            str.erase(0, 1); // delete the  prefix whitespace
+            str.erase(0, 1);  // delete the  prefix whitespace
         }
         while (str[str.length() - 1] == ' ') {
-            str.erase(str.length() - 1, 1); // delete the suffix whitespace
+            str.erase(str.length() - 1, 1);  // delete the suffix whitespace
         }
 
         int state = 0;
-        int flag = 0; // flag to judge the special case "."
+        int flag = 0;  // flag to judge the special case "."
         for (int i = 0; i < str.length(); i++) {
             if (isdigit(str[i])) {
                 flag = 1;
@@ -67,31 +67,20 @@ public:
                 } else {
                     state = (state <= 5) ? 5 : 7;
                 }
-            } else if ('+' == str[i] or
-            '-' == str[i]
-            )
-            {
-                if (state == 0 or state
-                ==
-                3
-                )
-                {
+            } else if ('+' == str[i] or '-' == str[i]) {
+                if (state == 0 or state == 3) {
                     state++;
-                }
-                else
-                {
+                } else {
                     return false;
                 }
-            }
-            else
-            if ('.' == str[i]) {
+            } else if ('.' == str[i]) {
                 if (state <= 2) {
                     state = 6;
                 } else {
                     return false;
                 }
             } else if ('e' == str[i]) {
-                if (flag and(state == 2 or state == 6 or state == 7)) {
+                if (flag and (state == 2 or state == 6 or state == 7)) {
                     state = 3;
                 } else {
                     return false;
@@ -100,13 +89,6 @@ public:
                 return false;
             }
         }
-        return state == 2
-        or state
-        ==
-        5
-        or(flag and state == 6)
-        or state
-        ==
-        7;
+        return state == 2 or state == 5 or (flag and state == 6) or state == 7;
     }
 };

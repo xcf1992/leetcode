@@ -60,16 +60,16 @@ class Solution {
 private:
     unordered_map<string, int> memo;
 
-    string generateKey(vector<int> &needs) {
+    string generateKey(vector<int>& needs) {
         string result = "";
-        for (int num: needs) {
+        for (int num : needs) {
             result += "_" + to_string(num);
         }
         return result;
     }
 
 public:
-    int shoppingOffers(vector<int> &price, vector<vector<int> > &special, vector<int> &needs) {
+    int shoppingOffers(vector<int>& price, vector<vector<int>>& special, vector<int>& needs) {
         if (accumulate(needs.begin(), needs.end(), 0) == 0) {
             return 0;
         }
@@ -113,8 +113,8 @@ public:
 class Solution1 {
     // pure dfs
 private:
-    void pickSpecial(vector<int> &price, vector<vector<int> > &special, int start, vector<int> &needs,
-                     vector<int> &bought, int currentFee, int &result) {
+    void pickSpecial(vector<int>& price, vector<vector<int>>& special, int start, vector<int>& needs,
+                     vector<int>& bought, int currentFee, int& result) {
         for (int index = start; index < special.size(); index++) {
             vector<int> offer = special[index];
             bool pick = true;
@@ -147,7 +147,7 @@ private:
     }
 
 public:
-    int shoppingOffers(vector<int> &price, vector<vector<int> > &special, vector<int> &needs) {
+    int shoppingOffers(vector<int>& price, vector<vector<int>>& special, vector<int>& needs) {
         int result = INT_MAX;
         int currentFee = 0;
         int start = 0;

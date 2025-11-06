@@ -1,8 +1,8 @@
 /*
 514. Freedom Trail
 
-In the video game Fallout 4, the quest "Road to Freedom" requires players to reach a metal dial called the "Freedom Trail Ring",
-and use the dial to spell a specific keyword in order to open the door.
+In the video game Fallout 4, the quest "Road to Freedom" requires players to reach a metal dial called the "Freedom
+Trail Ring", and use the dial to spell a specific keyword in order to open the door.
 
 Given a string ring, which represents the code engraved on the outer ring and another string key,
 which represents the keyword needs to be spelled.
@@ -29,9 +29,8 @@ Input: ring = "godding", key = "gd"
 Output: 4
 Explanation:
  For the first key character 'g', since it is already in place, we just need 1 step to spell this character.
- For the second key character 'd', we need to rotate the ring "godding" anticlockwise by two dp to make it become "ddinggo".
- Also, we need 1 more step for spelling.
- So the final output is 4.
+ For the second key character 'd', we need to rotate the ring "godding" anticlockwise by two dp to make it become
+"ddinggo". Also, we need 1 more step for spelling. So the final output is 4.
 
 Note:
 Length of both ring and key will be in range 1 to 100.
@@ -55,19 +54,19 @@ class Solution {
 public:
     int findRotateSteps(string ring, string key) {
         int rsize = ring.size();
-        unordered_map<char, vector<int> > pos;
+        unordered_map<char, vector<int>> pos;
         for (int i = 0; i < rsize; i++) {
             pos[ring[i]].push_back(i);
         }
 
         int ksize = key.size();
-        vector<vector<int> > dp(ksize + 1, vector<int>(rsize, INT_MAX));
+        vector<vector<int>> dp(ksize + 1, vector<int>(rsize, INT_MAX));
         dp[0][0] = 0;
         vector<int> curPos;
         curPos.push_back(0);
         for (int i = 0; i < ksize; i++) {
-            for (int nextIndex: pos[key[i]]) {
-                for (int curIndex: curPos) {
+            for (int nextIndex : pos[key[i]]) {
+                for (int curIndex : curPos) {
                     int distance = abs(nextIndex - curIndex);
                     distance = min(distance, rsize - distance);
                     dp[i + 1][nextIndex] = min(dp[i + 1][nextIndex], dp[i][curIndex] + distance);
@@ -77,7 +76,7 @@ public:
         }
 
         int result = INT_MAX;
-        for (int dis: dp[ksize]) {
+        for (int dis : dp[ksize]) {
             result = min(result, dis);
         }
         return result + ksize;

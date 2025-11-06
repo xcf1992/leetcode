@@ -65,8 +65,8 @@ if the mouse is at the hole (m = 0), then the mouse wins;
 if the cat is where the mouse is (c = m), then the cat wins.
 
 Let's say that nodes will either be colored MOUSE, CAT, or DRAW depending on which player is assured victory.
-As in a standard minimax algorithm, the Mouse player will prefer MOUSE nodes first, DRAW nodes second, and CAT nodes last,
-and the Cat player prefers these nodes in the opposite order.
+As in a standard minimax algorithm, the Mouse player will prefer MOUSE nodes first, DRAW nodes second, and CAT nodes
+last, and the Cat player prefers these nodes in the opposite order.
 
 Algorithm
 
@@ -120,19 +120,19 @@ private:
     int MOUSE = 1;
     int CAT = 2;
 
-    vector<vector<int> > getParent(vector<vector<int> > &graph, int mouse, int cat, int turn) {
-        vector<vector<int> > pre;
+    vector<vector<int>> getParent(vector<vector<int>>& graph, int mouse, int cat, int turn) {
+        vector<vector<int>> pre;
         // current turn is 2 which is cat, previouse is a mouse move lead to current node
         if (turn == 2) {
             // get all pos that a mouse can move to current position
-            for (int m: graph[mouse]) {
+            for (int m : graph[mouse]) {
                 pre.push_back({m, cat, 1});
             }
             return pre;
         }
 
         // previous is a cat move
-        for (int c: graph[cat]) {
+        for (int c : graph[cat]) {
             // cat cannot from hole 0
             if (c > 0) {
                 pre.push_back({mouse, c, 2});
@@ -142,20 +142,19 @@ private:
     }
 
 public:
-    int catMouseGame(vector<vector<int> > &graph) {
+    int catMouseGame(vector<vector<int>>& graph) {
         int N = graph.size();
         // color: {mouse pos, cat pos, move} move = 1 means is now mosue move; 2 means is now cat move
-        vector<vector<vector<int> > > color = vector<vector<vector<int> > >(
-            50, vector<vector<int> >(50, vector<int>(3, 0)));
+        vector<vector<vector<int>>> color = vector<vector<vector<int>>>(50, vector<vector<int>>(50, vector<int>(3, 0)));
         // degree the number of neutral children of this current node
-        vector<vector<vector<int> > > degree = vector<vector<vector<int> > >(
-            50, vector<vector<int> >(50, vector<int>(3, 0)));
+        vector<vector<vector<int>>> degree =
+                vector<vector<vector<int>>>(50, vector<vector<int>>(50, vector<int>(3, 0)));
 
         for (int m = 0; m < N; m++) {
             for (int c = 0; c < N; c++) {
                 degree[m][c][1] = graph[m].size();
                 degree[m][c][2] = graph[c].size();
-                for (int x: graph[c]) {
+                for (int x : graph[c]) {
                     if (x == 0) {
                         // cat cannot move to hole 0, so 0 is not its child when it is cat's move
                         degree[m][c][2] -= 1;
@@ -165,7 +164,7 @@ public:
             }
         }
 
-        queue<vector<int> > q;
+        queue<vector<int>> q;
         for (int i = 0; i < N; i++) {
             for (int t = 1; t <= 2; t++) {
                 // when mouse is at hole 0 is a mouse win
@@ -181,20 +180,20 @@ public:
 
         while (!q.empty()) {
             vector<int> cur = q.front();
-            int i = cur[0]; // mouse
-            int j = cur[1]; // cat
-            int t = cur[2]; // turn
-            int c = cur[3]; // who wins 1 mouse 2 cat
+            int i = cur[0];  // mouse
+            int j = cur[1];  // cat
+            int t = cur[2];  // turn
+            int c = cur[3];  // who wins 1 mouse 2 cat
             q.pop();
 
-            for (vector<int> &parent: getParent(graph, i, j, t)) {
-                int i2 = parent[0]; // mouse
-                int j2 = parent[1]; // cat
-                int t2 = parent[2]; // turn
-                //if this parent is not colored yet
+            for (vector<int>& parent : getParent(graph, i, j, t)) {
+                int i2 = parent[0];  // mouse
+                int j2 = parent[1];  // cat
+                int t2 = parent[2];  // turn
+                // if this parent is not colored yet
                 if (color[i2][j2][t2] == DRAW) {
-                    // cause they will always do the optimal option, when there is a child is mouse win then if current move is mouse
-                    // mouse will pick this move then cat will not vice versera
+                    // cause they will always do the optimal option, when there is a child is mouse win then if current
+                    // move is mouse mouse will pick this move then cat will not vice versera
                     if (t2 == c) {
                         color[i2][j2][t2] = c;
                         q.push({i2, j2, t2, c});

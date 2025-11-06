@@ -54,10 +54,10 @@ using namespace std;
 
 class Solution {
 public:
-    int countElements(vector<int> &arr) {
+    int countElements(vector<int>& arr) {
         unordered_set<int> nums(arr.begin(), arr.end());
         int result = 0;
-        for (int i: arr) {
+        for (int i : arr) {
             if (nums.count(i + 1) != 0) {
                 result += 1;
             }

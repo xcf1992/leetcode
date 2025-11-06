@@ -69,7 +69,7 @@ private:
 
 public:
     int profitableSchemes(int G, int P, vector<int> group, vector<int> profit) {
-        vector<vector<int> > dp(P + 1, vector<int>(G + 1, 0));
+        vector<vector<int>> dp(P + 1, vector<int>(G + 1, 0));
         dp[0][0] = 1;
         for (int k = 0; k < group.size(); k++) {
             int g = group[k];
@@ -83,7 +83,7 @@ public:
         }
 
         int result = 0;
-        for (int count: dp[P]) {
+        for (int count : dp[P]) {
             result = (result + count) % mod;
         }
         return result;
@@ -91,27 +91,27 @@ public:
 };
 
 /*
-Because all k dimension only depends on k - 1 dimension, so we can improve it to 2D array which only has i and j dimension.
-Just be careful about that i and j should be decrease, in order to get correct old k - 1 dimension value.
+Because all k dimension only depends on k - 1 dimension, so we can improve it to 2D array which only has i and j
+dimension. Just be careful about that i and j should be decrease, in order to get correct old k - 1 dimension value.
 */
 class Solution {
 private:
     int mod = 1e9 + 7;
 
 public:
-    int profitableSchemes(int G, int P, vector<int> &group, vector<int> &profit) {
+    int profitableSchemes(int G, int P, vector<int>& group, vector<int>& profit) {
         int n = group.size();
-        vector<vector<int> > dp(P + 1, vector<int>(G + 1, 0));
+        vector<vector<int>> dp(P + 1, vector<int>(G + 1, 0));
         // when there is 0 crime, 0 scheme existed for any profit > 0 or group > 0
         dp[0][0] = 1;
         for (int i = 0; i < n; ++i) {
             int p = profit[i];
             int g = group[i];
             /*
-            * cause we reuse the same matrix while loop through differernt crime,
-            * we will have to iterate from the back of the matrix,
-            * so we do not update previous value, while we still needed
-            */
+             * cause we reuse the same matrix while loop through differernt crime,
+             * we will have to iterate from the back of the matrix,
+             * so we do not update previous value, while we still needed
+             */
             for (int j = P; j >= 0; j--) {
                 for (int k = G; k >= g; k--) {
                     dp[j][k] += dp[max(0, j - p)][k - g];
@@ -141,9 +141,9 @@ private:
     int mod = 1e9 + 7;
 
 public:
-    int profitableSchemes(int G, int P, vector<int> &group, vector<int> &profit) {
+    int profitableSchemes(int G, int P, vector<int>& group, vector<int>& profit) {
         int n = group.size();
-        vector<vector<vector<int> > > dp(n + 1, vector<vector<int> >(P + 1, vector<int>(G + 1, 0)));
+        vector<vector<vector<int>>> dp(n + 1, vector<vector<int>>(P + 1, vector<int>(G + 1, 0)));
         // when there is 0 crime, 0 scheme existed for any profit > 0 or group > 0
         dp[0][0][0] = 1;
         for (int i = 1; i <= n; i++) {
@@ -176,7 +176,7 @@ class Solution3 {
 private:
     int mod = 1e9 + 7;
 
-    int dfs(int g, int p, int index, vector<int> &group, vector<int> &profit, vector<vector<vector<int> > > &memo) {
+    int dfs(int g, int p, int index, vector<int>& group, vector<int>& profit, vector<vector<vector<int>>>& memo) {
         if (index < 0) {
             return p <= 0 ? 1 : 0;
         }
@@ -195,9 +195,9 @@ private:
     }
 
 public:
-    int profitableSchemes(int G, int P, vector<int> &group, vector<int> &profit) {
+    int profitableSchemes(int G, int P, vector<int>& group, vector<int>& profit) {
         int n = group.size();
-        vector<vector<vector<int> > > memo(n + 1, vector<vector<int> >(P + 1, vector<int>(G + 1, -1)));
+        vector<vector<vector<int>>> memo(n + 1, vector<vector<int>>(P + 1, vector<int>(G + 1, -1)));
         return dfs(G, P, n - 1, group, profit, memo);
     }
 };

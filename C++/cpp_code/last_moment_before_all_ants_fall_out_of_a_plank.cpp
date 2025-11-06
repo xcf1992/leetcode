@@ -25,7 +25,8 @@ Explanation: In the image above:
 -The ant at index 1 is named B and going to the right.
 -The ant at index 3 is named C and going to the left.
 -The ant at index 4 is named D and going to the left.
-Note that the last moment when an ant was on the plank is t = 4 second, after that it falls imediately out of the plank. (i.e. We can say that at t = 4.0000000001, there is no ants on the plank).
+Note that the last moment when an ant was on the plank is t = 4 second, after that it falls imediately out of the plank.
+(i.e. We can say that at t = 4.0000000001, there is no ants on the plank).
 
 Example 2:
 Input: n = 7, left = [], right = [0,1,2,3,4,5,6,7]
@@ -88,9 +89,9 @@ class Solution {
 public:
     int getLastMoment(int n, vector<int>& left, vector<int>& right) {
         int res = 0;
-        for (int& i: left)
+        for (int& i : left)
             res = max(res, i);
-        for (int& i: right)
+        for (int& i : right)
             res = max(res, n - i);
         return res;
     }

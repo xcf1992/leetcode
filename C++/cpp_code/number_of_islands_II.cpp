@@ -50,7 +50,8 @@ using namespace std;
 /*
 something to take in mind during the code
 1. if the spot is already an island, continue without merge
-2. find should return root[island] rather than island with path merge, otherwise we will always return the island itself as parent
+2. find should return root[island] rather than island with path merge, otherwise we will always return the island itself
+as parent
 */
 class Solution {
 private:
@@ -67,11 +68,9 @@ private:
         return root[island];
     }
 
-    void check(int row, int col, int newIsland, int &count) {
+    void check(int row, int col, int newIsland, int& count) {
         int island = row * n + col;
-        if (row < 0 or col<0 or row >= m or col >= n or root[island] == -1
-        )
-        {
+        if (row < 0 or col < 0 or row >= m or col >= n or root[island] == -1) {
             return;
         }
 
@@ -84,20 +83,20 @@ private:
     }
 
 public:
-    vector<int> numIslands2(int m, int n, vector<vector<int> > &positions) {
+    vector<int> numIslands2(int m, int n, vector<vector<int>>& positions) {
         this->m = m;
         this->n = n;
         root = vector<int>(m * n, -1);
 
         int count = 0;
         vector<int> result;
-        for (vector<int> &pos: positions) {
+        for (vector<int>& pos : positions) {
             int row = pos[0];
             int col = pos[1];
             int island = row * n + col;
             if (root[island] != -1) {
                 result.push_back(count);
-                continue; // this one has become island before
+                continue;  // this one has become island before
             }
 
             count += 1;

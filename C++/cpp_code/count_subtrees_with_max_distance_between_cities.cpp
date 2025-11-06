@@ -72,13 +72,13 @@ private:
         int cntEdge = 0, cntCity = 0, maxDist = 0;
         for (int i = 0; i < n; i++) {
             if (((state >> i) & 1) == 0) {
-                continue; // Skip if city `i` not in our subset
+                continue;  // Skip if city `i` not in our subset
             }
 
             cntCity += 1;
             for (int j = i + 1; j < n; j++) {
                 if (((state >> j) & 1) == 0) {
-                    continue; // Skip if city `j` not in our subset
+                    continue;  // Skip if city `j` not in our subset
                 }
 
                 cntEdge += dist[i][j] == 1;
@@ -86,16 +86,17 @@ private:
             }
         }
         if (cntEdge != cntCity - 1) {
-            return 0; // Subset form an invalid subtree!
+            return 0;  // Subset form an invalid subtree!
         }
         return maxDist;
     }
+
 public:
     vector<int> countSubgraphsForEachDiameter(int n, vector<vector<int>>& edges) {
-        int INF = n; // Since cities form a tree so maximum distance between 2 cities always < n
+        int INF = n;  // Since cities form a tree so maximum distance between 2 cities always < n
         vector<vector<int>> dist(n, vector<int>(n, INF));
         for (auto& e : edges) {
-            dist[e[0]-1][e[1]-1] = dist[e[1]-1][e[0]-1] = 1;
+            dist[e[0] - 1][e[1] - 1] = dist[e[1] - 1][e[0] - 1] = 1;
         }
 
         for (int k = 0; k < n; k++) {
@@ -104,7 +105,7 @@ public:
                     dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
                 }
             }
-        } // get min distance between any two cities
+        }  // get min distance between any two cities
 
         vector<int> ans(n - 1, 0);
         for (int state = 0; state < (1 << n); state++) {

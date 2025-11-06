@@ -16,10 +16,8 @@ Note that abs(x) equals x if x >= 0, and -x otherwise.
 Example 1:
 Input: n = 4, index = 2,  maxSum = 6
 Output: 2
-Explanation: The arrays [1,1,2,1] and [1,2,2,1] satisfy all the conditions. There are no other valid arrays with a larger value at the given index.
-Example 2:
-Input: n = 6, index = 1,  maxSum = 10
-Output: 3
+Explanation: The arrays [1,1,2,1] and [1,2,2,1] satisfy all the conditions. There are no other valid arrays with a
+larger value at the given index. Example 2: Input: n = 6, index = 1,  maxSum = 10 Output: 3
 
 Constraints:
 1 <= n <= maxSum <= 109
@@ -62,11 +60,12 @@ class Solution {
 private:
     long getSum(int n, int index, int a) {
         int b = max(a - index, 0);
-        long res = long(a + b) * (a - b + 1) / 2; // the sum of first half of the array, 0 ~ index
+        long res = long(a + b) * (a - b + 1) / 2;  // the sum of first half of the array, 0 ~ index
         b = max(a - ((n - 1) - index), 0);
-        res += long(a + b) * (a - b + 1) / 2; // with the sum of the second half of the array, index ~ n - 1
-        return res - a; // array[index] is counted twice
+        res += long(a + b) * (a - b + 1) / 2;  // with the sum of the second half of the array, index ~ n - 1
+        return res - a;                        // array[index] is counted twice
     }
+
 public:
     int maxValue(int n, int index, int maxSum) {
         maxSum -= n;
@@ -82,4 +81,5 @@ public:
     }
 };
 
-// useful intro of BS, https://leetcode.com/discuss/general-discussion/786126/python-powerful-ultimate-binary-search-template-solved-many-problems
+// useful intro of BS,
+// https://leetcode.com/discuss/general-discussion/786126/python-powerful-ultimate-binary-search-template-solved-many-problems

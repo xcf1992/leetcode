@@ -37,9 +37,9 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<string> > groupStrings(vector<string> &strings) {
-        unordered_map<string, vector<string> > pattern;
-        for (string &str: strings) {
+    vector<vector<string>> groupStrings(vector<string>& strings) {
+        unordered_map<string, vector<string>> pattern;
+        for (string& str : strings) {
             string curPat = "";
             for (int i = 1; i < str.size(); ++i) {
                 int gap = (str[i] + 26 - str[i - 1]) % 26;
@@ -48,8 +48,8 @@ public:
             pattern[curPat].push_back(str);
         }
 
-        vector<vector<string> > result;
-        for (auto &it: pattern) {
+        vector<vector<string>> result;
+        for (auto& it : pattern) {
             result.push_back(it.second);
         }
         return result;

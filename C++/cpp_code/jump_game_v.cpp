@@ -21,8 +21,9 @@ Example 1:
 Input: arr = [6,4,14,6,8,13,9,7,10,6,12], d = 2
 Output: 4
 Explanation: You can start at index 10. You can jump 10 --> 8 --> 6 --> 7 as shown.
-Note that if you start at index 6 you can only jump to index 7. You cannot jump to index 5 because 13 > 9. You cannot jump to index 4 because index 5 is between index 4 and 6 and 13 > 9.
-Similarly You cannot jump from index 3 to index 2 or index 1.
+Note that if you start at index 6 you can only jump to index 7. You cannot jump to index 5 because 13 > 9. You cannot
+jump to index 4 because index 5 is between index 4 and 6 and 13 > 9. Similarly You cannot jump from index 3 to index 2
+or index 1.
 
 Example 2:
 Input: arr = [3,3,3,3,3], d = 3
@@ -74,36 +75,23 @@ since we cannot jump to any index after that.
 */
 class Solution {
 private:
-    int dfs(vector<int> &memo, vector<int> &arr, int d, int index) {
+    int dfs(vector<int>& memo, vector<int>& arr, int d, int index) {
         if (memo[index] != -1) {
             return memo[index];
         }
 
         memo[index] = 0;
-        for (int i = index + 1; i < arr.size() and i
-        <=
-        index + d
-        and arr[i]
-        <
-        arr[index];
-        ++i
-        )
-        {
+        for (int i = index + 1; i < arr.size() and i <= index + d and arr[i] < arr[index]; ++i) {
             memo[index] = max(memo[index], 1 + dfs(memo, arr, d, i));
         }
-        for (int i = index - 1; i >= max(0, index - d) and arr[i]
-        <
-        arr[index];
-        --i
-        )
-        {
+        for (int i = index - 1; i >= max(0, index - d) and arr[i] < arr[index]; --i) {
             memo[index] = max(memo[index], 1 + dfs(memo, arr, d, i));
         }
         return memo[index];
     }
 
 public:
-    int maxJumps(vector<int> &arr, int d) {
+    int maxJumps(vector<int>& arr, int d) {
         int n = arr.size();
         vector<int> memo(n, -1);
         int result = INT_MIN;

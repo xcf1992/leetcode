@@ -48,9 +48,9 @@ public:
     double angleClock(int hour, int minutes) {
         double h = hour;
         double m = minutes;
-        double hourAngle = (h / (double) 12) * ((double) 360) + (m / (double) 60) * (double) 30;
-        double minuteAngle = (m / 60) * (double) 360;
+        double hourAngle = (h / (double)12) * ((double)360) + (m / (double)60) * (double)30;
+        double minuteAngle = (m / 60) * (double)360;
         double gap = abs(hourAngle - minuteAngle);
-        return gap > (double) 180 ? (double) 360 - gap : gap;
+        return gap > (double)180 ? (double)360 - gap : gap;
     }
 };

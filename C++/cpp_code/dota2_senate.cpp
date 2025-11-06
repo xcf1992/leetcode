@@ -70,10 +70,7 @@ public:
         }
 
         int n = senate.size();
-        while (radiant.empty() or
-        dire.empty()
-        )
-        {
+        while (radiant.empty() or dire.empty()) {
             int pos0 = radiant.front();
             radiant.pop();
             int pos1 = dire.front();

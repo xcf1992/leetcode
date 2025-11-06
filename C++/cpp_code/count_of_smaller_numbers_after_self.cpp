@@ -60,8 +60,9 @@ https://www.geeksforgeeks.org/counting-inversions/
  The third element to merge is the "4" in the first array:
  1 2 4(1,2)              6(1,4) 8
  5(2) 7(2,5) 9               merged elements in the 2nd array = (2)
- When we merge the "4(1)", we found that "4" is actually greater than all merged elements in the second array (i.e. [2]).
- Therefore, we also need to consider those elements. Therefore, the numbers in the parenthese of 2 become (1)+(2) = (1,2).
+ When we merge the "4(1)", we found that "4" is actually greater than all merged elements in the second array (i.e.
+[2]). Therefore, we also need to consider those elements. Therefore, the numbers in the parenthese of 2 become (1)+(2) =
+(1,2).
 
  Next step:
  1 2 4(1,2) 5(2)         6(1,4) 8
@@ -74,7 +75,10 @@ https://www.geeksforgeeks.org/counting-inversions/
  So and so forth, finally reach
  1 2 4(1,2) 5(2) 6(1,4,2,5) 7(2,5) 8(2,5,7) 9
  merged elements in the 2nd array = (2,5,7,9)
- Additionally, when we need to count the inverse number, we do not need to record the exact elements, we only need to record the numbers. So, we can use a variable to record the number of "merged elements in the 2nd array" (for example, semilen in the code beneath) and the number of smaller elements of each element (for example, results[idx] in the code beneath).
+ Additionally, when we need to count the inverse number, we do not need to record the exact elements, we only need to
+record the numbers. So, we can use a variable to record the number of "merged elements in the 2nd array" (for example,
+semilen in the code beneath) and the number of smaller elements of each element (for example, results[idx] in the code
+beneath).
 
 To record the result,
 we need to keep the index of each number in the original array.
@@ -89,7 +93,7 @@ we sort the indexes of each number.
 */
 class Solution {
 private:
-    void mergeCount(vector<int> &indices, int first, int last, vector<int> &result, vector<int> &nums) {
+    void mergeCount(vector<int>& indices, int first, int last, vector<int>& result, vector<int>& nums) {
         if (first >= last - 1) {
             return;
         }
@@ -103,18 +107,12 @@ private:
         int idx2 = mid;
         int semicount = 0;
         // semicount if the count of numbers have merged in second half before current number in first half
-        while (idx1 < mid or idx2<last
-        )
-        {
-            if (idx2 == last or(idx1 < mid and nums[indices[idx1]] <= nums[indices[idx2]])
-            )
-            {
+        while (idx1 < mid or idx2 < last) {
+            if (idx2 == last or (idx1 < mid and nums[indices[idx1]] <= nums[indices[idx2]])) {
                 temp.push_back(indices[idx1]);
                 result[indices[idx1]] += semicount;
                 idx1 += 1;
-            }
-            else
-            {
+            } else {
                 temp.push_back(indices[idx2]);
                 semicount += 1;
                 idx2 += 1;
@@ -124,7 +122,7 @@ private:
     }
 
 public:
-    vector<int> countSmaller(vector<int> &nums) {
+    vector<int> countSmaller(vector<int>& nums) {
         int n = nums.size();
         vector<int> indices(n, 0);
         iota(indices.begin(), indices.end(), 0);

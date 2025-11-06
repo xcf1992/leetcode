@@ -38,9 +38,9 @@ using namespace std;
 
 class Solution {
 public:
-    int findShortestSubArray(vector<int> &nums) {
+    int findShortestSubArray(vector<int>& nums) {
         int n = nums.size();
-        unordered_map<int, vector<int> > range;
+        unordered_map<int, vector<int>> range;
         unordered_map<int, int> frequency;
         int degree = 0;
         for (int i = 0; i < n; i++) {
@@ -59,7 +59,7 @@ public:
         }
 
         int result = n;
-        for (auto &it: frequency)
+        for (auto& it : frequency)
             if (degree == it.second) {
                 int num = it.first;
                 result = min(result, range[num][1] - range[num][0] + 1);

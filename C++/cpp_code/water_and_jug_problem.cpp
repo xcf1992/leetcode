@@ -36,8 +36,8 @@ using namespace std;
 Forget about two jugs pouring between each other, which may make you confused.
 
 Let’s make it simple: assuming we have one big enough bucket and two cups with volume x and y, respectively.
-Now we want to perform a series of operation – pouring water in and out only by those two cups with exactly amount x or y.
-Somehow, there will be only z water left in this big bucket eventually. Then the equation will be:
+Now we want to perform a series of operation – pouring water in and out only by those two cups with exactly amount x or
+y. Somehow, there will be only z water left in this big bucket eventually. Then the equation will be:
 
 z = m * x + n * y
 m means using cup-x m times. If m is positive, it means pouring in.
@@ -71,8 +71,7 @@ private:
 
 public:
     bool canMeasureWater(int x, int y, int z) {
-        return z == 0
-        or(x + y >= z and z % gcd(x, y) == 0);
+        return z == 0 or (x + y >= z and z % gcd(x, y) == 0);
     }
 };
 

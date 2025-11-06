@@ -1,11 +1,12 @@
 /*
 308. Range Sum Query 2D - Mutable
 
-Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1)
-and lower right corner (row2, col2).
+Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1,
+col1) and lower right corner (row2, col2).
 
 Range Sum Query 2D
-The above rectangle (with the red border) is defined by (row1, col1) = (2, 1) and (row2, col2) = (4, 3), which contains sum = 8.
+The above rectangle (with the red border) is defined by (row1, col1) = (2, 1) and (row2, col2) = (4, 3), which contains
+sum = 8.
 
 Example:
 Given matrix = [
@@ -43,11 +44,11 @@ private:
     int M = 0;
     int N = 0;
 
-    vector<vector<int> > prefixSum;
-    vector<vector<int> > mtx;
+    vector<vector<int>> prefixSum;
+    vector<vector<int>> mtx;
 
 public:
-    NumMatrix(vector<vector<int> > &matrix) {
+    NumMatrix(vector<vector<int>>& matrix) {
         M = matrix.size();
         if (M != 0) {
             N = matrix[0].size();
@@ -84,8 +85,8 @@ public:
 };
 
 /*
-* Your NumMatrix object will be instantiated and called as such:
-* NumMatrix* obj = new NumMatrix(matrix);
-* obj->update(row,col,val);
-* int param_2 = obj->sumRegion(row1,col1,row2,col2);
-*/
+ * Your NumMatrix object will be instantiated and called as such:
+ * NumMatrix* obj = new NumMatrix(matrix);
+ * obj->update(row,col,val);
+ * int param_2 = obj->sumRegion(row1,col1,row2,col2);
+ */

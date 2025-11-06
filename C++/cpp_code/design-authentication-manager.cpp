@@ -29,19 +29,22 @@ the expiration takes place before the other actions.
 
 Example 1:
 Input
-["AuthenticationManager", "renew", "generate", "countUnexpiredTokens", "generate", "renew", "renew", "countUnexpiredTokens"]
+["AuthenticationManager", "renew", "generate", "countUnexpiredTokens", "generate", "renew", "renew",
+"countUnexpiredTokens"]
 [[5], ["aaa", 1], ["aaa", 2], [6], ["bbb", 7], ["aaa", 8], ["bbb", 10], [15]]
 Output
 [null, null, null, 1, null, null, null, 0]
 Explanation
-AuthenticationManager authenticationManager = new AuthenticationManager(5); // Constructs the AuthenticationManager with timeToLive = 5 seconds.
-authenticationManager.renew("aaa", 1); // No token exists with tokenId "aaa" at time 1, so nothing happens.
-authenticationManager.generate("aaa", 2); // Generates a new token with tokenId "aaa" at time 2.
-authenticationManager.countUnexpiredTokens(6); // The token with tokenId "aaa" is the only unexpired one at time 6, so return 1.
-authenticationManager.generate("bbb", 7); // Generates a new token with tokenId "bbb" at time 7.
-authenticationManager.renew("aaa", 8); // The token with tokenId "aaa" expired at time 7, and 8 >= 7, so at time 8 the renew request is ignored, and nothing happens.
-authenticationManager.renew("bbb", 10); // The token with tokenId "bbb" is unexpired at time 10, so the renew request is fulfilled and now the token will expire at time 15.
-authenticationManager.countUnexpiredTokens(15); // The token with tokenId "bbb" expires at time 15, and the token with tokenId "aaa" expired at time 7, so currently no token is unexpired, so return 0.
+AuthenticationManager authenticationManager = new AuthenticationManager(5); // Constructs the AuthenticationManager with
+timeToLive = 5 seconds. authenticationManager.renew("aaa", 1); // No token exists with tokenId "aaa" at time 1, so
+nothing happens. authenticationManager.generate("aaa", 2); // Generates a new token with tokenId "aaa" at time 2.
+authenticationManager.countUnexpiredTokens(6); // The token with tokenId "aaa" is the only unexpired one at time 6, so
+return 1. authenticationManager.generate("bbb", 7); // Generates a new token with tokenId "bbb" at time 7.
+authenticationManager.renew("aaa", 8); // The token with tokenId "aaa" expired at time 7, and 8 >= 7, so at time 8 the
+renew request is ignored, and nothing happens. authenticationManager.renew("bbb", 10); // The token with tokenId "bbb"
+is unexpired at time 10, so the renew request is fulfilled and now the token will expire at time 15.
+authenticationManager.countUnexpiredTokens(15); // The token with tokenId "bbb" expires at time 15, and the token with
+tokenId "aaa" expired at time 7, so currently no token is unexpired, so return 0.
 
 Constraints:
 1 <= timeToLive <= 108
@@ -90,7 +93,7 @@ public:
 
     int countUnexpiredTokens(int currentTime) {
         int res = 0;
-        for (auto token: tokens) {
+        for (auto token : tokens) {
             if (token.second > currentTime)
                 res++;
         }

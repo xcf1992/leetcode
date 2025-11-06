@@ -49,7 +49,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> xorQueries(vector<int> &arr, vector<vector<int> > &queries) {
+    vector<int> xorQueries(vector<int>& arr, vector<vector<int>>& queries) {
         int n = arr.size();
         vector<int> leftXorSum(n + 1, 0);
         for (int i = 1; i <= n; ++i) {
@@ -57,7 +57,7 @@ public:
         }
 
         vector<int> result;
-        for (vector<int> &query: queries) {
+        for (vector<int>& query : queries) {
             result.push_back(leftXorSum[query[1] + 1] ^ leftXorSum[query[0]]);
         }
         return result;

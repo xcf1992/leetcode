@@ -62,13 +62,13 @@ using namespace std;
 
 class Solution {
 public:
-    int minimumJumps(vector<int> &forbidden, int a, int b, int x) {
+    int minimumJumps(vector<int>& forbidden, int a, int b, int x) {
         unordered_set<int> forbi(forbidden.begin(), forbidden.end());
-        vector<vector<int> > visited(2, vector<int>(6000));
+        vector<vector<int>> visited(2, vector<int>(6000));
         // visited array has two states:
         // visited[0][i] means the ith cell was reached from its left hand side jumping forward,
         // visited[1][i] means the ith cell was reached from its right hand side jumping backward.
-        queue<pair<int, bool> > qu;
+        queue<pair<int, bool>> qu;
         // true means your last jump was backward jumping, you cannot jump backward in current step.
         // false, otherwise.
         qu.push({0, false});

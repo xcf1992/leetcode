@@ -23,28 +23,17 @@ using namespace std;
 
 class Solution {
 public:
-    ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
-        if (l1 == nullptr or l2
-        ==
-        nullptr
-        )
-        {
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        if (l1 == nullptr or l2 == nullptr) {
             return l1 == nullptr ? l2 : l1;
         }
 
         int carry = 0;
-        ListNode *cur1 = l1;
-        ListNode *cur2 = l2;
-        ListNode *head = nullptr;
-        ListNode *cur = head;
-        while (cur1 != nullptr or cur2
-        !=
-        nullptr
-        or carry
-        !=
-        0
-        )
-        {
+        ListNode* cur1 = l1;
+        ListNode* cur2 = l2;
+        ListNode* head = nullptr;
+        ListNode* cur = head;
+        while (cur1 != nullptr or cur2 != nullptr or carry != 0) {
             int sum = carry;
             if (cur1 != nullptr) {
                 sum += cur1->val;
@@ -55,7 +44,7 @@ public:
                 cur2 = cur2->next;
             }
 
-            ListNode *node = new ListNode(sum % 10);
+            ListNode* node = new ListNode(sum % 10);
             if (head == nullptr) {
                 head = node;
                 cur = head;

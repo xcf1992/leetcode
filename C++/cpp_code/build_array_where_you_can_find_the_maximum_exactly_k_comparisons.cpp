@@ -22,7 +22,8 @@ You should build the array arr which has the following properties:
 arr has exactly n integers.
 1 <= arr[i] <= m where (0 <= i < n).
 After applying the mentioned algorithm to arr, the value search_cost is equal to k.
-Return the number of ways to build the array arr under the mentioned conditions. As the answer may grow large, the answer must be computed modulo 10^9 + 7.
+Return the number of ways to build the array arr under the mentioned conditions. As the answer may grow large, the
+answer must be computed modulo 10^9 + 7.
 
 Example 1:
 Input: n = 2, m = 3, k = 1
@@ -69,7 +70,8 @@ using namespace std;
 
 class Solution {
 public:
-    /* let ways[i][j][k] = # ways to construct an array of length i with max element equal to j and a search cost of k. */
+    /* let ways[i][j][k] = # ways to construct an array of length i with max element equal to j and a search cost of k.
+     */
     long long ways[51][101][51];
     const int MOD = 1e9 + 7;
 
@@ -82,7 +84,7 @@ public:
         has length 1, maximum element j, and it has a search cost of 1.
         */
         for (int j = 1; j <= m; j++) {
-                ways[1][j][1] = 1;
+            ways[1][j][1] = 1;
         }
 
         for (int a = 1; a <= n; a++) {

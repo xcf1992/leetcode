@@ -33,19 +33,19 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int> > levelOrder(TreeNode *root) {
+    vector<vector<int>> levelOrder(TreeNode* root) {
         if (root == nullptr) {
             return {};
         }
 
-        queue<TreeNode *> bfs;
+        queue<TreeNode*> bfs;
         bfs.push(root);
-        vector<vector<int> > result;
+        vector<vector<int>> result;
         while (!bfs.empty()) {
             int curSize = bfs.size();
             vector<int> row;
             for (int i = 0; i < curSize; ++i) {
-                TreeNode *node = bfs.front();
+                TreeNode* node = bfs.front();
                 bfs.pop();
 
                 row.push_back(node->val);

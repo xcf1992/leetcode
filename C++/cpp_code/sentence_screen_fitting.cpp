@@ -68,7 +68,7 @@ If this starting words is already in the map, then just read it; otherwise, crea
 */
 class Solution {
 public:
-    int wordsTyping(vector<string> &sentence, int rows, int cols) {
+    int wordsTyping(vector<string>& sentence, int rows, int cols) {
         unordered_map<int, int> count;
         int n = sentence.size();
         int num = 0;
@@ -92,7 +92,7 @@ public:
 // time limit exceed
 class Solution1 {
 public:
-    int wordsTyping(vector<string> &sentence, int rows, int cols) {
+    int wordsTyping(vector<string>& sentence, int rows, int cols) {
         int result = 0;
         int i = 0;
         int j = 0;

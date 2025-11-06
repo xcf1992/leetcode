@@ -33,7 +33,7 @@ using namespace std;
 
 class Solution {
 private:
-    int find(TreeNode *root, int &result) {
+    int find(TreeNode* root, int& result) {
         if (root == nullptr) {
             return 0;
         }
@@ -45,7 +45,7 @@ private:
     }
 
 public:
-    int diameterOfBinaryTree(TreeNode *root) {
+    int diameterOfBinaryTree(TreeNode* root) {
         int result = 0;
         find(root, result);
         return result - 1;

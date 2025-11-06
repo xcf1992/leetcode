@@ -7,8 +7,8 @@ you need to generate minimal possible abbreviations for every word following rul
 1. Begin with the first character and then the number of characters abbreviated, which followed by the last character.
 2. If there are any conflict,
 that is more than one words share the same abbreviation,
-a longer prefix is used instead of only the first character until making the map from word to abbreviation become unique.
-In other words, a final abbreviation cannot map to more than one original words.
+a longer prefix is used instead of only the first character until making the map from word to abbreviation become
+unique. In other words, a final abbreviation cannot map to more than one original words.
 3. If the abbreviation doesn't make the word shorter, then keep it as original.
 
 Example:
@@ -61,11 +61,11 @@ private:
     }
 
 public:
-    vector<string> wordsAbbreviation(vector<string> &dict) {
+    vector<string> wordsAbbreviation(vector<string>& dict) {
         int n = dict.size();
         vector<string> result;
         vector<int> prefix(n, 1);
-        for (string &word: dict) {
+        for (string& word : dict) {
             result.push_back(abbreviate(word, 1));
         }
 
@@ -82,7 +82,7 @@ public:
                 }
 
                 mem.push_back(i);
-                for (int k: mem) {
+                for (int k : mem) {
                     prefix[k] += 1;
                     result[k] = abbreviate(dict[k], prefix[k]);
                 }

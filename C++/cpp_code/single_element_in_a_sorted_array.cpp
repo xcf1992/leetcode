@@ -31,38 +31,26 @@ using namespace std;
 
 class Solution {
 public:
-    int singleNonDuplicate(vector<int> &nums) {
+    int singleNonDuplicate(vector<int>& nums) {
         int start = 0;
         int end = nums.size() - 1;
         while (start < end) {
             int mid = start + (end - start) / 2;
             int num = nums[mid];
 
-            if (mid < end and num
-            ==
-            nums[mid + 1]
-            )
-            {
+            if (mid < end and num == nums[mid + 1]) {
                 if ((end - mid + 1) % 2 == 0) {
                     end = mid - 1;
                 } else {
                     start = mid;
                 }
-            }
-            else
-            if (mid > start and num
-            ==
-            nums[mid - 1]
-            )
-            {
+            } else if (mid > start and num == nums[mid - 1]) {
                 if ((end - mid) % 2 == 0) {
                     end = mid;
                 } else {
                     start = mid + 1;
                 }
-            }
-            else
-            {
+            } else {
                 return num;
             }
         }

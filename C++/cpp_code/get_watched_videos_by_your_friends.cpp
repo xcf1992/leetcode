@@ -34,7 +34,8 @@ Example 2:
 Input: watchedVideos = [["A","B"],["C"],["B","C"],["D"]], friends = [[1,2],[0,3],[0,3],[1,2]], id = 0, level = 2
 Output: ["D"]
 Explanation:
-You have id = 0 (green color in the figure) and the only friend of your friends is the person with id = 3 (yellow color in the figure).
+You have id = 0 (green color in the figure) and the only friend of your friends is the person with id = 3 (yellow color
+in the figure).
 
 Constraints:
 n == watchedVideos.length == friends.length
@@ -64,7 +65,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<string> watchedVideosByFriends(vector<vector<string> > &watchedVideos, vector<vector<int> > &friends, int id,
+    vector<string> watchedVideosByFriends(vector<vector<string>>& watchedVideos, vector<vector<int>>& friends, int id,
                                           int level) {
         int n = watchedVideos.size();
         queue<int> bfs;
@@ -78,7 +79,7 @@ public:
                 int curPeople = bfs.front();
                 bfs.pop();
 
-                for (int hisFriend: friends[curPeople]) {
+                for (int hisFriend : friends[curPeople]) {
                     if (!visited[hisFriend]) {
                         visited[hisFriend] = true;
                         bfs.push(hisFriend);
@@ -93,22 +94,21 @@ public:
             int curPeople = bfs.front();
             bfs.pop();
 
-            for (string &v: watchedVideos[curPeople]) {
+            for (string& v : watchedVideos[curPeople]) {
                 videos[v] += 1;
             }
         }
 
-        vector<pair<string, int> > sortedVideos;
-        for (auto &it: videos) {
+        vector<pair<string, int>> sortedVideos;
+        for (auto& it : videos) {
             sortedVideos.push_back({it.first, it.second});
         }
-        sort(sortedVideos.begin(), sortedVideos.end(), [](pair<string, int> &a, pair<string, int> &b) {
-            return a.second < b.second
-            or(a.second == b.second and a.first < b.first);
+        sort(sortedVideos.begin(), sortedVideos.end(), [](pair<string, int>& a, pair<string, int>& b) {
+            return a.second < b.second or (a.second == b.second and a.first < b.first);
         });
 
         vector<string> result;
-        for (auto &it: sortedVideos) {
+        for (auto& it : sortedVideos) {
             result.push_back(it.first);
         }
         return result;

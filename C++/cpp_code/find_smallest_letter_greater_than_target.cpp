@@ -70,8 +70,7 @@ public:
             int mid = start + (end - start) / 2;
             if (letters[mid] <= target) {
                 start = mid + 1;
-            }
-            else {
+            } else {
                 end = mid;
             }
         }

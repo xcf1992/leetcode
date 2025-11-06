@@ -75,7 +75,7 @@ so the acutal possible remain columns could be much shorter
 */
 class Solution {
 public:
-    int minDeletionSize(vector<string> &A) {
+    int minDeletionSize(vector<string>& A) {
         int m = A.size();
         int n = A[0].size();
         int result = n - 1;
@@ -95,10 +95,7 @@ public:
                     }
                     row += 1;
                 }
-                if (row == m and dp[i]
-                +1 > dp[col]
-                )
-                {
+                if (row == m and dp[i] + 1 > dp[col]) {
                     dp[col] = dp[i] + 1;
                 }
             }

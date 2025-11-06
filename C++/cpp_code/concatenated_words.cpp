@@ -34,7 +34,7 @@ using namespace std;
 
 class Solution {
 private:
-    bool canForm(string word, unordered_set<string> &preWords) {
+    bool canForm(string word, unordered_set<string>& preWords) {
         if (preWords.empty()) {
             return false;
         }
@@ -44,10 +44,7 @@ private:
         dp[0] = true;
         for (int i = 1; i <= n; i++) {
             for (int j = 0; j < i; j++) {
-                if (dp[j] and
-                preWords.find(word.substr(j, i - j)) != preWords.end()
-                )
-                {
+                if (dp[j] and preWords.find(word.substr(j, i - j)) != preWords.end()) {
                     dp[i] = true;
                     break;
                 }
@@ -57,14 +54,12 @@ private:
     }
 
 public:
-    vector<string> findAllConcatenatedWordsInADict(vector<string> &words) {
-        sort(words.begin(), words.end(), [](string &a, string &b) {
-            return a.size() < b.size();
-        });
+    vector<string> findAllConcatenatedWordsInADict(vector<string>& words) {
+        sort(words.begin(), words.end(), [](string& a, string& b) { return a.size() < b.size(); });
 
         vector<string> result;
         unordered_set<string> preWords;
-        for (string &word: words) {
+        for (string& word : words) {
             if (canForm(word, preWords)) {
                 result.push_back(word);
             }

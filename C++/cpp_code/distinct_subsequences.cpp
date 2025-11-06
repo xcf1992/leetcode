@@ -51,12 +51,7 @@ public:
     int numDistinct(string s, string t) {
         int lenS = s.size();
         int lenT = t.size();
-        if (lenS <= 0 or lenT
-        <=
-        0
-        or lenS<lenT
-        )
-        {
+        if (lenS <= 0 or lenT <= 0 or lenS < lenT) {
             return 0;
         }
 
@@ -78,30 +73,21 @@ public:
     int numDistinct(string s, string t) {
         int lenS = s.size();
         int lenT = t.size();
-        if (lenS <= 0 or lenT
-        <=
-        0
-        or lenS<lenT
-        )
-        {
+        if (lenS <= 0 or lenT <= 0 or lenS < lenT) {
             return 0;
         }
 
-        vector<vector<long> > dp(lenS + 1, vector<long>(lenT + 1, 0));
+        vector<vector<long>> dp(lenS + 1, vector<long>(lenT + 1, 0));
         for (int i = 0; i <= lenS; ++i) {
             dp[i][0] = 1;
         }
 
         for (int i = 1; i <= lenS; ++i) {
-            for (int j = 1; j <= lenT and j
-            <=
-            i;
-            ++j
-            )
-            {
-                dp[i][j] = dp[i - 1][j]; // if we can construct first j letters from t using first i - 1 letters from s
+            for (int j = 1; j <= lenT and j <= i; ++j) {
+                dp[i][j] = dp[i - 1][j];  // if we can construct first j letters from t using first i - 1 letters from s
                 if (s[i - 1] == t[j - 1]) {
-                    // we use ith letter as last letter in s, then construct first j - 1 letters from t using first i - 1 letters from s
+                    // we use ith letter as last letter in s, then construct first j - 1 letters from t using first i -
+                    // 1 letters from s
                     dp[i][j] += dp[i - 1][j - 1];
                 }
             }

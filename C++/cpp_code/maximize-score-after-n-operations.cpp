@@ -51,20 +51,20 @@ using namespace std;
 
 class Solution {
 public:
-    int maxScore(vector<int> &A) {
+    int maxScore(vector<int>& A) {
         int N = A.size();
         vector<int> dp(1 << N);
         for (int m = 3; m < (1 << N); ++m) {
             // `m` is a binary mask representation of the elements in the subset
             int cnt = __builtin_popcount(m);
             if (cnt % 2) {
-                continue; // if there are even number of elements in this subset, skip
+                continue;  // if there are even number of elements in this subset, skip
             }
 
-            vector<int> b; // indexes of elements in this subset
+            vector<int> b;  // indexes of elements in this subset
             for (int i = 0; i < 20; ++i) {
                 if (m >> i & 1)
-                    b.push_back(i); // `m` is bit 1 at position `i`, which means that `A[i]` is in the current subset
+                    b.push_back(i);  // `m` is bit 1 at position `i`, which means that `A[i]` is in the current subset
             }
 
             for (int i = 0; i < b.size(); ++i) {
@@ -73,7 +73,8 @@ public:
                     int next = m & ~(1 << b[i]) & ~(1 << b[j]);
                     // `next` represents the subset after removing `A[b[i]]` and `A[b[j]]` from subset `m`
                     dp[m] = max(dp[m], cnt / 2 * gcd(A[b[i]], A[b[j]]) + dp[next]);
-                    // cnt / 2 * gcd(A[b[i]], A[b[j]]) is the score we get in the last operation. dp[next] is the maximum score we can get on the subset `next.
+                    // cnt / 2 * gcd(A[b[i]], A[b[j]]) is the score we get in the last operation. dp[next] is the
+                    // maximum score we can get on the subset `next.
                 }
             }
         }

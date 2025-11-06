@@ -2,15 +2,21 @@
 https://leetcode.com/problems/build-binary-expression-tree-from-infix-expression/
 1597. Build Binary Expression Tree From Infix Expression
 
-A binary expression tree is a kind of binary tree used to represent arithmetic expressions. Each node of a binary expression tree has either zero or two children. Leaf nodes (nodes with 0 children) correspond to operands (numbers), and internal nodes (nodes with 2 children) correspond to the operators '+' (addition), '-' (subtraction), '*' (multiplication), and '/' (division).
+A binary expression tree is a kind of binary tree used to represent arithmetic expressions. Each node of a binary
+expression tree has either zero or two children. Leaf nodes (nodes with 0 children) correspond to operands (numbers),
+and internal nodes (nodes with 2 children) correspond to the operators '+' (addition), '-' (subtraction), '*'
+(multiplication), and '/' (division).
 
-For each internal node with operator o, the infix expression it represents is (A o B), where A is the expression the left subtree represents and B is the expression the right subtree represents.
+For each internal node with operator o, the infix expression it represents is (A o B), where A is the expression the
+left subtree represents and B is the expression the right subtree represents.
 
-You are given a string s, an infix expression containing operands, the operators described above, and parentheses '(' and ')'.
+You are given a string s, an infix expression containing operands, the operators described above, and parentheses '('
+and ')'.
 
 Return any valid binary expression tree, whose in-order traversal reproduces s after omitting the parenthesis from it.
 
-Please note that order of operations applies in s. That is, expressions in parentheses are evaluated first, and multiplication and division happen before addition and subtraction.
+Please note that order of operations applies in s. That is, expressions in parentheses are evaluated first, and
+multiplication and division happen before addition and subtraction.
 
 Operands must also appear in the same order in both s and the in-order traversal of the tree.
 
@@ -27,10 +33,13 @@ Example 2:
 
 Input: s = "2-3/(5*2)+1"
 Output: [+,-,1,2,/,null,null,null,null,3,*,null,null,5,2]
-Explanation: The inorder traversal of the tree above is 2-3/5*2+1 which is the same as s without the parenthesis. The tree also produces the correct result and its operands are in the same order as they appear in s.
-The tree below is also a valid binary expression tree with the same inorder traversal as s, but it not a valid answer because it does not evaluate to the same value.
+Explanation: The inorder traversal of the tree above is 2-3/5*2+1 which is the same as s without the parenthesis. The
+tree also produces the correct result and its operands are in the same order as they appear in s. The tree below is also
+a valid binary expression tree with the same inorder traversal as s, but it not a valid answer because it does not
+evaluate to the same value.
 
-The third tree below is also not valid. Although it produces the same result and is equivalent to the above trees, its inorder traversal does not produce s and its operands are not in the same order as s.
+The third tree below is also not valid. Although it produces the same result and is equivalent to the above trees, its
+inorder traversal does not produce s and its operands are not in the same order as s.
 
 Example 3:
 
@@ -63,8 +72,8 @@ using namespace std;
 
 struct Node {
     char val;
-    Node *left;
-    Node *right;
+    Node* left;
+    Node* right;
 
     Node() : val(' '), left(nullptr), right(nullptr) {
     }
@@ -72,14 +81,14 @@ struct Node {
     Node(char x) : val(x), left(nullptr), right(nullptr) {
     }
 
-    Node(char x, Node *left, Node *right) : val(x), left(left), right(right) {
+    Node(char x, Node* left, Node* right) : val(x), left(left), right(right) {
     }
 };
 
 // https://runestone.academy/ns/books/published/pythonds/BasicDS/InfixPrefixandPostfixExpressions.html
 class Solution {
 private:
-    void infix_to_postfix(vector<char> &infix, vector<char> &postfix) {
+    void infix_to_postfix(vector<char>& infix, vector<char>& postfix) {
         unordered_map<char, int> prec;
         prec['*'] = 3;
         prec['/'] = 3;
@@ -87,7 +96,7 @@ private:
         prec['-'] = 2;
         prec['('] = 1;
         stack<char> op_stk;
-        for (char &c : infix) {
+        for (char& c : infix) {
             if (isdigit(c)) {
                 postfix.push_back(c);
             } else if (c == '(') {
@@ -115,17 +124,17 @@ private:
         }
     }
 
-    Node *build_tree(vector<char> &post_fix) {
-        stack<Node *> stk;
-        for (char &c: post_fix) {
+    Node* build_tree(vector<char>& post_fix) {
+        stack<Node*> stk;
+        for (char& c : post_fix) {
             if (isdigit(c)) {
                 stk.push(new Node(c));
                 continue;
             }
 
-            Node *r = stk.top();
+            Node* r = stk.top();
             stk.pop();
-            Node *l = stk.top();
+            Node* l = stk.top();
             stk.pop();
             stk.push(new Node(c, l, r));
         }
@@ -133,9 +142,9 @@ private:
     }
 
 public:
-    Node *expTree(string s) {
+    Node* expTree(string s) {
         vector<char> infix;
-        for (char c: s) {
+        for (char c : s) {
             infix.push_back(c);
         }
 

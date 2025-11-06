@@ -45,15 +45,15 @@ using namespace std;
 
 class Solution {
 public:
-    int maxChunksToSorted(vector<int> &arr) {
+    int maxChunksToSorted(vector<int>& arr) {
         int n = arr.size();
         if (n < 2) {
             return n;
         }
 
-        vector<int> leftMax(n, 0); // leftMax contains max value from 0...i, inclusive
+        vector<int> leftMax(n, 0);  // leftMax contains max value from 0...i, inclusive
         leftMax[0] = arr[0];
-        vector<int> rightMin(n, 0); // rightMin contains min value from i...n - 1, inclusive
+        vector<int> rightMin(n, 0);  // rightMin contains min value from i...n - 1, inclusive
         rightMin[n - 1] = arr[n - 1];
         for (int i = 1; i < n; i++) {
             leftMax[i] = max(arr[i], leftMax[i - 1]);
@@ -73,14 +73,15 @@ public:
 class Solution1 {
     // sorting
 public:
-    int maxChunksToSorted(vector<int> &arr) {
+    int maxChunksToSorted(vector<int>& arr) {
         long sum1 = 0, sum2 = 0, ans = 0;
         vector<int> t = arr;
         sort(t.begin(), t.end());
         for (int i = 0; i < arr.size(); i++) {
             sum1 += t[i];
             sum2 += arr[i];
-            if (sum1 == sum2) ans++;
+            if (sum1 == sum2)
+                ans++;
         }
         return ans;
     }

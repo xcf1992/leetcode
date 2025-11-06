@@ -66,21 +66,17 @@ private:
     int n = 0;
     vector<int> diff = {0, -1, 0, 1, 0};
 
-    bool isValid(int r, int c, vector<vector<int> > &maze) {
-        return r < m
-        and r
-        >=
-        0
-        and c<n and c >= 0 and maze[r][c] == 0;
+    bool isValid(int r, int c, vector<vector<int>>& maze) {
+        return r < m and r >= 0 and c < n and c >= 0 and maze[r][c] == 0;
     }
 
 public:
-    bool hasPath(vector<vector<int> > &maze, vector<int> &start, vector<int> &destination) {
+    bool hasPath(vector<vector<int>>& maze, vector<int>& start, vector<int>& destination) {
         m = maze.size();
         n = maze[0].size();
-        vector<vector<bool> > visited(m, vector<bool>(n, false));
+        vector<vector<bool>> visited(m, vector<bool>(n, false));
 
-        queue<pair<int, int> > position;
+        queue<pair<int, int>> position;
         position.push({start[0], start[1]});
 
         while (!position.empty()) {
@@ -90,11 +86,7 @@ public:
             int row = curPos.first;
             int col = curPos.second;
             visited[row][col] = true;
-            if (row == destination[0] and col
-            ==
-            destination[1]
-            )
-            {
+            if (row == destination[0] and col == destination[1]) {
                 return true;
             }
 

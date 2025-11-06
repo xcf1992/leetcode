@@ -89,7 +89,7 @@ So we can easily update and query height.
 */
 class Solution {
 private:
-    int query(int left, int right, vector<int> &heights) {
+    int query(int left, int right, vector<int>& heights) {
         int height = 0;
         for (int i = left; i <= right; i++) {
             height = max(height, heights[i]);
@@ -97,16 +97,16 @@ private:
         return height;
     }
 
-    void update(int left, int right, int height, vector<int> &heights) {
+    void update(int left, int right, int height, vector<int>& heights) {
         for (int i = left; i <= right; i++) {
             heights[i] = height;
         }
     }
 
 public:
-    vector<int> fallingSquares(vector<vector<int> > &positions) {
+    vector<int> fallingSquares(vector<vector<int>>& positions) {
         unordered_set<int> coords;
-        for (vector<int> &pos: positions) {
+        for (vector<int>& pos : positions) {
             coords.insert(pos[0]);
             coords.insert(pos[0] + pos[1] - 1);
         }
@@ -122,7 +122,7 @@ public:
         vector<int> heights(sortedCoords.size(), 0);
         vector<int> result;
         int current = 0;
-        for (vector<int> &pos: positions) {
+        for (vector<int>& pos : positions) {
             int left = index[pos[0]];
             int right = index[pos[0] + pos[1] - 1];
 

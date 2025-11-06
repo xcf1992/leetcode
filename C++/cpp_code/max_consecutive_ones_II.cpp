@@ -33,7 +33,7 @@ use right to store length of current group of consecutive ones
 */
 class Solution {
 public:
-    int findMaxConsecutiveOnes(vector<int> &nums) {
+    int findMaxConsecutiveOnes(vector<int>& nums) {
         int result = 0;
         int right = 0;
         int left = 0;

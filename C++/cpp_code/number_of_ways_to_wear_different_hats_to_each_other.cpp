@@ -51,7 +51,8 @@ using namespace std;
 
 class Solution {
 private:
-    int dfs(vector<vector<int>>& hatToPeople, vector<vector<int>>& dp, int& allPeopleAssigned,  int hat,  int currentAssignment) {
+    int dfs(vector<vector<int>>& hatToPeople, vector<vector<int>>& dp, int& allPeopleAssigned, int hat,
+            int currentAssignment) {
         if (currentAssignment == allPeopleAssigned) {
             return 1;
         }
@@ -67,13 +68,15 @@ private:
             if (((currentAssignment >> people) & 1) == 1) {
                 continue;
             }
-            dp[hat][currentAssignment] += dfs(hatToPeople, dp, allPeopleAssigned, hat + 1, currentAssignment | (1 << people));
+            dp[hat][currentAssignment] +=
+                    dfs(hatToPeople, dp, allPeopleAssigned, hat + 1, currentAssignment | (1 << people));
             dp[hat][currentAssignment] %= (int)(1e9 + 7);
         }
         return dp[hat][currentAssignment];
     }
+
 public:
-    int numberWays(vector<vector<int>>& hats)  {
+    int numberWays(vector<vector<int>>& hats) {
         int numOfPeople = static_cast<int>(hats.size());
         vector<vector<int>> hatToPeople(41, vector<int>());
         vector<vector<int>> dp(41, vector<int>((int)(pow(2, numOfPeople)), -1));

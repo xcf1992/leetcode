@@ -60,15 +60,12 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> asteroidCollision(vector<int> &asteroids) {
+    vector<int> asteroidCollision(vector<int>& asteroids) {
         vector<int> result;
-        for (int asteroid: asteroids) {
+        for (int asteroid : asteroids) {
             if (asteroid < 0) {
                 bool exploded = false;
-                while (!result.empty() and
-                result.back() > 0
-                )
-                {
+                while (!result.empty() and result.back() > 0) {
                     if (result.back() > abs(asteroid)) {
                         exploded = true;
                         break;

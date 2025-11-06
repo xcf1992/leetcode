@@ -53,15 +53,11 @@ public:
     int longestCommonSubsequence(string text1, string text2) {
         int len1 = text1.size();
         int len2 = text2.size();
-        if (len1 == 0 or len2
-        ==
-        0
-        )
-        {
+        if (len1 == 0 or len2 == 0) {
             return 0;
         }
 
-        vector<vector<int> > dp(len1 + 1, vector<int>(len2 + 1, 0));
+        vector<vector<int>> dp(len1 + 1, vector<int>(len2 + 1, 0));
         for (int i = 1; i <= len1; ++i) {
             dp[i][0] = 0;
         }

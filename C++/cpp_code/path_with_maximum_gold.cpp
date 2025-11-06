@@ -58,10 +58,8 @@ private:
     int n = 0;
     vector<int> diff = {0, 1, 0, -1, 0};
 
-    void dfs(int row, int col, int &gold, int &result, vector<vector<int> > &grid) {
-        if (row >= m or row<0 or col >= n or col < 0 or grid[row][col] <= 0
-        )
-        {
+    void dfs(int row, int col, int& gold, int& result, vector<vector<int>>& grid) {
+        if (row >= m or row < 0 or col >= n or col < 0 or grid[row][col] <= 0) {
             return;
         }
 
@@ -76,7 +74,7 @@ private:
     }
 
 public:
-    int getMaximumGold(vector<vector<int> > &grid) {
+    int getMaximumGold(vector<vector<int>>& grid) {
         m = grid.size();
         if (m == 0) {
             return 0;

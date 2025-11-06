@@ -50,11 +50,11 @@ private:
     int M = 0;
     int N = 0;
 
-    int getDistance(vector<int> &worker, vector<int> &bike) {
+    int getDistance(vector<int>& worker, vector<int>& bike) {
         return abs(worker[0] - bike[0]) + abs(worker[1] - bike[1]);
     }
 
-    int dfs(vector<vector<int> > &workers, vector<vector<int> > &bikes, vector<vector<int> > &memo, int curWorker,
+    int dfs(vector<vector<int>>& workers, vector<vector<int>>& bikes, vector<vector<int>>& memo, int curWorker,
             int occupied) {
         if (curWorker >= N) {
             return 0;
@@ -67,18 +67,18 @@ private:
         for (int i = 0; i < M; ++i)
             if ((occupied & (1 << i)) == 0) {
                 // this bike is not taken by anyone
-                int distance = getDistance(workers[curWorker], bikes[i])
-                               + dfs(workers, bikes, memo, curWorker + 1, (occupied | (1 << i)));
+                int distance = getDistance(workers[curWorker], bikes[i]) +
+                               dfs(workers, bikes, memo, curWorker + 1, (occupied | (1 << i)));
                 memo[occupied][curWorker] = min(memo[occupied][curWorker], distance);
             }
         return memo[occupied][curWorker];
     }
 
 public:
-    int assignBikes(vector<vector<int> > &workers, vector<vector<int> > &bikes) {
+    int assignBikes(vector<vector<int>>& workers, vector<vector<int>>& bikes) {
         M = bikes.size();
         N = workers.size();
-        vector<vector<int> > memo(1 << M, vector<int>(N, INT_MAX));
+        vector<vector<int>> memo(1 << M, vector<int>(N, INT_MAX));
         return dfs(workers, bikes, memo, 0, 0);
     }
 };
@@ -90,11 +90,11 @@ private:
     int M = 0;
     int N = 0;
 
-    int getDistance(vector<int> &worker, vector<int> &bike) {
+    int getDistance(vector<int>& worker, vector<int>& bike) {
         return abs(worker[0] - bike[0]) + abs(worker[1] - bike[1]);
     }
 
-    int dfs(vector<vector<int> > &workers, vector<vector<int> > &bikes, int curWorker, int occupied) {
+    int dfs(vector<vector<int>>& workers, vector<vector<int>>& bikes, int curWorker, int occupied) {
         if (curWorker >= N) {
             return 0;
         }
@@ -108,15 +108,15 @@ private:
         for (int i = 0; i < M; ++i)
             if ((occupied & (1 << i)) == 0) {
                 // this bike is not taken by anyone
-                int temp = getDistance(workers[curWorker], bikes[i]) + dfs(
-                               workers, bikes, curWorker + 1, (occupied | (1 << i)));
+                int temp = getDistance(workers[curWorker], bikes[i]) +
+                           dfs(workers, bikes, curWorker + 1, (occupied | (1 << i)));
                 memo[key] = min(memo[key], temp);
             }
         return memo[key];
     }
 
 public:
-    int assignBikes(vector<vector<int> > &workers, vector<vector<int> > &bikes) {
+    int assignBikes(vector<vector<int>>& workers, vector<vector<int>>& bikes) {
         M = bikes.size();
         N = workers.size();
         return dfs(workers, bikes, 0, 0);
@@ -128,30 +128,31 @@ class Solution2 {
 private:
     int result = INT_MAX;
 
-    void dfs(vector<vector<int> > &workers, int i, vector<vector<int> > &bikes, vector<bool> &used, int sum) {
+    void dfs(vector<vector<int>>& workers, int i, vector<vector<int>>& bikes, vector<bool>& used, int sum) {
         if (i == workers.size()) {
             result = min(result, sum);
             return;
         }
 
         if (sum > result) {
-            return; // early termination
+            return;  // early termination
         }
 
         for (int j = 0; j < bikes.size(); ++j) {
-            if (used[j]) continue;
+            if (used[j])
+                continue;
             used[j] = true;
             dfs(workers, i + 1, bikes, used, sum + getDistance(workers[i], bikes[j]));
             used[j] = false;
         }
     }
 
-    int getDistance(vector<int> &worker, vector<int> &bike) {
+    int getDistance(vector<int>& worker, vector<int>& bike) {
         return abs(worker[0] - bike[0]) + abs(worker[1] - bike[1]);
     }
 
 public:
-    int assignBikes(vector<vector<int> > &workers, vector<vector<int> > &bikes) {
+    int assignBikes(vector<vector<int>>& workers, vector<vector<int>>& bikes) {
         vector<bool> used(bikes.size(), false);
         dfs(workers, 0, bikes, used, 0);
         return result;

@@ -50,7 +50,7 @@ using namespace std;
 class TrieNode {
 public:
     bool isWord = false;
-    vector<TrieNode *> next = vector<TrieNode *>(26, nullptr);
+    vector<TrieNode*> next = vector<TrieNode*>(26, nullptr);
 
     TrieNode(bool word = false) : isWord(word) {
     }
@@ -58,14 +58,14 @@ public:
 
 class Trie {
 public:
-    TrieNode *root;
+    TrieNode* root;
 
     Trie() {
         root = new TrieNode();
     }
 
-    void insert(string &word) {
-        TrieNode *cur = root;
+    void insert(string& word) {
+        TrieNode* cur = root;
         for (int i = word.size() - 1; i >= 0; --i) {
             int pos = word[i] - 'a';
             if (cur->next[pos] == nullptr) {
@@ -76,8 +76,8 @@ public:
         cur->isWord = true;
     }
 
-    bool find(string &word) {
-        TrieNode *cur = root;
+    bool find(string& word) {
+        TrieNode* cur = root;
         for (int i = word.size() - 1; i >= 0; --i) {
             int pos = word[i] - 'a';
             cur = cur->next[pos];
@@ -98,8 +98,8 @@ private:
     string curWord = "";
 
 public:
-    StreamChecker(vector<string> &words) {
-        for (string &word: words) {
+    StreamChecker(vector<string>& words) {
+        for (string& word : words) {
             trie.insert(word);
         }
     }
@@ -111,7 +111,7 @@ public:
 };
 
 /*
-* Your StreamChecker object will be instantiated and called as such:
-* StreamChecker* obj = new StreamChecker(words);
-* bool param_1 = obj->query(letter);
-*/
+ * Your StreamChecker object will be instantiated and called as such:
+ * StreamChecker* obj = new StreamChecker(words);
+ * bool param_1 = obj->query(letter);
+ */

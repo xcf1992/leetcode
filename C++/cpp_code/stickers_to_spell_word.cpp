@@ -35,8 +35,9 @@ Note:
 stickers has length in the range [1, 50].
 stickers consists of lowercase English words (without apostrophes).
 target has length in the range [1, 15], and consists of lowercase English letters.
-In all test cases, all words were chosen randomly from the 1000 most common US English words, and the target was chosen as a concatenation of two random words.
-The time limit may be more challenging than usual. It is expected that a 50 sticker test case can be solved within 35ms on average.
+In all test cases, all words were chosen randomly from the 1000 most common US English words, and the target was chosen
+as a concatenation of two random words. The time limit may be more challenging than usual. It is expected that a 50
+sticker test case can be solved within 35ms on average.
 */
 #include <iostream>
 #include <string>
@@ -55,16 +56,15 @@ using namespace std;
 
 class Solution {
 private:
-    int getNextState(string &sticker, string &target, int curState) {
+    int getNextState(string& sticker, string& target, int curState) {
         int nextState = curState;
-        for (char c: sticker) {
+        for (char c : sticker) {
             for (int i = 0; i < target.size(); ++i) {
-                if (target[i] == c and((nextState >> i) & 1) == 0
-                )
-                {
+                if (target[i] == c and ((nextState >> i) & 1) == 0) {
                     nextState |= 1 << i;
                     break;
-                    // if we fit current letter into one slot of target, we should break and check next letter from current sticker
+                    // if we fit current letter into one slot of target, we should break and check next letter from
+                    // current sticker
                 }
             }
         }
@@ -72,19 +72,15 @@ private:
     }
 
 public:
-    int minStickers(vector<string> &stickers, string target) {
+    int minStickers(vector<string>& stickers, string target) {
         int n = target.size();
         vector<int> dp(1 << n, -1);
         dp[0] = 0;
         for (int state = 0; state < (1 << n); ++state)
             if (dp[state] != -1) {
-                for (string &sticker: stickers) {
+                for (string& sticker : stickers) {
                     int nextState = getNextState(sticker, target, state);
-                    if (dp[nextState] == -1 or dp[nextState]
-                    >
-                    dp[state] + 1
-                    )
-                    {
+                    if (dp[nextState] == -1 or dp[nextState] > dp[state] + 1) {
                         dp[nextState] = dp[state] + 1;
                     }
                 }
@@ -96,16 +92,15 @@ public:
 class Solution1 {
     // another way to write the solution, same idea from 1125. Smallest Sufficient Team
 private:
-    int getNextState(string &sticker, string &target, int curState) {
+    int getNextState(string& sticker, string& target, int curState) {
         int nextState = curState;
-        for (char c: sticker) {
+        for (char c : sticker) {
             for (int i = 0; i < target.size(); ++i) {
-                if (target[i] == c and((nextState >> i) & 1) == 0
-                )
-                {
+                if (target[i] == c and ((nextState >> i) & 1) == 0) {
                     nextState |= 1 << i;
                     break;
-                    // if we fit current letter into one slot of target, we should break and check next letter from current sticker
+                    // if we fit current letter into one slot of target, we should break and check next letter from
+                    // current sticker
                 }
             }
         }
@@ -113,19 +108,15 @@ private:
     }
 
 public:
-    int minStickers(vector<string> &stickers, string target) {
+    int minStickers(vector<string>& stickers, string target) {
         int n = target.size();
         map<int, int> dp;
         dp[0] = 0;
-        for (string &sticker: stickers) {
+        for (string& sticker : stickers) {
             for (auto it = dp.begin(); it != dp.end(); ++it) {
                 int state = it->first;
                 int nextState = getNextState(sticker, target, state);
-                if (dp.find(nextState) == dp.end() or dp[nextState]
-                >
-                dp[state] + 1
-                )
-                {
+                if (dp.find(nextState) == dp.end() or dp[nextState] > dp[state] + 1) {
                     dp[nextState] = dp[state] + 1;
                 }
             }
@@ -137,23 +128,23 @@ public:
 class Solution2 {
     // TLE
 public:
-    int minStickers(vector<string> &stickers, string target) {
+    int minStickers(vector<string>& stickers, string target) {
         int n = stickers.size();
-        vector<vector<int> > dic(n, vector<int>(26, 0));
+        vector<vector<int>> dic(n, vector<int>(26, 0));
         for (int i = 0; i < n; i++) {
-            string &sticker = stickers[i];
+            string& sticker = stickers[i];
             for (int j = 0; j < sticker.size(); j++) {
                 dic[i][sticker[j] - 'a'] += 1;
             }
         }
 
         vector<int> tar(26, 0);
-        for (char c: target) {
+        for (char c : target) {
             tar[c - 'a'] += 1;
         }
 
         unordered_set<string> visited;
-        queue<vector<int> > bfs;
+        queue<vector<int>> bfs;
         bfs.push(tar);
         int result = 0;
         vector<int> spelled(26, 0);
@@ -175,10 +166,7 @@ public:
                     if (temp == spelled) {
                         return result;
                     }
-                    if (temp != bfs.front() and
-                    visited.find(s) == visited.end()
-                    )
-                    {
+                    if (temp != bfs.front() and visited.find(s) == visited.end()) {
                         bfs.push(temp);
                         visited.insert(s);
                     }

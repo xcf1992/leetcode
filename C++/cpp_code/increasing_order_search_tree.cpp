@@ -56,16 +56,14 @@ using namespace std;
 
 class Solution {
 public:
-    TreeNode *increasingBST(TreeNode *root) {
-        if (root == nullptr or(root->left == nullptr and root->right == nullptr)
-        )
-        {
+    TreeNode* increasingBST(TreeNode* root) {
+        if (root == nullptr or (root->left == nullptr and root->right == nullptr)) {
             return root;
         }
 
-        TreeNode *cur = root;
+        TreeNode* cur = root;
         if (root->left != nullptr) {
-            TreeNode *leftRoot = increasingBST(root->left);
+            TreeNode* leftRoot = increasingBST(root->left);
             root = leftRoot;
             while (leftRoot->right != nullptr) {
                 leftRoot = leftRoot->right;

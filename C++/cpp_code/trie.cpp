@@ -9,7 +9,7 @@ using namespace std;
 class TrieNode {
 public:
     // Initialize your data structure here.
-    vector<TrieNode *> next;
+    vector<TrieNode*> next;
     bool end;
 
     TrieNode() {
@@ -27,7 +27,7 @@ public:
 
     // Inserts a word into the trie.
     void insert(string s) {
-        TrieNode *cur = root;
+        TrieNode* cur = root;
         for (int i = 0; i < s.size(); i++) {
             int pos = s[i] - 'a';
             if (cur->next[pos] == nullptr) {
@@ -40,7 +40,7 @@ public:
 
     // Returns if the word is in the trie.
     bool search(string key) {
-        TrieNode *cur = root;
+        TrieNode* cur = root;
         for (int i = 0; i < key.size(); i++) {
             int pos = key[i] - 'a';
             if (cur->next[pos] == nullptr) {
@@ -54,7 +54,7 @@ public:
     // Returns if there is any word in the trie
     // that starts with the given prefix.
     bool startsWith(string prefix) {
-        TrieNode *cur = root;
+        TrieNode* cur = root;
         for (int i = 0; i < prefix.size(); i++) {
             int pos = prefix[i] - 'a';
             if (cur->next[pos] == nullptr) {
@@ -66,7 +66,7 @@ public:
     }
 
 private:
-    TrieNode *root;
+    TrieNode* root;
 };
 
 int main() {

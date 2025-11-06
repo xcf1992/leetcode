@@ -71,14 +71,14 @@ using namespace std;
 
 class Solution {
 public:
-    int unhappyFriends(int n, vector<vector<int> > &preferences, vector<vector<int> > &pairs) {
+    int unhappyFriends(int n, vector<vector<int>>& preferences, vector<vector<int>>& pairs) {
         vector<int> match(n, -1);
-        for (vector<int> &p: pairs) {
+        for (vector<int>& p : pairs) {
             match[p[0]] = p[1];
             match[p[1]] = p[0];
         }
 
-        vector<vector<int> > score(n, vector<int>(n, -1));
+        vector<vector<int>> score(n, vector<int>(n, -1));
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < n - 1; ++j) {
                 score[i][preferences[i][j]] = j;
@@ -87,12 +87,8 @@ public:
 
         int result = 0;
         for (int i = 0; i < n; ++i) {
-            for (int j: preferences[i]) {
-                if (score[i][j] < score[i][match[i]] and score[j][i]
-                <
-                score[j][match[j]]
-                )
-                {
+            for (int j : preferences[i]) {
+                if (score[i][j] < score[i][match[i]] and score[j][i] < score[j][match[j]]) {
                     result += 1;
                 }
             }

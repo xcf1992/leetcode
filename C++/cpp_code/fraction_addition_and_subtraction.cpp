@@ -60,10 +60,7 @@ private:
     }
 
     int getLCM(int a, int b) {
-        return a == 0
-        or b
-        ==
-        0 ? 0 : a * b / getGCD(a, b);
+        return a == 0 or b == 0 ? 0 : a * b / getGCD(a, b);
     }
 
 public:
@@ -91,9 +88,7 @@ public:
 
             i++;
 
-            while (isdigit(expression[i]) and i<expression.size()
-            )
-            {
+            while (isdigit(expression[i]) and i < expression.size()) {
                 d1 = d1 * 10 + (expression[i] - '0');
                 i++;
             }

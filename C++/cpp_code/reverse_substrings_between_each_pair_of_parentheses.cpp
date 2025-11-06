@@ -54,11 +54,9 @@ public:
         for (int i = 0; i < s.size(); ++i) {
             if (isalpha(s[i])) {
                 result.push_back(s[i]);
-            }
-            else if (s[i] == '(') {
+            } else if (s[i] == '(') {
                 stk.push(result.size());
-            }
-            else {
+            } else {
                 reverse(result.begin() + stk.top(), result.end());
                 stk.pop();
             }

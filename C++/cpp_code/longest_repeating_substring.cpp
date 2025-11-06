@@ -43,13 +43,13 @@ The string S consists of only lowercase English letters from 'a' - 'z'.
 #include <numeric>
 using namespace std;
 
-//dp[i][j] means # of repeated chars for substrings ending at i and j
+// dp[i][j] means # of repeated chars for substrings ending at i and j
 class Solution {
 public:
     int longestRepeatingSubstring(string S) {
         int n = S.size();
         int result = 0;
-        vector<vector<int> > dp(n + 1, vector<int>(n + 1, 0));
+        vector<vector<int>> dp(n + 1, vector<int>(n + 1, 0));
         for (int i = 1; i <= n; ++i) {
             for (int j = i + 1; j <= n; ++j) {
                 // j should be different from i

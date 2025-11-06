@@ -32,8 +32,8 @@ As it's in descending order, the first number that meets this check is the large
 
 There are no two numbers of equal number of digits that would produce 999.
 
-To your point, it may be possible to find a palindrome that is smaller than (n x 2) digits by multiplying two n-digit numbers.
-But, it will certainly not be the largest and therefore can be ignored. Try it out yourself.
+To your point, it may be possible to find a palindrome that is smaller than (n x 2) digits by multiplying two n-digit
+numbers. But, it will certainly not be the largest and therefore can be ignored. Try it out yourself.
 */
 class Solution {
 private:
@@ -54,11 +54,7 @@ public:
         for (int v = upper; v >= lower; --v) {
             long palindrome = buildPalindrome(v);
             for (long factor = upper; factor * factor >= palindrome; --factor) {
-                if (palindrome % factor == 0 and palindrome
-                /
-                factor <= upper
-                )
-                {
+                if (palindrome % factor == 0 and palindrome / factor <= upper) {
                     return palindrome % 1337;
                 }
             }

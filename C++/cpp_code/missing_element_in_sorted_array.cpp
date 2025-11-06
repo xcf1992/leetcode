@@ -52,7 +52,7 @@ where the kth missing number will be located in (nums[index], nums[index + 1]), 
 */
 class Solution {
 public:
-    int missingElement(vector<int> &nums, int k) {
+    int missingElement(vector<int>& nums, int k) {
         int n = nums.size();
         int left = 0;
         int right = n - 1;

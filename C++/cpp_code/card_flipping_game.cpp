@@ -42,7 +42,7 @@ using namespace std;
 
 class Solution {
 public:
-    int flipgame(vector<int> &fronts, vector<int> &backs) {
+    int flipgame(vector<int>& fronts, vector<int>& backs) {
         int n = fronts.size();
         unordered_set<int> bad;
         for (int i = 0; i < n; ++i) {
@@ -66,8 +66,8 @@ public:
 
 class Solution1 {
 private:
-    bool canFlip(vector<int> &pos, vector<int> &fronts, vector<int> &backs) {
-        for (int i: pos) {
+    bool canFlip(vector<int>& pos, vector<int>& fronts, vector<int>& backs) {
+        for (int i : pos) {
             if (fronts[i] == backs[i]) {
                 return false;
             }
@@ -76,10 +76,10 @@ private:
     }
 
 public:
-    int flipgame(vector<int> &fronts, vector<int> &backs) {
+    int flipgame(vector<int>& fronts, vector<int>& backs) {
         int n = fronts.size();
-        unordered_map<int, vector<int> > front;
-        unordered_map<int, vector<int> > back;
+        unordered_map<int, vector<int>> front;
+        unordered_map<int, vector<int>> back;
         for (int i = 0; i < n; i++) {
             front[fronts[i]].push_back(i);
             back[backs[i]].push_back(i);
@@ -88,16 +88,12 @@ public:
         int result = INT_MAX;
         for (int i = 0; i < n; i++) {
             int num = fronts[i];
-            if (back.find(num) == back.end() or canFlip(back[num], fronts, backs)
-            )
-            {
+            if (back.find(num) == back.end() or canFlip(back[num], fronts, backs)) {
                 result = min(result, num);
             }
 
             num = backs[i];
-            if (front.find(num) == front.end() or canFlip(front[num], backs, fronts)
-            )
-            {
+            if (front.find(num) == front.end() or canFlip(front[num], backs, fronts)) {
                 result = min(result, num);
             }
         }

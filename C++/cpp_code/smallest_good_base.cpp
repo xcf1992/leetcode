@@ -78,7 +78,8 @@ So our number should satisfy this equation where k will be our base and m will b
 
 This brings us to the search problem where we need to find k and m.
 
-Linear search from 1 to n does not work. it gives us TLE. So it leaves us with performing some optimization on search space.
+Linear search from 1 to n does not work. it gives us TLE. So it leaves us with performing some optimization on search
+space.
 
 From [6] we know that the only candidate that needs to be tested is, ⌊m-th root of n⌋
 
@@ -98,15 +99,16 @@ As n <= 10^18, so n < (1<<62).
 We iterate the length of the representation from 62 to 2 (2 can always be valid, with base=n-1),
 and check whether a given length can be valid.
 
-For a given length d, we use binary search to check whether there is a base k which satisfies 1 + k^1 + k^2 + ... + k^d=n.
-The left limit is 1, and the right limit is pow(n,1/d)+1, i.e., the d th square root of n. The code is shown below.
+For a given length d, we use binary search to check whether there is a base k which satisfies 1 + k^1 + k^2 + ... +
+k^d=n. The left limit is 1, and the right limit is pow(n,1/d)+1, i.e., the d th square root of n. The code is shown
+below.
 */
 class Solution {
 private:
     unsigned long long check(unsigned long long num, int len) {
-        double n = (double) num;
+        double n = (double)num;
         unsigned long long left = 1;
-        unsigned long long right = (unsigned long long) (pow(n, 1.0 / len) + 1);
+        unsigned long long right = (unsigned long long)(pow(n, 1.0 / len) + 1);
         while (left <= right) {
             unsigned long long mid = left + (right - left) / 2;
             unsigned long long sum = 1, cur = 1;
@@ -129,7 +131,7 @@ private:
 
 public:
     string smallestGoodBase(string n) {
-        unsigned long long num = (unsigned long long) stoll(n);
+        unsigned long long num = (unsigned long long)stoll(n);
         unsigned long long x = 1;
         for (int len = 62; len > 1; len--) {
             if ((x << len) < num) {

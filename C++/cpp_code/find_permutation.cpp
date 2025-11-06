@@ -43,12 +43,12 @@ using namespace std;
 /*
 Let's revisit the important points of the given problem statement.
 For a given n, we need to use all the integers in the range (1,n)
-to generate a lexicographically smallest permutation of these n numbers which satsfies the pattern given in the string s.
+to generate a lexicographically smallest permutation of these n numbers which satsfies the pattern given in the string
+s.
 
-Firstly, we note that the lexicographically smallest permutation that can be generated(irrelevant of the given pattern s)
-using the n integers from (1,n) is [1, 2, 3,.., n](say min).
-Thus, while generating the required permutation,
-we can surely say that the permutation generated should be as close as possible to min.
+Firstly, we note that the lexicographically smallest permutation that can be generated(irrelevant of the given pattern
+s) using the n integers from (1,n) is [1, 2, 3,.., n](say min). Thus, while generating the required permutation, we can
+surely say that the permutation generated should be as close as possible to min.
 
 Now, we can also note that the number generated will be the smallest possible
 only if the digits lying towards the most significant positions are as small as possible
@@ -125,14 +125,10 @@ public:
             if (s[i] == 'D') {
                 int left = i;
                 int right = i;
-                while (right < n and s[right]
-                ==
-                'D'
-                )
-                {
+                while (right < n and s[right] == 'D') {
                     right += 1;
                 }
-                i = right - 1; // cause we will have i++ later
+                i = right - 1;  // cause we will have i++ later
 
                 while (left < right) {
                     swap(result[left], result[right]);

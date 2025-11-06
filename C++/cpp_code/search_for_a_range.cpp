@@ -20,7 +20,6 @@ vector<int> findTarget(int left, int right, int A[], int target) {
         }
     }
 
-
     if (left > right) {
         range.push_back(-1);
         range.push_back(-1);
@@ -77,7 +76,6 @@ vector<int> searchRange(int A[], int n, int target) {
 
     return range;
 }
-
 
 int main() {
     int A[2] = {2, 2};

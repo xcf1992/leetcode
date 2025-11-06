@@ -39,7 +39,7 @@ using namespace std;
 class Solution {
     // prefix sum
 private:
-    void dfs(TreeNode *root, int curSum, int target, int &result, unordered_map<int, int> &count) {
+    void dfs(TreeNode* root, int curSum, int target, int& result, unordered_map<int, int>& count) {
         if (root == nullptr) {
             return;
         }
@@ -50,11 +50,12 @@ private:
         dfs(root->left, curSum, target, result, count);
         dfs(root->right, curSum, target, result, count);
         count[curSum] -= 1;
-        // IMPORTANT here, as we pop back to upper level current sum would not be valid anymore, so we need to minus 1 here
+        // IMPORTANT here, as we pop back to upper level current sum would not be valid anymore, so we need to minus 1
+        // here
     }
 
 public:
-    int pathSum(TreeNode *root, int sum) {
+    int pathSum(TreeNode* root, int sum) {
         unordered_map<int, int> count;
         count[0] = 1;
         int result = 0;
@@ -65,7 +66,7 @@ public:
 
 class Solution1 {
 private:
-    int getAllPaths(TreeNode *root, int pre, int sum) {
+    int getAllPaths(TreeNode* root, int pre, int sum) {
         if (root == nullptr) {
             return 0;
         }
@@ -75,7 +76,7 @@ private:
     }
 
 public:
-    int pathSum(TreeNode *root, int sum) {
+    int pathSum(TreeNode* root, int sum) {
         if (root == nullptr) {
             return 0;
         }

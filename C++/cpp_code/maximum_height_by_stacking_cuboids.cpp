@@ -97,9 +97,9 @@ Space O(n)
 */
 class Solution {
 public:
-    int maxHeight(vector<vector<int> > &A) {
+    int maxHeight(vector<vector<int>>& A) {
         A.push_back({0, 0, 0});
-        for (auto &a: A) {
+        for (auto& a : A) {
             sort(begin(a), end(a));
         }
         sort(begin(A), end(A));

@@ -36,11 +36,7 @@ private:
         int add = 0;
         int n1 = num1.size() - 1;
         int n2 = num2.size() - 1;
-        while (n1 >= 0 or n2
-        >=
-        0
-        )
-        {
+        while (n1 >= 0 or n2 >= 0) {
             int sum = 0;
             sum += add;
             if (n1 >= 0) {
@@ -59,16 +55,7 @@ private:
 
 public:
     string multiply(string num1, string num2) {
-        if (num1.empty() or
-        num2.empty()
-        or num1
-        ==
-        "0"
-        or num2
-        ==
-        "0"
-        )
-        {
+        if (num1.empty() or num2.empty() or num1 == "0" or num2 == "0") {
             return "0";
         }
         if (num1.size() < num2.size()) {

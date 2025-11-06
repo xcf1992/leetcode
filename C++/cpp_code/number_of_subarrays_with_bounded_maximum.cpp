@@ -56,20 +56,20 @@ public:
 
 class Solution1 {
 private:
-    int count(vector<int>& A, int limit) { // count of subarrays with maximum <= limit
+    int count(vector<int>& A, int limit) {  // count of subarrays with maximum <= limit
         int result = 0;
         int cur = 0;
         for (int num : A) {
             if (num <= limit) {
                 cur += 1;
-            }
-            else {
+            } else {
                 cur = 0;
             }
             result += cur;
         }
         return result;
     }
+
 public:
     int numSubarrayBoundedMax(vector<int>& A, int L, int R) {
         return count(A, R) - count(A, L - 1);

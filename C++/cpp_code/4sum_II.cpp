@@ -36,17 +36,17 @@ using namespace std;
 
 class Solution {
 public:
-    int fourSumCount(vector<int> &A, vector<int> &B, vector<int> &C, vector<int> &D) {
+    int fourSumCount(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D) {
         int result = 0;
         unordered_map<int, int> count;
-        for (int a: A) {
-            for (int b: B) {
+        for (int a : A) {
+            for (int b : B) {
                 count[a + b] += 1;
             }
         }
 
-        for (int c: C) {
-            for (int d: D) {
+        for (int c : C) {
+            for (int d : D) {
                 auto it = count.find(0 - c - d);
                 if (it != count.end()) {
                     result += it->second;

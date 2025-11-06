@@ -1,5 +1,6 @@
 /*
- Consider all the leaves of a binary tree.  From left to right order, the values of those leaves form a leaf value sequence.
+ Consider all the leaves of a binary tree.  From left to right order, the values of those leaves form a leaf value
+ sequence.
 
           3
        /      \
@@ -41,14 +42,11 @@ using namespace std;
 
 class Solution {
 private:
-    void getLeaves(TreeNode *root, vector<int> &leaves) {
+    void getLeaves(TreeNode* root, vector<int>& leaves) {
         if (root == nullptr) {
             return;
         }
-        if (root->left == nullptr and
-        root->right == nullptr
-        )
-        {
+        if (root->left == nullptr and root->right == nullptr) {
             leaves.push_back(root->val);
             return;
         }
@@ -57,7 +55,7 @@ private:
     }
 
 public:
-    bool leafSimilar(TreeNode *root1, TreeNode *root2) {
+    bool leafSimilar(TreeNode* root1, TreeNode* root2) {
         vector<int> leaves1;
         getLeaves(root1, leaves1);
         vector<int> leaves2;

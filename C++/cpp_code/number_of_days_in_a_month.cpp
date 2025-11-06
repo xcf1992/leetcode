@@ -42,8 +42,7 @@ class Solution {
 public:
     int numberOfDays(int Y, int M) {
         if (M == 2) {
-            return Y % 4 == 0
-            and(Y % 100 != 0 or Y % 400 == 0) ? 29 : 28;
+            return Y % 4 == 0 and (Y % 100 != 0 or Y % 400 == 0) ? 29 : 28;
         }
         if (M < 8) {
             return M % 2 == 0 ? 30 : 31;

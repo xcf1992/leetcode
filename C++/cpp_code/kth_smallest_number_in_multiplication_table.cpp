@@ -50,14 +50,15 @@ private:
         int result = 0;
         for (int i = 1; i <= m; i++) {
             /*
-            * count of number <= mid
-            * each row is like 1*i, 2*i, 3*i...n*i
-            * so the count of number <= m would be mid / i
-            */
+             * count of number <= mid
+             * each row is like 1*i, 2*i, 3*i...n*i
+             * so the count of number <= m would be mid / i
+             */
             result += min(limit / i, n);
         }
         return result;
     }
+
 public:
     int findKthNumber(int m, int n, int k) {
         int left = 1;
@@ -67,8 +68,7 @@ public:
             int count = getCount(m, n, mid);
             if (count >= k) {
                 right = mid;
-            }
-            else {
+            } else {
                 left = mid + 1;
             }
         }

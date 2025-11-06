@@ -14,7 +14,8 @@ Output: 1
 Explanation: We have 3 students where:
 The first student started doing homework at time 1 and finished at time 3 and wasn't doing anything at time 4.
 The second student started doing homework at time 2 and finished at time 2 and also wasn't doing anything at time 4.
-The third student started doing homework at time 3 and finished at time 7 and was the only student doing homework at time 4.
+The third student started doing homework at time 3 and finished at time 7 and was the only student doing homework at
+time 4.
 
 Example 2:
 Input: startTime = [4], endTime = [4], queryTime = 4

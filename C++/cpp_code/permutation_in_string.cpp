@@ -33,8 +33,8 @@ using namespace std;
 
 class Solution {
 private:
-    bool allZero(vector<int> &count) {
-        for (int num: count) {
+    bool allZero(vector<int>& count) {
+        for (int num : count) {
             if (num != 0) {
                 return false;
             }

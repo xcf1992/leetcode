@@ -30,7 +30,7 @@ public:
         while (b != 0) {
             long long carry = a & b;
             a = a ^ b;
-            b = (carry & 0xffffffff) << 1; // limited to 32 bits
+            b = (carry & 0xffffffff) << 1;  // limited to 32 bits
         }
         return a;
     }

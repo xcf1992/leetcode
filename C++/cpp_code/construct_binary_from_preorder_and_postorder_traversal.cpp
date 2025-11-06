@@ -36,16 +36,18 @@
 using namespace std;
 
 /*
- For two subarrays pre[a,b] and post[c,d], if we want to reconstruct a tree from them, we know that pre[a]==post[d] is the root node.
+ For two subarrays pre[a,b] and post[c,d], if we want to reconstruct a tree from them, we know that pre[a]==post[d] is
+ the root node.
 
  [root][......left......][...right..]  ---pre
  [......left......][...right..][root]  ---post
  pre[a+1] is the root node of the left subtree.
- Find the index of pre[a+1] in post, then we know the left subtree should be constructed from pre[a+1, a+idx-c+1] and post[c, idx].
+ Find the index of pre[a+1] in post, then we know the left subtree should be constructed from pre[a+1, a+idx-c+1] and
+ post[c, idx].
 */
 class Solution {
 private:
-    unordered_map<int, int> m; // value->index
+    unordered_map<int, int> m;  // value->index
 
     TreeNode* construct(vector<int>& pre, vector<int>& post, int preS, int preE, int postS, int postE) {
         TreeNode* root = new TreeNode(pre[preS]);
@@ -56,15 +58,16 @@ private:
         int leftRoot = pre[preS + 1];
         int idx = m[leftRoot];
         int len = idx - postS + 1;
-        root -> left = construct(pre, post, preS + 1, preS + len, postS, postS + len - 1);
+        root->left = construct(pre, post, preS + 1, preS + len, postS, postS + len - 1);
 
         if (idx + 1 == postE) {
             return root;
         }
 
-        root -> right = construct(pre, post, preS + len + 1, preE, idx + 1, postE - 1);
+        root->right = construct(pre, post, preS + len + 1, preE, idx + 1, postE - 1);
         return root;
     }
+
 public:
     TreeNode* constructFromPrePost(vector<int>& pre, vector<int>& post) {
         if (pre.empty()) {

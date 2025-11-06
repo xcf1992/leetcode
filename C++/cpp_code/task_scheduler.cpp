@@ -37,18 +37,18 @@ using namespace std;
 
 class Solution {
 public:
-    int leastInterval(vector<char> &tasks, int n) {
+    int leastInterval(vector<char>& tasks, int n) {
         vector<int> counts(26, 0);
         int frequency = 0;
-        for (char c: tasks) {
+        for (char c : tasks) {
             counts[c - 'A'] += 1;
             frequency = max(frequency, counts[c - 'A']);
         }
 
         int result = (n + 1) * (frequency - 1);
-        for (int count: counts) {
+        for (int count : counts) {
             result += count == frequency ? 1 : 0;
         }
-        return max(result, (int) tasks.size());
+        return max(result, (int)tasks.size());
     }
 };

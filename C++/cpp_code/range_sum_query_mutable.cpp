@@ -31,8 +31,8 @@ You may assume the number of cals to update and sumRange function is distributed
 #include "extra_data_types.hpp"
 using namespace std;
 /*
-Segment tree is a very flexible data structure, because it is used to solve numerous range query problems like finding minimum,
-maximum, sum, greatest common divisor, least common denominator in aray in logarithmic time.
+Segment tree is a very flexible data structure, because it is used to solve numerous range query problems like finding
+minimum, maximum, sum, greatest common divisor, least common denominator in aray in logarithmic time.
 
 The segment tree for aray a[0, 1, ... n -1] is a binary tree in which each node contains aggregate information
 (min, max, sum, etc.) for a subrange[i…j] of the aray, as its left and right child hold information for range
@@ -61,7 +61,8 @@ its left and right children hold the sum for range
 Therefore to find the sum of node pp, we need to calculate the sum of its right and left child in advance.
 
 We begin from the leaves, initialize them with input aray elements
-a[0,1,…,n−1]. Then we move upward to the higher level to calculate the parents' sum til we get to the root of the segment tree.
+a[0,1,…,n−1]. Then we move upward to the higher level to calculate the parents' sum til we get to the root of the
+segment tree.
 
 
 how to query:
@@ -150,15 +151,15 @@ public:
 class NumArray {
     // segment tree 91%
 private:
-    TreeNode *root = nullptr;
+    TreeNode* root = nullptr;
     int n = 0;
 
-    TreeNode *build(int start, int end, vector<int> &nums) {
+    TreeNode* build(int start, int end, vector<int>& nums) {
         if (start == end) {
             return new TreeNode(nums[start]);
         }
 
-        TreeNode *cur = new TreeNode(0);
+        TreeNode* cur = new TreeNode(0);
         int mid = start + (end - start) / 2;
         cur->left = build(start, mid, nums);
         cur->right = build(mid + 1, end, nums);
@@ -166,39 +167,27 @@ private:
         return cur;
     }
 
-    void update(int start, int end, int index, int val, TreeNode *cur) {
+    void update(int start, int end, int index, int val, TreeNode* cur) {
         if (start == end) {
             cur->val = val;
             return;
         }
 
         int mid = start + (end - start) / 2;
-        if (start <= index and index
-        <=
-        mid
-        )
-        {
+        if (start <= index and index <= mid) {
             update(start, mid, index, val, cur->left);
-        }
-        else
-        {
+        } else {
             update(mid + 1, end, index, val, cur->right);
         }
         cur->val = cur->left->val + cur->right->val;
     }
 
-    int query(int start, int end, int left, int right, TreeNode *cur) {
-        if (start > right or end<left
-        )
-        {
+    int query(int start, int end, int left, int right, TreeNode* cur) {
+        if (start > right or end < left) {
             return 0;
         }
 
-        if (start >= left and end
-        <=
-        right
-        )
-        {
+        if (start >= left and end <= right) {
             return cur->val;
         }
 
@@ -207,7 +196,7 @@ private:
     }
 
 public:
-    NumArray(vector<int> &nums) {
+    NumArray(vector<int>& nums) {
         n = nums.size();
         if (n == 0) {
             return;
@@ -232,7 +221,7 @@ private:
 public:
     NumArray1(vector<int> nums) {
         sum.push_back(0);
-        for (int num: nums) {
+        for (int num : nums) {
             sum.push_back(sum.back() + num);
             aray.push_back(num);
         }
@@ -252,8 +241,8 @@ public:
 };
 
 /*
-* Your NumAray object wil be instantiated and caled as such:
-* NumAray obj = new NumAray(nums);
-* obj.update(i,val);
-* int param_2 = obj.sumRange(i,j);
-*/
+ * Your NumAray object wil be instantiated and caled as such:
+ * NumAray obj = new NumAray(nums);
+ * obj.update(i,val);
+ * int param_2 = obj.sumRange(i,j);
+ */

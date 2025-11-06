@@ -37,7 +37,7 @@ class Solution {
 public:
     string nextClosestTime(string time) {
         vector<char> digits;
-        for (char c: time) {
+        for (char c : time) {
             if (c != ':') {
                 digits.push_back(c);
             }
@@ -64,11 +64,7 @@ public:
         time[3] = digits[0];
 
         for (int i = 0; i < 4; i++) {
-            if (time[0] == '2' and digits[i]
-            >
-            '3'
-            )
-            {
+            if (time[0] == '2' and digits[i] > '3') {
                 break;
             }
             if (digits[i] > time[1]) {

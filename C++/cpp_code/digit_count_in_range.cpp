@@ -43,10 +43,10 @@ private:
             long divisor = i * 10;
             result += (bound / divisor) * i;
             /*
-            * when d == 0, when analyzing the remainder,
-            * we need avoid taking numbers with "heading zero"
-            * like 0xxxx into the total count.
-            */
+             * when d == 0, when analyzing the remainder,
+             * we need avoid taking numbers with "heading zero"
+             * like 0xxxx into the total count.
+             */
             if (d == 0) {
                 result -= i;
             }
@@ -61,9 +61,7 @@ private:
 
 public:
     int digitsCount(int d, int low, int high) {
-        if (d < 0 or high<0
-        )
-        {
+        if (d < 0 or high < 0) {
             return 0;
         }
         return getCount(d, high) - getCount(d, low - 1);

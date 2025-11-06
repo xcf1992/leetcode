@@ -52,7 +52,7 @@ public:
 
         int endOne = 0;
         int endZero = 0;
-        for (char c: S) {
+        for (char c : S) {
             if (c == '0') {
                 endOne = 1 + min(endOne, endZero);
             } else {
@@ -71,8 +71,8 @@ public:
         if (n == 0) {
             return 0;
         }
-        vector<int> leftOne(n + 2, 0); // leftOne[i]: number of 1 from S[0]...S[i - 1], inclusive
-        vector<int> rightZero(n + 2, 0); // rightOne[i]: number of 0 from S[i - 1]...S[n - 1], inclusive
+        vector<int> leftOne(n + 2, 0);    // leftOne[i]: number of 1 from S[0]...S[i - 1], inclusive
+        vector<int> rightZero(n + 2, 0);  // rightOne[i]: number of 0 from S[i - 1]...S[n - 1], inclusive
         for (int i = 1; i <= n; i++) {
             leftOne[i] = leftOne[i - 1] + (S[i - 1] - '0');
 

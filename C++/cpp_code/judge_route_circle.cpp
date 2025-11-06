@@ -16,7 +16,7 @@ public:
         int vertical = 0;
         int horizontal = 0;
 
-        for (char c: moves) {
+        for (char c : moves) {
             if (c == 'U') {
                 vertical += 1;
             } else if (c == 'D') {
@@ -28,9 +28,6 @@ public:
             }
         }
 
-        return vertical == 0
-        and horizontal
-        ==
-        0;
+        return vertical == 0 and horizontal == 0;
     }
 };

@@ -50,27 +50,21 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int> > reconstructMatrix(int upper, int lower, vector<int> &colsum) {
+    vector<vector<int>> reconstructMatrix(int upper, int lower, vector<int>& colsum) {
         int n = colsum.size();
         if (n == 0) {
             return {};
         }
 
-        vector<vector<int> > result(2, vector<int>(n, 0));
+        vector<vector<int>> result(2, vector<int>(n, 0));
         for (int i = 0; i < n; ++i) {
             if (colsum[i] == 2) {
-                if (upper > 0 and lower
-                >
-                0
-                )
-                {
+                if (upper > 0 and lower > 0) {
                     result[0][i] = 1;
                     result[1][i] = 1;
                     upper -= 1;
                     lower -= 1;
-                }
-                else
-                {
+                } else {
                     return {};
                 }
             } else if (colsum[i] == 1) {
@@ -85,11 +79,7 @@ public:
                 }
             }
         }
-        if (upper == 0 and lower
-        ==
-        0
-        )
-        {
+        if (upper == 0 and lower == 0) {
             return result;
         }
         return {};

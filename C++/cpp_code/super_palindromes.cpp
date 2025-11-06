@@ -93,25 +93,13 @@ public:
 
             num1 *= num1;
             num2 *= num2;
-            if (num1 >= left and num1
-            <=
-            right and isPalindrome(num1)
-            )
-            {
+            if (num1 >= left and num1 <= right and isPalindrome(num1)) {
                 result += 1;
             }
-            if (num2 >= left and num2
-            <=
-            right and isPalindrome(num2)
-            )
-            {
+            if (num2 >= left and num2 <= right and isPalindrome(num2)) {
                 result += 1;
             }
-            if (num1 > right and num2
-            >
-            right
-            )
-            {
+            if (num1 > right and num2 > right) {
                 break;
             }
         }

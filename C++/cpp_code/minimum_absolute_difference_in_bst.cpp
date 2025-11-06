@@ -37,7 +37,7 @@ using namespace std;
 
 class Solution {
 private:
-    void find(TreeNode *root, TreeNode *&prev, long &result) {
+    void find(TreeNode* root, TreeNode*& prev, long& result) {
         if (root == nullptr) {
             return;
         }
@@ -47,7 +47,7 @@ private:
             if (result == -1) {
                 result = abs(root->val - prev->val);
             } else {
-                result = min(result, (long) abs(prev->val - root->val));
+                result = min(result, (long)abs(prev->val - root->val));
             }
         }
         prev = root;
@@ -55,9 +55,9 @@ private:
     }
 
 public:
-    int getMinimumDifference(TreeNode *root) {
+    int getMinimumDifference(TreeNode* root) {
         long result = -1;
-        TreeNode *prev = nullptr;
+        TreeNode* prev = nullptr;
         find(root, prev, result);
         return result;
     }

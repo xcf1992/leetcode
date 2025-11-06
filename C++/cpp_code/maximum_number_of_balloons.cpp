@@ -44,12 +44,12 @@ public:
     int maxNumberOfBalloons(string text) {
         string target = "balloon";
         vector<int> required(26, 0);
-        for (char c: target) {
+        for (char c : target) {
             required[c - 'a'] += 1;
         }
 
         vector<int> count(26, 0);
-        for (char c: text) {
+        for (char c : text) {
             count[c - 'a'] += 1;
         }
 

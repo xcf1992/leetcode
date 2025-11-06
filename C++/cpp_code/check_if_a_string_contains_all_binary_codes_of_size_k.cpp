@@ -9,7 +9,8 @@ Otherwise, return False.
 Example 1:
 Input: s = "00110110", k = 2
 Output: true
-Explanation: The binary codes of length 2 are "00", "01", "10" and "11". They can be all found as substrings at indicies 0, 1, 3 and 2 respectively.
+Explanation: The binary codes of length 2 are "00", "01", "10" and "11". They can be all found as substrings at indicies
+0, 1, 3 and 2 respectively.
 
 Example 2:
 Input: s = "00110", k = 2
@@ -51,16 +52,16 @@ using namespace std;
 class Solution {
 public:
     bool hasAllCodes(string s, int k) {
-        long long x = pow((long long)2, (long long)k); //calculating no. of possible binary strings of size k
+        long long x = pow((long long)2, (long long)k);  // calculating no. of possible binary strings of size k
         if (s.size() < x) {
             return false;
         }
 
         unordered_set<long long> ss;
         for (int i = 0; i + k - 1 < s.size(); i++) {
-            ss.insert(stol(s.substr(i,k))); //generating all possible substrings of size k using given string
+            ss.insert(stol(s.substr(i, k)));  // generating all possible substrings of size k using given string
         }
-        return ss.size() == x; //checking the final condition
+        return ss.size() == x;  // checking the final condition
     }
 };
 // TLE
@@ -77,6 +78,7 @@ private:
         reverse(result.begin(), result.end());
         return result;
     }
+
 public:
     bool hasAllCodes(string s, int k) {
         for (int i = 0; i < pow(2, k); ++i) {

@@ -50,35 +50,25 @@ Then you can use the same procedure with the following figure
 cause we use priority_queue, so we make sure we always move the bounary with lowest height first
 */
 struct myComp {
-    bool operator()(pair<int, int> &a, pair<int, int> &b) {
+    bool operator()(pair<int, int>& a, pair<int, int>& b) {
         return a.first > b.first;
     }
 };
 
 class Solution {
 public:
-    int trapRainWater(vector<vector<int> > &heightMap) {
+    int trapRainWater(vector<vector<int>>& heightMap) {
         int row = heightMap.size();
         if (row == 0) {
             return 0;
         }
         int col = heightMap[0].size();
 
-        priority_queue<pair<int, int>, vector<pair<int, int> >, myComp> que;
-        vector<vector<int> > visited(row, vector<int>(col, 0));
+        priority_queue<pair<int, int>, vector<pair<int, int>>, myComp> que;
+        vector<vector<int>> visited(row, vector<int>(col, 0));
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
-                if (i == 0 or i
-                ==
-                row - 1
-                or j
-                ==
-                0
-                or j
-                ==
-                col - 1
-                )
-                {
+                if (i == 0 or i == row - 1 or j == 0 or j == col - 1) {
                     que.push({heightMap[i][j], i * col + j});
                     visited[i][j] = 1;
                 }
@@ -87,7 +77,7 @@ public:
 
         int ans = 0;
         int curMax = INT_MIN;
-        vector<vector<int> > dir{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        vector<vector<int>> dir{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
         while (!que.empty()) {
             int height = que.top().first;
             int x = que.top().second / col;
@@ -95,12 +85,10 @@ public:
             que.pop();
 
             curMax = max(curMax, height);
-            for (auto d: dir) {
+            for (auto d : dir) {
                 int x2 = x + d[0];
                 int y2 = y + d[1];
-                if (x2 >= row or x2<0 or y2 < 0 or y2 >= col or visited[x2][y2]
-                )
-                {
+                if (x2 >= row or x2 < 0 or y2 < 0 or y2 >= col or visited[x2][y2]) {
                     continue;
                 }
 
@@ -117,7 +105,7 @@ public:
 
 class Solution1 {
 public:
-    int trapRainWater(vector<vector<int> > &heightMap) {
+    int trapRainWater(vector<vector<int>>& heightMap) {
         int m = n;
         if (m < 3) {
             return 0;
@@ -126,10 +114,10 @@ public:
         if (n < 3) {
             return 0;
         }
-        vector<vector<int> > left(m, vector<int>(n, 0));
-        vector<vector<int> > right(m, vector<int>(n, 0));
-        vector<vector<int> > up(m, vector<int>(n, 0));
-        vector<vector<int> > down(m, vector<int>(n, 0));
+        vector<vector<int>> left(m, vector<int>(n, 0));
+        vector<vector<int>> right(m, vector<int>(n, 0));
+        vector<vector<int>> up(m, vector<int>(n, 0));
+        vector<vector<int>> down(m, vector<int>(n, 0));
 
         for (int i = 1; i < m; i++) {
             left[i][0] = heightMap[i][0];
@@ -150,7 +138,7 @@ public:
         }
 
         int result = 0;
-        vector<vector<int> > waterMap(m, vector<int>(n, 0));
+        vector<vector<int>> waterMap(m, vector<int>(n, 0));
         for (int i = 1; i < m - 1; i++) {
             for (int j = 1; j < n - 1; j++) {
                 int wall = min(min(left[i][j], right[i][j]), min(up[i][j], down[i][j]));

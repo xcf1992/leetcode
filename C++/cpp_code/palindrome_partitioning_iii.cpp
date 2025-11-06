@@ -61,8 +61,8 @@ class Solution {
 public:
     int palindromePartition(string s, int K) {
         int len = s.size();
-        vector<vector<int> > minChange(len + 1, vector<int>(len + 1, len + 1));
-        vector<vector<int> > minDivide(len + 1, vector<int>(len + 1, len + 1));
+        vector<vector<int>> minChange(len + 1, vector<int>(len + 1, len + 1));
+        vector<vector<int>> minDivide(len + 1, vector<int>(len + 1, len + 1));
 
         for (int i = 0; i < len; ++i) {
             minChange[i][i] = 0;

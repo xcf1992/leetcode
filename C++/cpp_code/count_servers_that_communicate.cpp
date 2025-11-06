@@ -22,7 +22,8 @@ Explanation: All three servers can communicate with at least one other server.
 Example 3:
 Input: grid = [[1,1,0,0],[0,0,1,0],[0,0,1,0],[0,0,0,1]]
 Output: 4
-Explanation: The two servers in the first row can communicate with each other. The two servers in the third column can communicate with each other. The server at right bottom corner can't communicate with any other server.
+Explanation: The two servers in the first row can communicate with each other. The two servers in the third column can
+communicate with each other. The server at right bottom corner can't communicate with any other server.
 
 Constraints:
 m == grid.length
@@ -46,7 +47,7 @@ using namespace std;
 
 class Solution {
 public:
-    int countServers(vector<vector<int> > &grid) {
+    int countServers(vector<vector<int>>& grid) {
         int m = grid.size();
         if (m == 0) {
             return 0;
@@ -68,11 +69,7 @@ public:
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j)
                 if (grid[i][j] == 1) {
-                    if (row[i] == 1 and col[j]
-                    ==
-                    1
-                    )
-                    {
+                    if (row[i] == 1 and col[j] == 1) {
                         result -= 1;
                     }
                 }

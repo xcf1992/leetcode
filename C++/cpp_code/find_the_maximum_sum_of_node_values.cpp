@@ -29,9 +29,8 @@ Example 2:
 Input: nums = [2,3], k = 7, edges = [[0,1]]
 Output: 9
 Explanation: Alice can achieve the maximum sum of 9 using a single operation:
-- Choose the edge [0,1]. nums[0] becomes: 2 XOR 7 = 5 and nums[1] become: 3 XOR 7 = 4, and the array nums becomes: [2,3] -> [5,4].
-The total sum of values is 5 + 4 = 9.
-It can be shown that 9 is the maximum achievable sum of values.
+- Choose the edge [0,1]. nums[0] becomes: 2 XOR 7 = 5 and nums[1] become: 3 XOR 7 = 4, and the array nums becomes: [2,3]
+-> [5,4]. The total sum of values is 5 + 4 = 9. It can be shown that 9 is the maximum achievable sum of values.
 
 Example 3:
 Input: nums = [7,7,7,7,7,7], k = 3, edges = [[0,1],[0,2],[0,3],[0,4],[0,5]]
@@ -84,9 +83,9 @@ when you’ve chosen an odd number of those numbers to apply the XOR operation (
  */
 class Solution {
 public:
-    long long maximumValueSum(vector<int> &nums, int k, vector<vector<int> > &edges) {
+    long long maximumValueSum(vector<int>& nums, int k, vector<vector<int>>& edges) {
         vector<long long> dp = {0, LLONG_MIN};
-        for (int num: nums) {
+        for (int num : nums) {
             vector<long long> new_dp = {dp[0] + num, dp[1] + num};
             new_dp[0] = max(new_dp[0], dp[1] + (num ^ k));
             new_dp[1] = max(new_dp[1], dp[0] + (num ^ k));

@@ -1,8 +1,8 @@
 /*
 920. Number of Music Playlists
 
-Your music player contains N different songs and she wants to listen to L (not necessarily different) songs during your trip.
-You create a playlist so that:
+Your music player contains N different songs and she wants to listen to L (not necessarily different) songs during your
+trip. You create a playlist so that:
 
 Every song is played at least once
 A song can only be played again only if K other songs have been played
@@ -51,17 +51,17 @@ private:
 
 public:
     int numMusicPlaylists(int N, int L, int K) {
-        vector<vector<long> > dp(L + 1, vector<long>(N + 1, 0));
+        vector<vector<long>> dp(L + 1, vector<long>(N + 1, 0));
         dp[0][0] = 1;
         for (int i = 1; i <= L; i++) {
             for (int j = 1; j <= N; j++) {
                 /*
-                * if we pick a song we never picked up in previous j - 1 songs, dp[i - 1][j - 1] * (N - j + 1)
-                * if we pick a song we have picked before, so there are j unique songs in previous i-1 songs
-                * at this point we have j differernt songs to choose,
-                * but since we can not pick songs picked in previous k songs
-                * so we only have j-K choices
-                */
+                 * if we pick a song we never picked up in previous j - 1 songs, dp[i - 1][j - 1] * (N - j + 1)
+                 * if we pick a song we have picked before, so there are j unique songs in previous i-1 songs
+                 * at this point we have j differernt songs to choose,
+                 * but since we can not pick songs picked in previous k songs
+                 * so we only have j-K choices
+                 */
                 dp[i][j] += dp[i - 1][j - 1] * (N - j + 1) + dp[i - 1][j] * max(0, j - K);
                 dp[i][j] %= MOD;
             }

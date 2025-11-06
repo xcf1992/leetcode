@@ -40,7 +40,7 @@ using namespace std;
 
 class Solution {
 private:
-    int calculate(TreeNode *root, int &result) {
+    int calculate(TreeNode* root, int& result) {
         if (root == nullptr) {
             return 0;
         }
@@ -53,7 +53,7 @@ private:
     }
 
 public:
-    int findTilt(TreeNode *root) {
+    int findTilt(TreeNode* root) {
         if (root == nullptr) {
             return 0;
         }

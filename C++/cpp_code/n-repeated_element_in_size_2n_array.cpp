@@ -50,24 +50,13 @@ which means that a length 4 subarray that begins at a major element will have 2 
 */
 class Solution {
 public:
-    int repeatedNTimes(vector<int> &A) {
+    int repeatedNTimes(vector<int>& A) {
         int n = A.size();
         for (int i = 0; i < n - 3; ++i) {
-            if (A[i] == A[i + 1] or A[i]
-            ==
-            A[i + 2]
-            or A[i]
-            ==
-            A[i + 3]
-            )
-            {
+            if (A[i] == A[i + 1] or A[i] == A[i + 2] or A[i] == A[i + 3]) {
                 return A[i];
             }
-            if (A[i + 1] == A[i + 2] or A[i + 1]
-            ==
-            A[i + 3]
-            )
-            {
+            if (A[i + 1] == A[i + 2] or A[i + 1] == A[i + 3]) {
                 return A[i + 1];
             }
             if (A[i + 2] == A[i + 3]) {

@@ -1,11 +1,14 @@
 /*
 https://leetcode.com/problems/minimize-maximum-component-cost
 3613. Minimize Maximum Component Cost
-You are given an undirected connected graph with n nodes labeled from 0 to n - 1 and a 2D integer array edges where edges[i] = [ui, vi, wi] denotes an undirected edge between node ui and node vi with weight wi, and an integer k.
+You are given an undirected connected graph with n nodes labeled from 0 to n - 1 and a 2D integer array edges where
+edges[i] = [ui, vi, wi] denotes an undirected edge between node ui and node vi with weight wi, and an integer k.
 
-You are allowed to remove any number of edges from the graph such that the resulting graph has at most k connected components.
+You are allowed to remove any number of edges from the graph such that the resulting graph has at most k connected
+components.
 
-The cost of a component is defined as the maximum edge weight in that component. If a component has no edges, its cost is 0.
+The cost of a component is defined as the maximum edge weight in that component. If a component has no edges, its cost
+is 0.
 
 Return the minimum possible value of the maximum cost among all components after such removals.
 
@@ -63,7 +66,7 @@ using namespace std;
 
 class Solution {
 private:
-    int find_parent(int cur, vector<int> &parent) {
+    int find_parent(int cur, vector<int>& parent) {
         if (parent[cur] == -1) {
             return cur;
         }
@@ -73,18 +76,16 @@ private:
     }
 
 public:
-    int minCost(int n, vector<vector<int> > &edges, int k) {
+    int minCost(int n, vector<vector<int>>& edges, int k) {
         if (n <= k) {
             return 0;
         }
 
-        sort(edges.begin(), edges.end(), [](const vector<int> &a, const vector<int> &b) {
-            return a[2] < b[2];
-        });
+        sort(edges.begin(), edges.end(), [](const vector<int>& a, const vector<int>& b) { return a[2] < b[2]; });
 
         vector<int> parent(n, -1);
         int cnt = n;
-        for (const vector<int> &e: edges) {
+        for (const vector<int>& e : edges) {
             int u = find_parent(e[0], parent);
             int v = find_parent(e[1], parent);
             if (u != v) {

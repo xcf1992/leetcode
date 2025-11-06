@@ -56,7 +56,6 @@ using namespace std;
 class Solution {
     // binary search
 private:
-
 public:
     int superEggDrop(int K, int N) {
     }
@@ -103,7 +102,8 @@ public:
 
  Therefore dp[M][K] = dp[M - 1][k - 1] + dp[M - 1][K] + 1
 
- As you can see we can easily calculate how many floors we can check in M moves if we know how many floors we can check in M-1 moves.
+ As you can see we can easily calculate how many floors we can check in M moves if we know how many floors we can check
+ in M-1 moves.
 
  The basic idea is when the egg break,
  we will search dp[m - 1][k - 1] below current level and
@@ -137,7 +137,7 @@ class Solution {
     // 2d dp
 public:
     int superEggDrop(int K, int N) {
-        vector<vector<int> > dp(N + 1, vector<int>(K + 1, 0));
+        vector<vector<int>> dp(N + 1, vector<int>(K + 1, 0));
         int m = 0;
         while (dp[m][K] < N) {
             m += 1;
@@ -150,13 +150,12 @@ public:
 };
 
 /*
-We can easily come up with an O(KN^2) DP solution, where dp[k][n] = min(1 + max(dp[k - 1][i - 1], dp[k][n - i])) i = 1...n
-In this implementation, we use recursion to simulate each move.
-But it runs TLE.
+We can easily come up with an O(KN^2) DP solution, where dp[k][n] = min(1 + max(dp[k - 1][i - 1], dp[k][n - i])) i
+= 1...n In this implementation, we use recursion to simulate each move. But it runs TLE.
 */
 class Solution1 {
 private:
-    int helper(int K, int N, vector<vector<int> > &memo) {
+    int helper(int K, int N, vector<vector<int>>& memo) {
         if (N <= 1) {
             return N;
         }
@@ -178,7 +177,7 @@ private:
 
 public:
     int superEggDrop(int K, int N) {
-        vector<vector<int> > memo(K + 1, vector<int>(N + 1, 0));
+        vector<vector<int>> memo(K + 1, vector<int>(N + 1, 0));
         return helper(K, N, memo);
     }
 };

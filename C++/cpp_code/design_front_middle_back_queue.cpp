@@ -21,7 +21,8 @@ Popping the middle from [1, 2, 3, 4, 5, 6] returns 3 and results in [1, 2, 4, 5,
 
 Example 1:
 Input:
-["FrontMiddleBackQueue", "pushFront", "pushBack", "pushMiddle", "pushMiddle", "popFront", "popMiddle", "popMiddle", "popBack", "popFront"]
+["FrontMiddleBackQueue", "pushFront", "pushBack", "pushMiddle", "pushMiddle", "popFront", "popMiddle", "popMiddle",
+"popBack", "popFront"]
 [[], [1], [2], [3], [4], [], [], [], [], []]
 Output:
 [null, null, null, null, null, 1, 3, 4, 2, -1]

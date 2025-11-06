@@ -72,7 +72,7 @@ public:
         group.push_back(cnt);
 
         long long total = 1;
-        for (int num: group) {
+        for (int num : group) {
             total = (total * num) % MOD;
         }
         if (k <= group.size()) {
@@ -81,7 +81,7 @@ public:
 
         vector<int> dp(k, 0);
         dp[0] = 1;
-        for (int num: group) {
+        for (int num : group) {
             vector<int> temp(k, 0);
             long long sum = 0;
             for (int i = 0; i < k; i++) {
@@ -107,7 +107,10 @@ public:
 
 /*
 https://leetcode.com/problems/find-the-original-typed-string-ii/solutions/6912996/leetcode-3333-dp-prefix-sum-a-more-detai-lnwj/
-*Alice is trying to type a string, but she might press keys for too long, resulting in repeated characters.Given the final string she typed (word) and a minimum length k, we need to find how many possible original strings she could have intended to type, where the original string's length is at least k.The original string is formed by possibly reducing consecutive repeated characters in word tofewer repetitions (but at least one).
+*Alice is trying to type a string, but she might press keys for too long, resulting in repeated characters.Given the
+final string she typed (word) and a minimum length k, we need to find how many possible original strings she could have
+intended to type, where the original string's length is at least k.The original string is formed by possibly reducing
+consecutive repeated characters in word tofewer repetitions (but at least one).
 
 🤔 Approach
 Group Consecutive Characters:
@@ -115,13 +118,15 @@ Group Consecutive Characters:
 Traverse the string and group consecutive identical characters, storing their counts in a list groups.
 Calculate Total Possible Original Strings:
 
-The total number of possible original strings is the product of the counts in groups because for each group, we can choose any number from 1 to its count.
-Check if Original Strings are Automatically Valid:
+The total number of possible original strings is the product of the counts in groups because for each group, we can
+choose any number from 1 to its count. Check if Original Strings are Automatically Valid:
 
-If the number of groups is at least k, every original string formed will have at least k characters (since each group contributes at least one character). Thus, the answer is the total number of possible original strings.
+If the number of groups is at least k, every original string formed will have at least k characters (since each group
+contributes at least one character). Thus, the answer is the total number of possible original strings.
 4. Dynamic Programming to Count Valid Original Strings:
 
-If the number of groups is less than k, we need to count how many original strings have a sum of chosen counts that is at least k.
+If the number of groups is less than k, we need to count how many original strings have a sum of chosen counts that is
+at least k.
 
 Use dynamic programming where dp[s] represents the number of ways to achieve a sum s of chosen counts.
 
@@ -129,7 +134,8 @@ Initialize dp[0] = 1 (one way to have sum 0).
 
 For each group, update the DP array to include new sums by choosing between 1 and the group’s count.
 
-After processing all groups, sum the DP values for sums from groups.size() to k-1 to find invalid strings (sum less than k).
+After processing all groups, sum the DP values for sums from groups.size() to k-1 to find invalid strings (sum less than
+k).
 
 Subtract the invalid count from the total to get the number of valid original strings.
 
@@ -147,7 +153,8 @@ Early Termination: If the number of groups is at least k, all original strings a
 
 Dynamic Programming Setup: Initialize a DP array to count ways to achieve sums of chosen counts.
 
-DP Update: For each group, update the DP array to reflect new sums achievable by choosing 1 to num characters from the group.
+DP Update: For each group, update the DP array to reflect new sums achievable by choosing 1 to num characters from the
+group.
 
 Invalid Counts: Sum the DP values for sums less than k to find invalid original strings.
 

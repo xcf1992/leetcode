@@ -39,12 +39,9 @@ and then that range is the possible choice we have in the right part for that si
 */
 class Solution {
 private:
-    int mergeSort(vector<long> &preSum, int lower, int upper, int left, int right) {
+    int mergeSort(vector<long>& preSum, int lower, int upper, int left, int right) {
         if (left == right - 1) {
-            return preSum[left] >= lower
-            and preSum[left]
-            <=
-            upper ? 1 : 0;
+            return preSum[left] >= lower and preSum[left] <= upper ? 1 : 0;
         }
 
         int mid = left + (right - left) / 2;
@@ -59,7 +56,7 @@ private:
     }
 
 public:
-    int countRangeSum(vector<int> &nums, int lower, int upper) {
+    int countRangeSum(vector<int>& nums, int lower, int upper) {
         int len = nums.size();
         if (len == 0) {
             return 0;

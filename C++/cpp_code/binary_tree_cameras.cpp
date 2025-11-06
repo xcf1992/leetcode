@@ -74,35 +74,25 @@ Otherwise, we return 0.
 */
 class Solution {
 private:
-    int identify(TreeNode *root, int &result) {
+    int identify(TreeNode* root, int& result) {
         if (root == nullptr) {
             return 2;
         }
-        if (root->left == nullptr and
-        root->right == nullptr
-        )
-        {
+        if (root->left == nullptr and root->right == nullptr) {
             return 0;
         }
 
         int lc = identify(root->left, result);
         int rc = identify(root->right, result);
-        if (lc == 0 or rc
-        ==
-        0
-        )
-        {
+        if (lc == 0 or rc == 0) {
             result += 1;
             return 1;
         }
-        return lc == 1
-        or rc
-        ==
-        1 ? 2 : 0;
+        return lc == 1 or rc == 1 ? 2 : 0;
     }
 
 public:
-    int minCameraCover(TreeNode *root) {
+    int minCameraCover(TreeNode* root) {
         if (root == nullptr) {
             return 0;
         }
@@ -115,9 +105,9 @@ public:
 
 // we can also solve this problem using DP, simillar to house robber III
 struct ResultType {
-    int subNodesCovered; // all nodes below its level are covered (not including itself)
-    int coveredNoCamera; // the node itself is covered by its children
-    int coveredCamera; // the node is covered by itself
+    int subNodesCovered;  // all nodes below its level are covered (not including itself)
+    int coveredNoCamera;  // the node itself is covered by its children
+    int coveredCamera;    // the node is covered by itself
     ResultType(int subNodesCovered, int coveredNoCamera, int coveredCamera) {
         this->subNodesCovered = subNodesCovered;
         this->coveredNoCamera = coveredNoCamera;
@@ -127,7 +117,7 @@ struct ResultType {
 
 class Solution1 {
 private:
-    ResultType check(TreeNode *root) {
+    ResultType check(TreeNode* root) {
         if (root == nullptr) {
             return ResultType(0, 0, INT_MAX);
         }
@@ -144,7 +134,7 @@ private:
     }
 
 public:
-    int minCameraCover(TreeNode *root) {
+    int minCameraCover(TreeNode* root) {
         ResultType result = check(root);
         return min(result.coveredCamera, result.coveredNoCamera);
     }

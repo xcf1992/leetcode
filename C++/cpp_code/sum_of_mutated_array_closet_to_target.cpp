@@ -3,8 +3,8 @@
 https://leetcode.com/problems/sum-of-mutated-array-closest-to-target/
 
 Given an integer array arr and a target value target,
-return the integer value such that when we change all the integers larger than value in the given array to be equal to value,
-the sum of the array gets as close as possible (in absolute difference) to target.
+return the integer value such that when we change all the integers larger than value in the given array to be equal to
+value, the sum of the array gets as close as possible (in absolute difference) to target.
 
 In case of a tie, return the minimum such integer.
 Notice that the answer is not neccesarilly a number from arr.
@@ -51,11 +51,11 @@ Check if l-1 (should get us below the target) leads to the sum closer to the tar
 */
 class Solution {
 public:
-    int findBestValue(vector<int> &arr, int target) {
+    int findBestValue(vector<int>& arr, int target) {
         int left = 1;
         int right = 0;
         int sum = 0;
-        for (int num: arr) {
+        for (int num : arr) {
             sum += num;
             right = max(right, num);
         }
@@ -67,7 +67,7 @@ public:
         while (left < right) {
             int mid = left + (right - left) / 2;
             sum = 0;
-            for (int num: arr) {
+            for (int num : arr) {
                 sum += num > mid ? mid : num;
             }
 
@@ -80,7 +80,7 @@ public:
 
         int sum1 = 0;
         int sum2 = 0;
-        for (int num: arr) {
+        for (int num : arr) {
             sum1 += num > left ? left : num;
             sum2 += num > (left - 1) ? (left - 1) : num;
         }

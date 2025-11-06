@@ -62,7 +62,7 @@ public:
 
         vector<int> pre = {1};
         for (auto i = pre.size(); i <= n; ++i) {
-            pre.push_back((pre.back() << 1) % mod); // pre calculate 2^n
+            pre.push_back((pre.back() << 1) % mod);  // pre calculate 2^n
         }
 
         sort(nums.begin(), nums.end());
@@ -72,7 +72,8 @@ public:
                 continue;
             }
             int right = upper_bound(nums.begin(), nums.end(), limit) - nums.begin();
-            result = (result + pre[right - left - 1]) % mod; // for each number from left + 1, left + 2...right - 1; we have 2 choice pick or not pick
+            result = (result + pre[right - left - 1]) %
+                     mod;  // for each number from left + 1, left + 2...right - 1; we have 2 choice pick or not pick
         }
         return result;
     }

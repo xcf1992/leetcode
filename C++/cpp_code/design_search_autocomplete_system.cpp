@@ -63,12 +63,11 @@ The user finished the input, the sentence "i a" should be saved as a historical 
 And the following input will be counted as a new search.
 
 Note:
-The input sentence will always start with a letter and end with '#', and only one blank space will exist between two words.
-The number of complete sentences that to be searched won't exceed 100.
-The length of each sentence including those in the historical data won't exceed 100.
-Please use double-quote instead of single-quote when you write test cases even for a character input.
-Please remember to RESET your class variables declared in class AutocompleteSystem,
-as static/class variables are persisted across multiple test cases. Please see here for more details.
+The input sentence will always start with a letter and end with '#', and only one blank space will exist between two
+words. The number of complete sentences that to be searched won't exceed 100. The length of each sentence including
+those in the historical data won't exceed 100. Please use double-quote instead of single-quote when you write test cases
+even for a character input. Please remember to RESET your class variables declared in class AutocompleteSystem, as
+static/class variables are persisted across multiple test cases. Please see here for more details.
 */
 #include <iostream>
 #include <sstream>
@@ -88,7 +87,7 @@ using namespace std;
 
 struct TrieNode {
     int time;
-    unordered_map<char, TrieNode *> next;
+    unordered_map<char, TrieNode*> next;
 
     TrieNode() {
         time = 0;
@@ -96,21 +95,21 @@ struct TrieNode {
 };
 
 struct myComp {
-    bool operator()(pair<string, int> &p1, pair<string, int> &p2) {
+    bool operator()(pair<string, int>& p1, pair<string, int>& p2) {
         return p1.second == p2.second ? p1.first < p2.first : p1.second > p2.second;
     }
 };
 
 class AutocompleteSystem {
 private:
-    TrieNode *root;
-    TrieNode *cur;
+    TrieNode* root;
+    TrieNode* cur;
     string sentence;
-    priority_queue<pair<string, int>, vector<pair<string, int> >, myComp> pq;
+    priority_queue<pair<string, int>, vector<pair<string, int>>, myComp> pq;
 
     void buildTrie(string s, int time) {
-        TrieNode *node = root;
-        for (char c: s) {
+        TrieNode* node = root;
+        for (char c : s) {
             if (!node->next[c]) {
                 node->next[c] = new TrieNode();
             }
@@ -119,7 +118,7 @@ private:
         node->time += time;
     }
 
-    void dfs(string &s, TrieNode *node) {
+    void dfs(string& s, TrieNode* node) {
         if (node->time) {
             pq.push({s, node->time});
             while (pq.size() > 3) {
@@ -127,7 +126,7 @@ private:
             }
         }
 
-        for (auto &nex: node->next) {
+        for (auto& nex : node->next) {
             s.push_back(nex.first);
             dfs(s, nex.second);
             s.pop_back();
@@ -140,7 +139,7 @@ private:
     }
 
 public:
-    AutocompleteSystem(vector<string> &sentences, vector<int> &times) {
+    AutocompleteSystem(vector<string>& sentences, vector<int>& times) {
         root = new TrieNode();
         reset();
         for (int i = 0; i < sentences.size(); i++) {
@@ -173,7 +172,7 @@ public:
 };
 
 /*
-* Your AutocompleteSystem object will be instantiated and called as such:
-* AutocompleteSystem obj = new AutocompleteSystem(sentences, times);
-* vector<string> param_1 = obj.input(c);
-*/
+ * Your AutocompleteSystem object will be instantiated and called as such:
+ * AutocompleteSystem obj = new AutocompleteSystem(sentences, times);
+ * vector<string> param_1 = obj.input(c);
+ */

@@ -33,10 +33,10 @@ using namespace std;
 
 class Solution {
 public:
-    int hIndex(vector<int> &citations) {
+    int hIndex(vector<int>& citations) {
         int n = citations.size();
         vector<int> bucket(n + 1, 0);
-        for (int citation: citations) {
+        for (int citation : citations) {
             if (citation >= n) {
                 bucket[n] += 1;
             } else {
@@ -57,7 +57,7 @@ public:
 
 class Solution1 {
 public:
-    int hIndex(vector<int> &citations) {
+    int hIndex(vector<int>& citations) {
         int n = citations.size();
         if (n <= 0) {
             return 0;
@@ -65,11 +65,7 @@ public:
         sort(citations.begin(), citations.end());
 
         int i = 0;
-        while (i < n and citations[n - 1 - i]
-        >
-        i
-        )
-        {
+        while (i < n and citations[n - 1 - i] > i) {
             i += 1;
         }
         return i;

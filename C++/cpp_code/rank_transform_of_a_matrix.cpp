@@ -21,7 +21,8 @@ Explanation:
 The rank of matrix[0][0] is 1 because it is the smallest integer in its row and column.
 The rank of matrix[0][1] is 2 because matrix[0][1] > matrix[0][0] and matrix[0][0] is rank 1.
 The rank of matrix[1][0] is 2 because matrix[1][0] > matrix[0][0] and matrix[0][0] is rank 1.
-The rank of matrix[1][1] is 3 because matrix[1][1] > matrix[0][1], matrix[1][1] > matrix[1][0], and both matrix[0][1] and matrix[1][0] are rank 2.
+The rank of matrix[1][1] is 3 because matrix[1][1] > matrix[0][1], matrix[1][1] > matrix[1][0], and both matrix[0][1]
+and matrix[1][0] are rank 2.
 
 Example 2:
 Input: matrix = [[7,7],[7,7]]
@@ -63,7 +64,7 @@ using namespace std;
 
 class Solution {
 private:
-    int find(vector<int> &root, int x) {
+    int find(vector<int>& root, int x) {
         if (root[x] != x) {
             root[x] = find(root, root[x]);
         }
@@ -71,10 +72,10 @@ private:
     }
 
 public:
-    vector<vector<int> > matrixRankTransform(vector<vector<int> > &matrix) {
+    vector<vector<int>> matrixRankTransform(vector<vector<int>>& matrix) {
         int m = matrix.size();
         int n = matrix[0].size();
-        map<int, vector<int> > mp;
+        map<int, vector<int>> mp;
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
                 mp[matrix[i][j]].push_back(i * n + j);
@@ -82,21 +83,21 @@ public:
         }
 
         vector<int> rank(m + n, 0);
-        vector<vector<int> > res(m, vector<int>(n));
-        for (auto &it: mp) {
+        vector<vector<int>> res(m, vector<int>(n));
+        for (auto& it : mp) {
             vector<int> root(m + n, 0);
             iota(begin(root), end(root), 0);
 
-            auto &v = it.second;
-            for (auto &a: v) {
+            auto& v = it.second;
+            for (auto& a : v) {
                 int i = a / n, j = a % n;
                 int r1 = find(root, i), r2 = find(root, j + m);
-                root[r1] = r2; // make row point to column
+                root[r1] = r2;  // make row point to column
                 rank[r2] = max(rank[r1], rank[r2]);
             }
 
             auto rank2 = rank;
-            for (auto &a: v) {
+            for (auto& a : v) {
                 int i = a / n, j = a % n;
                 int r = find(root, i);
                 res[i][j] = rank[r] + 1;

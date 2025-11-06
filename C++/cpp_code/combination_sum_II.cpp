@@ -38,7 +38,7 @@ using namespace std;
 
 class Solution {
 private:
-    void dfs(vector<int> &num, int target, int level, vector<int> &combination, vector<vector<int> > &result) {
+    void dfs(vector<int>& num, int target, int level, vector<int>& combination, vector<vector<int>>& result) {
         if (target == 0) {
             result.push_back(combination);
             return;
@@ -51,19 +51,15 @@ private:
             combination.push_back(num[i]);
             dfs(num, target - num[i], i + 1, combination, result);
             combination.pop_back();
-            while (i + 1 < num.size() and num[i + 1]
-            ==
-            num[i]
-            )
-            {
+            while (i + 1 < num.size() and num[i + 1] == num[i]) {
                 i++;
             }
         }
     }
 
 public:
-    vector<vector<int> > combinationSum2(vector<int> &num, int target) {
-        vector<vector<int> > result;
+    vector<vector<int>> combinationSum2(vector<int>& num, int target) {
+        vector<vector<int>> result;
         vector<int> combination;
         sort(num.begin(), num.end());
         dfs(num, target, 0, combination, result);

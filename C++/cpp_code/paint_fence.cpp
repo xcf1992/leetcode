@@ -12,7 +12,8 @@ Example 1:
 Input: n = 3, k = 2
 Output: 6
 Explanation: All the possibilities are shown.
-Note that painting all the posts red or all the posts green is invalid because there cannot be three posts in a row with the same color.
+Note that painting all the posts red or all the posts green is invalid because there cannot be three posts in a row with
+the same color.
 
 Example 2:
 Input: n = 1, k = 1

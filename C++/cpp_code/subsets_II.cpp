@@ -34,7 +34,7 @@ using namespace std;
 
 class Solution {
 private:
-    void construct(map<int, int> &count, vector<vector<int> > &result, vector<int> sub, map<int, int>::iterator it) {
+    void construct(map<int, int>& count, vector<vector<int>>& result, vector<int> sub, map<int, int>::iterator it) {
         if (it == count.end()) {
             result.push_back(sub);
             return;
@@ -52,13 +52,13 @@ private:
     }
 
 public:
-    vector<vector<int> > subsetsWithDup(vector<int> &nums) {
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
         map<int, int> count;
-        for (int num: nums) {
+        for (int num : nums) {
             count[num] += 1;
         }
 
-        vector<vector<int> > result;
+        vector<vector<int>> result;
         vector<int> sub;
         construct(count, result, sub, count.begin());
         return result;
@@ -67,9 +67,9 @@ public:
 
 class Solution1 {
 public:
-    vector<vector<int> > subsetsWithDup(vector<int> &S) {
+    vector<vector<int>> subsetsWithDup(vector<int>& S) {
         vector<int> subset;
-        vector<vector<int> > result;
+        vector<vector<int>> result;
         if (S.empty()) {
             result.push_back(subset);
             return result;

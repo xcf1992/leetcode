@@ -41,7 +41,7 @@ using namespace std;
 
 class Solution {
 public:
-    bool searchMatrix(vector<vector<int> > &matrix, int target) {
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
         int m = matrix.size();
         if (m == 0) {
             return false;

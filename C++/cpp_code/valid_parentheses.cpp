@@ -47,26 +47,17 @@ using namespace std;
 
 class Solution {
 private:
-    bool isPaired(stack<char> &stk, char c) {
+    bool isPaired(stack<char>& stk, char c) {
         if (stk.empty()) {
             return false;
         }
-        if (c == ')' and
-        stk.top() == '('
-        )
-        {
+        if (c == ')' and stk.top() == '(') {
             return true;
         }
-        if (c == '}' and
-        stk.top() == '{'
-        )
-        {
+        if (c == '}' and stk.top() == '{') {
             return true;
         }
-        if (c == ']' and
-        stk.top() == '['
-        )
-        {
+        if (c == ']' and stk.top() == '[') {
             return true;
         }
         return false;
@@ -75,15 +66,8 @@ private:
 public:
     bool isValid(string s) {
         stack<char> stk;
-        for (char c: s) {
-            if (c == '(' or c
-            ==
-            '{'
-            or c
-            ==
-            '['
-            )
-            {
+        for (char c : s) {
+            if (c == '(' or c == '{' or c == '[') {
                 stk.push(c);
                 continue;
             }

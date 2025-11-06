@@ -45,21 +45,15 @@ using namespace std;
 
 class Solution {
 public:
-    vector<string> removeSubfolders(vector<string> &folder) {
+    vector<string> removeSubfolders(vector<string>& folder) {
         int n = folder.size();
-        sort(folder.begin(), folder.end(), [](string &a, string &b) {
-            return a.size() < b.size();
-        });
+        sort(folder.begin(), folder.end(), [](string& a, string& b) { return a.size() < b.size(); });
 
         unordered_set<string> existed;
-        for (string &fod: folder) {
+        for (string& fod : folder) {
             string cur = "/";
             bool isSub = false;
-            for (int i = 1; i < fod.size() and
-            !isSub;
-            ++i
-            )
-            {
+            for (int i = 1; i < fod.size() and !isSub; ++i) {
                 if (fod[i] == '/') {
                     if (existed.find(cur) != existed.end()) {
                         isSub = true;

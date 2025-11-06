@@ -60,6 +60,7 @@ private:
         }
         return true;
     }
+
 public:
     vector<int> getNoZeroIntegers(int n) {
         for (int i = 1; i < n; ++i) {

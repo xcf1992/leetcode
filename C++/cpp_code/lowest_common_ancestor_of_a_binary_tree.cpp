@@ -5,8 +5,8 @@ https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
 Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
 
 According to the definition of LCA on Wikipedia:
-“The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants
-(where we allow a node to be a descendant of itself).”
+“The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as
+descendants (where we allow a node to be a descendant of itself).”
 
 Given the following binary tree:
 root = [3,5,1,6,2,0,8,null,null,7,4]
@@ -52,8 +52,8 @@ So this node is the LCA
 
 struct TreeNode {
     int val;
-    TreeNode *left;
-    TreeNode *right;
+    TreeNode* left;
+    TreeNode* right;
 
     TreeNode() : val(0), left(nullptr), right(nullptr) {
     }
@@ -61,25 +61,19 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {
     }
 
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {
+    TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {
     }
 };
 
 class Solution {
 public:
-    TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q) {
-        if (root == nullptr or root
-        ==
-        p or root
-        ==
-        q
-        )
-        {
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if (root == nullptr or root == p or root == q) {
             return root;
         }
 
-        TreeNode *left_lca = lowestCommonAncestor(root->left, p, q);
-        TreeNode *right_lca = lowestCommonAncestor(root->right, p, q);
+        TreeNode* left_lca = lowestCommonAncestor(root->left, p, q);
+        TreeNode* right_lca = lowestCommonAncestor(root->right, p, q);
         if (left_lca and right_lca) {
             return root;
         }

@@ -89,7 +89,7 @@ public:
     }
 };
 
-class Solution1 { // TLE
+class Solution1 {  // TLE
 public:
     int minKBitFlips(vector<int>& A, int K) {
         int start = 0;

@@ -29,7 +29,7 @@ using namespace std;
 
 class Solution {
 private:
-    bool nondreasing(vector<int> &nums) {
+    bool nondreasing(vector<int>& nums) {
         for (int i = 1; i < nums.size(); i++) {
             if (nums[i] < nums[i - 1]) {
                 return false;
@@ -39,7 +39,7 @@ private:
     }
 
 public:
-    bool checkPossibility(vector<int> &nums) {
+    bool checkPossibility(vector<int>& nums) {
         for (int i = 1; i < nums.size(); i++)
             if (nums[i] < nums[i - 1]) {
                 int temp = nums[i - 1];

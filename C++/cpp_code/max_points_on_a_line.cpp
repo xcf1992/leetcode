@@ -27,7 +27,8 @@ Explanation:
 |  o        o
 +------------------->
 0  1  2  3  4  5  6
-NOTE: input types have been changed on April 15, 2019. Please reset to default code definition to get new method signature.
+NOTE: input types have been changed on April 15, 2019. Please reset to default code definition to get new method
+signature.
 */
 #include <iostream>
 #include <string>
@@ -44,7 +45,7 @@ private:
     }
 
 public:
-    int maxPoints(vector<vector<int> > &points) {
+    int maxPoints(vector<vector<int>>& points) {
         int n = points.size();
         if (n <= 2) {
             return n;
@@ -58,11 +59,7 @@ public:
 
             for (int j = i + 1; j < n; j++) {
                 double slope = 0.0;
-                if (points[i][0] == points[j][0] and points[i][1]
-                ==
-                points[j][1]
-                )
-                {
+                if (points[i][0] == points[j][0] and points[i][1] == points[j][1]) {
                     same++;
                     continue;
                 }
@@ -91,7 +88,7 @@ cause two points are too close, thus the slope cannot be differentiated under c+
 */
 class Solution1 {
 public:
-    int maxPoints(vector<vector<int> > &points) {
+    int maxPoints(vector<vector<int>>& points) {
         int n = points.size();
         if (n <= 2) {
             return n;
@@ -105,11 +102,7 @@ public:
 
             for (int j = i + 1; j < n; j++) {
                 double slope = 0.0;
-                if (points[i][0] == points[j][0] and points[i][1]
-                ==
-                points[j][1]
-                )
-                {
+                if (points[i][0] == points[j][0] and points[i][1] == points[j][1]) {
                     same++;
                     continue;
                 }
@@ -117,7 +110,7 @@ public:
                     vertical++;
                     continue;
                 }
-                slope = (double) (points[i][1] - points[j][1]) / (points[i][0] - points[j][0]);
+                slope = (double)(points[i][1] - points[j][1]) / (points[i][0] - points[j][0]);
                 count[slope] += 1;
             }
             result = max(result, vertical + same);

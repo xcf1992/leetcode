@@ -76,19 +76,19 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int> > verticalOrder(TreeNode *root) {
+    vector<vector<int>> verticalOrder(TreeNode* root) {
         if (root == nullptr) {
             return {};
         }
 
-        map<int, vector<int> > nodePos;
-        queue<pair<int, TreeNode *> > bfs;
+        map<int, vector<int>> nodePos;
+        queue<pair<int, TreeNode*>> bfs;
         bfs.push({0, root});
         while (!bfs.empty()) {
             int curSize = bfs.size();
             for (int i = 0; i < curSize; ++i) {
                 int pos = bfs.front().first;
-                TreeNode *node = bfs.front().second;
+                TreeNode* node = bfs.front().second;
                 bfs.pop();
 
                 nodePos[pos].push_back(node->val);
@@ -101,8 +101,8 @@ public:
             }
         }
 
-        vector<vector<int> > result;
-        for (auto &it: nodePos) {
+        vector<vector<int>> result;
+        for (auto& it : nodePos) {
             result.push_back(it.second);
         }
         return result;
@@ -111,7 +111,7 @@ public:
 
 class Solution1 {
 private:
-    int getHeight(TreeNode *root) {
+    int getHeight(TreeNode* root) {
         if (root == nullptr) {
             return 0;
         }
@@ -120,15 +120,15 @@ private:
     }
 
 public:
-    vector<vector<int> > verticalOrder(TreeNode *root) {
-        vector<vector<int> > result;
+    vector<vector<int>> verticalOrder(TreeNode* root) {
+        vector<vector<int>> result;
         int height = getHeight(root);
-        vector<vector<int> > pos(pow(2, height), vector<int>());
-        queue<pair<int, TreeNode *> > bfs;
+        vector<vector<int>> pos(pow(2, height), vector<int>());
+        queue<pair<int, TreeNode*>> bfs;
         bfs.push(make_pair(height, root));
         while (!bfs.empty()) {
             int index = bfs.front().first;
-            TreeNode *cur = bfs.front().second;
+            TreeNode* cur = bfs.front().second;
             bfs.pop();
 
             if (cur == nullptr) {
@@ -140,7 +140,7 @@ public:
             bfs.push(make_pair(index + 1, cur->right));
         }
 
-        for (auto &col: pos) {
+        for (auto& col : pos) {
             if (!col.empty()) {
                 result.push_back(col);
             }

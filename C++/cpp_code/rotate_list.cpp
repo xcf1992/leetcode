@@ -32,20 +32,14 @@ using namespace std;
 
 class Solution {
 public:
-    ListNode *rotateRight(ListNode *head, int k) {
-        if (head == nullptr or
-        head->next == nullptr
-        or k
-        ==
-        0
-        )
-        {
+    ListNode* rotateRight(ListNode* head, int k) {
+        if (head == nullptr or head->next == nullptr or k == 0) {
             return head;
         }
 
-        ListNode *dummy = new ListNode(-1);
+        ListNode* dummy = new ListNode(-1);
         dummy->next = head;
-        ListNode *pre = dummy;
+        ListNode* pre = dummy;
         int length = 0;
         while (pre->next != nullptr) {
             length++;
@@ -57,13 +51,13 @@ public:
             return head;
         }
 
-        ListNode *last = dummy->next;
+        ListNode* last = dummy->next;
         for (int i = 1; i < k; i++) {
             last = last->next;
         }
 
         pre = dummy;
-        ListNode *first = dummy->next;
+        ListNode* first = dummy->next;
         while (last->next != nullptr) {
             last = last->next;
             first = first->next;

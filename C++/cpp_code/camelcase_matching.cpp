@@ -52,23 +52,15 @@ using namespace std;
 
 class Solution {
 private:
-    bool check(string &query, string &pattern) {
+    bool check(string& query, string& pattern) {
         int cur = 0;
         for (int i = 0; i < query.size(); i++) {
-            if (cur < pattern.size() and query[i]
-            ==
-            pattern[cur]
-            )
-            {
+            if (cur < pattern.size() and query[i] == pattern[cur]) {
                 cur += 1;
                 continue;
             }
 
-            if (query[i] >= 'A' and query[i]
-            <=
-            'Z'
-            )
-            {
+            if (query[i] >= 'A' and query[i] <= 'Z') {
                 return false;
             }
         }
@@ -76,9 +68,9 @@ private:
     }
 
 public:
-    vector<bool> camelMatch(vector<string> &queries, string pattern) {
+    vector<bool> camelMatch(vector<string>& queries, string pattern) {
         vector<bool> result;
-        for (string &query: queries) {
+        for (string& query : queries) {
             result.push_back(check(query, pattern));
         }
         return result;

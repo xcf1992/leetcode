@@ -10,7 +10,8 @@ If i % 2 == 0, then arr[i] = perm[i / 2].
 If i % 2 == 1, then arr[i] = perm[n / 2 + (i - 1) / 2].
 You will then assign arr​​​​ to perm.
 
-Return the minimum non-zero number of operations you need to perform on perm to return the permutation to its initial value.
+Return the minimum non-zero number of operations you need to perform on perm to return the permutation to its initial
+value.
 
 Example 1:
 Input: n = 2

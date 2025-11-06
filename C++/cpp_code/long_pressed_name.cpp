@@ -61,34 +61,21 @@ public:
 
         int i = 0;
         int j = 0;
-        while (i < m and j<n
-        )
-        {
+        while (i < m and j < n) {
             if (name[i] == typed[j]) {
                 i += 1;
                 j += 1;
-            } else if (i != 0 and name[i - 1]
-            ==
-            typed[j]
-            )
-            {
+            } else if (i != 0 and name[i - 1] == typed[j]) {
                 j += 1;
-            }
-            else
-            {
+            } else {
                 break;
             }
         }
-        while (i == m and j<n
-        )
-        {
+        while (i == m and j < n) {
             if (name[i - 1] == typed[j]) {
                 j += 1;
             }
         }
-        return i == m
-        and j
-        ==
-        n;
+        return i == m and j == n;
     }
 };

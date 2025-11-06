@@ -62,6 +62,7 @@ private:
         }
         return parent[num];
     }
+
 public:
     int makeConnected(int n, vector<vector<int>>& connections) {
         if (n == 1) {
@@ -76,8 +77,7 @@ public:
             int pv = find(parent, connection[1]);
             if (pu != pv) {
                 parent[pu] = pv;
-            }
-            else {
+            } else {
                 duplicate += 1;
             }
         }

@@ -48,10 +48,10 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> findOrder(int numCourses, vector<vector<int> > &prerequisites) {
+    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
         vector<int> preCount(numCourses, 0);
-        unordered_map<int, unordered_set<int> > after;
-        for (vector<int> &prerequisite: prerequisites) {
+        unordered_map<int, unordered_set<int>> after;
+        for (vector<int>& prerequisite : prerequisites) {
             preCount[prerequisite[0]] += 1;
             after[prerequisite[1]].insert(prerequisite[0]);
         }
@@ -69,7 +69,7 @@ public:
             result.push_back(course);
             order.pop();
 
-            for (int nextCourse: after[course]) {
+            for (int nextCourse : after[course]) {
                 preCount[nextCourse] -= 1;
                 if (preCount[nextCourse] == 0) {
                     order.push(nextCourse);

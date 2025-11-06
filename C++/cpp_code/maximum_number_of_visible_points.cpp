@@ -27,7 +27,8 @@ Return the maximum number of points you can see.
 Example 1:
 Input: points = [[2,1],[2,2],[3,3]], angle = 90, location = [1,1]
 Output: 3
-Explanation: The shaded region represents your field of view. All points can be made visible in your field of view, including [3,3] even though [2,2] is in front and in the same line of sight.
+Explanation: The shaded region represents your field of view. All points can be made visible in your field of view,
+including [3,3] even though [2,2] is in front and in the same line of sight.
 
 Example 2:
 Input: points = [[2,1],[2,2],[3,4],[1,1]], angle = 90, location = [1,1]
@@ -70,7 +71,7 @@ public:
         return atan2(y_diff, x_diff) * 180 / PI;
     }
 
-    int visiblePoints(vector<vector<int> > &points, int angle, vector<int> &location) {
+    int visiblePoints(vector<vector<int>>& points, int angle, vector<int>& location) {
         int i, j, n = points.size(), common = 0;
         vector<double> vals;
         for (i = 0; i < n; i++) {
@@ -80,7 +81,8 @@ public:
                 common++;
             } else {
                 double A = get_angle(x, y);
-                if (A < 0) A += 360;
+                if (A < 0)
+                    A += 360;
                 vals.emplace_back(A);
             }
         }

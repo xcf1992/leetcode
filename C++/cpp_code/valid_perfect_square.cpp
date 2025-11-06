@@ -32,7 +32,7 @@ public:
         int right = num;
         while (left <= right) {
             long mid = left + (right - left) / 2;
-            if (mid * mid == (long) num) {
+            if (mid * mid == (long)num) {
                 return true;
             }
 
@@ -51,11 +51,7 @@ public:
     bool isPerfectSquare(int num) {
         int diff = 1;
         int cur = 0;
-        while (cur <= num and cur
-        >=
-        0
-        )
-        {
+        while (cur <= num and cur >= 0) {
             if (cur == num) {
                 return true;
             }

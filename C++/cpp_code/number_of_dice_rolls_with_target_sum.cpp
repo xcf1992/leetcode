@@ -84,7 +84,7 @@ private:
 
 public:
     int numRollsToTarget(int d, int f, int target) {
-        vector<vector<int> > dp(d + 1, vector<int>(target + 1, 0));
+        vector<vector<int>> dp(d + 1, vector<int>(target + 1, 0));
         for (int i = 1; i <= min(f, target); ++i) {
             dp[1][i] = 1;
         }

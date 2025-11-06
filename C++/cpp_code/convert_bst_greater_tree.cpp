@@ -32,7 +32,7 @@ using namespace std;
 
 class Solution {
 private:
-    void traverse(TreeNode *root, TreeNode *&prev) {
+    void traverse(TreeNode* root, TreeNode*& prev) {
         if (root == nullptr) {
             return;
         }
@@ -46,8 +46,8 @@ private:
     }
 
 public:
-    TreeNode *convertBST(TreeNode *root) {
-        TreeNode *prev = nullptr;
+    TreeNode* convertBST(TreeNode* root) {
+        TreeNode* prev = nullptr;
         traverse(root, prev);
         return root;
     }

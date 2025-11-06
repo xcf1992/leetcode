@@ -61,11 +61,7 @@ class Solution {
     // math
 public:
     int minKnightMoves(int x, int y) {
-        if (x == 0 and y
-        ==
-        0
-        )
-        {
+        if (x == 0 and y == 0) {
             // edge case - the same square
             return 0;
         }
@@ -77,18 +73,14 @@ public:
         x = abs(x);
         y = abs(y);
         /*
-        * When we reached distance <= 2,
-        * we can jump to 0 from white square in 1 move
-        * and from black square in 2 moves.
-        * While we are more than 2 squares away in both direction, we should reduce
-        * the longest coordinate by 2.
-        */
+         * When we reached distance <= 2,
+         * we can jump to 0 from white square in 1 move
+         * and from black square in 2 moves.
+         * While we are more than 2 squares away in both direction, we should reduce
+         * the longest coordinate by 2.
+         */
         int res = 0;
-        while (x > 2 or y
-        >
-        2
-        )
-        {
+        while (x > 2 or y > 2) {
             if (x > y) {
                 x = abs(x - 2);
                 y = abs(y - 1);
@@ -107,10 +99,10 @@ class Solution1 {
     // bfs
 public:
     int minKnightMoves(int x, int y) {
-        vector<vector<int> > move({{-2, -1}, {-2, 1}, {2, -1}, {2, 1}, {1, 2}, {1, -2}, {-1, 2}, {-1, -2}});
-        unordered_map<int, unordered_map<int, int> > visited;
+        vector<vector<int>> move({{-2, -1}, {-2, 1}, {2, -1}, {2, 1}, {1, 2}, {1, -2}, {-1, 2}, {-1, -2}});
+        unordered_map<int, unordered_map<int, int>> visited;
         visited[0][0] = true;
-        queue<pair<int, int> > bfs;
+        queue<pair<int, int>> bfs;
         bfs.push({0, 0});
         int result = 0;
         while (!bfs.empty()) {
@@ -120,32 +112,17 @@ public:
                 int curY = bfs.front().second;
                 bfs.pop();
 
-                if (x == curX and y
-                ==
-                curY
-                )
-                {
+                if (x == curX and y == curY) {
                     return result;
                 }
                 for (int j = 0; j < move.size(); ++j) {
                     int nexX = curX + move[j][0];
                     int nexY = curY + move[j][1];
                     /*
-                    * the nexX * x >= 0 and nexY * y >= 0 is important here, otherwise it will TLE
-                    */
-                    if (abs(nexX) <= 300 and abs(nexY)
-                    <=
-                    300
-                    and nexX *x
-                    >=
-                    0
-                    and nexY *y
-                    >=
-                    0
-                    and
-                    !visited[nexX][nexY]
-                    )
-                    {
+                     * the nexX * x >= 0 and nexY * y >= 0 is important here, otherwise it will TLE
+                     */
+                    if (abs(nexX) <= 300 and abs(nexY) <= 300 and nexX * x >= 0 and nexY * y >= 0 and
+                        !visited[nexX][nexY]) {
                         visited[nexX][nexY] = true;
                         bfs.push({nexX, nexY});
                     }

@@ -61,7 +61,7 @@ public:
         int left = 0;
         int right = S.size();
         vector<int> result;
-        for (char c: S) {
+        for (char c : S) {
             if (c == 'D') {
                 result.push_back(right--);
             } else {

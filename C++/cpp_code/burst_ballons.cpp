@@ -60,8 +60,9 @@ To get that we need the transition function :
 for (int k = left; k <= right; ++k)
     dp[left][right] = max(dp[left][right], nums[left-1] * nums[k] * nums[right+1] + dp[left][k-1] + dp[k+1][right])
 
-This transition function basically says in order to get the maximum value we can get for bursting all the balloons between [ i , j] ,
-we just loop through each balloon between these two indexes and make them to be the last balloon to be burst,
+This transition function basically says in order to get the maximum value we can get for bursting all the balloons
+between [ i , j] , we just loop through each balloon between these two indexes and make them to be the last balloon to
+be burst,
 
 why we pick it as the last balloon to burst ?
 For example when calculating dp[0,3] and picking index 2 as the last balloon to burst,
@@ -79,18 +80,18 @@ Hope it helps!
 */
 class Solution {
 public:
-    int maxCoins(vector<int> &nums) {
+    int maxCoins(vector<int>& nums) {
         int n = nums.size();
         nums.insert(nums.begin(), 1);
         nums.push_back(1);
-        vector<vector<int> > dp(n + 2, vector<int>(n + 2, 0));
+        vector<vector<int>> dp(n + 2, vector<int>(n + 2, 0));
         for (int len = 1; len <= n; ++len) {
             for (int start = 1; start + len - 1 <= n; ++start) {
                 int end = start + len - 1;
                 for (int mid = start; mid <= end; ++mid) {
-                    dp[start][end] = max(dp[start][end],
-                                         dp[start][mid - 1] + nums[start - 1] * nums[mid] * nums[end + 1] + dp[mid + 1][
-                                             end]);
+                    dp[start][end] =
+                            max(dp[start][end],
+                                dp[start][mid - 1] + nums[start - 1] * nums[mid] * nums[end + 1] + dp[mid + 1][end]);
                 }
             }
         }

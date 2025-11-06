@@ -78,9 +78,9 @@ public:
 */
 class Solution {
 public:
-    int splitArray(vector<int> &nums, int m) {
+    int splitArray(vector<int>& nums, int m) {
         int n = nums.size();
-        vector<vector<long> > dp(m + 1, vector<long>(n + 1, INT_MAX));
+        vector<vector<long>> dp(m + 1, vector<long>(n + 1, INT_MAX));
         dp[0][0] = 0;
         for (int i = 1; i <= m; i++) {
             dp[i][1] = nums[0];

@@ -49,11 +49,9 @@ word1[i] and word2[i] consist of lowercase letters.
 #include "extra_data_types.hpp"
 using namespace std;
 
-class Solution
-{
+class Solution {
 public:
-    bool arrayStringsAreEqual(vector<string> &word1, vector<string> &word2)
-    {
+    bool arrayStringsAreEqual(vector<string>& word1, vector<string>& word2) {
         string a = "", b = "";
         for (auto x : word1)
             a += x;

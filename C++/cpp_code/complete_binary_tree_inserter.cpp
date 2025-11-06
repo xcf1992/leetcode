@@ -5,7 +5,8 @@ A complete binary tree is a binary tree in which every level,
 except possibly the last, is completely filled,
 and all nodes are as far left as possible.
 
-Write a data structure CBTInserter that is initialized with a complete binary tree and supports the following operations:
+Write a data structure CBTInserter that is initialized with a complete binary tree and supports the following
+operations:
 
 CBTInserter(TreeNode root)
 initializes the data structure on a given tree with head node root;
@@ -48,18 +49,15 @@ using namespace std;
 
 class CBTInserter {
 private:
-    TreeNode *r = nullptr;
-    queue<TreeNode *> row;
+    TreeNode* r = nullptr;
+    queue<TreeNode*> row;
 
 public:
-    CBTInserter(TreeNode *root) {
+    CBTInserter(TreeNode* root) {
         r = root;
         row.push(root);
-        TreeNode *cur = row.front();
-        while (cur->left != nullptr and
-        cur->right != nullptr
-        )
-        {
+        TreeNode* cur = row.front();
+        while (cur->left != nullptr and cur->right != nullptr) {
             row.pop();
             row.push(cur->left);
             row.push(cur->right);
@@ -71,7 +69,7 @@ public:
     }
 
     int insert(int v) {
-        TreeNode *cur = row.front();
+        TreeNode* cur = row.front();
         if (cur->left == nullptr) {
             cur->left = new TreeNode(v);
             row.push(cur->left);
@@ -83,14 +81,14 @@ public:
         return cur->val;
     }
 
-    TreeNode *get_root() {
+    TreeNode* get_root() {
         return r;
     }
 };
 
 /*
-* Your CBTInserter object will be instantiated and called as such:
-* CBTInserter* obj = new CBTInserter(root);
-* int param_1 = obj->insert(v);
-* TreeNode* param_2 = obj->get_root();
-*/
+ * Your CBTInserter object will be instantiated and called as such:
+ * CBTInserter* obj = new CBTInserter(root);
+ * int param_1 = obj->insert(v);
+ * TreeNode* param_2 = obj->get_root();
+ */

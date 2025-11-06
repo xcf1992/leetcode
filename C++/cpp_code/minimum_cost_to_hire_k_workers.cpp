@@ -41,11 +41,10 @@ Answers within 10^-5 of the correct answer will be considered correct.
 #include <numeric>
 using namespace std;
 /*
-"1. Every worker in the paid group should be paid in the ratio of their quality compared to other workers in the paid group."
-So for any two workers in the paid group,
-we have wage[i] : wage[j] = quality[i] : quality[j]
-So we have wage[i] : quality[i] = wage[j] : quality[j]
-We pay wage to every worker in the group with the same ratio compared to his own quality.
+"1. Every worker in the paid group should be paid in the ratio of their quality compared to other workers in the paid
+group." So for any two workers in the paid group, we have wage[i] : wage[j] = quality[i] : quality[j] So we have wage[i]
+: quality[i] = wage[j] : quality[j] We pay wage to every worker in the group with the same ratio compared to his own
+quality.
 
 "2. Every worker in the paid group must be paid at least their minimum wage expectation."
 For every worker, he has an expected ratio of wage compared to his quality.
@@ -74,19 +73,18 @@ struct myComp {
 
 class Solution {
 public:
-    double mincostToHireWorkers(vector<int> &quality, vector<int> &wage, int K) {
-        vector<pair<double, double> > workers;
+    double mincostToHireWorkers(vector<int>& quality, vector<int>& wage, int K) {
+        vector<pair<double, double>> workers;
         for (int i = 0; i < quality.size(); i++) {
-            workers.push_back({(double) wage[i] / quality[i], (double) quality[i]});
+            workers.push_back({(double)wage[i] / quality[i], (double)quality[i]});
         }
-        sort(workers.begin(), workers.end(), [](pair<double, double> &a, pair<double, double> &b) {
-            return a.first < b.first;
-        });
+        sort(workers.begin(), workers.end(),
+             [](pair<double, double>& a, pair<double, double>& b) { return a.first < b.first; });
 
         double result = __DBL_MAX__;
         double qsum = 0.0;
         priority_queue<double, vector<double>, myComp> pq;
-        for (pair<double, double> &worker: workers) {
+        for (pair<double, double>& worker : workers) {
             qsum += worker.second;
             pq.push(worker.second);
             if (pq.size() > K) {

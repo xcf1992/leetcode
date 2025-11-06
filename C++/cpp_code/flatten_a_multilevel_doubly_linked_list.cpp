@@ -42,14 +42,14 @@ using namespace std;
 class Node {
 public:
     int val = NULL;
-    Node *prev = NULL;
-    Node *next = NULL;
-    Node *child = NULL;
+    Node* prev = NULL;
+    Node* next = NULL;
+    Node* child = NULL;
 
     Node() {
     }
 
-    Node(int _val, Node *_prev, Node *_next, Node *_child) {
+    Node(int _val, Node* _prev, Node* _next, Node* _child) {
         val = _val;
         prev = _prev;
         next = _next;
@@ -59,20 +59,20 @@ public:
 
 class Solution {
 public:
-    Node *flatten(Node *head) {
+    Node* flatten(Node* head) {
         if (head == nullptr) {
             return nullptr;
         }
 
-        Node *cur = head;
+        Node* cur = head;
         while (cur != nullptr) {
             if (cur->child == nullptr) {
                 cur = cur->next;
                 continue;
             }
 
-            Node *childHead = flatten(cur->child);
-            Node *childLast = childHead;
+            Node* childHead = flatten(cur->child);
+            Node* childLast = childHead;
             while (childLast->next != nullptr) {
                 childLast = childLast->next;
             }

@@ -14,10 +14,11 @@ Input: [[100, 200], [200, 1300], [1000, 1250], [2000, 3200]]
 Output: 3
 Explanation:
 There're totally 4 courses, but you can take 3 courses at most:
-First, take the 1st course, it costs 100 days so you will finish it on the 100th day, and ready to take the next course on the 101st day.
-Second, take the 3rd course, it costs 1000 days so you will finish it on the 1100th day, and ready to take the next course on the 1101st day.
-Third, take the 2nd course, it costs 200 days so you will finish it on the 1300th day.
-The 4th course cannot be taken now, since you will finish it on the 3300th day, which exceeds the closed date.
+First, take the 1st course, it costs 100 days so you will finish it on the 100th day, and ready to take the next course
+on the 101st day. Second, take the 3rd course, it costs 1000 days so you will finish it on the 1100th day, and ready to
+take the next course on the 1101st day. Third, take the 2nd course, it costs 200 days so you will finish it on the
+1300th day. The 4th course cannot be taken now, since you will finish it on the 3300th day, which exceeds the closed
+date.
 
 Note:
 The integer 1 <= d, t, n <= 10,000.
@@ -81,22 +82,19 @@ So the increase in number of days cannot be larger than the largest element in q
 and certainly will be less than a previously ignored course which has to be even longer.
 
 Example : [[10,100],[95,100],[100,5000]]
-Here we could take the 10 day course, then the 100 day course & now since more days are available we can take 95 day course
-BUT THAT IS WRONG
-We need to complete the 95 day course by the 100TH day which will never be possible
-So either we can take 10 day one or 95 day one. But it will be only one course possible
-(Better take smaller length course so the next courses get time. Thats why Priority queues are used)
+Here we could take the 10 day course, then the 100 day course & now since more days are available we can take 95 day
+course BUT THAT IS WRONG We need to complete the 95 day course by the 100TH day which will never be possible So either
+we can take 10 day one or 95 day one. But it will be only one course possible (Better take smaller length course so the
+next courses get time. Thats why Priority queues are used)
 */
 class Solution {
 public:
-    int scheduleCourse(vector<vector<int> > &courses) {
-        sort(courses.begin(), courses.end(), [](vector<int> &a, vector<int> &b) {
-            return a[1] < b[1];
-        });
+    int scheduleCourse(vector<vector<int>>& courses) {
+        sort(courses.begin(), courses.end(), [](vector<int>& a, vector<int>& b) { return a[1] < b[1]; });
 
         priority_queue<int> maxHeap;
         int current = 0;
-        for (vector<int> &c: courses) {
+        for (vector<int>& c : courses) {
             current += c[0];
             maxHeap.push(c[0]);
             if (current > c[1]) {
@@ -111,7 +109,7 @@ public:
 class Solution1 {
     // dfs with memo TLE
 private:
-    int schedule(vector<vector<int> > &courses, vector<vector<int> > &dp, int start, int curTime) {
+    int schedule(vector<vector<int>>& courses, vector<vector<int>>& dp, int start, int curTime) {
         if (start >= courses.size()) {
             return 0;
         }
@@ -128,16 +126,14 @@ private:
     }
 
 public:
-    int scheduleCourse(vector<vector<int> > &courses) {
+    int scheduleCourse(vector<vector<int>>& courses) {
         int n = courses.size();
         if (n == 0) {
             return 0;
         }
 
-        sort(courses.begin(), courses.end(), [](vector<int> &a, vector<int> &b) {
-            return a[1] < b[1];
-        });
-        vector<vector<int> > dp(n, vector<int>(courses.back()[1] + 1, -1));
+        sort(courses.begin(), courses.end(), [](vector<int>& a, vector<int>& b) { return a[1] < b[1]; });
+        vector<vector<int>> dp(n, vector<int>(courses.back()[1] + 1, -1));
         return schedule(courses, dp, 0, 0);
     }
 };

@@ -62,7 +62,8 @@ public:
                 leftMax = preSum[i + 1] - preSum[i + 1 - k];
             }
 
-            int j = n - i - 1;;
+            int j = n - i - 1;
+            ;
             posRight[j] = posRight[j + 1];
             if (preSum[j + k] - preSum[j] >= rightMax) {
                 rightMax = preSum[j + k] - preSum[j];
@@ -75,9 +76,8 @@ public:
         for (int i = k; i <= n - 2 * k; i++) {
             int left = posLeft[i - 1];
             int right = posRight[i + k];
-            int curMax = preSum[left + k] - preSum[left] +
-                   preSum[i + k] - preSum[i] +
-                   preSum[right + k] - preSum[right];
+            int curMax =
+                    preSum[left + k] - preSum[left] + preSum[i + k] - preSum[i] + preSum[right + k] - preSum[right];
             if (curMax > maxSum) {
                 maxSum = curMax;
                 result = {left, i, right};

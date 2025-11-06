@@ -43,7 +43,7 @@ Time O(n2 * log(n1))
 */
 class Solution {
 private:
-    bool binarySearch(TreeNode *root, int target) {
+    bool binarySearch(TreeNode* root, int target) {
         if (root == nullptr) {
             return false;
         }
@@ -54,12 +54,8 @@ private:
     }
 
 public:
-    bool twoSumBSTs(TreeNode *root1, TreeNode *root2, int target) {
-        if (root1 == nullptr or root2
-        ==
-        nullptr
-        )
-        {
+    bool twoSumBSTs(TreeNode* root1, TreeNode* root2, int target) {
+        if (root1 == nullptr or root2 == nullptr) {
             return false;
         }
 
@@ -67,20 +63,15 @@ public:
             return true;
         }
 
-        return twoSumBSTs(root1, root2->left, target)
-        or twoSumBSTs(root1, root2->right, target);
+        return twoSumBSTs(root1, root2->left, target) or twoSumBSTs(root1, root2->right, target);
     }
 };
 
 class Solution1 {
     // 25%
 public:
-    bool twoSumBSTs(TreeNode *root1, TreeNode *root2, int target) {
-        if (root1 == nullptr or root2
-        ==
-        nullptr
-        )
-        {
+    bool twoSumBSTs(TreeNode* root1, TreeNode* root2, int target) {
+        if (root1 == nullptr or root2 == nullptr) {
             return false;
         }
 
@@ -90,10 +81,8 @@ public:
         }
 
         if (sum > target) {
-            return twoSumBSTs(root1->left, root2, target)
-            or twoSumBSTs(root1, root2->left, target);
+            return twoSumBSTs(root1->left, root2, target) or twoSumBSTs(root1, root2->left, target);
         }
-        return twoSumBSTs(root1->right, root2, target)
-        or twoSumBSTs(root1, root2->right, target);
+        return twoSumBSTs(root1->right, root2, target) or twoSumBSTs(root1, root2->right, target);
     }
 };

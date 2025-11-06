@@ -35,14 +35,12 @@ using namespace std;
 
 class Solution {
 private:
-    vector<string> below20 = vector<string>({
-        "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen",
-        "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"
-    });
+    vector<string> below20 = vector<string>({"One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine",
+                                             "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen",
+                                             "Seventeen", "Eighteen", "Nineteen"});
 
-    vector<string> below100 = vector<string>({
-        "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"
-    });
+    vector<string> below100 =
+            vector<string>({"Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"});
 
     string int_to_str(int num) {
         if (num >= 1000000000) {
@@ -69,7 +67,7 @@ private:
             return " " + below20[num - 1];
         }
 
-        return ""; // this cannot be removed, otherwise test case 20 will fail
+        return "";  // this cannot be removed, otherwise test case 20 will fail
     }
 
 public:

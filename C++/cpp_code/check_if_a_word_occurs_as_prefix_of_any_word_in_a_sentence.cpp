@@ -19,7 +19,8 @@ Explanation: "burg" is prefix of "burger" which is the 4th word in the sentence.
 Example 2:
 Input: sentence = "this problem is an easy problem", searchWord = "pro"
 Output: 2
-Explanation: "pro" is prefix of "problem" which is the 2nd and the 6th word in the sentence, but we return 2 as it's the minimal index.
+Explanation: "pro" is prefix of "problem" which is the 2nd and the 6th word in the sentence, but we return 2 as it's the
+minimal index.
 
 Example 3:
 Input: sentence = "i am tired", searchWord = "you"

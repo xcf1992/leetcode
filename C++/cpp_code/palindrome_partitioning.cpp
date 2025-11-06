@@ -22,7 +22,7 @@ using namespace std;
 
 class Solution {
 private:
-    void dfs(vector<vector<string> > &results, vector<string> cur, string &s, int start, vector<vector<bool> > &dp) {
+    void dfs(vector<vector<string>>& results, vector<string> cur, string& s, int start, vector<vector<bool>>& dp) {
         if (start >= s.size()) {
             results.push_back(cur);
             return;
@@ -37,20 +37,16 @@ private:
     }
 
 public:
-    vector<vector<string> > partition(string s) {
+    vector<vector<string>> partition(string s) {
         int n = s.size();
         if (n == 0) {
             return {};
         }
 
-        vector<vector<bool> > dp(n, vector<bool>(n, false));
+        vector<vector<bool>> dp(n, vector<bool>(n, false));
         for (int i = 0; i < n; ++i) {
             dp[i][i] = true;
-            if (i + 1 < n and s[i]
-            ==
-            s[i + 1]
-            )
-            {
+            if (i + 1 < n and s[i] == s[i + 1]) {
                 dp[i][i + 1] = true;
             }
         }
@@ -58,16 +54,14 @@ public:
         for (int len = 3; len <= n; ++len) {
             for (int i = 0; i + len - 1 < n; ++i) {
                 int j = i + len - 1;
-                if (s[i] == s[j] and dp[i + 1][j - 1]
-                )
-                {
+                if (s[i] == s[j] and dp[i + 1][j - 1]) {
                     dp[i][j] = true;
                 }
             }
         }
 
         vector<string> current;
-        vector<vector<string> > result;
+        vector<vector<string>> result;
         dfs(result, current, s, 0, dp);
         return result;
     }

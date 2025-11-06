@@ -9,7 +9,8 @@ The player who first causes the running total to reach or exceed 100 wins.
 What if we change the game so that players cannot re-use integers?
 
 For example,
-two players might take turns drawing from a common pool of numbers of 1..15 without replacement until they reach a total >= 100.
+two players might take turns drawing from a common pool of numbers of 1..15 without replacement until they reach a total
+>= 100.
 
 Given an integer maxChoosableInteger and another integer desiredTotal,
 determine if the first player to move can force a win,
@@ -47,7 +48,7 @@ using namespace std;
 
 class Solution {
 private:
-    bool canWin(int total, int usedNumMask, vector<unordered_map<int, bool> > &cache, int maxNum) {
+    bool canWin(int total, int usedNumMask, vector<unordered_map<int, bool>>& cache, int maxNum) {
         if (total <= 0) {
             return false;
         }
@@ -78,7 +79,7 @@ public:
             return false;
         }
 
-        vector<unordered_map<int, bool> > cache(desiredTotal + 1);
+        vector<unordered_map<int, bool>> cache(desiredTotal + 1);
         return canWin(desiredTotal, 0, cache, maxChoosableInteger);
     }
 };

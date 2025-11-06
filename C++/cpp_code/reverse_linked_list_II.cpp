@@ -29,20 +29,14 @@ using namespace std;
 
 class Solution {
 public:
-    ListNode *reverseBetween(ListNode *head, int m, int n) {
-        if (head == nullptr or
-        head->next == nullptr
-        or n
-        ==
-        m
-        )
-        {
+    ListNode* reverseBetween(ListNode* head, int m, int n) {
+        if (head == nullptr or head->next == nullptr or n == m) {
             return head;
         }
 
-        ListNode *dummy = new ListNode(-1);
+        ListNode* dummy = new ListNode(-1);
         dummy->next = head;
-        ListNode *pre = dummy;
+        ListNode* pre = dummy;
         for (int i = 1; i < m; ++i) {
             pre = pre->next;
         }
@@ -50,12 +44,12 @@ public:
             return head;
         }
 
-        ListNode *cur = pre->next;
+        ListNode* cur = pre->next;
         for (int i = m; i < n; i++) {
             if (cur->next == nullptr) {
                 return dummy->next;
             }
-            ListNode *suc = cur->next;
+            ListNode* suc = cur->next;
 
             cur->next = suc->next;
             suc->next = pre->next;

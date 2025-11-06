@@ -23,7 +23,9 @@
 
  Input: words = ["apple","app"], order = "abcdefghijklmnopqrstuvwxyz"
  Output: false
- Explanation: The first three characters "app" match, and the second string is shorter (in size.) According to lexicographical rules "apple" > "app", because 'l' > '∅', where '∅' is defined as the blank character which is less than any other character (More info).
+ Explanation: The first three characters "app" match, and the second string is shorter (in size.) According to
+ lexicographical rules "apple" > "app", because 'l' > '∅', where '∅' is defined as the blank character which is less
+ than any other character (More info).
 
 
  Note:
@@ -52,9 +54,7 @@ private:
     bool comeBefore(string word1, string word2, vector<int> letter) {
         int i = 0;
         int j = 0;
-        while (i < word1.size() and j<word2.size()
-        )
-        {
+        while (i < word1.size() and j < word2.size()) {
             if (letter[word1[i] - 'a'] > letter[word2[j] - 'a']) {
                 return false;
             }
@@ -69,7 +69,7 @@ private:
     }
 
 public:
-    bool isAlienSorted(vector<string> &words, string order) {
+    bool isAlienSorted(vector<string>& words, string order) {
         vector<int> letter(26, -1);
         for (int i = 0; i < order.size(); i++) {
             letter[order[i] - 'a'] = i;

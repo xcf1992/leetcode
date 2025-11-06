@@ -35,13 +35,14 @@ using namespace std;
 
 class Solution {
 public:
-    void sortColors(vector<int> &nums) {
+    void sortColors(vector<int>& nums) {
         int first = 0;
         int last = nums.size() - 1;
         int cur = 0;
         while (cur <= last) {
             if (nums[cur] == 0) {
-                // cause the part before cur will always be 0 or 1 already, so we do not need to check cur again after swap
+                // cause the part before cur will always be 0 or 1 already, so we do not need to check cur again after
+                // swap
                 swap(nums[first], nums[cur]);
                 first += 1;
                 cur += 1;

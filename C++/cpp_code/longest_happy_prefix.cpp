@@ -9,7 +9,8 @@ Return an empty string if no such prefix exists.
 Example 1:
 Input: s = "level"
 Output: "l"
-Explanation: s contains 4 prefix excluding itself ("l", "le", "lev", "leve"), and suffix ("l", "el", "vel", "evel"). The largest prefix which is also suffix is given by "l".
+Explanation: s contains 4 prefix excluding itself ("l", "le", "lev", "leve"), and suffix ("l", "el", "vel", "evel"). The
+largest prefix which is also suffix is given by "l".
 
 Example 2:
 Input: s = "ababab"
@@ -62,7 +63,8 @@ We'd better do that, like in an interview.
 I didn't do that, because I knew LeetCode test cases are far from strong.
 
 Approach 1: Incremental Hash
-Compute hashes for increasing prefix and suffix, reusing the previously computed hashes. This is similar to the Karp–Rabin algorithm.
+Compute hashes for increasing prefix and suffix, reusing the previously computed hashes. This is similar to the
+Karp–Rabin algorithm.
 
 For the string of i size, the hash is: s[0] * 26 ^ (i - 1) + s[1] * 26 ^ (i -2) + ... + s[i - 2] * 26 + s[i - 1].
 
@@ -70,7 +72,8 @@ For the prefix hash, we will multiply the previous value by 26 and add a new let
 For the suffix hash, we add a new letter multiplied by 26 ^ (i - 1).
 Note that we need to use some large prime as a modulo to avoid overflow errors, e.g. 10 ^ 9 + 7.
 
-Beware of collisions. After you find a matching hash, you need to check the string. Since OJ test cases do not cause collisions, I am not doing it here.
+Beware of collisions. After you find a matching hash, you need to check the string. Since OJ test cases do not cause
+collisions, I am not doing it here.
 
 Update: see sample solutions that handle collisions in the appendices bellow.
 
@@ -82,7 +85,7 @@ Example strings with collisions:
 */
 class Solution {
 public:
-    string longestPrefix(string &s) {
+    string longestPrefix(string& s) {
         long h1 = 0, h2 = 0, mul = 1, len = 0, mod = 1000000007;
         for (int i = 0, j = s.length() - 1; j > 0; ++i, --j) {
             int first = s[i] - 'a';

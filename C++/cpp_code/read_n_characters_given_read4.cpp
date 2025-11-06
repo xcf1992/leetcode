@@ -1,7 +1,8 @@
 /*
  157. Read N Characters Given Read4
 
- Given a file and assume that you can only read the file using a given method read4, implement a method to read n characters.
+ Given a file and assume that you can only read the file using a given method read4, implement a method to read n
+ characters.
 
  Method read4:
 
@@ -28,7 +29,8 @@
 
  Method read:
 
- By using the read4 method, implement the method read that reads n characters from the file and store it in the buffer array buf. Consider that you cannot manipulate the file directly.
+ By using the read4 method, implement the method read that reads n characters from the file and store it in the buffer
+ array buf. Consider that you cannot manipulate the file directly.
 
  The return value is the number of actual characters read.
 
@@ -44,22 +46,24 @@
 
  Input: file = "abc", n = 4
  Output: 3
- Explanation: After calling your read method, buf should contain "abc". We read a total of 3 characters from the file, so return 3. Note that "abc" is the file's content, not buf. buf is the destination buffer that you will have to write the results to.
- Example 2:
+ Explanation: After calling your read method, buf should contain "abc". We read a total of 3 characters from the file,
+ so return 3. Note that "abc" is the file's content, not buf. buf is the destination buffer that you will have to write
+ the results to. Example 2:
 
  Input: file = "abcde", n = 5
  Output: 5
- Explanation: After calling your read method, buf should contain "abcde". We read a total of 5 characters from the file, so return 5.
- Example 3:
+ Explanation: After calling your read method, buf should contain "abcde". We read a total of 5 characters from the file,
+ so return 5. Example 3:
 
  Input: file = "abcdABCD1234", n = 12
  Output: 12
- Explanation: After calling your read method, buf should contain "abcdABCD1234". We read a total of 12 characters from the file, so return 12.
- Example 4:
+ Explanation: After calling your read method, buf should contain "abcdABCD1234". We read a total of 12 characters from
+ the file, so return 12. Example 4:
 
  Input: file = "leetcode", n = 5
  Output: 5
- Explanation: After calling your read method, buf should contain "leetc". We read a total of 5 characters from the file, so return 5.
+ Explanation: After calling your read method, buf should contain "leetc". We read a total of 5 characters from the file,
+ so return 5.
 
 
  Note:
@@ -83,7 +87,7 @@
 using namespace std;
 
 // Forward declaration of the read4 API.
-int read4(char *buf);
+int read4(char* buf);
 
 class Solution {
 public:
@@ -91,8 +95,8 @@ public:
      * @param buf Destination buffer
      * @param n   Number of characters to read
      * @return    The number of actual characters read
-    */
-    int read(char *buf, int n) {
+     */
+    int read(char* buf, int n) {
         char local[4];
         int curr = 0;
         while (int temp = read4(local)) {

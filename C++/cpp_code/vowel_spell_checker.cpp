@@ -58,28 +58,15 @@ using namespace std;
 class Solution {
 private:
     string toLowerCase(string word) {
-        for (char &c: word) {
+        for (char& c : word) {
             c = tolower(c);
         }
         return word;
     }
 
     string devowel(string word) {
-        for (char &c: word) {
-            if (c == 'a' or c
-            ==
-            'e'
-            or c
-            ==
-            'i'
-            or c
-            ==
-            'o'
-            or c
-            ==
-            'u'
-            )
-            {
+        for (char& c : word) {
+            if (c == 'a' or c == 'e' or c == 'i' or c == 'o' or c == 'u') {
                 c = '_';
             }
         }
@@ -87,7 +74,7 @@ private:
     }
 
 public:
-    vector<string> spellchecker(vector<string> &wordlist, vector<string> &queries) {
+    vector<string> spellchecker(vector<string>& wordlist, vector<string>& queries) {
         unordered_set<string> exactlyMatch(wordlist.begin(), wordlist.end());
         unordered_map<string, string> capMatch, vowelMatch;
         for (int i = 0; i < wordlist.size(); i++) {

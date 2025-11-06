@@ -48,10 +48,10 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> shortestDistanceColor(vector<int> &colors, vector<vector<int> > &queries) {
+    vector<int> shortestDistanceColor(vector<int>& colors, vector<vector<int>>& queries) {
         int n = colors.size();
-        vector<vector<int> > left(4, vector<int>(n, INT_MAX));
-        vector<vector<int> > right(4, vector<int>(n, INT_MAX));
+        vector<vector<int>> left(4, vector<int>(n, INT_MAX));
+        vector<vector<int>> right(4, vector<int>(n, INT_MAX));
 
         left[colors[0]][0] = 0;
         right[colors[n - 1]][n - 1] = 0;
@@ -83,9 +83,9 @@ public:
 class Solution1 {
     // O(logn) 50%
 public:
-    vector<int> shortestDistanceColor(vector<int> &colors, vector<vector<int> > &queries) {
+    vector<int> shortestDistanceColor(vector<int>& colors, vector<vector<int>>& queries) {
         int n = colors.size();
-        unordered_map<int, vector<int> > pos;
+        unordered_map<int, vector<int>> pos;
         for (int i = 0; i < n; ++i) {
             pos[colors[i]].push_back(i);
         }

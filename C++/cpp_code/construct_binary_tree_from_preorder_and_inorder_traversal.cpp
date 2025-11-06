@@ -48,10 +48,11 @@ private:
             }
         }
 
-        root -> left = createBinaryTree(inorder, is, i - 1, preorder, ps + 1, i - is + ps);
-        root -> right = createBinaryTree(inorder, i + 1, ie, preorder, i - is + ps + 1, pe);
+        root->left = createBinaryTree(inorder, is, i - 1, preorder, ps + 1, i - is + ps);
+        root->right = createBinaryTree(inorder, i + 1, ie, preorder, i - is + ps + 1, pe);
         return root;
     }
+
 public:
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
         if (inorder.size() == 0) {

@@ -45,10 +45,10 @@ using namespace std;
 
 class Solution {
 public:
-    int longestArithSeqLength(vector<int> &A) {
+    int longestArithSeqLength(vector<int>& A) {
         int result = 1;
         int n = A.size();
-        vector<unordered_map<int, int> > dp(n);
+        vector<unordered_map<int, int>> dp(n);
         for (int i = 1; i < n; i++) {
             for (int j = 0; j < i; j++) {
                 int gap = A[i] - A[j];

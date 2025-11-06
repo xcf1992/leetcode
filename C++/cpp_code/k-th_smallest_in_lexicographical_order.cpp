@@ -79,9 +79,10 @@ organize this flow to "steps += Math.min(n + 1, n2) - n1; n1 *= 10; n2 *= 10;"
 class Solution {
 private:
     /*
-    * we need to calculate how many elements are there between left and right
-    * so for each level if left <= n, we need to check if all nodes in current level is smaller than n or only a part of them
-    */
+     * we need to calculate how many elements are there between left and right
+     * so for each level if left <= n, we need to check if all nodes in current level is smaller than n or only a part
+     * of them
+     */
     int calSteps(long n, long left, long right) {
         int steps = 0;
         while (left <= n) {
@@ -121,7 +122,7 @@ Time limit exceed
 */
 class Solution1 {
 private:
-    int find(int n, int k, long long number, int &rank) {
+    int find(int n, int k, long long number, int& rank) {
         if (rank == k) {
             return number;
         }

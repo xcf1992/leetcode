@@ -43,7 +43,7 @@ public:
 
     // Return the nested list that this NestedInteger holds, if it holds a nested list
     // The result is undefined if this NestedInteger holds a single integer
-    const vector<NestedInteger> &getList() const;
+    const vector<NestedInteger>& getList() const;
 };
 
 class NestedIterator {
@@ -51,7 +51,7 @@ private:
     stack<vector<NestedInteger>::iterator> begins, ends;
 
 public:
-    NestedIterator(vector<NestedInteger> &nestedList) {
+    NestedIterator(vector<NestedInteger>& nestedList) {
         begins.push(nestedList.begin());
         ends.push(nestedList.end());
     }

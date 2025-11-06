@@ -52,8 +52,8 @@ Thus, we restrict ourself to remove the first ) in a series of concecutive )s.
 After the removal, the prefix is then valid.
 We then call the function recursively to solve the rest of the string.
 However, we need to keep another information: the last removal position.
-If we do not have this position, we will generate duplicate by removing two ‘)’ in two steps only with a different order.
-For this, we keep tracking the last removal position and only remove ‘)’ after that.
+If we do not have this position, we will generate duplicate by removing two ‘)’ in two steps only with a different
+order. For this, we keep tracking the last removal position and only remove ‘)’ after that.
 
 Now one may ask. What about ‘(‘? What if s = ‘(()(()’ in which we need remove ‘(‘?
 The answer is: do the same from right to left.
@@ -64,7 +64,7 @@ class Solution {
 private:
     bool isValid(string s) {
         int count = 0;
-        for (char c: s) {
+        for (char c : s) {
             if (c == '(') {
                 count += 1;
             }
@@ -92,7 +92,7 @@ public:
             bfs.pop();
 
             if (curS.size() < length) {
-                continue; // we should skip if we have to remove more parenthese than minimum
+                continue;  // we should skip if we have to remove more parenthese than minimum
             }
 
             if (isValid(curS)) {
@@ -102,11 +102,7 @@ public:
             }
 
             for (int i = 0; i < curS.size(); i++) {
-                if (curS[i] != '(' and curS[i]
-                !=
-                ')'
-                )
-                {
+                if (curS[i] != '(' and curS[i] != ')') {
                     continue;
                 }
 

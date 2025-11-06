@@ -68,12 +68,10 @@ public:
                 stk.pop();
                 if (!stk.empty() and stk.top() == 'a') {
                     stk.pop();
-                }
-                else {
+                } else {
                     return false;
                 }
-            }
-            else {
+            } else {
                 return false;
             }
         }

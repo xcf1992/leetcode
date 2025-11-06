@@ -33,7 +33,7 @@ using namespace std;
 
 class Solution {
 private:
-    string genKey(vector<int> &dominoe) {
+    string genKey(vector<int>& dominoe) {
         if (dominoe[0] > dominoe[1]) {
             return to_string(dominoe[0]) + "-" + to_string(dominoe[1]);
         }
@@ -41,14 +41,14 @@ private:
     }
 
 public:
-    int numEquivDominoPairs(vector<vector<int> > &dominoes) {
+    int numEquivDominoPairs(vector<vector<int>>& dominoes) {
         unordered_map<string, int> count;
-        for (vector<int> &dominoe: dominoes) {
+        for (vector<int>& dominoe : dominoes) {
             count[genKey(dominoe)] += 1;
         }
 
         int result = 0;
-        for (auto &it: count) {
+        for (auto& it : count) {
             int k = it.second;
             if (k > 1) {
                 result += k * (k - 1) / 2;
@@ -61,18 +61,13 @@ public:
 class Solution1 {
     // TLE
 public:
-    int numEquivDominoPairs(vector<vector<int> > &dominoes) {
+    int numEquivDominoPairs(vector<vector<int>>& dominoes) {
         int n = dominoes.size();
         int result = 0;
         for (int i = 0; i < n; ++i) {
             for (int j = i + 1; j < n; ++j) {
-                if ((dominoes[i][0] == dominoes[j][0] and dominoes[i][1]
-                ==
-                dominoes[j][1]
-                )
-                or(dominoes[i][1] == dominoes[j][0] and dominoes[i][0] == dominoes[j][1])
-                )
-                {
+                if ((dominoes[i][0] == dominoes[j][0] and dominoes[i][1] == dominoes[j][1]) or
+                    (dominoes[i][1] == dominoes[j][0] and dominoes[i][0] == dominoes[j][1])) {
                     result += 1;
                 }
             }

@@ -7,9 +7,9 @@ if the differences between successive numbers strictly alternate between positiv
 The first difference (if one exists) may be either positive or negative.
 A sequence with fewer than two elements is trivially a wiggle sequence.
 
-For example, [1,7,4,9,2,5] is a wiggle sequence because the differences (6,-3,5,-7,3) are alternately positive and negative.
-In contrast, [1,4,7,2,5] and [1,7,4,5,5] are not wiggle sequences,
-the first because its first two differences are positive and the second because its last difference is zero.
+For example, [1,7,4,9,2,5] is a wiggle sequence because the differences (6,-3,5,-7,3) are alternately positive and
+negative. In contrast, [1,4,7,2,5] and [1,7,4,5,5] are not wiggle sequences, the first because its first two differences
+are positive and the second because its last difference is zero.
 
 Given a sequence of integers,
 return the length of the longest subsequence that is a wiggle sequence.
@@ -42,7 +42,7 @@ using namespace std;
 
 class Solution {
 public:
-    int wiggleMaxLength(vector<int> &nums) {
+    int wiggleMaxLength(vector<int>& nums) {
         int n = nums.size();
         if (n <= 1) {
             return n;
@@ -76,7 +76,7 @@ We call this a subsequence of type D.
 */
 class Solution1 {
 public:
-    int wiggleMaxLength(vector<int> &nums) {
+    int wiggleMaxLength(vector<int>& nums) {
         int result = 0;
         int up = 1;
         int down = 1;

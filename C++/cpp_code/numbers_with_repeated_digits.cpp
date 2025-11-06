@@ -1,7 +1,8 @@
 /*
 1015. Numbers With Repeated Digit
 
-Given a positive integer N, return the number of positive integers less than or equal to N that have at least 1 repeated digit.
+Given a positive integer N, return the number of positive integers less than or equal to N that have at least 1 repeated
+digit.
 
 Example 1:
 Input: 20
@@ -11,7 +12,8 @@ Explanation: The only positive number (<= 20) with at least 1 repeated digit is 
 Example 2:
 Input: 100
 Output: 10
-Explanation: The positive numbers (<= 100) with atleast 1 repeated digit are 11, 22, 33, 44, 55, 66, 77, 88, 99, and 100.
+Explanation: The positive numbers (<= 100) with atleast 1 repeated digit are 11, 22, 33, 44, 55, 66, 77, 88, 99, and
+100.
 
 Example 3:
 Input: 1000
@@ -63,7 +65,8 @@ We count digit by digit, so it's O(logN)
 
 Consider the given number is 5234. Then N+1 = 5235.
 
-It is a 4-digit number, and hence all the 1-digit, 2-digit and 3-digit number permutations are definitely less than 5235.
+It is a 4-digit number, and hence all the 1-digit, 2-digit and 3-digit number permutations are definitely less than
+5235.
 
 Now let us see the 4-digit permutations. As per the logic being followed,
 we are counting number of permutations for a given number of digits.
@@ -88,7 +91,8 @@ for instance, 5235 which is equal to 5235 but we need only numbers < 5235 and no
 
 If we won't consider the 'prefix', we will calculate all the possible permutations for a 4-digit number,
 which includes numbers greater than 5235 as well. Hence to avoid counting such numbers,
-we are following the prefix logic. We 'fix' the initial digits and permute the next ones. Hope this clarifies your confusion :)
+we are following the prefix logic. We 'fix' the initial digits and permute the next ones. Hope this clarifies your
+confusion :)
 */
 class Solution {
 private:

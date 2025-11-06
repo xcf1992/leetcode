@@ -3,7 +3,8 @@
 https://leetcode.com/problems/array-of-doubled-pairs/
 
 Given an array of integers A with even length,
-return true if and only if it is possible to reorder it such that A[2 * i + 1] = 2 * A[2 * i] for every 0 <= i < len(A) / 2.
+return true if and only if it is possible to reorder it such that A[2 * i + 1] = 2 * A[2 * i] for every 0 <= i < len(A)
+/ 2.
 
 Example 1:
 
@@ -46,21 +47,19 @@ using namespace std;
 
 class Solution {
 public:
-    bool canReorderDoubled(vector<int> &A) {
+    bool canReorderDoubled(vector<int>& A) {
         map<int, int> count;
-        for (int a: A) {
+        for (int a : A) {
             count[a] += 1;
         }
 
         vector<int> keys;
-        for (auto &it: count) {
+        for (auto& it : count) {
             keys.push_back(it.first);
         }
-        sort(keys.begin(), keys.end(), [](int a, int b) {
-            return abs(a) < abs(b);
-        });
+        sort(keys.begin(), keys.end(), [](int a, int b) { return abs(a) < abs(b); });
 
-        for (int k: keys) {
+        for (int k : keys) {
             if (count[k] > count[2 * k]) {
                 return false;
             }

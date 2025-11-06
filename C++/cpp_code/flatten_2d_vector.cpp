@@ -40,12 +40,12 @@ using namespace std;
 
 class Vector2D {
 private:
-    vector<vector<int> >::iterator rowIt;
-    vector<vector<int> >::iterator rowEnd;
+    vector<vector<int>>::iterator rowIt;
+    vector<vector<int>>::iterator rowEnd;
     vector<int>::iterator colIt;
 
 public:
-    Vector2D(vector<vector<int> > &vec2d) {
+    Vector2D(vector<vector<int>>& vec2d) {
         rowIt = vec2d.begin();
         rowEnd = vec2d.end();
         if (rowIt != rowEnd) {
@@ -54,18 +54,14 @@ public:
     }
 
     int next() {
-        hasNext(); // check before get the value
+        hasNext();  // check before get the value
         int i = *colIt;
         colIt += 1;
         return i;
     }
 
     bool hasNext() {
-        while (rowIt != rowEnd and colIt
-        ==
-        rowIt->end()
-        )
-        {
+        while (rowIt != rowEnd and colIt == rowIt->end()) {
             rowIt += 1;
             if (rowIt != rowEnd) {
                 colIt = rowIt->begin();
@@ -76,7 +72,7 @@ public:
 };
 
 /*
-* Your Vector2D object will be instantiated and called as such:
-* Vector2D i(vec2d);
-* while (i.hasNext()) cout << i.next();
-*/
+ * Your Vector2D object will be instantiated and called as such:
+ * Vector2D i(vec2d);
+ * while (i.hasNext()) cout << i.next();
+ */

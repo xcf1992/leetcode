@@ -65,9 +65,10 @@ Note:
 N and K are positive integers, which are in the range of [1, 100].
 In the matrix flights, all the values are integers in the range of [0, 1].
 In the matrix days, all the values are integers in the range [0, 7].
-You could stay at a city beyond the number of vacation days, but you should work on the extra days, which won't be counted as vacation days.
-If you fly from the city A to the city B and take the vacation on that day, the deduction towards vacation days will count towards the vacation days of city B in that week.
-We don't consider the impact of flight hours towards the calculation of vacation days.
+You could stay at a city beyond the number of vacation days, but you should work on the extra days, which won't be
+counted as vacation days. If you fly from the city A to the city B and take the vacation on that day, the deduction
+towards vacation days will count towards the vacation days of city B in that week. We don't consider the impact of
+flight hours towards the calculation of vacation days.
 */
 #include <iostream>
 #include <string>
@@ -85,18 +86,14 @@ using namespace std;
 
 class Solution {
 public:
-    int maxVacationDays(vector<vector<int> > &flights, vector<vector<int> > &days) {
+    int maxVacationDays(vector<vector<int>>& flights, vector<vector<int>>& days) {
         int N = flights.size();
         int weeks = days[0].size();
 
-        vector<vector<int> > dp(weeks, vector<int>(N, -1));
+        vector<vector<int>> dp(weeks, vector<int>(N, -1));
         int result = 0;
         for (int i = 0; i < N; ++i) {
-            if (i == 0 or flights[0][i]
-            !=
-            0
-            )
-            {
+            if (i == 0 or flights[0][i] != 0) {
                 dp[0][i] = days[i][0];
             }
             result = max(result, dp[0][i]);
@@ -108,11 +105,7 @@ public:
                     if (dp[i - 1][k] == -1) {
                         continue;
                     }
-                    if (j == k or flights[k][j]
-                    ==
-                    1
-                    )
-                    {
+                    if (j == k or flights[k][j] == 1) {
                         dp[i][j] = max(dp[i][j], dp[i - 1][k] + days[j][i]);
                     }
                 }

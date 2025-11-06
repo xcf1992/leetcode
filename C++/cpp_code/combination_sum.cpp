@@ -36,7 +36,7 @@ using namespace std;
 
 class Solution {
 private:
-    void dfs(vector<int> &candidates, int target, int start, vector<int> combination, vector<vector<int> > &result) {
+    void dfs(vector<int>& candidates, int target, int start, vector<int> combination, vector<vector<int>>& result) {
         if (target == 0) {
             result.push_back(combination);
             return;
@@ -53,9 +53,9 @@ private:
     }
 
 public:
-    vector<vector<int> > combinationSum(vector<int> &candidates, int target) {
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         sort(candidates.begin(), candidates.end());
-        vector<vector<int> > result;
+        vector<vector<int>> result;
         dfs(candidates, target, 0, {}, result);
         return result;
     }

@@ -53,35 +53,39 @@ All pairs (xi, yi) are distinct.
 #include <map>
 using namespace std;
 /*
-We can imagine that every point is a node of the graph, connected to all other points, and the lenght of the edge is the manhattan distance between two points.
+We can imagine that every point is a node of the graph, connected to all other points, and the lenght of the edge is the
+manhattan distance between two points.
 
 To find the min cost, we therefore need to find the minimum spanning tree.
 
-Note: I tried to sort all edges first, but I got TLE during the contest. I think that limits for C++ are too tight. I then used a min heap, and it worked.
+Note: I tried to sort all edges first, but I got TLE during the contest. I think that limits for C++ are too tight. I
+then used a min heap, and it worked.
 
-The complexity when using sort is O(n * n log (n * n)) - we have n * n edges. Using a min heap is O(k log (n * n)), where k is the number of edges we need to pull to complete the tree. It's much smaller than n * n in the average case.
+The complexity when using sort is O(n * n log (n * n)) - we have n * n edges. Using a min heap is O(k log (n * n)),
+where k is the number of edges we need to pull to complete the tree. It's much smaller than n * n in the average case.
 
-We can use the Kruskal algorithm, which involves min heap to pick the smallest edge, and union-find to check if the edge is redundant.
+We can use the Kruskal algorithm, which involves min heap to pick the smallest edge, and union-find to check if the edge
+is redundant.
 
 We exit when all points are connected.
 */
 class Solution {
 public:
-    int find(vector<int> &ds, int i) {
+    int find(vector<int>& ds, int i) {
         return ds[i] < 0 ? i : ds[i] = find(ds, ds[i]);
     }
 
-    int minCostConnectPoints(vector<vector<int> > &ps) {
+    int minCostConnectPoints(vector<vector<int>>& ps) {
         int n = ps.size(), res = 0;
         vector<int> ds(n, -1);
-        vector<array<int, 3> > arr;
+        vector<array<int, 3>> arr;
         for (auto i = 0; i < n; ++i)
             for (auto j = i + 1; j < n; ++j) {
                 arr.push_back({abs(ps[i][0] - ps[j][0]) + abs(ps[i][1] - ps[j][1]), i, j});
             }
-        make_heap(begin(arr), end(arr), greater<array<int, 3> >());
+        make_heap(begin(arr), end(arr), greater<array<int, 3>>());
         while (!arr.empty()) {
-            pop_heap(begin(arr), end(arr), greater<array<int, 3> >());
+            pop_heap(begin(arr), end(arr), greater<array<int, 3>>());
             auto [dist, i, j] = arr.back();
             arr.pop_back();
             i = find(ds, i), j = find(ds, j);

@@ -54,16 +54,16 @@ using namespace std;
 
 class Solution {
 private:
-    int find(vector<int> &parent, int node) {
+    int find(vector<int>& parent, int node) {
         return parent[node] == 0 ? node : find(parent, parent[node]);
     }
 
 public:
-    vector<int> findRedundantConnection(vector<vector<int> > &edges) {
+    vector<int> findRedundantConnection(vector<vector<int>>& edges) {
         int n = edges.size();
         vector<int> parent(n + 1, 0);
         vector<int> result;
-        for (auto edge: edges) {
+        for (auto edge : edges) {
             int start = edge[0];
             int end = edge[1];
             int parentX = find(parent, start);

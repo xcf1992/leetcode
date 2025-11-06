@@ -14,17 +14,9 @@ If there is no way to paint any integer given the condition, return "0".
 Example 1:
 Input: cost = [4,3,2,5,6,7,2,5,5], target = 9
 Output: "7772"
-Explanation:  The cost to paint the digit '7' is 2, and the digit '2' is 3. Then cost("7772") = 2*3+ 3*1 = 9. You could also paint "977", but "7772" is the largest number.
-Digit    cost
-  1  ->   4
-  2  ->   3
-  3  ->   2
-  4  ->   5
-  5  ->   6
-  6  ->   7
-  7  ->   2
-  8  ->   5
-  9  ->   5
+Explanation:  The cost to paint the digit '7' is 2, and the digit '2' is 3. Then cost("7772") = 2*3+ 3*1 = 9. You could
+also paint "977", but "7772" is the largest number. Digit    cost 1  ->   4 2  ->   3 3  ->   2 4  ->   5 5  ->   6 6 ->
+7 7  ->   2 8  ->   5 9  ->   5
 
 Example 2:
 Input: cost = [7,6,5,5,5,6,8,7,8], target = 12
@@ -67,7 +59,7 @@ class Solution {
 public:
     string largestNumber(vector<int>& cost, int target) {
         vector<int> dp(target + 1, -10000);
-        dp[0] = 0; // dp[i] identifies the longest target can reach using total coast i
+        dp[0] = 0;  // dp[i] identifies the longest target can reach using total coast i
         for (int t = 1; t <= target; ++t) {
             for (int i = 0; i < 9; ++i) {
                 dp[t] = max(dp[t], t >= cost[i] ? 1 + dp[t - cost[i]] : -10000);

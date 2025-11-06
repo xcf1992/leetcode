@@ -2,11 +2,15 @@
 https://leetcode.com/problems/count-paths-that-can-form-a-palindrome-in-a-tree/description/
 2791. Count Paths That Can Form a Palindrome in a Tree
 
-You are given a tree (i.e. a connected, undirected graph that has no cycles) rooted at node 0 consisting of n nodes numbered from 0 to n - 1. The tree is represented by a 0-indexed array parent of size n, where parent[i] is the parent of node i. Since node 0 is the root, parent[0] == -1.
+You are given a tree (i.e. a connected, undirected graph that has no cycles) rooted at node 0 consisting of n nodes
+numbered from 0 to n - 1. The tree is represented by a 0-indexed array parent of size n, where parent[i] is the parent
+of node i. Since node 0 is the root, parent[0] == -1.
 
-You are also given a string s of length n, where s[i] is the character assigned to the edge between i and parent[i]. s[0] can be ignored.
+You are also given a string s of length n, where s[i] is the character assigned to the edge between i and parent[i].
+s[0] can be ignored.
 
-Return the number of pairs of nodes (u, v) such that u < v and the characters assigned to edges on the path from u to v can be rearranged to form a palindrome.
+Return the number of pairs of nodes (u, v) such that u < v and the characters assigned to edges on the path from u to v
+can be rearranged to form a palindrome.
 
 A string is a palindrome when it reads the same backwards as forwards.
 
@@ -85,7 +89,7 @@ and finally return result res in the end.
  */
 class Solution {
 private:
-    int get_mask(vector<int> &masks, vector<int> &parent, string &s, int i) {
+    int get_mask(vector<int>& masks, vector<int>& parent, string& s, int i) {
         if (i == 0 || parent[i] == -1) {
             return 0;
         }
@@ -98,7 +102,7 @@ private:
     }
 
 public:
-    long long countPalindromePaths(vector<int> &parent, string s) {
+    long long countPalindromePaths(vector<int>& parent, string s) {
         int n = parent.size();
         long long res = 0;
         vector<int> masks(n, 0);

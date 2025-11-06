@@ -90,10 +90,10 @@ private:
     vector<int> dx = {0, 1, 0, -1};
     vector<int> dy = {1, 0, -1, 0};
     int direct = 0;
-    unordered_map<int, unordered_map<int, int> > visited;
+    unordered_map<int, unordered_map<int, int>> visited;
 
 public:
-    void cleanRoom(Robot &robot) {
+    void cleanRoom(Robot& robot) {
         if (visited[x][y] == 1) {
             return;
         }

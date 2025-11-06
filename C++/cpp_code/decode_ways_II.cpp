@@ -79,15 +79,7 @@ private:
             return s[1] <= '6' ? 2 : 1;
         }
         // if two digits, it has to be in [10 26]; no leading 0
-        return (stoi(s) >= 10
-        and stoi(s)
-        <=
-        26
-        )
-        ?
-        1
-        :
-        0;
+        return (stoi(s) >= 10 and stoi(s) <= 26) ? 1 : 0;
     }
 
 public:

@@ -67,16 +67,13 @@ using namespace std;
 
 class Solution {
 private:
-    bool isSufficient(TreeNode *root, int sum, int limit) {
+    bool isSufficient(TreeNode* root, int sum, int limit) {
         if (root == nullptr) {
             return false;
         }
 
         sum += root->val;
-        if (root->left == nullptr and
-        root->right == nullptr
-        )
-        {
+        if (root->left == nullptr and root->right == nullptr) {
             return sum >= limit;
         }
 
@@ -88,12 +85,11 @@ private:
         if (!rightSufficient) {
             root->right = nullptr;
         }
-        return leftSufficient
-        or rightSufficient;
+        return leftSufficient or rightSufficient;
     }
 
 public:
-    TreeNode *sufficientSubset(TreeNode *root, int limit) {
+    TreeNode* sufficientSubset(TreeNode* root, int limit) {
         return isSufficient(root, 0, limit) ? root : nullptr;
     }
 };

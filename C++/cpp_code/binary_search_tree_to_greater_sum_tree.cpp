@@ -42,7 +42,7 @@ using namespace std;
 
 class Solution {
 private:
-    void traverse(TreeNode *root, TreeNode *&pre) {
+    void traverse(TreeNode* root, TreeNode*& pre) {
         if (root == nullptr) {
             return;
         }
@@ -56,8 +56,8 @@ private:
     }
 
 public:
-    TreeNode *bstToGst(TreeNode *root) {
-        TreeNode *pre = nullptr;
+    TreeNode* bstToGst(TreeNode* root) {
+        TreeNode* pre = nullptr;
         traverse(root, pre);
         return root;
     }

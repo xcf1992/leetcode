@@ -29,13 +29,13 @@ Input: sum("ap"), Output: 5
 using namespace std;
 
 struct TrieNode {
-    vector<TrieNode *> child = vector<TrieNode *>(26, nullptr);
+    vector<TrieNode*> child = vector<TrieNode*>(26, nullptr);
     int sum = 0;
 };
 
 class MapSum {
 private:
-    TrieNode *root;
+    TrieNode* root;
     unordered_map<string, int> pairs;
 
 public:
@@ -45,7 +45,7 @@ public:
     }
 
     void insert(string key, int val) {
-        TrieNode *cur = root;
+        TrieNode* cur = root;
         for (int i = 0; i < key.size(); i++) {
             if (cur->child[key[i] - 'a'] == nullptr) {
                 cur->child[key[i] - 'a'] = new TrieNode();
@@ -57,7 +57,7 @@ public:
     }
 
     int sum(string prefix) {
-        TrieNode *cur = root;
+        TrieNode* cur = root;
         for (int i = 0; i < prefix.size(); i++) {
             if (cur == nullptr) {
                 break;
@@ -69,8 +69,8 @@ public:
 };
 
 /*
-* Your MapSum object will be instantiated and called as such:
-* MapSum obj = new MapSum();
-* obj.insert(key,val);
-* int param_2 = obj.sum(prefix);
-*/
+ * Your MapSum object will be instantiated and called as such:
+ * MapSum obj = new MapSum();
+ * obj.insert(key,val);
+ * int param_2 = obj.sum(prefix);
+ */

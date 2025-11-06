@@ -52,14 +52,14 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> findRightInterval(vector<vector<int> > &intervals) {
+    vector<int> findRightInterval(vector<vector<int>>& intervals) {
         map<int, int> cache;
         for (int i = 0; i < intervals.size(); i++) {
             cache[intervals[i][0]] = i;
         }
 
         vector<int> result;
-        for (vector<int> &interval: intervals) {
+        for (vector<int>& interval : intervals) {
             auto it = cache.lower_bound(interval[1]);
             result.push_back(it == cache.end() ? -1 : it->second);
         }
@@ -70,24 +70,18 @@ public:
 // wrong answer do not know why
 class Solution1 {
 public:
-    vector<int> findRightInterval(vector<vector<int> > &intervals) {
+    vector<int> findRightInterval(vector<vector<int>>& intervals) {
         int n = intervals.size();
         for (int i = 0; i < n; ++i) {
             intervals[i].push_back(i);
         }
-        sort(intervals.begin(), intervals.end(), [](vector<int> &a, vector<int> &b) {
-            return a[0] < b[0]
-            or(a[0] == b[0] and a[1] < b[1]);
-        });
+        sort(intervals.begin(), intervals.end(),
+             [](vector<int>& a, vector<int>& b) { return a[0] < b[0] or (a[0] == b[0] and a[1] < b[1]); });
 
-        stack<pair<int, int> > stk;
+        stack<pair<int, int>> stk;
         vector<int> result(n, -1);
         for (int i = 0; i < n; ++i) {
-            while (!stk.empty() and intervals[i][0]
-            >=
-            intervals[stk.top().first][1]
-            )
-            {
+            while (!stk.empty() and intervals[i][0] >= intervals[stk.top().first][1]) {
                 result[stk.top().second] = intervals[i][2];
                 stk.pop();
             }

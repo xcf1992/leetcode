@@ -41,7 +41,7 @@ using namespace std;
 
 class Solution {
 public:
-    string shiftingLetters(string S, vector<int> &shifts) {
+    string shiftingLetters(string S, vector<int>& shifts) {
         int sum = 0;
         for (int i = S.size() - 1; i >= 0; i--) {
             sum = (sum + shifts[i]) % 26;

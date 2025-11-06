@@ -31,10 +31,10 @@ Output: 3
 Explanation: RBYYBBRRB -> RBYY[Y]BBRRB -> RBBBRRB -> RRRB -> B -> B[B] -> BB[B] -> empty
 
 Note:
-You may assume that the initial row of balls on the table won’t have any 3 or more consecutive balls with the same color.
-The number of balls on the table won't exceed 20, and the string represents these balls is called "board" in the input.
-The number of balls in your hand won't exceed 5, and the string represents these balls is called "hand" in the input.
-Both input strings will be non-empty and only contain characters 'R','Y','B','G','W'.
+You may assume that the initial row of balls on the table won’t have any 3 or more consecutive balls with the same
+color. The number of balls on the table won't exceed 20, and the string represents these balls is called "board" in the
+input. The number of balls in your hand won't exceed 5, and the string represents these balls is called "hand" in the
+input. Both input strings will be non-empty and only contain characters 'R','Y','B','G','W'.
 */
 #include <iostream>
 #include <string>
@@ -54,7 +54,7 @@ class Solution {
 private:
     unordered_map<char, int> c2i = {{'R', 0}, {'Y', 1}, {'B', 2}, {'G', 3}, {'W', 4}};
 
-    void collapse(string &board) {
+    void collapse(string& board) {
         if (board.empty()) {
             return;
         }
@@ -64,11 +64,7 @@ private:
             removed = false;
             for (int pos = 0; pos < board.size(); ++pos) {
                 int end = pos;
-                while (end < board.size() and board[end]
-                ==
-                board[pos]
-                )
-                {
+                while (end < board.size() and board[end] == board[pos]) {
                     end += 1;
                 }
                 if (end - pos >= 3) {
@@ -88,16 +84,14 @@ public:
         }
 
         vector<int> inHand(5, 0);
-        for (char c: hand) {
+        for (char c : hand) {
             inHand[c2i[c]] += 1;
         }
 
-        queue<pair<string, vector<int> > > bfs;
+        queue<pair<string, vector<int>>> bfs;
         int used = 0;
         bfs.push({board, inHand});
-        while (!bfs.empty() and used<hand.size()
-        )
-        {
+        while (!bfs.empty() and used < hand.size()) {
             int curSize = bfs.size();
             for (int i = 0; i < curSize; i++) {
                 string curBoard = bfs.front().first;
@@ -105,11 +99,7 @@ public:
                 bfs.pop();
 
                 for (int pos = 0; pos < curBoard.size(); pos++) {
-                    if (curBoard[pos] == curBoard[pos + 1] or ballLeft[c2i[curBoard[pos]]]
-                    ==
-                    0
-                    )
-                    {
+                    if (curBoard[pos] == curBoard[pos + 1] or ballLeft[c2i[curBoard[pos]]] == 0) {
                         continue;
                     }
                     string newBoard = curBoard;

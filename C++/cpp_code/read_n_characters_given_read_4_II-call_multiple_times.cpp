@@ -26,8 +26,8 @@ read4(buf); // read4 returns 4. Now buf = "efgh", fp points to 'i'
 read4(buf); // read4 returns 3. Now buf = "ijk", fp points to end of file
 
 Method read:
-By using the read4 method, implement the method read that reads n characters from the file and store it in the buffer array buf.
-Consider that you cannot manipulate the file directly.
+By using the read4 method, implement the method read that reads n characters from the file and store it in the buffer
+array buf. Consider that you cannot manipulate the file directly.
 
 The return value is the number of actual characters read.
 
@@ -42,15 +42,15 @@ Example 1:
 File file("abc");
 Solution sol;
 // Assume buf is allocated and guaranteed to have enough space for storing all characters from the file.
-sol.read(buf, 1); // After calling your read method, buf should contain "a". We read a total of 1 character from the file, so return 1.
-sol.read(buf, 2); // Now buf should contain "bc". We read a total of 2 characters from the file, so return 2.
-sol.read(buf, 1); // We have reached the end of file, no more characters can be read. So return 0.
+sol.read(buf, 1); // After calling your read method, buf should contain "a". We read a total of 1 character from the
+file, so return 1. sol.read(buf, 2); // Now buf should contain "bc". We read a total of 2 characters from the file, so
+return 2. sol.read(buf, 1); // We have reached the end of file, no more characters can be read. So return 0.
 
 Example 2:
 File file("abc");
 Solution sol;
-sol.read(buf, 4); // After calling your read method, buf should contain "abc". We read a total of 3 characters from the file, so return 3.
-sol.read(buf, 1); // We have reached the end of file, no more characters can be read. So return 0.
+sol.read(buf, 4); // After calling your read method, buf should contain "abc". We read a total of 3 characters from the
+file, so return 3. sol.read(buf, 1); // We have reached the end of file, no more characters can be read. So return 0.
 
 Note:
 Consider that you cannot manipulate the file directly,
@@ -77,36 +77,36 @@ It is guaranteed that in a given test case the same buffer buf is called by read
 using namespace std;
 
 // Forward declaration of the read4 API.
-int read4(char *buf);
+int read4(char* buf);
 
 class Solution {
 private:
     char buf4[4] = {0};
     int i4 = 0;
     int n4 = 0;
+
 public:
     /*
      * @param buf Destination buffer
      * @param n   Number of characters to read
      * @return    The number of actual characters read
-    */
+     */
     int read(char* buf, int n) {
         int i = 0;
         while (i < n) {
-            if (i4 < n4) { // if there are somehing in buf4, read buf4 first
+            if (i4 < n4) {  // if there are somehing in buf4, read buf4 first
                 buf[i] = buf4[i4];
                 i += 1;
                 i4 += 1;
                 continue;
             }
-            if (n - i > 4) { // if there is enough space in buf, we read into buf directly to save copy time
+            if (n - i > 4) {  // if there is enough space in buf, we read into buf directly to save copy time
                 int rLen = read4(buf + i);
                 if (rLen == 0) {
                     return i;
                 }
                 i += rLen;
-            }
-            else {
+            } else {
                 n4 = read4(buf4);
                 i4 = 0;
                 if (n4 == 0) {

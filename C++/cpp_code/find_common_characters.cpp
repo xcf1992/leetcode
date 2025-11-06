@@ -1,7 +1,9 @@
 /*
  1002. Find Common Characters
 
- Given an array A of strings made only from lowercase letters, return a list of all characters that show up in all strings within the list (including duplicates).  For example, if a character occurs 3 times in all strings but not 4 times, you need to include that character three times in the final answer.
+ Given an array A of strings made only from lowercase letters, return a list of all characters that show up in all
+ strings within the list (including duplicates).  For example, if a character occurs 3 times in all strings but not 4
+ times, you need to include that character three times in the final answer.
 
  You may return the answer in any order.
 
@@ -41,14 +43,14 @@ using namespace std;
 
 class Solution {
 public:
-    vector<string> commonChars(vector<string> &A) {
+    vector<string> commonChars(vector<string>& A) {
         vector<int> inAll(26, 0);
-        for (char c: A[0]) {
+        for (char c : A[0]) {
             inAll[c - 'a'] += 1;
         }
-        for (string &a: A) {
+        for (string& a : A) {
             vector<int> exist(26, 0);
-            for (char c: a) {
+            for (char c : a) {
                 exist[c - 'a'] += 1;
             }
             for (int i = 0; i < 26; i++) {

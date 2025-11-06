@@ -138,7 +138,7 @@ Below is the accepted code:
 */
 class Solution {
 public:
-    double findMedianSortedArrays(vector<int> &nums1, vector<int> &nums2) {
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
         int m = nums1.size();
         int n = nums2.size();
         if (m > n) {
@@ -151,20 +151,10 @@ public:
         while (iLeft <= iRight) {
             int i = iLeft + (iRight - iLeft) / 2;
             int j = halfLen - i;
-            if (i < m and nums2[j - 1]
-            >
-            nums1[i]
-            )
-            {
+            if (i < m and nums2[j - 1] > nums1[i]) {
                 iLeft = i + 1;
                 continue;
-            }
-            else
-            if (i > 0 and nums1[i - 1]
-            >
-            nums2[j]
-            )
-            {
+            } else if (i > 0 and nums1[i - 1] > nums2[j]) {
                 iRight = i - 1;
                 continue;
             }

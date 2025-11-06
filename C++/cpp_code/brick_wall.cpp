@@ -48,7 +48,7 @@ using namespace std;
 
 class Solution {
 public:
-    int leastBricks(vector<vector<int> > &wall) {
+    int leastBricks(vector<vector<int>>& wall) {
         unordered_map<int, int> edges;
         int crossEdges = 0;
         for (int i = 0; i < wall.size(); i++) {

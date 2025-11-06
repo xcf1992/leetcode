@@ -40,16 +40,12 @@ using namespace std;
 
 class Solution {
 public:
-    int validSubarrays(vector<int> &nums) {
+    int validSubarrays(vector<int>& nums) {
         int n = nums.size();
         int result = 0;
-        stack<pair<int, int> > stk;
+        stack<pair<int, int>> stk;
         for (int i = n - 1; i >= 0; --i) {
-            while (!stk.empty() and nums[i]
-            <=
-            stk.top().second
-            )
-            {
+            while (!stk.empty() and nums[i] <= stk.top().second) {
                 stk.pop();
             }
             result += (stk.empty() ? n : stk.top().first) - i;

@@ -62,8 +62,8 @@ using namespace std;
 
 class Solution {
 private:
-    void parse(int index, string &phrase, unordered_map<string, vector<pair<int, string> > > &beginWtih,
-               unordered_map<string, vector<pair<int, string> > > &endWtih) {
+    void parse(int index, string& phrase, unordered_map<string, vector<pair<int, string>>>& beginWtih,
+               unordered_map<string, vector<pair<int, string>>>& endWtih) {
         int n = phrase.size();
         int left = 0;
         string first = "";
@@ -94,22 +94,22 @@ private:
     }
 
 public:
-    vector<string> beforeAndAfterPuzzles(vector<string> &phrases) {
-        unordered_map<string, vector<pair<int, string> > > beginWtih;
-        unordered_map<string, vector<pair<int, string> > > endWith;
+    vector<string> beforeAndAfterPuzzles(vector<string>& phrases) {
+        unordered_map<string, vector<pair<int, string>>> beginWtih;
+        unordered_map<string, vector<pair<int, string>>> endWith;
         for (int i = 0; i < phrases.size(); ++i) {
             parse(i, phrases[i], beginWtih, endWith);
         }
 
         set<string> result;
-        for (auto &eIt: endWith) {
+        for (auto& eIt : endWith) {
             string last = eIt.first;
             if (beginWtih.find(last) == beginWtih.end()) {
                 continue;
             }
 
-            vector<pair<int, string> > &endPhrases = eIt.second;
-            vector<pair<int, string> > &beginPhrases = beginWtih[last];
+            vector<pair<int, string>>& endPhrases = eIt.second;
+            vector<pair<int, string>>& beginPhrases = beginWtih[last];
             for (int i = 0; i < endPhrases.size(); ++i) {
                 for (int j = 0; j < beginPhrases.size(); ++j) {
                     if (endPhrases[i].first == beginPhrases[j].first) {

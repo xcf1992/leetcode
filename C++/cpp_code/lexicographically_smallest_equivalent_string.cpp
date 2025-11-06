@@ -22,17 +22,19 @@ Example 1:
 
 Input: A = "parker", B = "morris", S = "parser"
 Output: "makkek"
-Explanation: Based on the equivalency information in A and B, we can group their characters as [m,p], [a,o], [k,r,s], [e,i]. The characters in each group are equivalent and sorted in lexicographical order. So the answer is "makkek".
+Explanation: Based on the equivalency information in A and B, we can group their characters as [m,p], [a,o], [k,r,s],
+[e,i]. The characters in each group are equivalent and sorted in lexicographical order. So the answer is "makkek".
 Example 2:
 
 Input: A = "hello", B = "world", S = "hold"
 Output: "hdld"
-Explanation:  Based on the equivalency information in A and B, we can group their characters as [h,w], [d,e,o], [l,r]. So only the second letter 'o' in S is changed to 'd', the answer is "hdld".
-Example 3:
+Explanation:  Based on the equivalency information in A and B, we can group their characters as [h,w], [d,e,o], [l,r].
+So only the second letter 'o' in S is changed to 'd', the answer is "hdld". Example 3:
 
 Input: A = "leetcode", B = "programs", S = "sourcecode"
 Output: "aauaaaaada"
-Explanation:  We group the equivalent characters in A and B as [a,o,e,r,s,c], [l,p], [g,t] and [d,m], thus all letters in S except 'u' and 'd' are transformed to 'a', the answer is "aauaaaaada".
+Explanation:  We group the equivalent characters in A and B as [a,o,e,r,s,c], [l,p], [g,t] and [d,m], thus all letters
+in S except 'u' and 'd' are transformed to 'a', the answer is "aauaaaaada".
 
 
 Note:
@@ -64,6 +66,7 @@ private:
         }
         return parent[c - 'a'];
     }
+
 public:
     string smallestEquivalentString(string A, string B, string S) {
         int n = A.size();
@@ -82,8 +85,7 @@ public:
             if (pa != pb) {
                 if (pa < pb) {
                     parent[pb - 'a'] = pa;
-                }
-                else {
+                } else {
                     parent[pa - 'a'] = pb;
                 }
             }

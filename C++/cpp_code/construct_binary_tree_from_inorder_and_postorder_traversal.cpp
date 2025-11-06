@@ -36,12 +36,12 @@ using namespace std;
 
 class Solution {
 private:
-    TreeNode* build(vector<int> &inorder, int is, int ie, vector<int> &postorder, int ps, int pe) {
+    TreeNode* build(vector<int>& inorder, int is, int ie, vector<int>& postorder, int ps, int pe) {
         if (ps > pe) {
             return nullptr;
         }
 
-        TreeNode *root = new TreeNode(postorder[pe]);
+        TreeNode* root = new TreeNode(postorder[pe]);
         int i = 0;
         for (i = is; i != ie; i++) {
             if (inorder[i] == postorder[pe]) {
@@ -49,10 +49,11 @@ private:
             }
         }
 
-        root -> left = build(inorder, is, i - 1, postorder, ps, i - is + ps - 1);
-        root -> right = build(inorder, i + 1, ie, postorder, i - is + ps, pe - 1);
+        root->left = build(inorder, is, i - 1, postorder, ps, i - is + ps - 1);
+        root->right = build(inorder, i + 1, ie, postorder, i - is + ps, pe - 1);
         return root;
     }
+
 public:
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
         if (inorder.size() == 0) {

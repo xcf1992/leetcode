@@ -90,7 +90,8 @@ i.e., dp[i][j] can only form those dp[i][w], where w>=j.
 example: S="DID", and we choose digit 2 as the first digit,
 then when choosing the second digit,
 we can only choose those bigger than 2 because we need "increase".
-So we choose 3 and 4, noticing that 3 and 4 is the 2nd smallest and 3rd smallest in the rest non-select-yet digit [1,3,4].
+So we choose 3 and 4, noticing that 3 and 4 is the 2nd smallest and 3rd smallest in the rest non-select-yet digit
+[1,3,4].
 
 https://leetcode.com/problems/valid-permutations-for-di-sequence/discuss/168278/C%2B%2BJavaPython-DP-Solution-O(N2)
 */
@@ -110,7 +111,7 @@ private:
 public:
     int numPermsDISequence(string S) {
         int n = S.size();
-        vector<vector<int> > dp(n + 1, vector<int>(n + 1, 0));
+        vector<vector<int>> dp(n + 1, vector<int>(n + 1, 0));
         for (int i = 0; i <= n; i++) {
             dp[0][i] = 1;
         }
@@ -165,7 +166,7 @@ private:
 public:
     int numPermsDISequence(string S) {
         int n = S.size();
-        vector<vector<int> > dp(n + 1, vector<int>(n + 1, 0));
+        vector<vector<int>> dp(n + 1, vector<int>(n + 1, 0));
         for (int i = 0; i <= n; i++) {
             dp[0][i] = 1;
         }
@@ -191,7 +192,7 @@ public:
         }
 
         long result = 0;
-        for (int x: dp[n]) {
+        for (int x : dp[n]) {
             result += x;
             result %= MOD;
         }

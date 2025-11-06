@@ -40,7 +40,7 @@ using namespace std;
 
 class Solution {
 public:
-    int partitionDisjoint(vector<int> &A) {
+    int partitionDisjoint(vector<int>& A) {
         int n = A.size();
         vector<int> leftMax(n, A.front());
         vector<int> rightMin(n, A.back());

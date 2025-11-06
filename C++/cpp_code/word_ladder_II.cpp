@@ -46,11 +46,11 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<string> > findLadders(string beginWord, string endWord, vector<string> &wordList) {
-        vector<vector<string> > result;
+    vector<vector<string>> findLadders(string beginWord, string endWord, vector<string>& wordList) {
+        vector<vector<string>> result;
         unordered_set<string> visited;
         unordered_set<string> dict(wordList.begin(), wordList.end());
-        queue<vector<string> > bfs;
+        queue<vector<string>> bfs;
 
         int len = 1;
         int minLen = INT_MAX;
@@ -60,13 +60,13 @@ public:
             bfs.pop();
 
             /*
-            * "visited" records all the visited nodes on this level,
-            * these words will never be visited again after this level and should be removed from wordList.
-            * This is guaranteed by the shortest path.
-            */
+             * "visited" records all the visited nodes on this level,
+             * these words will never be visited again after this level and should be removed from wordList.
+             * This is guaranteed by the shortest path.
+             */
             if (ladder.size() > len) {
-                //reach a new level
-                for (string word: visited) {
+                // reach a new level
+                for (string word : visited) {
                     dict.erase(word);
                 }
                 visited.clear();
@@ -87,13 +87,13 @@ public:
                     }
                     nextWord[i] = c;
                     /*
-                    * we do not check if visited here for current level,
-                    * because it may happen different paths come to the same word at this level
-                    * for example "red" -> "tax", with ["ted","tex","red","tax","tad","den","rex","pee"]
-                    * correct result is [["red","ted","tad","tax"],["red","ted","tex","tax"],["red","rex","tex","tax"]]
-                    * the 2nd and 3rd both will have tex at the 3rd place
-                    * and that's why we need to cleard the words in the beginning when we enter a new level
-                    */
+                     * we do not check if visited here for current level,
+                     * because it may happen different paths come to the same word at this level
+                     * for example "red" -> "tax", with ["ted","tex","red","tax","tad","den","rex","pee"]
+                     * correct result is [["red","ted","tad","tax"],["red","ted","tex","tax"],["red","rex","tex","tax"]]
+                     * the 2nd and 3rd both will have tex at the 3rd place
+                     * and that's why we need to cleard the words in the beginning when we enter a new level
+                     */
                     if (dict.find(nextWord) != dict.end()) {
                         visited.insert(nextWord);
                         vector<string> newLadder = ladder;
@@ -113,12 +113,12 @@ public:
 };
 
 class Solution1 {
-    //TLE
+    // TLE
 private:
-    unordered_map<string, vector<string> > dict;
+    unordered_map<string, vector<string>> dict;
 
-    void dfs(unordered_set<string> &visited, vector<vector<string> > &result, vector<string> &ladder, int &minLen,
-             string &endWord) {
+    void dfs(unordered_set<string>& visited, vector<vector<string>>& result, vector<string>& ladder, int& minLen,
+             string& endWord) {
         string curWord = ladder.back();
         if (curWord == endWord) {
             if (ladder.size() < minLen) {
@@ -139,7 +139,7 @@ private:
 
         for (int i = 0; i < curWord.size(); ++i) {
             string temp = curWord.substr(0, i) + "*" + curWord.substr(i + 1);
-            for (string &nextWord: dict[temp]) {
+            for (string& nextWord : dict[temp]) {
                 if (visited.find(nextWord) == visited.end()) {
                     visited.insert(nextWord);
                     ladder.push_back(nextWord);
@@ -152,15 +152,15 @@ private:
     }
 
 public:
-    vector<vector<string> > findLadders(string beginWord, string endWord, vector<string> &wordList) {
-        for (string &word: wordList) {
+    vector<vector<string>> findLadders(string beginWord, string endWord, vector<string>& wordList) {
+        for (string& word : wordList) {
             for (int i = 0; i < word.size(); ++i) {
                 string temp = word.substr(0, i) + "*" + word.substr(i + 1);
                 dict[temp].push_back(word);
             }
         }
 
-        vector<vector<string> > result;
+        vector<vector<string>> result;
         vector<string> ladder;
         unordered_set<string> visited;
         ladder.push_back(beginWord);

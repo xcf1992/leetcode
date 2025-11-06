@@ -40,7 +40,8 @@ Explanation: The following are all possible routes:
 Example 3:
 Input: locations = [5,2,1], start = 0, finish = 2, fuel = 3
 Output: 0
-Explanation: It's impossible to get from 0 to 2 using only 3 units of fuel since the shortest route needs 4 units of fuel.
+Explanation: It's impossible to get from 0 to 2 using only 3 units of fuel since the shortest route needs 4 units of
+fuel.
 
 Example 4:
 Input: locations = [2,1,5], start = 0, finish = 0, fuel = 3
@@ -84,12 +85,13 @@ If you reach end index, do:
 
 If fuel < 0, there is no further way left.
 
-If you look at this recursion, we can see that there are overlapping subproblems. If you reach a city c with fuel f multiple times from different paths, don't recompute, just use memoised result.
+If you look at this recursion, we can see that there are overlapping subproblems. If you reach a city c with fuel f
+multiple times from different paths, don't recompute, just use memoised result.
 */
 class Solution {
 private:
     // dp[curCity][fuel] = number of ways to reach finish, when we are at city `curCity` with fuel `fuel`
-    long solve(vector<int> &locations, int curCity, int e, vector<vector<long> > &dp, int fuel) {
+    long solve(vector<int>& locations, int curCity, int e, vector<vector<long>>& dp, int fuel) {
         // 4. There is no further way left.
         if (fuel < 0) {
             return 0;
@@ -113,9 +115,9 @@ private:
     }
 
 public:
-    int countRoutes(vector<int> &locations, int start, int finish, int fuel) {
+    int countRoutes(vector<int>& locations, int start, int finish, int fuel) {
         int n = locations.size();
-        vector<vector<long> > dp(n, vector<long>(fuel + 1, -1));
+        vector<vector<long>> dp(n, vector<long>(fuel + 1, -1));
         return solve(locations, start, finish, dp, fuel);
     }
 };

@@ -43,25 +43,19 @@ using namespace std;
 
 class Solution {
 public:
-    ListNode *insertionSortList(ListNode *head) {
-        if (head == nullptr or
-        head->next == nullptr
-        )
-        {
+    ListNode* insertionSortList(ListNode* head) {
+        if (head == nullptr or head->next == nullptr) {
             return head;
         }
 
-        ListNode *dummy = new ListNode(-1);
+        ListNode* dummy = new ListNode(-1);
         dummy->next = head;
-        ListNode *cur = head->next;
+        ListNode* cur = head->next;
         head->next = nullptr;
         while (cur != nullptr) {
-            ListNode *pre = dummy;
-            ListNode *aft = dummy->next;
-            while (aft != nullptr and
-            aft->val <= cur->val
-            )
-            {
+            ListNode* pre = dummy;
+            ListNode* aft = dummy->next;
+            while (aft != nullptr and aft->val <= cur->val) {
                 pre = aft;
                 aft = aft->next;
             }

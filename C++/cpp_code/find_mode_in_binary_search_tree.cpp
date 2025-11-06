@@ -23,7 +23,8 @@ Note:
 If a tree has more than one mode, you can return them in any order.
 
 Follow up:
-Could you do that without using any extra space? (Assume that the implicit stack space incurred due to recursion does not count).
+Could you do that without using any extra space? (Assume that the implicit stack space incurred due to recursion does
+not count).
 */
 #include <iostream>
 #include <string>
@@ -41,22 +42,17 @@ using namespace std;
 
 class Solution {
 private:
-    TreeNode *pre;
+    TreeNode* pre;
 
-    void find(TreeNode *root, vector<int> &result, int &count, int &maxCount) {
+    void find(TreeNode* root, vector<int>& result, int& count, int& maxCount) {
         if (root == nullptr) {
             return;
         }
 
         find(root->left, result, count, maxCount);
-        if (pre == nullptr or
-        root->val != pre->val
-        )
-        {
+        if (pre == nullptr or root->val != pre->val) {
             count = 1;
-        }
-        else
-        {
+        } else {
             count += 1;
         }
 
@@ -72,7 +68,7 @@ private:
     }
 
 public:
-    vector<int> findMode(TreeNode *root) {
+    vector<int> findMode(TreeNode* root) {
         int maxCount = 0;
         int count = 0;
         pre = nullptr;

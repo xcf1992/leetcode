@@ -51,9 +51,9 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> killProcess(vector<int> &pid, vector<int> &ppid, int kill) {
+    vector<int> killProcess(vector<int>& pid, vector<int>& ppid, int kill) {
         vector<int> result;
-        unordered_map<int, vector<int> > child;
+        unordered_map<int, vector<int>> child;
         for (int i = 0; i < pid.size(); i++) {
             child[ppid[i]].push_back(pid[i]);
         }
@@ -65,7 +65,7 @@ public:
             bfs.pop();
 
             result.push_back(kill);
-            for (int p: child[kill]) {
+            for (int p : child[kill]) {
                 bfs.push(p);
             }
         }

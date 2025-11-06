@@ -46,13 +46,11 @@ N is a positive integer and will not exceed 15.
 using namespace std;
 /*
 The idea behind this approach is simple. We try to create all the permutations of numbers from 1 to N.
-We can fix one number at a particular position and check for the divisibility criteria of that number at the particular position.
-But, we need to keep a track of the numbers which have already been considered earlier
-so that they aren't reconsidered while generating the permutations.
-If the current number doesn't satisfy the divisibility criteria,
-we can leave all the permutations that can be generated with that number at the particular position.
-This helps to prune the search space of the permutations to a great extent.
-We do so by trying to place each of the numbers at each position.
+We can fix one number at a particular position and check for the divisibility criteria of that number at the particular
+position. But, we need to keep a track of the numbers which have already been considered earlier so that they aren't
+reconsidered while generating the permutations. If the current number doesn't satisfy the divisibility criteria, we can
+leave all the permutations that can be generated with that number at the particular position. This helps to prune the
+search space of the permutations to a great extent. We do so by trying to place each of the numbers at each position.
 
 We make use of a visited array of size N.
 Here, visited[i] refers to the ith number being already placed/not
@@ -68,16 +66,14 @@ Otherwise, we continue with putting the next numbers at the same position and ke
 */
 class Solution {
 private:
-    void count(vector<int> &numbers, int pos, int n, int &result) {
+    void count(vector<int>& numbers, int pos, int n, int& result) {
         if (pos > n) {
             result += 1;
             return;
         }
 
         for (int i = 1; i <= n; i++) {
-            if (numbers[i] == 1 and(i % pos == 0 or pos % i == 0)
-            )
-            {
+            if (numbers[i] == 1 and (i % pos == 0 or pos % i == 0)) {
                 numbers[i] = 0;
                 count(numbers, pos + 1, n, result);
                 numbers[i] = 1;

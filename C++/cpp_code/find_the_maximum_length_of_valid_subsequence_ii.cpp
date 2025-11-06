@@ -1,8 +1,7 @@
 /*
-https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-ii/ Maximum Frequency After Subarray Operation
-3202. Find the Maximum Length of Valid Subsequence II
-You are given an integer array nums and a positive integer k.
-A subsequence sub of nums with length x is called valid if it satisfies:
+https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-ii/ Maximum Frequency After Subarray
+Operation 3202. Find the Maximum Length of Valid Subsequence II You are given an integer array nums and a positive
+integer k. A subsequence sub of nums with length x is called valid if it satisfies:
 
 (sub[0] + sub[1]) % k == (sub[1] + sub[2]) % k == ... == (sub[x - 2] + sub[x - 1]) % k.
 Return the length of the longest valid subsequence of nums.
@@ -57,7 +56,8 @@ and all elements at even indices must also be congruent modulo k.
 This means that, considering the remainders modulo k of the last two elements of the subsequence,
 there are a total of k^2 possible combinations.
 We use a two-dimensional array dp to represent the maximum length of such subsequences,
-where dp[i][j] denotes the maximum length of a valid subsequence whose last two elements have remainders i and j modulo k, respectively.
+where dp[i][j] denotes the maximum length of a valid subsequence whose last two elements have remainders i and j modulo
+k, respectively.
 
 We traverse through nums to update dp.
 For each number num, we try to append it to existing subsequences.
@@ -83,13 +83,13 @@ public:
 
 class Solution1 {
 public:
-    int maximumLength(vector<int> &nums, int k) {
+    int maximumLength(vector<int>& nums, int k) {
         // Step 1: Create a 2D DP table to track remainder transitions
-        vector<vector<int> > dp(k, vector<int>(k, 0)); // dp[prev_rem][curr_rem]
+        vector<vector<int>> dp(k, vector<int>(k, 0));  // dp[prev_rem][curr_rem]
         int result = 0;
 
         // Step 2: Loop through each number in the array
-        for (int num: nums) {
+        for (int num : nums) {
             int cur_rem = num % k;
 
             // Step 3: Try to extend previously formed sequences

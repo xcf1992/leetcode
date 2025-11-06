@@ -47,13 +47,13 @@ class Solution {
 public:
     string frequencySort(string s) {
         unordered_map<char, int> count;
-        for (auto c: s) {
+        for (auto c : s) {
             count[c] += 1;
         }
 
         int n = s.size();
         vector<string> bucket(n + 1, "");
-        for (auto &it: count) {
+        for (auto& it : count) {
             bucket[it.second] += string(it.second, it.first);
         }
 

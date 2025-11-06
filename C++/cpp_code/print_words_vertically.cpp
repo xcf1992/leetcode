@@ -54,24 +54,18 @@ public:
         vector<string> words;
         string word = "";
         for (int i = 0; i <= s.size(); ++i) {
-            if (i == s.size() or s[i]
-            ==
-            ' '
-            )
-            {
+            if (i == s.size() or s[i] == ' ') {
                 words.push_back(word);
-                maxLen = max(maxLen, (int) word.size());
+                maxLen = max(maxLen, (int)word.size());
                 word = "";
-            }
-            else
-            {
+            } else {
                 word.push_back(s[i]);
             }
         }
 
         vector<string> result(maxLen, "");
         for (int i = 0; i < maxLen; ++i) {
-            for (string &word: words) {
+            for (string& word : words) {
                 if (i >= word.size()) {
                     result[i].push_back(' ');
                 } else {
@@ -80,7 +74,7 @@ public:
             }
         }
 
-        for (string &token: result) {
+        for (string& token : result) {
             while (token.back() == ' ') {
                 token.pop_back();
             }

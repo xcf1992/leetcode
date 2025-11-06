@@ -33,10 +33,10 @@ using namespace std;
 
 class Solution {
 public:
-    int maximumProduct(vector<int> &nums) {
+    int maximumProduct(vector<int>& nums) {
         int min1 = INT_MAX, min2 = INT_MAX;
         int max1 = INT_MIN, max2 = INT_MIN, max3 = INT_MIN;
-        for (int n: nums) {
+        for (int n : nums) {
             if (n <= min1) {
                 min2 = min1;
                 min1 = n;
@@ -64,7 +64,7 @@ public:
 
 class Solution1 {
 public:
-    int maximumProduct(vector<int> &nums) {
+    int maximumProduct(vector<int>& nums) {
         sort(nums.begin(), nums.end());
         int n = nums.size();
         return max(nums[n - 1] * nums[n - 2] * nums[n - 3], nums[n - 1] * nums[1] * nums[0]);

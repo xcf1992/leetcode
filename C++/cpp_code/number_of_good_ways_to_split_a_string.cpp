@@ -65,7 +65,7 @@ public:
     int numSplits(string s) {
         vector<int> right(26, 0);
         int diffR = 0;
-        for (auto ch: s) {
+        for (auto ch : s) {
             right[ch - 'a'] += 1;
             diffR += (right[ch - 'a'] == 1 ? 1 : 0);
         }

@@ -45,10 +45,10 @@ using namespace std;
 
 class Solution {
 private:
-    int dfs(unordered_map<int, vector<int> > &graph, int &result, int cur, int parent) {
+    int dfs(unordered_map<int, vector<int>>& graph, int& result, int cur, int parent) {
         int longestLen = 0;
         int longerLen = 0;
-        for (int nxt: graph[cur]) {
+        for (int nxt : graph[cur]) {
             if (nxt == parent) {
                 continue;
             }
@@ -66,9 +66,9 @@ private:
     }
 
 public:
-    int treeDiameter(vector<vector<int> > &edges) {
-        unordered_map<int, vector<int> > graph;
-        for (vector<int> &edge: edges) {
+    int treeDiameter(vector<vector<int>>& edges) {
+        unordered_map<int, vector<int>> graph;
+        for (vector<int>& edge : edges) {
             graph[edge[0]].push_back(edge[1]);
             graph[edge[1]].push_back(edge[0]);
         }

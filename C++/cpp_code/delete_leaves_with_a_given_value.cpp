@@ -55,17 +55,14 @@ using namespace std;
 
 class Solution {
 public:
-    TreeNode *removeLeafNodes(TreeNode *root, int target) {
+    TreeNode* removeLeafNodes(TreeNode* root, int target) {
         if (root == nullptr) {
             return nullptr;
         }
 
         root->left = removeLeafNodes(root->left, target);
         root->right = removeLeafNodes(root->right, target);
-        if (root->left == nullptr and
-        root->right == nullptr
-        )
-        {
+        if (root->left == nullptr and root->right == nullptr) {
             if (root->val == target) {
                 // delete root; cannot pass lc when added
                 root = nullptr;

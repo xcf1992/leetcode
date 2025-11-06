@@ -65,7 +65,7 @@ public:
         * [The proof is simple: either T <= k and we choose it,
         * or we choose k in our subset and try to solve the same instance of the problem for T -= k
         * and the set {1, 2, ..., k-1}.]
-        
+
         * Otherwise, if delta is odd, we can't do it,
         * as every sign change from positive to negative changes the sum by an even number.
         * So let's consider a candidate answer of k+1, which changes delta by k+1.

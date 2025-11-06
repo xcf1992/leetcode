@@ -47,15 +47,15 @@ target consists only of English lowercase letters.
 #include <map>
 using namespace std;
 /*
-* special case of letter z
-* special case of zz
-*/
+ * special case of letter z
+ * special case of zz
+ */
 class Solution {
 private:
     unordered_map<int, char> rMove = unordered_map<int, char>({{1, 'D'}, {-1, 'U'}});
     unordered_map<int, char> cMove = unordered_map<int, char>({{1, 'R'}, {-1, 'L'}});
 
-    void moveTo(int &curR, int &curC, char letter, string &result) {
+    void moveTo(int& curR, int& curC, char letter, string& result) {
         int nextR = (letter - 'a') / 5;
         int nextC = (letter - 'a') % 5;
         if (curR != nextR) {
@@ -76,7 +76,7 @@ public:
         int curR = 0;
         int curC = 0;
         char curLetter = 'a';
-        for (char letter: target) {
+        for (char letter : target) {
             if (curLetter == 'z' ^ letter == 'z') {
                 // we should only move to u first if either of cur or next letter is 'z'
                 moveTo(curR, curC, 'u', result);

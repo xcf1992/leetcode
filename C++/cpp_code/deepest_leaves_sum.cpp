@@ -33,16 +33,13 @@ using namespace std;
 
 class Solution {
 private:
-    void dfs(TreeNode *root, int &result, int depth, int &maxDepth) {
+    void dfs(TreeNode* root, int& result, int depth, int& maxDepth) {
         if (root == nullptr) {
             return;
         }
 
         depth += 1;
-        if (root->left == nullptr and
-        root->right == nullptr
-        )
-        {
+        if (root->left == nullptr and root->right == nullptr) {
             if (depth >= maxDepth) {
                 if (depth > maxDepth) {
                     result = 0;
@@ -57,7 +54,7 @@ private:
     }
 
 public:
-    int deepestLeavesSum(TreeNode *root) {
+    int deepestLeavesSum(TreeNode* root) {
         int result = 0;
         int maxDepth = 0;
         dfs(root, result, 0, maxDepth);
