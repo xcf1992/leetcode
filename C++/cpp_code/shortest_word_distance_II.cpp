@@ -48,9 +48,7 @@ public:
         int i = 0;
         int j = 0;
         int result = INT_MAX;
-        while (i < wordMap[word1].size() and j<wordMap[word2].size()
-        )
-        {
+        while (i < wordMap[word1].size() and j < wordMap[word2].size()) {
             result = min(result, abs(wordMap[word1][i] - wordMap[word2][j]));
             if (wordMap[word1][i] < wordMap[word2][j]) {
                 i++;

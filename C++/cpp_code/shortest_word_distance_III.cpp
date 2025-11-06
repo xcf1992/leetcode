@@ -33,7 +33,7 @@ class Solution {
 public:
     int shortestWordDistance(vector<string> &words, string word1, string word2) {
         int n = words.size();
-        int dist = INT_MAX;
+        int result = n;
         int i1 = n;
         int i2 = 0 - n;
         for (int i = 0; i < n; i++) {
@@ -46,8 +46,8 @@ public:
                 }
                 i2 = i;
             }
-            dist = min(dist, abs(i1 - i2));
+            result = min(result, abs(i1 - i2));
         }
-        return dist;
+        return result;
     }
 };
