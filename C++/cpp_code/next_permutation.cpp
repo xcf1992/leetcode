@@ -32,6 +32,12 @@ Inputs are in the left-hand column and its corresponding outputs are in the righ
 #include <set>
 using namespace std;
 
+/*
+We need to find the first decreasing element from the right of the list.
+Then, we need to find the smallest element from the right side that is greater than the first decreasing element.
+We swap these two elements
+Finally we reverse the sublist from the first decreasing element to the end of the list.
+ */
 class Solution {
 public:
     void nextPermutation(vector<int>& num) {
