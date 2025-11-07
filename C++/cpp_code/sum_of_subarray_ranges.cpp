@@ -106,7 +106,49 @@ Time O(n)
 Space O(n)
  */
 class Solution {
+private:
+    long long mod = 1e9 + 7;
+
 public:
     long long subArrayRanges(vector<int>& nums) {
+        long long rst = 0;
+        int n = nums.size();
+        stack<int> max_stk;  // the top element is always with the largest value
+        for (int i = 0; i <= n; i++) {
+            int cur_val = i == n ? INT_MIN : nums[i];
+            while (!max_stk.empty() && nums[max_stk.top()] > cur_val) {
+                // we pop the stk and actually calculate the sum of subarray with minimum value as nums[mid_idx]
+                // and the right boundary is current i, cause nums[i] < stk.top(), is the Next Less Element
+                // left boundary is second top, as it is a decreasing stk, is the Previous Less Element
+                int mid_idx = max_stk.top();
+                max_stk.pop();
+
+                int left_idx = -1;
+                if (!max_stk.empty()) {
+                    left_idx = max_stk.top();
+                }
+
+                rst -= static_cast<long long>(nums[mid_idx]) * (mid_idx - left_idx) * (i - mid_idx);
+            }
+            max_stk.push(i);
+        }
+
+        stack<int> min_stk;
+        for (int i = 0; i <= n; i++) {
+            int cur_val = i == n ? INT_MAX : nums[i];
+            while (!min_stk.empty() && nums[min_stk.top()] < cur_val) {
+                int mid_idx = min_stk.top();
+                min_stk.pop();
+
+                int left_idx = -1;
+                if (!min_stk.empty()) {
+                    left_idx = min_stk.top();
+                }
+                rst += static_cast<long long>(nums[mid_idx]) * (mid_idx - left_idx) * (i - mid_idx);
+            }
+            min_stk.push(i);
+        }
+
+        return rst;
     }
 };
