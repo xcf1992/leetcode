@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/walls-and-gates/description/
 286. Walls and Gates
 
 You are given a m x n 2D grid initialized with these three possible values.
@@ -45,10 +46,11 @@ public:
 
         queue<int> bfs;
         for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++)
+            for (int j = 0; j < n; j++) {
                 if (rooms[i][j] == 0) {
                     bfs.push(i * n + j);
                 }
+            }
         }
 
         vector<int> move({0, 1, 0, -1, 0});

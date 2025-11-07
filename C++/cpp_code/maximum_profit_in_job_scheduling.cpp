@@ -93,9 +93,13 @@ public:
         map<int, int> dp;
         dp[0] = 0;
         for (vector<int>& job : jobs) {
-            int cur = prev(dp.upper_bound(job[1]))->second + job[2];  // profit we can get if we take cur job
-            if (cur > dp.rbegin()->second) {
-                dp[job[0]] = cur;  // maximum profit we can get at time job[0]
+            int job_start_time = job[1];
+            int job_end_time = job[0];
+            int job_profit = job[2];
+            // profit we can get if we take cur job
+            int cur_profit = prev(dp.upper_bound(job_start_time))->second + job_profit;
+            if (cur_profit > dp.rbegin()->second) {
+                dp[job_end_time] = cur_profit;  // maximum profit we can get at time job[0]
             }
         }
         return dp.rbegin()->second;

@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/most-profit-assigning-work/description/
 826. Most Profit Assigning Work
 We have jobs:
 difficulty[i] is the difficulty of the ith job,
@@ -50,7 +51,9 @@ public:
             jobs.push_back({difficulty[i], profit[i]});
         }
 
-        sort(jobs.begin(), jobs.end(), [](pair<int, int>& a, pair<int, int>& b) { return a.first < b.first; });
+        sort(jobs.begin(), jobs.end(), [](pair<int, int>& a, pair<int, int>& b) {
+            return a.first < b.first;
+        });
         sort(worker.begin(), worker.end());
 
         int i = 0;

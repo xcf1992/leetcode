@@ -134,7 +134,7 @@ public:
         root = new TrieNode();
     }
 
-    bool create(string path, int value) {
+    bool createPath(string path, int value) {
         vector<string> p = split(path);
         return insert(p, value);
     }
