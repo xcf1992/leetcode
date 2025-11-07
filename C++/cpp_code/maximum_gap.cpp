@@ -118,19 +118,19 @@ public:
             return 0;
         }
 
-        int curMin = nums[0];
-        int curMax = nums[0];
+        int cur_min = nums[0];
+        int cur_max = nums[0];
         for (int num : nums) {
-            curMin = min(curMin, num);
-            curMax = max(curMax, num);
+            cur_min = min(cur_min, num);
+            cur_max = max(cur_max, num);
         }
 
-        int bucketSize = max(1, (curMax - curMin) / (n - 1));  // bucket size or capacity
-        int bucketCount = (curMax - curMin) / bucketSize + 1;  // number of buckets
-        vector<vector<int>> buckets(bucketCount, {0, INT_MAX, INT_MIN});
+        int bkt_size = max(1, (cur_max - cur_min) / (n - 1));  // bucket size or capacity
+        int bkt_cnt = (cur_max - cur_min) / bkt_size + 1;  // number of buckets
+        vector<vector<int>> buckets(bkt_cnt, {0, INT_MAX, INT_MIN});
         // bucket_used, min_of_current_bucket, max_of_current_bucket
         for (int num : nums) {
-            int index = (num - curMin) / bucketSize;
+            int index = (num - cur_min) / bkt_size;
             buckets[index][0] = 1;
             buckets[index][1] = min(num, buckets[index][1]);
             buckets[index][2] = max(num, buckets[index][2]);
@@ -141,8 +141,8 @@ public:
             if (bkt[0] == 0) {
                 continue;
             }
-            result = max(result, bkt[1] - curMin);
-            curMin = bkt[2];
+            result = max(result, bkt[1] - cur_min);
+            cur_min = bkt[2];
         }
         return result;
     }
