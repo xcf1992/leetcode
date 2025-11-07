@@ -80,23 +80,46 @@ We do the above for each element a in A,
 and we finally return result res
  */
 
+// find previous bigger element, min_stk the top is the min element
 class Solution {
 public:
     vector<int> canSeePersonsCount(vector<int>& heights) {
         int n = heights.size();
         vector<int> res(n);
-        vector<int> stk;
+        vector<int> min_stk;
         for (int i = 0; i < n; ++i) {
-            while (!stk.empty() && heights[stk.back()] <= heights[i]) {
-                res[stk.back()] += 1;
-                stk.pop_back();
+            while (!min_stk.empty() && heights[min_stk.back()] <= heights[i]) {
+                res[min_stk.back()] += 1;
+                min_stk.pop_back();
             }
 
-            if (!stk.empty()) {
-                res[stk.back()] += 1;
+            if (!min_stk.empty()) {
+                res[min_stk.back()] += 1;
             }
 
-            stk.push_back(i);
+            min_stk.push_back(i);
+        }
+        return res;
+    }
+};
+
+// find next bigger element
+class Solution1 {
+public:
+    vector<int> canSeePersonsCount(vector<int>& heights) {
+        int n = heights.size();
+        vector<int> res(n, 0);
+        vector<int> min_stk;
+        for (int i = n - 1; i >= 0; i--) {
+            while (!min_stk.empty() && heights[i] >= min_stk.back()) {
+                res[i] += 1;
+                min_stk.pop_back();
+            }
+
+            if (!min_stk.empty()) {
+                res[i] += 1;
+            }
+            min_stk.push_back(heights[i]);
         }
         return res;
     }

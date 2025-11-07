@@ -95,7 +95,6 @@ Space O(N) for stack in the worst cases
 class Solution {
 public:
     int mctFromLeafValues(vector<int>& arr) {
-        int n = arr.size();
         int result = 0;
         vector<int> stk = {INT_MAX};
         for (int a : arr) {
@@ -116,8 +115,8 @@ public:
     }
 };
 
+// dp
 class Solution1 {
-    // dp
 public:
     int mctFromLeafValues(vector<int>& arr) {
         int n = arr.size();

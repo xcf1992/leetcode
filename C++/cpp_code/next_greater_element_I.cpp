@@ -64,20 +64,20 @@ using namespace std;
 class Solution {
 public:
     vector<int> nextGreaterElement(vector<int>& findNums, vector<int>& nums) {
-        unordered_map<int, int> nextGreaterNum;
-        stack<int> bigger;
+        unordered_map<int, int> next_greater_num;
+        stack<int> decreasing_stk;
         for (int num : nums) {
-            nextGreaterNum[num] = -1;
-            while (!bigger.empty() and num > bigger.top()) {
-                nextGreaterNum[bigger.top()] = num;
-                bigger.pop();
+            next_greater_num[num] = -1;
+            while (!decreasing_stk.empty() && num > decreasing_stk.top()) {
+                next_greater_num[decreasing_stk.top()] = num;
+                decreasing_stk.pop();
             }
-            bigger.push(num);
+            decreasing_stk.push(num);
         }
 
         vector<int> result;
         for (int num : findNums) {
-            result.push_back(nextGreaterNum[num]);
+            result.push_back(next_greater_num[num]);
         }
         return result;
     }
