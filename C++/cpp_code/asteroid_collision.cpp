@@ -63,24 +63,25 @@ public:
     vector<int> asteroidCollision(vector<int>& asteroids) {
         vector<int> result;
         for (int asteroid : asteroids) {
-            if (asteroid < 0) {
-                bool exploded = false;
-                while (!result.empty() and result.back() > 0) {
-                    if (result.back() > abs(asteroid)) {
-                        exploded = true;
-                        break;
-                    } else if (result.back() == abs(asteroid)) {
-                        result.pop_back();
-                        exploded = true;
-                        break;
-                    } else {
-                        result.pop_back();
-                    }
+            if (asteroid > 0) {
+                result.push_back(asteroid);
+                continue;
+            }
+
+            bool exploded = false;
+            while (!result.empty() and result.back() > 0) {
+                if (result.back() > abs(asteroid)) {
+                    exploded = true;
+                    break;
+                } else if (result.back() == abs(asteroid)) {
+                    result.pop_back();
+                    exploded = true;
+                    break;
+                } else {
+                    result.pop_back();
                 }
-                if (!exploded) {
-                    result.push_back(asteroid);
-                }
-            } else {
+            }
+            if (!exploded) {
                 result.push_back(asteroid);
             }
         }
