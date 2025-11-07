@@ -31,6 +31,27 @@ You can assume that you can always reach the last index.
 #include <numeric>
 using namespace std;
 
+/*
+Intuition of the problem
+
+We want to reach the end with the fewest jumps.
+
+Each nums[i] tells us how far we can reach from i.
+
+We can think of this as a breadth-first search (BFS) over array indices:
+
+Each jump is like moving to the next layer in BFS.
+
+Each layer covers all positions reachable with the same number of jumps.
+
+But instead of literally running BFS (which is O(n²)), we can simulate it greedily in O(n).
+
+🔍 Meaning of the variables
+Variable	Meaning
+result	How many jumps we have taken so far
+curMax	The farthest index we can reach from all positions seen so far
+lastMax	The end boundary of the current jump — i.e. the farthest we can go with the current number of jumps
+ */
 class Solution {
 public:
     int jump(vector<int>& nums) {
