@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/longest-common-subsequence/description/
 1143. Longest Common Subsequence
 Given two strings text1 and text2,
 return the length of their longest common subsequence.
@@ -51,21 +52,22 @@ using namespace std;
 class Solution {
 public:
     int longestCommonSubsequence(string text1, string text2) {
-        int len1 = text1.size();
-        int len2 = text2.size();
-        if (len1 == 0 or len2 == 0) {
+        int m = text1.size();
+        int n = text2.size();
+        if (m == 0 or n == 0) {
             return 0;
         }
 
-        vector<vector<int>> dp(len1 + 1, vector<int>(len2 + 1, 0));
-        for (int i = 1; i <= len1; ++i) {
+        vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
+        for (int i = 1; i <= m; ++i) {
             dp[i][0] = 0;
         }
-        for (int j = 1; j <= len2; ++j) {
+        for (int j = 1; j <= n; ++j) {
             dp[0][j] = 0;
         }
-        for (int i = 1; i <= len1; ++i) {
-            for (int j = 1; j <= len2; ++j) {
+
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
                 if (text1[i - 1] == text2[j - 1]) {
                     dp[i][j] = 1 + dp[i - 1][j - 1];
                 } else {
@@ -73,6 +75,6 @@ public:
                 }
             }
         }
-        return dp[len1][len2];
+        return dp[m][n];
     }
 };

@@ -65,14 +65,14 @@ class Solution {
 public:
     vector<int> nextGreaterElement(vector<int>& findNums, vector<int>& nums) {
         unordered_map<int, int> next_greater_num;
-        stack<int> decreasing_stk;
+        stack<int> min_stk;
         for (int num : nums) {
             next_greater_num[num] = -1;
-            while (!decreasing_stk.empty() && num > decreasing_stk.top()) {
-                next_greater_num[decreasing_stk.top()] = num;
-                decreasing_stk.pop();
+            while (!min_stk.empty() && num > min_stk.top()) {
+                next_greater_num[min_stk.top()] = num;
+                min_stk.pop();
             }
-            decreasing_stk.push(num);
+            min_stk.push(num);
         }
 
         vector<int> result;

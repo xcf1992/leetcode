@@ -1,5 +1,7 @@
 /*
+https://leetcode.com/problems/task-scheduler/description/?envType=company&envId=doordash&favoriteSlug=doordash-all
 621. Task Scheduler
+
 Given a char array representing tasks CPU need to do.
 It contains capital letters A to Z where different letters represent different tasks.
 Tasks could be done without original order.
@@ -38,16 +40,16 @@ using namespace std;
 class Solution {
 public:
     int leastInterval(vector<char>& tasks, int n) {
-        vector<int> counts(26, 0);
-        int frequency = 0;
+        vector<int> task_cnt(26, 0);
+        int max_cnt = 0;
         for (char c : tasks) {
-            counts[c - 'A'] += 1;
-            frequency = max(frequency, counts[c - 'A']);
+            task_cnt[c - 'A'] += 1;
+            max_cnt = max(max_cnt, task_cnt[c - 'A']);
         }
 
-        int result = (n + 1) * (frequency - 1);
-        for (int count : counts) {
-            result += count == frequency ? 1 : 0;
+        int result = (n + 1) * (max_cnt - 1);
+        for (int cnt : task_cnt) {
+            result += cnt == max_cnt ? 1 : 0;
         }
         return max(result, (int)tasks.size());
     }
