@@ -32,7 +32,7 @@ Now, we start popping the numbers from the stack until we hit a number stack[j] 
 such that a[stack[j]] <= a[i].
 Every time we pop,
 we find out the area of rectangle formed using the current element as the height of the rectangle
-and the difference between the the current element's index pointed to in the original array
+and the difference between the current element's index pointed to in the original array
 and the element stack[top−1]−1 as the width
 
 i.e. if we pop an element stack[top] and i is the current index to which we are pointing in the original array,
@@ -45,66 +45,33 @@ we pop all the elements of the stack and at every pop,
 this time we use the following equation to find the area:
 (stack[top] − stack[top−1]) * a[stack[top]],
 where stack[top]stack[top] refers to the element just popped.
-Thus, we can get the area of the of the largest rectangle by comparing the new area found everytime.
+Thus, we can get the area of the largest rectangle by comparing the new area found everytime.
 
 The following example will clarify the process further:
 */
+
+// it's basically trying to find the index of previous less element and next less element
 class Solution {
 public:
     int largestRectangleArea(vector<int>& heights) {
-        stack<int> stk;
-        stk.push(-1);
-        int result = 0;
         int n = heights.size();
-        for (int i = 0; i < n; ++i) {
-            while (stk.top() != -1 and heights[i] < heights[stk.top()]) {
-                int cur = stk.top();
-                stk.pop();
-                result = max(result, heights[cur] * (i - stk.top() - 1));
-            }
-            stk.push(i);
-        }
-        while (stk.top() != -1) {
-            int cur = stk.top();
-            stk.pop();
-            result = max(result, heights[cur] * (n - stk.top() - 1));
-        }
-        return result;
-    }
-};
-
-// wrong answer [4,2,0,3,2,4,3,4]
-class Solution1 {
-public:
-    int largestRectangleArea(vector<int>& heights) {
-        int n = heights.size();
-        if (n <= 0) {
-            return 0;
-        }
-
-        vector<int> left(n, 0);
-        int index = 0;
-        left[0] = heights[0];
-        for (int i = 1; i < n; ++i) {
-            if (heights[i] > heights[i - 1]) {
-                index = i;
-            }
-            left[i] = heights[i] * (i - index + 1);
-        }
-
-        vector<int> right(n, 0);
-        right[n - 1] = heights[n - 1];
-        index = n - 1;
-        for (int i = n - 2; i >= 0; --i) {
-            if (heights[i] > heights[i + 1]) {
-                index = i;
-            }
-            right[i] = heights[i] * (index - i + 1);
-        }
-
         int result = 0;
+
+        stack<int> max_stk;
+        max_stk.push(-1);
         for (int i = 0; i < n; ++i) {
-            result = max(result, right[i] + left[i] - heights[i]);
+            while (max_stk.top() != -1 && heights[max_stk.top()] > heights[i]) {
+                int cur = max_stk.top();
+                max_stk.pop();
+                result = max(result, heights[cur] * (i - max_stk.top() - 1));
+            }
+            max_stk.push(i);
+        }
+
+        while (max_stk.top() != -1) {
+            int cur = max_stk.top();
+            max_stk.pop();
+            result = max(result, heights[cur] * (n - max_stk.top() - 1));
         }
         return result;
     }
