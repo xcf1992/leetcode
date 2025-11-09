@@ -50,6 +50,7 @@ public:
         while (pos > 0 and num[pos - 1] >= num[pos]) {
             pos -= 1;
         }
+
         if (pos == 0) {
             reverse(num.begin(), num.end());
             return;

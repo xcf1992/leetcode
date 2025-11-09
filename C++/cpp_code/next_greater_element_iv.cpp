@@ -52,16 +52,40 @@ Constraints:
 #include <stack>
 #include <map>
 #include <stdio.h>
-
 using namespace std;
+/*
+Next Greater Element canb resolved with one mono stack.
+Could we resolve this problem with mono stack?
 
+
+Explanation
+Use two stack s1 and s2.
+Similar to "Next Greater Element"
+s1 stores the index of elements
+that have not found their first greater element.
+
+s2 stores the index of elements
+that have found their first greater element,
+have not found their second greater element.
+
+For each a = A[i] in A
+We first compare the a with the tail elements in s2,
+pop all element smaller than a,
+because a is their second greater element.
+
+Then we compare the a with the tail elements in s1,
+move all elements smaller than a to the tail of s2,
+because a is their first greater element.
+
+We repeatly do this for all A[i] and finally return the result.
+ */
 class Solution {
 public:
     vector<int> secondGreaterElement(vector<int>& nums) {
         int n = nums.size();
         vector<int> rst(n, -1);
-        stack<int> min_stk_1; // used to find first next larger element
-        stack<int> min_stk_2; // used to find second next larger element
+        stack<int> min_stk_1;  // used to find first next larger element
+        stack<int> min_stk_2;  // used to find second next larger element
         for (int i = 0; i < n; i++) {
             while (!min_stk_2.empty() && nums[i] > nums[min_stk_2.top()]) {
                 rst[min_stk_2.top()] = nums[i];
