@@ -43,8 +43,7 @@ The judging time limit has been increased for this question.
 #include <numeric>
 using namespace std;
 
-class Solution {
-    // use union find
+class Solution {  // use union find
 private:
     int find(vector<int>& parent, int num) {
         if (parent[num] != num) {
@@ -54,7 +53,6 @@ private:
     }
 
     bool similar(string a, string b) {
-        // All words in A have the same length and are anagrams of each other. so we do not need to swap and check
         int diff = 0;
         for (int i = 0; i < a.size(); i++)
             if (a[i] != b[i]) {
@@ -74,13 +72,14 @@ public:
 
         for (int i = 0; i < n; ++i) {
             int p1 = find(parent, i);
-            for (int j = i + 1; j < n; ++j)
+            for (int j = i + 1; j < n; ++j) {
                 if (similar(A[i], A[j])) {
                     int p2 = find(parent, j);
                     if (p1 != p2) {
                         parent[p2] = p1;
                     }
                 }
+            }
         }
 
         int result = 0;
