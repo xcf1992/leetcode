@@ -69,6 +69,7 @@ private:
                 if (board[i][j] != '.') {
                     continue;
                 }
+
                 for (int k = 1; k <= 9; k++) {
                     board[i][j] = k + '0';
                     if (isValid(i, j, board) and dfs(board)) {

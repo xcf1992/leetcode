@@ -93,9 +93,6 @@ private:
 public:
     vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
         m = board.size();
-        if (m == 0) {
-            return {};
-        }
         n = board[0].size();
 
         for (string word : words) {

@@ -59,12 +59,14 @@ public:
         vector<int> result;
         result.push_back(nums[window.front()]);
         for (int i = k; i < nums.size(); i++) {
-            while (!window.empty() and nums[i] >= nums[window.back()]) {
-                window.pop_back();
-            }
             if (!window.empty() and i - window.front() >= k) {
                 window.pop_front();
             }
+
+            while (!window.empty() and nums[i] >= nums[window.back()]) {
+                window.pop_back();
+            }
+
             window.push_back(i);
             result.push_back(nums[window.front()]);
         }

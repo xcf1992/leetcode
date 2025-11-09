@@ -55,9 +55,9 @@ class Solution {
 public:
     int minJumps(vector<int>& arr) {
         int n = arr.size();
-        unordered_map<int, vector<int>> indicesOfValue;
+        unordered_map<int, vector<int>> val_idx;
         for (int i = 0; i < n; i++) {
-            indicesOfValue[arr[i]].push_back(i);
+            val_idx[arr[i]].push_back(i);
         }
 
         vector<bool> visited(n);
@@ -66,7 +66,8 @@ public:
         bfs.push(0);
         int step = 0;
         while (!bfs.empty()) {
-            for (int size = bfs.size(); size > 0; --size) {
+            int cur_size = bfs.size();
+            for (int i = cur_size; i > 0; --i) {
                 int cur = bfs.front();
                 bfs.pop();
 
@@ -74,16 +75,16 @@ public:
                     return step;  // Reached to last index
                 }
 
-                vector<int>& next = indicesOfValue[arr[cur]];
-                next.push_back(cur - 1);
-                next.push_back(cur + 1);
-                for (int j : next) {
+                vector<int>& nxt_idx = val_idx[arr[cur]];
+                nxt_idx.push_back(cur - 1);
+                nxt_idx.push_back(cur + 1);
+                for (int j : nxt_idx) {
                     if (j >= 0 and j < n and !visited[j]) {
                         visited[j] = true;
                         bfs.push(j);
                     }
                 }
-                next.clear();  // avoid later lookup indicesOfValue arr[i]
+                nxt_idx.clear();  // avoid later lookup indicesOfValue arr[i]
             }
             step++;
         }

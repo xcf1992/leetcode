@@ -57,7 +57,6 @@ private:
                 return true;
             }
         }
-
         board[row][col] = temp;
         return false;
     }

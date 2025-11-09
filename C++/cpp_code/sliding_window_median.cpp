@@ -67,10 +67,11 @@ public:
         multiset<int> low, high;
         for (int i = 0; i < nums.size(); ++i) {
             if (i >= k) {
-                if (nums[i - k] <= *low.rbegin()) {
-                    low.erase(low.find(nums[i - k]));
+                int evict_val = nums[i - k];
+                if (evict_val <= *low.rbegin()) {
+                    low.erase(low.find(evict_val));
                 } else {
-                    high.erase(high.find(nums[i - k]));
+                    high.erase(high.find(evict_val));
                 }
             }
 
