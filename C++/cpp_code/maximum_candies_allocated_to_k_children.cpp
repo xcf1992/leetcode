@@ -64,7 +64,6 @@ private:
 
 public:
     int maximumCandies(vector<int>& candies, long long k) {
-        int n = candies.size();
         long long max_cnt = 0;
         long long total_cnt = 0;
         for (int pile_cnt : candies) {
