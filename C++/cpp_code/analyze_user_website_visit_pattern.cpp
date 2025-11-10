@@ -84,19 +84,20 @@ public:
 
         unordered_map<string, int> count;
         for (auto& it : visit) {
-            vector<pair<int, string>> timeWeb = it.second;
-            if (timeWeb.size() < 3) {
+            vector<pair<int, string>> time_web = it.second;
+            if (time_web.size() < 3) {
                 continue;
             }
 
-            sort(timeWeb.begin(), timeWeb.end(),
+            sort(time_web.begin(), time_web.end(),
                  [](pair<int, string>& a, pair<int, string>& b) { return a.first < b.first; });
-            int n = timeWeb.size();
+
+            int n = time_web.size();
             unordered_set<string> webPattern;
             for (int i = 0; i < n; ++i) {
                 for (int j = i + 1; j < n; ++j) {
                     for (int k = j + 1; k < n; ++k) {
-                        webPattern.insert(timeWeb[i].second + "_" + timeWeb[j].second + "_" + timeWeb[k].second);
+                        webPattern.insert(time_web[i].second + "_" + time_web[j].second + "_" + time_web[k].second);
                     }
                 }
             }
@@ -106,12 +107,12 @@ public:
         }
 
         vector<string> result;
-        int maxVisit = 0;
+        int max_cnt = 0;
         for (auto& it : count) {
-            if (it.second > maxVisit) {
-                maxVisit = it.second;
+            if (it.second > max_cnt) {
+                max_cnt = it.second;
                 result = splitWeb(it.first);
-            } else if (it.second == maxVisit) {
+            } else if (it.second == max_cnt) {
                 vector<string> cur = splitWeb(it.first);
                 if (result[0] > cur[0] or (result[0] == cur[0] and result[1] > cur[1]) or
                     (result[0] == cur[0] and result[1] == cur[1] and result[2] > cur[2])) {

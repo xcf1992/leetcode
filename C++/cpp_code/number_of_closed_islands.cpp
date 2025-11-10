@@ -70,12 +70,20 @@ public:
         n = grid[0].size();
 
         for (int i = 0; i < m; ++i) {
-            dfs(i, 0, grid);
-            dfs(i, n - 1, grid);
+            if (grid[i][0] == 0) {
+                dfs(i, 0, grid);
+            }
+            if (grid[i][n - 1] == 0) {
+                dfs(i, n - 1, grid);
+            }
         }
         for (int j = 0; j < n; ++j) {
-            dfs(0, j, grid);
-            dfs(m - 1, j, grid);
+            if (grid[0][j] == 0) {
+                dfs(0, j, grid);
+            }
+            if (grid[m - 1][j] == 0) {
+                dfs(m - 1, j, grid);
+            }
         }
 
         int result = 0;

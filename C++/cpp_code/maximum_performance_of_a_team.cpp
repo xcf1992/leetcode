@@ -91,23 +91,25 @@ I don't understand why people are so into a "prove".
 class Solution {
 public:
     int maxPerformance(int n, vector<int>& speed, vector<int>& efficiency, int k) {
-        vector<pair<int, int>> ess;
+        vector<pair<int, int>> worker;
         for (int i = 0; i < n; ++i) {
-            ess.emplace_back(efficiency[i], speed[i]);
+            worker.emplace_back(efficiency[i], speed[i]);
         }
-        sort(ess.rbegin(), ess.rend());
+        sort(worker.begin(), worker.end(), [](pair<int, int>& a, pair<int, int>& b) {
+            return a.first > b.first;
+        });
 
         long sum = 0;
         long result = 0;
         priority_queue<int, vector<int>, greater<int>> pq;  // minheap of speed
-        for (auto& [e, s] : ess) {
-            pq.emplace(s);
-            sum += s;
+        for (auto& [efc, spd] : worker) {
+            pq.emplace(spd);
+            sum += spd;
             if (pq.size() > k) {
                 sum -= pq.top();
                 pq.pop();
             }
-            result = max(result, sum * e);
+            result = max(result, sum * efc);
         }
         return result % int(1e9 + 7);
     }
