@@ -61,8 +61,22 @@ Note:
 using namespace std;
 
 class Solution {
+private:
+    int ship_days(vector<int>& weights, int capacity) {
+        int days = 1;
+        int weight_sum = 0;
+        for (const int& w : weights) {
+            if (weight_sum + w > capacity) {
+                days += 1;
+                weight_sum = w;
+            } else {
+                weight_sum += w;
+            }
+        }
+        return days;
+    }
 public:
-    int shipWithinDays(vector<int>& weights, int D) {
+    int shipWithinDays(vector<int>& weights, int days) {
         int left = 0;
         int right = 0;
         for (int w : weights) {
@@ -72,18 +86,8 @@ public:
 
         while (left < right) {
             int mid = left + (right - left) / 2;
-            int bags = 1;
-            int cur = 0;
-            for (int w : weights) {
-                if (cur + w > mid) {
-                    bags += 1;
-                    cur = w;
-                } else {
-                    cur += w;
-                }
-            }
-
-            if (bags > D) {
+            int days_needed = ship_days(weights, mid);
+            if (days_needed > days) {
                 left = mid + 1;
             } else {
                 right = mid;

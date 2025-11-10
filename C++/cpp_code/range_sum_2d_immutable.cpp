@@ -42,6 +42,32 @@ using namespace std;
 
 class NumMatrix {
 private:
+    int m;
+    int n;
+    vector<vector<int>> maxtrix_sum;
+
+public:
+    NumMatrix(vector<vector<int>> matrix) {
+        int m = matrix.size();
+        int n = matrix[0].size();
+        maxtrix_sum.resize(m + 1, vector<int>(n + 1, 0));
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                maxtrix_sum[i + 1][j + 1] =
+                        maxtrix_sum[i][j + 1] + maxtrix_sum[i + 1][j] + matrix[i][j] - maxtrix_sum[i][j];
+            }
+        }
+    }
+
+    int sumRegion(int row1, int col1, int row2, int col2) {
+        return maxtrix_sum[row2 + 1][col2 + 1] - maxtrix_sum[row1][col2 + 1] - maxtrix_sum[row2 + 1][col1] +
+               maxtrix_sum[row1][col1];
+    }
+};
+
+// caching row prefix sum
+class NumMatrix1 {
+private:
     vector<vector<int>> sumMatrix;
 
 public:
