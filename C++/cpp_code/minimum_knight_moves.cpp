@@ -69,6 +69,13 @@ public:
             // edge case - adjacent square
             return 3;
         }
+        // Corner case.
+        if (x == 1 and y == 0) {
+            return 3;
+        }
+        if (x == 2 and y == 2) {
+            return 4;
+        }
 
         x = abs(x);
         y = abs(y);
@@ -115,12 +122,12 @@ public:
                 if (x == curX and y == curY) {
                     return result;
                 }
+
                 for (int j = 0; j < move.size(); ++j) {
                     int nexX = curX + move[j][0];
                     int nexY = curY + move[j][1];
-                    /*
-                     * the nexX * x >= 0 and nexY * y >= 0 is important here, otherwise it will TLE
-                     */
+
+                    // the nexX * x >= 0 and nexY * y >= 0 is important here, otherwise it will TLE
                     if (abs(nexX) <= 300 and abs(nexY) <= 300 and nexX * x >= 0 and nexY * y >= 0 and
                         !visited[nexX][nexY]) {
                         visited[nexX][nexY] = true;
