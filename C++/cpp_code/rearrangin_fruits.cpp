@@ -1,11 +1,7 @@
 /*
 https://leetcode.com/problems/rearranging-fruits/description/
 2561. Rearranging Fruits
-Hard
-Topics
-conpanies icon
-Companies
-Hint
+
 You have two fruit baskets containing n fruits each. You are given two 0-indexed integer arrays basket1 and basket2
 representing the cost of fruit in each basket. You want to make both baskets equal. To do so, you can use the following
 operation as many times as you want:
