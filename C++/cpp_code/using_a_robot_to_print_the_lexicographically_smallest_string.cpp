@@ -56,6 +56,14 @@ s consists of only English lowercase letters.
 #include <map>
 using namespace std;
 
+/*
+To generate the lexicographically smallest string, we can simulate a robot with a stack that either:
+
+Pushes the next character from string s onto the stack, or
+Pops from the stack and appends it to the result string t.
+The key idea is: we pop from the stack only when the top of the stack is less than or equal to the smallest character
+remaining in s.
+ */
 class Solution {
 private:
     // Helper function to find the lexicographically smallest remaining character
@@ -81,7 +89,7 @@ public:
         // Iterate over characters in s
         for (char ch : s) {
             stk_t.push(ch);
-            freq[ch - 'a']-= 1;
+            freq[ch - 'a'] -= 1;
 
             // Pop from stack to result if stack top ≤ smallest remaining char
             while (!stk_t.empty() && stk_t.top() <= current_least_letter(freq)) {
