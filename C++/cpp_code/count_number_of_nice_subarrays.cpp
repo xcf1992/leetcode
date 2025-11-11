@@ -42,7 +42,7 @@ using namespace std;
 // atMost(K) - atMost(K - 1)
 class Solution {
 private:
-    int atMost(vector<int>& A, int k) {
+    int at_most_k_odd_num(vector<int>& A, int k) {
         int res = 0;
         int i = 0;
         int n = A.size();
@@ -59,6 +59,6 @@ private:
 
 public:
     int numberOfSubarrays(vector<int>& A, int k) {
-        return atMost(A, k) - atMost(A, k - 1);
+        return at_most_k_odd_num(A, k) - at_most_k_odd_num(A, k - 1);
     }
 };
