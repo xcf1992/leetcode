@@ -60,6 +60,6 @@ public:
             }
             result = max(result, end - start + 1);
         }
-        return max(result, end - start);  // cause right now end will be at position n
+        return result;
     }
 };

@@ -4,7 +4,8 @@ https://leetcode.com/problems/count-vowel-substrings-of-a-string/description/
 
 A substring is a contiguous (non-empty) sequence of characters within a string.
 
-A vowel substring is a substring that only consists of vowels ('a', 'e', 'i', 'o', and 'u') and has all five vowels present in it.
+A vowel substring is a substring that only consists of vowels ('a', 'e', 'i', 'o', and 'u') and has all five vowels
+present in it.
 
 Given a string word, return the number of vowel substrings in word.
 
@@ -65,6 +66,7 @@ class Solution {
     bool is_vowel(char c) {
         return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
     };
+
 public:
     int countVowelSubstrings(string word) {
         int ans = 0;
@@ -74,7 +76,8 @@ public:
             cnt.clear();
             for (int j = i; j < n && is_vowel(word[j]); ++j) {
                 cnt[word[j]]++;
-                if (cnt.size() == 5) ++ans;
+                if (cnt.size() == 5)
+                    ++ans;
             }
         }
         return ans;
