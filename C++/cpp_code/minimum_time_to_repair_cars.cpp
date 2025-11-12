@@ -64,6 +64,7 @@ private:
         }
         return repaired_cars >= cars;
     }
+
 public:
     long long repairCars(vector<int>& ranks, int cars) {
         long long left = 0;

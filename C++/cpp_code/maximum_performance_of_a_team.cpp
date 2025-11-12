@@ -95,9 +95,7 @@ public:
         for (int i = 0; i < n; ++i) {
             worker.emplace_back(efficiency[i], speed[i]);
         }
-        sort(worker.begin(), worker.end(), [](pair<int, int>& a, pair<int, int>& b) {
-            return a.first > b.first;
-        });
+        sort(worker.begin(), worker.end(), [](pair<int, int>& a, pair<int, int>& b) { return a.first > b.first; });
 
         long sum = 0;
         long result = 0;

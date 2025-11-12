@@ -55,6 +55,6 @@ public:
         for (int i = 1; i < n; i++) {
             rst = max(rst, abs(nums[i] - nums[i - 1]));
         }
-        return max(rst, abs(nums[n-1] - nums[0]));
+        return max(rst, abs(nums[n - 1] - nums[0]));
     }
 };

@@ -66,6 +66,7 @@ private:
         }
         return calc(nums, idx + 1, cur_val, max_bitwise_or) + calc(nums, idx + 1, cur_val | nums[idx], max_bitwise_or);
     }
+
 public:
     int countMaxOrSubsets(vector<int>& nums) {
         int max_bitwise_or = nums[0];

@@ -241,7 +241,7 @@ public:
         long long rst = 0;
         int n = nums.size();
         long long mod = 1e9 + 7;
-        stack<int> max_stk; // the top element is always with the largest value
+        stack<int> max_stk;  // the top element is always with the largest value
         for (int i = 0; i <= n; i++) {
             int cur_val = i == n ? INT_MIN : nums[i];
             while (!max_stk.empty() && nums[max_stk.top()] > cur_val) {

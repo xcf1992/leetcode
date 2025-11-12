@@ -53,6 +53,7 @@ private:
         root[cur] = find(root[cur], root);
         return root[cur];
     }
+
 public:
     int findCircleNum(vector<vector<int>>& isConnected) {
         int n = isConnected.size();

@@ -126,7 +126,7 @@ public:
         }
 
         int bkt_size = max(1, (cur_max - cur_min) / (n - 1));  // bucket size or capacity
-        int bkt_cnt = (cur_max - cur_min) / bkt_size + 1;  // number of buckets
+        int bkt_cnt = (cur_max - cur_min) / bkt_size + 1;      // number of buckets
         vector<vector<int>> buckets(bkt_cnt, {0, INT_MAX, INT_MIN});
         // bucket_used, min_of_current_bucket, max_of_current_bucket
         for (int num : nums) {

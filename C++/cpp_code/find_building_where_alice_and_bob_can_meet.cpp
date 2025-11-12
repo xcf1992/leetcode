@@ -103,7 +103,7 @@ public:
                 rst[query_idx] = i;
             } else if (i == j) {
                 rst[query_idx] = i;
-            } else { // Step 2
+            } else {  // Step 2
                 int max_height = max(heights[i], heights[j]);
                 building_with_query[max(i, j)].push_back({max_height, query_idx});
             }

@@ -70,6 +70,7 @@ private:
             }
         }
     }
+
 public:
     int countHighestScoreNodes(vector<int>& parents) {
         int n = parents.size();
@@ -109,4 +110,3 @@ public:
         return rst;
     }
 };
-

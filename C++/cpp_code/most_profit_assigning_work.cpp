@@ -51,9 +51,7 @@ public:
             jobs.push_back({difficulty[i], profit[i]});
         }
 
-        sort(jobs.begin(), jobs.end(), [](pair<int, int>& a, pair<int, int>& b) {
-            return a.first < b.first;
-        });
+        sort(jobs.begin(), jobs.end(), [](pair<int, int>& a, pair<int, int>& b) { return a.first < b.first; });
         sort(worker.begin(), worker.end());
 
         int i = 0;

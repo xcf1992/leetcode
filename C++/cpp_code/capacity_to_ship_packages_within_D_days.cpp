@@ -75,6 +75,7 @@ private:
         }
         return days;
     }
+
 public:
     int shipWithinDays(vector<int>& weights, int days) {
         int left = 0;

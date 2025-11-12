@@ -54,7 +54,7 @@ public:
             return true;
         }
 
-        if (s[n -1] == '1') {
+        if (s[n - 1] == '1') {
             return false;
         }
 

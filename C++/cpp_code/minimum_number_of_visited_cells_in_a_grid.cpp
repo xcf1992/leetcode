@@ -67,7 +67,7 @@ public:
             }
         }
 
-        queue<vector<int>> bfs; // row, col, distance
+        queue<vector<int>> bfs;  // row, col, distance
         bfs.push({0, 0, 1});
         while (!bfs.empty()) {
             int row = bfs.front()[0];

@@ -175,7 +175,7 @@ public:
         }
 
         long long rst = 0;
-        std::vector<long long> left = {0, 0}; // {largest forbidden start, second largest forbidden start}
+        std::vector<long long> left = {0, 0};  // {largest forbidden start, second largest forbidden start}
         std::vector<long long> bonus(n + 1, 0);
 
         for (int r = 1; r <= n; ++r) {
