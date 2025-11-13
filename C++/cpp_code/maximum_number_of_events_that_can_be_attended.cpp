@@ -66,7 +66,54 @@ If we can attend a meeting, we increment the result res.
 Complexity
 Time O(NlogN)
 Space O(N)
+
+Sort Events by Start Day:
+First, we sort all events based on their start days. This helps us process events in chronological order, ensuring we
+consider events as they become available.
+
+Use a Min-Heap for End Days:
+We use a priority queue (min-heap) to keep track of the end days of the events. This allows us to always pick the event
+that ends the earliest, ensuring we can attend as many events as possible by freeing up days sooner.
+
+Process Each Day:
+
+Initialization: Start from day 1 and initialize a pointer to traverse the sorted events.
+Add Events to Heap: For each day, add all events that start on or before the current day to the heap.
+Remove Expired Events: Remove any events from the heap that have already ended before the current day.
+Attend Earliest Ending Event: If there are events left in the heap, attend the one with the earliest end day (remove it
+from the heap) and increment the count of attended events. Move to Next Day: After attending an event, move to the next
+day and repeat the process until all events are processed.
 */
+class Solution1 {
+public:
+    int maxEvents(vector<vector<int>>& events) {
+        // Sort events based on start day
+        sort(events.begin(), events.end());
+
+        priority_queue<int, vector<int>, greater<int>> minHeap;
+
+        int day = 0, index = 0, n = events.size(), result = 0;
+
+        while (!minHeap.empty() || index < n) {
+            if (minHeap.empty()) {
+                day = events[index][0];
+            }
+            while (index < n && events[index][0] <= day) {
+                minHeap.push(events[index][1]);
+                index++;
+            }
+            minHeap.pop();
+            result++;
+            day++;
+
+            while (!minHeap.empty() && minHeap.top() < day) {
+                minHeap.pop();
+            }
+        }
+        return result;
+    }
+};
+
 class Solution {
 public:
     int maxEvents(vector<vector<int>>& events) {
