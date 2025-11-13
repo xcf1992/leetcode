@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/meeting-rooms-ii/description/
 253. Meeting Rooms II
 
 Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si < ei),
@@ -30,6 +31,25 @@ Please reset to default code definition to get new method signature.
 using namespace std;
 
 class Solution {
+public:
+    int minMeetingRooms(vector<vector<int>>& intervals) {
+        map<int, int> itvl;
+        for (vector<int>& interval : intervals) {
+            itvl[interval[0]] += 1;
+            itvl[interval[1]] -= 1;
+        }
+
+        int rst = 0;
+        int cur = 0;
+        for (const auto& it : itvl) {
+            cur += it.second;
+            rst = max(rst, cur);
+        }
+        return rst;
+    }
+};
+
+class Solution2 {
 public:
     int minMeetingRooms(vector<vector<int>>& intervals) {
         sort(intervals.begin(), intervals.end(), [](vector<int>& i, vector<int>& j) { return i[0] < j[0]; });

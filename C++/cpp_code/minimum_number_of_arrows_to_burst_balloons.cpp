@@ -44,6 +44,7 @@ public:
         if (points.empty()) {
             return 0;
         }
+
         sort(points.begin(), points.end(),
              [](vector<int>& a, vector<int>& b) { return a[1] < b[1] or (a[1] == b[1] and a[0] <= b[0]); });
 
