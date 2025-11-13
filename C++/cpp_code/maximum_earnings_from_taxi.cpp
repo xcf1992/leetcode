@@ -77,3 +77,25 @@ public:
         return dp[n];
     }
 };
+
+class Solution1 {
+public:
+    long long maxTaxiEarnings(int n, vector<vector<int>>& rides) {
+        sort(rides.begin(), rides.end(), [](const vector<int>& a, const vector<int>& b) {
+            return a[1] < b[1] || (a[1] == b[1] && a[0] < b[0]);
+        });
+
+        map<int, long long> dp;
+        dp[0] = 0;
+        for (const vector<int>& ride : rides) {
+            long long start = ride[0];
+            long long end = ride[1];
+            long long tips = ride[2];
+            long long cur_earning = prev(dp.upper_bound(start))->second + end - start + tips;
+            if (cur_earning > dp.rbegin()->second) {
+                dp[end] = cur_earning;
+            }
+        }
+        return dp.rbegin()->second;
+    }
+};
