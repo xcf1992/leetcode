@@ -69,15 +69,75 @@ result equals to min(dp)
 */
 class Solution {
 public:
-    int minSideJumps(vector<int>& A) {
+    int minSideJumps(vector<int>& obstacles) {
         int dp[] = {1, 0, 1};
-        for (int a : A) {
-            if (a > 0)
-                dp[a - 1] = 1e6;
-            for (int i = 0; i < 3; ++i)
-                if (a != i + 1)
+        for (int ob_lane : obstacles) {
+            if (ob_lane > 0) {
+                dp[ob_lane - 1] = 1e6;
+            }
+
+            for (int i = 0; i < 3; ++i) {
+                if (ob_lane != i + 1) {
                     dp[i] = min(dp[i], min(dp[(i + 1) % 3], dp[(i + 2) % 3]) + 1);
+                }
+            }
         }
         return min(dp[0], min(dp[1], dp[2]));
+    }
+};
+
+/*
+We can use DP to solve this problem. dp[i][r] means the minimum jumps when the frog gets to point i lane r (0-index).
+
+The base cases are:
+
+dp[0][0], dp[0][1], dp[0][2] = 1, 0, 1
+dp[i][r] = inf when there's obstacle at (i, r) or (i+1, r)
+And the transition function is:
+
+dp[i][r] = min([dp[i-1][r], dp[i-1][(r+1)%3] + 1, dp[i-1][(r+2)%3] + 1]) for r = 0, 1, 2
+dp[i-1][r] means the frog comes from the same lane, so there's no jump needed; otherwise, the frog moves from point i-1
+to point i on another lane and jumps to (i, r).
+
+
+Complexity
+
+Time complexity: O(N)
+Space complexity: O(N) or O(1) if we use rolling array
+ */
+
+class Solution {
+public:
+    int minSideJumps(vector<int>& obstacles) {
+        vector<int> dp({1,0,1});
+        for (int ob : obstacles) {
+            vector<int> temp(3, 0);
+            int ob_idx = ob - 1;
+            if (ob_idx == -1) { // no stone
+                temp[0] = min(dp[0], min(dp[1] + 1, dp[2] + 1));
+                temp[1] = min(dp[1], min(dp[0] + 1, dp[2] + 1));
+                temp[2] = min(dp[2], min(dp[0] + 1, dp[1] + 1));
+            }
+
+            if (ob_idx == 0) {
+                temp[0] = 1e6;
+                temp[1] = min(dp[1], dp[2] + 1);
+                temp[2] = min(dp[2], dp[1] + 1);
+            }
+
+            if (ob_idx == 1) {
+                temp[0] = min(dp[0], dp[2] + 1);
+                temp[1] = 1e6;
+                temp[2] = min(dp[2], dp[0] + 1);
+            }
+
+            if (ob_idx == 2) {
+                temp[0] = min(dp[0], dp[1] + 1);
+                temp[1] = min(dp[1], dp[0] + 1);
+                temp[2] = 1e6;
+            }
+            dp = temp;
+        }
+        return *min_element(dp.begin(), dp.end());
     }
 };
