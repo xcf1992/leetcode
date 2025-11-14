@@ -61,7 +61,7 @@ Skip this event and move to next event, no change in profit.
 Attend this event add its profit and move to next such event whose starting time is greater than the ending time of this
 event. Compare the profits made by these two choices and return the maximum value of the two.
 */
-class Solution {
+class Solution1 {  // TLE
 private:
     int solve(vector<vector<int>>& dp, vector<vector<int>>& events, int n, int pos, int k) {
         if (pos >= n || k == 0) {
@@ -89,5 +89,47 @@ public:
         sort(events.begin(), events.end());
         vector<vector<int>> dp(n + 1, vector<int>(k + 1, -1));
         return solve(dp, events, n, 0, k);
+    }
+};
+
+class Solution {
+public:
+    int maxValue(vector<vector<int>>& events, int k) {
+        sort(events.begin(), events.end(), [](const vector<int>& a, const vector<int>& b) { return a[1] < b[1]; });
+
+        int n = events.size();
+        vector<vector<int>> dp(n + 1, vector<int>(k + 1, 0));
+
+        for (int i = 1; i <= n; ++i) {
+            int cur_start = events[i - 1][0];
+            int prev = binarySearch(events, cur_start) + 1;
+
+            for (int j = 1; j <= k; ++j) {
+                dp[i][j] = max(dp[i - 1][j], dp[prev][j - 1] + events[i - 1][2]);
+            }
+        }
+
+        return dp[n][k];
+    }
+
+private:
+    // Find the last event that does not overlap with the current event using binary search. Let’s call its index prev.
+    int binarySearch(vector<vector<int>>& events, int currentStart) {
+        int left = 0;
+        int right = events.size();
+        int result = -1;
+
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (events[mid][1] < currentStart) {
+                result = mid;
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+
+        // cout << "res = " << result << endl;
+        return result;
     }
 };

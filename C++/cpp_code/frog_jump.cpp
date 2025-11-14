@@ -54,7 +54,6 @@ class Solution {
     // dp
 public:
     bool canCross(vector<int>& stones) {
-        int n = stones.size();
         unordered_map<int, unordered_set<int>> reach;
         reach[stones.front()].insert(0);
         for (int pos : stones) {
