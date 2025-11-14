@@ -70,5 +70,44 @@ using namespace std;
 class Solution {
 public:
     int mostBooked(int n, vector<vector<int>>& meetings) {
+        sort(meetings.begin(), meetings.end());
+
+        vector<long long> busy(n, 0);  // Room end times
+        vector<int> count(n, 0);       // Booking counts per room
+        for (auto& meeting : meetings) {
+            int start = meeting[0];
+            int end = meeting[1];
+            long long earliest = LLONG_MAX;
+            int roomIndex = -1;
+            bool assigned = false;
+            for (int i = 0; i < n; ++i) { // find the room with earliest end time
+                if (busy[i] < earliest) {
+                    earliest = busy[i];
+                    roomIndex = i;
+                }
+
+                if (busy[i] <= start) {
+                    busy[i] = end;
+                    count[i]++;
+                    assigned = true;
+                    break;
+                }
+            }
+
+            if (!assigned) { // if all rooms are busy now, delay the task until the first room become available
+                busy[roomIndex] += (end - start);
+                count[roomIndex]++;
+            }
+        }
+
+        int rst = 0;
+        int max_cnt = 0;
+        for (int i = 0; i < n; ++i) {
+            if (count[i] > max_cnt) {
+                max_cnt = count[i];
+                rst = i;
+            }
+        }
+        return rst;
     }
 };
