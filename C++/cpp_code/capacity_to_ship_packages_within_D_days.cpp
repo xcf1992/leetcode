@@ -85,6 +85,7 @@ public:
             right += w;
         }
 
+        int rst = right;
         while (left < right) {
             int mid = left + (right - left) / 2;
             int days_needed = ship_days(weights, mid);
@@ -92,8 +93,9 @@ public:
                 left = mid + 1;
             } else {
                 right = mid;
+                rst = right;
             }
         }
-        return left;
+        return rst;
     }
 };

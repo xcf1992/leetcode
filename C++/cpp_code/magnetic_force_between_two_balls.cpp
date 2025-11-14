@@ -69,13 +69,14 @@ v                                         v
 [      valid      ] [       invalid       ]
 */
 class Solution {
-    bool valid(vector<int>& A, int M, int m) {
+    bool can_place(vector<int>& position, int gap, int m) {
         int prev = 0;
         for (int i = 1, j = 1; i < m; ++i) {
-            while (j < A.size() && A[j] < A[prev] + M) {
+            while (j < position.size() && position[j] < position[prev] + gap) {
                 ++j;
             }
-            if (j >= A.size()) {
+
+            if (j >= position.size()) {
                 return false;
             }
             prev = j;
@@ -84,21 +85,24 @@ class Solution {
     }
 
 public:
-    int maxDistance(vector<int>& A, int m) {
-        sort(begin(A), end(A));
+    int maxDistance(vector<int>& position, int m) {
+        sort(begin(position), end(position));
         if (m == 2) {
-            return A.back() - A[0];
+            return position.back() - position[0];
         }
 
-        int L = 1, R = A.back() - A[0];
-        while (L <= R) {
-            int M = (L + R) / 2;
-            if (valid(A, M, m)) {
-                L = M + 1;
+        int left = 1;
+        int right = position.back() - position[0] + 1;
+        int rst = 0;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (can_place(position, mid, m)) {
+                rst = mid;
+                left = mid + 1;
             } else {
-                R = M - 1;
+                right = mid;
             }
         }
-        return R;
+        return rst;
     }
 };
