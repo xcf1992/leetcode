@@ -53,42 +53,47 @@ using namespace std;
 class Solution {
     // bfs 72.3%
 public:
-    int minimumSemesters(int N, vector<vector<int>>& relations) {
-        vector<int> preCount(N, 0);
-        vector<unordered_set<int>> learnAfter(N);
+    int minimumSemesters(int n, vector<vector<int>>& relations) {
+        vector<int> pre_cnt(n, 0);
+        vector<unordered_set<int>> next_courses(n);
         for (vector<int>& relation : relations) {
-            preCount[relation[1] - 1] += 1;
-            learnAfter[relation[0] - 1].insert(relation[1] - 1);
+            int pre = relation[0] - 1;
+            int after = relation[1] - 1;
+            pre_cnt[after] += 1;
+            next_courses[pre].insert(after);
         }
 
         queue<int> bfs;
-        int courseLeft = N;
-        for (int i = 0; i < N; ++i)
-            if (preCount[i] == 0) {
+        int left_cnt = n;
+        for (int i = 0; i < n; ++i) {
+            if (pre_cnt[i] == 0) {
                 bfs.push(i);
-                courseLeft -= 1;
+                left_cnt -= 1;
             }
+        }
+
         if (bfs.empty()) {
             return -1;
         }
 
-        int result = 0;
+        int rst = 0;
         while (!bfs.empty()) {
-            result += 1;
+            rst += 1;
             int curSize = bfs.size();
             for (int i = 0; i < curSize; ++i) {
                 int cur = bfs.front();
                 bfs.pop();
-                for (int nxt : learnAfter[cur]) {
-                    preCount[nxt] -= 1;
-                    if (preCount[nxt] == 0) {
+
+                for (int nxt : next_courses[cur]) {
+                    pre_cnt[nxt] -= 1;
+                    if (pre_cnt[nxt] == 0) {
                         bfs.push(nxt);
-                        courseLeft -= 1;
+                        left_cnt -= 1;
                     }
                 }
             }
         }
-        return courseLeft == 0 ? result : -1;
+        return left_cnt == 0 ? rst : -1;
     }
 };
 

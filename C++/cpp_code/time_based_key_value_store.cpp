@@ -51,27 +51,27 @@ using namespace std;
 
 class TimeMap {
 private:
-    unordered_map<string, map<int, string>> keyTimeMap;
+    unordered_map<string, map<int, string>> key_time_store_;
 
 public:
     /* Initialize your data structure here.*/
     TimeMap() {
-        keyTimeMap.clear();
+        key_time_store_.clear();
     }
 
     void set(string key, string value, int timestamp) {
-        keyTimeMap[key][timestamp] = value;
+        key_time_store_[key][timestamp] = value;
     }
 
     string get(string key, int timestamp) {
         // If the 'key' does not exist in map we will return empty string.
-        if (keyTimeMap.find(key) == keyTimeMap.end()) {
+        if (key_time_store_.find(key) == key_time_store_.end()) {
             return "";
         }
 
-        auto it = keyTimeMap[key].upper_bound(timestamp);
+        auto it = key_time_store_[key].upper_bound(timestamp);
         // If iterator points to first element it means, no time <= timestamp exists.
-        if (it == keyTimeMap[key].begin()) {
+        if (it == key_time_store_[key].begin()) {
             return "";
         }
 
