@@ -5,8 +5,8 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
 };
 
-struct ListNode {
+struct MyListNode {
     int val;
-    ListNode* next;
-    ListNode(int x) : val(x), next(nullptr) {}
+    MyListNode* next;
+    MyListNode(int x) : val(x), next(nullptr) {}
 };

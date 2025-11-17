@@ -55,26 +55,26 @@ The number of nodes in the list is in the range [1, 105].
 #include <stdio.h>
 using namespace std;
 
-struct ListNode {
+struct MyListNode {
     int val;
-    ListNode* next;
-    ListNode() : val(0), next(nullptr) {
+    MyListNode* next;
+    MyListNode() : val(0), next(nullptr) {
     }
-    ListNode(int x) : val(x), next(nullptr) {
+    MyListNode(int x) : val(x), next(nullptr) {
     }
-    ListNode(int x, ListNode* next) : val(x), next(next) {
+    MyListNode(int x, MyListNode* next) : val(x), next(next) {
     }
 };
 
 class Solution {
 public:
-    ListNode* deleteMiddle(ListNode* head) {
-        ListNode* pre_head = new ListNode(-1);
+    MyListNode* deleteMiddle(MyListNode* head) {
+        MyListNode* pre_head = new MyListNode(-1);
         pre_head->next = head;
 
-        ListNode* fast = pre_head;
-        ListNode* slow = pre_head;
-        ListNode* pre = pre_head;
+        MyListNode* fast = pre_head;
+        MyListNode* slow = pre_head;
+        MyListNode* pre = pre_head;
         while (fast != nullptr) {
             pre = slow;
             slow = slow -> next;
