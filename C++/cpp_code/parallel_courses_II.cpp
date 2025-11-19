@@ -73,10 +73,15 @@ public:
             }
         }
 
-        // dp[i]: minimum number of semesters of mask i, the set bits are courses that have not been taken
+        // dp[i]: minimum number of semesters of mask i, the set bits 1 are courses that have not been taken
+        // bit 0 is the course has been taken
         vector<int> dp(1 << n, n + 1);
         dp[0] = 0;
         for (int i = 1; i < (1 << n); ++i) {
+            // courses that have been taken are indicated as 0s so by using XOR the mask for courses taken can be
+            // obtained.
+            int already_taken = i ^ ((1 << n) - 1);
+
             // iterate all submask of mask i, and this mask is the mask of last semester
             // see: https://cp-algorithms.com/algebra/all-submasks.html
             for (int j = i; j; j = (j - 1) & i) {
@@ -84,8 +89,9 @@ public:
                     continue;
                 }
 
-                int already_taken = i ^ ((1 << n) - 1);
                 if ((already_taken & prerequisites[j]) == prerequisites[j]) {
+                    // i ^ j: using the mask i and the submask j update the mask to remove the courses that we took at
+                    // this step and obtain the minimum value of courses with this new mask.
                     dp[i] = min(dp[i], dp[i ^ j] + 1);
                 }
             }

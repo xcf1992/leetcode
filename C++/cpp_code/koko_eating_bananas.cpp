@@ -71,27 +71,31 @@ hours, and we add these times across all piles and compare it to H.
 */
 class Solution {
 private:
-    int eatingHours(vector<int>& piles, int eat) {
+    bool can_eat(vector<int>& piles, int eat, int H) {
         int total = 0;
         for (int p : piles) {
             total += (p - 1) / eat + 1;
+            if (total > H) {
+                return false;
+            }
         }
-        return total;
+        return true;
     }
 
 public:
     int minEatingSpeed(vector<int>& piles, int H) {
         int left = 1;
-        int right = 1e9;
+        int right = INT_MAX;
+        int rst = INT_MAX;
         while (left < right) {
             int mid = left + (right - left) / 2;
-            int total = eatingHours(piles, mid);
-            if (total > H) {
-                left = mid + 1;
-            } else {
+            if (can_eat(piles, mid, H)) {
+                rst = mid;
                 right = mid;
+            } else {
+                left = mid + 1;
             }
         }
-        return left;
+        return rst;
     }
 };
