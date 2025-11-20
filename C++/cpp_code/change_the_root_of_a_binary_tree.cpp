@@ -86,3 +86,34 @@ public:
         return leaf;
     }
 };
+
+class Solution {
+private:
+    void flip(Node* cur, Node* prev) {
+        if (cur->parent == nullptr) {
+            if (cur->left == prev) {
+                cur->left = nullptr;
+            }
+            if (cur->right == prev) {
+                cur->right = nullptr;
+            }
+            cur->parent = prev;
+            return;
+        }
+
+        if (cur->right == prev) {
+            cur->right = cur->left;
+        }
+
+        Node* cur_parent = cur->parent;
+        cur->parent = prev;
+        cur->left = cur_parent;
+        flip(cur_parent, cur);
+    }
+
+public:
+    Node* flipBinaryTree(Node* root, Node* leaf) {
+        flip(leaf, nullptr);
+        return leaf;
+    }
+};
