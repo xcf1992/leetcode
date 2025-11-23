@@ -75,7 +75,7 @@ public:
             vector<int> temp({0, INT_MIN, INT_MIN});
             for (int i = 0; i < 3; ++i) {
                 int rem = (i + num) % 3;
-                temp[rem] = max(dp[i] + num, dp[rem]);
+                temp[rem] = max(dp[rem], dp[i] + num);
             }
             dp = temp;
         }

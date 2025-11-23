@@ -52,34 +52,48 @@ Constraints:
 #include <queue>
 #include <stack>
 #include <stdio.h>
-#include <map>
-#include <numeric>
+#include <condition_variable>
+#include <mutex>
 using namespace std;
 
 class FooBar {
 private:
-    int n;
+    int n_;
+    mutex mtx_;
+    condition_variable cv_;
+    int cur_;
 
 public:
     FooBar(int n) {
-        this->n = n;
+        this->n_ = n;
+        this->cur_ = 0;
     }
 
     void foo(function<void()> printFoo) {
-
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n_; i++) {
+            unique_lock<mutex> lk(mtx_);
+            cv_.wait(lk, [&] { return cur_ % 2 == 0; });
 
             // printFoo() outputs "foo". Do not change or remove this line.
             printFoo();
+
+            cur_ = cur_ + 1;
+            lk.unlock();
+            cv_.notify_all();
         }
     }
 
     void bar(function<void()> printBar) {
-
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n_; i++) {
+            unique_lock<mutex> lk(mtx_);
+            cv_.wait(lk, [&] { return cur_ % 2 == 1; });
 
             // printBar() outputs "bar". Do not change or remove this line.
             printBar();
+
+            cur_ = cur_ + 1;
+            lk.unlock();
+            cv_.notify_all();
         }
     }
 };
