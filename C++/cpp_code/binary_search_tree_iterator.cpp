@@ -42,6 +42,18 @@ there will be at least a next smallest number in the BST when next() is called.
 #include "extra_data_types.hpp"
 using namespace std;
 
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode() : val(0), left(nullptr), right(nullptr) {
+    }
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {
+    }
+    TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {
+    }
+};
+
 class BSTIterator {
 private:
     stack<TreeNode*> stk;
@@ -70,12 +82,10 @@ public:
         stk.pop();
 
         int result = cur->val;
-        if (cur->right != nullptr) {
-            cur = cur->right;
-            while (cur != nullptr) {
-                stk.push(cur);
-                cur = cur->left;
-            }
+        cur = cur->right;
+        while (cur != nullptr) {
+            stk.push(cur);
+            cur = cur->left;
         }
         return result;
     }
