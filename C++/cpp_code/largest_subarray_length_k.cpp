@@ -57,7 +57,7 @@ using namespace std;
 class Solution {
 public:
     vector<int> largestSubarray(vector<int>& nums, int k) {
-        int max_idx = 0;
-        return vector<int>
+        auto it{max_element(nums.begin(), nums.end() - k + 1)};
+        return std::vector<int>(it, it + k);
     }
 };
