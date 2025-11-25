@@ -48,22 +48,22 @@ Constraints:
 #include <queue>
 #include <stack>
 #include <stdio.h>
-#include <map>
-#include <numeric>
+#include <unique_lock>
+#include <mutex>
 using namespace std;
 
 class ZeroEvenOdd {
 private:
-    int n;
+    int cnt_;
     sem_t sem_z, sem_o, sem_e;
 public:
-    ZeroEvenOdd(int n) : n(n) {
+    ZeroEvenOdd(int n) : cnt_(n) {
         sem_init(&sem_z, 0, 1);
         sem_init(&sem_o, 0, 0);
         sem_init(&sem_e, 0, 0);
     }
     void zero(function<void(int)> printNumber) {
-        for (int i = 1; i <= n; ++i) {
+        for (int i = 1; i <= cnt_; ++i) {
             sem_wait(&sem_z);
             printNumber(0);
             if (i & 1) sem_post(&sem_o);
@@ -71,14 +71,14 @@ public:
         }
     }
     void even(function<void(int)> printNumber) {
-        for (int i = 2; i <= n; i += 2) {
+        for (int i = 2; i <= cnt_; i += 2) {
             sem_wait(&sem_e);
             printNumber(i);
             sem_post(&sem_z);
         }
     }
     void odd(function<void(int)> printNumber) {
-        for (int i = 1; i <= n; i += 2) {
+        for (int i = 1; i <= cnt_; i += 2) {
             sem_wait(&sem_o);
             printNumber(i);
             sem_post(&sem_z);
@@ -93,45 +93,45 @@ public:
 
 class ZeroEvenOdd {
 private:
-    int n;
-    std::condition_variable cv;
-    std::mutex mtx;
-    int nextState; // next state: 0 - zero, 1 - odd, 2 - even
+    int cnt_;
+    std::condition_variable cv_;
+    std::mutex mtx_;
+    int cur_state_; // next state: 0 - zero, 1 - odd, 2 - even
 
 public:
     ZeroEvenOdd(int n) {
-        this->n = n;
-        nextState = 0;
+        this->cnt_ = n;
+        cur_state_ = 0;
     }
 
     // printNumber(x) outputs "x", where x is an integer.
     void zero(function<void(int)> printNumber) {
-        for (int i = 0; i < n; i++) {
-            std::unique_lock lk(mtx);
-            cv.wait(lk, [&] { return nextState == 0; });
+        for (int i = 0; i < cnt_; i++) {
+            unique_lock<mutex> lk(mtx_);
+            cv_.wait(lk, [&] { return cur_state_ == 0; });
             printNumber(0);
-            nextState = ((i % 2 == 0) ? 1 : 2); // calculate next state
-            cv.notify_all();
+            cur_state_ = ((i % 2 == 0) ? 1 : 2); // calculate next state
+            cv_.notify_all();
         }
     }
 
     void even(function<void(int)> printNumber) {
-        for (int i = 0; i < n / 2; i++) {
-            std::unique_lock lk(mtx);
-            cv.wait(lk, [&] { return nextState == 2; });
+        for (int i = 0; i < cnt_ / 2; i++) {
+            unique_lock<mutex> lk(mtx_);
+            cv_.wait(lk, [&] { return cur_state_ == 2; });
             printNumber(2 + i * 2);
-            nextState = 0; // next state is print 0
-            cv.notify_all();
+            cur_state_ = 0; // next state is print 0
+            cv_.notify_all();
         }
     }
 
     void odd(function<void(int)> printNumber) {
-        for (int i = 0; i < n / 2 + (n % 2); i++) {
-            std::unique_lock lk(mtx);
-            cv.wait(lk, [&] { return nextState == 1; });
+        for (int i = 0; i < cnt_ / 2 + (cnt_ % 2); i++) {
+            unique_lock<mutex> lk(mtx_);
+            cv_.wait(lk, [&] { return cur_state_ == 1; });
             printNumber(1 + i * 2);
-            nextState = 0; // next state is print 0
-            cv.notify_all();
+            cur_state_ = 0; // next state is print 0
+            cv_.notify_all();
         }
     }
 };

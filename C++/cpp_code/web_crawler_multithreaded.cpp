@@ -107,11 +107,12 @@ using namespace std;
 /**
  * // This is the HtmlParser's API interface.
  * // You should not implement it, or speculate about its implementation
- * class HtmlParser {
- *   public:
- *     vector<string> getUrls(string url);
- * };
  */
+class HtmlParser {
+public:
+    vector<string> getUrls(string url);
+};
+
 class Solution {
 private:
     int worker_cnt_;
@@ -136,12 +137,10 @@ private:
     // this a worker thread that will be doing tasks.
     void start_worker(HtmlParser* parser) {
         while (true) {
-            unique_lock<mutex> ul(mtx_);
+            unique_lock<mutex> lk(mtx_);
             // wait until there are some tasks OR
             // we are done executing
-            cv_.wait(ul, [&]() {
-                return work_queue_.size() > 0 || all_done_;
-            });
+            cv_.wait(lk, [&]() { return work_queue_.size() > 0 || all_done_; });
 
             // if done, return.
             if (all_done_) {
@@ -153,12 +152,12 @@ private:
             string item = work_queue_.front();
             work_queue_.pop();
 
-            ul.unlock();
+            lk.unlock();
             // since getUrls can take a lot of time, release the lock.
             vector<string> accessible = parser->getUrls(item);
 
             // acquire the lock and add tasks.
-            ul.lock();
+            lk.lock();
 
             for (string& url : accessible) {
                 // if it has been seen already or the host name doesn't match, ignore it.
@@ -180,24 +179,21 @@ private:
             }
 
             // notify all the threads either about finishing or about availability of tasks.
+            lk.unlock();
             cv_.notify_all();
         }
     }
 
 public:
     vector<string> crawl(string startUrl, HtmlParser htmlParser) {
-        // get the hostname for this url.
-        // mark it as seen.
+        all_done_ = false;
         hostname = extract_host_name(startUrl);
         visited_urls_.insert(startUrl);
-        all_done_ = false;
-
-        // get number of supported threads
-        worker_cnt_ = thread::hardware_concurrency();
-        // push the first task to do.
         work_queue_.push(startUrl);
 
         // start a bunch of worker threads.
+        // get number of supported threads
+        worker_cnt_ = thread::hardware_concurrency();
         for (int i = 0; i < worker_cnt_; i++) {
             workers_.emplace_back(&Solution::start_worker, this, &htmlParser);
         }

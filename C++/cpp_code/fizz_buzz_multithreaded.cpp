@@ -60,19 +60,20 @@ using namespace std;
 class FizzBuzz {
 private:
     int cnt_;
-    int cur_ = 1;
+    int cur_;
     mutex mtx_;
     condition_variable cv_;
 
 public:
     FizzBuzz(int n) : cnt_(n) {
+        this->cur_ = 1;
     }
 
     void fizz(function<void()> printFizz) {
         while (true) {
-            unique_lock<mutex> lock(mtx_);
+            unique_lock<mutex> lk(mtx_);
 
-            cv_.wait(lock, [this] {
+            cv_.wait(lk, [this] {
                 return cur_ > cnt_ || (cur_ % 3 == 0 && cur_ % 5 != 0);
             });
 
@@ -82,7 +83,7 @@ public:
 
             printFizz();
             cur_ += 1;
-            lock.unlock();
+            lk.unlock();
             cv_.notify_all();
         }
     }
