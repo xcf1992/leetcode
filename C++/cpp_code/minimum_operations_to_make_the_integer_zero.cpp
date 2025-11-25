@@ -47,13 +47,37 @@ Constraints:
 #include <stdio.h>
 #include <set>
 using namespace std;
+/*
+When is x expressible as a sum of exactly k powers of two?
 
+Two simple necessary and sufficient constraints:
+
+x >= 0 (you cannot express a negative number as sum of positive powers of two).
+
+Let bitcount(x) = number of 1 bits in binary representation of x.
+
+The minimum number of powers of two needed to represent x is bitcount(x) (the binary decomposition).
+
+The maximum number of powers you can use to make x is x itself (use x copies of 1 = 2^0).
+Therefore x can be written as a sum of exactly k powers of two iff
+
+bitcount(x) <= k <= x.
+
+
+The reason the lower bound is bitcount(x) is immediate from binary representation.
+The reason the upper bound holds is constructive: you can always split a power 2^j into two 2^{j-1}'s repeatedly until
+you reach the desired number of terms (and you can keep splitting down to 2^0 = 1), so you can increase the term count
+up to x. WalkCCC
+
+(This is the core insight used by standard solutions.)
+AlgoMonster
+ */
 class Solution {
 public:
     int makeTheIntegerZero(int num1, int num2) {
         for (int k = 1; k <= 60; k++) {
             long long x = num1 - 1LL * num2 * k;
-            if (x < k) {
+            if (k > x) {
                 return -1;
             }
             if (k >= __builtin_popcountll(x)) {
