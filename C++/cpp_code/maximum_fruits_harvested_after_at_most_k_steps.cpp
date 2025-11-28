@@ -117,7 +117,15 @@ constant.
 class Solution {
 private:
     int min_steps(int left, int right, int start) {
-        return min(abs(start - left) + (right - left), abs(start - right) + (right - left));
+        if (right <= start) {
+            return start - left;
+        }
+
+        if (left >= start) {
+            return right - start;
+        }
+
+        return min(abs(start - right), abs(start - left)) + right - left;
     }
 
 public:
