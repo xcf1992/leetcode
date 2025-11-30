@@ -24,7 +24,7 @@ Characters in given words can only be lower-case letters.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 // dp[i][j] means longest length of common subsequence of word1 and word2

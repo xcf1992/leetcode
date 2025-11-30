@@ -47,7 +47,7 @@ There are at most 25 cells containing gold.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 // some interesting idea about applying dp to this problem
 // https://leetcode.com/problems/path-with-maximum-gold/discuss/399124/C%2B%2B-plain-DFS-vs-Memorized-DFS

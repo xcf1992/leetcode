@@ -30,7 +30,7 @@ The return answers should be in the same order as the original array.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 using namespace std;

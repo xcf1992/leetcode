@@ -26,7 +26,7 @@ All inputs are guaranteed to be non-empty strings.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 struct TrieNode {

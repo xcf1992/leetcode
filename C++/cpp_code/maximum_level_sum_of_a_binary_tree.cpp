@@ -32,7 +32,7 @@ The number of nodes in the given tree is between 1 and 10^4.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 

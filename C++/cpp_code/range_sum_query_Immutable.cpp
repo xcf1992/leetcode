@@ -21,7 +21,7 @@ There are many calls to sumRange function.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 // Your NumArray object will be instantiated and called as such:

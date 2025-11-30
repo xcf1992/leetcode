@@ -55,7 +55,7 @@ number between 1 and rows. At most 104 calls will be made in total to setCell, r
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Spreadsheet {

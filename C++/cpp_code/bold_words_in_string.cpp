@@ -26,7 +26,7 @@ All characters in words[i] and S are lowercase letters.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 

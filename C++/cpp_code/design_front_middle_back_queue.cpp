@@ -52,7 +52,7 @@ At most 1000 calls will be made to pushFront, pushMiddle, pushBack, popFront, po
 #include <queue>
 #include <stack>
 #include <cfloat>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include <list>

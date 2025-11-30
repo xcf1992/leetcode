@@ -36,7 +36,7 @@ row is guaranteed to be a permutation of 0...len(row)-1.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

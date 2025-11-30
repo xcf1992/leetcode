@@ -18,7 +18,7 @@ The input time is legal and ranges from 00:00 to 23:59.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

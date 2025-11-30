@@ -30,7 +30,7 @@ There are no repeated connections.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 https://www.geeksforgeeks.org/bridge-in-a-graph/

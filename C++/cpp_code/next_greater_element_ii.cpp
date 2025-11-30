@@ -27,7 +27,7 @@ The length of given array won't exceed 10000.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

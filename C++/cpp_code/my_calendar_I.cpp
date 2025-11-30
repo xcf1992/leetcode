@@ -41,7 +41,7 @@ In calls to MyCalendar.book(start, end), start and end are integers in the range
 #include <queue>
 #include <set>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class MyCalendar {

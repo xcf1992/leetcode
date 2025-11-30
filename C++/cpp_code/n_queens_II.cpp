@@ -29,7 +29,7 @@ Explanation: There are two distinct solutions to the 4-queens puzzle as shown be
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

@@ -54,7 +54,7 @@ At most 105 calls total will be made to append, addAll, multAll, and getIndex.
 #include <queue>
 #include <stack>
 #include <cfloat>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include "extra_data_types.hpp"
 using namespace std;

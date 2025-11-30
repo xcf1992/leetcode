@@ -43,7 +43,7 @@ The judging time limit has been reduced for this question.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 /*

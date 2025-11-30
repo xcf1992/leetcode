@@ -30,7 +30,7 @@ Answers will be accepted as correct if they are within 10^-5 of the correct answ
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

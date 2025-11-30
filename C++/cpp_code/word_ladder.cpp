@@ -42,7 +42,7 @@ Explanation: The endWord "cog" is not in wordList, therefore no possible transfo
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

@@ -65,7 +65,7 @@ and is a valid formula as defined in the problem.
 #include <queue>
 #include <stack>
 #include <map>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

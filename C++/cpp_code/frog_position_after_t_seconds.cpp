@@ -51,7 +51,7 @@ Answers within 10^-5 of the actual value will be accepted as correct.
 #include <queue>
 #include <stack>
 #include <cfloat>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 /*

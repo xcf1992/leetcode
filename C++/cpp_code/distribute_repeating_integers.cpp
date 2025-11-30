@@ -57,7 +57,7 @@ There are at most 50 unique values in nums.
 #include <queue>
 #include <stack>
 #include <cfloat>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include <list>

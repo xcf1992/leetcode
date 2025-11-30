@@ -50,7 +50,7 @@ query_glass and query_row will be in the range of [0, 99].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 /*

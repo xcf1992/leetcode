@@ -45,7 +45,7 @@ The range of sum number in a super washing machine is [0, 1e5].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include <numeric>

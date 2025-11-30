@@ -37,7 +37,7 @@ There is only one optimal division for each test case.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

@@ -10,7 +10,7 @@ https://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=273389
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

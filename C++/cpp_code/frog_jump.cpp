@@ -45,7 +45,7 @@ the gap between the 5th and 6th stone is too large.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include <numeric>
 using namespace std;

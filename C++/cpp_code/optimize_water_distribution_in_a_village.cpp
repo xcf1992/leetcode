@@ -40,7 +40,7 @@ pipes[i][0] != pipes[i][1]
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 #include <numeric>
 using namespace std;

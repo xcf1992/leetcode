@@ -45,7 +45,7 @@ Each pair of cities has at most one road connecting them.
 #include <queue>
 #include <stack>
 #include <cfloat>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include "extra_data_types.hpp"
 using namespace std;

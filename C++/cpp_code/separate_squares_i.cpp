@@ -65,7 +65,7 @@ The total area of all the squares will not exceed 1012.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 

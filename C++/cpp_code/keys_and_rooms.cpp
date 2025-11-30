@@ -43,7 +43,7 @@ The number of keys in all rooms combined is at most 3000.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

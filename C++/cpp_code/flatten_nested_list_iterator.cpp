@@ -27,7 +27,7 @@ Explanation: By calling next repeatedly until hasNext returns false,
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 // This is the interface that allows for creating nested lists.

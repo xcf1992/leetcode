@@ -33,7 +33,7 @@ The given positions contain at least one nut, only one tree and one squirrel.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

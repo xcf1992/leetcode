@@ -56,7 +56,7 @@ snake.move("U"); -> Returns -1 (Game over because snake collides with border)
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include <numeric>
 using namespace std;

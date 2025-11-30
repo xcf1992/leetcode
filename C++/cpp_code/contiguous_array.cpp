@@ -27,7 +27,7 @@ The length of the given binary array will not exceed 50,000.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

@@ -36,7 +36,7 @@ date represents a calendar date between Jan 1st, 1900 and Dec 31, 2019.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

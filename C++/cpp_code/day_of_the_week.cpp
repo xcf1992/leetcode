@@ -38,7 +38,7 @@ The given dates are valid dates between the years 1971 and 2100.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include "extra_data_types.hpp"
 using namespace std;

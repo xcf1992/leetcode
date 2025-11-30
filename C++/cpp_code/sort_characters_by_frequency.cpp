@@ -39,7 +39,7 @@ Note that 'A' and 'a' are treated as two different characters.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

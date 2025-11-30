@@ -31,7 +31,7 @@ Then 4 is the first bad version.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 // Forward declaration of isBadVersion API.

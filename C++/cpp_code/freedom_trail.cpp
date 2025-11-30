@@ -46,7 +46,7 @@ It's guaranteed that string key could always be spelled by rotating the string r
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

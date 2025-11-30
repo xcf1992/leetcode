@@ -20,7 +20,7 @@ Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefor
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

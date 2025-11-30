@@ -56,7 +56,7 @@ s and t consist of lowercase English letters only.
 #include <queue>
 #include <stack>
 #include <cfloat>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include "extra_data_types.hpp"

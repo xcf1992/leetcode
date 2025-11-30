@@ -40,7 +40,7 @@ The answer is guaranteed to exist and be less than 2 * 10^8.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 /*

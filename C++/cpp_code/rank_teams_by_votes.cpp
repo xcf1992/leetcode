@@ -66,7 +66,7 @@ All the characters that occur in votes[0] also occur in votes[j] where 1 <= j < 
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 

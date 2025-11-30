@@ -30,7 +30,7 @@ Can you do it in O(n) time and/or in-place with O(1) extra space?
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 /*

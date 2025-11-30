@@ -42,7 +42,7 @@ The range of width and height of the input 2D array is [1,200].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

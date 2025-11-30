@@ -53,7 +53,7 @@ The <IntegerPart> will not begin with 2 or more zeros.  (There is no other restr
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

@@ -20,7 +20,7 @@ You must not use any built-in BigInteger library or convert the inputs to intege
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

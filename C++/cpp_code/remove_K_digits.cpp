@@ -35,7 +35,7 @@ Explanation: Remove all the digits from the number and it is left with nothing w
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 /*

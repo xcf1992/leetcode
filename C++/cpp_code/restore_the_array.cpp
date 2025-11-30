@@ -52,7 +52,7 @@ s consists of only digits and doesn't contain leading zeros.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

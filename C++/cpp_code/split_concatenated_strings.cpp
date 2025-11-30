@@ -37,7 +37,7 @@ The total length of all the strings will not over 1,000.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 To solve this problem, we must keep in heart the following points:

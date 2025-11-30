@@ -42,7 +42,7 @@ A[i] is a permutation of [1, 2, ..., A.length]
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

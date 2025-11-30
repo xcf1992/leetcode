@@ -48,7 +48,7 @@ s and t only contain digits from '0' to '9'.
 #include <queue>
 #include <stack>
 #include <cfloat>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 /*

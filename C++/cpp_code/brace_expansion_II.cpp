@@ -51,7 +51,7 @@ The given expression represents a set of words based on the grammar given in the
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include <numeric>

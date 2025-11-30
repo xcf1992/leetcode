@@ -41,7 +41,7 @@ Calls to ExamRoom.leave(p) are guaranteed to have a student currently sitting in
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 

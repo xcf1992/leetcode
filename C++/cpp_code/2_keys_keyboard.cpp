@@ -32,7 +32,7 @@ The n will be in the range [1, 1000].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 Allow me to explain what is being done here.

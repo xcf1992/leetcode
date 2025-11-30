@@ -34,7 +34,7 @@ The integer n is in the range [1, 1000] and k is in the range [0, 1000].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

@@ -45,7 +45,7 @@ A reachable node is a node that can be travelled to using at most M moves starti
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

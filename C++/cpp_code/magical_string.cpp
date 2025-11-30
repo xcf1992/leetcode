@@ -37,7 +37,7 @@ Explanation: The first 6 elements of magical string S is "12211" and it contains
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

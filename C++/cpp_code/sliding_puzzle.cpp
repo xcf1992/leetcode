@@ -46,7 +46,7 @@ board[i][j] will be a permutation of [0,  1,  2,  3,  4,  5].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

@@ -57,7 +57,7 @@ There will not be any duplicated flights or self cycles.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 

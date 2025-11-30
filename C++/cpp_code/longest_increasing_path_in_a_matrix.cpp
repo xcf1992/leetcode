@@ -35,7 +35,7 @@ Explanation: The longest increasing path is [3, 4, 5, 6]. Moving diagonally is n
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

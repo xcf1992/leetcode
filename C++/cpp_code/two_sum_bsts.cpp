@@ -33,7 +33,7 @@ Each tree has at most 5000 nodes.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 /*

@@ -39,7 +39,7 @@ The value of each color in image[i][j] and newColor will be an integer in [0, 65
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

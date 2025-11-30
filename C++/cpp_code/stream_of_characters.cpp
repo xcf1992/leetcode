@@ -41,7 +41,7 @@ The number of queries is at most 40000.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include <numeric>

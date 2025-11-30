@@ -29,7 +29,7 @@ Your algorithm should run in O(n) time and uses constant extra space.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

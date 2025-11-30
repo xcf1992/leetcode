@@ -66,7 +66,7 @@ At most 2000 calls in total will be made to lock, unlock, and upgrade.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

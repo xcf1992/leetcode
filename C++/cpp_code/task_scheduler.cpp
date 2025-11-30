@@ -34,7 +34,7 @@ The integer n is in the range [0, 100].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

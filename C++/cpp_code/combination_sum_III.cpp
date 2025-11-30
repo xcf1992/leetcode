@@ -26,7 +26,7 @@ Output: [[1,2,6], [1,3,5], [2,3,4]]
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

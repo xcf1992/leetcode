@@ -38,7 +38,7 @@ The tree consists only of the root, its left child, and its right child.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

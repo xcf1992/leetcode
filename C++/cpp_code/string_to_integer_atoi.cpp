@@ -60,7 +60,7 @@ Explanation: The number "-91283472332" is out of the range of a 32-bit signed in
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

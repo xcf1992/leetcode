@@ -33,7 +33,7 @@ It is guaranteed there is at least one way to partition A as described.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

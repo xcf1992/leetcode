@@ -26,7 +26,7 @@ Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
         using namespace std;
 
 class Solution {

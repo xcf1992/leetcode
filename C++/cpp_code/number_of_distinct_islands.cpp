@@ -45,7 +45,7 @@ The length of each dimension in the given grid does not exceed 50.
 #include <queue>
 #include <map>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 

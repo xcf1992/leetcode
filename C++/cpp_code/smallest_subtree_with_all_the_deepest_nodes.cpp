@@ -47,7 +47,7 @@ The values of each node are unique.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include "extra_data_types.hpp"
 using namespace std;

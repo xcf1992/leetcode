@@ -20,7 +20,7 @@ Explanation: The maximum result is 5 ^ 25 = 28.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/discuss/130427/()-92

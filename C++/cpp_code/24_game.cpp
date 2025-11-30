@@ -28,7 +28,7 @@ For example, if the input is [1, 2, 1, 2], we cannot write this as 12 + 12.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

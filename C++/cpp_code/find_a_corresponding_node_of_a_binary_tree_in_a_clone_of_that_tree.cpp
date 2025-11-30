@@ -48,7 +48,7 @@ target node is a node from the original tree and is not null.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 

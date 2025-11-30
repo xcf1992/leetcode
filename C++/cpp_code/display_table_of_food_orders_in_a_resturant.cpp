@@ -57,7 +57,7 @@ tableNumberi is a valid integer between 1 and 500.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include <numeric>

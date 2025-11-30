@@ -29,7 +29,7 @@ You may assume that word1 does not equal to word2, and word1 and word2 are both 
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

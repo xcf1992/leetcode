@@ -36,7 +36,7 @@ The substring "BBBB" has the longest repeating letters, which is 4.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 maxCount may be invalid at some points, but this doesn't matter,

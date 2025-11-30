@@ -26,7 +26,7 @@ You may assume the number of cals to update and sumRange function is distributed
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include "extra_data_types.hpp"
 using namespace std;

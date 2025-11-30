@@ -26,7 +26,7 @@ Only three moves are needed (remember each move increments two elements):
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

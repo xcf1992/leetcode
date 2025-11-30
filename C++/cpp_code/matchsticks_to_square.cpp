@@ -35,7 +35,7 @@ The length of the given matchstick array will not exceed 15.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <numeric>
 using namespace std;
 

@@ -17,7 +17,7 @@ You just need to ensure that a URL can be encoded to a tiny URL and the tiny URL
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <stdlib.h>
 #include <time.h>
 using namespace std;

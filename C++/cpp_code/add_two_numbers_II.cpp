@@ -23,7 +23,7 @@ Output: 7 -> 8 -> 0 -> 7
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 

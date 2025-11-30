@@ -42,7 +42,7 @@ N is a positive integer and will not exceed 15.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 The idea behind this approach is simple. We try to create all the permutations of numbers from 1 to N.

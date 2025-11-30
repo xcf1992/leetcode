@@ -43,7 +43,7 @@ There are no repeated edges.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include <numeric>
 #include <bitset>

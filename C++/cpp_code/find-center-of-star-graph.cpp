@@ -37,7 +37,7 @@ The given edges represent a valid star graph.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include <numeric>
 using namespace std;

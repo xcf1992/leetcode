@@ -36,7 +36,7 @@ Each answers[i] will be an integer in the range [0, 999].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 /*

@@ -27,7 +27,7 @@ All edges times[i] = (u, v, w) will have 1 <= u, v <= N and 1 <= w <= 100.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

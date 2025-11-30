@@ -32,7 +32,7 @@ For each student, there are at least 5 scores
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include <numeric>

@@ -27,7 +27,7 @@ The length of words[i] will be in the range of [1, 50].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 Since the length of S is large, let's think about ways to iterate through S only once,

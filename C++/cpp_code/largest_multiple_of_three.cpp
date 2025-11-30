@@ -41,7 +41,7 @@ The returning answer must not contain unnecessary leading zeros.
 #include <queue>
 #include <stack>
 #include <map>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 /*

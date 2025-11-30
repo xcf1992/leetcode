@@ -46,7 +46,7 @@ It's also guaranteed that f(x, y) will fit in 32 bit signed integer if 1 <= x, y
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

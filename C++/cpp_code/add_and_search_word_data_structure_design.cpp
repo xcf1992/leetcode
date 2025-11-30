@@ -31,7 +31,7 @@ You may assume that all words are consist of lowercase letters a-z.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 

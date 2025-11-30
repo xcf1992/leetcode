@@ -42,7 +42,7 @@ The target node is a node in the tree.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include "extra_data_types.hpp"
 using namespace std;

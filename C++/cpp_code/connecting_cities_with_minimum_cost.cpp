@@ -39,7 +39,7 @@ connections[i][0] != connections[i][1]
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

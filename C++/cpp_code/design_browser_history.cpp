@@ -60,7 +60,7 @@ At most 5000 calls will be made to visit, back, and forward.
 #include <queue>
 #include <stack>
 #include <map>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 

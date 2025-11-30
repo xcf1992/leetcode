@@ -38,7 +38,7 @@ If this function is called many times, how would you optimize it?
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 for 8 bit binary number abcdefgh, the process is as follow:

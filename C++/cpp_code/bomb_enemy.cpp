@@ -26,7 +26,7 @@ return 3. (Placing a bomb at (1,1) kills 3 enemies)
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 

@@ -56,7 +56,7 @@ fromNode.right is null in the initial tree from the test data.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 struct TreeNode {

@@ -46,7 +46,7 @@ It is guaranteed that all elements in verticalCuts are distinct.
 #include <queue>
 #include <stack>
 #include <map>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 

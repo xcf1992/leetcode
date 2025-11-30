@@ -49,7 +49,7 @@ events[i].length == 2
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 Sort events increased by start time.

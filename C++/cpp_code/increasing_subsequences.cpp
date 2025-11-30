@@ -23,7 +23,7 @@ and two equal integers should also be considered as a special case of increasing
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 /*

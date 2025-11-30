@@ -26,7 +26,7 @@ S will consist of lowercase letters ('a' to 'z') only.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

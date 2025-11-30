@@ -44,7 +44,7 @@ The range of operations size won't exceed 10,000.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

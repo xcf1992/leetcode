@@ -34,7 +34,7 @@ Try to solve it in O(n log k) time and O(n) extra space.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

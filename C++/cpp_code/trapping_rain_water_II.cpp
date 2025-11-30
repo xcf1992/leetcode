@@ -28,7 +28,7 @@ After the rain, water is trapped between the blocks. The total volume of water t
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 /*

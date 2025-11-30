@@ -60,7 +60,7 @@ All the shapes of wood (hi, wi) are pairwise distinct.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 /*

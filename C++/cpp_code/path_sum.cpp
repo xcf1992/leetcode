@@ -28,7 +28,7 @@ return true, as there exist a root-to-leaf path 5->4->11->2 which sum is 22.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 

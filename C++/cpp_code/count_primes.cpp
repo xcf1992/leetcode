@@ -17,7 +17,7 @@ Explanation: There are 4 prime numbers less than 10, they are 2, 3, 5, 7.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 

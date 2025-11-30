@@ -17,7 +17,7 @@ Given n = 2, return ["11","69","88","96"].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

@@ -49,7 +49,7 @@ Since the third round will generate the final winner, you need to output the ans
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

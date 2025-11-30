@@ -34,7 +34,7 @@ Return a NestedInteger object containing a nested list with 2 elements:
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 // This is the interface that allows for creating nested lists.

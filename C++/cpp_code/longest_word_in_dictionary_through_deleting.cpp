@@ -34,7 +34,7 @@ The length of all the strings in the input won't exceed 1,000.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

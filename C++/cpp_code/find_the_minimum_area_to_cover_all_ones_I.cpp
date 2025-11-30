@@ -36,7 +36,7 @@ The input is generated such that there is at least one 1 in grid.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

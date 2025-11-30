@@ -59,7 +59,7 @@ num consists of digits '0' to '9' only.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

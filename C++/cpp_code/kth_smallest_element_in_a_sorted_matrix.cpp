@@ -29,7 +29,7 @@ You may assume k is always valid, 1 ≤ k ≤ n2.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 For those who don't understand why it's guaranteed to have lo as an element in the matrix, here is my two cents.

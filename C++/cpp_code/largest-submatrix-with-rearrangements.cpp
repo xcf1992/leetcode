@@ -41,7 +41,7 @@ matrix[i][j] is 0 or 1.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include <numeric>
 using namespace std;

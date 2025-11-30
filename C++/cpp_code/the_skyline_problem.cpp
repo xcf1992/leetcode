@@ -44,7 +44,7 @@ Special thanks to @stellari for adding this problem, creating these two awesome 
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 using namespace std;

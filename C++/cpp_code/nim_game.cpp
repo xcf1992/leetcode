@@ -25,7 +25,7 @@ Explanation: If there are 4 stones in the heap, then you will never win the game
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 /*

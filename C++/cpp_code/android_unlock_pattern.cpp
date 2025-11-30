@@ -45,7 +45,7 @@ as illustrated … so I guess the illustration should be corrected
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

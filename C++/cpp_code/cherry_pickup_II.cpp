@@ -56,7 +56,7 @@ cols == grid[i].length
 #include <queue>
 #include <stack>
 #include <set>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 /*

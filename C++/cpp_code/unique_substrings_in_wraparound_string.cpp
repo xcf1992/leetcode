@@ -35,7 +35,7 @@ Explanation: There are six substrings "z", "a", "b", "za", "ab", "zab" of string
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

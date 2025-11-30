@@ -31,7 +31,7 @@ You may assume both pattern and str contains only lowercase letters.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

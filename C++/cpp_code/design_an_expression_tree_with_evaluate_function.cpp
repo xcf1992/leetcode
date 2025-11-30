@@ -59,7 +59,7 @@ It is guaranteed that no expression will include division by zero.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include <numeric>

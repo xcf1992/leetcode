@@ -46,7 +46,7 @@ grid[i][j] is a permutation of [0, ..., N*N - 1].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 /*

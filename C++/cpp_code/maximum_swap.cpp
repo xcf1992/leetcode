@@ -28,7 +28,7 @@ The given number is in the range [0, 108]
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

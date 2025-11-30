@@ -37,7 +37,7 @@ The testcases are generated such that the answer is in the range [0, 231 - 1] fo
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 

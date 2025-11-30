@@ -26,7 +26,7 @@ One longest palindrome that can be built is "dccaccd", whose length is 7.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

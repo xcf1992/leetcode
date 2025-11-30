@@ -33,7 +33,7 @@ All elements of each string will have an ASCII value in [97, 122].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

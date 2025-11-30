@@ -58,7 +58,7 @@ Could you do better than O(n^2) per move() operation?
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

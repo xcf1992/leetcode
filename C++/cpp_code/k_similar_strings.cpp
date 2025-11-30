@@ -35,7 +35,7 @@ A and B contain only lowercase letters from the set {'a', 'b', 'c', 'd', 'e', 'f
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

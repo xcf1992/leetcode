@@ -39,7 +39,7 @@ arr[i] will be an integer in range [0, 10**8].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

@@ -60,7 +60,7 @@ So order them in anti-clockwise without duplicate nodes we have [1,2,4,7,8,9,10,
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include <numeric>
 #include "extra_data_types.hpp"

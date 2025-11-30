@@ -37,7 +37,7 @@ Could you do it in one-pass, using only O(1) extra memory and without modifying 
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

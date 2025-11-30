@@ -34,7 +34,7 @@ Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

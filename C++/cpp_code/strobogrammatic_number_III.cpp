@@ -22,7 +22,7 @@ Because the range might be a large number, the low and high numbers are represen
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include <numeric>

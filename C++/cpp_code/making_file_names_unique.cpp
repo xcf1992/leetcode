@@ -62,7 +62,7 @@ names[i] consists of lower case English letters, digits and/or round brackets.
 #include <queue>
 #include <stack>
 #include <map>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 

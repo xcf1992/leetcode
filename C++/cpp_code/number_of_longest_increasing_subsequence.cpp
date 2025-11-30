@@ -31,7 +31,7 @@ Length of the given array will be not exceed 2000 and the answer is guaranteed t
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 

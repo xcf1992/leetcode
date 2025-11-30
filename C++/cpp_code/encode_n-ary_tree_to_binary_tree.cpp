@@ -36,7 +36,7 @@ Do not use class member/global/static variables to store states. Your encode and
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include "extra_data_types.hpp"

@@ -16,7 +16,7 @@ Output: One possible answer is [3,5,1,6,2,4]
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

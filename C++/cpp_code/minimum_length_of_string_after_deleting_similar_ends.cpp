@@ -46,7 +46,7 @@ s only consists of characters 'a', 'b', and 'c'.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include <numeric>
 #include <bitset>

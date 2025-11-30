@@ -41,7 +41,7 @@ The value of each element in the array will be in the range [-9999, 9999].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include <numeric>
 using namespace std;

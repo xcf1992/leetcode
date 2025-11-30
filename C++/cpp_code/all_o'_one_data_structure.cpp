@@ -33,7 +33,7 @@ Challenge: Perform all these in O(1) time complexity.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

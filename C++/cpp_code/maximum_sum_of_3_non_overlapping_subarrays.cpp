@@ -29,7 +29,7 @@ k will be between 1 and floor(nums.length / 3).
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 The question asks for three non-overlapping intervals with maximum sum of all 3 intervals.

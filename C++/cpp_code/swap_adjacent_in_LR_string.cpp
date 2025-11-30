@@ -35,7 +35,7 @@ Both start and end will only consist of characters in {'L', 'R', 'X'}.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 /*

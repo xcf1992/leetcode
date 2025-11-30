@@ -50,7 +50,7 @@ pick has no arguments. Arguments are always wrapped with a list, even if there a
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

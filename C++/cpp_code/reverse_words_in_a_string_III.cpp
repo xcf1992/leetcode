@@ -22,7 +22,7 @@ In the string, each word is separated by single space and there will not be any 
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

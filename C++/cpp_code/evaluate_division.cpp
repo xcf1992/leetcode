@@ -30,7 +30,7 @@ You may assume that evaluating the queries will result in no division by zero an
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

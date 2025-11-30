@@ -30,7 +30,7 @@ Elements in the given array will be in range [-1,000,000, 1,000,000].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

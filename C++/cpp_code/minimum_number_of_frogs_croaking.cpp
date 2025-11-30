@@ -47,7 +47,7 @@ All characters in the string are: 'c', 'r', 'o', 'a' or 'k'.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

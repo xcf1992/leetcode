@@ -29,7 +29,7 @@ A[i], B[i] are integers in range [0, 10^5].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

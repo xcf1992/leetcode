@@ -34,7 +34,7 @@ The n and k are in the range 1 <= k < n <= 104.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 if you have n number, the maximum k can be n - 1;

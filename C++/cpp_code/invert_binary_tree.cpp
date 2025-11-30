@@ -32,7 +32,7 @@ but you can’t invert a binary tree on a whiteboard so f*** off.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 

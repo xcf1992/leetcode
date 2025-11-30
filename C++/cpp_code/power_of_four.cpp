@@ -21,7 +21,7 @@ Follow up: Could you solve it without loops/recursion?
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

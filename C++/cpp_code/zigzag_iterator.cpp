@@ -32,7 +32,7 @@ It should return [1,4,8,2,5,9,3,6,7].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class ZigzagIterator {

@@ -45,7 +45,7 @@ Each board[i][j] will initially start as an integer in the range [1, 2000].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

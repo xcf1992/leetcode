@@ -27,7 +27,7 @@ The first node is considered odd, the second node even and so on ...
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 

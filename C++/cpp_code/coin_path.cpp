@@ -48,7 +48,7 @@ B is in the range of [1, 100].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 /*

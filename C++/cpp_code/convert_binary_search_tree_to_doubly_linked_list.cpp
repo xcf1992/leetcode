@@ -41,7 +41,7 @@ while the dashed line means the predecessor relationship.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include <numeric>
 using namespace std;

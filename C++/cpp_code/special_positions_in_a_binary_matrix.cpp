@@ -53,7 +53,7 @@ mat[i][j] is 0 or 1.
 #include <queue>
 #include <stack>
 #include <cfloat>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

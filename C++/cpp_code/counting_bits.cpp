@@ -29,7 +29,7 @@ Do it without using any builtin function like __builtin_popcount in c++ or in an
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

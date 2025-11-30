@@ -50,7 +50,7 @@ Every integer represented in the 2D-array will be between 1 and N, where N is th
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include <numeric>

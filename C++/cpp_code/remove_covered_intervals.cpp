@@ -27,7 +27,7 @@ intervals[i] != intervals[j] for all i != j
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

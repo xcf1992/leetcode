@@ -33,7 +33,7 @@ The size of the given array will be in the range [1,1000].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 

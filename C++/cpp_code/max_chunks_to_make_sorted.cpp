@@ -36,7 +36,7 @@ arr[i] will be a permutation of [0, 1, ..., arr.length - 1].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

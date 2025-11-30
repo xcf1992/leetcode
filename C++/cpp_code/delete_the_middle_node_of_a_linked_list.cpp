@@ -52,7 +52,7 @@ The number of nodes in the list is in the range [1, 105].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 struct MyListNode {

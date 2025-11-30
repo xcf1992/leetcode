@@ -43,7 +43,7 @@ Each node's value is either 0 or 1.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 #include "extra_data_types.hpp"

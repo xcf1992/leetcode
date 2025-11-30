@@ -20,7 +20,7 @@ Given the list [1,[4,[6]]], return 27. (one 1 at depth 1, one 4 at depth 2, and 
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 // This is the interface that allows for creating nested lists.

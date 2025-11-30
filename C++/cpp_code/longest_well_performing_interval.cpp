@@ -28,7 +28,7 @@ Constraints:
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 The point is, seen stores the FIRST (very important) appearance of each score.

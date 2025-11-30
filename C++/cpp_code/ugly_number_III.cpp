@@ -38,7 +38,7 @@ It's guaranteed that the result will be in range [1, 2 * 10^9]
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

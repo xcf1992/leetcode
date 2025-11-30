@@ -16,7 +16,7 @@ The input size may be as large as 5,000,000.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 imagine the process like a preorder traversal of the tree

@@ -38,7 +38,7 @@ Could you optimize your algorithm?
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 It takes me sometime to understand this question.

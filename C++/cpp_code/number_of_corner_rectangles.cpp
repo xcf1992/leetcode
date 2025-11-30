@@ -44,7 +44,7 @@ The number of 1s in the grid will be at most 6000.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 // follow up

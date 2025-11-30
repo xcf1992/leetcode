@@ -53,7 +53,7 @@ Each call to RLEIterator.next(int n) will have 1 <= n <= 10^9.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include <numeric>

@@ -28,7 +28,7 @@ Inputs are in the left-hand column and its corresponding outputs are in the righ
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 

@@ -48,7 +48,7 @@ The value of each node in the linked list is between [-1000, 1000].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 

@@ -32,7 +32,7 @@ s consists of only lowercase English letters and/or digits.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include <numeric>
 using namespace std;

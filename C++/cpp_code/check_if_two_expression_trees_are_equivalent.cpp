@@ -53,7 +53,7 @@ Follow up: What will you change in your solution if the tree also supports the '
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include <numeric>

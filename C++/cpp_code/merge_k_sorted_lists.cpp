@@ -23,7 +23,7 @@ Output: 1->1->2->3->4->4->5->6
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

@@ -32,7 +32,7 @@ Explanation: There are three ways to climb to the top.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

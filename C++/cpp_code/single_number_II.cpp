@@ -27,7 +27,7 @@ Output: 99
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 https://cloud.tencent.com/developer/article/1131945

@@ -31,7 +31,7 @@ N  will be in range [1, 10000].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 /*

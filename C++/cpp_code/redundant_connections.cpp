@@ -49,7 +49,7 @@ For the directed graph follow up please see Redundant Connection II). We apologi
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

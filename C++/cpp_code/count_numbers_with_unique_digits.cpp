@@ -21,7 +21,7 @@ Explanation: The answer should be the total numbers in the range of 0 ≤ x < 10
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

@@ -60,7 +60,7 @@ There exists some node in the given binary tree for which node.val == k.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include <numeric>
 #include "extra_data_types.hpp"

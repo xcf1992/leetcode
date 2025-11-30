@@ -47,7 +47,7 @@ The words in sentence1 and sentence2 are separated by a single space.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include <numeric>
 using namespace std;

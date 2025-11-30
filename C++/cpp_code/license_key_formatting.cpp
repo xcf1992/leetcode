@@ -37,7 +37,7 @@ S consists only of alphanumerical characters (a-z and/or A-Z and/or 0-9) and das
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

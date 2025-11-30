@@ -35,7 +35,7 @@ Constraints:
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 While the O(1) math solution is impressive,

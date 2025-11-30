@@ -79,7 +79,7 @@ unrevealed mines when the game is over, consider any cases that you will win the
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

@@ -66,7 +66,7 @@ The input is generated such that taskId will be valid.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

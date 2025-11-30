@@ -24,7 +24,7 @@ The given array's numbers won't have any order.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

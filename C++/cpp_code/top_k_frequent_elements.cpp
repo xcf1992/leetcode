@@ -25,7 +25,7 @@ Your algorithm's time complexity must be better than O(n log n), where n is the 
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 struct myCmp {

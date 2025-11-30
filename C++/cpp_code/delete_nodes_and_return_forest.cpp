@@ -32,7 +32,7 @@ to_delete contains distinct values between 1 and 1000.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include <numeric>

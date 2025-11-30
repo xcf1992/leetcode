@@ -30,7 +30,7 @@ So you should return 1, because there is only one bulb is on.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 Explanation:

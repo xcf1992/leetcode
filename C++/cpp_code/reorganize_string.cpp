@@ -28,7 +28,7 @@ S will consist of lowercase letters and have length in range [1, 500].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 struct myComp {

@@ -67,7 +67,7 @@ The maze contains at least 2 empty spaces, and the width and the height of the m
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include <numeric>

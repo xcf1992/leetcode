@@ -23,7 +23,7 @@ Since all edges are undirected, [0, 1] is the same as [1, 0] and thus will not a
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <numeric>
 using namespace std;
 

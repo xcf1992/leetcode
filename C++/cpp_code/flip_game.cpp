@@ -26,7 +26,7 @@ Note: If there is no valid move, return an empty list [].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

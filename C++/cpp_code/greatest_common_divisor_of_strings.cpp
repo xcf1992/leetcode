@@ -34,7 +34,7 @@ str1[i] and str2[i] are English uppercase letters.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 /*

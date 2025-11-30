@@ -25,7 +25,7 @@ Each temperature will be an integer in the range [30, 100].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

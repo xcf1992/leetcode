@@ -32,7 +32,7 @@ Your output answer is guaranteed to be fitted in a 32-bit integer.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

@@ -28,7 +28,7 @@ You may assume that you have an infinite number of each kind of coin.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 /*

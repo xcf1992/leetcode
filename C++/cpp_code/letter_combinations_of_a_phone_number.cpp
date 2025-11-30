@@ -25,7 +25,7 @@ Although the above answer is in lexicographical order, your answer could be in a
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include <numeric>
 using namespace std;

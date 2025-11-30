@@ -35,7 +35,7 @@ The input string will only contain the character '*' and digits '0' - '9'.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

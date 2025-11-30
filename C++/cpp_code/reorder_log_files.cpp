@@ -36,7 +36,7 @@ logs[i] is guaranteed to have an identifier, and a word after the identifier.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

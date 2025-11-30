@@ -48,7 +48,7 @@ All words in A[i] are unique: there isn't i != j with A[i] == A[j].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

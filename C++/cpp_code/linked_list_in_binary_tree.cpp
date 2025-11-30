@@ -45,7 +45,7 @@ The given binary tree will contain between 1 and 2500 nodes.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 

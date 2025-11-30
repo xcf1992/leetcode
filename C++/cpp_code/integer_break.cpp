@@ -28,7 +28,7 @@ You may assume that n is not less than 2 and not larger than 58.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

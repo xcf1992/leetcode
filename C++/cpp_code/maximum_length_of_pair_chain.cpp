@@ -26,7 +26,7 @@ The number of given pairs will be in the range [1, 1000].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

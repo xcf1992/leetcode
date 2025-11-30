@@ -24,7 +24,7 @@ Could you optimize your algorithm to use only O(k) extra space?
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

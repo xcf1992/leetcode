@@ -38,7 +38,7 @@ The answer is guaranteed to fit in a 32-bit signed integer.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

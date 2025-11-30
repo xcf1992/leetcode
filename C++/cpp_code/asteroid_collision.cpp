@@ -54,7 +54,7 @@ Each asteroid will be a non-zero integer in the range [-1000, 1000]..
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

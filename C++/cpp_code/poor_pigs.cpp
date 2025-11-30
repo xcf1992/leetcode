@@ -24,7 +24,7 @@ how many pigs (x) you need to figure out the "poison" bucket within p minutes? T
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 /*

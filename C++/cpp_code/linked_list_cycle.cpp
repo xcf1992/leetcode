@@ -34,7 +34,7 @@ Can you solve it using O(1) (i.e. constant) memory?
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 

@@ -36,7 +36,7 @@ Special thanks to @pbrother for adding this problem and creating all test cases.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 https://leetcode.com/problems/combination-sum-iv/discuss/85074/6-lines-C%2B%2B-DP-solution

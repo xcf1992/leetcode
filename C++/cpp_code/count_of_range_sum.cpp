@@ -21,7 +21,7 @@ Explanation: The three ranges are : [0,0], [2,2], [0,2] and their respective sum
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 /*

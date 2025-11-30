@@ -25,7 +25,7 @@ Could you improve it to O(n log n) time complexity?
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 https://www.geeksforgeeks.org/longest-monotonically-increasing-subsequence-size-n-log-n/

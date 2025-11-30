@@ -19,7 +19,7 @@ Output: ["2", "4->49", "51->74", "76->99"]
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include <numeric>

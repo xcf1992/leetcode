@@ -58,7 +58,7 @@ At most 1000 calls will be made to each method of increment, push and pop each s
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 /*

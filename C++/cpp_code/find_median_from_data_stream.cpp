@@ -34,7 +34,7 @@ If 99% of all integer numbers from the stream are between 0 and 100, how would y
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

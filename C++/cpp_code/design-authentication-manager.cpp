@@ -66,7 +66,7 @@ At most 2000 calls will be made to all functions combined.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include <numeric>
 using namespace std;

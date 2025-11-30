@@ -51,7 +51,7 @@ s and t consist of only lowercase English letters.
 #include <queue>
 #include <set>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 Based on the problem description, we need to find the longest prefix + suffix of t that is a subsequence of s.

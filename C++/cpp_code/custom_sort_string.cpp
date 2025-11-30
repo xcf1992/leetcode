@@ -35,7 +35,7 @@ S and T consist of lowercase letters only.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

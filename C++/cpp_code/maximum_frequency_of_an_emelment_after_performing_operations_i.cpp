@@ -54,7 +54,7 @@ Constraints:
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 We want to maximize the frequency of a target value target, to do that, we can transform elements in the range

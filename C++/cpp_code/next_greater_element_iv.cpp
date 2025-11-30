@@ -51,7 +51,7 @@ Constraints:
 #include <queue>
 #include <stack>
 #include <map>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 Next Greater Element canb resolved with one mono stack.

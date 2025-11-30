@@ -37,7 +37,7 @@ Each element nums[i] is an integer in the range [1, 10000].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include <numeric>

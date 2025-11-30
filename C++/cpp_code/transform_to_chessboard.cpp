@@ -47,7 +47,7 @@ board[i][j] will be only 0s or 1s.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

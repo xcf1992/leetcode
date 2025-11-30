@@ -48,7 +48,7 @@ n == nums1.length == nums2.length
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

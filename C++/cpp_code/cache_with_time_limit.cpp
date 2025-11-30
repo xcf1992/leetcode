@@ -67,7 +67,7 @@ First action is always "TimeLimitedCache" and must be executed immediately, with
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

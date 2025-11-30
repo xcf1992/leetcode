@@ -28,7 +28,7 @@ Output: false
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 The solution seems to fail for the input where the smallest element's index surpasses the second smallest one's.

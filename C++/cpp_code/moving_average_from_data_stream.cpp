@@ -18,7 +18,7 @@ m.next(5) = (10 + 3 + 5) / 3
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class MovingAverage {

@@ -23,7 +23,7 @@ Given word1 = "makes", word2 = "makes", return 3.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 i1 and i2 are the indexes where word1 and word2 were last seen.

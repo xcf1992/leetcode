@@ -34,7 +34,7 @@ As an added challenge, try to code it using only iterators in C++ or iterators i
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

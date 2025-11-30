@@ -39,7 +39,7 @@ The maximum number of employees won't exceed 2000.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 // Employee info

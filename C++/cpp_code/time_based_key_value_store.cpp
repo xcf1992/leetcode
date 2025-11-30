@@ -44,7 +44,7 @@ TimeMap.set and TimeMap.get functions will be called a total of 120000 times (co
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

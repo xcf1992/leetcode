@@ -28,7 +28,7 @@ The input string length won't exceed 1000.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution1 {

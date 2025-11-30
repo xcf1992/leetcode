@@ -35,7 +35,7 @@ In this scenario, how would you change your code?
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

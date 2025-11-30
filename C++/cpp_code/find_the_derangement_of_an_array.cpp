@@ -27,7 +27,7 @@ n is in the range of [1, 10^6].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 In order to find the number of derangements for nn numbers,

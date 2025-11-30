@@ -57,7 +57,7 @@ At most 104 calls will be made to each function transfer, deposit, withdraw.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include <numeric>

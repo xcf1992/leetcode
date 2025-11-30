@@ -42,7 +42,7 @@ K will be an integer in the range [1, 2^(N-1)].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 In particular, if we write say "0110" which generates "01101001",

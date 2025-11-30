@@ -29,7 +29,7 @@ AB = | -1 0 3 | x | 0 0 0 | = | -7 0 3 |
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 The idea is derived from a CMU lecture.

@@ -32,7 +32,7 @@ Input is within the 32-bit signed integer range: [−231,  231 − 1].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

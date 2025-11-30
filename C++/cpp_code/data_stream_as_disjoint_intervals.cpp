@@ -26,7 +26,7 @@ Please reset to default code definition to get new method signature.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 First, run lower_bound let it point to interval (8,9) because 8 is the first element that is >= 7

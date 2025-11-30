@@ -32,7 +32,7 @@ So the maximum value of F(0), F(1), F(2), F(3) is F(3) = 26.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

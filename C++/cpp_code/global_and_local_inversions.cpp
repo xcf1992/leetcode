@@ -37,7 +37,7 @@ The time limit for this problem has been reduced.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 /*

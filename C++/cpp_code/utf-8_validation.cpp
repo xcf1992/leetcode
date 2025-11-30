@@ -44,7 +44,7 @@ But the second continuation byte does not start with 10, so it is invalid.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

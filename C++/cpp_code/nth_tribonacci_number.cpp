@@ -33,7 +33,7 @@ The answer is guaranteed to fit within a 32-bit integer, ie. answer <= 2^31 - 1.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

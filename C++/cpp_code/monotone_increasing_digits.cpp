@@ -28,7 +28,7 @@ Note: N is an integer in the range [0, 10^9].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 Intuition

@@ -122,7 +122,7 @@ K will be in range [0, heights.length - 1].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include <numeric>
 using namespace std;

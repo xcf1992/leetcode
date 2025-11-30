@@ -31,7 +31,7 @@ and the memory is limited such that you cannot load all elements into the memory
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

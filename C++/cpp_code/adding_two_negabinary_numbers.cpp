@@ -35,7 +35,7 @@ arr2[i] is 0 or 1
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

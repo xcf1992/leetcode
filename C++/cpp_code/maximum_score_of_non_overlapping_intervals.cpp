@@ -54,7 +54,7 @@ intervals[i] = [li, ri, weighti]
 #include <queue>
 #include <stack>
 #include <map>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

@@ -52,7 +52,7 @@ nums1 and nums2 are strictly increasing.
 #include <queue>
 #include <stack>
 #include <cfloat>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 /*

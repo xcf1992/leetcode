@@ -49,7 +49,7 @@ In calls to MyCalendar.book(start, end), start and end are integers in the range
 #include <queue>
 #include <stack>
 #include <map>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 The big idea is pretty simple:

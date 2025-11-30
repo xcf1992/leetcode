@@ -27,7 +27,7 @@ The length of both given strings is in range [1, 10,000].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

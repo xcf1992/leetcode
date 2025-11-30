@@ -47,7 +47,7 @@ if there is another path aaaaaaaaaaaaaaaaaaaaa/sth.png.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

@@ -42,7 +42,7 @@ please click the reload button to reset your code definition.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

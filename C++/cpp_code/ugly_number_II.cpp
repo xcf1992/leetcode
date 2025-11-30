@@ -23,7 +23,7 @@ n does not exceed 1690.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 We have an array k of first n ugly number.

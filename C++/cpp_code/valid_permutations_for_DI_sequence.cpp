@@ -35,7 +35,7 @@ S consists only of characters from the set {'D', 'I'}.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

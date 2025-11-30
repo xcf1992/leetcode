@@ -31,7 +31,7 @@ n is a non-negative integer which won't exceed the input array size.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 

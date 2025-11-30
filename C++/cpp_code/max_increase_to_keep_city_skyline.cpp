@@ -46,7 +46,7 @@ All buildings in grid[i][j] occupy the entire grid cell: that is, they are a 1 x
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

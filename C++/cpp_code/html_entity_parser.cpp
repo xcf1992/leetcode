@@ -52,7 +52,7 @@ The string may contain any possible characters out of all the 256 ASCII characte
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

@@ -61,7 +61,7 @@ The number of calls to the two functions is less than or equal to 10^4 in total.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include <numeric>
 using namespace std;

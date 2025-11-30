@@ -22,7 +22,7 @@ Result: [-23, -5, 1, 7]
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 the problem seems to have many cases a>0, a=0,a<0, (when a=0, b>0, b<0).

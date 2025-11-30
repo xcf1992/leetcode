@@ -26,7 +26,7 @@ One possible answer is: [0,-3,9,-10,null,5], which represents the following heig
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 

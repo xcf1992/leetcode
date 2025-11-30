@@ -26,7 +26,7 @@ All the numbers in the input array are in the range of 32-bit integer.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

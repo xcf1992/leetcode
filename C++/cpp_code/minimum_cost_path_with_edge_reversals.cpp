@@ -56,7 +56,7 @@ edges[i] = [ui, vi, wi]
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 struct myComp {

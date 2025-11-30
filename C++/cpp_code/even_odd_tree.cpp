@@ -62,7 +62,7 @@ The number of nodes in the tree is in the range [1, 105].
 #include <queue>
 #include <stack>
 #include <cfloat>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include "extra_data_types.hpp"
 using namespace std;

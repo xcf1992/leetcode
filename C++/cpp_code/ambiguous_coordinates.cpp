@@ -48,7 +48,7 @@ S[0] = "(", S[S.length - 1] = ")", and the other elements in S are digits.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

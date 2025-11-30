@@ -39,7 +39,7 @@ Each node of the tree will have a distinct value between 1 and 1000.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 

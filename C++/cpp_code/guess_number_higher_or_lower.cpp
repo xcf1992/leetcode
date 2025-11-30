@@ -25,7 +25,7 @@ Output: 6
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 // Forward declaration of guess API.

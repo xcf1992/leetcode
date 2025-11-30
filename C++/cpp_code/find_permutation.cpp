@@ -36,7 +36,7 @@ but since we want to find the one with the smallest lexicographical permutation,
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

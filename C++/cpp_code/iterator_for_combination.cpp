@@ -35,7 +35,7 @@ It's guaranteed that all calls of the function next are valid.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class CombinationIterator {

@@ -56,7 +56,7 @@ The input is generated such that edges form a valid tree.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 /*

@@ -64,7 +64,7 @@ At most 100 calls will be made for each method.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Task {

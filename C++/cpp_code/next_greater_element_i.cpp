@@ -58,7 +58,7 @@ The length of both nums1 and nums2 would not exceed 1000.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

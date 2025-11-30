@@ -22,7 +22,7 @@ The range of numbers in the array is [-1000, 1000] and the range of the integer 
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

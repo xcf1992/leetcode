@@ -43,7 +43,7 @@ Total number of bricks of the wall won't exceed 20,000.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

@@ -39,7 +39,7 @@ Note: n and m both fit in range [0, 1000].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 Intuition and Algorithm

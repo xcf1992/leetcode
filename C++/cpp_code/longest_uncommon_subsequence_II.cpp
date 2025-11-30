@@ -29,7 +29,7 @@ The length of the given list will be in the range of [2, 50].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

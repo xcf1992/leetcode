@@ -25,7 +25,7 @@ The nth super ugly number is guaranteed to fit in a 32-bit signed integer.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

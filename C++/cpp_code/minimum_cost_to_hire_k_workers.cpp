@@ -36,7 +36,7 @@ Answers within 10^-5 of the correct answer will be considered correct.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

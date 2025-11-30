@@ -47,7 +47,7 @@ The decoded string is guaranteed to have less than 2^63 letters.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include <numeric>
 using namespace std;

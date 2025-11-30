@@ -33,7 +33,7 @@ You need to reduce multiple spaces between two words to a single space in the re
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include <numeric>

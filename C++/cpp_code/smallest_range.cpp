@@ -30,7 +30,7 @@ And after you reset the code template, you'll see this point.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 struct myComp {

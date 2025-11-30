@@ -54,7 +54,7 @@ Constraints:
 #include <queue>
 #include <stack>
 #include <map>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 Sort the jobs by endTime.

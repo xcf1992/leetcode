@@ -36,7 +36,7 @@ Explanation: There are three 132 patterns in the sequence: [-1, 3, 2], [-1, 3, 0
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 /*

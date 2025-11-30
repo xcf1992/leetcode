@@ -15,7 +15,7 @@ Return 6, because digit 1 occurred in the following numbers: 1, 10, 11, 12, 13.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 Solution explanation:

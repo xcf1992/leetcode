@@ -69,7 +69,7 @@ s consists of digits from 0 to 9 only.
 #include <queue>
 #include <stack>
 #include <cfloat>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include "extra_data_types.hpp"

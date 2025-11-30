@@ -27,7 +27,7 @@ How would you extend your design to be generic and work with all types, not just
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 

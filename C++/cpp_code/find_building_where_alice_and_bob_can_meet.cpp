@@ -57,7 +57,7 @@ queries[i] = [ai, bi]
 #include <queue>
 #include <set>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 Step 1

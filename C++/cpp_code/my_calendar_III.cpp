@@ -47,7 +47,7 @@ In calls to MyCalendarThree.book(start, end), start and end are integers in the 
 #include <queue>
 #include <stack>
 #include <map>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class MyCalendarThree {

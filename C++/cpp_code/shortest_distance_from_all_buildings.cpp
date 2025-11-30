@@ -35,7 +35,7 @@ If it is not possible to build such house according to the above rules, return -
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

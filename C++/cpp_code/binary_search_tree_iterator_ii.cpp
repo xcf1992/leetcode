@@ -62,7 +62,7 @@ Follow up: Could you solve the problem without precalculating the values of the 
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 struct TreeNode {

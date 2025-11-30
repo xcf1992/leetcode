@@ -27,7 +27,7 @@ A and B will have length at most 100.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

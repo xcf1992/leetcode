@@ -45,7 +45,7 @@ words[i], letters[i] contains only lower case English letters.
 #include <queue>
 #include <stack>
 #include <map>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

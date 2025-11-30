@@ -52,7 +52,7 @@ array. How would you address these problems?
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 Essentially, the second follow-up asks us to address the scalability aspect of the problem.

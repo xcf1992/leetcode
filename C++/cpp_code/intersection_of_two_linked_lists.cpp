@@ -53,7 +53,7 @@ Your code should preferably run in O(n) time and use only O(1) memory.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 

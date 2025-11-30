@@ -43,7 +43,7 @@ The number of keys is in [1, 6].  Each key has a different letter and opens exac
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

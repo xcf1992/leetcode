@@ -31,7 +31,7 @@ You may assume that all inputs are consist of lowercase letters a-z.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 using namespace std;

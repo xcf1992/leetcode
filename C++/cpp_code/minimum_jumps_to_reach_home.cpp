@@ -50,7 +50,7 @@ Position x is not forbidden.
 #include <queue>
 #include <stack>
 #include <cfloat>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include <list>

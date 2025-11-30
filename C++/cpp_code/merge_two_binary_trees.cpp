@@ -37,7 +37,7 @@ Note: The merging process must start from the root nodes of both trees.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 

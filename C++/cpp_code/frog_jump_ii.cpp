@@ -55,7 +55,7 @@ stones is sorted in a strictly increasing order.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include <numeric>
 using namespace std;

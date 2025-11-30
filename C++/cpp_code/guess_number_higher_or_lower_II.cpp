@@ -30,7 +30,7 @@ Given a particular n ≥ 1, find out how much money you need to have to guarante
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 /*

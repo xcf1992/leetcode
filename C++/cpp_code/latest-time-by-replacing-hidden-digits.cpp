@@ -34,7 +34,7 @@ It is guaranteed that you can produce a valid time from the given string.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include <numeric>
 using namespace std;

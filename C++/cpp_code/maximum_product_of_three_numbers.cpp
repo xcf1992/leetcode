@@ -28,7 +28,7 @@ Multiplication of any three numbers in the input won't exceed the range of 32-bi
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

@@ -34,7 +34,7 @@ Note: The length of each dimension in the given grid does not exceed 50.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

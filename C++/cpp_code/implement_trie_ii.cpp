@@ -52,7 +52,7 @@ It is guaranteed that for any function call to erase, the string word will exist
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 struct TrieNode {

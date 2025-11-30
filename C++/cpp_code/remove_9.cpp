@@ -20,7 +20,7 @@ Hint: n will not exceed 9 x 10^8.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 Let's write the first numbers and try to notice a pattern. Those numbers are:

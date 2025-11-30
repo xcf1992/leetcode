@@ -27,7 +27,7 @@ Only two moves are needed (remember each move increments or decrements one eleme
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 In the previous approach,

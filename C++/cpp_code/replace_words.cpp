@@ -33,7 +33,7 @@ The input will only have lower-case letters.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 struct TrieNode {

@@ -69,7 +69,7 @@ The input is generated such that edges1 and edges2 represent valid trees.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 

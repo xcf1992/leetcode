@@ -52,7 +52,7 @@ The value of each node in the linked list will be in the range [1, 10^6].
 #include <queue>
 #include <stack>
 #include <map>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 

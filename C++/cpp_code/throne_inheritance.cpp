@@ -73,7 +73,7 @@ At most 10 calls will be made to getInheritanceOrder.
 #include <queue>
 #include <stack>
 #include <cfloat>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

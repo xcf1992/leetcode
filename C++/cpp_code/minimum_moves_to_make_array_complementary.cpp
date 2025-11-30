@@ -48,7 +48,7 @@ n is even.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 If we want to make the nums complementary,

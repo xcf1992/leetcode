@@ -39,7 +39,7 @@ The given dates are guaranteed to be valid, so no error handling is necessary.
 #include <queue>
 #include <stack>
 #include <set>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 

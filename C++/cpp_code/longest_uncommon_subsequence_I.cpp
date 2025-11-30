@@ -32,7 +32,7 @@ Only letters from a ~ z will appear in input strings.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

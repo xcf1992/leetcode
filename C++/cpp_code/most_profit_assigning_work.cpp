@@ -39,7 +39,7 @@ difficulty[i], profit[i], worker[i]  are in range [1, 10^5]
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 

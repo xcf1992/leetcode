@@ -25,7 +25,7 @@ Output: -1
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 1- take the middle and compare with target, if matches return.

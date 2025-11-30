@@ -48,7 +48,7 @@ Letters in all strings will be chosen from the set {'A', 'B', 'C', 'D', 'E', 'F'
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

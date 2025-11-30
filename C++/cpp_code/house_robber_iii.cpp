@@ -43,7 +43,7 @@ Explanation: Maximum amount of money the thief can rob = 4 + 5 = 9.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 

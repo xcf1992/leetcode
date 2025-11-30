@@ -37,7 +37,7 @@ Explanation: We define the gray code sequence to begin with 0.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

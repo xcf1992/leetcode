@@ -42,7 +42,7 @@ If the scores of both players are equal, then player 1 is still the winner.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 Given an array of scores that are non-negative integers.

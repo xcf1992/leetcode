@@ -22,7 +22,7 @@ Note: Recursive solution is trivial, could you do it iteratively?
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 

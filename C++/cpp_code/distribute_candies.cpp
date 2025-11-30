@@ -34,7 +34,7 @@ The number in given array is in range [-100,000, 100,000].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

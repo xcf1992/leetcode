@@ -47,7 +47,7 @@ The numerator and denominator of the final result are guaranteed to be valid and
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

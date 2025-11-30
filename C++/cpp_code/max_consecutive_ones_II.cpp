@@ -25,7 +25,7 @@ Could you solve it efficiently?
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 use left to store length of previous group of consecutive ones

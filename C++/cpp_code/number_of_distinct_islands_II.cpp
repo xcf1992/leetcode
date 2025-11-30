@@ -51,7 +51,7 @@ shapes. Note: The length of each dimension in the given grid does not exceed 50.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 using namespace std;

@@ -42,7 +42,7 @@ Answers within 10^-5 of the true value will be accepted as correct.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include <numeric>

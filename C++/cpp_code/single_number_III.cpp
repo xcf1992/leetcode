@@ -23,7 +23,7 @@ Your algorithm should run in linear runtime complexity. Could you implement it u
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 find the last bit which is 1 in xorResult;

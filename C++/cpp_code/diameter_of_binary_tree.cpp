@@ -27,7 +27,7 @@ The length of path between two nodes is represented by the number of edges betwe
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 

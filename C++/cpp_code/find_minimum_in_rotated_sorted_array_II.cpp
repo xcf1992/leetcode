@@ -27,7 +27,7 @@ Would allow duplicates affect the run-time complexity? How and why?
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 When num[mid] == num[hi],

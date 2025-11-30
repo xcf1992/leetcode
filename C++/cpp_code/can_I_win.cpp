@@ -42,7 +42,7 @@ Same with other integers chosen by the first player, the second player will alwa
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 

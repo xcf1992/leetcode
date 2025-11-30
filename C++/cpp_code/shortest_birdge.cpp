@@ -34,7 +34,7 @@ A[i][j] == 0 or A[i][j] == 1
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

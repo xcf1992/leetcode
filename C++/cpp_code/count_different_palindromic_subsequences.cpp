@@ -36,7 +36,7 @@ Each character S[i] will be in the set {'a', 'b', 'c', 'd'}.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include <numeric>

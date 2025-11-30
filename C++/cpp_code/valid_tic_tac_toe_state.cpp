@@ -50,7 +50,7 @@ Each board[i][j] is a character in the set {" ", "X", "O"}.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 

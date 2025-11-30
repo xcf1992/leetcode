@@ -42,7 +42,7 @@ At most 1000 calls will be made to addCar
 #include <queue>
 #include <stack>
 #include <cfloat>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

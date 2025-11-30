@@ -62,7 +62,7 @@ edges represents a valid tree.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include "extra_data_types.hpp"
 using namespace std;

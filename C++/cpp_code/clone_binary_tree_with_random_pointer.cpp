@@ -53,7 +53,7 @@ The number of nodes in the tree is in the range [0, 1000].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

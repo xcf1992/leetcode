@@ -45,7 +45,7 @@ rounds[i] != rounds[i + 1] for 0 <= i < m
 #include <queue>
 #include <stack>
 #include <cfloat>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 /*

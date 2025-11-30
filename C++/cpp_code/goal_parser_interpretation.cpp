@@ -42,7 +42,7 @@ command consists of "G", "()", and/or "(al)" in some order.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

@@ -36,7 +36,7 @@ All the strings in input have length in range [1, 1000].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 

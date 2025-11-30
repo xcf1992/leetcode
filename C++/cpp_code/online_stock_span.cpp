@@ -41,7 +41,7 @@ The total time limit for this problem has been reduced by 75% for C++, and 50% f
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

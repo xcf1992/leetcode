@@ -30,7 +30,7 @@ Explanation: One 1 at depth 3, one 4 at depth 2, and one 6 at depth 1; 13 + 42 +
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 // This is the interface that allows for creating nested lists.

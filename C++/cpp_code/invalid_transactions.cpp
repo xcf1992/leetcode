@@ -43,7 +43,7 @@ Each {amount} consist of digits, and represent an integer between 0 and 2000.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

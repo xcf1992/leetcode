@@ -52,7 +52,7 @@ Follow up: Can you find the LCA traversing the tree, without checking nodes exis
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 struct TreeNode {

@@ -54,7 +54,7 @@ There may be multiple valid order of letters, return any one of them is fine.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include <numeric>
 using namespace std;

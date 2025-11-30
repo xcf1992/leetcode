@@ -28,7 +28,7 @@ Explanation: The array cannot be partitioned into equal sum subsets.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

@@ -42,7 +42,7 @@ The given list has length in the range [0, 10000].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <set>
 #include <numeric>

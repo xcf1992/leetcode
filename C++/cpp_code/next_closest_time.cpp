@@ -30,7 +30,7 @@ It may be assumed that the returned time is next day's time since it is smaller 
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

@@ -44,7 +44,7 @@ Words only consist of letters, never apostrophes or other punctuation symbols.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

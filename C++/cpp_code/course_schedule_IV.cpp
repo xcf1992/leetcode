@@ -61,7 +61,7 @@ queries[i][0] != queries[i][1]
 #include <queue>
 #include <stack>
 #include <map>
-#include <stdio.h>
+#include <climits>
 #include "extra_data_types.hpp"
 using namespace std;
 

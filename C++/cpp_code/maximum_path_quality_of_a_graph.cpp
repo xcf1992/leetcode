@@ -66,7 +66,7 @@ The graph may not be connected.
 #include <queue>
 #include <set>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

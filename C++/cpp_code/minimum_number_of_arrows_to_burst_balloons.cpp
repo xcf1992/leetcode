@@ -35,7 +35,7 @@ and another arrow at x = 11 (bursting the other two balloons).
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

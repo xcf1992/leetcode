@@ -30,7 +30,7 @@ There is only one duplicate number in the array, but it could be repeated more t
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 /*
 k is the length before entering circle,

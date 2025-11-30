@@ -25,7 +25,7 @@ Could you do this in one pass?
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 #include "extra_data_types.hpp"
 using namespace std;

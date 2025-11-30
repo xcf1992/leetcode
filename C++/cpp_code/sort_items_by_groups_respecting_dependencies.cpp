@@ -42,7 +42,7 @@ beforeItems[i] does not contain duplicates elements.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <numeric>
 using namespace std;
 /*

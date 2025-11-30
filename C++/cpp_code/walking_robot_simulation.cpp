@@ -42,7 +42,7 @@ The answer is guaranteed to be less than 2 ^ 31.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 

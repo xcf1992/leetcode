@@ -26,7 +26,7 @@ Elements of the given array will be in the range [-10,000, 10,000].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

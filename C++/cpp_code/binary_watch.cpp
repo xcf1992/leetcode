@@ -30,7 +30,7 @@ The minute must be consist of two digits and may contain a leading zero, for exa
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

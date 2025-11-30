@@ -39,7 +39,7 @@ If you want to know more about the quad tree, you can refer to its wiki.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 

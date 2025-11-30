@@ -28,7 +28,7 @@ If there are several possible values for h, the maximum one is taken as the h-in
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

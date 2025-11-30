@@ -74,7 +74,7 @@ mines[i] will be length 2 and consist of integers in the range [0, N-1].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 using namespace std;
 

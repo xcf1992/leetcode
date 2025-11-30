@@ -38,7 +38,7 @@ The judging time limit has been increased for this question.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include <numeric>
 using namespace std;

@@ -72,7 +72,7 @@ arrival is strictly increasing.
 #include <queue>
 #include <stack>
 #include <cfloat>
-#include <stdio.h>
+#include <climits>
 #include <map>
 #include "extra_data_types.hpp"
 using namespace std;

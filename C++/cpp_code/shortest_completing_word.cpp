@@ -42,7 +42,7 @@ Every words[i] will consist of lowercase letters, and have length in range [1, 1
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

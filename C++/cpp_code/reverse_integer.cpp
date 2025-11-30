@@ -29,7 +29,7 @@ Assume we are dealing with an environment which could only store integers within
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

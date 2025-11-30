@@ -19,7 +19,7 @@ Note: The input will be in range of [-1e7, 1e7].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 using namespace std;
 
 class Solution {

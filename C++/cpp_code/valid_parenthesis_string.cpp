@@ -38,7 +38,7 @@ The string size will be in the range [1, 100].
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <stdio.h>
+#include <climits>
 #include <set>
 using namespace std;
 
