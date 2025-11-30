@@ -76,6 +76,50 @@ using namespace std;
 class Solution {
 public:
     int maxCollectedFruits(vector<vector<int>>& fruits) {
+        int n = fruits.size();
+        int rst = 0;
 
+        // collect fruits for child 1
+        for (int i = 0; i < n; i++) {
+            rst += fruits[i][i];
+            fruits[i][i] = 0;
+        }
+
+        // child 2 and child 3 will do collect fruits from their half without intersect
+        for (int pass = 0; pass < 2; pass++) {
+            // swap the half to align the code
+            if (pass == 1) {
+                for (int i = 0; i < n; i++) {
+                    for (int j = i + 1; j < n; j++) {
+                        swap(fruits[i][j], fruits[j][i]);
+                    }
+                }
+            }
+
+            // collect the fruits using dp
+            vector<int> prev(n, -1);
+            prev[n - 1] = fruits[0][n - 1];
+            for (int row = 1; row < n; row++) {
+                vector<int> cur(n, -1);
+                for (int col = 0; col < n; col++) {
+                    if (col > 0 && prev[col - 1] != -1) {
+                        cur[col] = max(cur[col], prev[col - 1]);
+                    }
+                    if (prev[col] != -1) {
+                        cur[col] = max(cur[col], prev[col]);
+                    }
+                    if (col < n - 1 && prev[col + 1] != -1) {
+                        cur[col] = max(cur[col], prev[col + 1]);
+                    }
+                    if (cur[col] != -1) {
+                        cur[col] += fruits[row][col];
+                    }
+                }
+                prev = cur;
+            }
+
+            rst += prev[n - 1];
+        }
+        return rst;
     }
 };
