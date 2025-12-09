@@ -90,35 +90,35 @@ private:
     int MOD = 1e9 + 7;
 
 public:
-    int sumSubarrayMins(vector<int>& A) {
-        int n = A.size();
+    int sumSubarrayMins(vector<int>& nums) {
+        int n = nums.size();
         vector<int> left(n, 0);
         vector<int> right(n, 0);
         stack<pair<int, int>> stk1, stk2;
         for (int i = 0; i < n; i++) {
             int count = 1;
-            while (!stk1.empty() and stk1.top().first > A[i]) {
+            while (!stk1.empty() and stk1.top().first > nums[i]) {
                 // the count of number A[j] which > A[i], where j <= i
                 count += stk1.top().second;
                 stk1.pop();
             }
-            stk1.push({A[i], count});
+            stk1.push({nums[i], count});
             left[i] = count;
 
             int j = n - 1 - i;
             count = 1;
-            while (!stk2.empty() and stk2.top().first >= A[j]) {
+            while (!stk2.empty() and stk2.top().first >= nums[j]) {
                 // the count of number A[j] which >= A[i], where j >= i
                 count += stk2.top().second;
                 stk2.pop();
             }
-            stk2.push({A[j], count});
+            stk2.push({nums[j], count});
             right[j] = count;
         }
 
         long long result = 0;
         for (int i = 0; i < n; i++) {
-            result = (result + (long long)A[i] * left[i] * right[i]) % MOD;
+            result = (result + (long long)nums[i] * left[i] * right[i]) % MOD;
         }
         return result;
     }
@@ -193,39 +193,42 @@ sum(A[i]*left[i]*right[i] )
 
 class Solution {
 public:
-    int sumSubarrayMins(vector<int>& A) {
-        stack<pair<int, int>> in_stk_p, in_stk_n;
+    int sumSubarrayMins(vector<int>& nums) {
+        int n = nums.size();
+        stack<pair<int, int>> min_stk_prev;
+        stack<pair<int, int>> min_stk_nxt;
         // left is for the distance to previous less element
         // right is for the distance to next less element
-        vector<int> left(A.size()), right(A.size());
+        vector<int> left(n);
+        vector<int> right(n);
 
         // initialize
-        for (int i = 0; i < A.size(); i++)
+        for (int i = 0; i < n; i++) {
             left[i] = i + 1;
-        for (int i = 0; i < A.size(); i++)
-            right[i] = A.size() - i;
+            right[i] = n - i;
+        }
 
-        for (int i = 0; i < A.size(); i++) {
+        for (int i = 0; i < nums.size(); i++) {
             // for previous less
-            while (!in_stk_p.empty() && in_stk_p.top().first > A[i])
-                in_stk_p.pop();
-            left[i] = in_stk_p.empty() ? i + 1 : i - in_stk_p.top().second;
-            in_stk_p.push({A[i], i});
+            while (!min_stk_prev.empty() && min_stk_prev.top().first > nums[i]) {
+                min_stk_prev.pop();
+            }
+            left[i] = min_stk_prev.empty() ? i + 1 : i - min_stk_prev.top().second;
+            min_stk_prev.push({nums[i], i});
 
             // for next less
-            while (!in_stk_n.empty() && in_stk_n.top().first > A[i]) {
-                auto x = in_stk_n.top();
-                in_stk_n.pop();
-                right[x.second] = i - x.second;
+            while (!min_stk_nxt.empty() && min_stk_nxt.top().first > nums[i]) {
+                right[min_stk_nxt.top().second] = i - min_stk_nxt.top().second;
+                min_stk_nxt.pop();
             }
-            in_stk_n.push({A[i], i});
+            min_stk_nxt.push({nums[i], i});
         }
 
-        long long ans = 0, mod = 1e9 + 7;
-        for (int i = 0; i < A.size(); i++) {
-            ans = (ans + (long long)A[i] * left[i] * right[i]) % mod;
+        long long rst = 0, mod = 1e9 + 7;
+        for (int i = 0; i < n; i++) {
+            rst = (rst + (long long)nums[i] * left[i] * right[i]) % mod;
         }
-        return ans;
+        return rst;
     }
 };
 
@@ -234,7 +237,6 @@ In Implementation, Lee used another trick. Instead of doing a double pass to fin
 current element. he calculate it only when an element is popped, when this happens we already have left and right
 boundary for the popped element. This is Masterpiece
  */
-
 class Solution {
 public:
     int sumSubarrayMins(vector<int>& nums) {

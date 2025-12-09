@@ -106,15 +106,15 @@ public:
     int totalStrength(vector<int>& strength) {
         const int n = strength.size();
         // sum of first k elements
-        vector<long long> prefix(n + 1, 0L);
+        vector<long long> pre_sum(n + 1, 0L);
         for (int i = 0; i < n; ++i) {
-            prefix[i + 1] = (prefix[i] + strength[i]) % MOD;
+            pre_sum[i + 1] = (pre_sum[i] + strength[i]) % MOD;
         }
 
-        // sum of first k prefix
-        vector<long long> prefix_sum(n + 2, 0L);
+        // sum of first k pre_sum
+        vector<long long> pre_pre_sum(n + 2, 0L);
         for (int i = 0; i <= n; ++i) {
-            prefix_sum[i + 1] = (prefix_sum[i] + prefix[i]) % MOD;
+            pre_pre_sum[i + 1] = (pre_pre_sum[i] + pre_sum[i]) % MOD;
         }
 
         // first index on the left < current st
@@ -143,8 +143,8 @@ public:
 
         long long res = 0;
         for (int i = 0; i < n; ++i) {
-            res += ((prefix_sum[nxt_less_idx[i] + 1] - prefix_sum[i + 1]) * (i - pre_less_idx[i]) % MOD + MOD * 2 -
-                    (prefix_sum[i + 1] - prefix_sum[pre_less_idx[i] + 1]) * (nxt_less_idx[i] - i) % MOD) %
+            res += ((pre_pre_sum[nxt_less_idx[i] + 1] - pre_pre_sum[i + 1]) * (i - pre_less_idx[i]) % MOD + MOD * 2 -
+                    (pre_pre_sum[i + 1] - pre_pre_sum[pre_less_idx[i] + 1]) * (nxt_less_idx[i] - i) % MOD) %
                    MOD * strength[i] % MOD;
             res %= MOD;
         }

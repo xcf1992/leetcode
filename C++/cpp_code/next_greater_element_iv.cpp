@@ -97,12 +97,12 @@ public:
                 temp_stk.push(min_stk_1.top());
                 min_stk_1.pop();
             }
+            min_stk_1.push(i);
 
             while (!temp_stk.empty()) {
                 min_stk_2.push(temp_stk.top());
                 temp_stk.pop();
             }
-            min_stk_1.push(i);
         }
         return rst;
     }
