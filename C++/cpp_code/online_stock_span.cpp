@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/online-stock-span/description/
 901. Online Stock Span
 
 Write a class StockSpanner which collects daily price quotes for some stock,
@@ -57,20 +58,20 @@ I'll say time complexity is O(1)
 */
 class StockSpanner {
 private:
-    stack<pair<int, int>> stk;
+    stack<pair<int, int>> min_stk;
 
 public:
     StockSpanner() {
     }
 
     int next(int price) {
-        int cur = 1;
-        while (!stk.empty() and stk.top().first <= price) {
-            cur += stk.top().second;
-            stk.pop();
+        int span_days = 1;
+        while (!min_stk.empty() && min_stk.top().first <= price) {
+            span_days += min_stk.top().second;
+            min_stk.pop();
         }
-        stk.push({price, cur});
-        return cur;
+        min_stk.push({price, span_days});
+        return span_days;
     }
 };
 

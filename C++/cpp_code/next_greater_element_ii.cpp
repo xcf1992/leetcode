@@ -35,36 +35,40 @@ public:
     vector<int> nextGreaterElements(vector<int>& nums) {
         int n = nums.size();
         vector<int> result(n, -1);
-        stack<int> bigger;
+        stack<int> min_stk;
         for (int i = 0; i < 2 * n; ++i) {
             int num = nums[i % n];
-            while (!bigger.empty() and nums[bigger.top()] < num) {
-                result[bigger.top()] = num;
-                bigger.pop();
+            while (!min_stk.empty() and nums[min_stk.top()] < num) {
+                result[min_stk.top()] = num;
+                min_stk.pop();
             }
+
             if (i < n) {
-                bigger.push(i);
+                min_stk.push(i);
             }
         }
         return result;
     }
 };
 
-class Solution1 {
+class Solution {
 public:
     vector<int> nextGreaterElements(vector<int>& nums) {
         int n = nums.size();
-        stack<int> s;
-        vector<int> res(n, -1);
-
+        stack<int> min_stk;
+        vector<int> rst(n, -1);
         for (int i = 2 * n - 1; i >= 0; --i) {
             int num = nums[i % n];
-            while (!s.empty() && s.top() <= num)
-                s.pop();
-            if (!s.empty())
-                res[i % n] = s.top();
-            s.push(num);
+            while (!min_stk.empty() && min_stk.top() <= num) {
+                min_stk.pop();
+            }
+
+            if (!min_stk.empty()) {
+                rst[i % n] = min_stk.top();
+            }
+
+            min_stk.push(num);
         }
-        return res;
+        return rst;
     }
 };

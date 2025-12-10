@@ -89,18 +89,19 @@ Complexity: O(N) time and O(N) space
 */
 class Solution {
 public:
-    int scoreOfParentheses(string S) {
-        stack<int> stk;
-        int cur = 0;
-        for (char c : S) {
-            if (c == '(') {
-                stk.push(cur);
-                cur = 0;
-            } else {
-                cur += stk.top() + max(cur, 1);
-                stk.pop();
+    int scoreOfParentheses(string s) {
+        stack<int> st;
+        int score = 0;
+        for(int i = 0; i < s.size(); i++){
+            if(s[i] == '('){
+                st.push(score);
+                score = 0;
+            }
+            else {
+                score = st.top() + max(2 * score, 1);
+                st.pop();
             }
         }
-        return cur;
+        return score;
     }
 };
