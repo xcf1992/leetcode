@@ -80,29 +80,30 @@ Space O(n)
 */
 class Solution {
 public:
-    vector<double> getCollisionTimes(vector<vector<int>>& A) {
-        int n = A.size();
-        vector<int> stack;
-        vector<double> res(n, -1);
+    vector<double> getCollisionTimes(vector<vector<int>>& cars) {
+        int n = cars.size();
+        vector<int> max_speed;
+        vector<double> rst(n, -1);
         for (int i = n - 1; i >= 0; --i) {
-            int p = A[i][0];
-            int s = A[i][1];
-            while (!stack.empty()) {
-                int j = stack.back();
-                int p2 = A[j][0], s2 = A[j][1];
-                if (s <= s2 || (1.0 * (p2 - p) / (s - s2) >= res[j] && res[j] > 0)) {
-                    stack.pop_back();
+            int cur_pos = cars[i][0];
+            int cur_speed = cars[i][1];
+            while (!max_speed.empty()) {
+                int j = max_speed.back();
+                int prev_pos = cars[j][0];
+                int prev_speed = cars[j][1];
+                if (cur_speed <= prev_speed || (rst[j] > 0 && 1.0 * (prev_pos - cur_pos) / (cur_speed - prev_speed) >= rst[j])) {
+                    max_speed.pop_back();
                 } else {
                     break;
                 }
             }
 
-            if (!stack.empty()) {
-                res[i] = 1.0 * (A[stack.back()][0] - p) / (s - A[stack.back()][1]);
+            if (!max_speed.empty()) {
+                rst[i] = 1.0 * (cars[max_speed.back()][0] - cur_pos) / (cur_speed - cars[max_speed.back()][1]);
             }
 
-            stack.push_back(i);
+            max_speed.push_back(i);
         }
-        return res;
+        return rst;
     }
 };

@@ -68,11 +68,11 @@ public:
              [](pair<double, double>& a, pair<double, double>& b) { return a.first < b.first; });
 
         int result = 1;
-        double arrive = (target - car[n - 1].first) / car[n - 1].second;
+        double arrive_time = (target - car[n - 1].first) / car[n - 1].second;
         for (int i = n - 2; i >= 0; i--) {
-            double newArrive = (target - car[i].first) / car[i].second;
-            if (newArrive > arrive) {
-                arrive = newArrive;
+            double new_arrive_time = (target - car[i].first) / car[i].second;
+            if (new_arrive_time > arrive_time) {
+                arrive_time = new_arrive_time;
                 result += 1;
             }
         }
