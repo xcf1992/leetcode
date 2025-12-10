@@ -51,13 +51,32 @@ using namespace std;
 class Solution {
 public:
     vector<int> finalPrices(vector<int>& prices) {
-        vector<int> curMax;
+        stack<int> max_stk;
         for (int i = 0; i < prices.size(); ++i) {
-            while (!curMax.empty() and prices[curMax.back()] >= prices[i]) {
-                prices[curMax.back()] -= prices[i];
-                curMax.pop_back();
+            while (!max_stk.empty() && prices[max_stk.top()] >= prices[i]) {
+                prices[max_stk.top()] -= prices[i];
+                max_stk.pop();
             }
-            curMax.push_back(i);
+            max_stk.push(i);
+        }
+        return prices;
+    }
+};
+
+class Solution {
+public:
+    vector<int> finalPrices(vector<int>& prices) {
+        stack<int> max_stk;
+        int n = prices.size();
+        for (int i = n - 1; i >= 0; --i) {
+            while (!max_stk.empty() && max_stk.top() > prices[i]) {
+                max_stk.pop();
+            }
+            int price = prices[i];
+            if (!max_stk.empty()) {
+                prices[i] -= max_stk.top();
+            }
+            max_stk.push(price);
         }
         return prices;
     }
