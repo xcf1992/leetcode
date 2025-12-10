@@ -1,5 +1,5 @@
 /*
-https://leetcode.com/problems/count-special-triplets/description/?envType=daily-question&envId=2025-12-09
+https://leetcode.com/problems/count-special-triplets/
 3583. Count Special Triplets
 
 You are given an integer array nums.
