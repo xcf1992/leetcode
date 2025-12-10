@@ -51,7 +51,7 @@ No two computers are connected by more than one cable.
 #include <climits>
 #include <map>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

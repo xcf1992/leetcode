@@ -42,7 +42,7 @@ Node values are digits from 1 to 9.
 #include <stack>
 #include <map>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

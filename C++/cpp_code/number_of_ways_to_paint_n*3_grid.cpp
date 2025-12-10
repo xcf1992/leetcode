@@ -48,7 +48,7 @@ grid[i].length == 3
 #include <stack>
 #include <set>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 Intuition

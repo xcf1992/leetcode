@@ -27,7 +27,7 @@ rotate 4 steps to the right: 2->0->1->NULL
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

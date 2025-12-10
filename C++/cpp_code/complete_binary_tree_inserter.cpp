@@ -44,7 +44,7 @@ Every value of a given or inserted node is between 0 and 5000.
 #include <climits>
 #include <map>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class CBTInserter {

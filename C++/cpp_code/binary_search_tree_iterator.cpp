@@ -39,7 +39,7 @@ there will be at least a next smallest number in the BST when next() is called.
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 struct TreeNode {

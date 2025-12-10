@@ -33,7 +33,7 @@ Return 3. The paths that sum to 8 are:
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

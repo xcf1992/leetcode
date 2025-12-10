@@ -74,7 +74,7 @@ There is only one character 'S', 'B' and 'T' in the grid.
 #include <climits>
 #include <map>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

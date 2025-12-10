@@ -39,7 +39,7 @@ Explanation: The smallest value is 2, but there isn't any second smallest value.
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

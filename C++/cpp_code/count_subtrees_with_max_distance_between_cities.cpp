@@ -53,7 +53,7 @@ All pairs (ui, vi) are distinct.
 #include <cfloat>
 #include <climits>
 #include <map>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 Using Floyd-Warshall algorithm to calculate minimum distance between any node to any other node.

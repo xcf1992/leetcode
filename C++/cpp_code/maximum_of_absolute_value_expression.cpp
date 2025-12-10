@@ -27,7 +27,7 @@ Constraints:
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 https://leetcode.com/problems/maximum-of-absolute-value-expression/discuss/340070/topic

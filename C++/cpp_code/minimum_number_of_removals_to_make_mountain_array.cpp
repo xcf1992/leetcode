@@ -50,7 +50,7 @@ It is guaranteed that you can make a mountain array out of nums.
 #include <numeric>
 #include <random>
 #include <vector>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 See my latest update in repo LeetCode

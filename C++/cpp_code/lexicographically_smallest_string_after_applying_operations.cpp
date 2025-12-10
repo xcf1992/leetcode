@@ -72,7 +72,7 @@ s consists of digits from 0 to 9 only.
 #include <climits>
 #include <map>
 #include <set>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

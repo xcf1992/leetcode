@@ -72,7 +72,7 @@ The given binary tree has at least one tree node.
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

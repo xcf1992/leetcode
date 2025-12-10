@@ -41,7 +41,7 @@ G is a subset of all values in the linked list.
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

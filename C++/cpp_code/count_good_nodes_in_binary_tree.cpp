@@ -45,7 +45,7 @@ Each node's value is between [-10^4, 10^4].
 #include <map>
 #include <set>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

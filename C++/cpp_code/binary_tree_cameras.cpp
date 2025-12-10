@@ -32,7 +32,7 @@ Every node has value 0.
 #include <climits>
 #include <map>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 Greedy

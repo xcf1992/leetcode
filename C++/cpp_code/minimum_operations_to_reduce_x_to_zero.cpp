@@ -45,7 +45,7 @@ Constraints:
 #include <numeric>
 #include <random>
 #include <vector>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 to reach x, we will take l numbers from the left, and r numbers from the right. We just need to find min(l + r).

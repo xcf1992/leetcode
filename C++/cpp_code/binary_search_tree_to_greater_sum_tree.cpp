@@ -37,7 +37,7 @@ The given tree is a binary search tree.
 #include <climits>
 #include <map>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

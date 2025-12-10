@@ -46,7 +46,7 @@ s consists of 0's and 1's only.
 #include <stack>
 #include <map>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

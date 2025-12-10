@@ -41,7 +41,7 @@ How would you optimize the kthSmallest routine?
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

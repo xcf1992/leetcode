@@ -50,7 +50,7 @@ text begins with a capital letter and then contains lowercase letters and single
 #include <map>
 #include <set>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

@@ -50,7 +50,7 @@ favoriteCompanies[j]. All strings consist of lowercase English letters only.
 #include <map>
 #include <set>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

@@ -63,7 +63,7 @@ So order them in anti-clockwise without duplicate nodes we have [1,2,4,7,8,9,10,
 #include <climits>
 #include <set>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

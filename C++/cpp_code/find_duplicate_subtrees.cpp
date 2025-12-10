@@ -37,7 +37,7 @@ Therefore, you need to return above trees' root in the form of a list.
 #include <stack>
 #include <climits>
 #include <map>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

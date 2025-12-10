@@ -59,7 +59,7 @@ s and t consist of lowercase English letters only.
 #include <climits>
 #include <map>
 #include <set>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 Try to match from s[i] and t[j],

@@ -67,7 +67,7 @@ Answer will in the range of 32-bit signed integer.
 #include <stack>
 #include <climits>
 #include <map>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution1 {

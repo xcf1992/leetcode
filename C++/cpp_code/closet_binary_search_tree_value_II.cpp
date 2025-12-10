@@ -32,7 +32,7 @@ Assume that the BST is balanced, could you solve it in less than O(n) runtime (w
 #include <stack>
 #include <climits>
 #include <map>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

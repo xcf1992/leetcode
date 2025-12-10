@@ -31,7 +31,7 @@ It's guaranteed that the values of the tree are unique.
 #include <stack>
 #include <climits>
 #include <set>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

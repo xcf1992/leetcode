@@ -46,7 +46,7 @@ Each node's value is either 0 or 1.
 #include <climits>
 #include <map>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

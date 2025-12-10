@@ -41,7 +41,7 @@ The number of nodes in the list is n.
 #include <climits>
 #include <set>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

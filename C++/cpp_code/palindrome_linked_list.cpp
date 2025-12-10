@@ -23,7 +23,7 @@ Could you do it in O(n) time and O(1) space?
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

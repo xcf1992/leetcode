@@ -50,7 +50,7 @@ Each node's value is between [1, 1000].
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

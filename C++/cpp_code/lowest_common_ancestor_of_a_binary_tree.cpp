@@ -39,7 +39,7 @@ p and q are different and both values will exist in the binary tree.
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 If either p or q matches is the root, report

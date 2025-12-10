@@ -35,7 +35,7 @@ All the tilt values won't exceed the range of 32-bit integer.
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

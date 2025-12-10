@@ -58,7 +58,7 @@ Constraints:
 #include <stack>
 #include <set>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 // https://leetcode.com/problems/count-submatrices-with-all-ones/discuss/720265/Java-Detailed-Explanation-From-O(MNM)-to-O(MN)-by-using-Stack

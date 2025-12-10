@@ -42,7 +42,7 @@ The returning answer must not contain unnecessary leading zeros.
 #include <stack>
 #include <map>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 Calculate the sum of digits total = sum(A)

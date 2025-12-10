@@ -39,7 +39,7 @@ Do not use class member/global/static variables to store states. Your encode and
 #include <climits>
 #include <map>
 #include <set>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 // Definition for a Node.

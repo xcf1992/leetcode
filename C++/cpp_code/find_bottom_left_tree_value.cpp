@@ -38,7 +38,7 @@ You may assume the tree (i.e., the given root node) is not NULL.
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

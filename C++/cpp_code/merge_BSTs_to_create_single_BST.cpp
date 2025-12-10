@@ -66,7 +66,7 @@ All the trees in the input are valid BSTs.
 #include <unordered_set>
 #include <algorithm>
 #include <stack>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 struct TreeNode {

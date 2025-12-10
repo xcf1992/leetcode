@@ -51,7 +51,7 @@ destination.length == 2
 #include <climits>
 #include <map>
 #include <set>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 Given destination: (row, column), we will have column H and row V in the result.

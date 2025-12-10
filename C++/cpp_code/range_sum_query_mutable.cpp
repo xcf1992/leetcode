@@ -28,7 +28,7 @@ You may assume the number of cals to update and sumRange function is distributed
 #include <stack>
 #include <climits>
 #include <set>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 Segment tree is a very flexible data structure, because it is used to solve numerous range query problems like finding

@@ -38,7 +38,7 @@ Constraints:
 #include <climits>
 #include <map>
 #include <set>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

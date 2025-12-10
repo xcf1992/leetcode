@@ -16,7 +16,7 @@ Output: -1->0->3->4->5
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

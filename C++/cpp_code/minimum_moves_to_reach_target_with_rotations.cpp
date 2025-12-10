@@ -61,7 +61,7 @@ It is guaranteed that the snake starts at empty cells.
 #include <climits>
 #include <map>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 This type of problems is not hard,

@@ -60,7 +60,7 @@ word1 and word2 contain only lowercase English letters.
 #include <numeric>
 #include <random>
 #include <vector>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 Idea : Two thing's Need to check

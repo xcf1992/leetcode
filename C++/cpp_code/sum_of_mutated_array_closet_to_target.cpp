@@ -38,7 +38,7 @@ Constraints:
 #include <climits>
 #include <map>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 The value we are looking for is somewhere between 1 and maxValue (m).

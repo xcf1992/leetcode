@@ -35,7 +35,7 @@ path will only consist of characters in {'N', 'S', 'E', 'W}
 #include <stack>
 #include <set>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

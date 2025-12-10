@@ -71,7 +71,7 @@ The height of binary tree is in the range of [1, 10].
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

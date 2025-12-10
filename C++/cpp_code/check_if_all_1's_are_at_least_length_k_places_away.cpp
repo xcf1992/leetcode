@@ -42,7 +42,7 @@ nums[i] is 0 or 1
 #include <map>
 #include <set>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

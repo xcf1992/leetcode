@@ -34,7 +34,7 @@ nums.length == 2n
 #include <stack>
 #include <map>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

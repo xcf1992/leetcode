@@ -59,7 +59,7 @@ At most 1000 calls will be made to each method of increment, push and pop each s
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 Use an additional array to record the increment value.

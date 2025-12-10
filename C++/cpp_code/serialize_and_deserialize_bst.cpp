@@ -27,7 +27,7 @@ Your serialize and deserialize algorithms should be stateless.
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Codec {

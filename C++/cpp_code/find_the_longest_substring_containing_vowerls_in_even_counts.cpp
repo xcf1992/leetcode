@@ -39,7 +39,7 @@ s contains only lowercase English letters.
 #include <climits>
 #include <map>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 cur records the count of "aeiou"

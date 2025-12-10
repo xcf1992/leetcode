@@ -56,7 +56,7 @@ a and b consist of lowercase English letters
 #include <cfloat>
 #include <climits>
 #include <map>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 Greedily take the a_suffix and b_prefix as long as they are palindrome,

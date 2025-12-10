@@ -61,7 +61,7 @@ mat[i] is sorted in a non-decreasing way.
 #include <map>
 #include <set>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 // This is the BinaryMatrix's API interface.

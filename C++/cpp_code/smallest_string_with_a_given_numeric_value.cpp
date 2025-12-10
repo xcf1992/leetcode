@@ -47,7 +47,7 @@ n <= k <= 26 * n
 #include <numeric>
 #include <random>
 #include <vector>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

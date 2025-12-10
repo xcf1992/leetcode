@@ -64,7 +64,7 @@ There are at most 50 unique values in nums.
 #include <numeric>
 #include <random>
 #include <vector>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 First calculate the count of each type of value in nums and store in vector a

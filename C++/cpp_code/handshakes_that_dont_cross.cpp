@@ -42,7 +42,7 @@ num_people % 2 == 0
 #include <climits>
 #include <map>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 dp[n] is the number of shaking ways of n pairs people

@@ -48,7 +48,7 @@ Could you devise a constant space solution?
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

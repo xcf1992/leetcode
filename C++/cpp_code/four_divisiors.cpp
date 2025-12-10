@@ -30,7 +30,7 @@ Constraints:
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 Any number n greater than 1 already have two divisors: 1 and n. So, for a number to have exact 4 divisors, there should

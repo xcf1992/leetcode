@@ -46,7 +46,7 @@ word1[i] and word2[i] consist of lowercase letters.
 #include <numeric>
 #include <random>
 #include <vector>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

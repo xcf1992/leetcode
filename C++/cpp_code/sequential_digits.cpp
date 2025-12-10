@@ -28,7 +28,7 @@ Constraints:
 #include <climits>
 #include <map>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 // maybe is better to bfs to solve this question, then we do not need to do sort at last

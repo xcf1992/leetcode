@@ -47,7 +47,7 @@ All characters of s are lower case English letters.
 #include <climits>
 #include <map>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 Intuition

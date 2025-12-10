@@ -67,7 +67,7 @@ Each word[i] is an English uppercase letter.
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 Initial the position of two fingers as (0,0).

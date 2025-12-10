@@ -74,7 +74,7 @@ Total calls of find() is between [1, 10^4]
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class FindElements {

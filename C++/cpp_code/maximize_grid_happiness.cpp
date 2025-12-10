@@ -62,7 +62,7 @@ Constraints:
 #include <numeric>
 #include <random>
 #include <vector>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 OK, tracking people in the grid is costly, and you will get TLE if you do not use memoisation.

@@ -53,7 +53,7 @@ p and q exist in the tree.
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /**
  * Definition for a binary tree node.

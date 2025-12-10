@@ -63,7 +63,7 @@ There exists some node in the given binary tree for which node.val == k.
 #include <climits>
 #include <set>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

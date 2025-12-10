@@ -37,7 +37,7 @@ Returns [4, 5, 3], [2], [1].
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

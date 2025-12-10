@@ -48,7 +48,7 @@ There will be at most 5*10^4 queries.
 #include <stack>
 #include <climits>
 #include <set>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class TreeAncestor {

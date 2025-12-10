@@ -70,7 +70,7 @@ Answers within 10^-5 of the actual value will be accepted as correct.
 #include <stack>
 #include <set>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

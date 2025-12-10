@@ -34,7 +34,7 @@ text is a single space separated sentence of at most 10 words.
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

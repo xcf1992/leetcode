@@ -40,7 +40,7 @@ s[i] is 'a' or 'b'​​.
 #include <numeric>
 #include <random>
 #include <vector>
-#include "extra_data_types.hpp"
+
 using namespace std;
 // Idea is to traverse from right to left
 // use stack to keep track if 'b' comes before 'a' in string

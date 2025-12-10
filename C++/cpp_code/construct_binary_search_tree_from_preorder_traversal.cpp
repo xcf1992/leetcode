@@ -32,7 +32,7 @@ The values of preorder are distinct.
 #include <map>
 #include <set>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {  // iterative same process as 255. Verify Preorder Sequence in Binary Search Tree

@@ -41,7 +41,7 @@ The tree will have between 1 and 100 nodes.
 #include <climits>
 #include <map>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 Use BFS to do a level order traversal,

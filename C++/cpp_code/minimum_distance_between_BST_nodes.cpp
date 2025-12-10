@@ -17,7 +17,7 @@
 #include <stack>
 #include <climits>
 #include <map>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

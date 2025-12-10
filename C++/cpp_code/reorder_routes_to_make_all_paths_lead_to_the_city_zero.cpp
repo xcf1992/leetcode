@@ -45,7 +45,7 @@ connections[i][0] != connections[i][1]
 #include <stack>
 #include <map>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

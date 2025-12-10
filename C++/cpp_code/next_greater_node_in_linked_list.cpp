@@ -46,7 +46,7 @@ The given list has length in the range [0, 10000].
 #include <map>
 #include <set>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

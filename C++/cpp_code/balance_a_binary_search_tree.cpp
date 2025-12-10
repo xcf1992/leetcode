@@ -33,7 +33,7 @@ The tree nodes will have distinct values between 1 and 10^5.
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

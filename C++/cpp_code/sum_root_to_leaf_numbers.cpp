@@ -46,7 +46,7 @@ Therefore, sum = 495 + 491 + 40 = 1026.
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

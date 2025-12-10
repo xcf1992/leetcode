@@ -42,7 +42,7 @@ Explanation: Longest consecutive sequence path is 2-3, not 3-2-1, so return 2.
 #include <stack>
 #include <climits>
 #include <map>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

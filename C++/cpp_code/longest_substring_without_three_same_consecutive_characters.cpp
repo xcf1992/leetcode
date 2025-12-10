@@ -11,7 +11,7 @@ https://www.geeksforgeeks.org/longest-substring-such-that-no-three-consecutive-c
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

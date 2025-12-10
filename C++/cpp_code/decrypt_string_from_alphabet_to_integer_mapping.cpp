@@ -44,7 +44,7 @@ s will be valid string such that mapping is always possible.
 #include <climits>
 #include <map>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

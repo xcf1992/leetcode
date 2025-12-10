@@ -45,7 +45,7 @@ without knowing the ships position.
 #include <climits>
 #include <map>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 // This is Sea's API interface.

@@ -35,7 +35,7 @@ The above output corresponds to the 5 unique BST's shown below:
 #include <stack>
 #include <climits>
 #include <set>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

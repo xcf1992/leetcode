@@ -50,7 +50,7 @@ Each node will have a value between 1 and 10^9.
 #include <stack>
 #include <climits>
 #include <map>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

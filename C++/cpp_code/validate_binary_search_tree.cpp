@@ -30,7 +30,7 @@ Explanation: The root node's value is 5 but its right child's value is 4.
 #include <unordered_map>
 #include <algorithm>
 #include <stack>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 struct TreeNode {

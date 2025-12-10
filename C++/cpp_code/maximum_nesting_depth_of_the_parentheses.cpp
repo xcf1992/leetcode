@@ -49,7 +49,7 @@ It is guaranteed that parentheses expression s is a VPS.
 #include <cfloat>
 #include <climits>
 #include <map>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

@@ -41,7 +41,7 @@ Constraints:
 #include <climits>
 #include <map>
 #include <set>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 dp[n][k] means the number of strings constructed by at most k different characters.

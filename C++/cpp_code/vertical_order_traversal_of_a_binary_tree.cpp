@@ -56,7 +56,7 @@ Each node's value will be between 0 and 1000.
 #include <climits>
 #include <map>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 struct TreeNode {

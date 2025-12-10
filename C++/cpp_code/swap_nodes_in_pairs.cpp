@@ -21,7 +21,7 @@ Given 1->2->3->4, you should return the list as 2->1->4->3.
 #include <climits>
 #include <set>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

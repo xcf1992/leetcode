@@ -41,7 +41,7 @@ It is guaranteed that the answer fits into a 32-bit signed integer (ie. it is le
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 First thought:

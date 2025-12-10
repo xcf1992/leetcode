@@ -40,7 +40,7 @@ The given dates are valid dates between the years 1971 and 2100.
 #include <stack>
 #include <climits>
 #include <set>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 // we can still solve this problem based on 1971-1-1 is Friday.

@@ -78,7 +78,7 @@ At most 50000 calls will be made to showFirstUnique and add.
 #include <map>
 #include <set>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class FirstUnique {

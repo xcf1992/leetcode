@@ -58,7 +58,7 @@ ranges.length == n + 1
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 Solution 1: Brute Force DP

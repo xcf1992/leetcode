@@ -80,7 +80,7 @@ cols == rectangle[i].length
 #include <stack>
 #include <map>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class SubrectangleQueries {

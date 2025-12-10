@@ -61,7 +61,7 @@ At most 5000 calls will be made to visit, back, and forward.
 #include <stack>
 #include <map>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class BrowserHistory {

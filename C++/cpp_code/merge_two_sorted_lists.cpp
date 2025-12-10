@@ -19,7 +19,7 @@ Output: 1->1->2->3->4->4
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

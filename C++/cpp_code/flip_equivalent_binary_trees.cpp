@@ -34,7 +34,7 @@ Each value in each tree will be a unique integer in the range [0, 99].
 #include <climits>
 #include <map>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

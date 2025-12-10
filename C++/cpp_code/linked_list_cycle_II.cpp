@@ -42,7 +42,7 @@ Can you solve it without using extra space?
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

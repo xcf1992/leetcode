@@ -68,7 +68,7 @@ The input is generated such that edges1 and edges2 represent valid trees.
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

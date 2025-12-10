@@ -75,7 +75,7 @@ It is guaranteed that all the employees can be informed.
 #include <climits>
 #include <map>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

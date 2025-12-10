@@ -68,7 +68,7 @@ All values of left and right are unique, and each value can appear only in one o
 #include <stack>
 #include <set>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 Intuition

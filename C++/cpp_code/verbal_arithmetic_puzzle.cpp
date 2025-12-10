@@ -49,7 +49,7 @@ Number of different characters used on the expression is at most 10.
 #include <climits>
 #include <map>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

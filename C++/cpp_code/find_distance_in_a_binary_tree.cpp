@@ -47,7 +47,7 @@ p and q are values in the tree.
 #include <stack>
 #include <climits>
 #include <map>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 struct TreeNode {

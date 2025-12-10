@@ -47,7 +47,7 @@ It is guaranteed that all elements in verticalCuts are distinct.
 #include <stack>
 #include <map>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

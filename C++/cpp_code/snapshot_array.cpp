@@ -42,7 +42,7 @@ At most 50000 calls will be made to set, snap, and get.
 #include <climits>
 #include <map>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class SnapshotArray {

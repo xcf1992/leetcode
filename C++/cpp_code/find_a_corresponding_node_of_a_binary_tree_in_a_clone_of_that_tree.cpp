@@ -49,7 +49,7 @@ target node is a node from the original tree and is not null.
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

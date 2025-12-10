@@ -29,7 +29,7 @@ You may not alter the values in the list's nodes, only nodes itself may be chang
 #include <climits>
 #include <set>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

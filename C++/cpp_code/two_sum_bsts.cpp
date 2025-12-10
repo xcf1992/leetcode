@@ -34,7 +34,7 @@ Each tree has at most 5000 nodes.
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 basically, we trying to find every possible target - root2 -> val

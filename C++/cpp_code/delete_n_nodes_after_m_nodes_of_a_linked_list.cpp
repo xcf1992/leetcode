@@ -53,7 +53,7 @@ The value of each node in the linked list will be in the range [1, 10^6].
 #include <stack>
 #include <map>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

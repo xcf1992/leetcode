@@ -27,7 +27,7 @@ Recursive solution is trivial, could you do it iteratively?
 #include <stack>
 #include <climits>
 #include <set>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

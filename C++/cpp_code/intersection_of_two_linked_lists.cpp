@@ -54,7 +54,7 @@ Your code should preferably run in O(n) time and use only O(1) memory.
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

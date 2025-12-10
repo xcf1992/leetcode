@@ -44,7 +44,7 @@ It's guaranteed that there is only one space between 2 words.
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

@@ -44,7 +44,7 @@ Another valid answer is [5,2,6,null,4,null,7].
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

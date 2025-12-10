@@ -51,7 +51,7 @@ All characters of searchWord are lower-case English letters.
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 struct TrieNode {

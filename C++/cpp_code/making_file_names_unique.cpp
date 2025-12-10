@@ -63,7 +63,7 @@ names[i] consists of lower case English letters, digits and/or round brackets.
 #include <stack>
 #include <map>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

@@ -34,7 +34,7 @@ Explanation: The longest consecutive path is [1, 2, 3] or [3, 2, 1].
 #include <stack>
 #include <climits>
 #include <map>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

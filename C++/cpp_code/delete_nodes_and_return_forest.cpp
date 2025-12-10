@@ -36,7 +36,7 @@ to_delete contains distinct values between 1 and 1000.
 #include <map>
 #include <set>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

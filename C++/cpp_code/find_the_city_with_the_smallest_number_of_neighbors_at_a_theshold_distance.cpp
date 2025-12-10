@@ -57,7 +57,7 @@ All pairs (fromi, toi) are distinct.
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 Because n is small (n<=100),

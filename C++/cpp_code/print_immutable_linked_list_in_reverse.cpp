@@ -49,7 +49,7 @@ The value of each node in the linked list is between [-1000, 1000].
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 // This is the ImmutableListNode's API interface.

@@ -24,7 +24,7 @@ Output: 1->4->3->2->5->nullptr
 #include <stack>
 #include <climits>
 #include <set>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

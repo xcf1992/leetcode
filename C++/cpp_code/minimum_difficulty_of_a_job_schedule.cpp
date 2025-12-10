@@ -63,7 +63,7 @@ Constraints:
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 Solution1: Top-down DP with cache

@@ -45,7 +45,7 @@ for (int i = 0; i < len; i++) {
 #include <stack>
 #include <climits>
 #include <map>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

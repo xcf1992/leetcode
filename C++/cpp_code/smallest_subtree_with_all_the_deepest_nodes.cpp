@@ -49,7 +49,7 @@ The values of each node are unique.
 #include <stack>
 #include <climits>
 #include <set>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

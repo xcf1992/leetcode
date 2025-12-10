@@ -48,7 +48,7 @@ The BST is always valid and each node's value is different.
 #include <stack>
 #include <climits>
 #include <map>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

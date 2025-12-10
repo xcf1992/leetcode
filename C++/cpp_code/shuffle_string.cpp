@@ -48,7 +48,7 @@ All values of indices are unique (i.e. indices is a permutation of the integers 
 #include <stack>
 #include <climits>
 #include <set>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

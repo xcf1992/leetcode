@@ -18,7 +18,7 @@ Given 1 -> 2 -> 3 -> 4 -> 5, reorder it to 1 -> 5 -> 2 -> 4 -> 3.
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

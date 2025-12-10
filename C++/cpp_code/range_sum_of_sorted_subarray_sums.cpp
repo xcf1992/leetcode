@@ -43,7 +43,7 @@ nums.length == n
 #include <stack>
 #include <set>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 The element in priority queue is a pair of integers. The first integer is the nums[i] + ... + nums[j], and the second

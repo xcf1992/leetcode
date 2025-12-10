@@ -41,7 +41,7 @@ Each node's value is between [-10^5, 10^5].
 #include <climits>
 #include <map>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

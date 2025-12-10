@@ -46,7 +46,7 @@ N == target.length
 #include <climits>
 #include <map>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 /*
 The total sum always bigger than all elements.

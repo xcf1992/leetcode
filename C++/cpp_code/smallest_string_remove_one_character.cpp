@@ -11,7 +11,7 @@ https://www.geeksforgeeks.org/lexicographically-smallest-string-formed-by-removi
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

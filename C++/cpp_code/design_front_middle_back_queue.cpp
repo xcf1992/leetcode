@@ -59,7 +59,7 @@ At most 1000 calls will be made to pushFront, pushMiddle, pushBack, popFront, po
 #include <numeric>
 #include <random>
 #include <vector>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class FrontMiddleBackQueue {

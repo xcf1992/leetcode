@@ -40,7 +40,7 @@ Each node in the tree will have a value between 0 and 25.
 #include <climits>
 #include <map>
 #include <numeric>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

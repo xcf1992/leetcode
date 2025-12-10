@@ -62,7 +62,7 @@ The given tree will have between 1 and 5000 nodes.
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {

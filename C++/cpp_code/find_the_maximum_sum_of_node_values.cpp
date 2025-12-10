@@ -56,7 +56,7 @@ The input is generated such that edges represent a valid tree.
 #include <queue>
 #include <stack>
 #include <climits>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 /*

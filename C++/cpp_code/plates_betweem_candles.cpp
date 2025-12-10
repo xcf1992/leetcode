@@ -47,7 +47,7 @@ queries[i].length == 2
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
-#include "extra_data_types.hpp"
+
 using namespace std;
 
 class Solution {
