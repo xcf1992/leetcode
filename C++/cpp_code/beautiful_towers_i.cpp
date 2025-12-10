@@ -69,19 +69,19 @@ we do similar thing to the right, together we will get the total sum
 */
 class Solution {
 public:
-    long long maximumSumOfHeights(vector<int>& heights) {
-        int n = heights.size();
+    long long maximumSumOfHeights(vector<int>& maxHeights) {
+        int n = maxHeights.size();
         vector<long long> left_sum(n);
         vector<long long> right_sum(n);
         stack<int> left_max_stk;
         stack<int> right_max_stk;
         for (int i = 0; i < n; i++) {
             // do the left
-            while (!left_max_stk.empty() && heights[left_max_stk.top()] >= heights[i]) {
+            while (!left_max_stk.empty() && maxHeights[left_max_stk.top()] >= maxHeights[i]) {
                 left_max_stk.pop();
             }
             int prev_less_idx = left_max_stk.empty() ? -1 : left_max_stk.top();
-            left_sum[i] = 1LL * (i - prev_less_idx) * heights[i];
+            left_sum[i] = 1LL * (i - prev_less_idx) * maxHeights[i];
             if (prev_less_idx != -1) {
                 left_sum[i] += left_sum[prev_less_idx];
             }
@@ -89,11 +89,11 @@ public:
 
             // do the right
             int j = n - 1 - i;
-            while (!right_max_stk.empty() && heights[right_max_stk.top()] >= heights[j]) {
+            while (!right_max_stk.empty() && maxHeights[right_max_stk.top()] >= maxHeights[j]) {
                 right_max_stk.pop();
             }
             int right_less_idx = right_max_stk.empty() ? n : right_max_stk.top();
-            right_sum[j] = 1LL * (right_less_idx - j) * heights[j];
+            right_sum[j] = 1LL * (right_less_idx - j) * maxHeights[j];
             if (right_less_idx != n) {
                 right_sum[j] += right_sum[right_less_idx];
             }
@@ -102,7 +102,7 @@ public:
 
         long long rst = 0;
         for (int i = 0; i < n; i++) {
-            rst = max(rst, left_sum[i] + right_sum[i] - heights[i]);
+            rst = max(rst, left_sum[i] + right_sum[i] - maxHeights[i]);
         }
         return rst;
     }
