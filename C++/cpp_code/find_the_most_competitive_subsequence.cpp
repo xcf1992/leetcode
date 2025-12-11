@@ -68,16 +68,18 @@ Space O(k)
 */
 class Solution {
 public:
-    vector<int> mostCompetitive(vector<int>& A, int k) {
-        vector<int> stack;
-        for (int i = 0; i < A.size(); ++i) {
-            while (!stack.empty() && stack.back() > A[i] && stack.size() - 1 + A.size() - i >= k) {
-                stack.pop_back();
+    vector<int> mostCompetitive(vector<int>& nums, int k) {
+        vector<int> max_stk;
+        int n = nums.size();
+        for (int i = 0; i < n; ++i) {
+            while (!max_stk.empty() && max_stk.back() > nums[i] && max_stk.size() - 1 + (n - 1) - i + 1 >= k) {
+                max_stk.pop_back();
             }
-            if (stack.size() < k) {
-                stack.push_back(A[i]);
+
+            if (max_stk.size() < k) {
+                max_stk.push_back(nums[i]);
             }
         }
-        return stack;
+        return max_stk;
     }
 };
