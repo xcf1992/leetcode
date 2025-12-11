@@ -1,8 +1,8 @@
 /*
-https://leetcode.com/problems/minimum-number-of-pushes-to-type-word-i/description/
-3014. Minimum Number of Pushes to Type Word I
+https://leetcode.com/problems/minimum-number-of-pushes-to-type-word-ii/description/
+3016. Minimum Number of Pushes to Type Word II
 
-You are given a string word containing distinct lowercase English letters.
+You are given a string word containing lowercase English letters.
 
 Telephone keypads have keys mapped with distinct collections of lowercase English letters, which can be used to form
 words by pushing them. For example, the key 2 is mapped with ["a","b","c"], we need to push the key one time to type
@@ -36,28 +36,38 @@ It can be shown that no other mapping can provide a lower cost.
 Example 2:
 
 
-Input: word = "xycdefghij"
+Input: word = "xyzxyzxyzxyz"
 Output: 12
 Explanation: The remapped keypad given in the image provides the minimum cost.
 "x" -> one push on key 2
-"y" -> two pushes on key 2
-"c" -> one push on key 3
-"d" -> two pushes on key 3
-"e" -> one push on key 4
-"f" -> one push on key 5
-"g" -> one push on key 6
-"h" -> one push on key 7
-"i" -> one push on key 8
-"j" -> one push on key 9
-Total cost is 1 + 2 + 1 + 2 + 1 + 1 + 1 + 1 + 1 + 1 = 12.
+"y" -> one push on key 3
+"z" -> one push on key 4
+Total cost is 1 * 4 + 1 * 4 + 1 * 4 = 12
+It can be shown that no other mapping can provide a lower cost.
+Note that the key 9 is not mapped to any letter: it is not necessary to map letters to every key, but to map all the
+letters. Example 3:
+
+
+Input: word = "aabbccddeeffgghhiiiiii"
+Output: 24
+Explanation: The remapped keypad given in the image provides the minimum cost.
+"a" -> one push on key 2
+"b" -> one push on key 3
+"c" -> one push on key 4
+"d" -> one push on key 5
+"e" -> one push on key 6
+"f" -> one push on key 7
+"g" -> one push on key 8
+"h" -> two pushes on key 9
+"i" -> one push on key 9
+Total cost is 1 * 2 + 1 * 2 + 1 * 2 + 1 * 2 + 1 * 2 + 1 * 2 + 1 * 2 + 2 * 2 + 6 * 1 = 24.
 It can be shown that no other mapping can provide a lower cost.
 
 
 Constraints:
 
-1 <= word.length <= 26
+1 <= word.length <= 105
 word consists of lowercase English letters.
-All letters in word are distinct.
 */
 #include <iostream>
 #include <string>
