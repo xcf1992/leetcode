@@ -97,20 +97,20 @@ class Solution {
 public:
     int totalSteps(vector<int>& nums) {
         int n = nums.size();
-        stack<pair<int, int>> min_stk;
+        stack<pair<int, int>> decreasing_stk;
         int rst = 0;
         for (int i = 0; i < n; i++) {
             int cnt = 0;
-            while (!min_stk.empty() && nums[min_stk.top().first] <= nums[i]) {
-                cnt = max(min_stk.top().second, cnt);
-                min_stk.pop();
+            while (!decreasing_stk.empty() && nums[decreasing_stk.top().first] <= nums[i]) {
+                cnt = max(decreasing_stk.top().second, cnt);
+                decreasing_stk.pop();
             }
 
-            if (!min_stk.empty()) {
+            if (!decreasing_stk.empty()) {
                 cnt += 1;
             }
             rst = max(rst, cnt);
-            min_stk.push({i, cnt});
+            decreasing_stk.push({i, cnt});
         }
         return rst;
     }
