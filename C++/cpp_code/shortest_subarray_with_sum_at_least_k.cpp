@@ -1,25 +1,33 @@
 /*
+https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/description/
 862. Shortest Subarray with Sum at Least K
 
-Return the length of the shortest, non-empty, contiguous subarray of A with sum at least K.
-If there is no non-empty subarray with sum at least K, return -1.
+Given an integer array nums and an integer k, return the length of the shortest non-empty subarray of nums with a sum of
+at least k. If there is no such subarray, return -1.
+
+A subarray is a contiguous part of an array.
+
+
 
 Example 1:
-Input: A = [1], K = 1
+
+Input: nums = [1], k = 1
 Output: 1
-
 Example 2:
-Input: A = [1,2], K = 4
-Output: -1
 
+Input: nums = [1,2], k = 4
+Output: -1
 Example 3:
-Input: A = [2,-1,2], K = 3
+
+Input: nums = [2,-1,2], k = 3
 Output: 3
 
-Note:
-1 <= A.length <= 50000
--10 ^ 5 <= A[i] <= 10 ^ 5
-1 <= K <= 10 ^ 9
+
+Constraints:
+
+1 <= nums.length <= 105
+-105 <= nums[i] <= 105
+1 <= k <= 109
 */
 #include <iostream>
 #include <string>
@@ -104,29 +112,29 @@ B[i] can help us make the subarray length shorter and sum bigger. So no need to 
 */
 class Solution {
 public:
-    int shortestSubarray(vector<int>& A, int K) {
-        int n = A.size();
-        vector<int> preSum(n + 1, 0);
+    int shortestSubarray(vector<int>& nums, int k) {
+        int n = nums.size();
+        vector<long long> pre_sum(n + 1, 0);
         for (int i = 0; i < n; i++) {
-            preSum[i + 1] = preSum[i] + A[i];
+            pre_sum[i + 1] = pre_sum[i] + nums[i];
         }
 
-        int result = n + 1;
-        deque<int> monoQ;
+        int rst = n + 1;
+        deque<int> increasing_q;
         for (int i = 0; i <= n; i++) {
-            while (!monoQ.empty() and preSum[i] - preSum[monoQ.front()] >= K) {
-                result = min(result, i - monoQ.front());
-                monoQ.pop_front();
+            while (!increasing_q.empty() && pre_sum[i] - pre_sum[increasing_q.front()] >= k) {
+                rst = min(rst, i - increasing_q.front());
+                increasing_q.pop_front();
             }
             /*
              * if with i >= monoQ.back() and preSum[i] <= preSum[monoQ.back()]
              * then it will always better to pick i to have a shorter subarray
              */
-            while (!monoQ.empty() and preSum[i] <= preSum[monoQ.back()]) {
-                monoQ.pop_back();
+            while (!increasing_q.empty() && pre_sum[increasing_q.back()] >= pre_sum[i]) {
+                increasing_q.pop_back();
             }
-            monoQ.push_back(i);
+            increasing_q.push_back(i);
         }
-        return result == n + 1 ? -1 : result;
+        return rst == n + 1 ? -1 : rst;
     }
 };

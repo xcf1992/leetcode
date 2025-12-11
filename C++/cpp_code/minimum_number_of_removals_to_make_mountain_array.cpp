@@ -1,34 +1,32 @@
 /*
+https://leetcode.com/problems/minimum-number-of-removals-to-make-mountain-array/description/
 1671. Minimum Number of Removals to Make Mountain Array
-https://leetcode.com/problems/minimum-number-of-removals-to-make-mountain-array/
 
 You may recall that an array arr is a mountain array if and only if:
+
 arr.length >= 3
 There exists some index i (0-indexed) with 0 < i < arr.length - 1 such that:
 arr[0] < arr[1] < ... < arr[i - 1] < arr[i]
 arr[i] > arr[i + 1] > ... > arr[arr.length - 1]
-Given an integer array nums​​​, return the minimum number of elements to remove to make nums​​​ a mountain
+Given an integer array nums, return the minimum number of elements to remove to make nums a mountain
 array.
 
+
+
 Example 1:
+
 Input: nums = [1,3,1]
 Output: 0
 Explanation: The array itself is a mountain array so we do not need to remove any elements.
-
 Example 2:
+
 Input: nums = [2,1,1,5,6,2,3,1]
 Output: 3
 Explanation: One solution is to remove the elements at indices 0, 1, and 5, making the array nums = [1,5,6,3,1].
 
-Example 3:
-Input: nums = [4,3,2,1,1,2,3,1]
-Output: 4
-
-Example 4:
-Input: nums = [1,2,3,4,4,3,2,1]
-Output: 1
 
 Constraints:
+
 3 <= nums.length <= 1000
 1 <= nums[i] <= 109
 It is guaranteed that you can make a mountain array out of nums.
@@ -83,39 +81,39 @@ Test cases that should be added:
 */
 class Solution {
 public:
-    int minimumMountainRemovals(vector<int>& A) {
-        int N = A.size();
-        vector<int> a(N), b(N), v;
-        for (int i = 0; i < N; ++i) {
-            int x = A[i];
-            auto it = lower_bound(begin(v), end(v), x);
-            a[i] = it - begin(v);
-            if (it != end(v)) {
-                *it = x;
+    int minimumMountainRemovals(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> left_lis(n);
+        vector<int> right_lds(n);
+        vector<int> subsequence;
+        for (int i = 0; i < n; ++i) {
+            auto it = lower_bound(begin(subsequence), end(subsequence), nums[i]);
+            left_lis[i] = it - begin(subsequence);
+            if (it != end(subsequence)) {
+                *it = nums[i];
             } else {
-                v.push_back(x);
+                subsequence.push_back(nums[i]);
             }
         }
 
-        v.clear();
-        for (int i = N - 1; i >= 0; --i) {
-            int x = A[i];
-            auto it = lower_bound(begin(v), end(v), x);
-            b[i] = it - begin(v);
-            if (it != end(v)) {
-                *it = x;
+        subsequence.clear();
+        for (int i = n - 1; i >= 0; --i) {
+            auto it = lower_bound(begin(subsequence), end(subsequence), nums[i]);
+            right_lds[i] = it - begin(subsequence);
+            if (it != end(subsequence)) {
+                *it = nums[i];
             } else {
-                v.push_back(x);
+                subsequence.push_back(nums[i]);
             }
         }
 
-        int ans = N;
-        for (int i = 1; i < N - 1; ++i) {
-            if (a[i] == 0 || b[i] == 0) {
+        int rst = n;
+        for (int i = 1; i < n - 1; ++i) {
+            if (left_lis[i] == 0 || right_lds[i] == 0) {
                 continue;
             }
-            ans = min(ans, N - (a[i] + b[i] + 1));
+            rst = min(rst, n - (left_lis[i] + right_lds[i] + 1));
         }
-        return ans;
+        return rst;
     }
 };

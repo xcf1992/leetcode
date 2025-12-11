@@ -49,12 +49,10 @@ Use TreeMap will be O(NlogK)
 Use deque will be O(N)
 Done. (If not done, continue read)
 
-
 Prepare
 How about google "sliding window maximum",
 and make sure you understand 239. Sliding Window Maximum
 Done. (If not done, continue read)
-
 
 Explanation
 Update res[i],
@@ -102,19 +100,25 @@ satisfied.
 */
 class Solution {
 public:
-    int constrainedSubsetSum(vector<int>& A, int k) {
-        deque<int> q;
-        int res = A[0];
-        for (int i = 0; i < A.size(); ++i) {
-            A[i] += q.size() ? q.front() : 0;
-            res = max(res, A[i]);
-            while (q.size() && A[i] > q.back())
-                q.pop_back();
-            if (A[i] > 0)
-                q.push_back(A[i]);
-            if (i >= k && q.size() && q.front() == A[i - k])
-                q.pop_front();
+    int constrainedSubsetSum(vector<int>& nums, int k) {
+        deque<int> subsequency_sum;
+        int rst = nums[0];
+        for (int i = 0; i < nums.size(); ++i) {
+            nums[i] += !subsequency_sum.empty() ? subsequency_sum.front() : 0;
+            rst = max(rst, nums[i]);
+
+            while (!subsequency_sum.empty() && nums[i] > subsequency_sum.back()) {
+                subsequency_sum.pop_back();
+            }
+
+            if (nums[i] > 0) {
+                subsequency_sum.push_back(nums[i]);
+            }
+
+            if (i >= k && !subsequency_sum.empty() && subsequency_sum.front() == nums[i - k]) {
+                subsequency_sum.pop_front();
+            }
         }
-        return res;
+        return rst;
     }
 };
