@@ -82,27 +82,27 @@ class Solution {
 public:
     vector<double> getCollisionTimes(vector<vector<int>>& cars) {
         int n = cars.size();
-        vector<int> max_speed;
+        vector<int> decrease_speed;
         vector<double> rst(n, -1);
         for (int i = n - 1; i >= 0; --i) {
             int cur_pos = cars[i][0];
             int cur_speed = cars[i][1];
-            while (!max_speed.empty()) {
-                int j = max_speed.back();
+            while (!decrease_speed.empty()) {
+                int j = decrease_speed.back();
                 int prev_pos = cars[j][0];
                 int prev_speed = cars[j][1];
                 if (cur_speed <= prev_speed || (rst[j] > 0 && 1.0 * (prev_pos - cur_pos) / (cur_speed - prev_speed) >= rst[j])) {
-                    max_speed.pop_back();
+                    decrease_speed.pop_back();
                 } else {
                     break;
                 }
             }
 
-            if (!max_speed.empty()) {
-                rst[i] = 1.0 * (cars[max_speed.back()][0] - cur_pos) / (cur_speed - cars[max_speed.back()][1]);
+            if (!decrease_speed.empty()) {
+                rst[i] = 1.0 * (cars[decrease_speed.back()][0] - cur_pos) / (cur_speed - cars[decrease_speed.back()][1]);
             }
 
-            max_speed.push_back(i);
+            decrease_speed.push_back(i);
         }
         return rst;
     }

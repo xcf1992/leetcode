@@ -46,20 +46,20 @@ private:
     int m = 0;
     int n = 0;
 
-    void update(int house, int distance, int posI, int posJ, vector<vector<int>>& shortest,
+    void update(int house, int distance, int row, int col, vector<vector<int>>& shortest,
                 unordered_map<int, unordered_set<int>>& visited, queue<vector<int>>& bfs, vector<vector<int>>& grid) {
-        if (posI < 0 or posJ < 0 or posI >= m or posJ >= n or grid[posI][posJ] != 0) {
+        if (row < 0 or col < 0 or row >= m or col >= n or grid[row][col] != 0) {
             return;
         }
 
-        int newPos = posI * n + posJ;
-        if (visited[newPos].find(house) != visited[newPos].end()) {
+        int pos = row * n + col;
+        if (visited[pos].find(house) != visited[pos].end()) {
             return;
         }
 
-        shortest[posI][posJ] += distance;
-        visited[newPos].insert(house);
-        bfs.push({house, distance, newPos});
+        shortest[row][col] += distance;
+        visited[pos].insert(house);
+        bfs.push({house, distance, pos});
     }
 
 public:
@@ -82,14 +82,15 @@ public:
         vector<vector<int>> shortest(m, vector<int>(n, 0));
         vector<int> diff = {0, 1, 0, -1, 0};
         while (!bfs.empty()) {
-            int curHouse = bfs.front()[0];
-            int curDistance = bfs.front()[1];
-            int posI = bfs.front()[2] / n;
-            int posJ = bfs.front()[2] % n;
+            int cur_house = bfs.front()[0];
+            int cur_distance = bfs.front()[1];
+            int cur_row = bfs.front()[2] / n;
+            int cur_col = bfs.front()[2] % n;
             bfs.pop();
 
             for (int k = 1; k < diff.size(); ++k) {
-                update(curHouse, curDistance + 1, posI + diff[k], posJ + diff[k - 1], shortest, visited, bfs, grid);
+                update(cur_house, cur_distance + 1, cur_row + diff[k], cur_col + diff[k - 1], shortest, visited, bfs,
+                       grid);
             }
         }
 
@@ -102,5 +103,91 @@ public:
             }
         }
         return result == INT_MAX ? -1 : result;
+    }
+};
+
+class Solution {
+private:
+    void bfs(vector<vector<int>>& grid, vector<vector<vector<int>>>& distances, int row, int col) {
+        int dirs[4][2] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+
+        int rows = grid.size(), cols = grid[0].size();
+
+        // Queue to do a bfs, starting from each cell located at (r,c).
+        queue<pair<int, int>> q;
+        q.push({row, col});
+
+        // Keep track of visited cells.
+        vector<vector<bool>> vis(rows, vector<bool>(cols, false));
+        vis[row][col] = true;
+
+        int steps = 0;
+
+        while (!q.empty()) {
+            for (int i = q.size(); i > 0; --i) {
+                auto curr = q.front();
+                q.pop();
+                row = curr.first;
+                col = curr.second;
+
+                // If we reached an empty cell, then add the distance
+                // and increment the count of houses reached at this cell.
+                if (grid[row][col] == 0) {
+                    distances[row][col][0] += steps;
+                    distances[row][col][1] += 1;
+                }
+
+                // Traverse the next cells which is not a blockage.
+                for (auto& dir : dirs) {
+                    int nextRow = row + dir[0];
+                    int nextCol = col + dir[1];
+                    if (nextRow >= 0 && nextCol >= 0 && nextRow < rows && nextCol < cols) {
+                        if (!vis[nextRow][nextCol] && grid[nextRow][nextCol] == 0) {
+                            vis[nextRow][nextCol] = true;
+                            q.push({nextRow, nextCol});
+                        }
+                    }
+                }
+            }
+
+            // After traversing one level cells, increment the steps by 1.
+            steps++;
+        }
+    }
+
+public:
+    int shortestDistance(vector<vector<int>>& grid) {
+        int minDistance = INT_MAX;
+        int rows = grid.size();
+        int cols = grid[0].size();
+        int totalHouses = 0;
+
+        // Store { total_dist, houses_count } for each cell.
+        vector<vector<vector<int>>> distances(rows, vector<vector<int>>(cols, {0, 0}));
+
+        // Count houses and start bfs from each house.
+        for (int row = 0; row < rows; ++row) {
+            for (int col = 0; col < cols; ++col) {
+                if (grid[row][col] == 1) {
+                    totalHouses++;
+                    bfs(grid, distances, row, col);
+                }
+            }
+        }
+
+        // Check all empty lands with houses count equal to total houses and find the min ans.
+        for (int row = 0; row < rows; ++row) {
+            for (int col = 0; col < cols; ++col) {
+                if (distances[row][col][1] == totalHouses) {
+                    minDistance = min(minDistance, distances[row][col][0]);
+                }
+            }
+        }
+
+        // If we haven't found a valid cell return -1.
+        if (minDistance == INT_MAX) {
+            return -1;
+        }
+        return minDistance;
     }
 };

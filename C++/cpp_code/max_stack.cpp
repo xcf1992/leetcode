@@ -27,7 +27,7 @@ stack.top(); -> 5
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
-#include <algorithm>
+#include <set>
 #include <cmath>
 #include <queue>
 #include <stack>
@@ -36,8 +36,48 @@ stack.top(); -> 5
 using namespace std;
 
 class MaxStack {
-    stack<int> elements;
-    stack<int> maxElements;
+private:
+    set<pair<int, int>> nums_;
+    set<pair<int, int>> max_stk_;
+    int idx_;
+
+public:
+    MaxStack() {
+        idx_ = 0;
+    }
+
+    void push(int x) {
+        nums_.insert({idx_, x});
+        max_stk_.insert({x, idx_});
+        idx_++;
+    }
+
+    int pop() {
+        pair<int, int> last_val = *nums_.rbegin();
+        nums_.erase(last_val);
+        max_stk_.erase({last_val.second, last_val.first});
+        return last_val.second;
+    }
+
+    int top() {
+        return nums_.rbegin()->second;
+    }
+
+    int peekMax() {
+        return max_stk_.rbegin()->first;
+    }
+
+    int popMax() {
+        pair<int, int> max_num = *max_stk_.rbegin();
+        max_stk_.erase(max_num);
+        nums_.erase({max_num.second, max_num.first});
+        return max_num.first;
+    }
+};
+
+class MaxStack {
+    stack<int> nums_;
+    stack<int> max_val_;
 
 public:
     /* initialize your data structure here.*/
@@ -45,45 +85,45 @@ public:
     }
 
     void push(int x) {
-        elements.push(x);
-        if (maxElements.empty() or x >= maxElements.top()) {
-            maxElements.push(x);
+        nums_.push(x);
+        if (max_val_.empty() or x >= max_val_.top()) {
+            max_val_.push(x);
         } else {
-            maxElements.push(maxElements.top());
+            max_val_.push(max_val_.top());
         }
     }
 
     int pop() {
-        int result = elements.top();
-        elements.pop();
-        maxElements.pop();
+        int result = nums_.top();
+        nums_.pop();
+        max_val_.pop();
         return result;
     }
 
     int top() {
-        return elements.top();
+        return nums_.top();
     }
 
     int peekMax() {
-        return maxElements.top();
+        return max_val_.top();
     }
 
     int popMax() {
-        int maxVal = maxElements.top();
+        int cur_max = max_val_.top();
         stack<int> temp;
-        while (elements.top() != maxVal) {
-            temp.push(elements.top());
-            elements.pop();
-            maxElements.pop();
+        while (nums_.top() != cur_max) {
+            temp.push(nums_.top());
+            nums_.pop();
+            max_val_.pop();
         }
-        elements.pop();
-        maxElements.pop();
+        nums_.pop();
+        max_val_.pop();
 
         while (!temp.empty()) {
             push(temp.top());
             temp.pop();
         }
-        return maxVal;
+        return cur_max;
     }
 };
 

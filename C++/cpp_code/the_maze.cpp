@@ -66,7 +66,7 @@ private:
     int n = 0;
     vector<int> diff = {0, -1, 0, 1, 0};
 
-    bool isValid(int r, int c, vector<vector<int>>& maze) {
+    bool is_valid(int r, int c, vector<vector<int>>& maze) {
         return r < m and r >= 0 and c < n and c >= 0 and maze[r][c] == 0;
     }
 
@@ -80,11 +80,10 @@ public:
         position.push({start[0], start[1]});
 
         while (!position.empty()) {
-            pair<int, int> curPos = position.front();
+            int row = position.front().first;
+            int col = position.front().second;
             position.pop();
 
-            int row = curPos.first;
-            int col = curPos.second;
             visited[row][col] = true;
             if (row == destination[0] and col == destination[1]) {
                 return true;
@@ -93,7 +92,7 @@ public:
             for (int i = 1; i < diff.size(); ++i) {
                 int nr = row;
                 int nc = col;
-                while (isValid(nr + diff[i], nc + diff[i - 1], maze)) {
+                while (is_valid(nr + diff[i], nc + diff[i - 1], maze)) {
                     nr += diff[i];
                     nc += diff[i - 1];
                 }
