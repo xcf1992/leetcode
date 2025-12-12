@@ -52,21 +52,22 @@ public:
             return "0";
         }
 
-        string result = "";
+        string rst = "";
         for (int i = 0; i < n; ++i) {
-            while (!result.empty() and num[i] < result.back() and k > 0) {
-                result.pop_back();
+            while (!rst.empty() && rst.back()> num[i] && k > 0) {
+                rst.pop_back();
                 k -= 1;
             }
-            if (!result.empty() or num[i] != '0') {
-                result.push_back(num[i]);
+
+            if (!rst.empty() || num[i] != '0') {
+                rst.push_back(num[i]);
             }
         }
 
-        while (!result.empty() and k > 0) {
-            result.pop_back();
+        while (!rst.empty() && k > 0) {
+            rst.pop_back();
             k -= 1;
         }
-        return result == "" ? "0" : result;
+        return rst == "" ? "0" : rst;
     }
 };

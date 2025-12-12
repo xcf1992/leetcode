@@ -37,10 +37,6 @@ class Solution {
 private:
     double calculate(string first, string second, unordered_map<string, unordered_map<string, double>>& connect,
                      unordered_set<string>& visited) {
-        if (connect.find(first) == connect.end()) {
-            return -1.0;
-        }
-
         unordered_map<string, double> next = connect[first];
         if (next.find(second) != next.end()) {
             return next[second];

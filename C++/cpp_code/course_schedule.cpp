@@ -44,16 +44,16 @@ using namespace std;
 class Solution {
 public:
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
-        unordered_map<int, unordered_set<int>> preOf;
+        unordered_map<int, unordered_set<int>> before;
         unordered_map<int, unordered_set<int>> after;
-        for (vector<int>& afterrequisite : prerequisites) {
-            preOf[afterrequisite[0]].insert(afterrequisite[1]);
-            after[afterrequisite[1]].insert(afterrequisite[0]);
+        for (vector<int>& requirement : prerequisites) {
+            before[requirement[0]].insert(requirement[1]);
+            after[requirement[1]].insert(requirement[0]);
         }
 
         queue<int> order;
         for (int i = 0; i < numCourses; i++) {
-            if (preOf.find(i) == preOf.end() or preOf[i].empty()) {
+            if (before.find(i) == before.end() || before[i].empty()) {
                 order.push(i);
             }
         }
@@ -65,8 +65,8 @@ public:
             order.pop();
 
             for (int nextCourse : after[course]) {
-                preOf[nextCourse].erase(course);
-                if (preOf[nextCourse].empty()) {
+                before[nextCourse].erase(course);
+                if (before[nextCourse].empty()) {
                     order.push(nextCourse);
                 }
             }

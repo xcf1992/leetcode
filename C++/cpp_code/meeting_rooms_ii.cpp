@@ -33,15 +33,15 @@ using namespace std;
 class Solution {
 public:
     int minMeetingRooms(vector<vector<int>>& intervals) {
-        map<int, int> itvl;
+        map<int, int> rooms;
         for (vector<int>& interval : intervals) {
-            itvl[interval[0]] += 1;
-            itvl[interval[1]] -= 1;
+            rooms[interval[0]] += 1;
+            rooms[interval[1]] -= 1;
         }
 
         int rst = 0;
         int cur = 0;
-        for (const auto& it : itvl) {
+        for (const auto& it : rooms) {
             cur += it.second;
             rst = max(rst, cur);
         }

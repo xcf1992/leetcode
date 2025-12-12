@@ -58,11 +58,11 @@ private:
     }
 
 public:
-    vector<vector<int>> combinationSum2(vector<int>& num, int target) {
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        sort(candidates.begin(), candidates.end());
         vector<vector<int>> result;
         vector<int> combination;
-        sort(num.begin(), num.end());
-        dfs(num, target, 0, combination, result);
+        dfs(candidates, target, 0, combination, result);
         return result;
     }
 };

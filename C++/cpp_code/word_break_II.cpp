@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/word-break-ii/description/
 140. Word Break II
 
 Given a non-empty string s and a dictionary wordDict containing a list of non-empty words,
@@ -51,10 +52,11 @@ class Solution {
 private:
     unordered_map<string, vector<string>> memo;
 
-    vector<string> generate(unordered_set<string>& dict, string s) {
+    vector<string> generate(unordered_set<string>& dict, string& s) {
         if (s == "") {
             return {""};
         }
+
         if (memo.find(s) != memo.end()) {
             return memo[s];
         }
@@ -65,9 +67,10 @@ private:
                 continue;
             }
 
-            vector<string> breakWords = generate(dict, s.substr(0, i));
-            for (string& bw : breakWords) {
-                memo[s].push_back(bw + (bw == "" ? "" : " ") + word);
+            string prefix = s.substr(0, i);
+            vector<string> prefix_words = generate(dict, prefix);
+            for (string& pre : prefix_words) {
+                memo[s].push_back(pre + (pre == "" ? "" : " ") + word);
             }
         }
         return memo[s];

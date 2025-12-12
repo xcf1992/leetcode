@@ -71,31 +71,33 @@ private:
         if (canReach[start][end] == 1) {
             return true;
         }
+
         if (canReach[start][end] == -1) {
             return false;
         }
 
-        for (int i = 0; i < canReach.size(); ++i)
-            if (i != start and canReach[start][i] == 1) {
-                if (check(i, end, canReach) == true) {
+        for (int i = 0; i < canReach.size(); ++i) {
+            if (i != start && canReach[start][i] == 1) {
+                if (check(i, end, canReach)) {
                     canReach[start][end] = 1;
                     return true;
                 }
             }
+        }
         canReach[start][end] = -1;
         return false;
     }
 
 public:
     vector<bool> checkIfPrerequisite(int n, vector<vector<int>>& prerequisites, vector<vector<int>>& queries) {
-        vector<vector<int>> canReach(n, vector<int>(n, 0));
+        vector<vector<int>> can_reach(n, vector<int>(n, 0));
         for (vector<int>& pre : prerequisites) {
-            canReach[pre[0]][pre[1]] = 1;
+            can_reach[pre[0]][pre[1]] = 1;
         }
 
         vector<bool> result;
         for (vector<int> que : queries) {
-            result.push_back(check(que[0], que[1], canReach));
+            result.push_back(check(que[0], que[1], can_reach));
         }
         return result;
     }

@@ -93,17 +93,17 @@ public:
             return {};
         }
 
-        map<int, vector<int>> nodePos;
+        map<int, vector<int>> node_pos;
         queue<pair<int, TreeNode*>> bfs;
         bfs.push({0, root});
         while (!bfs.empty()) {
-            int curSize = bfs.size();
-            for (int i = 0; i < curSize; ++i) {
+            int cur_size = bfs.size();
+            for (int i = 0; i < cur_size; ++i) {
                 int pos = bfs.front().first;
                 TreeNode* node = bfs.front().second;
                 bfs.pop();
 
-                nodePos[pos].push_back(node->val);
+                node_pos[pos].push_back(node->val);
                 if (node->left != nullptr) {
                     bfs.push({pos - 1, node->left});
                 }
@@ -114,7 +114,7 @@ public:
         }
 
         vector<vector<int>> result;
-        for (auto& it : nodePos) {
+        for (auto& it : node_pos) {
             result.push_back(it.second);
         }
         return result;

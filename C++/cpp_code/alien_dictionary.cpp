@@ -75,14 +75,17 @@ public:
 
         unordered_map<char, unordered_set<char>> graph;
         for (int i = 0; i < words.size() - 1; i++) {
-            string cur = words[i];
-            string nex = words[i + 1];
-            int length = min(cur.size(), nex.size());
-            for (int j = 0; j < length; j++)
-                if (cur[j] != nex[j]) {
-                    if (graph[cur[j]].find(nex[j]) == graph[cur[j]].end()) {
-                        graph[cur[j]].insert(nex[j]);
-                        indegree[nex[j]] += 1;
+            string cur_word = words[i];
+            string next_word = words[i + 1];
+            if (cur_word.size() > next_word.size() && cur_word.compare(0, next_word.length(), next_word) == 0) {
+                return "";
+            }
+            int len = min(cur_word.size(), next_word.size());
+            for (int j = 0; j < len; j++)
+                if (cur_word[j] != next_word[j]) {
+                    if (graph[cur_word[j]].find(next_word[j]) == graph[cur_word[j]].end()) {
+                        graph[cur_word[j]].insert(next_word[j]);
+                        indegree[next_word[j]] += 1;
                     }
                     break;
                 }

@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/wildcard-matching/description/
 44. Wildcard Matching
 
 Given an input string (s) and a pattern (p),
@@ -97,12 +98,38 @@ public:
     }
 };
 
+/*
+Next, we initialize the base cases. There are three base cases:
+
+When both the string and the pattern are empty.
+Always match. dp[0][0] = true;
+When only the string is empty.
+Only if the subpattern only consists of *, we have a match.
+When only the pattern is empty.
+Always not match.
+There are two special characters that we need to take special care in the pattern.
+
+?
+This is actually easy to deal with. Everytime when we encounter this, we can consider it matches with any character in
+the string. Say we are currently at dp[i][j], and we have p[j - 1] == '?', then we know it matches with s[i - 1], no
+matter what s[i - 1] actually is.
+*
+This is slightly hard to deal with. A small technique while dealing this kind of question is to actually draw out the dp
+table, and try to fill out the table manually, when the state transfer function is not very straightforward. Everything
+will become much clearer after you fill out one row or two. When we encounter a * in the pattern, and assuming that
+we're currently trying to figure out what dp[i][j] is. Then we need to consider two cases if p[j - 1] == '*'. Is dp[i -
+1][j] true? If yes, it means the current subpattern p[0...j - 1] we have matches the substring s[0... i - 2]. Then will
+p[0...j - 1] match with s[0... i - 1]? The answer is yes, because * can match any sequence of characters, so it's able
+to match one more character s[i - 1]. Is dp[i][j - 1] true? If yes, it just means the current substring s[0...i - 1]
+matches with the subpattern p[0...j - 2]. Therefore, if we add one more * into the subpattern, it will also match as *
+can match empty subsequence.
+ */
 class Solution1 {
     // dp
 public:
     bool isMatch(string s, string p) {
-        int m = s.length();
-        int n = p.length();
+        int m = s.size();
+        int n = p.size();
         vector<vector<bool>> dp(m + 1, vector<bool>(n + 1, false));
 
         dp[0][0] = true;
@@ -117,9 +144,9 @@ public:
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
                 if (p[j - 1] != '*') {
-                    dp[i][j] = dp[i - 1][j - 1] and (s[i - 1] == p[j - 1] or p[j - 1] == '?');
+                    dp[i][j] = dp[i - 1][j - 1] && (s[i - 1] == p[j - 1] || p[j - 1] == '?');
                 } else {
-                    dp[i][j] = dp[i - 1][j] or dp[i][j - 1];
+                    dp[i][j] = dp[i - 1][j] || dp[i][j - 1];
                 }
             }
         }

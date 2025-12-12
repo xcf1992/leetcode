@@ -39,7 +39,7 @@ using namespace std;
 
 class Solution {
 private:
-    long parseNum(string& s, int& i) {
+    long parse_num(string& s, int& i) {
         long num = 0;
         while (i < s.size() and isdigit(s[i])) {
             num = num * 10 + (s[i] - '0');
@@ -57,7 +57,7 @@ private:
                 continue;
             }
 
-            long n = s[i] == '(' ? parseExp(s, ++i) : parseNum(s, i);
+            long n = s[i] == '(' ? parseExp(s, ++i) : parse_num(s, i);
             if (op == '+') {
                 nums.push_back(n);
             } else if (op == '-') {

@@ -92,17 +92,17 @@ public:
     int scheduleCourse(vector<vector<int>>& courses) {
         sort(courses.begin(), courses.end(), [](vector<int>& a, vector<int>& b) { return a[1] < b[1]; });
 
-        priority_queue<int> maxHeap;
+        priority_queue<int> max_heap;
         int current = 0;
         for (vector<int>& c : courses) {
             current += c[0];
-            maxHeap.push(c[0]);
+            max_heap.push(c[0]);
             if (current > c[1]) {
-                current -= maxHeap.top();
-                maxHeap.pop();
+                current -= max_heap.top();
+                max_heap.pop();
             }
         }
-        return maxHeap.size();
+        return max_heap.size();
     }
 };
 

@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/bricks-falling-when-hit/description/
 803. Bricks Falling When Hit
 
 We have a grid of 1s and 0s; the 1s in a cell represent bricks.
@@ -123,11 +124,7 @@ private:
 public:
     vector<int> hitBricks(vector<vector<int>>& grid, vector<vector<int>>& hits) {
         m = grid.size();
-        if (m == 0) {
-            return {};
-        }
         n = grid[0].size();
-
         for (vector<int>& hit : hits) {
             grid[hit[0]][hit[1]] -= 1;
         }

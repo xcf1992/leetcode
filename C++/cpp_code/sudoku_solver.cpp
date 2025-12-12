@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/sudoku-solver/description/
 37. Sudoku Solver
 
 Write a program to solve a Sudoku puzzle by filling the empty cells.
@@ -63,7 +64,7 @@ private:
         return true;
     }
 
-    bool dfs(vector<vector<char>>& board) {
+    bool solve(vector<vector<char>>& board) {
         for (int i = 0; i != 9; i++) {
             for (int j = 0; j != 9; j++) {
                 if (board[i][j] != '.') {
@@ -72,7 +73,7 @@ private:
 
                 for (int k = 1; k <= 9; k++) {
                     board[i][j] = k + '0';
-                    if (isValid(i, j, board) and dfs(board)) {
+                    if (isValid(i, j, board) and solve(board)) {
                         return true;
                     }
                 }
@@ -85,6 +86,6 @@ private:
 
 public:
     void solveSudoku(vector<vector<char>>& board) {
-        dfs(board);
+        solve(board);
     }
 };

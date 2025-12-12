@@ -33,44 +33,44 @@ using namespace std;
 
 class MinStack {
 private:
-    stack<int> numStack;
-    stack<int> minStack;
+    stack<int> num_stk_;
+    stack<int> min_stk_;
 
 public:
+    MinStack() {
+    }
+
     void push(int x) {
-        if (numStack.empty()) {
-            numStack.push(x);
-            minStack.push(x);
+        if (num_stk_.empty()) {
+            num_stk_.push(x);
+            min_stk_.push(x);
             return;
         }
 
-        numStack.push(x);
-        if (minStack.top() >= x) {
-            minStack.push(x);
-        }
+        num_stk_.push(x);
+        int cur_min = min_stk_.top();
+        min_stk_.push(min(cur_min, x));
     }
 
     void pop() {
-        if (numStack.empty()) {
+        if (num_stk_.empty()) {
             return;
         }
-        if (numStack.top() == minStack.top()) {
-            minStack.pop();
-        }
-        numStack.pop();
+        min_stk_.pop();
+        num_stk_.pop();
     }
 
     int top() {
-        if (numStack.empty()) {
+        if (num_stk_.empty()) {
             return 0;
         }
-        return numStack.top();
+        return num_stk_.top();
     }
 
     int getMin() {
-        if (minStack.empty()) {
+        if (min_stk_.empty()) {
             return 0;
         }
-        return minStack.top();
+        return min_stk_.top();
     }
 };

@@ -1,6 +1,6 @@
 /*
-127. Word Ladder
 https://leetcode.com/problems/word-ladder/
+127. Word Ladder
 
 Given two words (beginWord and endWord),
 and a dictionary's word list,
@@ -64,22 +64,23 @@ public:
         bfs.push(beginWord);
         int step = 1;
         while (!bfs.empty()) {
-            int curSize = bfs.size();
-            for (int i = 0; i < curSize; ++i) {
-                string curWord = bfs.front();
+            int cur_size = bfs.size();
+            for (int i = 0; i < cur_size; ++i) {
+                string cur_word = bfs.front();
                 bfs.pop();
 
-                if (curWord == endWord) {
+                if (cur_word == endWord) {
                     return step;
                 }
 
-                for (int i = 0; i < curWord.size(); ++i) {
-                    string temp = curWord.substr(0, i) + "*" + curWord.substr(i + 1);
-                    for (string& nextWord : dict[temp]) {
-                        if (visited.find(nextWord) == visited.end()) {
-                            bfs.push(nextWord);
-                            visited.insert(nextWord);
+                for (int j = 0; j < cur_word.size(); ++j) {
+                    string temp = cur_word.substr(0, j) + "*" + cur_word.substr(j + 1);
+                    for (string& next_word : dict[temp]) {
+                        if (visited.find(next_word) != visited.end()) {
+                            continue;
                         }
+                        bfs.push(next_word);
+                        visited.insert(next_word);
                     }
                 }
             }

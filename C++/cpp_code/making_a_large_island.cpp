@@ -1,6 +1,7 @@
 /*
 https://leetcode.com/problems/making-a-large-island
 827. Making A Large Island
+
 In a 2D grid of 0s and 1s, we change at most one 0 to a 1.
 
 After, what is the size of the largest island? (An island is a 4-directionally connected group of 1s).
@@ -49,7 +50,7 @@ private:
     vector<int> dc = {0, -1, 0, 1};
     int N = 0;
 
-    int getArea(vector<vector<int>>& grid, int r, int c, int index) {
+    int calc_area(vector<vector<int>>& grid, int r, int c, int index) {
         int area = 1;
         grid[r][c] = index;
         for (int i = 0; i < 4; i++) {
@@ -60,7 +61,7 @@ private:
             }
             if (grid[nr][nc] == 1) {
                 grid[nr][nc] = index;
-                area += getArea(grid, nr, nc, index);
+                area += calc_area(grid, nr, nc, index);
             }
         }
         return area;
@@ -79,7 +80,7 @@ public:
         for (int r = 0; r < N; r++) {
             for (int c = 0; c < N; c++) {
                 if (grid[r][c] == 1) {
-                    area[index] = getArea(grid, r, c, index);
+                    area[index] = calc_area(grid, r, c, index);
                     result = max(result, area[index]);
                     // in case all grids are 1, then below code will node be used, and the result will be grid area
                     index += 1;

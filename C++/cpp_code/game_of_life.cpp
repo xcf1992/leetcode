@@ -115,6 +115,7 @@ public:
                         count += board[x][y] & 1;
                     }
                 }
+
                 if (count == 3 or count - board[i][j] == 3) {
                     board[i][j] |= 2;
                 }

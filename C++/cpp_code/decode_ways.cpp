@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/decode-ways/description/
 91. Decode Ways
 
 A message containing letters from A-Z is being encoded to numbers using the following mapping:
@@ -54,12 +55,13 @@ public:
     }
 };
 
-class Solution1 {
+class Solution {
 public:
     int numDecodings(string s) {
         if (s[0] == '0') {
             return 0;
         }
+
         if (s.size() <= 1) {
             return s.size();
         }

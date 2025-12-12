@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/word-abbreviation/description/
 527. Word Abbreviation
 
 Given an array of n distinct non-empty strings,
@@ -46,16 +47,16 @@ For example, prefix[i] = 2 means to take a prefix of word[0], word[1], word[2].
 */
 class Solution {
 private:
-    string abbreviate(string s, int k) {
+    string abbreviate(string s, int prefix_len) {
         // k is the length of prefix of the abbreviation, before number
-        int length = s.size();
-        if (k >= length - 2) {
-            // k + 2 will be the length after abbreviation
+        int len = s.size();
+        if (prefix_len >= len - 2) {
+            // prefix_len + 2 will be the length after abbreviation
             return s;
         }
 
         string result = "";
-        result += s.substr(0, k) + to_string(length - 1 - k);
+        result += s.substr(0, prefix_len) + to_string(len - 1 - prefix_len);
         result.push_back(s.back());
         return result;
     }
@@ -77,6 +78,7 @@ public:
                         mem.push_back(j);
                     }
                 }
+
                 if (mem.empty()) {
                     break;
                 }
