@@ -77,22 +77,23 @@ public:
         }
 
         priority_queue<vector<int>, vector<vector<int>>, myComp> pq;
-        pq.push({0, 0, src});
+        pq.push({0, 0, src}); // cost, stops, city
         while (!pq.empty()) {
-            int curCost = pq.top()[0];
-            int curStops = pq.top()[1];
-            int curPos = pq.top()[2];
+            int cur_cost = pq.top()[0];
+            int cur_stops = pq.top()[1];
+            int cur_city = pq.top()[2];
             pq.pop();
 
-            if (curPos == dst) {
-                return curCost;
+            if (cur_city == dst) {
+                return cur_cost;
             }
-            if (curStops > K) {
+
+            if (cur_stops > K) {
                 continue;
             }
 
-            for (pair<int, int>& price : prices[curPos]) {
-                pq.push({curCost + price.second, curStops + 1, price.first});
+            for (pair<int, int>& price : prices[cur_city]) {
+                pq.push({cur_cost + price.second, cur_stops + 1, price.first});
             }
         }
         return -1;
@@ -109,10 +110,11 @@ public:
         }
 
         queue<vector<int>> bfs;
-        for (int next = 0; next < n; ++next)
+        for (int next = 0; next < n; ++next) {
             if (prices[src][next] != INT_MAX) {
                 bfs.push({0, next, prices[src][next]});
             }
+        }
 
         vector<int> cheapest(n, INT_MAX);
         cheapest[src] = 0;
@@ -127,10 +129,11 @@ public:
             }
 
             cheapest[city] = cost;
-            for (int nxt = 0; nxt < n; ++nxt)
+            for (int nxt = 0; nxt < n; ++nxt) {
                 if (prices[city][nxt] != INT_MAX) {
                     bfs.push({stops + 1, nxt, cost + prices[city][nxt]});
                 }
+            }
         }
         return cheapest[dst] == INT_MAX ? -1 : cheapest[dst];
     }

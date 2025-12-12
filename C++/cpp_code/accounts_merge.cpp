@@ -56,7 +56,8 @@ private:
         if (parents.find(s) == parents.end() || parents[s] == s) {
             return s;
         }
-        return find(parents[s], parents);
+        parents[s] = find(parents[s], parents);
+        return parents[s];
     }
 
 public:

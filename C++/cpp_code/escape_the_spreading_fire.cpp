@@ -74,7 +74,7 @@ using namespace std;
 
 class Solution {
 private:
-    vector<int> diff = {0, 1, 0, -1, 0};
+    vector<int> diff_ = {0, 1, 0, -1, 0};
 
     bool can_reach_after_wait(int cur_time, vector<vector<int>>& fired_at, int cur_r, int cur_c, vector<vector<int>>& visited, int mark) {
         int m = fired_at.size();
@@ -85,8 +85,8 @@ private:
 
         visited[cur_r][cur_c] = mark;
         for (int i = 0; i < 4; i++) {
-            int next_r = cur_r + diff[i];
-            int next_c = cur_c + diff[i + 1];
+            int next_r = cur_r + diff_[i];
+            int next_c = cur_c + diff_[i + 1];
             if (next_r >= m || next_c >= n || next_r < 0 || next_c < 0 || visited[next_r][next_c] == mark) {
                 continue;
             }
@@ -114,8 +114,8 @@ private:
 
         visited[cur_r][cur_c] = mark;
         for (int i = 0; i < 4; i++) {
-            int next_r = cur_r + diff[i];
-            int next_c = cur_c + diff[i + 1];
+            int next_r = cur_r + diff_[i];
+            int next_c = cur_c + diff_[i + 1];
 
             if (next_r >= m || next_c >= n || next_r < 0 || next_c < 0 || visited[next_r][next_c] == mark) {
                 continue;
@@ -157,8 +157,8 @@ public:
                 bfs.pop();
 
                 for (int j = 0; j < 4; j++) {
-                    int next_row = cur_row + diff[j];
-                    int next_col = cur_col + diff[j + 1];
+                    int next_row = cur_row + diff_[j];
+                    int next_col = cur_col + diff_[j + 1];
                     if (next_row >= 0 && next_col >= 0 && next_row < m && next_col < n &&
                         fired_at[next_row][next_col] == INT_MAX) {
                         fired_at[next_row][next_col] = fired_at[cur_row][cur_col] + 1;

@@ -40,15 +40,15 @@ public:
         }
         int n = matrix[0].size();
 
-        int i = 0;
-        int j = n - 1;
-        while (i < m and j >= 0) {
-            if (target == matrix[i][j]) {
+        int row = 0;
+        int col = n - 1;
+        while (row < m and col >= 0) {
+            if (target == matrix[row][col]) {
                 return true;
-            } else if (target < matrix[i][j]) {
-                j -= 1;
+            } else if (target < matrix[row][col]) {
+                col -= 1;
             } else {
-                i += 1;
+                row += 1;
             }
         }
         return false;

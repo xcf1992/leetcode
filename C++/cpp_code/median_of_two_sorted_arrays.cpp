@@ -145,17 +145,17 @@ public:
             return findMedianSortedArrays(nums2, nums1);
         }
 
-        int iLeft = 0;
-        int iRight = m;
-        int halfLen = (m + n + 1) / 2;
-        while (iLeft <= iRight) {
-            int i = iLeft + (iRight - iLeft) / 2;
-            int j = halfLen - i;
+        int left = 0;
+        int right = m;
+        int mid = (m + n + 1) / 2;
+        while (left <= right) {
+            int i = left + (right - left) / 2;
+            int j = mid - i;
             if (i < m and nums2[j - 1] > nums1[i]) {
-                iLeft = i + 1;
+                left = i + 1;
                 continue;
             } else if (i > 0 and nums1[i - 1] > nums2[j]) {
-                iRight = i - 1;
+                right = i - 1;
                 continue;
             }
 

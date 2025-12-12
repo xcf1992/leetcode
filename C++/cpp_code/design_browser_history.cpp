@@ -66,6 +66,46 @@ using namespace std;
 
 class BrowserHistory {
 private:
+    stack<string> back_history_;
+    deque<string> forward_history_;
+    string cur_page_;
+public:
+    BrowserHistory(string homepage) {
+        cur_page_ = homepage;
+        forward_history_.clear();
+    }
+
+    void visit(string url) {
+        back_history_.push(cur_page_);
+        cur_page_ = url;
+        forward_history_.clear();
+    }
+
+    string back(int steps) {
+        int back_cnt = back_history_.size();
+        int move = min(back_cnt, steps);
+        for (int i = 0; i < move; i++) {
+            forward_history_.push_front(cur_page_);
+            cur_page_ = back_history_.top();
+            back_history_.pop();
+        }
+        return cur_page_;
+    }
+
+    string forward(int steps) {
+        int forward_cnt = forward_history_.size();
+        int move = min(forward_cnt, steps);
+        for (int i = 0; i < move; i++) {
+            back_history_.push(cur_page_);
+            cur_page_ = forward_history_.front();
+            forward_history_.pop_front();
+        }
+        return cur_page_;
+    }
+};
+
+class BrowserHistory {
+private:
     vector<string> history;
     int cur = 0;
 

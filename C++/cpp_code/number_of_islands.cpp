@@ -39,7 +39,7 @@ class Solution {
 private:
     int m = 0;
     int n = 0;
-    vector<int> diff = {0, 1, 0, -1, 0};
+    vector<int> diff_ = {0, 1, 0, -1, 0};
 
     void dfs(vector<vector<char>>& grid, int row, int col) {
         if (row < 0 or col < 0 or row >= m or col >= n or grid[row][col] != '1') {
@@ -47,8 +47,8 @@ private:
         }
 
         grid[row][col] = '0';
-        for (int i = 1; i < diff.size(); ++i) {
-            dfs(grid, row + diff[i], col + diff[i - 1]);
+        for (int i = 1; i < diff_.size(); ++i) {
+            dfs(grid, row + diff_[i], col + diff_[i - 1]);
         }
     }
 

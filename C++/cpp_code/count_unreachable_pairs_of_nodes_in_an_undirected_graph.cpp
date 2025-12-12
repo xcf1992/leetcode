@@ -1,7 +1,7 @@
 /*
 https://leetcode.com/problems/count-unreachable-pairs-of-nodes-in-an-undirected-graph/
-
 2316. Count Unreachable Pairs of Nodes in an Undirected Graph
+
 You are given an integer n. There is an undirected graph with n nodes, numbered from 0 to n - 1. You are given a 2D
 integer array edges where edges[i] = [ai, bi] denotes that there exists an undirected edge connecting nodes ai and bi.
 
@@ -61,7 +61,6 @@ private:
 public:
     long long countPairs(int n, vector<vector<int>>& edges) {
         vector<int> parent(n, -1);
-        unordered_map<int, int> group;
         for (const vector<int>& edge : edges) {
             int u = find_parent(edge[0], parent);
             int v = find_parent(edge[1], parent);
@@ -71,6 +70,7 @@ public:
             parent[u] = v;
         }
 
+        unordered_map<int, int> group;
         for (int i = 0; i < n; i++) {
             int cur_parent = find_parent(i, parent);
             if (group.find(cur_parent) == group.end()) {
@@ -84,7 +84,7 @@ public:
         for (auto it = group.begin(); it != group.end(); it++) {
             int cur_cnt = it->second;
             other_cnt -= cur_cnt;
-            result += cur_cnt * other_cnt;
+            result += 1LL * cur_cnt * other_cnt;
         }
         return result;
     }

@@ -37,34 +37,34 @@ You may assume that all inputs are consist of lowercase letters a-z.
 using namespace std;
 
 struct TrieNode {
-    bool isWord;
-    string word;
-    vector<TrieNode*> next;
+    bool is_word_;
+    string word_;
+    vector<TrieNode*> children_;
 
     TrieNode() {
-        word = "";
-        isWord = false;
-        next.resize(26, nullptr);
+        word_ = "";
+        is_word_ = false;
+        children_.resize(26, nullptr);
     }
 };
 
 class Solution {
 private:
-    TrieNode* root = new TrieNode();
-    vector<int> diff = {0, 1, 0, -1, 0};
+    TrieNode* root_ = new TrieNode();
+    vector<int> diff_ = {0, 1, 0, -1, 0};
     int m = 0;
     int n = 0;
 
-    void addWord(string word) {
-        TrieNode* cur = root;
+    void add_word(string word) {
+        TrieNode* cur = root_;
         for (char c : word) {
-            if (cur->next[c - 'a'] == nullptr) {
-                cur->next[c - 'a'] = new TrieNode();
+            if (cur->children_[c - 'a'] == nullptr) {
+                cur->children_[c - 'a'] = new TrieNode();
             }
-            cur = cur->next[c - 'a'];
+            cur = cur->children_[c - 'a'];
         }
-        cur->word = word;
-        cur->isWord = true;
+        cur->word_ = word;
+        cur->is_word_ = true;
     }
 
     void findWord(vector<string>& result, vector<vector<bool>>& visited, vector<vector<char>>& board, TrieNode* cur,
@@ -73,19 +73,19 @@ private:
             return;
         }
 
-        TrieNode* next = cur->next[board[r][c] - 'a'];
+        TrieNode* next = cur->children_[board[r][c] - 'a'];
         if (next == nullptr) {
             return;
         }
 
-        if (next->isWord) {
-            result.push_back(next->word);
-            next->isWord = false;  // so we do not put duplicate words into final result
+        if (next->is_word_) {
+            result.push_back(next->word_);
+            next->is_word_ = false;  // so we do not put duplicate words into final result
         }
 
         visited[r][c] = true;
-        for (int k = 1; k < diff.size(); ++k) {
-            findWord(result, visited, board, next, r + diff[k], c + diff[k - 1]);
+        for (int k = 1; k < diff_.size(); ++k) {
+            findWord(result, visited, board, next, r + diff_[k], c + diff_[k - 1]);
         }
         visited[r][c] = false;
     }
@@ -96,14 +96,14 @@ public:
         n = board[0].size();
 
         for (string word : words) {
-            addWord(word);
+            add_word(word);
         }
 
         vector<string> result;
         vector<vector<bool>> visited(m, vector<bool>(n, false));
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                findWord(result, visited, board, root, i, j);
+                findWord(result, visited, board, root_, i, j);
             }
         }
         return result;

@@ -46,102 +46,98 @@ cache.get(4);       // returns 4
 using namespace std;
 
 struct LFUNode {
-    int freq;
-    int key;
-    int value;
-    LFUNode* prev;
-    LFUNode* next;
+    int freq_;
+    int key_;
+    int val_;
+    LFUNode* prev_;
+    LFUNode* next_;
 
     LFUNode(int f, int k, int v) {
-        freq = f;
-        key = k;
-        value = v;
-        prev = next = nullptr;
+        freq_ = f;
+        key_ = k;
+        val_ = v;
+        prev_ = next_ = nullptr;
     }
 };
 
 class LFUCache {
 private:
-    int capacity;
-    int minFreq;
-    unordered_map<int, LFUNode*> key2node;
-    unordered_map<int, LFUNode*> freq2node;
+    int capacity_;
+    int min_freq_;
+    unordered_map<int, LFUNode*> key_to_node_;
+    unordered_map<int, LFUNode*> freq_to_node_; // each freq would be a lRU list
 
 public:
     LFUCache(int c) {
-        capacity = c;
-        minFreq = 1;
+        capacity_ = c;
+        min_freq_ = 1;
     }
 
     int get(int key) {
-        if (key2node.find(key) == key2node.end()) {
+        if (key_to_node_.find(key) == key_to_node_.end()) {
             return -1;
         }
 
-        LFUNode* cur = key2node[key];
-        LFUNode* prevNode = cur->prev;
-        LFUNode* nextNode = cur->next;
-        if (prevNode != nullptr) {
-            prevNode->next = nextNode;
+        LFUNode* cur = key_to_node_[key];
+        LFUNode* prev_node = cur->prev_;
+        LFUNode* next_node = cur->next_;
+        if (prev_node != nullptr) {
+            prev_node->next_ = next_node;
         }
-        if (nextNode != nullptr) {
-            nextNode->prev = prevNode;
+        if (next_node != nullptr) {
+            next_node->prev_ = prev_node;
         }
-        if (minFreq == cur->freq and freq2node[minFreq]->next == freq2node[minFreq]) {
-            freq2node.erase(minFreq);
-            minFreq += 1;
+        // if there is only one node of the min_freq list
+        if (min_freq_ == cur->freq_ and freq_to_node_[min_freq_]->next_ == freq_to_node_[min_freq_]) {
+            freq_to_node_.erase(min_freq_);
+            min_freq_ += 1;
         }
 
-        cur->freq += 1;
-        if (freq2node.find(cur->freq) == freq2node.end()) {
-            LFUNode* newHead = new LFUNode(cur->freq, -1, -1);
-            newHead->next = newHead;
-            newHead->prev = newHead;
-            freq2node[cur->freq] = newHead;
+        cur->freq_ += 1;
+        if (freq_to_node_.find(cur->freq_) == freq_to_node_.end()) {
+            LFUNode* newHead = new LFUNode(cur->freq_, -1, -1);
+            newHead->next_ = newHead;
+            newHead->prev_ = newHead;
+            freq_to_node_[cur->freq_] = newHead;
         }
-        cur->next = freq2node[cur->freq]->next;
-        cur->next->prev = cur;
-        freq2node[cur->freq]->next = cur;
-        cur->prev = freq2node[cur->freq];
-        return cur->value;
+        cur->next_ = freq_to_node_[cur->freq_]->next_;
+        cur->next_->prev_ = cur;
+        freq_to_node_[cur->freq_]->next_ = cur;
+        cur->prev_ = freq_to_node_[cur->freq_];
+        return cur->val_;
     }
 
     void put(int key, int value) {
-        if (key2node.find(key) != key2node.end()) {
-            key2node[key]->value = value;
+        if (key_to_node_.find(key) != key_to_node_.end()) {
+            key_to_node_[key]->val_ = value;
             get(key);
             return;
         }
 
-        if (key2node.size() == capacity) {
-            LFUNode* listHead = freq2node[minFreq];
-            if (listHead == nullptr) {
-                // it will only happen when the capacity is 0
-                return;
-            }
-
-            LFUNode* last = listHead->prev;
-            listHead->prev = last->prev;
-            last->prev->next = listHead;
-            key2node.erase(last->key);
-            if (listHead->next == listHead) {
-                freq2node.erase(listHead->freq);
+        if (key_to_node_.size() == capacity_) {
+            LFUNode* listHead = freq_to_node_[min_freq_];
+            LFUNode* last = listHead->prev_;
+            listHead->prev_ = last->prev_;
+            last->prev_->next_ = listHead;
+            key_to_node_.erase(last->key_);
+            if (listHead->next_ == listHead) {
+                freq_to_node_.erase(listHead->freq_);
             }
         }
 
-        LFUNode* newNode = new LFUNode(1, key, value);
-        minFreq = 1;
-        key2node[key] = newNode;
-        if (freq2node.find(minFreq) == freq2node.end()) {
-            LFUNode* newHead = new LFUNode(minFreq, -1, -1);
-            newHead->next = newHead;
-            newHead->prev = newHead;
-            freq2node[minFreq] = newHead;
+        LFUNode* new_node = new LFUNode(1, key, value);
+        min_freq_ = 1;
+        key_to_node_[key] = new_node;
+        if (freq_to_node_.find(min_freq_) == freq_to_node_.end()) {
+            LFUNode* newHead = new LFUNode(min_freq_, -1, -1);
+            newHead->next_ = newHead;
+            newHead->prev_ = newHead;
+            freq_to_node_[min_freq_] = newHead;
         }
-        newNode->next = freq2node[minFreq]->next;
-        freq2node[minFreq]->next->prev = newNode;
-        newNode->prev = freq2node[minFreq];
-        freq2node[minFreq]->next = newNode;
+        new_node->next_ = freq_to_node_[min_freq_]->next_;
+        freq_to_node_[min_freq_]->next_->prev_ = new_node;
+        new_node->prev_ = freq_to_node_[min_freq_];
+        freq_to_node_[min_freq_]->next_ = new_node;
     }
 };
 

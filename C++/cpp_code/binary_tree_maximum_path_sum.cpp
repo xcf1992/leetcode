@@ -47,13 +47,13 @@ struct TreeNode {
 
 class Solution {
 private:
-    int getSum(TreeNode* root, int& result) {
+    int get_sum(TreeNode* root, int& result) {
         if (root == nullptr) {
             return 0;
         }
 
-        int leftSum = max(0, getSum(root->left, result));
-        int rightSum = max(0, getSum(root->right, result));
+        int leftSum = max(0, get_sum(root->left, result));
+        int rightSum = max(0, get_sum(root->right, result));
         int sum = leftSum + rightSum + root->val;
         result = max(result, sum);
         return max(leftSum, rightSum) + root->val;
@@ -62,7 +62,7 @@ private:
 public:
     int maxPathSum(TreeNode* root) {
         int result = INT_MIN;
-        getSum(root, result);
+        get_sum(root, result);
         return result;
     }
 };

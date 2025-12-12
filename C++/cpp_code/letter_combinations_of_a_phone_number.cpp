@@ -71,3 +71,35 @@ public:
         return dfs(digits, 0, n - 1, phone);
     }
 };
+
+class Solution {
+private:
+    string mapping[10] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+
+    void solve(string digit, string output, int idx, vector<string>& rst) {
+        if (idx >= digit.size()) {
+            rst.push_back(output);
+            return;
+        }
+
+        int num = digit[idx] - '0';
+        string value = mapping[num];
+        for (int j = 0; j < value.length(); j++) {
+            output.push_back(value[j]);
+            solve(digit, output, idx + 1, rst);
+            output.pop_back();
+        }
+    }
+
+public:
+    vector<string> letterCombinations(string digit) {
+        vector<string> rst;
+        if (digit.size() == 0) {
+            return rst;
+        }
+        int i = 0;
+        string output = "";
+        solve(digit, output, i, rst);
+        return rst;
+    }
+};

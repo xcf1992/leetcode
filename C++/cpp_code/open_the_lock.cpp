@@ -65,21 +65,21 @@ using namespace std;
 class Solution {
 private:
     vector<string> open(string curStr) {
-        vector<string> nextStrs;
+        vector<string> rst;
         for (int i = 0; i < curStr.size(); i++) {
             string temp = curStr;
             temp[i] = ((curStr[i] - '0' + 1) % 10) + '0';
-            nextStrs.push_back(temp);
+            rst.push_back(temp);
             temp[i] = ((curStr[i] - '0' - 1 + 10) % 10) + '0';
-            nextStrs.push_back(temp);
+            rst.push_back(temp);
         }
-        return nextStrs;
+        return rst;
     }
 
 public:
     int openLock(vector<string>& deadends, string target) {
-        unordered_set<string> des(deadends.begin(), deadends.end());
-        if (des.find("0000") != des.end() or des.find(target) != des.end()) {
+        unordered_set<string> dead_lock(deadends.begin(), deadends.end());
+        if (dead_lock.find("0000") != dead_lock.end() or dead_lock.find(target) != dead_lock.end()) {
             return -1;
         }
 
@@ -98,11 +98,11 @@ public:
                     return result;
                 }
 
-                vector<string> nextStrings = open(curStr);
-                for (string nextStr : nextStrings) {
-                    if (des.find(nextStr) == des.end() and visited.find(nextStr) == visited.end()) {
-                        visited.insert(nextStr);
-                        bfs.push(nextStr);
+                vector<string> next_str = open(curStr);
+                for (string str : next_str) {
+                    if (dead_lock.find(str) == dead_lock.end() and visited.find(str) == visited.end()) {
+                        visited.insert(str);
+                        bfs.push(str);
                     }
                 }
             }

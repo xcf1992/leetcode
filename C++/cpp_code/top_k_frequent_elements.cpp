@@ -37,8 +37,7 @@ struct myCmp {
 class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
-        std::vector<int> result;
-
+        vector<int> rst;
         unordered_map<int, int> frequency;
         for (int i = 0; i < nums.size(); i++) {
             frequency[nums[i]] += 1;
@@ -49,11 +48,11 @@ public:
             pq.push({it.second, it.first});
         }
 
-        while (!pq.empty() and result.size() < k) {
+        while (!pq.empty() and rst.size() < k) {
             auto& p = pq.top();
-            result.push_back(p.second);
+            rst.push_back(p.second);
             pq.pop();
         }
-        return result;
+        return rst;
     }
 };

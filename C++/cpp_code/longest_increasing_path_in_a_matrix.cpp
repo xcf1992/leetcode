@@ -65,9 +65,6 @@ private:
 public:
     int longestIncreasingPath(vector<vector<int>>& matrix) {
         m = matrix.size();
-        if (m == 0) {
-            return 0;
-        }
         n = matrix[0].size();
 
         vector<vector<int>> memo(m, vector<int>(n, 0));

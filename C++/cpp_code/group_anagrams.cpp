@@ -31,17 +31,18 @@ using namespace std;
 
 class Solution {
 private:
-    string getMask(string& word) {
+    string get_mask(string& word) {
         vector<int> count(26, 0);
         for (char c : word) {
             count[c - 'a'] += 1;
         }
 
         string mask = "";
-        for (int i = 0; i < 26; ++i)
+        for (int i = 0; i < 26; ++i) {
             if (count[i] != 0) {
                 mask += string(1, 'a' + i) + to_string(count[i]);
             }
+        }
         return mask;
     }
 
@@ -49,7 +50,7 @@ public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
         unordered_map<string, vector<string>> memo;
         for (string& word : strs) {
-            memo[getMask(word)].push_back(word);
+            memo[get_mask(word)].push_back(word);
         }
 
         vector<vector<string>> result;
