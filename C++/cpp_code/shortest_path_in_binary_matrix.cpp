@@ -42,7 +42,7 @@ class Solution {
 private:
     int n = 0;
 
-    bool isValid(int r, int c, vector<vector<int>>& grid) {
+    bool is_valid(int r, int c, vector<vector<int>>& grid) {
         return r >= 0 and c >= 0 and r < n and c < n and grid[r][c] == 0;
     }
 
@@ -68,7 +68,7 @@ public:
             for (int i = 0; i < diff.size(); ++i) {
                 int nr = r + diff[i][0];
                 int nc = c + diff[i][1];
-                if (!isValid(nr, nc, grid)) {
+                if (!is_valid(nr, nc, grid)) {
                     continue;
                 }
                 grid[nr][nc] = grid[r][c] + 1;

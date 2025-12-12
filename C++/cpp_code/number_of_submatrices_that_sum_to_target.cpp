@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/description/
 1074. Number of Submatrices That Sum to Target
 
 Given a matrix, and a target,
@@ -51,14 +52,14 @@ public:
         int result = 0;
         for (int col1 = 0; col1 < n; col1++) {
             for (int col2 = col1; col2 < n; ++col2) {
-                unordered_map<int, int> sumCount;  // sumCount stores the occurences of sum, which is between col1 and
-                                                   // col2, from row 0 to current row
-                sumCount[0] = 1;
+                // sumCount stores the freq of sum, which is between col1 and col2, from row 0 to current row
+                unordered_map<int, int> sum_cnt;
+                sum_cnt[0] = 1;
                 int sum = 0;
                 for (int row = 0; row < m; row++) {
                     sum += matrix[row][col2] - (col1 == 0 ? 0 : matrix[row][col1 - 1]);
-                    result += sumCount[sum - target];
-                    sumCount[sum] += 1;
+                    result += sum_cnt[sum - target];
+                    sum_cnt[sum] += 1;
                 }
             }
         }

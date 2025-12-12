@@ -55,21 +55,20 @@ using namespace std;
 class Solution {
 public:
     int minimumEffortPath(vector<vector<int>>& heights) {
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-        pq.push({0, 0});
-
         int m = heights.size();
         int n = heights[0].size();
         vector<vector<int>> efforts(m, vector<int>(n, INT_MAX));
 
         int dirs[5] = {-1, 0, 1, 0, -1};
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+        pq.push({0, 0}); // {pos, effort}
         while (!pq.empty()) {
             int row = pq.top().first / n;
             int col = pq.top().first % n;
             int effort = pq.top().second;
             pq.pop();
 
-            if (row == m - 1 and col == n - 1) {
+            if (row == m - 1 && col == n - 1) {
                 return effort;
             }
 
@@ -79,13 +78,14 @@ public:
 
             efforts[row][col] = effort;
             for (int i = 0; i < 4; ++i) {
-                int nr = row + dirs[i];
-                int nc = col + dirs[i + 1];
-                if (nr >= m or nc >= n or nr < 0 or nc < 0) {
+                int next_row = row + dirs[i];
+                int next_col = col + dirs[i + 1];
+                if (next_row >= m or next_col >= n or next_row < 0 or next_col < 0) {
                     continue;
                 }
-                int nEffort = max(effort, abs(heights[row][col] - heights[nr][nc]));
-                pq.push({nr * n + nc, nEffort});
+
+                int next_effort = max(effort, abs(heights[row][col] - heights[next_row][next_col]));
+                pq.push({next_row * n + next_col, next_effort});
             }
         }
         return -1;

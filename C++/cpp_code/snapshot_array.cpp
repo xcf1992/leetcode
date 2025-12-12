@@ -47,30 +47,30 @@ using namespace std;
 
 class SnapshotArray {
 private:
-    vector<map<int, int>> snapArray;
-    int snapId;
+    vector<map<int, int>> snap_arr_;
+    int snap_id_;
 
 public:
     SnapshotArray(int length) {
-        snapId = 0;
-        snapArray.resize(length);
+        snap_id_ = 0;
+        snap_arr_.resize(length);
         for (int i = 0; i < length; ++i) {
-            snapArray[i].clear();
-            snapArray[i][0] = 0;
+            snap_arr_[i].clear();
+            snap_arr_[i][0] = 0;
         }
     }
 
     void set(int index, int val) {
-        snapArray[index][snapId] = val;
+        snap_arr_[index][snap_id_] = val;
     }
 
     int snap() {
-        return snapId++;
+        return snap_id_++;
     }
 
     int get(int index, int snap_id) {
-        auto it = snapArray[index].upper_bound(snap_id);
-        return it == snapArray[index].begin() ? 0 : prev(it)->second;
+        auto it = snap_arr_[index].upper_bound(snap_id);
+        return it == snap_arr_[index].begin() ? 0 : prev(it)->second;
     }
 };
 
