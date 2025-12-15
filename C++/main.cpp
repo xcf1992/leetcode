@@ -16,36 +16,42 @@ using namespace std;
 
 class Solution {
 public:
-    TreeNode* removeLeafNodes(TreeNode* root, int target) {
-        if (root == nullptr) {
-            return nullptr;
+    long long dividePlayers(vector<int>& skill) {
+        int sum = 0;
+        multiset<int> skill_vals;
+        for (int s : skill) {
+            sum += s;
+            skill_vals.insert(s);
         }
 
-        root -> left = removeLeafNodes(root -> left, target);
-        root -> right = removeLeafNodes(root -> right, target);
-        if (root -> left == nullptr and root -> right == nullptr) {
-            if (root -> val == target) {
-                delete root;
-                root = nullptr;
-            }
+        int n = skill.size();
+        int group_cnt = n / 2;
+        if (sum % group_cnt != 0) {
+            return -1;
         }
-        return root;
+
+        long long rst = 0;
+        int target = sum / group_cnt;
+        for (int s : skill) {
+            if (skill_vals.find(s) == skill_vals.end()) {
+                continue;
+            }
+
+            skill_vals.erase(s);
+            if (skill_vals.find(target - s) == skill_vals.end()) {
+                return -1;
+            }
+
+            rst += s * (target - s);
+            skill_vals.erase(target - s);
+        }
+        return rst;
     }
 };
 
 int main() {
-    vector<vector<int>> matrix({{0,1,1,0,0},{1,1,0,1,0}});
-    
+    vector<int> skill({3,2,5,1,3,4});
     Solution s;
-    TreeNode* root = new TreeNode(1);
-    TreeNode* n1 = new TreeNode(1);
-    TreeNode* n2 = new TreeNode(1);
-    TreeNode* n3 = new TreeNode(2);
-    TreeNode* n4 = new TreeNode(2);
-    TreeNode* n5 = new TreeNode(4);
-    root -> left = n1;
-    root -> right = n2;
-    TreeNode* result = s.removeLeafNodes(root, 1);
-    cout << "succeed" << endl;
+    s.dividePlayers(skill);
     return 0;
 }
