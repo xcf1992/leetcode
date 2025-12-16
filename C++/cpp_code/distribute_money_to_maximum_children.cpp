@@ -74,3 +74,32 @@ public:
         return rst;
     }
 };
+
+class Solution {
+public:
+    int distMoney(int money, int children) {
+        if (money < children) {
+            return -1;
+        }
+        if (money > children * 8) {
+            return children - 1;
+        }
+
+        for (int i = children; i >= 1; i--) {
+            if (i * 8 > money) {
+                continue;
+            }
+
+            int left_money = money - 8 * i;
+            int left_children = children - i;
+            if (left_money < left_children) {
+                continue;
+            }
+            if (left_children == 1 && left_money == 4) {
+                continue;
+            }
+            return i;
+        }
+        return 0;
+    }
+};
