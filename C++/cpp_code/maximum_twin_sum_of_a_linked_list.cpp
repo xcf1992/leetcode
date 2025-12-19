@@ -59,9 +59,6 @@ The number of nodes in the list is an even integer in the range [2, 105].
 
 using namespace std;
 
-/**
- * Definition for singly-linked list.
- */
 struct ListNode {
     int val;
     ListNode* next;
