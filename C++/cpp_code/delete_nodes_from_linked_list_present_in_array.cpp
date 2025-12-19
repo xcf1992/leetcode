@@ -86,8 +86,10 @@ class Solution {
 public:
     ListNode* modifiedList(vector<int>& nums, ListNode* head) {
         unordered_set<int> existed(nums.begin(), nums.end());
+
         ListNode* pre = new ListNode();
         pre->next = head;
+
         ListNode* cur = pre;
         ListNode* nxt = head;
         while (nxt != nullptr) {
