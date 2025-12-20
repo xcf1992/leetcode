@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/delete-columns-to-make-sorted-ii/
 955. Delete Columns to Make Sorted II
 
 We are given an array A of N lowercase letter strings, all of the same length.
@@ -80,23 +81,23 @@ yfa
 */
 class Solution {
 public:
-    int minDeletionSize(vector<string>& A) {
-        int m = A.size();
-        int n = A[0].size();
+    int minDeletionSize(vector<string>& strs) {
+        int str_cnt = strs.size();
+        int str_len = strs[0].size();
         int result = 0;
-        vector<int> sorted(m - 1, false);
-        for (int col = 0; col < n; col++) {
-            int row = 0;
-            for (; row < m - 1; row++) {
-                if (!sorted[row] and A[row][col] > A[row + 1][col]) {
+        vector<int> sorted(str_cnt - 1, false);
+        for (int word_idx = 0; word_idx < str_len; word_idx++) {
+            int str_idx = 0;
+            for (; str_idx < str_cnt - 1; str_idx++) {
+                if (!sorted[str_idx] and strs[str_idx][word_idx] > strs[str_idx + 1][word_idx]) {
                     result += 1;
                     break;
                 }
             }
 
-            if (row == m - 1) {
-                for (int i = 0; i < m - 1; i++) {
-                    if (A[i][col] < A[i + 1][col]) {
+            if (str_idx == str_cnt - 1) {
+                for (int i = 0; i < str_cnt - 1; i++) {
+                    if (strs[i][word_idx] < strs[i + 1][word_idx]) {
                         sorted[i] = true;
                     }
                 }

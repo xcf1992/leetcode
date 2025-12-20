@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/delete-columns-to-make-sorted-iii/description/
 960. Delete Columns to Make Sorted III
 
 We are given an array A of N lowercase letter strings,
@@ -75,9 +76,9 @@ so the acutal possible remain columns could be much shorter
 */
 class Solution {
 public:
-    int minDeletionSize(vector<string>& A) {
-        int m = A.size();
-        int n = A[0].size();
+    int minDeletionSize(vector<string>& strs) {
+        int m = strs.size();
+        int n = strs[0].size();
         int result = n - 1;
         vector<int> dp(n, 1);
         // the longest increasing subsequence ended with ith element, it will be at least 1 for itself
@@ -87,9 +88,9 @@ public:
                 // loop the element before last from 0 ~ col
                 int row = 0;
                 while (row < m) {
-                    // loop through each words to find its longest increasing subsequence ended with ith element
+                    // loop through each word to find its longest increasing subsequence ended with ith element
                     // as we will have all words share the same columns
-                    if (A[row][i] > A[row][col]) {
+                    if (strs[row][i] > strs[row][col]) {
                         // ith element cannot be the one before last when ended with col-th element
                         break;
                     }

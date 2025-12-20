@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/delete-columns-to-make-sorted
 944. Delete Columns to Make Sorted
 
 We are given an array A of N lowercase letter strings, all of the same length.
@@ -48,13 +49,13 @@ using namespace std;
 
 class Solution {
 public:
-    int minDeletionSize(vector<string>& A) {
-        int n = A.size();
-        int m = A[0].size();
+    int minDeletionSize(vector<string>& strs) {
+        int n = strs.size();
+        int m = strs[0].size();
         int result = 0;
         for (int col = 0; col < m; col++) {
             for (int row = 1; row < n; row++) {
-                if (A[row][col] < A[row - 1][col]) {
+                if (strs[row][col] < strs[row - 1][col]) {
                     result += 1;
                     break;
                 }
