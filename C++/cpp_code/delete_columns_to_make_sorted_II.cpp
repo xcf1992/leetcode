@@ -86,18 +86,18 @@ public:
         int str_len = strs[0].size();
         int result = 0;
         vector<int> sorted(str_cnt - 1, false);
-        for (int word_idx = 0; word_idx < str_len; word_idx++) {
-            int str_idx = 0;
-            for (; str_idx < str_cnt - 1; str_idx++) {
-                if (!sorted[str_idx] and strs[str_idx][word_idx] > strs[str_idx + 1][word_idx]) {
+        for (int col = 0; col < str_len; col++) {
+            int row = 0;
+            for (; row < str_cnt - 1; row++) {
+                if (!sorted[row] and strs[row][col] > strs[row + 1][col]) {
                     result += 1;
                     break;
                 }
             }
 
-            if (str_idx == str_cnt - 1) {
+            if (row == str_cnt - 1) {
                 for (int i = 0; i < str_cnt - 1; i++) {
-                    if (strs[i][word_idx] < strs[i + 1][word_idx]) {
+                    if (strs[i][col] < strs[i + 1][col]) {
                         sorted[i] = true;
                     }
                 }
