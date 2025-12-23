@@ -59,6 +59,21 @@ using namespace std;
 class Solution {
 public:
     vector<int> memLeak(int memory1, int memory2) {
+        int i = 1;
+        while(max(memory1, memory2) >= i){
+            if(memory1 >= memory2)
+                memory1 -= i;
+            else
+                memory2 -= i;
+            i++;
+        }
+        return {i, memory1, memory2};
+    }
+};
+
+class Solution {
+public:
+    vector<int> memLeak(int memory1, int memory2) {
         if (memory1 == 0 && memory2 == 0)
             return vector<int>{1, 0, 0};
         long long max_mem = (long long)memory1 + (long long)memory2;
