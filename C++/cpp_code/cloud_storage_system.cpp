@@ -78,12 +78,6 @@ public:
     }
 };
 
-struct compFile {
-    bool operator()(File* a, File* b) {
-        return a->size_ > b->size_ || (a->size_ == b->size_ && a->name_ < b->name_);
-    }
-};
-
 class User {
 public:
     string user_id_;
@@ -149,11 +143,11 @@ public:
         return to_string(cur_user.available_cap_);
     }
 
-    int get_file_size(string file_name) {
+    string get_file_size(string file_name) {
         if (files_.find(file_name) != files_.end()) {
-            return files_[file_name].size_;
+            return to_string(files_[file_name].size_);
         }
-        return 0;
+        return "";
     }
 
     string delete_file(string file_name) {
@@ -171,27 +165,33 @@ public:
 
     string n_largest(string prefix, int n) {
         vector<File*> rst;
-        priority_queue<File*, vector<File*>, compFile> pq;
         for (auto it = files_.begin(); it != files_.end(); ++it) {
             string file_name = it->first;
             if (!start_with(prefix, file_name)) {
                 continue;
             }
-
-            pq.push(&files_[file_name]);
-            if (pq.size() > n) {
-                pq.pop();
-            }
+            rst.push_back(&files_[file_name]);
         }
+
+        if (rst.empty()) {
+            return "";
+        }
+
+        sort(rst.begin(), rst.end(), [](File* a, File* b) {
+            return a->size_ > b->size_ || (a->size_ == b->size_ && a->name_ < b->name_);
+        });
 
         string rst_str = "";
-        while (!pq.empty()) {
-            File* cur_file = pq.top();
-            pq.pop();
-
-            rst_str += cur_file->name_ + "(" + to_string(cur_file->size_) + "),";
+        int limit = min((int)rst.size(), n);
+        for (int i = 0; i < limit; ++i) {
+            rst_str += rst[i]->name_ + "(" + to_string(rst[i]->size_) + "), ";
         }
-        rst_str.pop_back();
+
+        if (!rst_str.empty()) {
+            // Remove trailing comma and space
+            rst_str.pop_back();
+            rst_str.pop_back();
+        }
         return rst_str;
     }
 
@@ -232,7 +232,8 @@ public:
         }
 
         User& cur_user = users_[user_id];
-        for (const string& file_name : cur_user.files_) {
+        vector<string> current_files(cur_user.files_.begin(), cur_user.files_.end());
+        for (const string& file_name : current_files) {
             delete_file(file_name);
         }
 
