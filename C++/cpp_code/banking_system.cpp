@@ -168,19 +168,287 @@ Variants:
 #include <numeric>
 using namespace std;
 
-class Solution {
+class Account {
 public:
-    int maxSubArray(vector<int>& nums) {
-        if (nums.empty()) {
-            return 0;
+    string id_;
+    int balance_;
+    int total_send_;
+    int total_receive_;
+    int created_at_;
+    map<int, int> balance_at_;
+    string merged_into_;
+
+    Account() : id_(""), balance_(0), total_send_(0), total_receive_(0), created_at_(0), merged_into_("") {
+    }
+
+    Account(string& id, int cur_ts)
+            : id_(id), balance_(0), total_send_(0), total_receive_(0), created_at_(cur_ts), merged_into_("") {
+    }
+};
+
+struct Transfer {
+    string id;
+    string source_id;
+    string target_id;
+    int amount;
+    int expires_at;
+    bool status_resolved = false; // true if accepted or expired
+};
+
+struct ScheduledEvent {
+    enum Type { PAYMENT, CASHBACK };
+
+    Type type_;
+    string id_;
+    string account_id_;
+    int amount_;
+    int executed_at_;
+    bool cancelled_;
+
+    ScheduledEvent() : type_(PAYMENT), id_(""), account_id_(""), amount_(0), executed_at_(0), cancelled_(false) {
+    }
+
+    ScheduledEvent(string id, string acc_id, int amount, int timestamp, Type t)
+            : type_(t), id_(id), account_id_(acc_id), amount_(amount), executed_at_(timestamp), cancelled_(false) {
+    }
+};
+
+class Bank {
+public:
+    unordered_map<string, Account> accounts_;
+    vector<ScheduledEvent> event_q_;
+    unordered_map<string, Transfer> transfers_;
+
+    int global_payment_idx_ = 0;
+    int global_transfer_idx_ = 0;
+
+    bool create_account(int cur_ts, string account_id) {
+        process_events(cur_ts);
+
+        if (accounts_.find(account_id) != accounts_.end()) {
+            return false;
         }
 
-        int result = nums[0];
-        int curMax = nums[0];
-        for (int i = 1; i < nums.size(); i++) {
-            curMax = max(nums[i] + curMax, nums[i]);
-            result = max(result, curMax);
+        Account new_acc = Account(account_id, cur_ts);
+        return true;
+    }
+
+    string deposit(int timestamp, string account_id, int amount) {
+        process_events(timestamp);
+
+        string active_id = get_active_id(account_id);
+        if (!accounts_.count(active_id))
+            return "";
+
+        accounts_[active_id].balance_ += amount;
+        accounts_[active_id].total_receive_ += amount;
+        accounts_[active_id].balance_at_[timestamp] = accounts_[active_id].balance_;
+        return to_string(accounts_[active_id].balance_);
+    }
+
+    // Level 2 & 3 Variant: Pay with Cashback
+    string pay(int timestamp, string account_id, int amount) {
+        process_events(timestamp);
+
+        string active_id = get_active_id(account_id);
+        if (!accounts_.count(active_id) || accounts_[active_id].balance_ < amount)
+            return "";
+
+        Account& acc = accounts_[active_id];
+        acc.balance_ -= amount;
+        acc.total_send_ += amount;
+        acc.balance_at_[timestamp] = acc.balance_;
+
+        // Schedule Cashback (24h later)
+        string p_id = "payment" + to_string(global_payment_idx_);
+        int cashback_amt = amount * 0.02;  // 2% rounded down
+        ScheduledEvent event =
+                ScheduledEvent(p_id, active_id, cashback_amt, timestamp + 86400000, ScheduledEvent::PAYMENT);
+        event_q_.push_back(event);
+        global_payment_idx_++;
+
+        return p_id;
+    }
+
+    string schedule_payment(int timestamp, string account_id, int amount, int delay) {
+        process_events(timestamp);
+        if (!accounts_.count(account_id)) return "";
+
+        string p_id = "payment" + to_string(global_payment_idx_);
+        process_events[p_id] = {p_id, account_id, amount, timestamp + delay};
+        global_payment_idx_++;
+        return p_id;
+    }
+
+    string cancel_payment(int timestamp, string account_id, string payment_id) {
+        // Requirement: Payments scheduled at THIS timestamp happen BEFORE cancellation
+        process_state(timestamp);
+
+        if (!scheduled_payments_.count(payment_id)) return "false";
+
+        ScheduledPayment& p = scheduled_payments_[payment_id];
+        if (p.account_id != account_id || p.canceled) return "false";
+
+        p.canceled = true;
+        scheduled_payments_.erase(payment_id);
+        return "true";
+    }
+
+    // --- Level 3 Variant: Status Checking ---
+
+    string check_payment_status(int timestamp, string account_id, string payment_id) {
+        process_state(timestamp);
+        // This checks if the payment is still in the pending queue or already processed
+        // In a real system, you'd move processed payments to a history log.
+        if (!accounts_.count(account_id)) return "";
+
+        // If it's still in the map and not canceled, it's IN_PROGRESS
+        if (scheduled_payments_.count(payment_id)) {
+            return "IN_PROGRESS";
         }
-        return result;
+
+        // If it's gone from the map (and we assume it was successful/not canceled),
+        // it's COMPLETED or CASHBACK_RECEIVED depending on specific variant requirements.
+        return "COMPLETED";
+    }
+
+    string transfer(int timestamp, string source_id, string target_id, int amount) {
+        process_events(timestamp);
+
+        if (source_id == target_id) return "";
+        if (!accounts_.count(source_id) || !accounts_.count(target_id)) return "";
+        if (accounts_[source_id].balance_ < amount) return "";
+
+        // Withhold money
+        accounts_[source_id].balance_ -= amount;
+
+        string t_id = "transfer" + to_string(global_transfer_idx_);
+        transfers_[t_id] = {t_id, source_id, target_id, amount, timestamp + 86400000};
+        global_transfer_idx_ += 1;
+
+        return t_id;
+    }
+
+    string accept_transfer(int timestamp, string account_id, string transfer_id) {
+        process_events(timestamp);
+        if (!transfers_.count(transfer_id)) return "false";
+
+        Transfer& t = transfers_[transfer_id];
+        if (t.status_resolved || t.target_id != account_id) return "false";
+
+        // Complete the transaction
+        accounts_[t.target_id].balance_ += t.amount;
+
+        // Update transaction totals for ranking
+        accounts_[t.source_id].total_send_ += t.amount;
+        accounts_[t.target_id].total_receive_ += t.amount;
+
+        t.status_resolved = true;
+        return "true";
+    }
+
+    string top_activity(int timestamp, int n) {
+        process_events(timestamp);
+
+        vector<Account*> active_accs;
+        for (auto& pair : accounts_) {
+            if (pair.second.merged_into_.empty())
+                active_accs.push_back(&pair.second);
+        }
+
+        sort(active_accs.begin(), active_accs.end(), [](Account* a, Account* b) {
+            return a->total_receive_ + a->total_send_ > b->total_receive_ + b->total_send_;
+        });
+
+        string res = "";
+        for (int i = 0; i < min((int)active_accs.size(), n); ++i) {
+            res += active_accs[i]->id_ + "(" + to_string(active_accs[i]->total_receive_ + active_accs[i]->total_send_) +
+                   ")" + (i == min((int)active_accs.size(), n) - 1 ? "" : ", ");
+        }
+        return res;
+    }
+
+    // Level 4: Merge Accounts
+    string merge_accounts(int timestamp, string id1, string id2) {
+        process_events(timestamp);
+
+        if (id1 == id2 || !accounts_.count(id1) || !accounts_.count(id2)) return "false";
+
+        string active1 = get_active_id(id1);
+        string active2 = get_active_id(id2);
+        if (active1 == active2) return "false";
+
+        Account& acc1 = accounts_[active1];
+        Account& acc2 = accounts_[active2];
+
+        acc1.balance_ += acc2.balance_;
+        acc1.total_receive_ += acc2.total_receive_;
+        acc1.total_send_ += acc2.total_send_;
+        acc1.balance_at_[timestamp] = acc1.balance_;
+
+        acc2.merged_into_ = active1; // Mark as merged
+        return "true";
+    }
+
+    // Level 4: Get Balance at TimeAt
+    string get_balance(int timestamp, string account_id, int time_at) {
+        process_events(timestamp);
+
+        // Find the account's state at time_at. Note: We use the account's history.
+        // If it was merged later, the requirements say the target account inherits the history.
+        string active_acc = get_active_id(account_id);
+        if (!accounts_.count(active_acc)) return "";
+
+        auto& history = accounts_[active_acc].balance_at_;
+        auto it = history.upper_bound(time_at);
+        if (it == history.begin()) return ""; // Didn't exist yet
+
+        return to_string(prev(it)->second);
+    }
+private:
+    string get_active_id(string& account_id) {
+        while (accounts_.find(account_id) != accounts_.end() && !accounts_[account_id].merged_into_.empty()) {
+            account_id = accounts_[account_id].merged_into_;
+        }
+        return account_id;
+    }
+
+    void process_events(int cur_ts) {
+        if (event_q_.empty()) {
+            return;
+        }
+
+        vector<ScheduledEvent> temp;
+        for (ScheduledEvent& event : event_q_) {
+            if (event.cancelled_) {
+                continue;
+            }
+
+            if (event.executed_at_ <= cur_ts) {
+                string acc_id = get_active_id(event.account_id_);
+                if (accounts_.find(acc_id) == accounts_.end()) {
+                    continue;
+                }
+
+                Account& cur_acc = accounts_[acc_id];
+                if (event.type_ == ScheduledEvent::PAYMENT) {
+                    if (cur_acc.balance_ <= event.amount_) {
+                        continue;
+                    }
+
+                    cur_acc.balance_ -= event.amount_;
+                    cur_acc.total_send_ += event.amount_;
+                    cur_acc.balance_at_[event.executed_at_] = cur_acc.balance_;
+                } else {
+                    cur_acc.balance_ += event.amount_;
+                    cur_acc.total_receive_ += event.amount_;
+                    cur_acc.balance_at_[event.executed_at_] = cur_acc.balance_;
+                }
+            } else {
+                temp.push_back(event);
+            }
+        }
+
+        event_q_ = temp;
     }
 };

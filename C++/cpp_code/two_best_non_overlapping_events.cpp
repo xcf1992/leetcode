@@ -60,13 +60,12 @@ using namespace std;
 class Solution {
 public:
     int maxTwoEvents(vector<vector<int>>& events) {
-        sort(events.begin(), events.end(), [](const vector<int>& a, const vector<int>& b) {
-            return a[0] < b[0] || (a[0] == b[0] && a[1] < b[1]);
-        });
+        sort(events.begin(), events.end(),
+             [](const vector<int>& a, const vector<int>& b) { return a[0] < b[0] || (a[0] == b[0] && a[1] < b[1]); });
 
         int rst = 0;
         int max_val = 0;
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq; // {end_time, value}
         for (const vector<int>& event : events) {
             int start = event[0];
             int end = event[1];
@@ -76,7 +75,7 @@ public:
                 pq.pop();
             }
 
-            rst = max(rst, max_val+cur_val);
+            rst = max(rst, max_val + cur_val);
             pq.push({end, cur_val});
         }
         return rst;
