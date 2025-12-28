@@ -86,3 +86,30 @@ public:
         return head;
     }
 };
+
+class Solution {
+public:
+    ListNode* sortLinkedList(ListNode* head) {
+        if (head == nullptr || head->next == nullptr) {
+            return head;
+        }
+
+        ListNode* dummy = new ListNode(-1);
+        dummy->next = head;
+        ListNode* prev = head;
+        ListNode* cur = head->next;
+        while (cur != nullptr) {
+            if (cur -> val >= 0) {
+                cur = cur -> next;
+                prev = prev -> next;
+                continue;
+            }
+
+            prev->next = cur->next;
+            cur->next = dummy->next;
+            dummy->next = cur;
+            cur = prev->next;
+        }
+        return dummy->next;
+    }
+};
