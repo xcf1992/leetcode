@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/all-oone-data-structure/description/
 432. All O`one Data Structure
 
 Implement a data structure supporting the following operations:

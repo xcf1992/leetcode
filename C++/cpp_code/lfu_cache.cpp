@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/lfu-cache
 460. LFU Cache
 Design and implement a data structure for Least Frequently Used (LFU) cache.
 It should support the following operations: get and put.
@@ -88,7 +89,7 @@ public:
             next_node->prev_ = prev_node;
         }
         // if there is only one node of the min_freq list
-        if (min_freq_ == cur->freq_ and freq_to_node_[min_freq_]->next_ == freq_to_node_[min_freq_]) {
+        if (min_freq_ == cur->freq_ && freq_to_node_[min_freq_]->next_ == freq_to_node_[min_freq_]) {
             freq_to_node_.erase(min_freq_);
             min_freq_ += 1;
         }
@@ -142,8 +143,8 @@ public:
 };
 
 /*
- * Your LFUCache object will be instantiated and called as such:
- * LFUCache* obj = new LFUCache(capacity);
- * int param_1 = obj->get(key);
- * obj->put(key,value);
- */
+* Your LFUCache object will be instantiated and called as such:
+* LFUCache* obj = new LFUCache(capacity);
+* int param_1 = obj->get(key);
+* obj->put(key,value);
+*/
