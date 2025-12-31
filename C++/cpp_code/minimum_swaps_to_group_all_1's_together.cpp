@@ -48,25 +48,25 @@ using namespace std;
 class Solution {
 public:
     int minSwaps(vector<int>& data) {
-        int count = 0;
+        int total_one_cnt = 0;
         for (int d : data) {
-            count += d;
+            total_one_cnt += d;
         }
-        if (count <= 1) {
+        if (total_one_cnt <= 1) {
             return 0;
         }
 
-        int cur = 0;
-        for (int i = 0; i < count; ++i) {
-            cur += data[i];
+        int cur_one_cnt = 0;
+        for (int i = 0; i < total_one_cnt; ++i) {
+            cur_one_cnt += data[i];
         }
 
-        int result = count - cur;
-        for (int i = count; i < data.size(); ++i) {
-            cur -= data[i - count] == 1 ? 1 : 0;
-            cur += data[i] == 1 ? 1 : 0;
-            result = min(result, count - cur);
+        int rst = total_one_cnt - cur_one_cnt;
+        for (int i = total_one_cnt; i < data.size(); ++i) {
+            cur_one_cnt -= data[i - total_one_cnt];
+            cur_one_cnt += data[i];
+            rst = min(rst, total_one_cnt - cur_one_cnt);
         }
-        return result;
+        return rst;
     }
 };
