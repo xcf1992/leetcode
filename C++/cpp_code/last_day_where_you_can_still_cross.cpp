@@ -67,13 +67,13 @@ public:
         int left = 1;
         int right = cells.size();
         int result = 0;
-        while (left <= right) {
+        while (left < right) {
             int mid = left + (right - left) / 2;
             if (can_cross(cells, row, col, mid)) {
                 result = mid;
                 left = mid + 1;
             } else {
-                right = mid - 1;
+                right = mid;
             }
         }
         return result;
