@@ -76,8 +76,10 @@ public:
         dp[0][0] = 0;
         dp[0][1] = expressCost;
         for (int i = 1; i < n; ++i) {
-            dp[i][0] = min(dp[i - 1][1] + regular[i - 1], min(dp[i - 1][0] + regular[i - 1], dp[i - 1][1] + express[i - 1]));
-            dp[i][1] = min(dp[i - 1][1] + express[i - 1], min(dp[i - 1][0] + regular[i - 1] + expressCost, dp[i - 1][0] + express[i - 1] + expressCost));
+            dp[i][0] = min(dp[i - 1][1] + regular[i - 1],
+                           min(dp[i - 1][0] + regular[i - 1], dp[i - 1][1] + express[i - 1]));
+            dp[i][1] = min(dp[i - 1][1] + express[i - 1], min(dp[i - 1][0] + regular[i - 1] + expressCost,
+                                                              dp[i - 1][0] + express[i - 1] + expressCost));
             min_cost.push_back(min(dp[i][0], dp[i][1]));
         }
         return min_cost;
