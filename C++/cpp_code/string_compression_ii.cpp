@@ -50,6 +50,74 @@ s contains only lowercase English letters.
 #include <climits>
 #include <map>
 using namespace std;
+
+/*
+Approaches
+(Also explained in the code)
+
+Initialization:
+
+n is the length of the string s.
+dp is a 2D vector representing the minimum length for substrings with at most 'k' deletions.
+dp[0][0] is initialized to 0 representing the base case of having no characters and deletions.
+Dynamic Programming:
+
+The nested loops iterate through the string s and the maximum number of deletions allowed (k).
+For each character s[i], it calculates the count of the same characters in the range [i, l] and the number of deletions.
+The dp array is updated based on the conditions considering the characters and deletions.
+Return:
+
+Finally, the function returns dp[n][k], representing the minimum length for s with at most k deletions.
+Complexity
+Time complexity:
+O(n
+2
+ ∗k)
+
+Space complexity:
+O(n∗k)
+*/
+
+class Solution {
+public:
+    int getLengthOfOptimalCompression(string s, int k) {
+        int n = s.length();
+        // Initializing a 2D vector 'dp' of size 110x110 with value 9999
+        // Initializing the base case where no characters and deletions exist
+        vector<vector<int>> dp(110, vector<int>(110, 9999));
+        dp[0][0] = 0;
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j <= k; j++) {
+                int cnt = 0, del = 0;
+                for (int l = i; l >= 1; l--) {
+                    // Count the frequency of characters from 'i' to 'l'
+                    if (s[l - 1] == s[i - 1])
+                        cnt++;
+                    else
+                        del++;
+
+                    // Check if the remaining allowed deletions are valid (j - del >= 0)
+                    if (j - del >= 0) {
+                        // Update the dp array based on the conditions
+                        dp[i][j] = min(dp[i][j], dp[l - 1][j - del] + 1 +
+                                                         (cnt >= 100  ? 3
+                                                          : cnt >= 10 ? 2
+                                                          : cnt >= 2  ? 1
+                                                                      : 0));
+                    }
+                }
+
+                // If there are remaining allowed deletions (j > 0), consider the case without deleting current
+                // character
+                if (j > 0)
+                    dp[i][j] = min(dp[i][j], dp[i - 1][j - 1]);
+            }
+        }
+        return dp[n][k];  // Return the minimum length for 's' with at most 'k' deletions
+    }
+};
+
 /*
 We say a group of the chars that coding as char+num in the final result as a "group". Each group covers some subarray in
 the origin input, some chars in this group are removed, and the remained chars build the "group". For example, we remove
