@@ -42,10 +42,10 @@ class Solution {
 public:
     int sumFourDivisors(vector<int>& nums) {
         int sum = 0;
-        for (int n : nums) {
+        for (int cur : nums) {
             int last_d = 0;
-            for (int d = 2; d * d <= n; ++d) {
-                if (n % d == 0) {
+            for (int d = 2; d * d <= cur; ++d) {
+                if (cur % d == 0) {
                     if (last_d == 0)
                         last_d = d;
                     else {
@@ -54,8 +54,8 @@ public:
                     }
                 }
             }
-            if (last_d > 0 && last_d != n / last_d) {
-                sum += 1 + n + last_d + n / last_d;
+            if (last_d > 0 && last_d != cur / last_d) {
+                sum += 1 + cur + last_d + cur / last_d;
             }
         }
         return sum;

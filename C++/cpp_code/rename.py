@@ -9,7 +9,8 @@ def rename_files():
         if not os.path.isfile(filename):
             continue
 
-        new_name = filename.replace("-", "_")
+        # Apply transformations
+        new_name = filename.replace("-", "_").lower()
 
         # Only rename if there is a change
         if new_name != filename:
