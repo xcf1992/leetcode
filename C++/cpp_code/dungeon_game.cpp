@@ -1,33 +1,45 @@
 /*
+https://leetcode.com/problems/dungeon-game/description/
 174. Dungeon Game
 
-The demons had captured the princess (P) and imprisoned her in the bottom-right corner of a dungeon.
-The dungeon consists of M x N rooms laid out in a 2D grid.
-Our valiant knight (K) was initially positioned in the top-left room
-and must fight his way through the dungeon to rescue the princess.
+The demons had captured the princess and imprisoned her in the bottom-right corner of a dungeon. The dungeon consists of
+m x n rooms laid out in a 2D grid. Our valiant knight was initially positioned in the top-left room and must fight his
+way through dungeon to rescue the princess.
 
-The knight has an initial health point represented by a positive integer.
-If at any point his health point drops to 0 or below, he dies immediately.
+The knight has an initial health point represented by a positive integer. If at any point his health point drops to 0 or
+below, he dies immediately.
 
-Some of the rooms are guarded by demons,
-so the knight loses health (negative integers) upon entering these rooms;
-other rooms are either empty (0's) or contain magic orbs that increase the knight's health (positive integers).
+Some of the rooms are guarded by demons (represented by negative integers), so the knight loses health upon entering
+these rooms; other rooms are either empty (represented as 0) or contain magic orbs that increase the knight's health
+(represented by positive integers).
 
-In order to reach the princess as quickly as possible,
-the knight decides to move only rightward or downward in each step.
+To reach the princess as quickly as possible, the knight decides to move only rightward or downward in each step.
 
-Write a function to determine the knight's minimum initial health so that he is able to rescue the princess.
-For example, given the dungeon below, the initial health of the knight must be at least 7
-if he follows the optimal path RIGHT-> RIGHT -> DOWN -> DOWN.
--2 (K)	-3	3
--5	-10	1
-10	30	-5 (P)
+Return the knight's minimum initial health so that he can rescue the princess.
 
-Note:
-The knight's health has no upper bound.
-Any room can contain threats or power-ups,
-even the first room the knight enters and
-the bottom-right room where the princess is imprisoned.
+Note that any room can contain threats or power-ups, even the first room the knight enters and the bottom-right room
+where the princess is imprisoned.
+
+
+
+Example 1:
+
+
+Input: dungeon = [[-2,-3,3],[-5,-10,1],[10,30,-5]]
+Output: 7
+Explanation: The initial health of the knight must be at least 7 if he follows the optimal path: RIGHT-> RIGHT -> DOWN
+-> DOWN. Example 2:
+
+Input: dungeon = [[0]]
+Output: 1
+
+
+Constraints:
+
+m == dungeon.length
+n == dungeon[i].length
+1 <= m, n <= 200
+-1000 <= dungeon[i][j] <= 1000
 */
 #include <iostream>
 #include <string>
@@ -36,14 +48,12 @@ the bottom-right room where the princess is imprisoned.
 #include <algorithm>
 using namespace std;
 
-/*
-hp[i][j] represents the min hp needed at position (i, j)
-*/
 class Solution {
 public:
     int calculateMinimumHP(vector<vector<int>>& dungeon) {
         int m = dungeon.size();
         int n = dungeon[0].size();
+        // hp[i][j] represents the min hp needed at position (i, j)
         vector<vector<int>> hp(m, vector<int>(n, INT_MAX));
 
         if (dungeon[m - 1][n - 1] >= 0) {
@@ -52,16 +62,16 @@ public:
             hp[m - 1][n - 1] = 1 - dungeon[m - 1][n - 1];
         }
 
-        for (int j = n - 2; j >= 0; --j) {
-            hp[m - 1][j] = max(hp[m - 1][j + 1] - dungeon[m - 1][j], 1);
+        for (int col = n - 2; col >= 0; --col) {
+            hp[m - 1][col] = max(hp[m - 1][col + 1] - dungeon[m - 1][col], 1);
         }
-        for (int i = m - 2; i >= 0; --i) {
-            hp[i][n - 1] = max(hp[i + 1][n - 1] - dungeon[i][n - 1], 1);
+        for (int row = m - 2; row >= 0; --row) {
+            hp[row][n - 1] = max(hp[row + 1][n - 1] - dungeon[row][n - 1], 1);
         }
-        for (int i = m - 2; i >= 0; i--) {
-            for (int j = n - 2; j >= 0; j--) {
-                int need = min(hp[i + 1][j], hp[i][j + 1]) - dungeon[i][j];
-                hp[i][j] = need <= 0 ? 1 : need;
+        for (int row = m - 2; row >= 0; row--) {
+            for (int col = n - 2; col >= 0; col--) {
+                int need = min(hp[row + 1][col], hp[row][col + 1]) - dungeon[row][col];
+                hp[row][col] = need <= 0 ? 1 : need;
             }
         }
         return hp[0][0];
