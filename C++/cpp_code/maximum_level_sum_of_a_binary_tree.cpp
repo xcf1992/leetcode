@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/description/
 1161. Maximum Level Sum of a Binary Tree
 Given the root of a binary tree, the level of its root is 1, the level of its children is 2, and so on.
 
@@ -36,6 +37,18 @@ The number of nodes in the given tree is between 1 and 10^4.
 
 using namespace std;
 
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode() : val(0), left(nullptr), right(nullptr) {
+    }
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {
+    }
+    TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {
+    }
+};
+
 class Solution {
 public:
     int maxLevelSum(TreeNode* root) {
@@ -43,7 +56,7 @@ public:
         bfs.push(root);
         int sum = INT_MIN;
         int level = 1;
-        int result = -1;
+        int rst = -1;
         while (!bfs.empty()) {
             int curSize = bfs.size();
             int curSum = 0;
@@ -61,10 +74,10 @@ public:
             }
             if (curSum > sum) {
                 sum = curSum;
-                result = level;
+                rst = level;
             }
             level += 1;
         }
-        return result;
+        return rst;
     }
 };
