@@ -46,6 +46,18 @@ Each node's value is between [1, 10000].
 
 using namespace std;
 
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode() : val(0), left(nullptr), right(nullptr) {
+    }
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {
+    }
+    TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {
+    }
+};
+
 class Solution {
 private:
     int MOD = 1e9 + 7;
@@ -60,17 +72,17 @@ private:
         getSum(sum, root->right);
     }
 
-    int getMaxProduct(long sum, long& minGap, TreeNode* root) {
+    int getMaxProduct(long sum, long& min_gap, TreeNode* root) {
         if (root == nullptr) {
             return 0;
         }
 
-        int lSum = getMaxProduct(sum, minGap, root->left);
-        int rSum = getMaxProduct(sum, minGap, root->right);
+        int lSum = getMaxProduct(sum, min_gap, root->left);
+        int rSum = getMaxProduct(sum, min_gap, root->right);
         int curSum = root->val + lSum + rSum;
         int gap = abs((sum - curSum) - curSum);
-        if (minGap > gap) {
-            minGap = gap;
+        if (min_gap > gap) {
+            min_gap = gap;
         }
         return curSum;
     }
@@ -80,8 +92,8 @@ public:
         long sum = 0;
         getSum(sum, root);
 
-        long gap = sum;
-        getMaxProduct(sum, gap, root);
-        return ((sum + gap) * (sum - gap) / 4) % MOD;
+        long min_gap = sum;
+        getMaxProduct(sum, min_gap, root);
+        return ((sum + min_gap) * (sum - min_gap) / 4) % MOD;
     }
 };
