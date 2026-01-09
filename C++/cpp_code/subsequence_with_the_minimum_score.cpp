@@ -77,7 +77,7 @@ public:
             }
         }
 
-        // we dp[k + 1] contains suffix of t as subsequency of s
+        // we dp[k + 1] contains suffix of t as subsequence of s
         // at least we can remove t[0....k] to make suffix of t to be subsequence of s
         int rst = k + 1;
         for (int s_idx = 0, t_idx = 0; s_idx < s_len && t_idx < t_len && rst > 0; ++s_idx) {

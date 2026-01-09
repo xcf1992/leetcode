@@ -50,16 +50,16 @@ names only contain lower-case letters, and same names won't exist in the same di
 using namespace std;
 
 struct TrieNode {
-    bool isFile = false;
-    string content = "";
-    map<string, TrieNode*> children;
+    bool is_file_ = false;
+    string content_ = "";
+    map<string, TrieNode*> children_;
 };
 
 class FileSystem {
 private:
     TrieNode* root;
 
-    vector<string> splitString(string path) {
+    vector<string> split_string(string path) {
         path = path.substr(1);
         vector<string> result;
         for (size_t pos = 0; (pos = path.find('/')) != string::npos; path = path.substr(pos + 1)) {
@@ -77,55 +77,55 @@ public:
     }
 
     vector<string> ls(string path) {
-        vector<string> paths = splitString(path);
+        vector<string> paths = split_string(path);
 
         TrieNode* cur = root;
         for (string& p : paths) {
-            cur = cur->children[p];
+            cur = cur->children_[p];
         }
 
-        if (cur->isFile) {
+        if (cur->is_file_) {
             return {paths.back()};
         }
 
         vector<string> result;
-        for (auto& p : cur->children) {
+        for (auto& p : cur->children_) {
             result.push_back(p.first);
         }
         return result;
     }
 
     void mkdir(string path) {
-        vector<string> paths = splitString(path);
+        vector<string> paths = split_string(path);
         TrieNode* cur = root;
         for (string& p : paths) {
-            if (cur->children[p] == nullptr) {
-                cur->children[p] = new TrieNode();
+            if (cur->children_[p] == nullptr) {
+                cur->children_[p] = new TrieNode();
             }
-            cur = cur->children[p];
+            cur = cur->children_[p];
         }
     }
 
     void addContentToFile(string filePath, string content) {
-        vector<string> paths = splitString(filePath);
+        vector<string> paths = split_string(filePath);
         TrieNode* cur = root;
         for (string& p : paths) {
-            if (cur->children[p] == nullptr) {
-                cur->children[p] = new TrieNode();
+            if (cur->children_[p] == nullptr) {
+                cur->children_[p] = new TrieNode();
             }
-            cur = cur->children[p];
+            cur = cur->children_[p];
         }
-        cur->isFile = true;
-        cur->content += content;
+        cur->is_file_ = true;
+        cur->content_ += content;
     }
 
     string readContentFromFile(string filePath) {
-        vector<string> paths = splitString(filePath);
+        vector<string> paths = split_string(filePath);
         TrieNode* cur = root;
         for (string& p : paths) {
-            cur = cur->children[p];
+            cur = cur->children_[p];
         }
-        return cur->content;
+        return cur->content_;
     }
 };
 

@@ -1,6 +1,6 @@
 /*
-317. Shortest Distance from All Buildings
 https://leetcode.com/problems/shortest-distance-from-all-buildings/
+317. Shortest Distance from All Buildings
 
 You want to build a house on an empty land which reaches all buildings in the shortest amount of distance.
 You can only move up, down, left and right.

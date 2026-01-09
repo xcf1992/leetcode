@@ -1,6 +1,6 @@
 /*
-329. Longest Increasing Path in a Matrix
 https://leetcode.com/problems/longest-increasing-path-in-a-matrix/
+329. Longest Increasing Path in a Matrix
 
 Given an integer matrix, find the length of the longest increasing path.
 From each cell, you can either move to four directions: left, right, up or down.
@@ -41,8 +41,8 @@ using namespace std;
 
 class Solution {
 private:
-    int m = 0;
-    int n = 0;
+    int m_ = 0;
+    int n_ = 0;
 
     int dfs(vector<vector<int>>& matrix, vector<vector<int>>& memo, int row, int col) {
         if (memo[row][col] != 0) {
@@ -54,7 +54,7 @@ private:
         for (int i = 0; i < 4; ++i) {
             int nr = row + diff[i];
             int nc = col + diff[i + 1];
-            if (nr < 0 or nc < 0 or nr >= m or nc >= n or matrix[nr][nc] <= matrix[row][col]) {
+            if (nr < 0 or nc < 0 or nr >= m_ or nc >= n_ or matrix[nr][nc] <= matrix[row][col]) {
                 continue;
             }
             memo[row][col] = max(memo[row][col], 1 + dfs(matrix, memo, nr, nc));
@@ -64,13 +64,13 @@ private:
 
 public:
     int longestIncreasingPath(vector<vector<int>>& matrix) {
-        m = matrix.size();
-        n = matrix[0].size();
+        m_ = matrix.size();
+        n_ = matrix[0].size();
 
-        vector<vector<int>> memo(m, vector<int>(n, 0));
+        vector<vector<int>> memo(m_, vector<int>(n_, 0));
         int result = 1;
-        for (int i = 0; i < m; ++i) {
-            for (int j = 0; j < n; ++j) {
+        for (int i = 0; i < m_; ++i) {
+            for (int j = 0; j < n_; ++j) {
                 result = max(result, dfs(matrix, memo, i, j));
             }
         }
