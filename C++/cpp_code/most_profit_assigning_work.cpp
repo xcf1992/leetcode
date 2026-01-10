@@ -55,15 +55,15 @@ public:
         sort(worker.begin(), worker.end());
 
         int i = 0;
-        int maxProfit = 0;
-        int result = 0;
+        int max_profit = 0;
+        int rst = 0;
         for (int ability : worker) {
             while (i < jobs.size() and jobs[i].first <= ability) {
-                maxProfit = max(maxProfit, jobs[i].second);
+                max_profit = max(max_profit, jobs[i].second);
                 i++;
             }
-            result += maxProfit;
+            rst += max_profit;
         }
-        return result;
+        return rst;
     }
 };
