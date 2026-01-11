@@ -1,6 +1,6 @@
 /*
-219. Contains Duplicate II
 https://leetcode.com/problems/contains-duplicate-ii/
+219. Contains Duplicate II
 
 Given an array of integers and an integer k,
 find out whether there are two distinct indices i and j in the array such that nums[i] = nums[j]
@@ -40,6 +40,23 @@ public:
                 return true;
             }
             duplicate[nums[i]] = i;
+        }
+        return false;
+    }
+};
+
+class Solution {
+public:
+    bool containsNearbyDuplicate(vector<int>& nums, int k) {
+        unordered_set<int> filter;
+        for (int i = 0; i < nums.size(); i++) {
+            if (filter.find(nums[i]) != filter.end() ) {
+                return true;
+            }
+            filter.insert(nums[i]);
+            if (filter.size() > k) {
+                filter.erase(nums[i - k]);
+            }
         }
         return false;
     }

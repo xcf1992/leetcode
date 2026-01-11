@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/word-pattern
 290. Word Pattern
 
 Given a pattern and a string str, find if str follows the same pattern.
@@ -38,7 +39,7 @@ using namespace std;
 
 class Solution {
 private:
-    vector<string> getWords(string str) {
+    vector<string> get_words(string str) {
         vector<string> words;
         for (int pos = 0; (pos = str.find(' ')) != string::npos; str = str.substr(pos + 1)) {
             words.push_back(str.substr(0, pos));
@@ -51,22 +52,25 @@ private:
 
 public:
     bool wordPattern(string pattern, string str) {
-        vector<string> words = getWords(str);
-        if (pattern.length() != words.size()) {
+        vector<string> words = get_words(str);
+        if (pattern.size() != words.size()) {
             return false;
         }
 
-        unordered_map<char, string> pat2Str;
-        unordered_map<string, char> str2Pat;
+        unordered_map<char, string> pat_to_str;
+        unordered_map<string, char> str_to_pat;
         for (int i = 0; i < pattern.size(); i++) {
-            if (pat2Str.find(pattern[i]) == pat2Str.end()) {
-                if (str2Pat.find(words[i]) != str2Pat.end()) {
+            if (pat_to_str.find(pattern[i]) == pat_to_str.end()) {
+                if (str_to_pat.find(words[i]) != str_to_pat.end()) {
                     return false;
                 }
-                pat2Str[pattern[i]] = words[i];
-                str2Pat[words[i]] = pattern[i];
+
+                pat_to_str[pattern[i]] = words[i];
+                str_to_pat[words[i]] = pattern[i];
+                continue;
             }
-            if (pat2Str[pattern[i]] != words[i]) {
+
+            if (pat_to_str[pattern[i]] != words[i]) {
                 return false;
             }
         }

@@ -1,6 +1,6 @@
 /*
-291. Word Pattern II
 https://leetcode.com/problems/word-pattern-ii/
+291. Word Pattern II
 
 Given a pattern and a string str,
 find if str follows the same pattern.
@@ -36,21 +36,22 @@ using namespace std;
 
 class Solution {
 private:
-    unordered_map<char, string> pat2Str;
-    unordered_map<string, char> str2Pat;
+    unordered_map<char, string> pat_to_str_;
+    unordered_map<string, char> str_to_pat_;
 
     bool match(string& pattern, int i, string& str, int j) {
         int m = pattern.size();
         int n = str.size();
-        if (i == m and j == n) {
+        if (i == m && j == n) {
             return true;
         }
+
         if (i == m or j == n) {
             return false;
         }
 
-        if (pat2Str.find(pattern[i]) != pat2Str.end()) {
-            string word = pat2Str[pattern[i]];
+        if (pat_to_str_.find(pattern[i]) != pat_to_str_.end()) {
+            string word = pat_to_str_[pattern[i]];
             if (word == str.substr(j, word.size())) {
                 return match(pattern, i + 1, str, j + word.size());
             }
@@ -59,17 +60,17 @@ private:
 
         for (int len = 1; j + len - 1 < n; len++) {
             string word = str.substr(j, len);
-            if (str2Pat.find(word) != str2Pat.end()) {
+            if (str_to_pat_.find(word) != str_to_pat_.end()) {
                 continue;
             }
 
-            pat2Str[pattern[i]] = word;
-            str2Pat[word] = pattern[i];
+            pat_to_str_[pattern[i]] = word;
+            str_to_pat_[word] = pattern[i];
             if (match(pattern, i + 1, str, j + len)) {
                 return true;
             }
-            pat2Str.erase(pattern[i]);
-            str2Pat.erase(word);
+            pat_to_str_.erase(pattern[i]);
+            str_to_pat_.erase(word);
         }
         return false;
     }
