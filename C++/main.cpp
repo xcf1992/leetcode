@@ -15,43 +15,60 @@
 using namespace std;
 
 class Solution {
+private:
+    void bfs(int n, int start, vector<int>& furthest, vector<vector<int>>& connect) {
+        vector<bool> visited(n, false);
+        visited[start] = true;
+
+        queue<int> bfs;
+        bfs.push(start);
+
+        while (!bfs.empty()) {
+            int cur_size = bfs.size();
+            furthest.clear();
+            for (int i = 0; i < cur_size; i++) {
+                int cur = bfs.front();
+                bfs.pop();
+
+                furthest.push_back(cur);
+                for (int next : connect[cur]) {
+                    if (visited[next]) {
+                        continue;
+                    }
+
+                    visited[next] = true;
+                    bfs.push(next);
+                }
+            }
+        }
+    }
 public:
-    long long dividePlayers(vector<int>& skill) {
-        int sum = 0;
-        multiset<int> skill_vals;
-        for (int s : skill) {
-            sum += s;
-            skill_vals.insert(s);
+    string findSpecialNodes(int n, vector<vector<int>>& edges) {
+        vector<vector<int>> connect(n, vector<int>());
+        for (vector<int>& e : edges) {
+            connect[e[0]].push_back(e[1]);
+            connect[e[1]].push_back(e[0]);
         }
 
-        int n = skill.size();
-        int group_cnt = n / 2;
-        if (sum % group_cnt != 0) {
-            return -1;
-        }
+        vector<int> furthest;
+        bfs(n, 0, furthest, connect);
 
-        long long rst = 0;
-        int target = sum / group_cnt;
-        for (int s : skill) {
-            if (skill_vals.find(s) == skill_vals.end()) {
-                continue;
-            }
+        vector<int> endpoints;
+        bfs(n, furthest[0], endpoints, connect);
+        endpoints.push_back(furthest[0]);
 
-            skill_vals.erase(s);
-            if (skill_vals.find(target - s) == skill_vals.end()) {
-                return -1;
-            }
-
-            rst += s * (target - s);
-            skill_vals.erase(target - s);
+        string rst(n, '0');
+        for (int idx : endpoints) {
+            rst[idx] = '1';
         }
         return rst;
     }
 };
 
 int main() {
-    vector<int> skill({3,2,5,1,3,4});
+    vector<vector<int>> edges({{0,1}, {1,2}, {2,3}, {3,4}, {3,5}, {1,6}});
+
     Solution s;
-    s.dividePlayers(skill);
+    s.findSpecialNodes(7, edges);
     return 0;
 }
