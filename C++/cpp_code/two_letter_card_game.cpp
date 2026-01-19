@@ -256,8 +256,7 @@ public:
             second_cnt = second_cnt % 2;
         }
 
-        int used = 0;
-        used += min(first_cnt + second_cnt, same_card_cnt);
+        int used = min(first_cnt + second_cnt, same_card_cnt);
         same_card_cnt -= used;
         rst = min(rst * 2, rst + same_card_cnt / 2);
         rst += used;
