@@ -47,9 +47,9 @@ struct CacheNode {
 class LRUCache {
 private:
     unordered_map<int, CacheNode*> memo;
-    int cap;
-    int size;
-    CacheNode* head;
+    int cap_;
+    int cur_size_;
+    CacheNode* list_head_;
 
 public:
     LRUCache(int capacity) {
@@ -57,11 +57,11 @@ public:
             return;
         }
 
-        cap = capacity;
-        size = 0;
-        head = new CacheNode(-1, -1);
-        head->next = head;
-        head->pre = head;
+        cap_ = capacity;
+        cur_size_ = 0;
+        list_head_ = new CacheNode(-1, -1);
+        list_head_->next = list_head_;
+        list_head_->pre = list_head_;
     }
 
     int get(int key) {
@@ -73,15 +73,15 @@ public:
         cur->pre->next = cur->next;
         cur->next->pre = cur->pre;
 
-        cur->next = head->next;
-        head->next->pre = cur;
-        cur->pre = head;
-        head->next = cur;
+        cur->next = list_head_->next;
+        list_head_->next->pre = cur;
+        cur->pre = list_head_;
+        list_head_->next = cur;
         return cur->val;
     }
 
     void put(int key, int value) {
-        if (cap < 1) {
+        if (cap_ < 1) {
             return;
         }
 
@@ -92,19 +92,19 @@ public:
             return;
         }
 
-        CacheNode* newNode = new CacheNode(key, value);
-        memo[key] = newNode;
-        size += 1;
+        CacheNode* new_node = new CacheNode(key, value);
+        memo[key] = new_node;
+        cur_size_ += 1;
 
-        newNode->next = head->next;
-        head->next->pre = newNode;
-        newNode->pre = head;
-        head->next = newNode;
-        if (size > cap) {
-            size -= 1;
-            CacheNode* removed = head->pre;
-            removed->pre->next = head;
-            head->pre = removed->pre;
+        new_node->next = list_head_->next;
+        list_head_->next->pre = new_node;
+        new_node->pre = list_head_;
+        list_head_->next = new_node;
+        if (cur_size_ > cap_) {
+            cur_size_ -= 1;
+            CacheNode* removed = list_head_->pre;
+            removed->pre->next = list_head_;
+            list_head_->pre = removed->pre;
             memo.erase(removed->key);
             delete removed;
         }

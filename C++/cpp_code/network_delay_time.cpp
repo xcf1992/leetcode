@@ -39,6 +39,48 @@ public:
         }
 
         vector<int> delay(N + 1, INT_MAX);
+        delay[K] = 0;
+
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+        pq.push({K, 0});
+
+        while (!pq.empty()) {
+            int cur_node = pq.top().first;
+            int cur_time = pq.top().second;
+            pq.pop();
+
+            if (cur_time > delay[cur_node]) {
+                continue;
+            }
+
+            for (pair<int, int>& next : distance[cur_node]) {
+                if (delay[next.first] > cur_time + next.second) {
+                    delay[next.first] = cur_time + next.second;
+                    pq.push({next.first, cur_time + next.second});
+                }
+            }
+        }
+
+        int result = 0;
+        for (int i = 1; i < delay.size(); i++) {
+            if (delay[i] == INT_MAX) {
+                return -1;
+            }
+            result = max(result, delay[i]);
+        }
+        return result;
+    }
+};
+
+class Solution {
+public:
+    int networkDelayTime(vector<vector<int>>& times, int N, int K) {
+        vector<vector<pair<int, int>>> distance(N + 1, vector<pair<int, int>>());
+        for (vector<int>& time : times) {
+            distance[time[0]].push_back({time[1], time[2]});
+        }
+
+        vector<int> delay(N + 1, INT_MAX);
         queue<pair<int, int>> nodes;
         nodes.push(make_pair(K, 0));
         while (!nodes.empty()) {

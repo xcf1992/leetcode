@@ -57,37 +57,85 @@ public:
     int minimumEffortPath(vector<vector<int>>& heights) {
         int m = heights.size();
         int n = heights[0].size();
+
         vector<vector<int>> efforts(m, vector<int>(n, INT_MAX));
+        efforts[0][0] = 0;
 
         int dirs[5] = {-1, 0, 1, 0, -1};
         priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-        pq.push({0, 0}); // {pos, effort}
+        pq.push({0, 0});  // {pos, effort}
+
         while (!pq.empty()) {
             int row = pq.top().first / n;
             int col = pq.top().first % n;
             int effort = pq.top().second;
             pq.pop();
 
+            if (effort > efforts[row][col]) {
+                continue;
+            }
+
             if (row == m - 1 && col == n - 1) {
                 return effort;
             }
 
-            if (effort >= efforts[row][col]) {
-                continue;
-            }
-
-            efforts[row][col] = effort;
             for (int i = 0; i < 4; ++i) {
                 int next_row = row + dirs[i];
                 int next_col = col + dirs[i + 1];
-                if (next_row >= m or next_col >= n or next_row < 0 or next_col < 0) {
+                if (next_row >= m || next_col >= n || next_row < 0 || next_col < 0) {
                     continue;
                 }
 
                 int next_effort = max(effort, abs(heights[row][col] - heights[next_row][next_col]));
-                pq.push({next_row * n + next_col, next_effort});
+                if (next_effort < efforts[next_row][next_col]) {
+                    efforts[next_row][next_col] = next_effort;
+                    pq.push({next_row * n + next_col, next_effort});
+                }
             }
         }
         return -1;
+    }
+};
+
+class Solution {
+public:
+    int minimumEffortPath(vector<vector<int>>& heights) {
+        int n = heights.size();
+        int m = heights[0].size();
+
+        vector<vector<int>> dist(n, vector<int>(m, 1e9));
+        dist[0][0] = 0;
+
+        priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<pair<int, pair<int, int>>>>
+                pq;
+        pq.push({0, {0, 0}});
+
+        int dr[4] = {-1, 0, 1, 0};
+        int dc[4] = {0, 1, 0, -1};
+        while (!pq.empty()) {
+            int diff = pq.top().first;
+            int r = pq.top().second.first;
+            int c = pq.top().second.second;
+            pq.pop();
+
+            if (r == n - 1 && c == m - 1) {
+                return diff;
+            }
+
+            for (int i = 0; i < 4; i++) {
+                int nrow = r + dr[i];
+                int ncol = c + dc[i];
+
+                if (nrow >= 0 && nrow < n && ncol >= 0 && ncol < m) {
+                    int newEffort = max(abs(heights[r][c] - heights[nrow][ncol]), diff);
+                    if (newEffort < dist[nrow][ncol]) {
+                        dist[nrow][ncol] = newEffort;
+                        pq.push({newEffort, {nrow, ncol}});
+                    }
+                }
+            }
+        }
+
+        return 0;
     }
 };

@@ -67,7 +67,7 @@ struct myComp {
     }
 };
 
-class Solution2 {
+class Solution {
     // dijkstra
 public:
     int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int K) {
@@ -109,15 +109,15 @@ public:
             prices[flight[0]][flight[1]] = flight[2];
         }
 
+        vector<int> cheapest(n, INT_MAX);
+        cheapest[src] = 0;
+
         queue<vector<int>> bfs;
         for (int next = 0; next < n; ++next) {
             if (prices[src][next] != INT_MAX) {
                 bfs.push({0, next, prices[src][next]});
             }
         }
-
-        vector<int> cheapest(n, INT_MAX);
-        cheapest[src] = 0;
         while (!bfs.empty()) {
             int stops = bfs.front()[0];
             int city = bfs.front()[1];

@@ -71,7 +71,6 @@ private:
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> min_price_;
 public:
     StockPrice() {
-
     }
 
     void update(int timestamp, int price) {
@@ -91,7 +90,6 @@ public:
             if (time_to_price_.find(max_record_time) != time_to_price_.end() && time_to_price_[max_record_time] == max_record_price) {
                 return max_record_price;
             }
-
             max_price_.pop();
         }
         return -1;
@@ -104,7 +102,6 @@ public:
             if (time_to_price_.find(min_record_time) != time_to_price_.end() && time_to_price_[min_record_time] == min_record_price) {
                 return min_record_price;
             }
-
             min_price_.pop();
         }
         return -1;

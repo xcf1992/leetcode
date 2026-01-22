@@ -43,13 +43,13 @@ private:
     int n = 0;
 
     bool is_valid(int r, int c, vector<vector<int>>& grid) {
-        return r >= 0 and c >= 0 and r < n and c < n and grid[r][c] == 0;
+        return r >= 0 && c >= 0 && r < n && c < n && grid[r][c] == 0;
     }
 
 public:
     int shortestPathBinaryMatrix(vector<vector<int>>& grid) {
         n = grid.size();
-        if (grid[0][0] == 1 or grid[n - 1][n - 1] == 1) {
+        if (grid[0][0] == 1 || grid[n - 1][n - 1] == 1) {
             return -1;
         }
 
@@ -61,7 +61,7 @@ public:
             int c = bfs.front().second;
             bfs.pop();
 
-            if (r == n - 1 and c == n - 1) {
+            if (r == n - 1 && c == n - 1) {
                 return grid[r][c] + 1;
             }
 
