@@ -68,10 +68,13 @@ private:
 public:
     int swimInWater(vector<vector<int>>& grid) {
         int n = grid.size();
+
         priority_queue<vector<int>, vector<vector<int>>, myComp> pq;
         pq.push({0, 0, grid[0][0]});  // {row, col, height}
+
         vector<vector<int>> visited(n, vector<int>(n, 0));
         visited[0][0] = 1;
+
         int result = 0;
         while (!pq.empty()) {
             int row = pq.top()[0];
