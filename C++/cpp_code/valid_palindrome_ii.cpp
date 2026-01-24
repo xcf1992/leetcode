@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/valid-palindrome-ii/
 680. Valid Palindrome II
 
 Given a non-empty string s, you may delete at most one character.
@@ -45,7 +46,7 @@ private:
         }
 
         skip = true;
-        return check(s, skip, left + 1, right) or check(s, skip, left, right - 1);
+        return check(s, skip, left + 1, right) || check(s, skip, left, right - 1);
     }
 
 public:
