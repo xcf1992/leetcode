@@ -55,18 +55,20 @@ public:
         vector<vector<long>> dp(m, vector<long>(n, INT_MAX));
         int count = 0;
         for (int i = 0; i < m; ++i) {
-            for (int j = 0; j < n; ++j)
+            for (int j = 0; j < n; ++j) {
                 if (grid[i][j] == 1) {
                     dp[i][j] = 0;
                     count += 1;
                 }
+            }
         }
+
         if (count == 0 or count == m * n) {
             return -1;
         }
 
         for (int i = 0; i < m; ++i) {
-            for (int j = 0; j < n; ++j)
+            for (int j = 0; j < n; ++j) {
                 if (grid[i][j] == 0) {
                     if (i > 0) {
                         dp[i][j] = min(dp[i][j], dp[i - 1][j] + 1);
@@ -75,6 +77,7 @@ public:
                         dp[i][j] = min(dp[i][j], dp[i][j - 1] + 1);
                     }
                 }
+            }
         }
 
         for (int i = m - 1; i >= 0; --i) {
@@ -91,10 +94,11 @@ public:
 
         int result = 0;
         for (int i = 0; i < m; ++i) {
-            for (int j = 0; j < n; ++j)
+            for (int j = 0; j < n; ++j) {
                 if (grid[i][j] == 0 and dp[i][j] < INT_MAX) {
                     result = max(result, (int)dp[i][j]);
                 }
+            }
         }
         return result;
     }

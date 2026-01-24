@@ -73,22 +73,23 @@ public:
     vector<string> fullJustify(vector<string>& words, int maxWidth) {
         int n = words.size();
         vector<string> result;
-        int count = 0;
-        for (int i = 0; i < n; i += count) {
-            int len = 0;
-            count = 0;
-            while (i + count < n and len + words[i + count].size() + count <= maxWidth) {
-                len += words[i + count].size();
-                count += 1;
+        int word_cnt = 0;
+        for (int i = 0; i < n; i += word_cnt) {
+            int len_of_words = 0;
+            word_cnt = 0; // how many words we can use in current line
+            while (i + word_cnt < n && len_of_words + words[i + word_cnt].size() + word_cnt <= maxWidth) {
+                len_of_words += words[i + word_cnt].size();
+                word_cnt += 1;
             }
 
             string cur = words[i];
-            for (int j = 1; j < count; ++j) {
-                if (i + count >= n) {
-                    cur.push_back(' ');  // last line we only need to insert one space between each word
+            for (int j = 1; j < word_cnt; ++j) {
+                if (i + word_cnt >= n) {
+                    // last line we only need to insert one space between each word
+                    cur.push_back(' ');
                 } else {
-                    int spaceCount = (maxWidth - len) / (count - 1);
-                    if (j <= (maxWidth - len) % (count - 1)) {
+                    int spaceCount = (maxWidth - len_of_words) / (word_cnt - 1);
+                    if (j <= (maxWidth - len_of_words) % (word_cnt - 1)) {
                         spaceCount += 1;
                     }
                     cur += string(spaceCount, ' ');

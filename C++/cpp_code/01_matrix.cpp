@@ -71,9 +71,9 @@ public:
                 int col = bfs.front().second;
                 bfs.pop();
 
-                for (int i = 1; i < diff.size(); ++i) {
-                    int nr = row + diff[i];
-                    int nc = col + diff[i - 1];
+                for (int j = 1; j < diff.size(); ++j) {
+                    int nr = row + diff[j];
+                    int nc = col + diff[j - 1];
                     if (nr >= 0 and nc >= 0 and nr < m and nc < n and distance[nr][nc] == INT_MAX) {
                         distance[nr][nc] = curDis + 1;
                         bfs.push({nr, nc});

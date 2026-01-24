@@ -52,7 +52,7 @@ public:
         unordered_map<int, int> memo;
         for (auto it = x_to_points.begin(); it != x_to_points.end(); it++) {
             int x_val = it->first;
-            vector<int> y_points = it->second;
+            vector<int>& y_points = it->second;
             sort(y_points.begin(), y_points.end());
 
             for (int i = 0; i < y_points.size() - 1; i++) {

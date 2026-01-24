@@ -37,6 +37,36 @@ Constraints:
 #include <stack>
 #include <climits>
 using namespace std;
+
+class Solution {
+private:
+    unordered_map<string, int> memo;
+
+    int dfs(int x, int y) {
+        string key = to_string(x) + "_" + to_string(y);
+        if (memo.find(key) != memo.end()) {
+            return memo[key];
+        }
+
+        if (x + y == 0) {
+            return 0;
+        }
+
+        if (x + y == 2) {
+            return 2;
+        }
+
+        int rst = min(dfs(abs(x - 1), abs(y - 2)), dfs(abs(x - 2), abs(y - 1))) + 1;
+        memo[key] = rst;
+        return rst;
+    }
+
+public:
+    int minKnightMoves(int x, int y) {
+        return dfs(abs(x), abs(y));
+    }
+};
+
 /*
 While the O(1) math solution is impressive,
 it is unlikely that you will come up with such solution on a real interview unless you knew it beforehand.
@@ -102,36 +132,39 @@ public:
     }
 };
 
-class Solution1 {
+class Solution {
     // bfs
 public:
     int minKnightMoves(int x, int y) {
         vector<vector<int>> move({{-2, -1}, {-2, 1}, {2, -1}, {2, 1}, {1, 2}, {1, -2}, {-1, 2}, {-1, -2}});
-        unordered_map<int, unordered_map<int, int>> visited;
+
+        unordered_map<int, unordered_map<int, bool>> visited;
         visited[0][0] = true;
+
         queue<pair<int, int>> bfs;
         bfs.push({0, 0});
+
         int result = 0;
         while (!bfs.empty()) {
             int curSize = bfs.size();
             for (int i = 0; i < curSize; ++i) {
-                int curX = bfs.front().first;
-                int curY = bfs.front().second;
+                int cur_x = bfs.front().first;
+                int cur_y = bfs.front().second;
                 bfs.pop();
 
-                if (x == curX and y == curY) {
+                if (x == cur_x && y == cur_y) {
                     return result;
                 }
 
                 for (int j = 0; j < move.size(); ++j) {
-                    int nexX = curX + move[j][0];
-                    int nexY = curY + move[j][1];
+                    int next_x = cur_x + move[j][0];
+                    int next_y = cur_y + move[j][1];
 
                     // the nexX * x >= 0 and nexY * y >= 0 is important here, otherwise it will TLE
-                    if (abs(nexX) <= 300 and abs(nexY) <= 300 and nexX * x >= 0 and nexY * y >= 0 and
-                        !visited[nexX][nexY]) {
-                        visited[nexX][nexY] = true;
-                        bfs.push({nexX, nexY});
+                    if (abs(next_x) <= 300 && abs(next_y) <= 300 && next_x * x >= 0 && next_y * y >= 0 &&
+                        !visited[next_x][next_y]) {
+                        visited[next_x][next_y] = true;
+                        bfs.push({next_x, next_y});
                     }
                 }
             }

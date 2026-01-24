@@ -122,7 +122,6 @@ private:
         vis[row][col] = true;
 
         int steps = 0;
-
         while (!q.empty()) {
             for (int i = q.size(); i > 0; --i) {
                 auto curr = q.front();

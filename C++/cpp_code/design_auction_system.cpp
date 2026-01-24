@@ -89,6 +89,61 @@ public:
     }
 };
 
+struct ItemBid {
+    // Stores bidAmount -> set of userIds (sorted ascending)
+    map<int, set<int>> bid_to_uids;
+    // Stores userId -> bidAmount
+    unordered_map<int, int> uid_to_bid;
+};
+
+class AuctionSystem {
+private:
+    unordered_map<int, ItemBid> item_ids_;
+
+public:
+    AuctionSystem() {}
+
+    void addBid(int userId, int itemId, int bidAmount) {
+        // If user already has a bid, we must remove the old one first to "replace" it
+        if (item_ids_[itemId].uid_to_bid.count(userId)) {
+            removeBid(userId, itemId);
+        }
+
+        ItemBid& item = item_ids_[itemId];
+        item.uid_to_bid[userId] = bidAmount;
+        item.bid_to_uids[bidAmount].insert(userId);
+    }
+
+    void updateBid(int userId, int itemId, int newAmount) {
+        // Since it's guaranteed to exist, we remove and re-add
+        removeBid(userId, itemId);
+        addBid(userId, itemId, newAmount);
+    }
+
+    void removeBid(int userId, int itemId) {
+        ItemBid& item = item_ids_[itemId];
+        int old_bid = item.uid_to_bid[userId];
+
+        // Remove from both structures
+        item.bid_to_uids[old_bid].erase(userId);
+        if (item.bid_to_uids[old_bid].empty()) {
+            item.bid_to_uids.erase(old_bid);
+        }
+        item.uid_to_bid.erase(userId);
+    }
+
+    int getHighestBidder(int itemId) {
+        if (item_ids_.find(itemId) == item_ids_.end() || item_ids_[itemId].bid_to_uids.empty()) {
+            return -1;
+        }
+
+        ItemBid& item = item_ids_[itemId];
+        // map::rbegin() gives the entry with the highest bidAmount
+        // set::rbegin() gives the highest userId for that amount
+        return *(item.bid_to_uids.rbegin()->second.rbegin());
+    }
+};
+
 /**
  * Your AuctionSystem object will be instantiated and called as such:
  * AuctionSystem* obj = new AuctionSystem();

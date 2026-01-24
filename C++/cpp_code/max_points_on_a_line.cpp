@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/max-points-on-a-line/description/
 149. Max Points on a Line
 Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.
 
@@ -58,15 +59,16 @@ public:
             unordered_map<string, int> count;
 
             for (int j = i + 1; j < n; j++) {
-                double slope = 0.0;
                 if (points[i][0] == points[j][0] and points[i][1] == points[j][1]) {
                     same++;
                     continue;
                 }
+
                 if (points[i][0] == points[j][0]) {
                     vertical++;
                     continue;
                 }
+
                 int dx = points[i][1] - points[j][1];
                 int dy = points[i][0] - points[j][0];
                 int g = gcd(dx, dy);
