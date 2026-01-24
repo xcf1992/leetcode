@@ -1,65 +1,44 @@
 /*
-https://leetcode.com/problems/evaluate-valid-expressions/description/
-3749. Evaluate Valid Expressions
+https://leetcode.com/problems/cousins-in-binary-tree-ii/description/
+2641. Cousins in Binary Tree II
 
-You are given a string expression that represents a nested mathematical expression in a simplified form.
+Given the root of a binary tree, replace the value of each node in the tree with the sum of all its cousins' values.
 
-A valid expression is either an integer literal or follows the format op(a,b), where:
+Two nodes of a binary tree are cousins if they have the same depth with different parents.
 
-op is one of "add", "sub", "mul", or "div".
-a and b are each valid expressions.
-The operations are defined as follows:
+Return the root of the modified tree.
 
-add(a,b) = a + b
-sub(a,b) = a - b
-mul(a,b) = a * b
-div(a,b) = a / b
-Return an integer representing the result after fully evaluating the expression.
+Note that the depth of a node is the number of edges in the path from the root node to it.
 
 
 
 Example 1:
 
-Input: expression = "add(2,3)"
 
-Output: 5
-
-Explanation:
-
-The operation add(2,3) means 2 + 3 = 5.
-
+Input: root = [5,4,9,1,10,null,7]
+Output: [0,0,0,7,7,null,11]
+Explanation: The diagram above shows the initial binary tree and the binary tree after changing the value of each node.
+- Node with value 5 does not have any cousins so its sum is 0.
+- Node with value 4 does not have any cousins so its sum is 0.
+- Node with value 9 does not have any cousins so its sum is 0.
+- Node with value 1 has a cousin with value 7 so its sum is 7.
+- Node with value 10 has a cousin with value 7 so its sum is 7.
+- Node with value 7 has cousins with values 1 and 10 so its sum is 11.
 Example 2:
 
-Input: expression = "-42"
 
-Output: -42
-
-Explanation:
-
-The expression is a single integer literal, so the result is -42.
-
-Example 3:
-
-Input: expression = "div(mul(4,sub(9,5)),add(1,1))"
-
-Output: 8
-
-Explanation:
-
-First, evaluate the inner expression: sub(9,5) = 9 - 5 = 4
-Next, multiply the results: mul(4,4) = 4 * 4 = 16
-Then, compute the addition on the right: add(1,1) = 1 + 1 = 2
-Finally, divide the two main results: div(16,2) = 16 / 2 = 8
-Therefore, the entire expression evaluates to 8.
-
+Input: root = [3,1,2]
+Output: [0,0,0]
+Explanation: The diagram above shows the initial binary tree and the binary tree after changing the value of each node.
+- Node with value 3 does not have any cousins so its sum is 0.
+- Node with value 1 does not have any cousins so its sum is 0.
+- Node with value 2 does not have any cousins so its sum is 0.
 
 
 Constraints:
 
-1 <= expression.length <= 105
-expression is valid and consists of digits, commas, parentheses, the minus sign '-', and the lowercase strings "add",
-"sub", "mul", "div". All intermediate results fit within the range of a long integer. All divisions result in integer
-values.
+The number of nodes in the tree is in the range [1, 105].
+1 <= Node.val <= 104
 */
 #include <iostream>
 #include <sstream>
@@ -76,50 +55,73 @@ values.
 #include <set>
 using namespace std;
 
-class Solution {
-private:
-    long long evaluate(string& exp, int& idx) {
-        // handle the number case
-        if (isdigit(exp[idx]) || exp[idx] == '-') {
-            long long rst = 0;
-            long long neg = 1;
-            if (exp[idx] == '-') {
-                idx += 1;
-                neg = -1;
-            }
-
-            while (idx < exp.length() && isdigit(exp[idx])) {
-                rst = rst * 10 + exp[idx] - '0';
-                idx += 1;
-            }
-            return neg * rst;
-        }
-
-        string op = exp.substr(idx, 3);
-        idx += 4; // skip op and the (
-
-        long long a = evaluate(exp, idx);
-        idx += 1; // skip the ","
-        long long b = evaluate(exp, idx);
-        idx += 1; // skip the )
-
-        if (op == "add") {
-            return a + b;
-        }
-        if (op == "sub") {
-            return a - b;
-        }
-        if (op == "mul") {
-            return a * b;
-        }
-        if (op == "div") {
-            return a / b;
-        }
-        return 0;
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode() : val(0), left(nullptr), right(nullptr) {
     }
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {
+    }
+    TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {
+    }
+};
+
+class Solution {
 public:
-    long long evaluateExpression(string expression) {
-        int idx = 0;
-        return evaluate(expression, idx);
+    TreeNode* replaceValueInTree(TreeNode* root) {
+        if (root == nullptr) {
+            return root;
+        }
+
+        queue<TreeNode*> bfs;
+        bfs.push(root);
+        while (!bfs.empty()) {
+            int cur_size = bfs.size();
+            unordered_map<TreeNode*, int> child_sum;
+            int total_sum = 0;
+            for (int i = 0; i < cur_size; ++i) {
+                TreeNode* cur = bfs.front();
+                bfs.pop();
+
+                int sum = 0;
+                if (cur->left != nullptr) {
+                    sum += cur->left->val;
+                    bfs.push(cur->left);
+                }
+
+                if (cur->right != nullptr) {
+                    sum += cur->right->val;
+                    bfs.push(cur->right);
+                }
+
+                if (sum != 0) {
+                    child_sum[cur] = sum;
+                }
+                total_sum += sum;
+            }
+
+            int cnt = child_sum.size();
+            for (auto& [parent, sum] : child_sum) {
+                if (cnt <= 1) {
+                    if (parent->left != nullptr) {
+                        parent->left->val = 0;
+                    }
+                    if (parent->right != nullptr) {
+                        parent->right->val = 0;
+                    }
+                } else {
+                    if (parent->left != nullptr) {
+                        parent->left->val = total_sum - sum;
+                    }
+                    if (parent->right != nullptr) {
+                        parent->right->val = total_sum - sum;
+                    }
+                }
+            }
+        }
+
+        root->val = 0;
+        return root;
     }
 };
