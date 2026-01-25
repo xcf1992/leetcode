@@ -1,0 +1,80 @@
+/*
+https://leetcode.com/problems/fair-distribution-of-cookies/description/
+2305. Fair Distribution of Cookies
+
+You are given an integer array cookies, where cookies[i] denotes the number of cookies in the ith bag. You are also
+given an integer k that denotes the number of children to distribute all the bags of cookies to. All the cookies in the
+same bag must go to the same child and cannot be split up.
+
+The unfairness of a distribution is defined as the maximum total cookies obtained by a single child in the distribution.
+
+Return the minimum unfairness of all distributions.
+
+
+
+Example 1:
+
+Input: cookies = [8,15,10,20,8], k = 2
+Output: 31
+Explanation: One optimal distribution is [8,15,8] and [10,20]
+- The 1st child receives [8,15,8] which has a total of 8 + 15 + 8 = 31 cookies.
+- The 2nd child receives [10,20] which has a total of 10 + 20 = 30 cookies.
+The unfairness of the distribution is max(31,30) = 31.
+It can be shown that there is no distribution with an unfairness less than 31.
+Example 2:
+
+Input: cookies = [6,1,3,2,2,4,1,2], k = 3
+Output: 7
+Explanation: One optimal distribution is [6,1], [3,2,2], and [4,1,2]
+- The 1st child receives [6,1] which has a total of 6 + 1 = 7 cookies.
+- The 2nd child receives [3,2,2] which has a total of 3 + 2 + 2 = 7 cookies.
+- The 3rd child receives [4,1,2] which has a total of 4 + 1 + 2 = 7 cookies.
+The unfairness of the distribution is max(7,7,7) = 7.
+It can be shown that there is no distribution with an unfairness less than 7.
+
+
+Constraints:
+
+2 <= cookies.length <= 8
+1 <= cookies[i] <= 105
+2 <= k <= cookies.length
+*/
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <unordered_map>
+#include <map>
+#include <unordered_set>
+#include <algorithm>
+#include <cmath>
+#include <queue>
+#include <stack>
+#include <climits>
+#include <set>
+using namespace std;
+
+class Solution {
+private:
+    int bag_cnt_ = 0;
+    void distribute(vector<int>& cookies, int k, vector<int>& allocated, int& rst, int bag_idx) {
+        if (bag_idx == bag_cnt_) {
+            rst = min(rst, *max_element(allocated.begin(), allocated.end()));
+            return;
+        }
+
+        for (int i = 0; i < k; i++) {
+            allocated[i] += cookies[bag_idx];
+            distribute(cookies, k, allocated, rst, bag_idx + 1);
+            allocated[i] -= cookies[bag_idx];
+        }
+    }
+public:
+    int distributeCookies(vector<int>& cookies, int k) {
+        int rst = INT_MAX;
+        bag_cnt_ = cookies.size();
+        vector<int> allocated(k, 0);
+        distribute(cookies, k, allocated, rst, 0);
+        return rst;
+    }
+};
