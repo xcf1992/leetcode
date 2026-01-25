@@ -57,13 +57,13 @@ using namespace std;
 
 class Solution {
 private:
-    bool check(vector<vector<int>>& graph, vector<int>& bipartite, int curNode, int color) {
-        if (bipartite[curNode] != -1) {
-            return color == bipartite[curNode];
+    bool check(vector<vector<int>>& graph, vector<int>& bipartite, int cur_node, int color) {
+        if (bipartite[cur_node] != -1) {
+            return color == bipartite[cur_node];
         }
 
-        bipartite[curNode] = color;
-        for (int next : graph[curNode]) {
+        bipartite[cur_node] = color;
+        for (int next : graph[cur_node]) {
             if (!check(graph, bipartite, next, 1 - color)) {
                 return false;
             }
@@ -76,7 +76,7 @@ public:
         int n = graph.size();
         vector<int> bipartite(n, -1);
         for (int i = 0; i < n; i++) {
-            if (bipartite[i] == -1 and !check(graph, bipartite, i, 0)) {
+            if (bipartite[i] == -1 && !check(graph, bipartite, i, 0)) {
                 return false;
             }
         }
