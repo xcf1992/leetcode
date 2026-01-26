@@ -47,31 +47,71 @@ There are no repeated edges.
 #include <climits>
 using namespace std;
 
+/*
+Assume a node is root and apply bfs search,
+where we recode the:
+
+dis[i] is the distance from root to i
+fa[i] is the father of i
+If two points met up and they are not father-son relation,
+they met in a cycle.
+The distance of circly is smaller or equal than dis[i] + dis[j] + 1.
+
+To check the father-son relation, there some different ways:
+
+we can use an array fa[i] to save the father of each node.
+we can add (i, father) to the queue
+we can also check dis[i] <= dis[j]
+We iterate all nodes as root, and we can return the minimum circle.
+
+The Core Insight
+When we encounter a neighbor that's already been visited (dist[neighbour] != INT_MAX), there are two possibilities:
+
+The neighbor is our parent in the BFS tree (the node we just came from)
+The neighbor was reached via a different path (indicating a cycle)
+
+Why dist[cur] <= dist[neighbour] Works
+In BFS from a source node:
+
+Nodes are visited in order of increasing distance
+A parent node always has distance exactly 1 less than its child
+So if we're at cur and see a visited neighbour, we check:
+
+If dist[cur] <= dist[neighbour]:
+
+This means neighbour is NOT our parent (parent would have dist[neighbour] = dist[cur] - 1)
+This means we've found an alternative path to neighbour
+This creates a cycle!
+
+If dist[cur] > dist[neighbour] (the opposite):
+
+This would mean dist[neighbour] < dist[cur]
+This is likely our parent node in the BFS tree
+We should ignore it (it's just the edge we came from)
+*/
 class Solution {
 private:
     void bfs(int src, int n, int& rst, vector<vector<int>>& adj) {
         vector<int> dist(n, INT_MAX);
         dist[src] = 0;
 
-        vector<int> parent(n, -1);
-
         queue<int> q;
         q.push(src);
-        while(!q.empty()) {
+        while (!q.empty()) {
             int cur = q.front();
             q.pop();
 
             for (int neighbour : adj[cur]) {
                 if (dist[neighbour] == INT_MAX) {
                     dist[neighbour] = dist[cur] + 1;
-                    parent[neighbour] = cur;
                     q.push(neighbour);
-                } else if (parent[cur] != neighbour && parent[neighbour] != cur) {
+                } else if (dist[cur] <= dist[neighbour]) {
                     rst = min(rst, dist[cur] + dist[neighbour] + 1);
                 }
             }
         }
     }
+
 public:
     int findShortestCycle(int n, vector<vector<int>>& edges) {
         vector<vector<int>> adj(n, vector<int>());
