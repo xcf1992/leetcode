@@ -47,17 +47,18 @@ public:
     vector<vector<int>> minimumAbsDifference(vector<int>& arr) {
         int n = arr.size();
         sort(arr.begin(), arr.end());
-        vector<vector<int>> result;
-        int minGap = INT_MAX;
+        vector<vector<int>> rst;
+        int min_diff = INT_MAX;
         for (int i = 1; i < n; ++i) {
-            if (arr[i] - arr[i - 1] <= minGap) {
-                if (arr[i] - arr[i - 1] < minGap) {
-                    result.clear();
-                    minGap = arr[i] - arr[i - 1];
-                }
-                result.push_back({arr[i - 1], arr[i]});
+            if (arr[i] - arr[i - 1] > min_diff) {
+                continue;
             }
+            if (arr[i] - arr[i - 1] < min_diff) {
+                rst.clear();
+                min_diff = arr[i] - arr[i - 1];
+            }
+            rst.push_back({arr[i - 1], arr[i]});
         }
-        return result;
+        return rst;
     }
 };
