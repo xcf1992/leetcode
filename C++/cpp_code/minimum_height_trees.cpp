@@ -107,6 +107,7 @@ public:
             for (int i = 0; i < curSize; ++i) {
                 int cur = leaves.front();
                 leaves.pop();
+
                 for (int node : graph[cur]) {
                     degree[node] -= 1;
                     if (degree[node] == 1) {
