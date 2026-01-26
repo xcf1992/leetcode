@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/rectangle-area/description/
 223. Rectangle Area
 Find the total area covered by two rectilinear rectangles in a 2D plane.
 
@@ -26,13 +27,21 @@ Output: 45
 #include <set>
 using namespace std;
 
+/*
+find the overlap in x and y accordingly;
+if there is overlap in y, then it looks like below, so we find min(ax2, bx2) and max(ax1, bx1)
+ax1--------ax2
+      bx1--------bx2
+same for the overlap for y
+*/
 class Solution {
 public:
-    int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
-        long a1 = (long)(C - A) * (D - B) + (long)(G - E) * (H - F);
-        if (G > A and E < C and H > B and F < D) {
-            return a1 - (min(C, G) - max(A, E)) * (min(D, H) - max(B, F));
-        }
-        return a1;
+    int computeArea(int ax1, int ay1, int ax2, int ay2, int bx1, int by1, int bx2, int by2) {
+        int area = (ax2 - ax1) * (ay2 - ay1) + (bx2 - bx1) * (by2 - by1);
+        // max(0, overlapRightSide-overlapLeftSide);
+        int overlap_w = max(0, min(bx2, ax2) - max(bx1, ax1));
+        // same but up - down
+        int overlap_h = max(0, min(by2, ay2) - max(by1, ay1));
+        return area - overlap_w * overlap_h;
     }
 };
