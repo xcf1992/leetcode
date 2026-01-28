@@ -41,7 +41,7 @@ private:
     int rowOffsets[4] = {0, 1, 0, -1};
     int colOffsets[4] = {1, 0, -1, 0};
 
-    bool backtrack(int row, int col, const string& word, int index) {
+    bool search(int row, int col, const string& word, int index) {
         if (index >= word.size()) {
             return true;
         }
@@ -53,7 +53,7 @@ private:
         char temp = board[row][col];
         board[row][col] = '#';
         for (int d = 0; d < 4; ++d) {
-            if (backtrack(row + rowOffsets[d], col + colOffsets[d], word, index + 1)) {
+            if (search(row + rowOffsets[d], col + colOffsets[d], word, index + 1)) {
                 return true;
             }
         }
@@ -66,10 +66,9 @@ public:
         this->board = board;
         row_cnt = board.size();
         col_cnt = board[0].size();
-
         for (int i = 0; i < row_cnt; ++i) {
             for (int j = 0; j < col_cnt; ++j) {
-                if (backtrack(i, j, word, 0)) {
+                if (search(i, j, word, 0)) {
                     return true;
                 }
             }

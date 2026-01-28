@@ -73,9 +73,8 @@ public:
 
                 if (ladder.size() > minLen) {
                     break;
-                } else {
-                    len = ladder.size();
                 }
+                len = ladder.size();
             }
 
             string curWord = ladder.back();

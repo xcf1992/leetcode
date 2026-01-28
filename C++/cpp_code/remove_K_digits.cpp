@@ -54,7 +54,7 @@ public:
 
         string rst = "";
         for (int i = 0; i < n; ++i) {
-            while (!rst.empty() && rst.back()> num[i] && k > 0) {
+            while (!rst.empty() && rst.back() > num[i] && k > 0) {
                 rst.pop_back();
                 k -= 1;
             }
