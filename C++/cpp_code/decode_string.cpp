@@ -35,10 +35,10 @@ using namespace std;
 class Solution {
 private:
     string decode(string& s, int& i) {
-        string result = "";
+        string rst = "";
         while (i < s.size() and s[i] != ']') {
             if (isalpha(s[i])) {
-                result.push_back(s[i]);
+                rst.push_back(s[i]);
             } else {
                 int numStart = i;
                 while (isdigit(s[i])) {
@@ -47,13 +47,13 @@ private:
                 int repeat = stoi(s.substr(numStart, i - numStart));
                 string word = decode(s, ++i);
                 while (repeat > 0) {
-                    result.append(word);
+                    rst.append(word);
                     repeat--;
                 }
             }
             i++;
         }
-        return result;
+        return rst;
     }
 
 public:

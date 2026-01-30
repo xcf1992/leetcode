@@ -63,29 +63,29 @@ private:
 public:
     vector<vector<string>> accountsMerge(vector<vector<string>>& accounts) {
         int n = accounts.size();
-        unordered_map<string, string> owner;
+        unordered_map<string, string> email_to_owner_name;
         unordered_map<string, string> parents;
-        for (int i = 0; i < n; ++i) {
+        for (int i = 0; i < n; ++i) { // merge all emails within one account
             string root_email = find(accounts[i][1], parents);
-            owner[root_email] = accounts[i][0];
+            email_to_owner_name[root_email] = accounts[i][0];
             for (int j = 1; j < accounts[i].size(); ++j) {
                 parents[find(accounts[i][j], parents)] = root_email;
             }
         }
 
-        unordered_map<string, set<string>> unions;
-        for (int i = 0; i < n; ++i) {
+        unordered_map<string, set<string>> email_groups;
+        for (int i = 0; i < n; ++i) { // group all emails into groups
             for (int j = 1; j < accounts[i].size(); ++j) {
-                unions[find(accounts[i][j], parents)].insert(accounts[i][j]);
+                email_groups[find(accounts[i][j], parents)].insert(accounts[i][j]);
             }
         }
 
-        vector<vector<string>> result;
-        for (pair<string, set<string>> u : unions) {
+        vector<vector<string>> owner_to_all_emails;
+        for (pair<string, set<string>> u : email_groups) {
             vector<string> emails(u.second.begin(), u.second.end());
-            emails.insert(emails.begin(), owner[u.first]);
-            result.push_back(emails);
+            emails.insert(emails.begin(), email_to_owner_name[u.first]);
+            owner_to_all_emails.push_back(emails);
         }
-        return result;
+        return owner_to_all_emails;
     }
 };

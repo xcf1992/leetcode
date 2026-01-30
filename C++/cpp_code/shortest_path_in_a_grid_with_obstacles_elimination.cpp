@@ -78,7 +78,6 @@ public:
                         if (grid[next_r][next_c] == 1) {
                             next_cnt += 1;
                         }
-
                         if (next_cnt <= k and !visited[next_r][next_c][next_cnt]) {
                             visited[next_r][next_c][next_cnt] = true;
                             bfs.push({next_r, next_c, next_cnt});

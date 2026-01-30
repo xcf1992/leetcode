@@ -130,7 +130,7 @@ public:
         }
 
         vector<int> parent(m * n, 0);
-        // Union find set, ufs[key] is key's parent, thru which we can find root recursively
+        // Union find set, ufs[key] is key's parent, through which we can find root recursively
         vector<int> count(m * n, 0);  // Number of nodes in this set, only stored at the root node
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {

@@ -49,7 +49,7 @@ public:
         }
 
         int result = INT_MAX;
-        unordered_map<int, int> memo;
+        unordered_map<string, int> memo;
         for (auto it = x_to_points.begin(); it != x_to_points.end(); it++) {
             int x_val = it->first;
             vector<int>& y_points = it->second;
@@ -60,7 +60,7 @@ public:
                 for (int j = i + 1; j < y_points.size(); j++) {
                     int y1 = y_points[i];
                     int y2 = y_points[j];
-                    int code = 40001 * y1 + y2;
+                    string code = to_string(y1) + "_" + to_string(y2);
                     if (memo.find(code) != memo.end()) {
                         result = min(result, abs((memo[code] - x_val) * (y1 - y2)));
                     }
