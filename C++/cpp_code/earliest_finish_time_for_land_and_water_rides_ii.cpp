@@ -1,6 +1,6 @@
 /*
-https://leetcode.com/problems/earliest-finish-time-for-land-and-water-rides-i/description/
-3633. Earliest Finish Time for Land and Water Rides I
+https://leetcode.com/problems/earliest-finish-time-for-land-and-water-rides-ii/description/
+3635. Earliest Finish Time for Land and Water Rides II
 
 You are given two categories of theme park attractions: land rides and water rides.
 
@@ -61,10 +61,10 @@ Plan A provides the earliest finish time of 14.​​​​​​​
 
 Constraints:
 
-1 <= n, m <= 100
+1 <= n, m <= 5 * 104
 landStartTime.length == landDuration.length == n
 waterStartTime.length == waterDuration.length == m
-1 <= landStartTime[i], landDuration[i], waterStartTime[j], waterDuration[j] <= 1000
+1 <= landStartTime[i], landDuration[i], waterStartTime[j], waterDuration[j] <= 105
 */
 #include <iostream>
 #include <string>
@@ -81,24 +81,6 @@ using namespace std;
 class Solution {
 public:
     int earliestFinishTime(vector<int>& landStartTime, vector<int>& landDuration, vector<int>& waterStartTime, vector<int>& waterDuration) {
-        int n = landStartTime.size();
-        int min_land_end = INT_MAX;
-        for (int i = 0; i < n; i++) {
-            min_land_end = min(min_land_end, landStartTime[i] + landDuration[i]);
-        }
 
-        int m = waterStartTime.size();
-        int rst = INT_MAX;
-        int min_water_end = INT_MAX;
-        for (int i = 0; i < m; i++) {
-            rst = min(rst, waterDuration[i] + max(min_land_end, waterStartTime[i]));
-            min_water_end = min(min_water_end, waterStartTime[i] + waterDuration[i]);
-        }
-
-        for (int i = 0; i < n; i++) {
-            rst = min(rst, landDuration[i] + max(min_water_end, landStartTime[i]));
-        }
-
-        return rst;
     }
 };
