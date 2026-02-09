@@ -52,11 +52,11 @@ private:
             return 0;
         }
 
-        int leftSum = max(0, get_sum(root->left, result));
-        int rightSum = max(0, get_sum(root->right, result));
-        int sum = leftSum + rightSum + root->val;
+        int left_sum = max(0, get_sum(root->left, result));
+        int right_sum = max(0, get_sum(root->right, result));
+        int sum = left_sum + right_sum + root->val;
         result = max(result, sum);
-        return max(leftSum, rightSum) + root->val;
+        return max(left_sum, right_sum) + root->val;
     }
 
 public:

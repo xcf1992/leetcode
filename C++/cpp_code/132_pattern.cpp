@@ -1,29 +1,35 @@
 /*
+https://leetcode.com/problems/132-pattern/description/
 456. 132 Pattern
-Given a sequence of n integers a1, a2, ..., an,
-a 132 pattern is a subsequence ai, aj, ak such that i < j < k and ai < ak < aj.
-Design an algorithm that takes a list of n numbers as input and checks whether there is a 132 pattern in the list.
+Given an array of n integers nums, a 132 pattern is a subsequence of three integers nums[i], nums[j] and nums[k] such
+that i < j < k and nums[i] < nums[k] < nums[j].
 
-Note: n will be less than 15,000.
+Return true if there is a 132 pattern in nums, otherwise, return false.
+
+
 
 Example 1:
-Input: [1, 2, 3, 4]
 
-Output: False
-
+Input: nums = [1,2,3,4]
+Output: false
 Explanation: There is no 132 pattern in the sequence.
 Example 2:
-Input: [3, 1, 4, 2]
 
-Output: True
-
+Input: nums = [3,1,4,2]
+Output: true
 Explanation: There is a 132 pattern in the sequence: [1, 4, 2].
 Example 3:
-Input: [-1, 3, 2, 0]
 
-Output: True
-
+Input: nums = [-1,3,2,0]
+Output: true
 Explanation: There are three 132 patterns in the sequence: [-1, 3, 2], [-1, 3, 0] and [-1, 2, 0].
+
+
+Constraints:
+
+n == nums.length
+1 <= n <= 2 * 105
+-109 <= nums[i] <= 109
 */
 #include <iostream>
 #include <sstream>
@@ -87,18 +93,18 @@ i = 2, nums = [ 9, 11, 8, 9, 10, 7, 9 ], S1 candidate = 8, S3 candidate = 9, Sta
 class Solution {
 public:
     bool find132pattern(vector<int>& nums) {
-        stack<int> s3stk;
+        stack<int> s3_min_stk;
         int s2 = INT_MIN;
         for (int i = nums.size() - 1; i >= 0; i--) {
             if (nums[i] < s2) {
                 return true;
             }
 
-            while (!s3stk.empty() and s3stk.top() < nums[i]) {
-                s2 = s3stk.top();
-                s3stk.pop();
+            while (!s3_min_stk.empty() and s3_min_stk.top() < nums[i]) {
+                s2 = s3_min_stk.top();
+                s3_min_stk.pop();
             }
-            s3stk.push(nums[i]);
+            s3_min_stk.push(nums[i]);
         }
         return false;
     }

@@ -52,15 +52,15 @@ class Solution {
 public:
     int nearestValidPoint(int x, int y, vector<vector<int>>& points) {
         int result = -1;
-        int minDis = INT_MAX;
+        int min_dist = INT_MAX;
         for (int i = 0; i < points.size(); ++i) {
-            int curX = points[i][0];
-            int curY = points[i][1];
-            if (x == curX || y == curY) {
-                int curDis = (curX - x) * (curX - x) + (curY - y) * (curY - y);
-                if (result == -1 || curDis < minDis) {
+            int cur_x = points[i][0];
+            int cyr_y = points[i][1];
+            if (x == cur_x || y == cyr_y) {
+                int curDis = (cur_x - x) * (cur_x - x) + (cyr_y - y) * (cyr_y - y);
+                if (result == -1 || curDis < min_dist) {
                     result = i;
-                    minDis = curDis;
+                    min_dist = curDis;
                 }
             }
         }

@@ -58,6 +58,7 @@ private:
         if (cur_r < 0 || cur_r >= m || cur_c < 0 || cur_c >= n || grid2[cur_r][cur_c] == 0) {
             return;
         }
+
         grid2[cur_r][cur_c] = 0;
         for (int i = 0; i < 4; i++) {
             int r = cur_r + diff[i];
@@ -71,10 +72,12 @@ public:
         m = grid1.size();
         n = grid1[0].size();
         for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++)
+            for (int j = 0; j < n; j++) {
                 if (grid2[i][j] == 1 && grid1[i][j] == 0) {
+                    // remove all the islands that is not sub
                     dfs(grid1, grid2, i, j);
                 }
+            }
         }
 
         int result = 0;

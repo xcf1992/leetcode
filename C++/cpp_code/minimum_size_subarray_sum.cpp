@@ -31,19 +31,19 @@ using namespace std;
 class Solution {
     // O(nlogn)
 public:
-    int minSubArrayLen(int s, vector<int>& nums) {
+    int minSubArrayLen(int target, vector<int>& nums) {
         int n = nums.size();
-        vector<int> preSum(n + 1, 0);
+        vector<int> pre_sum(n + 1, 0);
         for (int i = 0; i < n; i++) {
-            preSum[i + 1] = preSum[i] + nums[i];
+            pre_sum[i + 1] = pre_sum[i] + nums[i];
         }
 
         int result = n + 1;
         for (int i = 0; i <= n; ++i) {
-            int target = preSum[i] + s;
-            auto it = lower_bound(preSum.begin(), preSum.end(), target);
-            if (it != preSum.end()) {
-                int index = it - preSum.begin();
+            int tgt_sum = pre_sum[i] + target;
+            auto it = lower_bound(pre_sum.begin(), pre_sum.end(), tgt_sum);
+            if (it != pre_sum.end()) {
+                int index = it - pre_sum.begin();
                 result = min(result, index - i);
             } else {
                 break;

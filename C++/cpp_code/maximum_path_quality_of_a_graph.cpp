@@ -80,12 +80,12 @@ private:
         if (visited[cur] == 0) {
             cur_sum += values[cur];
         }
-        visited[cur] += 1;
 
         if (cur == 0) {
             rst = max(rst, cur_sum);
         }
 
+        visited[cur] += 1;
         for (const pair<int, int>& it : graph[cur]) {
             int nxt = it.first;
             int nxt_time = cur_time + it.second;

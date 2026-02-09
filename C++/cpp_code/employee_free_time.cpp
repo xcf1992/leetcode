@@ -68,26 +68,25 @@ public:
             }
         }
 
-        vector<Interval> result;
+        vector<Interval> rst;
         int workers = 0;
         for (pair<int, int> busy : timeline) {
             workers += busy.second;
             if (workers == 0) {
-                result.push_back(Interval(busy.first, 0));
-            } else if (!result.empty() and result.back().end == 0) {
-                result.back().end = busy.first;
+                rst.push_back(Interval(busy.first, 0));
+            } else if (!rst.empty() && rst.back().end == 0) {
+                rst.back().end = busy.first;
             }
         }
 
-        if (result.back().end == 0) {
-            result.pop_back();
+        if (rst.back().end == 0) {
+            rst.pop_back();
         }
-        return result;
+        return rst;
     }
 };
 
 class Solution1 {
-    // 5.27%
 public:
     vector<Interval*> employeeFreeTime(vector<vector<Interval*>>& schedules) {
         vector<Interval*> intervals;

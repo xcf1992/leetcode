@@ -62,6 +62,47 @@ tasks.length == n
 #include <climits>
 using namespace std;
 
+class Solution {
+public:
+    vector<int> getOrder(vector<vector<int>>& tasks) {
+        // Sort based on min task processing time or min task index.
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> next_task;
+
+        // Store task enqueue time, processing time, index.
+        vector<array<int, 3>> sorted_task;
+        for (int i = 0; i < tasks.size(); ++i) {
+            sorted_task.push_back({tasks[i][0], tasks[i][1], i});
+        }
+        sort(sorted_task.begin(), sorted_task.end());
+
+        vector<int> rst;
+        long long cur_time = 0;
+        int task_idx = 0;
+        // Stop when no tasks are left in array and heap.
+        while (task_idx < tasks.size() || !next_task.empty()) {
+            if (next_task.empty() && cur_time < sorted_task[task_idx][0]) {
+                // When the heap is empty, try updating currTime to next task's enqueue time.
+                cur_time = sorted_task[task_idx][0];
+            }
+
+            // Push all the tasks whose enqueueTime <= currtTime into the heap.
+            while (task_idx < sorted_task.size() && cur_time >= sorted_task[task_idx][0]) {
+                next_task.push({sorted_task[task_idx][1], sorted_task[task_idx][2]});
+                task_idx += 1;
+            }
+
+            auto [processTime, index] = next_task.top();
+            next_task.pop();
+
+            // Complete this task and increment currTime.
+            cur_time += processTime;
+            rst.push_back(index);
+        }
+
+        return rst;
+    }
+};
+
 struct myComp {
     bool operator()(const vector<int>& a, const vector<int>& b) {
         return a[0] > b[0] || (a[0] == b[0] && a[1] > b[1]);

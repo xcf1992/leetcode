@@ -60,10 +60,10 @@ using namespace std;
 
 class Solution {
 private:
-    void calc_subtree_cnt(int root, vector<vector<int>>& tree, vector<vector<int>>& subtree_cnt) {
-        for (int i = 0; i < tree[root].size(); ++i) {
-            int child = tree[root][i];
-            calc_subtree_cnt(child, tree, subtree_cnt);
+    void calc_subtree_cnt(int root, vector<vector<int>>& children, vector<vector<int>>& subtree_cnt) {
+        for (int i = 0; i < children[root].size(); ++i) {
+            int child = children[root][i];
+            calc_subtree_cnt(child, children, subtree_cnt);
             subtree_cnt[root][i] = 1;
             for (int j = 0; j < subtree_cnt[child].size(); ++j) {
                 subtree_cnt[root][i] += subtree_cnt[child][j];
@@ -74,14 +74,14 @@ private:
 public:
     int countHighestScoreNodes(vector<int>& parents) {
         int n = parents.size();
-        vector<vector<int>> tree(n, vector<int>());
+        vector<vector<int>> children(n, vector<int>());
         for (int i = 1; i < n; ++i) {
             int parent = parents[i];
-            tree[parent].push_back(i);
+            children[parent].push_back(i);
         }
 
         vector<vector<int>> subtree_cnt(n, vector<int>(2, 0));
-        calc_subtree_cnt(0, tree, subtree_cnt);
+        calc_subtree_cnt(0, children, subtree_cnt);
 
         long long highest_score = 0;
         int rst = 0;

@@ -44,8 +44,8 @@ private:
     int M = 0;
     int N = 0;
 
-    vector<vector<int>> prefixSum;
-    vector<vector<int>> mtx;
+    vector<vector<int>> prefix_sum_;
+    vector<vector<int>> mtx_;
 
 public:
     NumMatrix(vector<vector<int>>& matrix) {
@@ -59,25 +59,25 @@ public:
             for (int j = 1; j < N; ++j) {
                 sum[j] = sum[j - 1] + matrix[i][j];
             }
-            prefixSum.push_back(sum);
+            prefix_sum_.push_back(sum);
         }
-        mtx = matrix;
+        mtx_ = matrix;
     }
 
     void update(int row, int col, int val) {
-        int diff = val - mtx[row][col];
+        int diff = val - mtx_[row][col];
         for (int j = col; j < N; ++j) {
-            prefixSum[row][j] += diff;
+            prefix_sum_[row][j] += diff;
         }
-        mtx[row][col] = val;
+        mtx_[row][col] = val;
     }
 
     int sumRegion(int row1, int col1, int row2, int col2) {
         int result = 0;
         for (int i = row1; i <= row2; ++i) {
-            result += prefixSum[i][col2];
+            result += prefix_sum_[i][col2];
             if (col1 != 0) {
-                result -= prefixSum[i][col1 - 1];
+                result -= prefix_sum_[i][col1 - 1];
             }
         }
         return result;

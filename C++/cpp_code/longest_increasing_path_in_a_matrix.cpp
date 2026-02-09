@@ -43,6 +43,7 @@ class Solution {
 private:
     int m_ = 0;
     int n_ = 0;
+    vector<int> diff = {0, 1, 0, -1, 0};
 
     int dfs(vector<vector<int>>& matrix, vector<vector<int>>& memo, int row, int col) {
         if (memo[row][col] != 0) {
@@ -50,7 +51,6 @@ private:
         }
 
         memo[row][col] = 1;
-        vector<int> diff({0, 1, 0, -1, 0});
         for (int i = 0; i < 4; ++i) {
             int nr = row + diff[i];
             int nc = col + diff[i + 1];

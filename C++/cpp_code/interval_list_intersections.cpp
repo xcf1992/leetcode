@@ -43,16 +43,17 @@ public:
         int m = first.size();
         int n = second.size();
         vector<vector<int>> result;
-        for (int a = 0, b = 0; a < m and b < n;) {
-            int left = max(first[a][0], second[b][0]);
-            int right = min(first[a][1], second[b][1]);
+        for (int i = 0, j = 0; i < m and j < n;) {
+            int left = max(first[i][0], second[j][0]);
+            int right = min(first[i][1], second[j][1]);
             if (left <= right) {
                 result.push_back({left, right});
             }
-            if (first[a][1] < second[b][1]) {
-                a += 1;
+
+            if (first[i][1] < second[j][1]) {
+                i += 1;
             } else {
-                b += 1;
+                j += 1;
             }
         }
         return result;

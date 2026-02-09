@@ -58,7 +58,7 @@ public:
         int max_profit = 0;
         int rst = 0;
         for (int ability : worker) {
-            while (i < jobs.size() and jobs[i].first <= ability) {
+            while (i < jobs.size() && jobs[i].first <= ability) {
                 max_profit = max(max_profit, jobs[i].second);
                 i++;
             }

@@ -66,18 +66,18 @@ O(K) to create the returned list.
 */
 class Solution {
 public:
-    vector<int> findClosestElements(vector<int>& A, int k, int x) {
+    vector<int> findClosestElements(vector<int>& arr, int k, int x) {
         int left = 0;
-        int right = A.size() - k;
+        int right = arr.size() - k;
         while (left < right) {
             int mid = left + (right - left) / 2;
-            if (x - A[mid] > A[mid + k] - x) {
+            if (x - arr[mid] > arr[mid + k] - x) {
                 left = mid + 1;
             } else {
                 right = mid;
             }
         }
-        return vector<int>(A.begin() + left, A.begin() + left + k);
+        return vector<int>(arr.begin() + left, arr.begin() + left + k);
     }
 };
 

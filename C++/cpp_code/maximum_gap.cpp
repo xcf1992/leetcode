@@ -130,10 +130,10 @@ public:
         vector<vector<int>> buckets(bkt_cnt, {0, INT_MAX, INT_MIN});
         // bucket_used, min_of_current_bucket, max_of_current_bucket
         for (int num : nums) {
-            int index = (num - cur_min) / bkt_size;
-            buckets[index][0] = 1;
-            buckets[index][1] = min(num, buckets[index][1]);
-            buckets[index][2] = max(num, buckets[index][2]);
+            int bkt_idx = (num - cur_min) / bkt_size;
+            buckets[bkt_idx][0] = 1;
+            buckets[bkt_idx][1] = min(num, buckets[bkt_idx][1]);
+            buckets[bkt_idx][2] = max(num, buckets[bkt_idx][2]);
         }
 
         int result = 0;

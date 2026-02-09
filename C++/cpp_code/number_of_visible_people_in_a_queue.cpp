@@ -85,21 +85,21 @@ class Solution {
 public:
     vector<int> canSeePersonsCount(vector<int>& heights) {
         int n = heights.size();
-        vector<int> res(n);
+        vector<int> rst(n);
         vector<int> min_stk;
         for (int i = 0; i < n; ++i) {
             while (!min_stk.empty() && heights[min_stk.back()] <= heights[i]) {
-                res[min_stk.back()] += 1;
+                rst[min_stk.back()] += 1;
                 min_stk.pop_back();
             }
 
             if (!min_stk.empty()) {
-                res[min_stk.back()] += 1;
+                rst[min_stk.back()] += 1;
             }
 
             min_stk.push_back(i);
         }
-        return res;
+        return rst;
     }
 };
 
@@ -108,19 +108,19 @@ class Solution1 {
 public:
     vector<int> canSeePersonsCount(vector<int>& heights) {
         int n = heights.size();
-        vector<int> res(n, 0);
+        vector<int> rst(n, 0);
         vector<int> min_stk;
         for (int i = n - 1; i >= 0; i--) {
             while (!min_stk.empty() && heights[i] >= min_stk.back()) {
-                res[i] += 1;
+                rst[i] += 1;
                 min_stk.pop_back();
             }
 
             if (!min_stk.empty()) {
-                res[i] += 1;
+                rst[i] += 1;
             }
             min_stk.push_back(heights[i]);
         }
-        return res;
+        return rst;
     }
 };

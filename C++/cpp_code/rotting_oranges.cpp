@@ -65,7 +65,6 @@ public:
                     fresh += 1;
                 } else if (grid[i][j] == 2) {
                     bfs.push(i * n + j);
-                    visited[i * n + j] = true;
                 }
             }
         }
@@ -73,8 +72,8 @@ public:
         int time = 0;
         vector<int> diff({0, 1, 0, -1, 0});
         while (!bfs.empty() and fresh != 0) {
-            int curSize = bfs.size();
-            for (int i = 0; i < curSize; i++) {
+            int cur_size = bfs.size();
+            for (int i = 0; i < cur_size; i++) {
                 int row = bfs.front() / n;
                 int col = bfs.front() % n;
                 bfs.pop();
@@ -82,10 +81,8 @@ public:
                 for (int j = 1; j < diff.size(); ++j) {
                     int nRow = row + diff[j];
                     int nCol = col + diff[j - 1];
-                    if (nRow < m and nRow >= 0 and nCol < n and nCol >= 0 and grid[nRow][nCol] == 1 and
-                        !visited[nRow * n + nCol]) {
+                    if (nRow < m && nRow >= 0 && nCol < n && nCol >= 0 && grid[nRow][nCol] == 1) {
                         grid[nRow][nCol] = 2;
-                        visited[nRow * n + nCol] = true;
                         fresh -= 1;
                         bfs.push(nRow * n + nCol);
                     }

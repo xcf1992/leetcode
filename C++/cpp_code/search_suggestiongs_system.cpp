@@ -105,13 +105,14 @@ class Solution2 {
 public:
     vector<vector<string>> suggestedProducts(vector<string>& ps, string word) {
         sort(begin(ps), end(ps));
-        vector<vector<string>> res(word.size());
+        vector<vector<string>> rst(word.size());
         for (auto l = 1; l <= word.size(); ++l) {
             auto w = word.substr(0, l);
             auto it = lower_bound(begin(ps), end(ps), w);
-            for (; it != end(ps) && it->substr(0, l) == w && res[l - 1].size() < 3; ++it)
-                res[l - 1].push_back(*it);
+            for (; it != end(ps) && it->substr(0, l) == w && rst[l - 1].size() < 3; ++it) {
+                rst[l - 1].push_back(*it);
+            }
         }
-        return res;
+        return rst;
     }
 };

@@ -80,7 +80,7 @@ public:
         min_distance[0] = 0;
 
         priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-        pq.push({0, 0}); // distance, vertex
+        pq.push({0, 0}); // cur_node, distance
 
         while (!pq.empty()) {
             int cur = pq.top().second;
@@ -92,18 +92,17 @@ public:
             }
 
             for (pair<int, int>& edge : connected[cur]) {
-                int nxt = edge.first;
+                int neighbour = edge.first;
                 int edge_idx = edge.second;
-                if (min_distance[nxt] > min_distance[cur] + edges[edge_idx][2]) {
-                    min_distance[nxt] = min_distance[cur] + edges[edge_idx][2];
-                    pq.push({min_distance[nxt], nxt});
+                if (min_distance[neighbour] > min_distance[cur] + edges[edge_idx][2]) {
+                    min_distance[neighbour] = min_distance[cur] + edges[edge_idx][2];
+                    pq.push({min_distance[neighbour], neighbour});
                 }
             }
         }
 
         int edge_cnt = edges.size();
         vector<bool> rst(edge_cnt, false);
-
         if (min_distance[n - 1] == INT_MAX) {
             return rst;
         }
@@ -117,13 +116,13 @@ public:
             pq.pop();
 
             for (pair<int, int>& edge : connected[cur]) {
-                int nxt = edge.first;
+                int neighbour = edge.first;
                 int edge_idx = edge.second;
-                if (dist - edges[edge_idx][2] == min_distance[nxt]) {
-                    if (!visited[nxt]) {
-                        pq.push({min_distance[nxt], nxt});
+                if (dist - edges[edge_idx][2] == min_distance[neighbour]) {
+                    if (!visited[neighbour]) {
+                        pq.push({min_distance[neighbour], neighbour});
                     }
-                    visited[nxt] = true;
+                    visited[neighbour] = true;
                     rst[edge_idx] = true;
                 }
             }

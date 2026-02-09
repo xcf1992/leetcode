@@ -86,8 +86,8 @@ public:
         bfs.push({0, root});
         int row = 0;
         while (!bfs.empty()) {
-            int curSize = bfs.size();
-            for (int i = 0; i < curSize; ++i) {
+            int cur_size = bfs.size();
+            for (int i = 0; i < cur_size; ++i) {
                 int pos = bfs.front().first;
                 TreeNode* node = bfs.front().second;
                 bfs.pop();

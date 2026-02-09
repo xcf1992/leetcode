@@ -102,7 +102,7 @@ public:
                         continue;
                     }
 
-                    if (grid[nxt_row][nxt_col] == '0') {
+                    if (grid[nxt_row][nxt_col] == '*') {
                         return rst;
                     }
 
@@ -115,3 +115,4 @@ public:
         return -1;
     }
 };
+

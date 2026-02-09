@@ -82,9 +82,9 @@ public:
             visit[username[i]].push_back({timestamp[i], website[i]});
         }
 
-        unordered_map<string, int> count;
+        unordered_map<string, int> pattern_cnt;
         for (auto& it : visit) {
-            vector<pair<int, string>> time_web = it.second;
+            vector<pair<int, string>>& time_web = it.second;
             if (time_web.size() < 3) {
                 continue;
             }
@@ -93,22 +93,22 @@ public:
                  [](pair<int, string>& a, pair<int, string>& b) { return a.first < b.first; });
 
             int n = time_web.size();
-            unordered_set<string> webPattern;
+            unordered_set<string> web_pattern;
             for (int i = 0; i < n; ++i) {
                 for (int j = i + 1; j < n; ++j) {
                     for (int k = j + 1; k < n; ++k) {
-                        webPattern.insert(time_web[i].second + "_" + time_web[j].second + "_" + time_web[k].second);
+                        web_pattern.insert(time_web[i].second + "_" + time_web[j].second + "_" + time_web[k].second);
                     }
                 }
             }
-            for (string pattern : webPattern) {
-                count[pattern] += 1;
+            for (string pattern : web_pattern) {
+                pattern_cnt[pattern] += 1;
             }
         }
 
         vector<string> result;
         int max_cnt = 0;
-        for (auto& it : count) {
+        for (auto& it : pattern_cnt) {
             if (it.second > max_cnt) {
                 max_cnt = it.second;
                 result = splitWeb(it.first);

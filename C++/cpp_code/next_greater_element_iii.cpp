@@ -30,6 +30,7 @@ Output: -1
 #include <set>
 using namespace std;
 
+// https://leetcode.com/problems/next-greater-element-iii/solutions/6685917/master-the-swap-reverse-trick-to-find-th-iqic/?envType=company&envId=doordash&favoriteSlug=doordash-all
 class Solution {
 public:
     int nextGreaterElement(int n) {
@@ -38,6 +39,7 @@ public:
         if (len == 1) {
             return -1;
         }
+
         if (len == 2) {
             if (num.front() >= num.back()) {
                 return -1;
@@ -50,6 +52,7 @@ public:
         while (left - 1 >= 0 and num[left - 1] >= num[left]) {
             left -= 1;
         }
+
         if (left == 0) {
             return -1;
         }
