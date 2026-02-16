@@ -23,12 +23,6 @@ formatted blocks: {start,open,close,high,low} or a vector of objects.
 #include <set>
 using namespace std;
 
-#include <vector>
-#include <iostream>
-#include <algorithm>
-
-using namespace std;
-
 #include <iostream>
 #include <vector>
 #include <string>
