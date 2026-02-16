@@ -70,6 +70,29 @@ using namespace std;
 class Solution {
 public:
     int brightestPosition(vector<vector<int>>& lights) {
+        map<int, int> pos_light;
+        for (const vector<int>& l : lights) {
+            pos_light[l[0] - l[1]] += 1;
+            pos_light[l[0] + l[1] + 1] -= 1;
+        }
+
+        int max_light = INT_MIN;
+        int cur_bright = 0;
+        int rst = 0;
+        for (auto& [pos, light] : pos_light) {
+            cur_bright += light;
+            if (cur_bright > max_light) {
+                max_light = cur_bright;
+                rst = pos;
+            }
+        }
+        return rst;
+    }
+};
+
+class Solution {
+public:
+    int brightestPosition(vector<vector<int>>& lights) {
         vector<vector<int>> pos;
         for (const vector<int>& l : lights) {
             pos.push_back({l[0] - l[1], 1});
