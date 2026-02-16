@@ -45,8 +45,9 @@ Constraints:
 #include <set>
 #include <numeric>
 using namespace std;
-// https://leetcode.com/problems/ways-to-split-array-into-three-subarrays/discuss/999257/C%2B%2BJavaPython-O(n)-with-picture
 /*
+https://leetcode.com/problems/ways-to-split-array-into-three-subarrays/discuss/999257/C%2B%2BJavaPython-O(n)-with-picture
+
 The approach is not too hard,
 but the implementation was tricky for me to get right.
 
@@ -75,19 +76,20 @@ The following picture demonstrate this approach for the [4,2,3,0,3,5,3,12] test 
 class Solution {
 public:
     int waysToSplit(vector<int>& nums) {
-        int res = 0;
-        int sz = nums.size();
+        int rst = 0;
+        int n = nums.size();
+        int mod = 1e9 + 7;
         partial_sum(begin(nums), end(nums), begin(nums));
-        for (int i = 0, j = 0, k = 0; i < sz - 2; ++i) {
-            while (j <= i || (j < sz - 1 && nums[j] < nums[i] * 2)) {
-                ++j;
+        for (int i = 0, j = 0, k = 0; i < n - 2; ++i) {
+            while (j <= i || (j < n - 1 && nums[j] < nums[i] * 2)) {
+                j += 1;
             }
 
-            while (k < j || (k < sz - 1 && nums[k] - nums[i] <= nums[sz - 1] - nums[k])) {
-                ++k;
+            while (k < j || (k < n - 1 && nums[k] - nums[i] <= nums[n - 1] - nums[k])) {
+                k += 1;
             }
-            res = (res + k - j) % 1000000007;
+            rst = (rst + k - j) % mod;
         }
-        return res;
+        return rst;
     }
 };

@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/minesweeper/description/?envType=company&envId=robinhood&favoriteSlug=robinhood-all
 529. Minesweeper
 Let's play the minesweeper game (Wikipedia, online game)!
 
@@ -84,21 +85,22 @@ using namespace std;
 
 class Solution {
 private:
-    bool validClick(vector<vector<char>>& board, int r, int c) {
+    bool is_valid(vector<vector<char>>& board, int r, int c) {
         return r >= 0 and c >= 0 and r < board.size() and c < board[0].size();
     }
 
     void dfs(vector<vector<char>>& board, int r, int c) {
-        if (!validClick(board, r, c) or board[r][c] != 'E') {
+        if (!is_valid(board, r, c) or board[r][c] != 'E') {
             return;
         }
 
         int count = 0;
         for (int i = r - 1; i <= r + 1; ++i) {
-            for (int j = c - 1; j <= c + 1; ++j)
-                if (validClick(board, i, j) and board[i][j] == 'M') {
+            for (int j = c - 1; j <= c + 1; ++j) {
+                if (is_valid(board, i, j) and board[i][j] == 'M') {
                     count += 1;
                 }
+            }
         }
 
         if (count > 0) {

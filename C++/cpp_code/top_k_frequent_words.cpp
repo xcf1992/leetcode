@@ -40,27 +40,27 @@ using namespace std;
 
 struct Comp {
     bool operator()(const pair<string, int>& a, const pair<string, int>& b) {
-        return b.second > a.second || (a.second == b.second && b.first < a.first);
+        return a.second < b.second || (a.second == b.second && a.first > b.first);
     }
 };
 
 class Solution {
 public:
     vector<string> topKFrequent(vector<string>& words, int k) {
-        unordered_map<string, int> frequency;
+        unordered_map<string, int> word_cnt;
         for (string word : words) {
-            frequency[word] += 1;
+            word_cnt[word] += 1;
         }
 
-        priority_queue<pair<string, int>, vector<pair<string, int>>, Comp> sortWords;
-        for (const auto& freq : frequency) {
-            sortWords.push(freq);
+        priority_queue<pair<string, int>, vector<pair<string, int>>, Comp> sorted_words;
+        for (const auto& freq : word_cnt) {
+            sorted_words.push(freq);
         }
 
         vector<string> result;
-        while (result.size() < k and !sortWords.empty()) {
-            result.push_back(sortWords.top().first);
-            sortWords.pop();
+        while (result.size() < k and !sorted_words.empty()) {
+            result.push_back(sorted_words.top().first);
+            sorted_words.pop();
         }
         return result;
     }

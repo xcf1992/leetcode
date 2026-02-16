@@ -38,13 +38,13 @@ class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
         vector<int> rst;
-        unordered_map<int, int> frequency;
-        for (int i = 0; i < nums.size(); i++) {
-            frequency[nums[i]] += 1;
+        unordered_map<int, int> freq;
+        for (int num : nums) {
+            freq[num] += 1;
         }
 
         priority_queue<pair<int, int>, vector<pair<int, int>>, myCmp> pq;
-        for (auto& it : frequency) {
+        for (auto& it : freq) {
             pq.push({it.second, it.first});
         }
 
