@@ -96,6 +96,7 @@ public:
                 }
                 cur += words[i + j];
             }
+            // last line need to pad empty spaces to the end of text
             cur += string(maxWidth - cur.size(), ' ');
             result.push_back(cur);
         }

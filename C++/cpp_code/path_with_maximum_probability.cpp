@@ -55,35 +55,36 @@ using namespace std;
 class Solution {
 public:
     double maxProbability(int n, vector<vector<int>>& edges, vector<double>& succProb, int start, int end) {
-        unordered_map<int, vector<pair<int, double>>> next;
+        unordered_map<int, vector<pair<int, double>>> adj;
         for (int i = 0; i < edges.size(); ++i) {
             int from = edges[i][0];
             int to = edges[i][1];
             double prob = succProb[i];
 
-            next[from].push_back({to, prob});
-            next[to].push_back({from, prob});
+            adj[from].push_back({to, prob});
+            adj[to].push_back({from, prob});
         }
 
-        vector<double> reachProb(n, 0.0);
-        reachProb[start] = 1.0;
+        vector<double> reach_prob(n, 0.0);
+        reach_prob[start] = 1.0;
+
         queue<pair<int, double>> bfs;
         bfs.push({start, 1.0});
         while (!bfs.empty()) {
-            int curPos = bfs.front().first;
-            double curProb = bfs.front().second;
+            int cur_pos = bfs.front().first;
+            double cur_prob = bfs.front().second;
             bfs.pop();
 
-            for (pair<int, double>& nxt : next[curPos]) {
+            for (pair<int, double>& nxt : adj[cur_pos]) {
                 int to = nxt.first;
                 double prob = nxt.second;
-                double newProb = prob * curProb;
-                if (newProb > reachProb[to]) {
-                    reachProb[to] = newProb;
-                    bfs.push({to, newProb});
+                double new_prob = prob * cur_prob;
+                if (new_prob > reach_prob[to]) {
+                    reach_prob[to] = new_prob;
+                    bfs.push({to, new_prob});
                 }
             }
         }
-        return reachProb[end];
+        return reach_prob[end];
     }
 };

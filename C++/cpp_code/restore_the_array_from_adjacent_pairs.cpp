@@ -59,29 +59,31 @@ using namespace std;
 class Solution {
 public:
     vector<int> restoreArray(vector<vector<int>>& adjacentPairs) {
-        unordered_map<int, vector<int>> ps;
+        unordered_map<int, vector<int>> neighbours;
         for (auto& p : adjacentPairs) {
-            ps[p[0]].push_back(p[1]);
-            ps[p[1]].push_back(p[0]);
+            neighbours[p[0]].push_back(p[1]);
+            neighbours[p[1]].push_back(p[0]);
         }
 
-        vector<int> res;
-        for (auto& p : ps) {
+        vector<int> rst;
+        for (auto& p : neighbours) {
             if (p.second.size() == 1) {
-                res.push_back(p.first);
-                res.push_back(p.second[0]);
+                rst.push_back(p.first);
+                rst.push_back(p.second[0]);
                 break;
             }
         }
 
-        while (res.size() < adjacentPairs.size() + 1) {
-            auto tail = res.back(), prev = res[res.size() - 2];
-            auto& next = ps[tail];
-            if (next[0] != prev)
-                res.push_back(next[0]);
-            else
-                res.push_back(next[1]);
+        while (rst.size() < adjacentPairs.size() + 1) {
+            int tail = rst.back();
+            int prev = rst[rst.size() - 2];
+            auto& next = neighbours[tail];
+            if (next[0] != prev) {
+                rst.push_back(next[0]);
+            } else {
+                rst.push_back(next[1]);
+            }
         }
-        return res;
+        return rst;
     }
 };
