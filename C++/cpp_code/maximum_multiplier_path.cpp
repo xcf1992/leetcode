@@ -69,7 +69,6 @@ class Solution {
         }
 
         visited[curr] = true;
-
         for (auto& edge : adj[curr]) {
             int neighbor = edge.first;
             int weight = edge.second;
@@ -78,8 +77,6 @@ class Solution {
                 dfs(neighbor, end, currentProduct * weight, visited, adj);
             }
         }
-
-        // Backtrack: unmark the node to allow other path explorations
         visited[curr] = false;
     }
 
