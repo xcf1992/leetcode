@@ -106,13 +106,9 @@ public:
 private:
     // Helper to get nodes in topological order starting from entrypoint
     vector<string> get_topo_order(string start) {
-        vector<string> order;
-        unordered_map<string, int> in_degree;
-
         // Only consider nodes reachable from entrypoint
         set<string> reachable;
         reachable.insert(start);
-
         vector<string> q = {start};
         int head = 0;
         while (head < q.size()) {
@@ -125,6 +121,7 @@ private:
             }
         }
 
+        unordered_map<string, int> in_degree;
         for (const string& u : reachable) {
             for (const string& v : adj[u]) {
                 if (reachable.count(v)) {
@@ -138,6 +135,7 @@ private:
             topo_q.push_back(start);
 
         head = 0;
+        vector<string> order;
         while (head < topo_q.size()) {
             string u = topo_q[head++];
             order.push_back(u);
