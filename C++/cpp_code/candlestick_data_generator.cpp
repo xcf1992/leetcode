@@ -31,22 +31,22 @@ using namespace std;
 #include <climits>
 
 struct Candlestick {
-    int startTime;
-    int open;
-    int close;
-    int high;
-    int low;
-    int firstTimestamp;  // Helper to track earliest price
-    int lastTimestamp;   // Helper to track latest price
+    int start_time;
+    int open_price;
+    int close_price;
+    int high_price;
+    int low_price;
+    int first_timestamp;  // Helper to track the earliest price
+    int last_timestamp;   // Helper to track the latest price
 };
 
 std::string computeCandlesticks(std::vector<std::pair<int, int>>& prices) {
-    if (prices.empty())
+    if (prices.empty()) {
         return "";
+    }
 
     // Map: intervalStart -> Candlestick data
     std::map<int, Candlestick> intervals;
-
     for (const auto& p : prices) {
         int time = p.first;
         int price = p.second;
@@ -55,30 +55,33 @@ std::string computeCandlesticks(std::vector<std::pair<int, int>>& prices) {
         if (intervals.find(start) == intervals.end()) {
             // Initialize new interval
             intervals[start] = {start, price, price, price, price, time, time};
-        } else {
-            Candlestick& cs = intervals[start];
-            // Update High/Low
-            cs.high = std::max(cs.high, price);
-            cs.low = std::min(cs.low, price);
+            continue;
+        }
 
-            // Update Open (if this timestamp is earlier than what we have)
-            if (time < cs.firstTimestamp) {
-                cs.firstTimestamp = time;
-                cs.open = price;
-            }
-            // Update Close (if this timestamp is later than what we have)
-            if (time >= cs.lastTimestamp) {
-                cs.lastTimestamp = time;
-                cs.close = price;
-            }
+        Candlestick& cs = intervals[start];
+        // Update High/Low
+        cs.high_price = std::max(cs.high_price, price);
+        cs.low_price = std::min(cs.low_price, price);
+
+        // Update Open (if this timestamp is earlier than what we have)
+        if (time < cs.first_timestamp) {
+            cs.first_timestamp = time;
+            cs.open_price = price;
+        }
+
+        // Update Close (if this timestamp is later than what we have)
+        if (time >= cs.last_timestamp) {
+            cs.last_timestamp = time;
+            cs.close_price = price;
         }
     }
 
     // Format output string
     std::string result = "";
     for (auto const& [start, cs] : intervals) {
-        result += "{" + std::to_string(cs.startTime) + "," + std::to_string(cs.open) + "," + std::to_string(cs.close) +
-                  "," + std::to_string(cs.high) + "," + std::to_string(cs.low) + "}";
+        result += "{" + std::to_string(cs.start_time) + "," + std::to_string(cs.open_price) + "," +
+                  std::to_string(cs.close_price) + "," + std::to_string(cs.high_price) + "," +
+                  std::to_string(cs.low_price) + "}";
     }
 
     return result;

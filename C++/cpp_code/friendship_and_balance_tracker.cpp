@@ -54,10 +54,10 @@ unordered_map<string, unordered_set<string>> friendships: To track who is friend
 unordered_map<string, pair<string, string>> pendingRequests: Mapping sequenceNumber to {fromUser, toUser}.
  */
 class SocialFinanceApp {
-    unordered_map<string, long long> balances;
-    unordered_map<string, unordered_set<string>> friendships;
+    unordered_map<string, long long> user_balance_;
+    unordered_map<string, unordered_set<string>> user_to_friends_;
     // Maps sequenceNumber -> {fromUser, toUser}
-    unordered_map<string, pair<string, string>> pendingRequests;
+    unordered_map<string, pair<string, string>> pending_friend_req_;
 
 public:
     void processRequests(const vector<pair<string, string>>& requests) {
@@ -90,12 +90,12 @@ private:
 
     void handleRegister(string& path) {
         auto parts = split(path, '/'); // ["v1", "REGISTER", "{user}", "{bal}"]
-        balances[parts[2]] = stoll(parts[3]);
+        user_balance_[parts[2]] = stoll(parts[3]);
     }
 
     void handleFriendRequest(string& seqNum, string& path) {
         auto parts = split(path, '/'); // ["v1", "FRIEND_REQUEST", "{from}", "{to}"]
-        pendingRequests[seqNum] = {parts[2], parts[3]};
+        pending_friend_req_[seqNum] = {parts[2], parts[3]};
     }
 
     void handleFriendAccept(string& path) {
@@ -103,13 +103,13 @@ private:
         string toUser = parts[2];
         string targetSeq = parts[3];
 
-        if (pendingRequests.count(targetSeq)) {
-            auto& request = pendingRequests[targetSeq];
+        if (pending_friend_req_.count(targetSeq)) {
+            auto& request = pending_friend_req_[targetSeq];
             // Verify the recipient matches the accept call
             if (request.second == toUser) {
-                friendships[request.first].insert(request.second);
-                friendships[request.second].insert(request.first);
-                pendingRequests.erase(targetSeq);
+                user_to_friends_[request.first].insert(request.second);
+                user_to_friends_[request.second].insert(request.first);
+                pending_friend_req_.erase(targetSeq);
             }
         }
     }
@@ -121,16 +121,16 @@ private:
         long long amount = stoll(parts[4]);
 
         // Check if they are friends and balance is sufficient
-        if (friendships[from].count(to) && balances[from] >= amount) {
-            balances[from] -= amount;
-            balances[to] += amount;
+        if (user_to_friends_[from].count(to) && user_balance_[from] >= amount) {
+            user_balance_[from] -= amount;
+            user_balance_[to] += amount;
         }
     }
 
 public:
     void printFinalBalances() {
         // Use map for alphabetical sorting of usernames
-        map<string, long long> sortedBalances(balances.begin(), balances.end());
+        map<string, long long> sortedBalances(user_balance_.begin(), user_balance_.end());
         for (auto const& [user, bal] : sortedBalances) {
             cout << user << ": " << bal << endl;
         }

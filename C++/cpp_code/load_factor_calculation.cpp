@@ -78,7 +78,6 @@ public:
         // We use a topological-like approach or simple BFS/DFS
         // to propagate load because it's a DAG.
         vector<string> order = get_topo_order(entrypoint);
-
         for (const string& u : order) {
             int current_load = load_factors[u];
             if (adj.count(u)) {
@@ -131,8 +130,9 @@ private:
         }
 
         vector<string> topo_q;
-        if (in_degree[start] == 0)
+        if (in_degree[start] == 0) {
             topo_q.push_back(start);
+        }
 
         head = 0;
         vector<string> order;
@@ -142,8 +142,9 @@ private:
             for (const string& v : adj[u]) {
                 if (reachable.count(v)) {
                     in_degree[v]--;
-                    if (in_degree[v] == 0)
+                    if (in_degree[v] == 0) {
                         topo_q.push_back(v);
+                    }
                 }
             }
         }
