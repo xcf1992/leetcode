@@ -41,21 +41,7 @@ Example 3:
 
 Input: Function with params ["int", "T1", ["int", "T2"]] and return type "T1"
 Output: "[int,T1,[int,T2]] -> T1"
-
-
 */
-#include <iostream>
-#include <string>
-#include <vector>
-#include <unordered_map>
-#include <unordered_set>
-#include <algorithm>
-#include <cmath>
-#include <queue>
-#include <stack>
-#include <climits>
-using namespace std;
-
 #include <iostream>
 #include <vector>
 #include <string>
