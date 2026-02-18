@@ -74,11 +74,6 @@ solution.findEarliestSupported([["101.1.2", "101.1.3", "101.2.1", "102.0.1", "10
 #include <set>
 using namespace std;
 
-#include <iostream>
-#include <vector>
-#include <string>
-#include <sstream>
-
 /**
  * External API that checks if a version supports a specific feature.
  * You should NOT directly access the `minSupportedVersion`.
