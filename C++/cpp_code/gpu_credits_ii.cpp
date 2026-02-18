@@ -63,7 +63,7 @@ cs.getBalance(50); // Returns 0. The remaining 3 credits are consumed.
 #include <cmath>
 #include <queue>
 #include <stack>
-#include <climits>
+#include <set>
 using namespace std;
 
 struct Grant {
@@ -72,14 +72,8 @@ struct Grant {
     Grant(int end, int amount) : end(end), amount(amount) {}
 };
 
-struct ActiveGrant {
-    int end;
-    int remain;
-    ActiveGrant(int end, int remain) : end(end), remain(remain) {}
-};
-
-struct ActiveGrantComp {
-    bool operator()(const ActiveGrant& a, const ActiveGrant& b) {
+struct GrantComp {
+    bool operator()(const Grant& a, const Grant& b) {
         return a.end > b.end;
     }
 };
@@ -91,6 +85,8 @@ private:
 
 public:
     CreditSystem() {
+        start_to_grants_ = map<int, vector<Grant>>();
+        time_to_sub_ = map<int, int>();
     }
 
     void grantCredit(string id, int amount, int startTime, int expirationTime) {
@@ -101,24 +97,60 @@ public:
     }
 
     void subtract(int amount, int timestamp) {
-
+        time_to_sub_[timestamp] += amount;
     }
 
     int getBalance(int timestamp) {
-        int total = 0;
-        for (auto& [time, amount] : time_to_credit_change_) {
-            if (time <= timestamp) {
-                total += amount;
-            } else {
-                break;
+        set<int> all_times;
+        for (auto& [start_time, grants] : start_to_grants_) {
+            if (start_time <= timestamp) {
+                all_times.insert(start_time);
             }
         }
 
-        if (time_to_credit_sub_.find(timestamp) == time_to_credit_sub_.end()) {
-            return total;
+        for (auto& [time, sub] : time_to_sub_) {
+            if (time <= timestamp) {
+                all_times.insert(time);
+            }
         }
 
-        int sub = time_to_credit_sub_[timestamp];
-        return total >= sub ? total - sub : -1;
+        priority_queue<Grant, vector<Grant>, GrantComp> pq;
+        for (int time : all_times) {
+            while (!pq.empty() && pq.top().end <= time) {
+                pq.pop();
+            }
+
+            if (start_to_grants_.find(time) != start_to_grants_.end()) {
+                for (Grant& grant : start_to_grants_[time]) {
+                    pq.push(Grant(grant.end, grant.amount));
+                }
+            }
+
+            if (time_to_sub_.find(time) != time_to_sub_.end()) {
+                int sub_amt = time_to_sub_[time];
+                while (sub_amt > 0 && !pq.empty()) {
+                    Grant cur = pq.top();
+                    pq.pop();
+
+                    int used = min(cur.amount, sub_amt);
+                    cur.amount -= used;
+                    sub_amt -= used;
+                    if (cur.amount > 0) {
+                        pq.push(cur);
+                    }
+                }
+            }
+        }
+
+        int rst = 0;
+        while (!pq.empty() && pq.top().end <= timestamp) {
+            pq.pop();
+        }
+
+        while (!pq.empty()) {
+            rst += pq.top().amount;
+            pq.pop();
+        }
+        return max(rst, 0);
     }
 };
