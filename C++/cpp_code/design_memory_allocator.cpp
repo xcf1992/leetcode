@@ -60,6 +60,165 @@ At most 1000 calls will be made to allocate and freeMemory.
 #include <map>
 #include <set>
 using namespace std;
+class Allocator {
+    int n_;
+    struct Node {
+        int prefix, suffix, maxFree, len;
+    };
+    vector<Node> tree_;
+    unordered_map<int, vector<pair<int, int>>> allocated_mem_;
+
+    void build(int node, int lo, int hi) {
+        int len = hi - lo + 1;
+        tree_[node] = {len, len, len, len};
+        if (lo == hi)
+            return;
+        int mid = (lo + hi) / 2;
+        build(2 * node, lo, mid);
+        build(2 * node + 1, mid + 1, hi);
+    }
+
+    Node combine(const Node& L, const Node& R) {
+        Node res;
+        res.len = L.len + R.len;
+        res.prefix = (L.prefix == L.len) ? L.len + R.prefix : L.prefix;
+        res.suffix = (R.suffix == R.len) ? R.len + L.suffix : R.suffix;
+        res.maxFree = max({L.maxFree, R.maxFree, L.suffix + R.prefix});
+        return res;
+    }
+
+    void update(int node, int lo, int hi, int pos, int val) {
+        if (lo == hi) {
+            tree_[node] = {val, val, val, 1};
+            return;
+        }
+        int mid = (lo + hi) / 2;
+        if (pos <= mid)
+            update(2 * node, lo, mid, pos, val);
+        else
+            update(2 * node + 1, mid + 1, hi, pos, val);
+        tree_[node] = combine(tree_[2 * node], tree_[2 * node + 1]);
+    }
+
+    int query(int node, int lo, int hi, int size) {
+        if (tree_[node].maxFree < size)
+            return -1;
+        if (lo == hi)
+            return lo;
+        int mid = (lo + hi) / 2;
+        // 1. Try left subtree first (lowest address wins)
+        if (tree_[2 * node].maxFree >= size)
+            return query(2 * node, lo, mid, size);
+        // 2. Try the block that spans the mid boundary
+        if (tree_[2 * node].suffix + tree_[2 * node + 1].prefix >= size)
+            return mid - tree_[2 * node].suffix + 1;
+        // 3. Must fit entirely in right subtree
+        return query(2 * node + 1, mid + 1, hi, size);
+    }
+
+public:
+    Allocator(int n) : n_(n), tree_(4 * n) {
+        build(1, 0, n - 1);
+    }
+
+    int allocate(int size, int mID) {
+        int start = query(1, 0, n_ - 1, size);
+        if (start == -1)
+            return -1;
+        for (int i = start; i < start + size; i++)
+            update(1, 0, n_ - 1, i, 0);
+        allocated_mem_[mID].push_back({start, size});
+        return start;
+    }
+
+    int freeMemory(int mID) {
+        auto mit = allocated_mem_.find(mID);
+        if (mit == allocated_mem_.end())
+            return 0;
+        int rst = 0;
+        for (auto& [start, size] : mit->second) {
+            for (int i = start; i < start + size; i++)
+                update(1, 0, n_ - 1, i, 1);
+            rst += size;
+        }
+        allocated_mem_.erase(mit);
+        return rst;
+    }
+};
+/*
+The Logic Doesn't Hold — Here's Why
+The idea has a subtle flaw. free_by_size_.lower_bound({size, 0}) finds the block with the smallest qualifying size, then
+the smallest start among that size tier — not the smallest start across all qualifying blocks.
+ */
+class Allocator {
+private:
+    unordered_map<int, vector<pair<int, int>>> allocated_mem_;
+    set<pair<int, int>> free_by_pos_;
+    set<pair<int, int>> free_by_size_;
+
+public:
+    Allocator(int n) {
+        free_by_pos_.insert({0, n});
+        free_by_size_.insert({n, 0});
+    }
+
+    int allocate(int size, int mID) {
+        auto it = free_by_size_.lower_bound({size, 0});
+        if (it == free_by_size_.end()) {
+            return -1;
+        }
+
+        int block_size = it->first;
+        int start_pos = it->second;
+
+        free_by_size_.erase(it);
+        free_by_pos_.erase({start_pos, block_size});
+
+        if (block_size > size) {
+            free_by_size_.insert({block_size - size, start_pos + size});
+            free_by_pos_.insert({start_pos + size, block_size - size});
+        }
+        allocated_mem_[mID].push_back({start_pos, size});
+        return start_pos;
+    }
+
+    int freeMemory(int mID) {
+        if (allocated_mem_.find(mID) == allocated_mem_.end()) {
+            return 0;
+        }
+
+        int rst = 0;
+        for (int i = 0; i < allocated_mem_[mID].size(); i++) {
+            int cur_start = allocated_mem_[mID][i].first;
+            int cur_size = allocated_mem_[mID][i].second;
+            rst += cur_size;
+
+            auto it = free_by_pos_.lower_bound({cur_start, cur_size});
+            if (it != free_by_pos_.end() && it->first == cur_start + cur_size) {
+                cur_size += it->second;
+                free_by_size_.erase({it->second, it->first});
+                free_by_pos_.erase(it);
+            }
+
+            it = free_by_pos_.lower_bound({cur_start, cur_size});
+            if (it != free_by_pos_.begin()) {
+                auto prev_it = prev(it);
+                if (prev_it->first + prev_it->second == cur_start) {
+                    cur_start = prev_it->first;
+                    cur_size += prev_it->second;
+                    free_by_size_.erase({prev_it->second, prev_it->first});
+                    free_by_pos_.erase(prev_it);
+                }
+            }
+
+            free_by_pos_.insert({cur_start, cur_size});
+            free_by_size_.insert({cur_size, cur_start});
+        }
+
+        allocated_mem_.erase(mID);
+        return rst;
+    }
+};
 
 class Allocator {
 public:
