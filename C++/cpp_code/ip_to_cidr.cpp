@@ -112,3 +112,73 @@ public:
         return result;
     }
 };
+
+#include <sstream>
+#include <cassert>
+
+class IPConverter {
+public:
+    static uint32_t to_int(string& ip) {
+        uint32_t rst = 0;
+        stringstream ss(ip);
+        string segment;
+        while (getline(ss, segment, '.')) {
+            rst = (rst << 8) | stoi(segment);
+        }
+        return rst;
+    }
+
+    static string to_string_val(uint32_t ip) {
+        return to_string((ip >> 24) & 0xFF) + "." + to_string((ip >> 16) & 0xFF) + "." + to_string((ip >> 8) & 0xFF) +
+               "." + to_string(ip & 0xFF);
+    }
+};
+
+class IPv4Iterator {
+private:
+    uint32_t start_;
+    uint32_t cur_;
+    uint32_t end_;
+    bool is_reverse_;
+    bool has_finished_;
+
+public:
+    IPv4Iterator(string start_ip, bool reverse = false) {
+        start_ = IPConverter::to_int(start_ip);
+        cur_ = start_;
+        is_reverse_ = reverse;
+        end_ = is_reverse_ ? 0 : 0xFFFFFFFF;
+        has_finished_ = false;
+    }
+
+    static IPv4Iterator fromCIDR(std::string cidr) {
+        size_t pos = cidr.find('/');
+        string base_ip = cidr.substr(0, pos);
+        int prefix = stoi(cidr.substr(pos + 1));
+
+        uint32_t base_ip_int = IPConverter::to_int(base_ip);
+        uint32_t mask = (prefix == 0) ? 0 : (0xFFFFFFFF << (32 - prefix));
+        uint32_t start_ip_int = base_ip_int & mask;
+        uint32_t end_ip_int = base_ip_int | ~mask;
+
+        IPv4Iterator it(IPConverter::to_string_val(start_ip_int));
+        it.end_ = end_ip_int;
+        return it;
+    }
+
+    bool has_next() {
+        return !has_finished_;
+    }
+
+    string next() {
+        assert(!has_finished_);
+
+        string rst = IPConverter::to_string_val(cur_);
+        if (cur_ == end_) {
+            has_finished_ = true;
+        } else {
+            is_reverse_ ? cur_-- : cur_++;
+        }
+        return rst;
+    }
+};

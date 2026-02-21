@@ -50,53 +50,6 @@ Output: "[int,T1,[int,T2]] -> T1"
 #include <regex>
 using namespace std;
 
-/*
-Follow-up:
-You are working with the same Node and Function type system described previously, which includes primitive types,
-generics, and arbitrarily nested tuple types.
-
-Your task is to implement a type inference utility:
-
-Node inferReturnType(Function function, List<Node> params)
-Given a function definition function and a list of concrete argument types params, this helper must:
-
-Validate whether params align with the function's parameter types, allowing generics in the function signature to be
-mapped to concrete types. If the match is successful, determine and return the concrete return type by substituting
-generics in the return type according to these mappings. If there is any type mismatch, return null. A valid match
-requires:
-
-The number of arguments and parameters to be identical.
-Generics in the function definition can appear in parameters or the return type, either directly or nested inside
-tuples. Primitive type mismatches (such as "int" versus "char") are considered failures. Each generic name must be
-consistently bound to a single concrete type throughout the entire matching process. Any scenario where the same generic
-would need to represent conflicting types (for example, both "int" and "char", or tuples with different structures)
-should result in a mismatch. Tuple types are matched recursively: the tuple's structure, arity (the number of elements),
-and the types of each nested element (including deeply nested tuples) must all align exactly. Your solution should infer
-and return the concrete return type for the given invocation if possible, or null if the arguments do not satisfy the
-rules above.
-
-Constraints:
-
-Both the function parameter list and the input params may contain arbitrarily nested tuples, but params are always
-concrete. Each tuple contains at most 100 elements. Primitive types are limited to "int", "char", "float". All other
-non-tuple type names must be valid generics of the form "T" followed by a digit. Generics may be reused multiple times
-anywhere in the function definition, including nested tuples and the return type. Example 1:
-
-Input: Function: ["T1", "T2", "int", "T1"] -> ["T1", "T2"], params = ["int", "char", "int", "int"]
-Output: A node stringified as "[int,char]"
-Explanation: "T1" is bound to "int" (positions 1 and 4), "T2" is bound to "char". Substituting these bindings into the
-return type ["T1", "T2"] yields ["int", "char"].
-
-Example 2:
-
-Input: Function: ["int", "T1", ["T2", "int"]] -> "T1", params = ["int", ["int", "str"], ["float", "int"]]
-Output: A node stringified as "[int,str]"
-
-Example 3:
-
-Input: Function: ["T1", "T2", "int", "T1"] -> ["T1", "T2"], params = ["int", "int", "int", "char"]
-Output: null
- */
 class Node {
 private:
     string value;        // for primitive or generic types
@@ -105,7 +58,8 @@ private:
 
 public:
     // Default constructor needed for std::map<std::string, Node>
-    Node() : value(""), is_tuple_(false) {}
+    Node() : value(""), is_tuple_(false) {
+    }
 
     Node(string value) {
         this->value = value;
@@ -255,31 +209,81 @@ private:
     }
 };
 
+/*
+Follow-up:
+You are working with the same Node and Function type system described previously, which includes primitive types,
+generics, and arbitrarily nested tuple types.
+
+Your task is to implement a type inference utility:
+
+Node inferReturnType(Function function, List<Node> params)
+Given a function definition function and a list of concrete argument types params, this helper must:
+
+Validate whether params align with the function's parameter types, allowing generics in the function signature to be
+mapped to concrete types. If the match is successful, determine and return the concrete return type by substituting
+generics in the return type according to these mappings. If there is any type mismatch, return null. A valid match
+requires:
+
+The number of arguments and parameters to be identical.
+Generics in the function definition can appear in parameters or the return type, either directly or nested inside
+tuples. Primitive type mismatches (such as "int" versus "char") are considered failures. Each generic name must be
+consistently bound to a single concrete type throughout the entire matching process. Any scenario where the same generic
+would need to represent conflicting types (for example, both "int" and "char", or tuples with different structures)
+should result in a mismatch. Tuple types are matched recursively: the tuple's structure, arity (the number of elements),
+and the types of each nested element (including deeply nested tuples) must all align exactly. Your solution should infer
+and return the concrete return type for the given invocation if possible, or null if the arguments do not satisfy the
+rules above.
+
+Constraints:
+
+Both the function parameter list and the input params may contain arbitrarily nested tuples, but params are always
+concrete. Each tuple contains at most 100 elements. Primitive types are limited to "int", "char", "float". All other
+non-tuple type names must be valid generics of the form "T" followed by a digit. Generics may be reused multiple times
+anywhere in the function definition, including nested tuples and the return type. Example 1:
+
+Input: Function: ["T1", "T2", "int", "T1"] -> ["T1", "T2"], params = ["int", "char", "int", "int"]
+Output: A node stringified as "[int,char]"
+Explanation: "T1" is bound to "int" (positions 1 and 4), "T2" is bound to "char". Substituting these bindings into the
+return type ["T1", "T2"] yields ["int", "char"].
+
+Example 2:
+
+Input: Function: ["int", "T1", ["T2", "int"]] -> "T1", params = ["int", ["int", "str"], ["float", "int"]]
+Output: A node stringified as "[int,str]"
+
+Example 3:
+
+Input: Function: ["T1", "T2", "int", "T1"] -> ["T1", "T2"], params = ["int", "int", "int", "char"]
+Output: null
+*/
 class Solution {
 private:
-        static bool isGeneric(std::string value) {
+    static bool isGeneric(std::string value) {
         std::regex pattern("T\\d+");
         return std::regex_match(value, pattern);
     }
 
     static bool typesEqual(Node a, Node b) {
+        if (!a.isTuple() && !b.isTuple()) {
+            return a.getValue() == b.getValue();
+        }
+
         if (a.isTuple() && b.isTuple()) {
             std::vector<Node> aTuple = a.getTuple();
             std::vector<Node> bTuple = b.getTuple();
             if (aTuple.size() != bTuple.size()) {
                 return false;
             }
+
             for (int i = 0; i < (int)aTuple.size(); i++) {
                 if (!typesEqual(aTuple[i], bTuple[i])) {
                     return false;
                 }
             }
             return true;
-        } else if (!a.isTuple() && !b.isTuple()) {
-            return a.getValue() == b.getValue();
-        } else {
-            return false;
         }
+
+        return false;
     }
 
     // Unify expected type (may contain generics) with actual type (concrete)
@@ -305,7 +309,9 @@ private:
             }
 
             return true;
-        } else if (isGeneric(expected.getValue())) {
+        }
+
+        if (isGeneric(expected.getValue())) {
             // Expected is a generic type variable
             std::string genericName = expected.getValue();
             if (bindings.find(genericName) != bindings.end()) {
@@ -319,16 +325,17 @@ private:
                 bindings[genericName] = actual;
             }
             return true;
-        } else {
-            // Expected is a concrete primitive type
-            if (actual.isTuple()) {
-                return false;
-            }
-            if (expected.getValue() != actual.getValue()) {
-                return false;
-            }
-            return true;
         }
+
+        // Expected is a concrete primitive type
+        if (actual.isTuple()) {
+            return false;
+        }
+
+        if (expected.getValue() != actual.getValue()) {
+            return false;
+        }
+        return true;
     }
 
     // Substitute generics in a type with their bound values
@@ -341,21 +348,24 @@ private:
                 if (substituted == nullptr) {
                     return nullptr;
                 }
+
                 substitutedTuple.push_back(*substituted);
                 delete substituted;
             }
             return new Node(substitutedTuple);
-        } else if (isGeneric(type.getValue())) {
-            // Replace generic with its binding
+        }
+
+        // Replace generic with its binding
+        if (isGeneric(type.getValue())) {
             std::string genericName = type.getValue();
             if (bindings.find(genericName) == bindings.end()) {
                 return nullptr;
             }
             return new Node(bindings[genericName]);
-        } else {
-            // Concrete type, return as is
-            return new Node(type.getValue());
         }
+
+        // Concrete type, return as is
+        return new Node(type.getValue());
     }
 
 public:
@@ -384,12 +394,11 @@ public:
         std::cout << "===== Test 1 =====" << std::endl;
         // Function: [T1, T2, int, T1] -> [T1, T2].
         // Params: [int, char, int, int]
-        Function func({Node("T1"), Node("T2"), Node("int"), Node("T1")},
-                Node({Node("T1"), Node("T2")}));
+        Function func({Node("T1"), Node("T2"), Node("int"), Node("T1")}, Node({Node("T1"), Node("T2")}));
         std::vector<Node> params = {Node("int"), Node("char"), Node("int"), Node("int")};
         Node* result = inferReturnType(func, params);
         if (result != nullptr) {
-            std::cout << result->toString() << std::endl; // Expected: "[int,char]"
+            std::cout << result->toString() << std::endl;  // Expected: "[int,char]"
             delete result;
         } else {
             std::cout << "null" << std::endl;
@@ -400,14 +409,12 @@ public:
         std::cout << "\n===== Test 2 =====" << std::endl;
         // Function: [int, T1, [T2, int]] -> T1.
         // Params: [int, [int, char], [float, int]]
-        Function func({Node("int"), Node("T1"),
-                Node({Node("T2"), Node("int")})}, Node("T1"));
-        std::vector<Node> params = {Node("int"), Node({Node("int"), Node("char")}),
-                Node({Node("float"), Node("int")})};
+        Function func({Node("int"), Node("T1"), Node({Node("T2"), Node("int")})}, Node("T1"));
+        std::vector<Node> params = {Node("int"), Node({Node("int"), Node("char")}), Node({Node("float"), Node("int")})};
 
         Node* result = inferReturnType(func, params);
         if (result != nullptr) {
-            std::cout << result->toString() << std::endl; // Expected: "[int,char]"
+            std::cout << result->toString() << std::endl;  // Expected: "[int,char]"
             delete result;
         } else {
             std::cout << "null" << std::endl;
@@ -418,15 +425,14 @@ public:
         std::cout << "\n===== Test 3 =====" << std::endl;
         // Function: [T1, T2, int, T1] -> [T1, T2].
         // Params: [int, int, int, char]
-        Function func({Node("T1"), Node("T2"), Node("int"), Node("T1")},
-                Node({Node("T1"), Node("T2")}));
+        Function func({Node("T1"), Node("T2"), Node("int"), Node("T1")}, Node({Node("T1"), Node("T2")}));
         std::vector<Node> params = {Node("int"), Node("int"), Node("int"), Node("char")};
         Node* result = inferReturnType(func, params);
         if (result != nullptr) {
             std::cout << result->toString() << std::endl;
             delete result;
         } else {
-            std::cout << "null" << std::endl; // Expected: null
+            std::cout << "null" << std::endl;  // Expected: null
         }
     }
 
@@ -434,18 +440,16 @@ public:
         std::cout << "\n===== Test 4 =====" << std::endl;
         // Function: [[T1, T2], [T2, T3], T3] -> [T1, [T2, T3]].
         // Params: [[int, char], [char, [float, int]], [float, int]]
-        Function func(
-                {Node({Node("T1"), Node("T2")}),
-                        Node({Node("T2"), Node("T3")}), Node("T3")},
-                Node({Node("T1"), Node({Node("T2"), Node("T3")})}));
+        Function func({Node({Node("T1"), Node("T2")}), Node({Node("T2"), Node("T3")}), Node("T3")},
+                      Node({Node("T1"), Node({Node("T2"), Node("T3")})}));
 
         std::vector<Node> params = {Node({Node("int"), Node("char")}),
-                Node({Node("char"), Node({Node("float"), Node("int")})}),
-                Node({Node("float"), Node("int")})};
+                                    Node({Node("char"), Node({Node("float"), Node("int")})}),
+                                    Node({Node("float"), Node("int")})};
 
         Node* result = inferReturnType(func, params);
         if (result != nullptr) {
-            std::cout << result->toString() << std::endl; // Expected: "[int,[char,[float,int]]]"
+            std::cout << result->toString() << std::endl;  // Expected: "[int,[char,[float,int]]]"
             delete result;
         } else {
             std::cout << "null" << std::endl;
@@ -463,7 +467,7 @@ public:
             std::cout << result1->toString() << std::endl;
             delete result1;
         } else {
-            std::cout << "null" << std::endl; // Expected: null
+            std::cout << "null" << std::endl;  // Expected: null
         }
     }
 
@@ -478,7 +482,7 @@ public:
             std::cout << result2->toString() << std::endl;
             delete result2;
         } else {
-            std::cout << "null" << std::endl; // Expected: null
+            std::cout << "null" << std::endl;  // Expected: null
         }
         std::cout << std::endl;
     }

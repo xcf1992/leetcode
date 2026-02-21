@@ -208,6 +208,7 @@ public:
                     break;
                 }
             }
+
             if (matched) {
                 rst.push_back(i);
             }

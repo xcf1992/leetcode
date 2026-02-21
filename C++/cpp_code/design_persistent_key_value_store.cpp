@@ -481,7 +481,6 @@ public:
             std::copy(part.begin(), part.end(), result.begin() + offset);
             offset = offset + part.size();
         }
-
         return result;
     }
 };
