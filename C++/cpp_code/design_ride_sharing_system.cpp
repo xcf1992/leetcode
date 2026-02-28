@@ -1,7 +1,7 @@
 /*
 https://leetcode.com/problems/design-ride-sharing-system/description/
 3829. Design Ride Sharing System
-\
+
 A ride sharing system manages ride requests from riders and availability from drivers. Riders request rides, and drivers
 become available over time. The system should match riders and drivers in the order they arrive.
 
