@@ -563,6 +563,8 @@ public:
 
             map[key] = value;
         }
+
+        isClosed = false;
     }
 
     static void main() {
