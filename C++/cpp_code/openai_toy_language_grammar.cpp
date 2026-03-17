@@ -342,17 +342,17 @@ private:
     static Node* substitute(Node type, std::map<std::string, Node>& bindings) {
         if (type.isTuple()) {
             // Substitute in each element of the tuple
-            std::vector<Node> substitutedTuple;
+            std::vector<Node> relaced_tuples;
             for (Node child : type.getTuple()) {
                 Node* substituted = substitute(child, bindings);
                 if (substituted == nullptr) {
                     return nullptr;
                 }
 
-                substitutedTuple.push_back(*substituted);
+                relaced_tuples.push_back(*substituted);
                 delete substituted;
             }
-            return new Node(substitutedTuple);
+            return new Node(relaced_tuples);
         }
 
         // Replace generic with its binding

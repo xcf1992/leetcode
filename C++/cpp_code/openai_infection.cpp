@@ -151,7 +151,7 @@ public:
                 auto [cur_r, cur_c, date] = infection.front();
                 infection.pop();
 
-                if (grid[cur_r][cur_c] != 'X') {
+                if (grid[cur_r][cur_c] != 'X') { // already recovered
                     continue;
                 }
 

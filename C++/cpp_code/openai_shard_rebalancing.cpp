@@ -80,6 +80,7 @@ class Solution {
 public:
     vector<string> rebalance(int limit, vector<string> input) {
         vector<Shard> all_shards;
+        int max_end = INT_MIN;
         for (string& in : input) {
             vector<string> tokens;
             int pos = in.find(':');
@@ -90,6 +91,7 @@ public:
             }
             tokens.push_back(in);
             all_shards.push_back(Shard(tokens[0], tokens[1], tokens[2]));
+            max_end = max(max_end, all_shards.back().end);
         }
 
         sort(all_shards.begin(), all_shards.end(),
@@ -100,12 +102,17 @@ public:
         vector<Shard> accepted;
         for (Shard& shard : all_shards) {
             int new_start = max(last_start, shard.start);
-            // pop out all the events ended already
-            while (!min_end_heap.empty() && min_end_heap.top() < new_start) {
-                min_end_heap.pop();
-            }
 
-            while (min_end_heap.size() >= limit) {
+            while (true) {
+                // pop out all the events ended already
+                while (!min_end_heap.empty() && min_end_heap.top() < new_start) {
+                    min_end_heap.pop();
+                }
+
+                if (min_end_heap.size() < limit) {
+                    break;
+                }
+
                 new_start = min_end_heap.top() + 1;
                 min_end_heap.pop();
             }
@@ -133,6 +140,11 @@ public:
                 if (cur.end > covered_end) {
                     covered_end = cur.end;
                 }
+            }
+
+            Shard& last = accepted.back();
+            if (max_end > last.end) {
+                last.end = max_end;
             }
         }
 
