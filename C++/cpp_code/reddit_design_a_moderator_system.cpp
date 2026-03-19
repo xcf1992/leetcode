@@ -223,8 +223,6 @@ struct Community {
         string cur_usr = it->second;
         string next_time = after->first;
         string next_usr = after->second;
-        cout << "cur_time = " << cur_time << " cur_usr = " << cur_usr << " next_time = " << next_time << " next_usr = " << next_usr << endl;
-        cout << "=-=-=-=" << endl;
 
         moderators_.erase(it);
         moderators_.erase(after);
@@ -239,7 +237,6 @@ struct Community {
 class ModSystem {
 private:
     unordered_map<string, Community> all_comm_;
-    ;
 
     void parse_log(vector<string>& rst, string& log) {
         int pos = log.find(',');

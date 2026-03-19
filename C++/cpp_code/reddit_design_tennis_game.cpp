@@ -189,6 +189,7 @@ private:
     int game_cnt_b_;
     char set_winner_;
     bool set_ended_;
+
 public:
     TennisSet() {
         point_a_ = 0;
@@ -205,7 +206,6 @@ public:
         if (set_ended_) {
             return;
         }
-
 
         if (player == 'A') {
             point_a_ += 1;
