@@ -64,20 +64,20 @@ using namespace std;
 
 class TicTacToe {
 private:
-    vector<vector<int>> rowCount;
-    vector<vector<int>> colCount;
-    vector<int> diagnal;
-    vector<int> antiDiagnal;
-    int size;
+    vector<vector<int>> row_cnt_;
+    vector<vector<int>> col_cnt_;
+    vector<int> diagonal_cnt_;
+    vector<int> anti_diagonal_cnt_;
+    int size_;
 
 public:
     /* Initialize your data structure here.*/
     TicTacToe(int n) {
-        rowCount.resize(2, vector<int>(n, 0));
-        colCount.resize(2, vector<int>(n, 0));
-        diagnal.resize(2, 0);
-        antiDiagnal.resize(2, 0);
-        size = n;
+        row_cnt_.resize(2, vector<int>(n, 0));
+        col_cnt_.resize(2, vector<int>(n, 0));
+        diagonal_cnt_.resize(2, 0);
+        anti_diagonal_cnt_.resize(2, 0);
+        size_ = n;
     }
 
     /* Player {player} makes a move at ({row}, {col}).
@@ -89,25 +89,19 @@ public:
      1: Player 1 wins.
      2: Player 2 wins.*/
     int move(int row, int col, int player) {
-        rowCount[player - 1][row] += 1;
-        colCount[player - 1][col] += 1;
+        row_cnt_[player - 1][row] += 1;
+        col_cnt_[player - 1][col] += 1;
         if (row == col) {
-            diagnal[player - 1] += 1;
+            diagonal_cnt_[player - 1] += 1;
         }
-        if (row + col == size - 1) {
-            antiDiagnal[player - 1] += 1;
+        if (row + col == size_ - 1) {
+            anti_diagonal_cnt_[player - 1] += 1;
         }
 
-        if (rowCount[player - 1][row] == size or colCount[player - 1][col] == size or diagnal[player - 1] == size or
-            antiDiagnal[player - 1] == size) {
+        if (row_cnt_[player - 1][row] == size_ || col_cnt_[player - 1][col] == size_ ||
+            diagonal_cnt_[player - 1] == size_ || anti_diagonal_cnt_[player - 1] == size_) {
             return player;
         }
         return 0;
     }
 };
-
-/*
- * Your TicTacToe object will be instantiated and called as such:
- * TicTacToe obj = new TicTacToe(n);
- * int param_1 = obj.move(row,col,player);
- */
