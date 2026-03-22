@@ -41,6 +41,68 @@ If it is not possible to build such house according to the above rules, return -
 using namespace std;
 
 class Solution {
+private:
+    // Next four directions.
+    int dirs[4][2] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+
+public:
+    int shortestDistance(vector<vector<int>>& grid) {
+        int m = grid.size();
+        int n = grid[0].size();
+
+        // Total Matrix to store total distance sum for each empty cell.
+        vector<vector<int>> total(m, vector<int>(n, 0));
+
+        int empty_land_val = 0;
+        int min_dist = INT_MAX;
+
+        for (int row = 0; row < m; ++row) {
+            for (int col = 0; col < n; ++col) {
+                // Start a bfs from each house.
+                if (grid[row][col] != 1) {
+                    continue;
+                }
+
+                min_dist = INT_MAX;
+
+                // Use a queue to perform a BFS, starting from the cell located at (row, col).
+                queue<pair<int, int>> bfs;
+                bfs.push({row, col});
+                int steps = 0;
+                while (!bfs.empty()) {
+                    steps++;
+                    for (int level = bfs.size(); level > 0; --level) {
+                        auto curr = bfs.front();
+                        bfs.pop();
+
+                        for (auto& dir : dirs) {
+                            int nextRow = curr.first + dir[0];
+                            int nextCol = curr.second + dir[1];
+
+                            // For each cell with the value equal to empty land value
+                            // add distance and decrement the cell value by 1.
+                            if (nextRow >= 0 && nextRow < m && nextCol >= 0 && nextCol < n &&
+                                grid[nextRow][nextCol] == empty_land_val) {
+                                grid[nextRow][nextCol]--;
+                                total[nextRow][nextCol] += steps;
+
+                                bfs.push({nextRow, nextCol});
+                                min_dist = min(min_dist, total[nextRow][nextCol]);
+                            }
+                        }
+                    }
+                }
+
+                // Decrement empty land value to be searched in next iteration.
+                empty_land_val--;
+            }
+        }
+
+        return min_dist == INT_MAX ? -1 : min_dist;
+    }
+};
+
+class Solution1 {
     // 17.08%
 private:
     int m = 0;
@@ -106,7 +168,7 @@ public:
     }
 };
 
-class Solution {
+class Solution2 {
 private:
     void bfs(vector<vector<int>>& grid, vector<vector<vector<int>>>& distances, int row, int col) {
         int dirs[4][2] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
