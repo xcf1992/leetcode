@@ -1,4 +1,5 @@
 /*
+https://leetcode.com/problems/minimum-number-of-refueling-stops/
 871. Minimum Number of Refueling Stops
 
 A car travels from a starting position to a destination
@@ -86,10 +87,10 @@ public:
         stations.push_back({target, 0});
         priority_queue<int, vector<int>, myComp> pq;
         int tank = startFuel;
-        int pos = 0;
+        int cur_pos = 0;
         int result = 0;
         for (vector<int>& station : stations) {
-            tank -= station[0] - pos;
+            tank -= station[0] - cur_pos;
             while (tank < 0 and !pq.empty()) {
                 tank += pq.top();
                 pq.pop();
@@ -101,7 +102,7 @@ public:
             }
 
             pq.push(station[1]);
-            pos = station[0];
+            cur_pos = station[0];
         }
         return result;
     }

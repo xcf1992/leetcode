@@ -68,7 +68,7 @@ class Solution {
 private:
     int n = 0;
 
-    bool isValid(vector<char> values) {
+    bool is_valid(vector<char> values) {
         vector<int> checked(9, 0);
         for (int i = 0; i != n; ++i) {
             if (values[i] == '.') {
@@ -82,29 +82,29 @@ private:
         return true;
     }
 
-    bool checkRows(vector<vector<char>>& board) {
+    bool check_rows(vector<vector<char>>& board) {
         for (int i = 0; i != n; i++) {
-            if (!isValid(board[i])) {
+            if (!is_valid(board[i])) {
                 return false;
             }
         }
         return true;
     }
 
-    bool checkColumns(vector<vector<char>>& board) {
+    bool check_cols(vector<vector<char>>& board) {
         for (int j = 0; j < n; ++j) {
             vector<char> values;
             for (int i = 0; i < n; ++i) {
                 values.push_back(board[i][j]);
             }
-            if (!isValid(values)) {
+            if (!is_valid(values)) {
                 return false;
             }
         }
         return true;
     }
 
-    bool checkSubboxes(vector<vector<char>>& board) {
+    bool check_subs(vector<vector<char>>& board) {
         for (int i = 0; i < n; i += 3) {
             for (int j = 0; j < n; j += 3) {
                 vector<char> values;
@@ -113,7 +113,7 @@ private:
                         values.push_back(board[i + row][j + col]);
                     }
                 }
-                if (!isValid(values)) {
+                if (!is_valid(values)) {
                     return false;
                 }
             }
@@ -124,6 +124,6 @@ private:
 public:
     bool isValidSudoku(vector<vector<char>>& board) {
         n = board.size();
-        return checkRows(board) and checkColumns(board) and checkSubboxes(board);
+        return check_rows(board) && check_cols(board) && check_subs(board);
     }
 };

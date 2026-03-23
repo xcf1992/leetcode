@@ -72,7 +72,7 @@ class Solution {
 public:
     vector<string> fullJustify(vector<string>& words, int maxWidth) {
         int n = words.size();
-        vector<string> result;
+        vector<string> rst;
         int word_cnt = 0;
         for (int i = 0; i < n; i += word_cnt) {
             int len_of_words = 0;
@@ -88,18 +88,19 @@ public:
                     // last line we only need to insert one space between each word
                     cur.push_back(' ');
                 } else {
-                    int spaceCount = (maxWidth - len_of_words) / (word_cnt - 1);
+                    int space_cnt = (maxWidth - len_of_words) / (word_cnt - 1);
                     if (j <= (maxWidth - len_of_words) % (word_cnt - 1)) {
-                        spaceCount += 1;
+                        space_cnt += 1;
                     }
-                    cur += string(spaceCount, ' ');
+                    cur += string(space_cnt, ' ');
                 }
                 cur += words[i + j];
             }
+
             // last line need to pad empty spaces to the end of text
             cur += string(maxWidth - cur.size(), ' ');
-            result.push_back(cur);
+            rst.push_back(cur);
         }
-        return result;
+        return rst;
     }
 };

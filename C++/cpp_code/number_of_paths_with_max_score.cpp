@@ -56,20 +56,24 @@ public:
         paths[0][0] = 1;
 
         vector<vector<int>> dirs{{1, 0}, {0, 1}, {1, 1}};
-        for (int i = 1; i <= len; ++i) {
-            for (int j = 1; j <= len; ++j) {
-                if (board[i - 1][j - 1] == 'X') {
+        for (int row = 1; row <= len; ++row) {
+            for (int col = 1; col <= len; ++col) {
+                if (board[row - 1][col - 1] == 'X') {
                     continue;
                 }
 
                 for (vector<int>& dir : dirs) {
-                    int ni = i - dir[0];
-                    int nj = j - dir[1];
-                    if (paths[ni][nj] > 0) {
-                        int sum = score[ni][nj] + (board[i - 1][j - 1] - '0');
-                        if (score[i][j] <= sum) {
-                            paths[i][j] = ((score[i][j] == sum ? paths[i][j] : 0) + paths[ni][nj]) % mod;
-                            score[i][j] = sum;
+                    int prev_r = row - dir[0];
+                    int prev_c = col - dir[1];
+                    if (paths[prev_r][prev_c] > 0) {
+                        int sum = score[prev_r][prev_c] + (board[row - 1][col - 1] - '0');
+                        if (score[row][col] <= sum) {
+                            if (score[row][col] == sum) {
+                                paths[row][col] = (paths[row][col] + paths[prev_r][prev_c]) % mod;
+                            } else {
+                                paths[row][col] = paths[prev_r][prev_c];
+                            }
+                            score[row][col] = sum;
                         }
                     }
                 }

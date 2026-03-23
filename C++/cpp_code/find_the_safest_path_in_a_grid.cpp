@@ -88,22 +88,28 @@ private:
             }
         }
 
+        int dist = 0;
         while (!bfs.empty()) {
-            int row = bfs.front().first;
-            int col = bfs.front().second;
-            bfs.pop();
+            int cur_size = bfs.size();
+            for (int i = 0; i < cur_size; ++i) {
+                int row = bfs.front().first;
+                int col = bfs.front().second;
+                bfs.pop();
 
-            for (int i = 0; i < 4; ++i) {
-                int nxt_row = row + dir[i];
-                int nxt_col = col + dir[i + 1];
-                if (nxt_row < 0 || nxt_row >= n || nxt_col < 0 || nxt_col >= n) {
-                    continue;
-                }
-                if (safe_factor[nxt_row][nxt_col] > safe_factor[row][col] + 1) {
-                    safe_factor[nxt_row][nxt_col] = safe_factor[row][col] + 1;
-                    bfs.push(pair<int, int>(nxt_row, nxt_col));
+                for (int j = 0; j < 4; ++j) {
+                    int nxt_row = row + dir[j];
+                    int nxt_col = col + dir[j + 1];
+                    if (nxt_row < 0 || nxt_row >= n || nxt_col < 0 || nxt_col >= n) {
+                        continue;
+                    }
+
+                    if (safe_factor[nxt_row][nxt_col] == INT_MAX) {
+                        safe_factor[nxt_row][nxt_col] = dist + 1;
+                        bfs.push({nxt_row, nxt_col});
+                    }
                 }
             }
+            dist += 1;
         }
     }
 
@@ -117,10 +123,12 @@ public:
         vector<vector<int>> safe_factor(n, vector<int>(n, INT_MAX));
         calc_safe_factor(grid, safe_factor);
 
-        vector<vector<bool>> visited(n, vector<bool>(n, false));
         priority_queue<vector<int>, vector<vector<int>>, comp> pq;
         pq.push({0, 0, safe_factor[0][0]});
+
+        vector<vector<bool>> visited(n, vector<bool>(n, false));
         visited[0][0] = true;
+
         while (!pq.empty()) {
             int cur_r = pq.top()[0];
             int cur_c = pq.top()[1];

@@ -73,7 +73,7 @@ public:
             pq.pop();
 
             result = min(result, val);
-            if (row == m - 1 and col == n - 1) {
+            if (row == m - 1 && col == n - 1) {
                 return result;
             }
 
@@ -83,6 +83,46 @@ public:
                 if (nr >= 0 and nr < m and nc >= 0 and nc < n and !visited[nr][nc]) {
                     visited[nr][nc] = true;
                     pq.push({nr, nc, A[nr][nc]});
+                }
+            }
+        }
+        return -1;
+    }
+};
+
+class Solution {
+public:
+    int maximumMinimumPath(vector<vector<int>>& A) {
+        int m = A.size();
+        if (m == 0) {
+            return 0;
+        }
+        int n = A[0].size();
+
+        priority_queue<vector<int>, vector<vector<int>>, myComp> pq;
+        pq.push({0, 0, A[0][0]});
+        vector<vector<bool>> visited(m, vector<bool>(n, false));
+        visited[0][0] = true;
+
+        int result = INT_MAX;
+        vector<int> diff({0, 1, 0, -1, 0});
+        while (!pq.empty()) {
+            int row = pq.top()[0];
+            int col = pq.top()[1];
+            int val = pq.top()[2];
+            pq.pop();
+
+            result = min(result, val);
+            if (row == m - 1 && col == n - 1) {
+                return result;
+            }
+
+            for (int i = 1; i < diff.size(); ++i) {
+                int nr = row + diff[i];
+                int nc = col + diff[i - 1];
+                if (nr >= 0 and nr < m and nc >= 0 and nc < n and !visited[nr][nc]) {
+                    visited[nr][nc] = true;
+                    pq.push({nr, nc, min(val, A[nr][nc])});
                 }
             }
         }

@@ -76,9 +76,6 @@ private:
 public:
     int getMaximumGold(vector<vector<int>>& grid) {
         m = grid.size();
-        if (m == 0) {
-            return 0;
-        }
         n = grid[0].size();
 
         int result = 0;
