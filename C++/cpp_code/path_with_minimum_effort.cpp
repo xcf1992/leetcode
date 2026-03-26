@@ -123,42 +123,43 @@ public:
     int minimumEffortPath(vector<vector<int>>& heights) {
         int m = heights.size();
         int n = heights[0].size();
+        vector<int> diff({0, 1, 0, -1, 0});
 
         vector<vector<int>> efforts(m, vector<int>(n, INT_MAX));
         efforts[0][0] = 0;
-
-        int dirs[5] = {-1, 0, 1, 0, -1};
         priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-        pq.push({0, 0});  // {pos, effort}
+        pq.push({0, 0});
 
         while (!pq.empty()) {
-            int row = pq.top().first / n;
-            int col = pq.top().first % n;
-            int effort = pq.top().second;
+            int cur_effort = pq.top().first;
+            int cur_r = pq.top().second / n;
+            int cur_c = pq.top().second % n;
             pq.pop();
 
-            if (effort > efforts[row][col]) {
+            if (cur_effort > efforts[cur_r][cur_c]) {
                 continue;
             }
 
-            if (row == m - 1 && col == n - 1) {
-                return effort;
+            if (cur_r == m - 1 && cur_c == n - 1) {
+                return cur_effort;
             }
 
-            for (int i = 0; i < 4; ++i) {
-                int next_row = row + dirs[i];
-                int next_col = col + dirs[i + 1];
-                if (next_row >= m || next_col >= n || next_row < 0 || next_col < 0) {
+            for (int i = 0; i < 4; i++) {
+                int next_r = cur_r + diff[i];
+                int next_c = cur_c + diff[i + 1];
+                if (next_r < 0 || next_r >= m || next_c < 0 || next_c >= n) {
                     continue;
                 }
 
-                int next_effort = max(effort, abs(heights[row][col] - heights[next_row][next_col]));
-                if (next_effort < efforts[next_row][next_col]) {
-                    efforts[next_row][next_col] = next_effort;
-                    pq.push({next_row * n + next_col, next_effort});
+                int next_effort = abs(heights[cur_r][cur_c] - heights[next_r][next_c]);
+                int max_effort = max(cur_effort, next_effort);
+                if (max_effort < efforts[next_r][next_c]) {
+                    efforts[next_r][next_c] = max_effort;
+                    pq.push({max_effort, next_r * n + next_c});
                 }
             }
         }
+
         return -1;
     }
 };

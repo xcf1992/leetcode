@@ -40,11 +40,6 @@ signature.
 using namespace std;
 
 class Solution {
-private:
-    int gcd(int a, int b) {
-        return b == 0 ? a : gcd(b, a % b);
-    }
-
 public:
     int maxPoints(vector<vector<int>>& points) {
         int n = points.size();
@@ -52,35 +47,41 @@ public:
             return n;
         }
 
-        int result = 0;
-        for (int i = 0; i < n; ++i) {
+        int rst = 0;
+        for (int i = 0; i < n; i++) {
             int same = 1;
             int vertical = 0;
-            unordered_map<string, int> count;
-
+            unordered_map<string, int> cnt;
             for (int j = i + 1; j < n; j++) {
-                if (points[i][0] == points[j][0] and points[i][1] == points[j][1]) {
-                    same++;
+                if (points[i][0] == points[j][0] &&
+                    points[i][1] == points[j][1]) {
+                    same += 1;
                     continue;
-                }
+                    }
 
                 if (points[i][0] == points[j][0]) {
-                    vertical++;
+                    vertical += 1;
                     continue;
                 }
 
-                int dx = points[i][1] - points[j][1];
-                int dy = points[i][0] - points[j][0];
-                int g = gcd(dx, dy);
-                count[to_string(dx / g) + "_" + to_string(dy / g)] += 1;
+                int dx = points[i][0] - points[j][0];
+                int dy = points[i][1] - points[j][1];
+                int gcd_val = std::gcd(abs(dx), abs(dy));
+                if (dx < 0) {
+                    dx = -dx;
+                    dy = -dy;
+                }
+                string key =
+                    to_string(dx / gcd_val) + "_" + to_string(dy / gcd_val);
+                cnt[key] += 1;
             }
 
-            result = max(result, vertical + same);
-            for (auto it = count.begin(); it != count.end(); it++) {
-                result = max(result, it->second + same);
+            rst = max(rst, same + vertical);
+            for (auto& [key, val] : cnt) {
+                rst = max(rst, same + val);
             }
         }
-        return result;
+        return rst;
     }
 };
 

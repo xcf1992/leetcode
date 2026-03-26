@@ -89,14 +89,14 @@ next courses get time. Thats why Priority queues are used)
 */
 class Solution {
 public:
-    int scheduleCourse(vector<vector<int>>& courses) {
+    int scheduleCourse(vector<vector<int>>& courses) { // time_cost & end_time
         sort(courses.begin(), courses.end(), [](vector<int>& a, vector<int>& b) { return a[1] < b[1]; });
 
         priority_queue<int> max_heap;
         int current = 0;
         for (vector<int>& c : courses) {
             current += c[0];
-            max_heap.push(c[0]);
+            max_heap.push(c[0]); // max heap store the time cost from longest to shortest
             if (current > c[1]) {
                 current -= max_heap.top();
                 max_heap.pop();

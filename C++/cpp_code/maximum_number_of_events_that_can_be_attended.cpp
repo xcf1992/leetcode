@@ -123,7 +123,7 @@ public:
         int i = 0;
         int result = 0;
         for (int d = 1; d <= 100000; ++d) {
-            while (i < n and events[i][0] == d) {
+            while (i < n and events[i][0] <= d) {
                 pq.push(events[i][1]);
                 i += 1;
             }

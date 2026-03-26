@@ -80,6 +80,7 @@ public:
             if (cur_word.size() > next_word.size() && cur_word.compare(0, next_word.length(), next_word) == 0) {
                 return "";
             }
+
             int len = min(cur_word.size(), next_word.size());
             for (int j = 0; j < len; j++)
                 if (cur_word[j] != next_word[j]) {

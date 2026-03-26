@@ -75,17 +75,11 @@ we'll retroactively fuel up: greedily choosing the largest gas stations first.
 This is guaranteed to succeed because we drive the largest distance possible before each refueling stop,
 and therefore have the largest choice of gas stations to (retroactively) stop at.
 */
-struct myComp {
-    bool operator()(int a, int b) {
-        return a < b;
-    }
-};
-
 class Solution {
 public:
     int minRefuelStops(int target, int startFuel, vector<vector<int>>& stations) {
         stations.push_back({target, 0});
-        priority_queue<int, vector<int>, myComp> pq;
+        priority_queue<int, vector<int>, less<int>> pq;
         int tank = startFuel;
         int cur_pos = 0;
         int result = 0;

@@ -78,6 +78,18 @@ public:
             // the newly insert element could be very big and may should belong to high part
             low.insert(nums[i]);
             high.insert(*low.rbegin());
+            /*
+            这是个很经典的坑。
+            prev(low.end()) 返回的是一个迭代器，指向最后一个元素。low.erase(iterator) 只删除那一个元素。
+            *low.rbegin() 返回的是一个值。low.erase(value) 会删除所有等于该值的元素。
+            multiset 里可以有重复值，比如 low = {1, 3, 3, 3}，那么：
+
+            low.erase(prev(low.end())) → 删一个 3 → {1, 3, 3}
+            low.erase(*low.rbegin()) → erase(3) → 删掉所有 3 → {1}
+
+            如果你想用值来删但只删一个，要先 find 再 erase 迭代器：
+            cpplow.erase(low.find(*low.rbegin()));
+             */
             low.erase(prev(low.end()));
             if (low.size() < high.size()) {
                 // these steps may seem duplicate, but it is actually to make sure low.size() is at least equal to high

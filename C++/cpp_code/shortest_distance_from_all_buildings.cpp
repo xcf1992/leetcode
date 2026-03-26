@@ -42,63 +42,54 @@ using namespace std;
 
 class Solution {
 private:
-    // Next four directions.
-    int dirs[4][2] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-
+    vector<int> diff_ = {0, 1, 0, -1, 0};
 public:
     int shortestDistance(vector<vector<int>>& grid) {
         int m = grid.size();
         int n = grid[0].size();
-
-        // Total Matrix to store total distance sum for each empty cell.
-        vector<vector<int>> total(m, vector<int>(n, 0));
-
+        vector<vector<int>> total_dist(m, vector<int>(n, 0));
         int empty_land_val = 0;
-        int min_dist = INT_MAX;
-
-        for (int row = 0; row < m; ++row) {
-            for (int col = 0; col < n; ++col) {
-                // Start a bfs from each house.
-                if (grid[row][col] != 1) {
+        int rst = INT_MAX;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] != 1) {
                     continue;
                 }
 
-                min_dist = INT_MAX;
-
-                // Use a queue to perform a BFS, starting from the cell located at (row, col).
                 queue<pair<int, int>> bfs;
-                bfs.push({row, col});
-                int steps = 0;
+                bfs.push({i, j});
+                int dist = 0;
+                rst = INT_MAX;
                 while (!bfs.empty()) {
-                    steps++;
-                    for (int level = bfs.size(); level > 0; --level) {
-                        auto curr = bfs.front();
+                    int cur_size = bfs.size();
+                    for (int k = 0; k < cur_size; k++) {
+                        int cur_row = bfs.front().first;
+                        int cur_col = bfs.front().second;
                         bfs.pop();
 
-                        for (auto& dir : dirs) {
-                            int nextRow = curr.first + dir[0];
-                            int nextCol = curr.second + dir[1];
-
-                            // For each cell with the value equal to empty land value
-                            // add distance and decrement the cell value by 1.
-                            if (nextRow >= 0 && nextRow < m && nextCol >= 0 && nextCol < n &&
-                                grid[nextRow][nextCol] == empty_land_val) {
-                                grid[nextRow][nextCol]--;
-                                total[nextRow][nextCol] += steps;
-
-                                bfs.push({nextRow, nextCol});
-                                min_dist = min(min_dist, total[nextRow][nextCol]);
+                        for (int l = 0; l < 4; l++) {
+                            int next_row = cur_row + diff_[l];
+                            int next_col = cur_col + diff_[l + 1];
+                            if (next_row < 0 || next_row >= m || next_col < 0 || next_col >= n) {
+                                continue;
                             }
+
+                            if (grid[next_row][next_col] != empty_land_val) {
+                                continue;
+                            }
+
+                            grid[next_row][next_col] = empty_land_val - 1;
+                            total_dist[next_row][next_col] += dist + 1;
+                            bfs.push({next_row, next_col});
+                            rst = min(rst, total_dist[next_row][next_col]);
                         }
                     }
+                    dist += 1;
                 }
-
-                // Decrement empty land value to be searched in next iteration.
-                empty_land_val--;
+                empty_land_val -= 1;
             }
         }
-
-        return min_dist == INT_MAX ? -1 : min_dist;
+        return rst == INT_MAX ? -1 : rst;
     }
 };
 

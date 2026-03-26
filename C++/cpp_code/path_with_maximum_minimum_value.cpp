@@ -92,37 +92,41 @@ public:
 
 class Solution {
 public:
-    int maximumMinimumPath(vector<vector<int>>& A) {
-        int m = A.size();
-        if (m == 0) {
-            return 0;
-        }
-        int n = A[0].size();
+    int maximumMinimumPath(vector<vector<int>>& grid) {
+        int m = grid.size();
+        int n = grid[0].size();
 
-        priority_queue<vector<int>, vector<vector<int>>, myComp> pq;
-        pq.push({0, 0, A[0][0]});
-        vector<vector<bool>> visited(m, vector<bool>(n, false));
-        visited[0][0] = true;
+        vector<vector<int>> max_val_path(m, vector<int>(n, INT_MIN));
+        max_val_path[0][0] = grid[0][0];
+        priority_queue<pair<int, int>, vector<pair<int, int>>, less<pair<int, int>>> pq;
+        pq.push({grid[0][0], 0});
 
-        int result = INT_MAX;
         vector<int> diff({0, 1, 0, -1, 0});
         while (!pq.empty()) {
-            int row = pq.top()[0];
-            int col = pq.top()[1];
-            int val = pq.top()[2];
+            int cur_max_val = pq.top().first;
+            int cur_r = pq.top().second / n;
+            int cur_c = pq.top().second % n;
             pq.pop();
 
-            result = min(result, val);
-            if (row == m - 1 && col == n - 1) {
-                return result;
+            if (cur_max_val < max_val_path[cur_r][cur_c]) {
+                continue;
             }
 
-            for (int i = 1; i < diff.size(); ++i) {
-                int nr = row + diff[i];
-                int nc = col + diff[i - 1];
-                if (nr >= 0 and nr < m and nc >= 0 and nc < n and !visited[nr][nc]) {
-                    visited[nr][nc] = true;
-                    pq.push({nr, nc, min(val, A[nr][nc])});
+            if (cur_r == m - 1 && cur_c == n - 1) {
+                return cur_max_val;
+            }
+
+            for (int i = 0; i < 4; i++) {
+                int next_r = cur_r + diff[i];
+                int next_c = cur_c + diff[i + 1];
+                if (next_r < 0 || next_r >= m || next_c < 0 || next_c >= n) {
+                    continue;
+                }
+
+                int next_val = min(grid[next_r][next_c], cur_max_val);
+                if (next_val > max_val_path[next_r][next_c]) {
+                    max_val_path[next_r][next_c] = next_val;
+                    pq.push({next_val, next_r * n + next_c});
                 }
             }
         }
