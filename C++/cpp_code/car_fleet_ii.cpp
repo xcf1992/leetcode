@@ -100,8 +100,7 @@ public:
             }
 
             if (!max_stk.empty()) {
-                rst[cur_idx] =
-                        1.0 * (cars[max_stk.back()][0] - cur_pos) / (cur_speed - cars[max_stk.back()][1]);
+                rst[cur_idx] = 1.0 * (cars[max_stk.back()][0] - cur_pos) / (cur_speed - cars[max_stk.back()][1]);
             }
 
             max_stk.push_back(cur_idx);

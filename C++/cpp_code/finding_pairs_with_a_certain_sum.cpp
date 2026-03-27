@@ -62,7 +62,7 @@ public:
         sort(nums1_.begin(), nums1_.end());
         for (const int& num : nums2_) {
             freq2_[num] += 1;
-            max_val2_=max(max_val2_, num);
+            max_val2_ = max(max_val2_, num);
         }
     }
 

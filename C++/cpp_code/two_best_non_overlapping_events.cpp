@@ -65,7 +65,7 @@ public:
 
         int rst = 0;
         int max_val = 0;
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq; // {end_time, value}
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;  // {end_time, value}
         for (const vector<int>& event : events) {
             int start = event[0];
             int end = event[1];

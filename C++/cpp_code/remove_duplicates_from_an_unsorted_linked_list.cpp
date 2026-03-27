@@ -86,6 +86,6 @@ public:
             }
             cur = nxt;
         }
-        return dummy -> next;
+        return dummy->next;
     }
 };

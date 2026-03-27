@@ -86,7 +86,8 @@ public:
         ListNode* curr = head->next;
         int cur_idx = 1;
         while (curr->next != nullptr) {
-            if ((curr->val > prev->val && curr->val > curr->next->val) || (curr->val < prev->val && curr->val < curr->next->val)) {
+            if ((curr->val > prev->val && curr->val > curr->next->val) ||
+                (curr->val < prev->val && curr->val < curr->next->val)) {
                 idx.push_back(cur_idx);
             }
 

@@ -100,12 +100,14 @@ public:
 
 // Serialize tree to string for easy comparison
 string serialize(TreeNode* root) {
-    if (!root) return "null";
+    if (!root)
+        return "null";
     string result;
     queue<TreeNode*> q;
     q.push(root);
     while (!q.empty()) {
-        auto* n = q.front(); q.pop();
+        auto* n = q.front();
+        q.pop();
         if (n) {
             result += to_string(n->val) + " ";
             q.push(n->left);

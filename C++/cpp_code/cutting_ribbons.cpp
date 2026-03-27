@@ -72,6 +72,7 @@ private:
         }
         return false;
     }
+
 public:
     int maxLength(vector<int>& ribbons, int k) {
         int n = ribbons.size();

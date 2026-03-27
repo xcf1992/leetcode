@@ -69,9 +69,7 @@ public:
                 val_pos.push_back({grid[i][j], i * n + j});
             }
         }
-        sort(val_pos.begin(), val_pos.end(), [](pair<int, int> a, pair<int, int> b) {
-            return a.first < b.first;
-        });
+        sort(val_pos.begin(), val_pos.end(), [](pair<int, int> a, pair<int, int> b) { return a.first < b.first; });
 
         vector<int> row_min(m, 1);
         vector<int> col_min(n, 1);

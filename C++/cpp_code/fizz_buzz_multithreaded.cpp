@@ -73,9 +73,7 @@ public:
         while (true) {
             unique_lock<mutex> lk(mtx_);
 
-            cv_.wait(lk, [this] {
-                return cur_ > cnt_ || (cur_ % 3 == 0 && cur_ % 5 != 0);
-            });
+            cv_.wait(lk, [this] { return cur_ > cnt_ || (cur_ % 3 == 0 && cur_ % 5 != 0); });
 
             if (cur_ > cnt_) {
                 break;
@@ -92,9 +90,7 @@ public:
         while (true) {
             unique_lock<mutex> lock(mtx_);
 
-            cv_.wait(lock, [this] {
-                return cur_ > cnt_ || (cur_ % 3 != 0 && cur_ % 5 == 0);
-            });
+            cv_.wait(lock, [this] { return cur_ > cnt_ || (cur_ % 3 != 0 && cur_ % 5 == 0); });
 
             if (cur_ > cnt_) {
                 break;
@@ -111,9 +107,7 @@ public:
         while (true) {
             unique_lock<mutex> lock(mtx_);
 
-            cv_.wait(lock, [this] {
-                return cur_ > cnt_ || cur_ % 15 == 0;
-            });
+            cv_.wait(lock, [this] { return cur_ > cnt_ || cur_ % 15 == 0; });
 
             if (cur_ > cnt_) {
                 break;
@@ -129,9 +123,7 @@ public:
     void number(function<void(int)> printNumber) {
         while (true) {
             unique_lock<mutex> lock(mtx_);
-            cv_.wait(lock, [this] {
-                return cur_ > cnt_ || (cur_ % 3 != 0 && cur_ % 5 != 0);
-            });
+            cv_.wait(lock, [this] { return cur_ > cnt_ || (cur_ % 3 != 0 && cur_ % 5 != 0); });
 
             if (cur_ > cnt_) {
                 break;

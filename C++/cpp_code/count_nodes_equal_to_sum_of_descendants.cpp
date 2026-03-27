@@ -80,6 +80,7 @@ private:
         desc_sum += root->val;
         return desc_sum;
     }
+
 public:
     int equalToDescendants(TreeNode* root) {
         int rst = 0;

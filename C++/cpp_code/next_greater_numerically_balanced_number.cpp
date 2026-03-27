@@ -64,7 +64,8 @@ public:
         generate(0, count, list);
         sort(list.begin(), list.end());
         for (int num : list) {
-            if (num > n) return num;
+            if (num > n)
+                return num;
         }
         return -1;
     }

@@ -265,7 +265,8 @@ public:
         }
 
         if (!forgivenMatchedId.empty()) {
-            return formatForgivenResult(paymentId, paymentAmount, forgivenMatchedId, forgivenEarliestDate, forgivenAmount);
+            return formatForgivenResult(paymentId, paymentAmount, forgivenMatchedId, forgivenEarliestDate,
+                                        forgivenAmount);
         }
 
         return "";
@@ -329,7 +330,9 @@ private:
         return paymentId + " paid " + to_string(amount) + " for invoice " + invoiceId + " on date " + dueDate;
     }
 
-    string formatForgivenResult(const string& paymentId, int amount, const string& invoiceId, const string& dueDate, int forgivenAmount) {
-        return paymentId + " paid " + to_string(amount) + " for invoice " + invoiceId + " on date " + dueDate + " (forgiven " + to_string(forgivenAmount) + ")";
+    string formatForgivenResult(const string& paymentId, int amount, const string& invoiceId, const string& dueDate,
+                                int forgivenAmount) {
+        return paymentId + " paid " + to_string(amount) + " for invoice " + invoiceId + " on date " + dueDate +
+               " (forgiven " + to_string(forgivenAmount) + ")";
     }
 };

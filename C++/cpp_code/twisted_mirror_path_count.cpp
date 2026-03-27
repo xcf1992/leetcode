@@ -117,6 +117,7 @@ private:
         memo[cur_row][cur_col][dir] = rst % mod_;
         return memo[cur_row][cur_col][dir];
     }
+
 public:
     int uniquePaths(vector<vector<int>>& grid) {
         m_ = grid.size();

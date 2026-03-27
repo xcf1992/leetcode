@@ -227,8 +227,7 @@ public:
             char c2 = cards[i][1];
             if (c1 == x && c2 == x) {
                 same_card_cnt += 1;
-            }
-            else if (c1 == x) {
+            } else if (c1 == x) {
                 dict1[c2 - 'a'] += 1;
                 first_max_freq = max(dict1[c2 - 'a'], first_max_freq);
                 first_cnt += 1;

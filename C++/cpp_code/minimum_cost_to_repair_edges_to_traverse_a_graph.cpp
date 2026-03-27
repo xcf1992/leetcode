@@ -117,11 +117,12 @@ private:
         }
         return false;
     }
+
 public:
     int minCost(int n, vector<vector<int>>& edges, int k) {
         vector<vector<pair<int, int>>> conn(n, vector<pair<int, int>>());
         int max_cost = INT_MIN;
-        for (vector<int>& e: edges) {
+        for (vector<int>& e : edges) {
             conn[e[0]].push_back({e[1], e[2]});
             conn[e[1]].push_back({e[0], e[2]});
             max_cost = max(max_cost, e[2]);

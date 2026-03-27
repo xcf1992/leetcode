@@ -389,9 +389,9 @@ public:
 };
 
 /**
-* External API that checks if a version supports a specific feature. You should
-* NOT directly access the `messages`.
-*/
+ * External API that checks if a version supports a specific feature. You should
+ * NOT directly access the `messages`.
+ */
 class Chat {
 private:
     std::vector<Message> messages;
@@ -438,8 +438,7 @@ private:
     int windowSize;
 
 public:
-    ChatMessageMerger(const Chat& chat, int windowSize)
-        : chat(chat), windowSize(windowSize) {
+    ChatMessageMerger(const Chat& chat, int windowSize) : chat(chat), windowSize(windowSize) {
     }
 
     vector<Message> mergeMessages(vector<int> ids) {
@@ -487,17 +486,17 @@ public:
         Message msg2(2, "Hello");
         Message msg3(3, "World");
 
-        std::cout << msg1.getLatestContent() << std::endl; // Expected: "Draft"
+        std::cout << msg1.getLatestContent() << std::endl;  // Expected: "Draft"
 
         msg1.updateContent("Draft v2");
-        std::cout << msg1.getLatestContent() << std::endl; // Expected: "Draft v2"
+        std::cout << msg1.getLatestContent() << std::endl;  // Expected: "Draft v2"
 
         msg1.updateContent("Final");
-        std::cout << msg1.getLatestContent() << std::endl; // Expected: "Final"
+        std::cout << msg1.getLatestContent() << std::endl;  // Expected: "Final"
 
-        std::cout << msg1.getContent(1) << std::endl; // Expected: "Draft"
-        std::cout << msg1.getContent(2) << std::endl; // Expected: "Draft v2"
-        std::cout << msg1.getContent(3) << std::endl; // Expected: "Final"
+        std::cout << msg1.getContent(1) << std::endl;  // Expected: "Draft"
+        std::cout << msg1.getContent(2) << std::endl;  // Expected: "Draft v2"
+        std::cout << msg1.getContent(3) << std::endl;  // Expected: "Final"
 
         std::vector<Message> messages = {msg1, msg2, msg3};
         Chat chat(messages);
@@ -507,7 +506,8 @@ public:
         std::vector<Message> result = merger.mergeMessages(ids);
         std::cout << "[";
         for (int i = 0; i < result.size(); i++) {
-            if (i > 0) std::cout << ", ";
+            if (i > 0)
+                std::cout << ", ";
             std::cout << result[i].toString();
         }
         std::cout << "]" << std::endl;
@@ -516,8 +516,8 @@ public:
 
     static void test2() {
         std::cout << "\n===== Test 2 =====" << std::endl;
-        std::vector<Message> messages = {Message(1, "Hello"), Message(2, "World"),
-                Message(3, "How"), Message(4, "Are"), Message(5, "You")};
+        std::vector<Message> messages = {Message(1, "Hello"), Message(2, "World"), Message(3, "How"), Message(4, "Are"),
+                                         Message(5, "You")};
         messages[1].updateContent("World Updated");
         messages[3].updateContent("Are Updated");
 
@@ -526,7 +526,8 @@ public:
         std::vector<Message> result = merger.mergeMessages({2, 4});
         std::cout << "[";
         for (int i = 0; i < result.size(); i++) {
-            if (i > 0) std::cout << ", ";
+            if (i > 0)
+                std::cout << ", ";
             std::cout << result[i].toString();
         }
         std::cout << "]" << std::endl;
@@ -554,16 +555,17 @@ public:
         std::vector<Message> result = merger.mergeMessages({20});
         std::cout << "[";
         for (int i = 0; i < result.size(); i++) {
-            if (i > 0) std::cout << ", ";
+            if (i > 0)
+                std::cout << ", ";
             std::cout << result[i].toString();
         }
         std::cout << "]" << std::endl;
         // Expected: [[10: "Version 4"], [20: "Original"], [30: "Second"]]
 
-        std::cout << msg1.getContent(1) << std::endl; // Expected: "Version 1"
-        std::cout << msg1.getContent(2) << std::endl; // Expected: "Version 2"
-        std::cout << msg1.getContent(3) << std::endl; // Expected: "Version 3"
-        std::cout << msg1.getContent(4) << std::endl; // Expected: "Version 4"
+        std::cout << msg1.getContent(1) << std::endl;  // Expected: "Version 1"
+        std::cout << msg1.getContent(2) << std::endl;  // Expected: "Version 2"
+        std::cout << msg1.getContent(3) << std::endl;  // Expected: "Version 3"
+        std::cout << msg1.getContent(4) << std::endl;  // Expected: "Version 4"
     }
 
     static void test4() {
@@ -581,7 +583,8 @@ public:
         std::vector<Message> result = merger.mergeMessages({5, 15});
         std::cout << "[";
         for (int i = 0; i < result.size(); i++) {
-            if (i > 0) std::cout << ", ";
+            if (i > 0)
+                std::cout << ", ";
             std::cout << result[i].toString();
         }
         std::cout << "]" << std::endl;
@@ -600,7 +603,8 @@ public:
         std::vector<Message> result = merger.mergeMessages({2});
         std::cout << "[";
         for (int i = 0; i < result.size(); i++) {
-            if (i > 0) std::cout << ", ";
+            if (i > 0)
+                std::cout << ", ";
             std::cout << result[i].toString();
         }
         std::cout << "]" << std::endl;

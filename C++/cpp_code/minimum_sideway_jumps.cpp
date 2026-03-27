@@ -109,11 +109,11 @@ Space complexity: O(N) or O(1) if we use rolling array
 class Solution {
 public:
     int minSideJumps(vector<int>& obstacles) {
-        vector<int> dp({1,0,1});
+        vector<int> dp({1, 0, 1});
         for (int ob : obstacles) {
             vector<int> temp(3, 0);
             int ob_idx = ob - 1;
-            if (ob_idx == -1) { // no stone
+            if (ob_idx == -1) {  // no stone
                 temp[0] = min(dp[0], min(dp[1] + 1, dp[2] + 1));
                 temp[1] = min(dp[1], min(dp[0] + 1, dp[2] + 1));
                 temp[2] = min(dp[2], min(dp[0] + 1, dp[1] + 1));

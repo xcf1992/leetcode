@@ -80,7 +80,7 @@ class Solution {
     }
 
     void find_closet(int cur, int end, int node, int& closet_node, vector<vector<int>>& tree,
-                    vector<vector<int>>& distance) {
+                     vector<vector<int>>& distance) {
         if (distance[cur][node] < distance[closet_node][node]) {
             closet_node = cur;
         }

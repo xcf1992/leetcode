@@ -69,7 +69,8 @@ using namespace std;
 struct Grant {
     int end;
     int amount;
-    Grant(int end, int amount) : end(end), amount(amount) {}
+    Grant(int end, int amount) : end(end), amount(amount) {
+    }
 };
 
 struct GrantComp {

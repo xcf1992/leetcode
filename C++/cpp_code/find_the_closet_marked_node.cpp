@@ -282,8 +282,7 @@ Return -1 if no path exists (minDist is still infinity), otherwise return the mi
 
 class Solution {
 public:
-    int minimumDistance(int n, vector<vector<int>>& edges, int s,
-                        vector<int>& marked) {
+    int minimumDistance(int n, vector<vector<int>>& edges, int s, vector<int>& marked) {
         // Adjacency list representation
         vector<vector<pair<int, int>>> graph(n);
 

@@ -77,6 +77,7 @@ private:
         }
         return cur_max == cur_min;
     }
+
 public:
     int longestBalanced(string s) {
         int n = s.size();

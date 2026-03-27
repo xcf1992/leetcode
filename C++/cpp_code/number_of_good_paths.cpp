@@ -79,6 +79,7 @@ private:
         parent[cur] = find_parent(parent[cur], parent);
         return parent[cur];
     }
+
 public:
     int numberOfGoodPaths(vector<int>& vals, vector<vector<int>>& edges) {
         int n = vals.size();
@@ -116,7 +117,7 @@ public:
                 group[find_parent(node, parent)] += 1;
             }
 
-            rst += nodes.size(); // good path with single node
+            rst += nodes.size();  // good path with single node
             for (auto& [_, cnt] : group) {
                 rst += cnt * (cnt - 1) / 2;
             }

@@ -97,11 +97,12 @@ public:
     unordered_map<int, deque<int>> sameDestQue;
     deque<tuple<int, int, int>> que;
 
-    Router(int memoryLimit) { memLimit = memoryLimit; }
+    Router(int memoryLimit) {
+        memLimit = memoryLimit;
+    }
 
     bool addPacket(int source, int destination, int timestamp) {
-        tuple<int, int, int> packet =
-            make_tuple(source, destination, timestamp);
+        tuple<int, int, int> packet = make_tuple(source, destination, timestamp);
         if (isExist.contains(packet)) {
             return false;
         }
@@ -129,10 +130,8 @@ public:
     }
 
     int getCount(int destination, int startTime, int endTime) {
-        auto pos1 = lower_bound(sameDestQue[destination].begin(),
-                                sameDestQue[destination].end(), startTime);
-        auto pos2 = upper_bound(sameDestQue[destination].begin(),
-                                sameDestQue[destination].end(), endTime);
+        auto pos1 = lower_bound(sameDestQue[destination].begin(), sameDestQue[destination].end(), startTime);
+        auto pos2 = upper_bound(sameDestQue[destination].begin(), sameDestQue[destination].end(), endTime);
         return pos2 - pos1;
     }
 };

@@ -953,12 +953,12 @@ public:
 
             if (change.find("new_room_type") != change.end()) {
                 usr_to_room_change[name].emplace_back(std::any_cast<int>(change["modification_date"]), idx,
-                                                 std::any_cast<std::string>(change["new_room_type"]));
+                                                      std::any_cast<std::string>(change["new_room_type"]));
             }
 
             if (change.find("extension_days") != change.end()) {
                 usr_to_date_extension[name].emplace_back(std::any_cast<int>(change["modification_date"]),
-                                                std::any_cast<int>(change["extension_days"]));
+                                                         std::any_cast<int>(change["extension_days"]));
             }
         }
 
@@ -1011,8 +1011,7 @@ public:
                     for (auto& ch : userRoomChanges) {
                         if (ch.date < finalEnd) {
                             roomForDay = ch.newRoomType;
-                        }
-                        else {
+                        } else {
                             break;
                         }
                     }

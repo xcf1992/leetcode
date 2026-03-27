@@ -98,10 +98,10 @@ public:
                 continue;
             }
 
-            cur -> next = nxt;
-            nxt = nxt -> next;
-            cur = cur -> next;
-            cur -> next = nullptr;
+            cur->next = nxt;
+            nxt = nxt->next;
+            cur = cur->next;
+            cur->next = nullptr;
         }
         return pre->next;
     }

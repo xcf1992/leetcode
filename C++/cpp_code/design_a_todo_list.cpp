@@ -160,6 +160,7 @@ public:
 
         user_tasks_[userId].erase(taskId);
     }
+
 private:
     int global_id_;
     unordered_map<int, unordered_map<int, shared_ptr<Task>>> user_tasks_;

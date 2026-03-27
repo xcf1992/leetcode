@@ -185,10 +185,10 @@ rateLimiter.allowRequest(456); // Returns false. (t = 700ms)
  */
 class RateLimiter {
 private:
-    std::unordered_map<int, std::queue<long long>> customer_to_ts_; // Map to store timestamps per customer
-    int ttl_; // Time window in milliseconds
-    int limit_; // Maximum requests allowed in the window
-    std::mutex mtx_; // Mutex for synchronization
+    std::unordered_map<int, std::queue<long long>> customer_to_ts_;  // Map to store timestamps per customer
+    int ttl_;                                                        // Time window in milliseconds
+    int limit_;                                                      // Maximum requests allowed in the window
+    std::mutex mtx_;                                                 // Mutex for synchronization
 
     long long get_current_time_millis() {
         auto now = std::chrono::system_clock::now();
@@ -197,7 +197,8 @@ private:
     }
 
 public:
-    RateLimiter(int ttl, int limit) : ttl_(ttl), limit_(limit) {}
+    RateLimiter(int ttl, int limit) : ttl_(ttl), limit_(limit) {
+    }
 
     bool allowRequest(int customerId) {
         std::lock_guard<std::mutex> lock(mtx_);
@@ -217,7 +218,7 @@ public:
 
         // Check if we can allow a new request for this customer
         if (req_ts.size() < limit_) {
-            req_ts.push(curr_ts); // Add current timestamp to the queue
+            req_ts.push(curr_ts);  // Add current timestamp to the queue
             return true;
         }
 
@@ -232,11 +233,11 @@ public:
 
         // Make 8 requests alternating between two customers at a rate faster than the rate limiter allows
         for (int i = 0; i < 8; i++) {
-            std::cout << "Customer " << customer1 << " Request " << (i + 1) << " accepted (t=" << (i * 100) << "ms)? : "
-                      << (rateLimiter.allowRequest(customer1) ? "true" : "false") << std::endl;
-            std::cout << "Customer " << customer2 << " Request " << (i + 1) << " accepted (t=" << (i * 100) << "ms)? : "
-                      << (rateLimiter.allowRequest(customer2) ? "true" : "false") << std::endl;
-            std::this_thread::sleep_for(std::chrono::milliseconds(100)); // Sleep for 100 milliseconds between requests
+            std::cout << "Customer " << customer1 << " Request " << (i + 1) << " accepted (t=" << (i * 100)
+                      << "ms)? : " << (rateLimiter.allowRequest(customer1) ? "true" : "false") << std::endl;
+            std::cout << "Customer " << customer2 << " Request " << (i + 1) << " accepted (t=" << (i * 100)
+                      << "ms)? : " << (rateLimiter.allowRequest(customer2) ? "true" : "false") << std::endl;
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));  // Sleep for 100 milliseconds between requests
         }
     }
 
@@ -246,10 +247,10 @@ public:
 
         // Test that different customers have independent limits
         for (int i = 0; i < 4; i++) {
-            std::cout << "Customer 100 Request " << (i + 1) << " accepted (t=" << (i * 200) << "ms)? : "
-                      << (rateLimiter.allowRequest(100) ? "true" : "false") << std::endl;
-            std::cout << "Customer 200 Request " << (i + 1) << " accepted (t=" << (i * 200) << "ms)? : "
-                      << (rateLimiter.allowRequest(200) ? "true" : "false") << std::endl;
+            std::cout << "Customer 100 Request " << (i + 1) << " accepted (t=" << (i * 200)
+                      << "ms)? : " << (rateLimiter.allowRequest(100) ? "true" : "false") << std::endl;
+            std::cout << "Customer 200 Request " << (i + 1) << " accepted (t=" << (i * 200)
+                      << "ms)? : " << (rateLimiter.allowRequest(200) ? "true" : "false") << std::endl;
             std::this_thread::sleep_for(std::chrono::milliseconds(200));
         }
     }
@@ -262,8 +263,9 @@ public:
         // Fill up the rate limit
         std::cout << "Filling up rate limit:" << std::endl;
         for (int i = 0; i < 4; i++) {
-            std::cout << "Customer " << customerId << " Request " << (i + 1) << " accepted (t=0ms)? : "
-                      << (rateLimiter.allowRequest(customerId) ? "true" : "false") << std::endl;
+            std::cout << "Customer " << customerId << " Request " << (i + 1)
+                      << " accepted (t=0ms)? : " << (rateLimiter.allowRequest(customerId) ? "true" : "false")
+                      << std::endl;
         }
 
         // Wait for time window to expire
@@ -273,56 +275,89 @@ public:
         // Try requests again - should be allowed after window expiration
         std::cout << "After time window expiration:" << std::endl;
         for (int i = 0; i < 3; i++) {
-            std::cout << "Customer " << customerId << " Request " << (i + 5) << " accepted (t=1100ms)? : "
-                      << (rateLimiter.allowRequest(customerId) ? "true" : "false") << std::endl;
+            std::cout << "Customer " << customerId << " Request " << (i + 5)
+                      << " accepted (t=1100ms)? : " << (rateLimiter.allowRequest(customerId) ? "true" : "false")
+                      << std::endl;
         }
     }
 
     static void test4() {
         std::cout << "\n========= Test 4 =========" << std::endl;
-        RateLimiter rateLimiter(1000, 2); // 2 requests per 1000ms window
+        RateLimiter rateLimiter(1000, 2);  // 2 requests per 1000ms window
 
         int customer1 = 101;
         int customer2 = 202;
         int customer3 = 303;
 
         // Initial simultaneous requests
-        std::cout << "Customer " << customer1 << " Request 1 accepted (t=0ms)? : " << (rateLimiter.allowRequest(customer1) ? "true" : "false") << std::endl;
-        std::cout << "Customer " << customer2 << " Request 1 accepted (t=0ms)? : " << (rateLimiter.allowRequest(customer2) ? "true" : "false") << std::endl;
+        std::cout << "Customer " << customer1
+                  << " Request 1 accepted (t=0ms)? : " << (rateLimiter.allowRequest(customer1) ? "true" : "false")
+                  << std::endl;
+        std::cout << "Customer " << customer2
+                  << " Request 1 accepted (t=0ms)? : " << (rateLimiter.allowRequest(customer2) ? "true" : "false")
+                  << std::endl;
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(100)); // Wait 100ms
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));  // Wait 100ms
 
         // Customer2 makes consecutive requests, Customer1 also tries
-        std::cout << "Customer " << customer2 << " Request 2 accepted (t=100ms)? : " << (rateLimiter.allowRequest(customer2) ? "true" : "false") << std::endl;
-        std::cout << "Customer " << customer1 << " Request 2 accepted (t=100ms)? : " << (rateLimiter.allowRequest(customer1) ? "true" : "false") << std::endl;
+        std::cout << "Customer " << customer2
+                  << " Request 2 accepted (t=100ms)? : " << (rateLimiter.allowRequest(customer2) ? "true" : "false")
+                  << std::endl;
+        std::cout << "Customer " << customer1
+                  << " Request 2 accepted (t=100ms)? : " << (rateLimiter.allowRequest(customer1) ? "true" : "false")
+                  << std::endl;
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(100)); // Wait 100ms
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));  // Wait 100ms
 
         // Customer2 continues consecutive requests, Customer3 joins
-        std::cout << "Customer " << customer2 << " Request 3 accepted (t=200ms)? : " << (rateLimiter.allowRequest(customer2) ? "true" : "false") << std::endl;
-        std::cout << "Customer " << customer3 << " Request 1 accepted (t=200ms)? : " << (rateLimiter.allowRequest(customer3) ? "true" : "false") << std::endl;
+        std::cout << "Customer " << customer2
+                  << " Request 3 accepted (t=200ms)? : " << (rateLimiter.allowRequest(customer2) ? "true" : "false")
+                  << std::endl;
+        std::cout << "Customer " << customer3
+                  << " Request 1 accepted (t=200ms)? : " << (rateLimiter.allowRequest(customer3) ? "true" : "false")
+                  << std::endl;
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(100)); // Wait 100ms
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));  // Wait 100ms
 
         // All customers try to make requests - some should fail due to rate limiting
-        std::cout << "Customer " << customer2 << " Request 4 accepted (t=300ms)? : " << (rateLimiter.allowRequest(customer2) ? "true" : "false") << std::endl;
-        std::cout << "Customer " << customer1 << " Request 3 accepted (t=300ms)? : " << (rateLimiter.allowRequest(customer1) ? "true" : "false") << std::endl;
-        std::cout << "Customer " << customer3 << " Request 2 accepted (t=300ms)? : " << (rateLimiter.allowRequest(customer3) ? "true" : "false") << std::endl;
+        std::cout << "Customer " << customer2
+                  << " Request 4 accepted (t=300ms)? : " << (rateLimiter.allowRequest(customer2) ? "true" : "false")
+                  << std::endl;
+        std::cout << "Customer " << customer1
+                  << " Request 3 accepted (t=300ms)? : " << (rateLimiter.allowRequest(customer1) ? "true" : "false")
+                  << std::endl;
+        std::cout << "Customer " << customer3
+                  << " Request 2 accepted (t=300ms)? : " << (rateLimiter.allowRequest(customer3) ? "true" : "false")
+                  << std::endl;
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(200)); // Wait 200ms
+        std::this_thread::sleep_for(std::chrono::milliseconds(200));  // Wait 200ms
 
         // Customer3 tries multiple consecutive requests
-        std::cout << "Customer " << customer3 << " Request 3 accepted (t=500ms)? : " << (rateLimiter.allowRequest(customer3) ? "true" : "false") << std::endl;
-        std::cout << "Customer " << customer3 << " Request 4 accepted (t=500ms)? : " << (rateLimiter.allowRequest(customer3) ? "true" : "false") << std::endl;
+        std::cout << "Customer " << customer3
+                  << " Request 3 accepted (t=500ms)? : " << (rateLimiter.allowRequest(customer3) ? "true" : "false")
+                  << std::endl;
+        std::cout << "Customer " << customer3
+                  << " Request 4 accepted (t=500ms)? : " << (rateLimiter.allowRequest(customer3) ? "true" : "false")
+                  << std::endl;
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(600)); // Wait 600ms - total elapsed = 1100ms
+        std::this_thread::sleep_for(std::chrono::milliseconds(600));  // Wait 600ms - total elapsed = 1100ms
 
         // Window should have reset for all customers
-        std::cout << "Customer " << customer1 << " Request 4 accepted (t=1100ms)? : " << (rateLimiter.allowRequest(customer1) ? "true" : "false") << std::endl;
-        std::cout << "Customer " << customer2 << " Request 5 accepted (t=1100ms)? : " << (rateLimiter.allowRequest(customer2) ? "true" : "false") << std::endl;
-        std::cout << "Customer " << customer3 << " Request 5 accepted (t=1100ms)? : " << (rateLimiter.allowRequest(customer3) ? "true" : "false") << std::endl;
-        std::cout << "Customer " << customer1 << " Request 5 accepted (t=1100ms)? : " << (rateLimiter.allowRequest(customer1) ? "true" : "false") << std::endl;
-        std::cout << "Customer " << customer1 << " Request 6 accepted (t=1100ms)? : " << (rateLimiter.allowRequest(customer1) ? "true" : "false") << std::endl;
+        std::cout << "Customer " << customer1
+                  << " Request 4 accepted (t=1100ms)? : " << (rateLimiter.allowRequest(customer1) ? "true" : "false")
+                  << std::endl;
+        std::cout << "Customer " << customer2
+                  << " Request 5 accepted (t=1100ms)? : " << (rateLimiter.allowRequest(customer2) ? "true" : "false")
+                  << std::endl;
+        std::cout << "Customer " << customer3
+                  << " Request 5 accepted (t=1100ms)? : " << (rateLimiter.allowRequest(customer3) ? "true" : "false")
+                  << std::endl;
+        std::cout << "Customer " << customer1
+                  << " Request 5 accepted (t=1100ms)? : " << (rateLimiter.allowRequest(customer1) ? "true" : "false")
+                  << std::endl;
+        std::cout << "Customer " << customer1
+                  << " Request 6 accepted (t=1100ms)? : " << (rateLimiter.allowRequest(customer1) ? "true" : "false")
+                  << std::endl;
     }
 };
 

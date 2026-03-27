@@ -77,11 +77,11 @@ public:
                     return bfs.front();
                 }
 
-                if (cur -> left != nullptr) {
-                    bfs.push(cur -> left);
+                if (cur->left != nullptr) {
+                    bfs.push(cur->left);
                 }
-                if (cur -> right != nullptr) {
-                    bfs.push(cur -> right);
+                if (cur->right != nullptr) {
+                    bfs.push(cur->right);
                 }
             }
         }

@@ -64,6 +64,7 @@ using namespace std;
 class ExamTracker {
 private:
     vector<pair<int, long long>> score_records_;
+
 public:
     ExamTracker() {
         score_records_.clear();

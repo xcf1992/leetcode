@@ -195,7 +195,6 @@ public:
                 name_to_table_[names[i]].col_cnt_ = columns[i];
             }
         }
-
     }
 
     bool ins(string name, vector<string> row) {

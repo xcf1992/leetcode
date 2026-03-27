@@ -69,6 +69,7 @@ private:
             allocated[i] -= cookies[bag_idx];
         }
     }
+
 public:
     int distributeCookies(vector<int>& cookies, int k) {
         int rst = INT_MAX;

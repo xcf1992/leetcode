@@ -33,6 +33,7 @@ private:
     unordered_map<string, map<int, ListNode*>> tag_to_cmd_;
 
     int cmd_cnt_;
+
 public:
     CommandSystem() {
         cmd_chain_ = new ListNode("head", {}, 0);
@@ -55,7 +56,7 @@ public:
 
     string undo(string tag) {
         if (tag == "") {
-            if (cmd_chain_ -> next_ == cmd_chain_) {
+            if (cmd_chain_->next_ == cmd_chain_) {
                 return "";
             }
 

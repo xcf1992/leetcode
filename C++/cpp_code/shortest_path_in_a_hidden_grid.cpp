@@ -117,7 +117,7 @@ private:
             char dir = directions_[i];
             int next_row = row + diff_[i];
             int next_col = col + diff_[i + 1];
-            if (master.canMove(dir) && grid[next_row][next_col] == 0) { // check both can move and not visited
+            if (master.canMove(dir) && grid[next_row][next_col] == 0) {  // check both can move and not visited
                 grid[next_row][next_col] = 1;
                 master.move(dir);
                 dfs(next_row, next_col, grid, master);

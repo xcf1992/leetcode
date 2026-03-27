@@ -89,10 +89,10 @@ public:
                 if (cur->right != nullptr) {
                     if (visited.find(cur->right) != visited.end()) {
                         if (parent[cur]->left == cur) {
-                            parent[cur] -> left = nullptr;
+                            parent[cur]->left = nullptr;
                         }
                         if (parent[cur]->right == cur) {
-                            parent[cur] -> right = nullptr;
+                            parent[cur]->right = nullptr;
                         }
                         return root;
                     }

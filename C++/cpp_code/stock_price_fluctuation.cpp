@@ -69,6 +69,7 @@ private:
     map<int, int> time_to_price_;
     priority_queue<pair<int, int>, vector<pair<int, int>>, less<pair<int, int>>> max_price_;
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> min_price_;
+
 public:
     StockPrice() {
     }
@@ -87,7 +88,8 @@ public:
         while (!max_price_.empty()) {
             int max_record_time = max_price_.top().second;
             int max_record_price = max_price_.top().first;
-            if (time_to_price_.find(max_record_time) != time_to_price_.end() && time_to_price_[max_record_time] == max_record_price) {
+            if (time_to_price_.find(max_record_time) != time_to_price_.end() &&
+                time_to_price_[max_record_time] == max_record_price) {
                 return max_record_price;
             }
             max_price_.pop();
@@ -99,7 +101,8 @@ public:
         while (!min_price_.empty()) {
             int min_record_time = min_price_.top().second;
             int min_record_price = min_price_.top().first;
-            if (time_to_price_.find(min_record_time) != time_to_price_.end() && time_to_price_[min_record_time] == min_record_price) {
+            if (time_to_price_.find(min_record_time) != time_to_price_.end() &&
+                time_to_price_[min_record_time] == min_record_price) {
                 return min_record_price;
             }
             min_price_.pop();

@@ -43,6 +43,7 @@ using namespace std;
 class Solution {
 private:
     vector<int> diff_ = {0, 1, 0, -1, 0};
+
 public:
     int shortestDistance(vector<vector<int>>& grid) {
         int m = grid.size();

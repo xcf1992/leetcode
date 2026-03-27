@@ -79,19 +79,14 @@ public:
     vector<string> validateCoupons(vector<string>& code, vector<string>& businessLine, vector<bool>& isActive) {
         int n = code.size();
         vector<pair<string, string>> coupons;
-        for (int i = 0 ; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             if (!isActive[i] || code[i].empty() || !valid_code(code[i]) || !valid_business_line(businessLine[i])) {
                 continue;
             }
             coupons.push_back(make_pair(businessLine[i], code[i]));
         }
 
-        unordered_map<string, int> order = {
-            {"electronics", 0},
-            {"grocery", 1},
-            {"pharmacy", 2},
-            {"restaurant", 3}
-        };
+        unordered_map<string, int> order = {{"electronics", 0}, {"grocery", 1}, {"pharmacy", 2}, {"restaurant", 3}};
         sort(coupons.begin(), coupons.end(), [&](pair<string, string> p1, pair<string, string> p2) {
             return order[p1.first] < order[p2.first] || (p1.first == p2.first && p1.second < p2.second);
         });

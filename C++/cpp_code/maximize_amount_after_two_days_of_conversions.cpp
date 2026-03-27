@@ -103,7 +103,7 @@ private:
     }
 
     void convert(unordered_map<string, double>& max_amount, unordered_map<string, vector<pair<string, double>>>& graph,
-             const string& init_currency, double init_amount) {
+                 const string& init_currency, double init_amount) {
         queue<pair<string, double>> bfs;
         bfs.push({init_currency, init_amount});
         max_amount[init_currency] = init_amount;

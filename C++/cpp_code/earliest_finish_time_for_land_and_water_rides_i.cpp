@@ -80,7 +80,8 @@ using namespace std;
 
 class Solution {
 public:
-    int earliestFinishTime(vector<int>& landStartTime, vector<int>& landDuration, vector<int>& waterStartTime, vector<int>& waterDuration) {
+    int earliestFinishTime(vector<int>& landStartTime, vector<int>& landDuration, vector<int>& waterStartTime,
+                           vector<int>& waterDuration) {
         int n = landStartTime.size();
         int min_land_end = INT_MAX;
         for (int i = 0; i < n; i++) {

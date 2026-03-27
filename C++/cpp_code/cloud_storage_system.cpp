@@ -177,9 +177,8 @@ public:
             return "";
         }
 
-        sort(rst.begin(), rst.end(), [](File* a, File* b) {
-            return a->size_ > b->size_ || (a->size_ == b->size_ && a->name_ < b->name_);
-        });
+        sort(rst.begin(), rst.end(),
+             [](File* a, File* b) { return a->size_ > b->size_ || (a->size_ == b->size_ && a->name_ < b->name_); });
 
         string rst_str = "";
         int limit = min((int)rst.size(), n);

@@ -54,7 +54,7 @@ using namespace std;
 
 class Solution {
 public:
-    int minimumEffortPath(vector<vector<int>> &heights) {
+    int minimumEffortPath(vector<vector<int>>& heights) {
         int left = 0;
         int right = INT_MAX;
         int result = INT_MAX;
@@ -74,7 +74,7 @@ public:
 
     // use bfs to check if we can reach destination with max absolute difference
     // k
-    bool can_reach(vector<vector<int>> &heights, int mid) {
+    bool can_reach(vector<vector<int>>& heights, int mid) {
         int row = heights.size();
         int col = heights[0].size();
         queue<Cell> queue;
@@ -90,10 +90,8 @@ public:
             for (auto direction : directions) {
                 int adjacentX = curr.x + direction[0];
                 int adjacentY = curr.y + direction[1];
-                if (isValidCell(adjacentX, adjacentY, row, col) &&
-                    !visited[adjacentX][adjacentY]) {
-                    int currentDifference = abs(heights[adjacentX][adjacentY] -
-                                                heights[curr.x][curr.y]);
+                if (isValidCell(adjacentX, adjacentY, row, col) && !visited[adjacentX][adjacentY]) {
+                    int currentDifference = abs(heights[adjacentX][adjacentY] - heights[curr.x][curr.y]);
                     if (currentDifference <= mid) {
                         visited[adjacentX][adjacentY] = true;
                         queue.push(Cell(adjacentX, adjacentY));

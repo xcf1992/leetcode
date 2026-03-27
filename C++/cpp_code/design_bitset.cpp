@@ -77,8 +77,8 @@ private:
         }
         return ans;
     }
-public:
 
+public:
     Bitset(int size) {
         data_.resize(size, 0);
         cnt_of_1_ = 0, flip_cnt_ = 0;

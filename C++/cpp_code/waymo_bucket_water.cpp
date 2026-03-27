@@ -17,9 +17,9 @@ certain target, a buckets can be pulling in water , or pull out water to get to 
 using namespace std;
 
 /*
-这题本质就是一个变体的 subset sum 问题：每个桶有三种选择——不用、加水（+volume）、抽水（-volume），问能否凑出目标值 target。
-比如 buckets = [3, 5, 7], target = 9：选 +3, -5, +7 → 3 - 5 + 7 = 5，不行。选 +7, +5, -3 → 9，可以。
-这跟经典 subset sum 的区别就是每个元素有三种状态而不是两种，但 DP 思路一样，用一个 set 记录所有可达的 sum。
+这题本质就是一个变体的 subset sum 问题：每个桶有三种选择——不用、加水（+volume）、抽水（-volume），问能否凑出目标值
+target。 比如 buckets = [3, 5, 7], target = 9：选 +3, -5, +7 → 3 - 5 + 7 = 5，不行。选 +7, +5, -3 → 9，可以。 这跟经典
+subset sum 的区别就是每个元素有三种状态而不是两种，但 DP 思路一样，用一个 set 记录所有可达的 sum。
 */
 
 class Solution {
@@ -46,4 +46,3 @@ public:
         }
     }
 };
-

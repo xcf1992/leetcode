@@ -76,7 +76,7 @@ public:
         int word_cnt = 0;
         for (int i = 0; i < n; i += word_cnt) {
             int len_of_words = 0;
-            word_cnt = 0; // how many words we can use in current line
+            word_cnt = 0;  // how many words we can use in current line
             while (i + word_cnt < n && len_of_words + words[i + word_cnt].size() + word_cnt <= maxWidth) {
                 len_of_words += words[i + word_cnt].size();
                 word_cnt += 1;

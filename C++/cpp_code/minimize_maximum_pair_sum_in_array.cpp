@@ -56,8 +56,8 @@ public:
         sort(nums.begin(), nums.end());
         int rst = INT_MIN;
         int n = nums.size();
-        for (int i = 0; i < n/ 2; i++) {
-            rst= max(rst, nums[i] + nums[n - 1- i]);
+        for (int i = 0; i < n / 2; i++) {
+            rst = max(rst, nums[i] + nums[n - 1 - i]);
         }
         return rst;
     }

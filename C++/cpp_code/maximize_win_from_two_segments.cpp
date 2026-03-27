@@ -87,7 +87,7 @@ public:
                 left_idx += 1;
             }
 
-            dp[right_idx + 1] = max(dp[right_idx], right_idx - left_idx + 1); // optimal cnt for one segment
+            dp[right_idx + 1] = max(dp[right_idx], right_idx - left_idx + 1);  // optimal cnt for one segment
             rst = max(rst, dp[left_idx] + right_idx - left_idx + 1);
             right_idx += 1;
         }

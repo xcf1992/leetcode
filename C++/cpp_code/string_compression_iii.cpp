@@ -67,8 +67,7 @@ public:
         for (int i = 1; i < n; i++) {
             if (word[i] == ch && cnt < 9) {
                 cnt++;
-            }
-            else {
+            } else {
                 comp.push_back(cnt + '0');
                 comp.push_back(ch);
                 ch = word[i];

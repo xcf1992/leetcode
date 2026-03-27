@@ -85,7 +85,7 @@ public:
             }
         }
         bool read = false;
-        for (int i = 0, j = 0, c = 0;; ) {
+        for (int i = 0, j = 0, c = 0;;) {
             if (!read) {
                 c = stream->next();
                 read = true;
@@ -105,13 +105,11 @@ public:
             }
         }
         return -1;
-
-
     }
 };
 
 class Solution {
-// does not work if pattern size too big
+    // does not work if pattern size too big
 public:
     int findPattern(InfiniteStream* stream, vector<int>& pattern) {
         int hash_pattern = 0;

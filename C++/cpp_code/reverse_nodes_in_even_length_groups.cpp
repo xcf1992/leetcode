@@ -117,7 +117,7 @@ public:
             cur = last;
             group_cnt += 1;
         }
-        //cout << "prev = " << prev->val << ", cur = " << cur->val << ", last = " << last->val << endl;
+        // cout << "prev = " << prev->val << ", cur = " << cur->val << ", last = " << last->val << endl;
         return head;
     }
 };

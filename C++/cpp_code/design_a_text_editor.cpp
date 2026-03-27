@@ -82,6 +82,7 @@ class TextEditor {
 private:
     deque<char> prefix;
     deque<char> suffix;
+
 public:
     TextEditor() {
     }
@@ -122,6 +123,7 @@ public:
         }
         return get_current_text();
     }
+
 private:
     string get_current_text() {
         size_t n = prefix.size();

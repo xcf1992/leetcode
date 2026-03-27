@@ -39,7 +39,7 @@ using namespace std;
 struct Trade {
     std::string timestamp;
     std::string symbol;
-    char direction; // 'B' or 'S'
+    char direction;  // 'B' or 'S'
     int quantity;
     double price;
 };
@@ -87,9 +87,9 @@ void processTrades(const std::vector<std::vector<std::string>>& rawTrades) {
 int main() {
     // Example Input
     std::vector<std::vector<std::string>> trades = {
-        {"10:00", "AAPL", "B", "10", "150.00"}, // Buy 10 AAPL @ 150 = -$1500 (Cash: -500)
-        {"10:05", "GOOG", "B", "5", "100.00"},  // Buy 5 GOOG @ 100 = -$500 (Cash: -1000)
-        {"10:10", "AAPL", "S", "10", "160.00"}  // Sell 10 AAPL @ 160 = +$1600 (Cash: +600)
+            {"10:00", "AAPL", "B", "10", "150.00"},  // Buy 10 AAPL @ 150 = -$1500 (Cash: -500)
+            {"10:05", "GOOG", "B", "5", "100.00"},   // Buy 5 GOOG @ 100 = -$500 (Cash: -1000)
+            {"10:10", "AAPL", "S", "10", "160.00"}   // Sell 10 AAPL @ 160 = +$1600 (Cash: +600)
     };
 
     processTrades(trades);

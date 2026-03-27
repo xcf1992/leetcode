@@ -50,7 +50,7 @@ public:
     bool containsNearbyDuplicate(vector<int>& nums, int k) {
         unordered_set<int> filter;
         for (int i = 0; i < nums.size(); i++) {
-            if (filter.find(nums[i]) != filter.end() ) {
+            if (filter.find(nums[i]) != filter.end()) {
                 return true;
             }
             filter.insert(nums[i]);

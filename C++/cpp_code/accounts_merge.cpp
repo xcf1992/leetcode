@@ -65,7 +65,7 @@ public:
         int n = accounts.size();
         unordered_map<string, string> email_to_owner_name;
         unordered_map<string, string> parents;
-        for (int i = 0; i < n; ++i) { // merge all emails within one account
+        for (int i = 0; i < n; ++i) {  // merge all emails within one account
             string root_email = find(accounts[i][1], parents);
             email_to_owner_name[root_email] = accounts[i][0];
             for (int j = 1; j < accounts[i].size(); ++j) {
@@ -74,7 +74,7 @@ public:
         }
 
         unordered_map<string, set<string>> email_groups;
-        for (int i = 0; i < n; ++i) { // group all emails into groups
+        for (int i = 0; i < n; ++i) {  // group all emails into groups
             for (int j = 1; j < accounts[i].size(); ++j) {
                 email_groups[find(accounts[i][j], parents)].insert(accounts[i][j]);
             }

@@ -125,6 +125,16 @@ offer shortcuts.
 
 Complexity is O(N² log N) where N = number of special roads, since every node tries to relax every other node. That's
 fine given the constraint (N ≤ 200).
+
+你原来的方法：从城市 i 跑 Dijkstra，算出 i 到所有城市的最短距离，然后挑 min((k+1)*dist(i,j) + appleCost[j])。对每个 i
+都重新跑一遍，N 个起点就是 N 次完整的 Dijkstra。 多源 Dijkstra 快在哪：不同起点的最优解往往共享大量路径。比如城市 3
+和城市 5 的最优选择可能都是去城市 8 买苹果，它们到城市 8 的最短路有大量重叠的边。N 次 Dijkstra
+会反复探索这些重叠的边，而多源 Dijkstra 只探索一次。 直觉上可以这样理解：想象每个城市 j
+同时向外"广播"一个信号，信号强度的初始值是 appleCost[j]，沿边传播时每经过一条边 toll 就增加
+(k+1)*toll。所有城市同时广播，每个城市 i 只记录它收到的最小信号值。因为 Dijkstra 按代价从小到大处理，当城市 i
+第一次被"定下来"时，它已经找到了全局最优的苹果来源——不需要知道那个苹果具体来自哪个城市。 本质上，N 次单源 Dijkstra
+的总工作量是 O(N * E log N)，而多源 Dijkstra 虽然初始队列有 N 个元素，但每条边最多被有效松弛常数次，总工作量还是 O(E log
+N)。省掉的就是那个 N 倍。
 */
 class Solution {
 public:

@@ -66,6 +66,7 @@ private:
         }
         return false;
     }
+
 public:
     bool checkValidGrid(vector<vector<int>>& grid) {
         vector<pair<int, int>> pos_order;

@@ -31,8 +31,8 @@ std::vector<int> solveOffsetCommit(const std::vector<int>& processed_offsets) {
     // Tracks offsets that finished but are blocked by smaller missing offsets
     std::unordered_set<int> seen;
 
-    int next_to_commit = 0;  // We are waiting for this specific offset
-    int last_committed = -1; // The highest offset we've actually acknowledged
+    int next_to_commit = 0;   // We are waiting for this specific offset
+    int last_committed = -1;  // The highest offset we've actually acknowledged
 
     for (int offset : processed_offsets) {
         seen.insert(offset);

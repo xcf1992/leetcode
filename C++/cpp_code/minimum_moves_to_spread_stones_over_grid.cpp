@@ -59,7 +59,7 @@ using namespace std;
 
 class Solution {
 private:
-    void solve(vector<pair<int, int>>& zero_pos, map<pair<int, int>, int>& donors, int moves, int& rst){
+    void solve(vector<pair<int, int>>& zero_pos, map<pair<int, int>, int>& donors, int moves, int& rst) {
         if (zero_pos.empty()) {
             rst = min(rst, moves);
             return;
@@ -68,7 +68,7 @@ private:
         auto zero = zero_pos.back();
         zero_pos.pop_back();
 
-        for (auto &[pos, capacity] : donors){
+        for (auto& [pos, capacity] : donors) {
             if (capacity > 1) {
                 donors[pos]--;
 
@@ -91,8 +91,7 @@ public:
             for (int j = 0; j < 3; j++) {
                 if (grid[i][j] == 0) {
                     zero_pos.push_back({i, j});
-                }
-                else if (grid[i][j] > 1) {
+                } else if (grid[i][j] > 1) {
                     donors[{i, j}] = grid[i][j];
                 }
             }

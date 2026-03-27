@@ -89,7 +89,7 @@ public:
             priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
             vector<bool> visited(n, false);
 
-            pq.push({0, 0}); // dist, cur
+            pq.push({0, 0});  // dist, cur
             visited[0] = true;
             while (!pq.empty()) {
                 int cur = pq.top().second;

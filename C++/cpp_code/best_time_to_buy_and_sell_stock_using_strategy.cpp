@@ -83,9 +83,9 @@ public:
         int n = prices.size();
         long long cur_profit = 0;
         vector<long long> pre_sum(n + 1, 0);
-        for (int i = 0 ; i < n ; i++) {
+        for (int i = 0; i < n; i++) {
             pre_sum[i + 1] = pre_sum[i] + prices[i] * strategy[i];
-            if (i >= k/2 && i < k) {
+            if (i >= k / 2 && i < k) {
                 cur_profit += prices[i];
             }
         }

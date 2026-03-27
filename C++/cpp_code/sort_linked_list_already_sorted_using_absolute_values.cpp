@@ -72,9 +72,9 @@ public:
         ListNode* prev = head;
         ListNode* curr = head->next;
         while (curr != nullptr) {
-            if (curr -> val >= 0) {
-                curr = curr -> next;
-                prev = prev -> next;
+            if (curr->val >= 0) {
+                curr = curr->next;
+                prev = prev->next;
                 continue;
             }
 
@@ -99,9 +99,9 @@ public:
         ListNode* prev = head;
         ListNode* cur = head->next;
         while (cur != nullptr) {
-            if (cur -> val >= 0) {
-                cur = cur -> next;
-                prev = prev -> next;
+            if (cur->val >= 0) {
+                cur = cur->next;
+                prev = prev->next;
                 continue;
             }
 

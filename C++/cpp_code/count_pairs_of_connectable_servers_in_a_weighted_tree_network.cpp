@@ -61,7 +61,7 @@ using namespace std;
 class Solution {
 private:
     // get the cnt of not is connectable
-    int dfs(int cur, int prev, int dist, int speed, vector<vector<pair<int,int>>>& adj) {
+    int dfs(int cur, int prev, int dist, int speed, vector<vector<pair<int, int>>>& adj) {
         int cnt = dist % speed == 0 ? 1 : 0;
         for (auto& [child, weight] : adj[cur]) {
             if (child != prev) {
@@ -70,11 +70,12 @@ private:
         }
         return cnt;
     }
+
 public:
     vector<int> countPairsOfConnectableServers(vector<vector<int>>& edges, int signalSpeed) {
-        int n = edges.size() + 1; // node count
-        vector<vector<pair<int,int>>> adj(n, vector<pair<int,int>>());
-        for (vector<int>& e: edges) {
+        int n = edges.size() + 1;  // node count
+        vector<vector<pair<int, int>>> adj(n, vector<pair<int, int>>());
+        for (vector<int>& e : edges) {
             adj[e[0]].push_back({e[1], e[2]});
             adj[e[1]].push_back({e[0], e[2]});
         }

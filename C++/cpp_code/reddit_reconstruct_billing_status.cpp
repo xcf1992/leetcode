@@ -111,6 +111,7 @@ private:
 
     unordered_map<string, vector<vector<string>>> applied_txns_;
     unordered_map<string, vector<vector<string>>> undo_txns_;
+
 public:
     vector<vector<string>> processTransactions(vector<vector<string>> transactions) {
         sort(transactions.begin(), transactions.end(),

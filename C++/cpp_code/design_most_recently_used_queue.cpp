@@ -92,6 +92,7 @@ public:
         cur->next_ = pre_head;
         return cur->val_;
     }
+
 private:
     MyListNode* pre_head;
 };

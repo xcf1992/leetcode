@@ -56,7 +56,7 @@ public:
 
 class Solution {
 public:
-    vector<int> toArray(Node *node){
+    vector<int> toArray(Node* node) {
         vector<int> rst;
         if (node == nullptr) {
             return rst;

@@ -68,6 +68,7 @@ class CreditSystem {
 private:
     map<int, int> time_to_credit_change_;
     unordered_map<int, int> time_to_credit_sub_;
+
 public:
     CreditSystem() {
         time_to_credit_change_ = map<int, int>();

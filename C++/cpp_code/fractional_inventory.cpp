@@ -151,7 +151,7 @@ This list means that we first bought 1 share of AAPL from the market, then sold 
 */
 struct InventoryState {
     int quantity;
-    int orderIndex; // To maintain original output order
+    int orderIndex;  // To maintain original output order
 };
 
 // Helper to split strings by a delimiter
@@ -185,7 +185,7 @@ void solve() {
     for (const string& ordStr : orderStrings) {
         vector<string> parts = split(ordStr, '/');
         string symbol = parts[0];
-        string side = parts[1]; // "B" or "S"
+        string side = parts[1];  // "B" or "S"
         string qtyStr = parts[2];
         int price = stoi(parts[3]);
 

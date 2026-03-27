@@ -79,7 +79,7 @@ public:
         }
 
         int rst = dp[0];
-        for (const int & e : dp) {
+        for (const int& e : dp) {
             rst = max(rst, e);
         }
         return rst;

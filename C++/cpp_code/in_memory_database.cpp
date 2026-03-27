@@ -117,7 +117,8 @@ public:
     unordered_map<string, Item> key_to_item_;
     map<int, unordered_map<string, Item>> backups_;
 
-    InMemDb() {}
+    InMemDb() {
+    }
 
     bool is_expired(string key, string field, int cur_ts) {
         if (key_to_item_.find(key) == key_to_item_.end()) {
@@ -266,7 +267,8 @@ public:
     }
 
     vector<string> scan(int cur_ts, string key) {
-        if (key_to_item_.find(key) == key_to_item_.end()) return {};
+        if (key_to_item_.find(key) == key_to_item_.end())
+            return {};
 
         Item& item = key_to_item_[key];
         vector<string> rst;
@@ -298,7 +300,8 @@ public:
     }
 
     vector<string> scan_by_prefix(int cur_ts, string key, string prefix) {
-        if (key_to_item_.find(key) == key_to_item_.end()) return {};
+        if (key_to_item_.find(key) == key_to_item_.end())
+            return {};
 
         Item& item = key_to_item_[key];
         vector<string> rst;
@@ -337,7 +340,8 @@ public:
     int restore(int cur_ts, int ts_to_restore) {
         // Find latest backup at or before timestampToRestore
         auto it = backups_.upper_bound(ts_to_restore);
-        if (it == backups_.begin()) return 0;
+        if (it == backups_.begin())
+            return 0;
         --it;
 
         key_to_item_.clear();

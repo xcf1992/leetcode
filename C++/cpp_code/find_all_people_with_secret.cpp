@@ -85,6 +85,7 @@ private:
         parent[cur] = find(parent, parent[cur]);
         return parent[cur];
     }
+
 public:
     vector<int> findAllPeople(int n, vector<vector<int>>& meetings, int firstPerson) {
         vector<int> parent(n, -1);
@@ -93,9 +94,7 @@ public:
         // Typically we make 0 the parent, but your way works too.
         parent[firstPerson] = 0;
 
-        sort(meetings.begin(), meetings.end(), [](vector<int>& a, vector<int>& b) {
-            return a[2] < b[2];
-        });
+        sort(meetings.begin(), meetings.end(), [](vector<int>& a, vector<int>& b) { return a[2] < b[2]; });
 
         // Group meetings by time
         map<int, vector<pair<int, int>>> groups;
@@ -107,7 +106,7 @@ public:
             vector<pair<int, int>>& group = it->second;
 
             // 1. UNION PHASE: Connect everyone meeting at this time
-            for (auto& [p1 ,p2] : group) {
+            for (auto& [p1, p2] : group) {
                 int parent1 = find(parent, p1);
                 int parent2 = find(parent, p2);
                 if (parent1 != parent2) {
@@ -117,7 +116,7 @@ public:
             }
 
             // 2. RESET PHASE: Disconnect those who aren't connected to 0
-            for (auto& [p1 ,p2] : group) {
+            for (auto& [p1, p2] : group) {
                 if (find(parent, p1) != find(parent, 0)) {
                     parent[p1] = -1;
                     parent[p2] = -1;

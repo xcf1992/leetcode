@@ -93,7 +93,8 @@ private:
         return true;
     }
 
-    int mod = 1e9+7;
+    int mod = 1e9 + 7;
+
 public:
     int buildWall(int height, int width, vector<int>& bricks) {
         vector<vector<int>> valid_row;
@@ -105,7 +106,7 @@ public:
         for (int i = 0; i < cnt; i++) {
             for (int j = 0; j < cnt; j++) {
                 if (can_be_adjacent(valid_row[i], valid_row[j], width)) {
-                    adj_row_idx[i].push_back(j); // it is possible we can put the same row next to itself
+                    adj_row_idx[i].push_back(j);  // it is possible we can put the same row next to itself
                     // adj_row_idx[j].push_back(i);
                 }
             }
@@ -132,6 +133,6 @@ public:
 
 int main() {
     Solution s;
-    vector<int> a({1,2,3});
+    vector<int> a({1, 2, 3});
     s.buildWall(3, 5, a);
 }

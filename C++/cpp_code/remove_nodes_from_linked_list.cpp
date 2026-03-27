@@ -72,7 +72,7 @@ public:
             stk.pop();
 
             if (rst == nullptr || cur->val >= rst->val) {
-                cur -> next = rst;
+                cur->next = rst;
                 rst = cur;
             }
         }

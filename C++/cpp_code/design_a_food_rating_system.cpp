@@ -103,6 +103,7 @@ public:
     string highestRated(string cuisine) {
         return cuisine_to_foods_[cuisine].begin()->second;
     }
+
 private:
     unordered_map<string, string> food_to_cuisine_;
     unordered_map<string, set<pair<int, string>>> cuisine_to_foods_;

@@ -73,6 +73,7 @@ class Encrypter {
 private:
     unordered_map<char, string> key_to_val_;
     unordered_map<string, int> encrypt_cnt;
+
 public:
     Encrypter(vector<char>& keys, vector<string>& values, vector<string>& dictionary) {
         for (int i = 0; i < keys.size(); i++) {

@@ -77,7 +77,7 @@ public:
         }
 
         priority_queue<vector<int>, vector<vector<int>>, myComp> pq;
-        pq.push({0, 0, src}); // cost, stops, city
+        pq.push({0, 0, src});  // cost, stops, city
         while (!pq.empty()) {
             int cur_cost = pq.top()[0];
             int cur_stops = pq.top()[1];

@@ -61,30 +61,33 @@ class Solution {
 public:
     int minAnagramLength(string s) {
         int n = s.length();
-        vector<vector<int>>v(n,vector<int>(26));
-        vector<int>c(26,0);
-        for(int i=0;i<s.length();i++){
-            c[s[i]-'a']++;
+        vector<vector<int>> v(n, vector<int>(26));
+        vector<int> c(26, 0);
+        for (int i = 0; i < s.length(); i++) {
+            c[s[i] - 'a']++;
             v[i] = c;
         }
-        for(int i=0;i<26;i++){
-            if(c[i]==n) return 1;
+        for (int i = 0; i < 26; i++) {
+            if (c[i] == n)
+                return 1;
         }
-        for(int i=2;i<n;i++){
-            if(n%i!=0) continue;
-            vector<int>cm = v[i-1];
+        for (int i = 2; i < n; i++) {
+            if (n % i != 0)
+                continue;
+            vector<int> cm = v[i - 1];
             bool flag = false;
-            for(int j = i;j<n;j+=i){
-                vector<int>d(26,0);
-                for(int k=0;k<26;k++){
-                    d[k] = v[j+i-1][k]-v[j-1][k];
+            for (int j = i; j < n; j += i) {
+                vector<int> d(26, 0);
+                for (int k = 0; k < 26; k++) {
+                    d[k] = v[j + i - 1][k] - v[j - 1][k];
                 }
-                if(d!=cm){
+                if (d != cm) {
                     flag = true;
                     break;
                 }
             }
-            if(flag==false) return i;
+            if (flag == false)
+                return i;
         }
         return n;
     }

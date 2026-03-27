@@ -98,6 +98,7 @@ private:
     unordered_map<int, int> view_cnt_;
     unordered_map<int, int> like_cnt_;
     unordered_map<int, int> dislike_cnt_;
+
 public:
     VideoSharingPlatform() {
         max_video_id_ = 0;

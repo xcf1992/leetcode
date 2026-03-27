@@ -83,23 +83,24 @@ private:
         string token;
         istringstream tokenStream(s);
         while (getline(tokenStream, token, delimiter)) {
-            if (!token.empty()) tokens.push_back(token);
+            if (!token.empty())
+                tokens.push_back(token);
         }
         return tokens;
     }
 
     void handleRegister(string& path) {
-        auto parts = split(path, '/'); // ["v1", "REGISTER", "{user}", "{bal}"]
+        auto parts = split(path, '/');  // ["v1", "REGISTER", "{user}", "{bal}"]
         user_balance_[parts[2]] = stoll(parts[3]);
     }
 
     void handleFriendRequest(string& seqNum, string& path) {
-        auto parts = split(path, '/'); // ["v1", "FRIEND_REQUEST", "{from}", "{to}"]
+        auto parts = split(path, '/');  // ["v1", "FRIEND_REQUEST", "{from}", "{to}"]
         pending_friend_req_[seqNum] = {parts[2], parts[3]};
     }
 
     void handleFriendAccept(string& path) {
-        auto parts = split(path, '/'); // ["v1", "FRIEND_ACCEPT", "{toUser}", "{seqNum}"]
+        auto parts = split(path, '/');  // ["v1", "FRIEND_ACCEPT", "{toUser}", "{seqNum}"]
         string toUser = parts[2];
         string targetSeq = parts[3];
 
@@ -115,7 +116,7 @@ private:
     }
 
     void handleTransfer(string& path) {
-        auto parts = split(path, '/'); // ["v1", "TRANSFER_MONEY", "{from}", "{to}", "{amt}"]
+        auto parts = split(path, '/');  // ["v1", "TRANSFER_MONEY", "{from}", "{to}", "{amt}"]
         string from = parts[2];
         string to = parts[3];
         long long amount = stoll(parts[4]);
@@ -138,13 +139,11 @@ public:
 };
 
 int main() {
-    vector<pair<string, string>> input = {
-        {"1", "v1/REGISTER/Alice/100"},
-        {"2", "v1/REGISTER/Bob/50"},
-        {"3", "v1/FRIEND_REQUEST/Alice/Bob"},
-        {"4", "v1/FRIEND_ACCEPT/Bob/3"},
-        {"5", "v1/TRANSFER_MONEY/Alice/Bob/30"}
-    };
+    vector<pair<string, string>> input = {{"1", "v1/REGISTER/Alice/100"},
+                                          {"2", "v1/REGISTER/Bob/50"},
+                                          {"3", "v1/FRIEND_REQUEST/Alice/Bob"},
+                                          {"4", "v1/FRIEND_ACCEPT/Bob/3"},
+                                          {"5", "v1/TRANSFER_MONEY/Alice/Bob/30"}};
 
     SocialFinanceApp app;
     app.processRequests(input);

@@ -101,7 +101,8 @@ private:
     unordered_map<int, ItemBid> item_ids_;
 
 public:
-    AuctionSystem() {}
+    AuctionSystem() {
+    }
 
     void addBid(int userId, int itemId, int bidAmount) {
         // If user already has a bid, we must remove the old one first to "replace" it

@@ -88,7 +88,7 @@ class Solution {
 public:
     int minTime(int n, vector<vector<int>>& edges) {
         vector<vector<pair<int, pair<int, int>>>> adj(n, vector<pair<int, pair<int, int>>>());
-        for (vector<int> e: edges) {
+        for (vector<int> e : edges) {
             adj[e[0]].push_back({e[1], {e[2], e[3]}});
         }
 
@@ -114,7 +114,8 @@ public:
                 }
 
                 int move_time = max(start, cur_time);
-                // cout << "cur_node = " << cur_node << ", cur_time = " << cur_time << ", next_node = " << next_node << ", start = " << start << ", end = " << end << endl;
+                // cout << "cur_node = " << cur_node << ", cur_time = " << cur_time << ", next_node = " << next_node <<
+                // ", start = " << start << ", end = " << end << endl;
                 if (move_time + 1 < min_reach_time[next_node]) {
                     min_reach_time[next_node] = move_time + 1;
                     bfs.push({next_node, move_time + 1});
@@ -142,7 +143,8 @@ public:
             if (u == n - 1) {
                 return t;
             }
-            if (seen[u]) continue;
+            if (seen[u])
+                continue;
             seen[u] = true;
             for (const auto& edge : G[u]) {
                 int v = edge[0], s = edge[1], e = edge[2];

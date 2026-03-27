@@ -61,8 +61,7 @@ public:
             int found = log.find(" ");
             if (isdigit(log[found + 1])) {
                 digit_logs.push_back(log);
-            }
-            else {
+            } else {
                 letter_logs.push_back(log);
             }
         }

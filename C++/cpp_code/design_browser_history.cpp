@@ -69,6 +69,7 @@ private:
     stack<string> back_history_;
     deque<string> forward_history_;
     string cur_page_;
+
 public:
     BrowserHistory(string homepage) {
         cur_page_ = homepage;

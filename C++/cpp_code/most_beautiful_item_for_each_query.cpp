@@ -67,7 +67,7 @@ public:
     vector<int> maximumBeauty(vector<vector<int>>& items, vector<int>& queries) {
         sort(items.begin(), items.end(), [](vector<int>& a, vector<int>& b) {
             return a[0] < b[0] || (a[0] == b[0] && a[1] < b[1]);
-        }); // sort by price then beauty
+        });  // sort by price then beauty
 
         map<int, int> price_to_beauty;
         int max_beauty = 0;
@@ -84,7 +84,7 @@ public:
             if (it == price_to_beauty.begin()) {
                 rst.push_back(0);
             } else {
-                rst.push_back(prev(it) -> second);
+                rst.push_back(prev(it)->second);
             }
         }
         return rst;

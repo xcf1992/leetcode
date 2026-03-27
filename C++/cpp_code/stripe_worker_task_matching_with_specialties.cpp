@@ -469,7 +469,7 @@ public:
         for (const Worker& worker : workers) {
             worker_to_load[worker.name] = 0;
             worker_to_spec[worker.name] =
-                std::unordered_set<std::string>(worker.specialties.begin(), worker.specialties.end());
+                    std::unordered_set<std::string>(worker.specialties.begin(), worker.specialties.end());
             for (const std::string& spec : worker.specialties) {
                 if (spec_heap.find(spec) == spec_heap.end()) {
                     spec_heap[spec] = std::priority_queue<Entry, std::vector<Entry>, EntryComparator>();

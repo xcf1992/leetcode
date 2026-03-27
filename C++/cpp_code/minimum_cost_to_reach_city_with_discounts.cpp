@@ -82,7 +82,7 @@ public:
         min_cost[0][0] = 0;
 
         priority_queue<tuple<int, int, int>, vector<tuple<int, int, int>>, greater<tuple<int, int, int>>> pq;
-        pq.push({0, 0, 0}); // cost, city, used_discount
+        pq.push({0, 0, 0});  // cost, city, used_discount
 
         while (!pq.empty()) {
             auto [cur_cost, cur_city, used_discount] = pq.top();

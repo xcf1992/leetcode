@@ -75,7 +75,7 @@ public:
                 if (!used.count(t)) {  // this time slice is available
                     used_time++;       // duration for which I run it
                     used[t] = true;    // use this timeslice
-                    rst++;           // time for which my computer is on
+                    rst++;             // time for which my computer is on
                 }
             }
         }

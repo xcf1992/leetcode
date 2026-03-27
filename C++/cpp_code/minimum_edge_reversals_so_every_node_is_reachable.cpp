@@ -119,7 +119,7 @@ public:
         }
 
         vector<int> rst(n, 0);
-        dfs_1(0, -1, rst);   // get the result for node 0
+        dfs_1(0, -1, rst);  // get the result for node 0
         dfs_2(0, -1, rst);  // update result for other nodes
         return rst;
     }

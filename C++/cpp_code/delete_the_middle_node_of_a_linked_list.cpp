@@ -77,14 +77,14 @@ public:
         MyListNode* pre = pre_head;
         while (fast != nullptr) {
             pre = slow;
-            slow = slow -> next;
-            fast = fast -> next;
+            slow = slow->next;
+            fast = fast->next;
             if (fast != nullptr) {
-                fast = fast -> next;
+                fast = fast->next;
             }
         }
 
         pre->next = slow->next;
-        return pre_head -> next;
+        return pre_head->next;
     }
 };

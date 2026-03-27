@@ -174,7 +174,7 @@ public:
         return grid_[row - 1][column - 'A'].val;
     }
 
-    void set(int row, char column, int val) { // set means to wipe out all formula
+    void set(int row, char column, int val) {  // set means to wipe out all formula
         int r = row - 1;
         int c = column - 'A';
         // plain value, no formula
@@ -192,7 +192,7 @@ public:
         int c = column - 'A';
         unordered_map<string, int> cells = convert(numbers);
         int sum = calc_sum(r, c, cells);
-        set(row, column, sum);      // propagate as plain value
+        set(row, column, sum);       // propagate as plain value
         grid_[r][c] = {cells, sum};  // then restore the formula
         return sum;
     }

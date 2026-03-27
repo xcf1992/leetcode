@@ -76,6 +76,7 @@ private:
         all_vals.push_back(root->val);
         traverse(root->right, all_vals);
     }
+
 public:
     vector<vector<int>> closestNodes(TreeNode* root, vector<int>& queries) {
         vector<int> all_vals;

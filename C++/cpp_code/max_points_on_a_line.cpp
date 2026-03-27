@@ -53,11 +53,10 @@ public:
             int vertical = 0;
             unordered_map<string, int> cnt;
             for (int j = i + 1; j < n; j++) {
-                if (points[i][0] == points[j][0] &&
-                    points[i][1] == points[j][1]) {
+                if (points[i][0] == points[j][0] && points[i][1] == points[j][1]) {
                     same += 1;
                     continue;
-                    }
+                }
 
                 if (points[i][0] == points[j][0]) {
                     vertical += 1;
@@ -71,8 +70,7 @@ public:
                     dx = -dx;
                     dy = -dy;
                 }
-                string key =
-                    to_string(dx / gcd_val) + "_" + to_string(dy / gcd_val);
+                string key = to_string(dx / gcd_val) + "_" + to_string(dy / gcd_val);
                 cnt[key] += 1;
             }
 

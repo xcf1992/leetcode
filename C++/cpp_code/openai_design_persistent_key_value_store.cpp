@@ -443,7 +443,8 @@ private:
     std::vector<std::vector<unsigned char>> parts;
 
 public:
-    InMemoryMedium(int sizeLimit) : sizeLimit(sizeLimit) {}
+    InMemoryMedium(int sizeLimit) : sizeLimit(sizeLimit) {
+    }
 
     void saveBlob(const std::vector<unsigned char>& data) override {
         parts.clear();
@@ -505,7 +506,8 @@ private:
     }
 
 public:
-    KVStore(Medium* medium) : medium(medium), isClosed(false) {}
+    KVStore(Medium* medium) : medium(medium), isClosed(false) {
+    }
 
     void put(const std::string& key, const std::string& value) {
         if (isClosed) {
@@ -583,19 +585,19 @@ private:
         store1.put("user3", "Charlie_Brown_from_Chicago");
         store1.put("user4", "Diana_Prince_from_San_Francisco");
         store1.put("user5", "Eve_Williams_from_Seattle");
-        std::cout << store1.get("user1") << std::endl; // Expected: "Alice_Johnson_from_New_York"
-        std::cout << store1.get("user3") << std::endl; // Expected: "Charlie_Brown_from_Chicago"
-        std::cout << store1.get("user_nonexistent") << std::endl; // Expected: ""
+        std::cout << store1.get("user1") << std::endl;             // Expected: "Alice_Johnson_from_New_York"
+        std::cout << store1.get("user3") << std::endl;             // Expected: "Charlie_Brown_from_Chicago"
+        std::cout << store1.get("user_nonexistent") << std::endl;  // Expected: ""
         store1.shutdown();
 
         KVStore store2(&medium);
-        std::cout << store2.get("user1") << std::endl; // Expected: ""
+        std::cout << store2.get("user1") << std::endl;  // Expected: ""
         store2.put("temp_key", "temp_value");
         store2.restore();
-        std::cout << store2.get("user1") << std::endl; // Expected: "Alice_Johnson_from_New_York"
-        std::cout << store2.get("user2") << std::endl; // Expected: "Bob_Smith_from_Los_Angeles"
-        std::cout << store2.get("user5") << std::endl; // Expected: "Eve_Williams_from_Seattle"
-        std::cout << store2.get("temp_key") << std::endl; // Expected: ""
+        std::cout << store2.get("user1") << std::endl;     // Expected: "Alice_Johnson_from_New_York"
+        std::cout << store2.get("user2") << std::endl;     // Expected: "Bob_Smith_from_Los_Angeles"
+        std::cout << store2.get("user5") << std::endl;     // Expected: "Eve_Williams_from_Seattle"
+        std::cout << store2.get("temp_key") << std::endl;  // Expected: ""
     }
 
     static void test2() {
@@ -612,22 +614,22 @@ private:
 
         store1.put("large_key", largeData);
         store1.put("small_key", "small_value");
-        std::cout << "Length: " << store1.get("large_key").length() << std::endl; // Expected: 500
-        std::cout << store1.get("small_key") << std::endl; // Expected: "small_value"
+        std::cout << "Length: " << store1.get("large_key").length() << std::endl;  // Expected: 500
+        std::cout << store1.get("small_key") << std::endl;                         // Expected: "small_value"
         store1.shutdown();
 
         KVStore store2(&medium);
         store2.restore();
-        std::cout << "Length: " << store2.get("large_key").length() << std::endl; // Expected: 500
-        std::cout << store2.get("small_key") << std::endl; // Expected: "small_value"
+        std::cout << "Length: " << store2.get("large_key").length() << std::endl;  // Expected: 500
+        std::cout << store2.get("small_key") << std::endl;                         // Expected: "small_value"
         store2.put("large_key", "updated_value");
         store2.put("new_key", "new_data");
         store2.shutdown();
 
         KVStore store3(&medium);
         store3.restore();
-        std::cout << store3.get("large_key") << std::endl; // Expected: "updated_value"
-        std::cout << store3.get("new_key") << std::endl; // Expected: "new_data"
+        std::cout << store3.get("large_key") << std::endl;  // Expected: "updated_value"
+        std::cout << store3.get("new_key") << std::endl;    // Expected: "new_data"
     }
 };
 

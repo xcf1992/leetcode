@@ -397,6 +397,7 @@ private:
         }
         return 1.0;
     }
+
 public:
     vector<string> simulateBattle(Team& teamA, Team& teamB) {
         vector<string> rst;

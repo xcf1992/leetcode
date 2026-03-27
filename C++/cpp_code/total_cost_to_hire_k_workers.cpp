@@ -86,7 +86,7 @@ public:
         long long rst = pq.top().first;
         int last_idx = pq.top().second;
         pq.pop();
-        //cout << "rst = " << rst << ", last_idx = " << last_idx << endl;
+        // cout << "rst = " << rst << ", last_idx = " << last_idx << endl;
         for (int i = 1; i < k; i++) {
             if (last_idx <= left) {
                 left += 1;
@@ -102,7 +102,7 @@ public:
 
             rst += pq.top().first;
             last_idx = pq.top().second;
-            //cout << "rst = " << rst << ", last_idx = " << last_idx << endl;
+            // cout << "rst = " << rst << ", last_idx = " << last_idx << endl;
             pq.pop();
         }
         return rst;

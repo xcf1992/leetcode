@@ -105,7 +105,8 @@ public:
             int task_id = tasks_.top().first;
             int priority = tasks_.top().second;
             tasks_.pop();
-            if (task_priority_.find(task_id) != task_priority_.end() && task_owner_.find(task_id) != task_owner_.end() && priority == task_priority_[task_id]) {
+            if (task_priority_.find(task_id) != task_priority_.end() &&
+                task_owner_.find(task_id) != task_owner_.end() && priority == task_priority_[task_id]) {
                 int owner = task_owner_[task_id];
                 rmv(task_id);
                 return owner;

@@ -105,7 +105,7 @@ private:
             }
         } else {
             int user_id = 0;
-            for (int i = 0 ; i < event[2].size(); i++) {
+            for (int i = 0; i < event[2].size(); i++) {
                 if (isdigit(event[2][i])) {
                     user_id = user_id * 10 + (event[2][i] - '0');
                 }
@@ -117,6 +117,7 @@ private:
             }
         }
     }
+
 public:
     vector<int> countMentions(int numberOfUsers, vector<vector<string>>& events) {
         sort(events.begin(), events.end(), [&](vector<string>& a, vector<string>& b) {

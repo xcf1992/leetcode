@@ -85,6 +85,7 @@ private:
     void change_direction() {
         dir_ = (dir_ + 1) % 4;
     }
+
 public:
     Robot(int width, int height) {
         cur_x_ = 0;
@@ -99,7 +100,8 @@ public:
         if (num >= perimeter_) {
             num %= perimeter_;
             if (cur_x_ == 0 && cur_y_ == 0 && dir_ == 0) {
-                // Special case: if we are at the beginning (x = 0, y = 0 and facing east), after the round trip, the direction becomes south.
+                // Special case: if we are at the beginning (x = 0, y = 0 and facing east), after the round trip, the
+                // direction becomes south.
                 dir_ = 3;
             }
         }

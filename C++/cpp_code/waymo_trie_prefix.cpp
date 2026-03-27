@@ -54,6 +54,7 @@ private:
             }
         }
     }
+
 public:
     Solution() {
         root_ = new TrieNode();
@@ -83,11 +84,8 @@ public:
 
 // ─── Demo ───
 int main() {
-    vector<string> words = {
-        "apple", "app", "application", "apply",
-        "bat", "ball", "banana",
-        "cat", "car", "card", "care"
-    };
+    vector<string> words = {"apple",  "app", "application", "apply", "bat", "ball",
+                            "banana", "cat", "car",         "card",  "care"};
 
     Solution sol;
     sol.build_trie(words);
@@ -97,7 +95,8 @@ int main() {
         cout << "Prefix \"" << prefix << "\" -> [";
         auto results = sol.find_by_prefix(prefix);
         for (int i = 0; i < (int)results.size(); i++) {
-            if (i) cout << ", ";
+            if (i)
+                cout << ", ";
             cout << results[i];
         }
         cout << "]\n";

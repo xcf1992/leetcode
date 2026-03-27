@@ -101,7 +101,7 @@ public:
         int even_cnt = 0;
 
         ListNode* curr = head;
-        while(curr) {
+        while (curr) {
             int even_val = curr->val;
             curr = curr->next;
             int odd_val = curr->val;

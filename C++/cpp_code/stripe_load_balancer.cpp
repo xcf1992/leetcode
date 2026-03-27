@@ -74,7 +74,7 @@ vector<string> route_requests(int numTargets, int maxConnectionsPerTarget, vecto
         string objectId;
         int targetIndex;
     };
-    map<string, ConnInfo> connections; // connectionId -> ConnInfo
+    map<string, ConnInfo> connections;  // connectionId -> ConnInfo
 
     // Object pinning: objectId -> targetIndex (only while object has active connections)
     map<string, int> objectPin;
@@ -101,13 +101,15 @@ vector<string> route_requests(int numTargets, int maxConnectionsPerTarget, vecto
                 // Pick new target ignoring the shutdown one, but still apply least-connections
                 int best = -1;
                 for (int t = 1; t <= numTargets; t++) {
-                    if (isShutdown[t]) continue;
-                    if (activeCount[t] >= maxConnectionsPerTarget) continue;
+                    if (isShutdown[t])
+                        continue;
+                    if (activeCount[t] >= maxConnectionsPerTarget)
+                        continue;
                     if (best == -1 || activeCount[t] < activeCount[best]) {
                         best = t;
                     }
                 }
-                return best; // -1 if all full
+                return best;  // -1 if all full
             }
             // Pinned but full -> reject
             if (activeCount[pinned] >= maxConnectionsPerTarget) {
@@ -119,18 +121,21 @@ vector<string> route_requests(int numTargets, int maxConnectionsPerTarget, vecto
         // No pin: find target with fewest active connections, tie-break by smaller index
         int best = -1;
         for (int t = 1; t <= numTargets; t++) {
-            if (isShutdown[t]) continue;
-            if (activeCount[t] >= maxConnectionsPerTarget) continue;
+            if (isShutdown[t])
+                continue;
+            if (activeCount[t] >= maxConnectionsPerTarget)
+                continue;
             if (best == -1 || activeCount[t] < activeCount[best]) {
                 best = t;
             }
         }
-        return best; // -1 if all full
+        return best;  // -1 if all full
     };
 
     auto doConnect = [&](const string& connectionId, const string& userId, const string& objectId) -> int {
         int target = findBestTarget(objectId);
-        if (target == -1) return -1; // rejected
+        if (target == -1)
+            return -1;  // rejected
 
         connections[connectionId] = {userId, objectId, target};
         activeCount[target]++;
@@ -144,7 +149,8 @@ vector<string> route_requests(int numTargets, int maxConnectionsPerTarget, vecto
     };
 
     auto doDisconnect = [&](const string& connectionId) {
-        if (connections.find(connectionId) == connections.end()) return;
+        if (connections.find(connectionId) == connections.end())
+            return;
         auto& info = connections[connectionId];
         int target = info.targetIndex;
         string objectId = info.objectId;
@@ -177,16 +183,14 @@ vector<string> route_requests(int numTargets, int maxConnectionsPerTarget, vecto
             if (target != -1) {
                 output.push_back(connectionId + "," + userId + "," + to_string(target));
             }
-        }
-        else if (action == "DISCONNECT") {
+        } else if (action == "DISCONNECT") {
             string connectionId, userId, objectId;
             getline(ss, connectionId, ',');
             getline(ss, userId, ',');
             getline(ss, objectId, ',');
 
             doDisconnect(connectionId);
-        }
-        else if (action == "SHUTDOWN") {
+        } else if (action == "SHUTDOWN") {
             string targetStr;
             getline(ss, targetStr, ',');
             int targetIdx = stoi(targetStr);
@@ -233,25 +237,21 @@ int main() {
     // Test Part 1: Basic load balancing
     {
         cout << "=== Test 1: Basic Load Balancing ===" << endl;
-        vector<string> requests = {
-            "CONNECT,conn1,userA,obj1",
-            "CONNECT,conn2,userB,obj2"
-        };
+        vector<string> requests = {"CONNECT,conn1,userA,obj1", "CONNECT,conn2,userB,obj2"};
         auto result = route_requests(2, 10, requests);
-        for (auto& s : result) cout << s << endl;
+        for (auto& s : result)
+            cout << s << endl;
         // Expected: conn1,userA,1  conn2,userB,2
     }
 
     // Test Part 2: Disconnections
     {
         cout << "\n=== Test 2: Disconnections ===" << endl;
-        vector<string> requests = {
-            "CONNECT,conn1,userA,obj1",
-            "DISCONNECT,conn1,userA,obj1",
-            "CONNECT,conn2,userB,obj2"
-        };
+        vector<string> requests = {"CONNECT,conn1,userA,obj1", "DISCONNECT,conn1,userA,obj1",
+                                   "CONNECT,conn2,userB,obj2"};
         auto result = route_requests(2, 10, requests);
-        for (auto& s : result) cout << s << endl;
+        for (auto& s : result)
+            cout << s << endl;
         // Expected: conn1,userA,1  conn2,userB,1
     }
 
@@ -259,11 +259,12 @@ int main() {
     {
         cout << "\n=== Test 3: Object Pinning ===" << endl;
         vector<string> requests = {
-            "CONNECT,conn1,userA,obj1",
-            "CONNECT,conn2,userB,obj1"  // same objectId -> pinned to target 1
+                "CONNECT,conn1,userA,obj1",
+                "CONNECT,conn2,userB,obj1"  // same objectId -> pinned to target 1
         };
         auto result = route_requests(2, 10, requests);
-        for (auto& s : result) cout << s << endl;
+        for (auto& s : result)
+            cout << s << endl;
         // Expected: conn1,userA,1  conn2,userB,1
     }
 
@@ -271,12 +272,12 @@ int main() {
     {
         cout << "\n=== Test 4: Capacity Limits ===" << endl;
         vector<string> requests = {
-            "CONNECT,conn1,userA,obj1",
-            "CONNECT,conn2,userB,obj2",
-            "CONNECT,conn3,userC,obj3"  // should be rejected
+                "CONNECT,conn1,userA,obj1", "CONNECT,conn2,userB,obj2",
+                "CONNECT,conn3,userC,obj3"  // should be rejected
         };
         auto result = route_requests(2, 1, requests);
-        for (auto& s : result) cout << s << endl;
+        for (auto& s : result)
+            cout << s << endl;
         // Expected: conn1,userA,1  conn2,userB,2  (conn3 rejected)
     }
 
@@ -284,13 +285,13 @@ int main() {
     {
         cout << "\n=== Test 5: Shutdown ===" << endl;
         vector<string> requests = {
-            "CONNECT,conn1,userA,obj1",
-            "CONNECT,conn2,userB,obj2",
-            "SHUTDOWN,1",              // evict conn1 from target 1, reroute to target 2
-            "CONNECT,conn3,userC,obj3" // target 1 now available again
+                "CONNECT,conn1,userA,obj1", "CONNECT,conn2,userB,obj2",
+                "SHUTDOWN,1",               // evict conn1 from target 1, reroute to target 2
+                "CONNECT,conn3,userC,obj3"  // target 1 now available again
         };
         auto result = route_requests(2, 10, requests);
-        for (auto& s : result) cout << s << endl;
+        for (auto& s : result)
+            cout << s << endl;
         // Expected: conn1,userA,1  conn2,userB,2  conn1,userA,2  conn3,userC,1
     }
 

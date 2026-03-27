@@ -57,6 +57,7 @@ class NumberContainers {
 private:
     unordered_map<int, int> index_to_num_;
     unordered_map<int, set<int>> num_to_index_;
+
 public:
     NumberContainers() {
     }

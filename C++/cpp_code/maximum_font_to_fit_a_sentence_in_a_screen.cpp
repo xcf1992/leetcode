@@ -100,6 +100,7 @@ private:
         }
         return true;
     }
+
 public:
     int maxFont(string text, int w, int h, vector<int>& fonts, FontInfo fontInfo) {
         int n = fonts.size();

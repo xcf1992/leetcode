@@ -123,6 +123,7 @@ private:
     int topo_initiator = -1;
     unordered_map<int, string> child_topo;
     int child_topo_received;
+
 public:
     Node(int id, int parentId, const std::vector<int>& childIds, Cluster* cluster)
             : id(id), parentId(parentId), childIds(childIds), cluster(cluster) {
@@ -197,7 +198,7 @@ private:
                 sendAsyncMessage(cnt_initiator, "COUNT:" + std::to_string(subtree_cnt), id);
             }
 
-            cnt_initiator = -1; // reset
+            cnt_initiator = -1;  // reset
         }
     }
 
@@ -207,7 +208,7 @@ private:
 
         if (child_topo_received == childIds.size()) {
             std::string cur_topo = buildTopologyString();
-            if (topo_initiator == -1) { // This is the root
+            if (topo_initiator == -1) {  // This is the root
                 std::cout << "Cluster topology: " << cur_topo << std::endl;
             } else {
                 sendAsyncMessage(topo_initiator, "TOPOLOGY:" + cur_topo, id);
@@ -231,6 +232,7 @@ private:
         }
         return std::to_string(id) + "(" + sb.str() + ")";
     }
+
 protected:
     void sendAsyncMessage(int targetId, const std::string& message, int fromId);
 };

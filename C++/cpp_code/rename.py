@@ -26,11 +26,12 @@
 #     rename_files()
 
 
-#!/usr/bin/env python3
-#!/usr/bin/env python3
+# !/usr/bin/env python3
+# !/usr/bin/env python3
 import os
 import sys
 import tempfile
+
 
 def rename_to_lowercase(dry_run=True):
     """
@@ -93,13 +94,14 @@ def rename_to_lowercase(dry_run=True):
     print(f"  Files {'would be' if dry_run else ''} renamed: {files_to_rename if dry_run else renamed_count}")
     print(f"  Files skipped: {skipped_count}")
 
+
 if __name__ == "__main__":
     print("=== Lowercase Filename Converter ===\n")
 
     # First, run in dry-run mode to show what would happen
     rename_to_lowercase(dry_run=True)
 
-    print("\n" + "="*50)
+    print("\n" + "=" * 50)
     response = input("\nProceed with renaming? (yes/no): ").strip().lower()
 
     if response in ['yes', 'y']:

@@ -65,17 +65,17 @@ public:
 
         ListNode* fast = list;
         ListNode* slow = list;
-        while (fast -> next != list && slow->next != list) {
-            fast = fast -> next;
+        while (fast->next != list && slow->next != list) {
+            fast = fast->next;
             if (fast->next == list) {
                 break;
             }
-            fast = fast -> next;
-            slow = slow -> next;
+            fast = fast->next;
+            slow = slow->next;
         }
 
         ListNode* first = list;
-        ListNode* second = slow -> next;
+        ListNode* second = slow->next;
         slow->next = first;
         fast->next = second;
         rst.push_back(first);

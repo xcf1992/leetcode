@@ -50,9 +50,8 @@ class Solution {
 public:
     int numberOfPoints(vector<vector<int>>& nums) {
         int n = nums.size();
-        sort(nums.begin(), nums.end(), [](const vector<int>& a, const vector<int>& b) {
-           return a[0] < b[0] || (a[0] == b[0] && a[1] < b[1]);
-        });
+        sort(nums.begin(), nums.end(),
+             [](const vector<int>& a, const vector<int>& b) { return a[0] < b[0] || (a[0] == b[0] && a[1] < b[1]); });
 
         int rst = 0;
         int start = nums[0][0];

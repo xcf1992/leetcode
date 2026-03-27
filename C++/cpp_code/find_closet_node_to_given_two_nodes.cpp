@@ -74,6 +74,7 @@ private:
         min_dist[cur] = dist;
         dfs(edges, edges[cur], dist + 1, min_dist);
     }
+
 public:
     int closestMeetingNode(vector<int>& edges, int node1, int node2) {
         int n = edges.size();

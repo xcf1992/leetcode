@@ -80,7 +80,7 @@ public:
             long long earliest = LLONG_MAX;
             int roomIndex = -1;
             bool assigned = false;
-            for (int i = 0; i < n; ++i) { // find the room with earliest end time
+            for (int i = 0; i < n; ++i) {  // find the room with earliest end time
                 if (busy[i] < earliest) {
                     earliest = busy[i];
                     roomIndex = i;
@@ -94,7 +94,7 @@ public:
                 }
             }
 
-            if (!assigned) { // if all rooms are busy now, delay the task until the first room become available
+            if (!assigned) {  // if all rooms are busy now, delay the task until the first room become available
                 busy[roomIndex] += (end - start);
                 count[roomIndex]++;
             }
