@@ -79,6 +79,7 @@ using namespace std;
 class Solution {
 private:
     vector<int> diff_ = {0, 1, 0, -1, 0};
+
 public:
     bool findSafeWalk(vector<vector<int>>& grid, int health) {
         int m = grid.size();
@@ -120,3 +121,40 @@ public:
         return false;
     }
 };
+/*
+可以用 0-1 BFS 替代 Dijkstra，因为边权只有 0 和 1。用 deque 代替 priority_queue，权重 0 的放前面，权重 1
+的放后面。时间从 O(MN log(MN)) 降到 O(MN)：
+class Solution {
+    vector<int> diff_ = {0, 1, 0, -1, 0};
+public:
+    bool findSafeWalk(vector<vector<int>>& grid, int health) {
+        int m = grid.size(), n = grid[0].size();
+        vector<vector<int>> max_health(m, vector<int>(n, 0));
+        max_health[0][0] = health - grid[0][0];
+        deque<pair<int, int>> dq; // {encoded_pos, health}
+        dq.push_back({0, max_health[0][0]});
+
+        while (!dq.empty()) {
+            auto [pos, cur_h] = dq.front();
+            dq.pop_front();
+            int cur_r = pos / n, cur_c = pos % n;
+
+            if (cur_h < max_health[cur_r][cur_c]) continue;
+            if (cur_r == m - 1 && cur_c == n - 1) return true;
+
+            for (int i = 0; i < 4; i++) {
+                int nr = cur_r + diff_[i], nc = cur_c + diff_[i + 1];
+                if (nr < 0 || nr >= m || nc < 0 || nc >= n) continue;
+
+                int nh = cur_h - grid[nr][nc];
+                if (nh <= 0 || nh <= max_health[nr][nc]) continue;
+
+                max_health[nr][nc] = nh;
+                if (grid[nr][nc] == 0) dq.push_front({nr * n + nc, nh}); // cost 0 → front
+                else dq.push_back({nr * n + nc, nh}); // cost 1 → back
+            }
+        }
+        return false;
+    }
+};
+ */
