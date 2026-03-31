@@ -72,7 +72,7 @@ public:
         return decoded_char[it - range_idx.begin()];
     }
 
-    char find(string& encoded_str, char tgt_c, int left, int right) {
+    char find_by_value(string& encoded_str, char tgt_c, int left, int right) {
         vector<int> range_idx;
         vector<char> decoded_char;
         int n = encoded_str.size();

@@ -35,10 +35,10 @@ using namespace std;
 
 class Solution {
 public:
-    void rect_copy(vector<vector<int>>& grid, int sr, int sc, int dr, int dc, int h, int w) {
+    void rect_copy(vector<vector<int>>& grid, int from_row, int from_col, int to_row, int to_col, int h, int w) {
         int row_start, row_end, row_step;
         int col_start, col_end, col_step;
-        if (dr <= sr) {
+        if (to_row <= from_row) { // 这里代表目标在源头的上方
             row_start = 0;
             row_end = h;
             row_step = 1;
@@ -48,7 +48,7 @@ public:
             row_step = -1;
         }
 
-        if (dc <= sc) {
+        if (to_col <= from_col) { // 这里代表目标在源头的左边
             col_start = 0;
             col_end = w;
             col_step = 1;
@@ -60,7 +60,7 @@ public:
 
         for (int r = row_start; r != row_end; r += row_step) {
             for (int c = col_start; c != col_end; c += col_step) {
-                grid[dr + r][dc + c] = grid[sr + r][sc + c];
+                grid[to_row + r][to_col + c] = grid[from_row + r][from_col + c];
             }
         }
     }

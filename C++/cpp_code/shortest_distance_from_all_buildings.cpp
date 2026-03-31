@@ -48,6 +48,7 @@ public:
     int shortestDistance(vector<vector<int>>& grid) {
         int m = grid.size();
         int n = grid[0].size();
+
         vector<vector<int>> total_dist(m, vector<int>(n, 0));
         int empty_land_val = 0;
         int rst = INT_MAX;

@@ -108,6 +108,7 @@ private:
         while (!stk.empty()) {
             int cur = stk.top();
             stk.pop();
+
             for (auto& [nxt, weight] : adj[cur]) {
                 if (weight > limit || visited[nxt]) {
                     continue;

@@ -82,7 +82,7 @@ public:
         min_cost[0][0] = 0;
 
         priority_queue<tuple<int, int, int>, vector<tuple<int, int, int>>, greater<tuple<int, int, int>>> pq;
-        pq.push({0, 0, 0});  // cost, city, used_discount
+        pq.push({0, 0, 0}); // cost, city, used_discount
 
         while (!pq.empty()) {
             auto [cur_cost, cur_city, used_discount] = pq.top();
@@ -90,6 +90,10 @@ public:
 
             if (cur_cost > min_cost[cur_city][used_discount]) {
                 continue;
+            }
+
+            if (cur_city == n - 1) {
+                return cur_cost;
             }
 
             for (auto& [next_city, toll] : graph[cur_city]) {
@@ -109,7 +113,6 @@ public:
             }
         }
 
-        int rst = *min_element(min_cost[n - 1].begin(), min_cost[n - 1].end());
-        return rst == INT_MAX ? -1 : rst;
+        return -1;
     }
 };

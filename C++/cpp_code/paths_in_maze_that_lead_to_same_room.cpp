@@ -59,11 +59,12 @@ There are no duplicate corridors.
 #include <numeric>
 using namespace std;
 /*
-The trick here is always traverse in a single monotonic direction, i.e., either from small to large or vice versa.
-
-Then when we count up to 3 nodes in a single path, in order to know the next node could be the starting point, we need
-to check if there is a path leading to it from the last node of the 3. That leads to the second trick - use HashSet
-instead of List when building the graph from edges at the beginning.
+The trick here is always traverse in a single monotonic direction, i.e.,
+either from small to large or vice versa.
+when we count up to 3 nodes in a single path,
+in order to know the next node could be the starting point,
+we need to check if there is a path leading to it from the last node of the 3.
+That leads to the second trick - use HashSet instead of List when building the graph from edges at the beginning.
  */
 class Solution {
 private:

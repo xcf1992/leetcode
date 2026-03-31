@@ -80,6 +80,7 @@ public:
         int n = edges.size();
         vector<int> min_dist_1(n, INT_MAX);
         min_dist_1[node1] = 0;
+
         vector<int> min_dist_2(n, INT_MAX);
         min_dist_2[node2] = 0;
 
@@ -93,9 +94,9 @@ public:
                 continue;
             }
 
-            int max_dist = max(min_dist_1[i], min_dist_2[i]);
-            if (max_dist < min_dist) {
-                min_dist = max_dist;
+            int dist = max(min_dist_1[i], min_dist_2[i]);
+            if (dist < min_dist) {
+                min_dist = dist;
                 rst = i;
             }
         }

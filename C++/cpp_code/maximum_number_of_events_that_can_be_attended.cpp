@@ -87,30 +87,32 @@ day and repeat the process until all events are processed.
 class Solution1 {
 public:
     int maxEvents(vector<vector<int>>& events) {
-        // Sort events based on start day
         sort(events.begin(), events.end());
+        int n = events.size();
+        int cur_day = 0;
+        int event_idx = 0;
 
-        priority_queue<int, vector<int>, greater<int>> minHeap;
-
-        int day = 0, index = 0, n = events.size(), result = 0;
-
-        while (!minHeap.empty() || index < n) {
-            if (minHeap.empty()) {
-                day = events[index][0];
+        priority_queue<int, vector<int>, greater<int>> min_heap;
+        int rst = 0;
+        while (!min_heap.empty() || event_idx < n) {
+            if (min_heap.empty()) {
+                cur_day = events[event_idx][0];
             }
-            while (index < n && events[index][0] <= day) {
-                minHeap.push(events[index][1]);
-                index++;
-            }
-            minHeap.pop();
-            result++;
-            day++;
 
-            while (!minHeap.empty() && minHeap.top() < day) {
-                minHeap.pop();
+            while (event_idx < n && events[event_idx][0] <= cur_day) {
+                min_heap.push(events[event_idx][1]);
+                event_idx++;
+            }
+
+            min_heap.pop();  // attend the event ends earliest
+            rst += 1;
+
+            cur_day += 1;
+            while (!min_heap.empty() && min_heap.top() < cur_day) {
+                min_heap.pop();
             }
         }
-        return result;
+        return rst;
     }
 };
 

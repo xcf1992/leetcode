@@ -123,61 +123,11 @@ offer shortcuts.
 
 Complexity is O(N² log N) where N = number of special roads, since every node tries to relax every other node. That's
 fine given the constraint (N ≤ 200).
-
-你原来的方法：从城市 i 跑 Dijkstra，算出 i 到所有城市的最短距离，然后挑 min((k+1)*dist(i,j) + appleCost[j])。对每个 i
-都重新跑一遍，N 个起点就是 N 次完整的 Dijkstra。 多源 Dijkstra 快在哪：不同起点的最优解往往共享大量路径。比如城市 3
-和城市 5 的最优选择可能都是去城市 8 买苹果，它们到城市 8 的最短路有大量重叠的边。N 次 Dijkstra
-会反复探索这些重叠的边，而多源 Dijkstra 只探索一次。 直觉上可以这样理解：想象每个城市 j
-同时向外"广播"一个信号，信号强度的初始值是 appleCost[j]，沿边传播时每经过一条边 toll 就增加
-(k+1)*toll。所有城市同时广播，每个城市 i 只记录它收到的最小信号值。因为 Dijkstra 按代价从小到大处理，当城市 i
-第一次被"定下来"时，它已经找到了全局最优的苹果来源——不需要知道那个苹果具体来自哪个城市。 本质上，N 次单源 Dijkstra
-的总工作量是 O(N * E log N)，而多源 Dijkstra 虽然初始队列有 N 个元素，但每条边最多被有效松弛常数次，总工作量还是 O(E log
-N)。省掉的就是那个 N 倍
-
--=-=
-那如果我想知道具体从某个 city 出发, 最优应该去哪个 city 买苹果的话, 是不是就还得回到 N 次单源的方式? 能也用多源解决么
-
-4:06 PM
-可以用多源解决，只需要多记录一个信息：这个最优信号是从哪个城市发出的。
-
-cpp
-// dist[i] = min total cost starting from city i
-// source[i] = which city to buy apple from, if starting at city i
-vector<long long> dist(n);
-vector<int> source(n);
-
-for (int i = 0; i < n; i++) {
-    dist[i] = appleCost[i];
-    source[i] = i;  // initially, buy apple at your own city
-    pq.push({dist[i], i});
-}
-
-while (!pq.empty()) {
-    auto [cost, cur] = pq.top();
-    pq.pop();
-
-    if (cost > dist[cur]) continue;
-
-    for (auto [next, toll] : graph[cur]) {
-        long long new_cost = cost + (long long)(k + 1) * toll;
-        if (new_cost < dist[next]) {
-            dist[next] = new_cost;
-            source[next] = source[cur];  // inherit the apple source
-            pq.push({new_cost, next});
-        }
-    }
-}
-原理很简单：当城市 cur 的信号松弛了城市 next 时，说明 next 的最优方案是"走到 cur，然后用 cur 的最优方案"。而 cur
-的最优苹果来源是 source[cur]，所以 next 直接继承就行。
-
-这就像信号传播时带了一个"标签"，标记着这个信号最初是从哪个苹果源发出的。最终 source[i] 就是城市 i
-应该去买苹果的最优城市。
 */
 class Solution {
 public:
     int minimumCost(vector<int>& start, vector<int>& target, vector<vector<int>>& specialRoads) {
         int n = specialRoads.size();
-
         vector<int> min_dist(n, INT_MAX);
         priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
         for (int i = 0; i < n; i++) {

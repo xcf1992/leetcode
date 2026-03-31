@@ -54,13 +54,11 @@ class Solution {
 public:
     int maximumMinimumPath(vector<vector<int>>& A) {
         int m = A.size();
-        if (m == 0) {
-            return 0;
-        }
         int n = A[0].size();
 
         priority_queue<vector<int>, vector<vector<int>>, myComp> pq;
         pq.push({0, 0, A[0][0]});
+
         vector<vector<bool>> visited(m, vector<bool>(n, false));
         visited[0][0] = true;
 
@@ -98,6 +96,7 @@ public:
 
         vector<vector<int>> max_val_path(m, vector<int>(n, INT_MIN));
         max_val_path[0][0] = grid[0][0];
+
         priority_queue<pair<int, int>, vector<pair<int, int>>, less<pair<int, int>>> pq;
         pq.push({grid[0][0], 0});
 

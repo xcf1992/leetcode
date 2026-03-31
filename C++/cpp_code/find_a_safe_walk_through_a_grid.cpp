@@ -84,10 +84,13 @@ public:
     bool findSafeWalk(vector<vector<int>>& grid, int health) {
         int m = grid.size();
         int n = grid[0].size();
+
         vector<vector<int>> max_health(m, vector<int>(n, 0));
         max_health[0][0] = health - grid[0][0];
+
         priority_queue<pair<int, int>, vector<pair<int, int>>, less<pair<int, int>>> pq;
         pq.push({max_health[0][0], 0});
+
         while (!pq.empty()) {
             int cur_r = pq.top().second / n;
             int cur_c = pq.top().second % n;
