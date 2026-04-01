@@ -55,43 +55,6 @@ using namespace std;
 class Solution {
 public:
     double maxProbability(int n, vector<vector<int>>& edges, vector<double>& succProb, int start, int end) {
-        unordered_map<int, vector<pair<int, double>>> adj;
-        for (int i = 0; i < edges.size(); ++i) {
-            int from = edges[i][0];
-            int to = edges[i][1];
-            double prob = succProb[i];
-
-            adj[from].push_back({to, prob});
-            adj[to].push_back({from, prob});
-        }
-
-        vector<double> reach_prob(n, 0.0);
-        reach_prob[start] = 1.0;
-
-        queue<pair<int, double>> bfs;
-        bfs.push({start, 1.0});
-        while (!bfs.empty()) {
-            int cur_pos = bfs.front().first;
-            double cur_prob = bfs.front().second;
-            bfs.pop();
-
-            for (pair<int, double>& nxt : adj[cur_pos]) {
-                int to = nxt.first;
-                double prob = nxt.second;
-                double new_prob = prob * cur_prob;
-                if (new_prob > reach_prob[to]) {
-                    reach_prob[to] = new_prob;
-                    bfs.push({to, new_prob});
-                }
-            }
-        }
-        return reach_prob[end];
-    }
-};
-
-class Solution {
-public:
-    double maxProbability(int n, vector<vector<int>>& edges, vector<double>& succProb, int start, int end) {
         unordered_map<int, vector<pair<double, int>>> graph;
         for (int i = 0; i < edges.size(); ++i) {
             int from = edges[i][0];
@@ -121,19 +84,15 @@ public:
                 return cur_prob;
             }
 
-            if (!graph[cur_node].empty()) {  // Check if the node has been processed
-                for (auto& nxt : graph[cur_node]) {
-                    int next_node = nxt.second;
-                    double new_prob = nxt.first;
-                    if (cur_prob * new_prob > max_prob[next_node]) {
-                        max_prob[next_node] = cur_prob * new_prob;
-                        pq.push({max_prob[next_node], next_node});
-                    }
+            for (auto& nxt : graph[cur_node]) {
+                int next_node = nxt.second;
+                double new_prob = nxt.first;
+                if (cur_prob * new_prob > max_prob[next_node]) {
+                    max_prob[next_node] = cur_prob * new_prob;
+                    pq.push({max_prob[next_node], next_node});
                 }
-                graph[cur_node].clear();  // Clear the adjacency list by removing the entry
             }
         }
-
         return 0.0;
     }
 };
