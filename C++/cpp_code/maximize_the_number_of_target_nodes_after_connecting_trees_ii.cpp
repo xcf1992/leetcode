@@ -82,14 +82,17 @@ private:
 
     void count_target(vector<vector<int>>& graph, vector<int>& color_cnt, vector<int>& node_color) {
         int node_cnt = graph.size();
+
         queue<int> bfs;
         bfs.push(0);
+
         vector<bool> visited(node_cnt, false);
         visited[0] = true;
+
         int cur_color = 0;
         while (!bfs.empty()) {
-            int cur_cnt = bfs.size();
-            for (int i = 0; i < cur_cnt; ++i) {
+            int cur_size = bfs.size();
+            for (int i = 0; i < cur_size; ++i) {
                 int cur = bfs.front();
                 bfs.pop();
 
