@@ -1,4 +1,5 @@
- /*
+/*
+https://leetcode.com/problems/course-schedule-iii/
 630. Course Schedule III
 
 There are n different online courses numbered from 1 to n.
@@ -45,7 +46,7 @@ we try to take as many as courses possible, (say take k courses)
 
 # rule1 *
 the courses take in total cur days,
-if there are multiple ways of taking k courses, we keep the way which has least cur.
+if there are multiple ways of taking k courses, we keep the way which has the least cur.
 
 # rule2
 At deadline d with course duration = t:
@@ -86,23 +87,42 @@ Here we could take the 10 day course, then the 100 day course & now since more d
 course BUT THAT IS WRONG We need to complete the 95 day course by the 100TH day which will never be possible So either
 we can take 10 day one or 95 day one. But it will be only one course possible (Better take smaller length course so the
 next courses get time. Thats why Priority queues are used)
+
+为什么替换是安全的？
+按 deadline 排序后，当前课的 deadline ≥ 所有已选课的 deadline。替换掉更长的课后，总时间变小，之前能满足 deadline
+的课现在依然满足。 时间复杂度： O(n log n)，排序 O(n log n) + 遍历中每个元素最多一次 push/pop 各 O(log n)。 空间复杂度：
+O(n)，堆的大小。
 */
 class Solution {
 public:
-    int scheduleCourse(vector<vector<int>>& courses) { // time_cost & end_time
+    int scheduleCourse(vector<vector<int>>& courses) {
+        // 按 deadline 升序排序
         sort(courses.begin(), courses.end(), [](vector<int>& a, vector<int>& b) { return a[1] < b[1]; });
 
-        priority_queue<int> max_heap;
-        int current = 0;
-        for (vector<int>& c : courses) {
-            current += c[0];
-            max_heap.push(c[0]); // max heap store the time cost from longest to shortest
-            if (current > c[1]) {
-                current -= max_heap.top();
-                max_heap.pop();
+        priority_queue<int> pq;  // 大顶堆，存已选课程的 duration
+        int cur_time = 0;
+
+        for (int i = 0; i < (int)courses.size(); i++) {
+            int duration = courses[i][0];
+            int deadline = courses[i][1];
+
+            if (cur_time + duration <= deadline) {
+                // 能选就选
+                cur_time += duration;
+                pq.push(duration);
+            } else if (!pq.empty() && pq.top() > duration) {
+                // 选不了，但当前课比已选的最长课更短
+                // 替换掉最长的，总时间变少，课程数不变
+                cur_time -= pq.top();
+                pq.pop();
+
+                cur_time += duration;
+                pq.push(duration);
             }
+            // 否则跳过这门课
         }
-        return max_heap.size();
+
+        return pq.size();
     }
 };
 

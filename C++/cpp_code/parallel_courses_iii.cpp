@@ -96,7 +96,7 @@ public:
         }
 
         vector<int> complete_time(n, -1);
-        int rst = - 1;
+        int rst = -1;
         for (int i = 0; i < n; i++) {
             rst = max(rst, get_complete_time(prev_courses, complete_time, time, i));
         }

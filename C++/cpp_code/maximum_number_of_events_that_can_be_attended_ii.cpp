@@ -51,6 +51,49 @@ Constraints:
 #include <numeric>
 #include <bitset>
 using namespace std;
+
+class Solution {
+private:
+    // Find the last event that does not overlap with the current event using binary search. Let’s call its index prev.
+    int event_before_start(vector<vector<int>>& events, int cur_start) {
+        int left = 0;
+        int right = events.size();
+        int result = -1;
+
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (events[mid][1] < cur_start) {
+                result = mid;
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+
+        // cout << "res = " << result << endl;
+        return result;
+    }
+
+public:
+    int maxValue(vector<vector<int>>& events, int k) {
+        sort(events.begin(), events.end(), [](const vector<int>& a, const vector<int>& b) { return a[1] < b[1]; });
+
+        int n = events.size();
+        vector<vector<int>> dp(n + 1, vector<int>(k + 1, 0));
+
+        for (int i = 1; i <= n; ++i) {
+            int cur_start = events[i - 1][0];
+            int prev = event_before_start(events, cur_start) + 1;
+
+            for (int j = 1; j <= k; ++j) {
+                dp[i][j] = max(dp[i - 1][j], dp[prev][j - 1] + events[i - 1][2]);
+            }
+        }
+
+        return dp[n][k];
+    }
+};
+
 /*
 Solution:
 
@@ -89,46 +132,5 @@ public:
         sort(events.begin(), events.end());
         vector<vector<int>> dp(n + 1, vector<int>(k + 1, -1));
         return solve(dp, events, n, 0, k);
-    }
-};
-
-class Solution {
-private:
-    // Find the last event that does not overlap with the current event using binary search. Let’s call its index prev.
-    int binarySearch(vector<vector<int>>& events, int currentStart) {
-        int left = 0;
-        int right = events.size();
-        int result = -1;
-
-        while (left < right) {
-            int mid = left + (right - left) / 2;
-            if (events[mid][1] < currentStart) {
-                result = mid;
-                left = mid + 1;
-            } else {
-                right = mid;
-            }
-        }
-
-        // cout << "res = " << result << endl;
-        return result;
-    }
-public:
-    int maxValue(vector<vector<int>>& events, int k) {
-        sort(events.begin(), events.end(), [](const vector<int>& a, const vector<int>& b) { return a[1] < b[1]; });
-
-        int n = events.size();
-        vector<vector<int>> dp(n + 1, vector<int>(k + 1, 0));
-
-        for (int i = 1; i <= n; ++i) {
-            int cur_start = events[i - 1][0];
-            int prev = binarySearch(events, cur_start) + 1;
-
-            for (int j = 1; j <= k; ++j) {
-                dp[i][j] = max(dp[i - 1][j], dp[prev][j - 1] + events[i - 1][2]);
-            }
-        }
-
-        return dp[n][k];
     }
 };

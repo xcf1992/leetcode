@@ -66,10 +66,10 @@ public:
             return "";
         }
 
-        unordered_map<char, int> indegree;
+        unordered_map<char, int> in_degree;
         for (string word : words) {
             for (char c : word) {
-                indegree[c] = 0;
+                in_degree[c] = 0;
             }
         }
 
@@ -82,18 +82,19 @@ public:
             }
 
             int len = min(cur_word.size(), next_word.size());
-            for (int j = 0; j < len; j++)
+            for (int j = 0; j < len; j++) {
                 if (cur_word[j] != next_word[j]) {
                     if (graph[cur_word[j]].find(next_word[j]) == graph[cur_word[j]].end()) {
                         graph[cur_word[j]].insert(next_word[j]);
-                        indegree[next_word[j]] += 1;
+                        in_degree[next_word[j]] += 1;
                     }
                     break;
                 }
+            }
         }
 
         queue<char> bfs;
-        for (auto& it : indegree) {
+        for (auto& it : in_degree) {
             if (it.second == 0) {
                 bfs.push(it.first);
             }
@@ -107,13 +108,13 @@ public:
             result.push_back(cur);
             if (graph[cur].size() != 0) {
                 for (char c : graph[cur]) {
-                    indegree[c] -= 1;
-                    if (indegree[c] == 0) {
+                    in_degree[c] -= 1;
+                    if (in_degree[c] == 0) {
                         bfs.push(c);
                     }
                 }
             }
         }
-        return result.size() == indegree.size() ? result : "";
+        return result.size() == in_degree.size() ? result : "";
     }
 };

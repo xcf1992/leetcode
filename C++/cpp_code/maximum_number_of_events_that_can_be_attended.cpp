@@ -84,6 +84,43 @@ Attend Earliest Ending Event: If there are events left in the heap, attend the o
 from the heap) and increment the count of attended events. Move to Next Day: After attending an event, move to the next
 day and repeat the process until all events are processed.
 */
+
+class Solution {
+public:
+    int maxEvents(vector<vector<int>>& events) {
+        sort(events.begin(), events.end());
+        priority_queue<int, vector<int>, greater<int>> pq;  // 小顶堆，存 endDay
+
+        int event_idx = 0;
+        int n = events.size();
+        int rst = 0;
+        for (int day = 1; day <= 100000; day++) {
+            // 1. 把今天开始的所有事件的 endDay 加入堆
+            while (event_idx < n && events[event_idx][0] == day) {
+                pq.push(events[event_idx][1]);
+                event_idx++;
+            }
+
+            // 2. 移除已经过期的事件
+            while (!pq.empty() && pq.top() < day) {
+                pq.pop();
+            }
+
+            // 3. 参加 endDay 最早的那个事件（贪心）
+            if (!pq.empty()) {
+                pq.pop();
+                rst++;
+            }
+
+            // 提前终止：没有事件可处理了
+            if (pq.empty() && event_idx >= n) {
+                break;
+            }
+        }
+        return rst;
+    }
+};
+
 class Solution1 {
 public:
     int maxEvents(vector<vector<int>>& events) {
@@ -113,32 +150,5 @@ public:
             }
         }
         return rst;
-    }
-};
-
-class Solution {
-public:
-    int maxEvents(vector<vector<int>>& events) {
-        sort(events.begin(), events.end(), [](vector<int>& a, vector<int>& b) { return a[0] < b[0]; });
-        priority_queue<int, vector<int>, greater<int>> pq;
-        int n = events.size();
-        int i = 0;
-        int result = 0;
-        for (int d = 1; d <= 100000; ++d) {
-            while (i < n and events[i][0] <= d) {
-                pq.push(events[i][1]);
-                i += 1;
-            }
-
-            while (!pq.empty() and pq.top() < d) {
-                pq.pop();
-            }
-
-            if (!pq.empty()) {
-                result += 1;
-                pq.pop();
-            }
-        }
-        return result;
     }
 };
