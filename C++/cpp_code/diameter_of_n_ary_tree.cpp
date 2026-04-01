@@ -51,10 +51,6 @@ The total number of nodes is between [1, 104].
 #include <map>
 using namespace std;
 
-/*
-// Definition for a Node.
-*/
-
 class Node {
 public:
     int val;
